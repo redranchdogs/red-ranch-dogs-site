@@ -510,7 +510,7 @@ function HomeHero() {
         <p>
           Country-raised Goldendoodles, Cavapoos, and Bernedoodles, lovingly raised in Central Texas.
         </p>
-        <div className="actions">
+        <div className="actions hero-actions">
           <Link href="/join-our-waitlist" className="button primary">
             Join the Waitlist
           </Link>

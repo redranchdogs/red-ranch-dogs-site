@@ -19,6 +19,7 @@
 :root {
   --brand-red: #941f17;
   --brand-red-dark: #6f160f;
+  --premium-bg: #f7f1e6;
   --warm-cream: #f7efe4;
   --warm-paper: #fffaf2;
   --soft-tan: #ded0bd;
@@ -906,8 +907,17 @@ body.menu-locked {
     inset: 0;
     z-index: 1;
     background:
-      radial-gradient(circle at 50% 37%, rgba(255, 250, 242, 0) 0 35%, rgba(247, 241, 230, 0.16) 51%, rgba(247, 241, 230, 0.98) 74%),
-      linear-gradient(180deg, rgba(247, 241, 230, 0) 39%, rgba(247, 241, 230, 0.84) 62%, var(--premium-bg) 83%);
+      radial-gradient(circle at 50% 34%, rgba(255, 250, 242, 0) 0 32%, rgba(247, 241, 230, 0.22) 47%, rgba(247, 241, 230, 0.98) 69%),
+      linear-gradient(180deg, rgba(247, 241, 230, 0) 34%, rgba(247, 241, 230, 0.62) 53%, rgba(247, 241, 230, 0.96) 67%, var(--premium-bg) 82%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .premium-hero::after {
+    position: absolute;
+    inset: 330px 0 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(247, 241, 230, 0), rgba(247, 241, 230, 0.88) 32%, rgba(247, 241, 230, 0.98) 52%, var(--premium-bg) 100%);
     content: "";
     pointer-events: none;
   }
@@ -921,7 +931,13 @@ body.menu-locked {
     justify-items: center;
     gap: 14px;
     padding-top: 384px;
+    background: linear-gradient(180deg, rgba(247, 241, 230, 0) 0 48%, rgba(247, 241, 230, 0.84) 58%, rgba(247, 241, 230, 0.98) 68%, var(--premium-bg) 100%);
+    overflow: hidden;
     text-align: center;
+  }
+
+  .premium-hero-copy::before {
+    display: none;
   }
 
   .premium-kicker {
@@ -945,7 +961,7 @@ body.menu-locked {
   .hero-image-frame::after {
     background:
       linear-gradient(90deg, rgba(247, 241, 230, 0.7) 0%, rgba(247, 241, 230, 0.12) 18%, rgba(247, 241, 230, 0) 48%, rgba(247, 241, 230, 0.06) 100%),
-      linear-gradient(180deg, rgba(247, 241, 230, 0) 48%, rgba(247, 241, 230, 0.74) 74%, var(--premium-bg) 100%);
+      linear-gradient(180deg, rgba(247, 241, 230, 0) 38%, rgba(247, 241, 230, 0.52) 62%, rgba(247, 241, 230, 0.95) 78%, var(--premium-bg) 100%);
   }
 
   .hero-image-frame img {
@@ -959,6 +975,7 @@ body.menu-locked {
 
   .premium-hero .actions {
     width: min(100%, 758px);
+    box-sizing: border-box;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
     padding: 0 18px;
@@ -966,13 +983,14 @@ body.menu-locked {
 
   .premium-hero h1 {
     display: grid;
-    gap: 6px;
+    gap: 4px;
+    width: 100%;
     max-width: 100%;
     color: var(--premium-ink);
     font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-    font-size: clamp(3.25rem, 15.4vw, 4.9rem);
+    font-size: clamp(2.35rem, 8.8vw, 3.25rem);
     font-weight: 400;
-    line-height: 0.9;
+    line-height: 0.86;
     text-transform: uppercase;
   }
 
@@ -991,10 +1009,13 @@ body.menu-locked {
 
   .premium-hero h1 .hero-title-intro {
     color: var(--premium-ink);
+    font-size: 0.94em;
   }
 
   .premium-hero h1 .hero-title-brand {
     color: var(--brand-red);
+    font-size: 1em;
+    white-space: nowrap;
   }
 
   .premium-hero-copy > p:not(.premium-kicker) {
@@ -2320,4 +2341,58 @@ summary {
 .premium-breed-card,
 .premium-trust-card {
   box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .premium-hero h1 {
+    font-size: clamp(2.25rem, 8.3vw, 3rem);
+  }
+
+  .premium-hero h1 .hero-title-brand {
+    font-size: 1em;
+  }
+
+  .premium-hero-copy > p:not(.premium-kicker) {
+    width: 100%;
+    max-width: 22rem;
+    padding: 0 20px;
+  }
+
+  .premium-hero .actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-self: center;
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+    gap: 8px;
+    margin-top: 0;
+    padding: 0 8px;
+  }
+
+  .premium-hero .button {
+    min-width: 0;
+    width: 100%;
+    padding: 0 2px;
+    overflow: hidden;
+    font-size: 0.62rem;
+    white-space: nowrap;
+  }
+
+  .premium-hero .hero-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    gap: 8px !important;
+    margin-top: 0 !important;
+    padding: 0 8px !important;
+  }
+
+  .premium-hero .hero-actions .button {
+    min-width: 0 !important;
+    width: 100% !important;
+    padding: 0 2px !important;
+    font-size: 0.62rem !important;
+    white-space: nowrap;
+  }
 }
