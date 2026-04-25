@@ -330,7 +330,7 @@ function AccordionNav({ item, currentPath, onNavigate, index }) {
           <Link
             href={link.href}
             className={currentPath === link.href ? "active" : undefined}
-            key={link.href}
+            key={`${item.label}-${link.label}-${link.href}`}
             onClick={onNavigate}
           >
             {link.label}
