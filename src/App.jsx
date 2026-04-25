@@ -504,13 +504,11 @@ function HomeHero() {
       <div className="premium-hero-copy">
         <p className="premium-kicker">{brand.tagline}</p>
         <h1>
-          <span>Red</span>
-          <span>Ranch</span>
-          <span>Dogs</span>
+          <span className="hero-title-intro">Welcome to</span>
+          <span className="hero-title-brand">Red Ranch Dogs</span>
         </h1>
         <p>
-          Family-run Goldendoodle, Cavapoo, and Bernedoodle puppies raised with hands-on care in Salado,
-          Texas.
+          Country-raised Goldendoodles, Cavapoos, and Bernedoodles, lovingly raised in Central Texas.
         </p>
         <div className="actions">
           <Link href="/join-our-waitlist" className="button primary">
