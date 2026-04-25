@@ -2,16 +2,15 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
+  ChevronDown,
   Heart,
   Instagram,
   Mail,
-  Menu,
   MessageCircle,
   Phone,
   Send,
   ShieldCheck,
-  Sparkles,
-  X
+  Sparkles
 } from "lucide-react";
 import {
   availablePuppies,
@@ -251,54 +250,165 @@ function applySeo(path) {
   upsertMeta('meta[property="og:type"]', "meta", { property: "og:type", content: "website" });
 }
 
-function Header() {
-  const [open, setOpen] = useState(false);
-  const currentPath = pathNow();
+const desktopNav = [
+  { label: "Home", href: "/" },
+  { label: "Puppies", href: "/available-puppies" },
+  { label: "Parents", href: "/parents-1" },
+  { label: "Application", href: "/application-process" },
+  { label: "Stud Services", href: "/studservices" },
+  { label: "Guardian Program", href: "/guardianprogram" }
+];
+
+const mobileNav = [
+  { label: "Home", href: "/" },
+  { label: "Available Puppies", href: "/available-puppies" },
+  {
+    label: "Puppies",
+    links: [
+      { label: "Available Puppies", href: "/available-puppies" },
+      { label: "Upcoming Litters", href: "/upcoming-litters" },
+      { label: "Goldendoodles", href: "/previous-litters-goldendoodles" },
+      { label: "Cavapoos", href: "/previous-litters-cavapoos" },
+      { label: "Bernedoodles", href: "/previous-litters-bernedoodles" }
+    ]
+  },
+  {
+    label: "About",
+    links: [
+      { label: "Our Story", href: "/our-family" },
+      { label: "Parents", href: "/parents-1" },
+      { label: "Health Testing", href: "/what-come-with-your-puppy" },
+      { label: "Puppy Curriculum", href: "/what-come-with-your-puppy" }
+    ]
+  },
+  {
+    label: "Application and Waitlist",
+    links: [
+      { label: "How the Waitlist Works", href: "/application-process" },
+      { label: "Puppy Application", href: "/puppy-application" },
+      { label: "Pricing", href: "/prices" },
+      { label: "FAQ", href: "/faq" }
+    ]
+  },
+  { label: "Parents", href: "/parents-1" },
+  { label: "Stud Services", href: "/studservices" },
+  { label: "Guardian Program", href: "/guardianprogram" },
+  { label: "Contact", href: "/contact" }
+];
+
+function AccordionNav({ item, currentPath, onNavigate, index }) {
+  const [expanded, setExpanded] = useState(false);
+  const panelId = `mobile-nav-${item.label.toLowerCase().replace(/\W+/g, "-")}`;
+
+  if (!item.links) {
+    return (
+      <Link
+        href={item.href}
+        className={`mobile-menu-link ${currentPath === item.href ? "active" : ""}`}
+        onClick={onNavigate}
+        style={{ "--item-index": index }}
+      >
+        {item.label}
+      </Link>
+    );
+  }
 
   return (
-    <header className="site-header">
+    <div className="mobile-menu-group" style={{ "--item-index": index }}>
       <button
-        className="icon-button menu-toggle"
+        type="button"
+        className="mobile-menu-trigger"
+        aria-expanded={expanded}
+        aria-controls={panelId}
+        onClick={() => setExpanded((value) => !value)}
+      >
+        {item.label}
+        <ChevronDown size={18} />
+      </button>
+      <div className="mobile-submenu" id={panelId} data-open={expanded}>
+        {item.links.map((link) => (
+          <Link
+            href={link.href}
+            className={currentPath === link.href ? "active" : undefined}
+            key={link.href}
+            onClick={onNavigate}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Header() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const currentPath = pathNow();
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 18);
+      setHidden(!open && currentY > 180 && currentY > lastY);
+      lastY = currentY;
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [open]);
+
+  useEffect(() => {
+    document.body.classList.toggle("menu-locked", open);
+    return () => document.body.classList.remove("menu-locked");
+  }, [open]);
+
+  const closeMenu = () => setOpen(false);
+
+  return (
+    <header className={`premium-header ${scrolled ? "scrolled" : ""} ${hidden ? "hide-on-mobile" : ""}`}>
+      <button
+        className={`premium-menu-button ${open ? "open" : ""}`}
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-label="Toggle menu"
         aria-expanded={open}
       >
-        {open ? <X size={22} /> : <Menu size={22} />}
+        <span />
+        <span />
       </button>
-      <Link href="/" className="logo-link" onClick={() => setOpen(false)}>
+      <Link href="/" className="premium-logo-link" onClick={closeMenu}>
         <img src={brand.logo} alt="Red Ranch Dogs" />
       </Link>
-      <nav className={`nav ${open ? "open" : ""}`}>
-        {navGroups.map((group) => (
-          <div className="nav-group" key={group.label}>
-            <Link
-              href={group.href}
-              className={currentPath === group.href || group.links?.some((link) => link.href === currentPath) ? "active" : undefined}
-              onClick={() => setOpen(false)}
-            >
-              {group.label}
-            </Link>
-            {group.links && (
-              <div className="nav-menu">
-                {group.links.map((link) => (
-                  <Link
-                    href={link.href}
-                    className={currentPath === link.href ? "active" : undefined}
-                    key={link.href}
-                    onClick={() => setOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+      <nav className="premium-desktop-nav" aria-label="Primary navigation">
+        {desktopNav.map((item) => (
+          <Link
+            href={item.href}
+            className={currentPath === item.href ? "active" : undefined}
+            key={item.href}
+          >
+            {item.label}
+          </Link>
         ))}
       </nav>
-      <a className="icon-button header-instagram" href={brand.instagram} aria-label="Instagram" target="_blank" rel="noreferrer">
+      <a className="premium-icon-link" href={brand.instagram} aria-label="Instagram" target="_blank" rel="noreferrer">
         <Instagram size={18} />
       </a>
+      <div className={`premium-mobile-menu ${open ? "open" : ""}`} aria-hidden={!open} inert={open ? undefined : ""}>
+        <nav aria-label="Mobile navigation">
+          {mobileNav.map((item, index) => (
+            <AccordionNav item={item} currentPath={currentPath} key={item.label} index={index} onNavigate={closeMenu} />
+          ))}
+        </nav>
+        <div className="mobile-menu-ctas">
+          <Link href="/join-our-waitlist" className="button primary" onClick={closeMenu}>Join the Waitlist</Link>
+          <Link href="/available-puppies" className="button secondary" onClick={closeMenu}>Available Puppies</Link>
+          <a href={brand.sms} className="button text-button" onClick={closeMenu}>Text Us Now</a>
+        </div>
+      </div>
     </header>
   );
 }
@@ -348,18 +458,49 @@ function StatBand() {
   );
 }
 
+function FadeInSection({ as: Element = "section", className = "", children, ...props }) {
+  const [visible, setVisible] = useState(false);
+  const [node, setNode] = useState(null);
+
+  useEffect(() => {
+    if (!node) return undefined;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px" }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [node]);
+
+  return (
+    <Element ref={setNode} className={`${className} reveal-section ${visible ? "visible" : ""}`} {...props}>
+      {children}
+    </Element>
+  );
+}
+
+function ImagePlaceholder({ label, tall = false }) {
+  return (
+    <div className={`image-placeholder ${tall ? "tall" : ""}`} role="img" aria-label={label}>
+      <span>{label}</span>
+    </div>
+  );
+}
+
 function HomeHero() {
   return (
-    <section className="home-hero">
-      <div className="home-hero-copy">
-        <p className="home-kicker">{brand.tagline}</p>
-        <h1>
-          <span>Welcome to</span>
-          <strong>Red Ranch Dogs</strong>
-        </h1>
+    <section className="premium-hero" id="home-hero">
+      <div className="premium-hero-copy">
+        <p className="premium-kicker">{brand.tagline}</p>
+        <h1>Welcome to Red Ranch Dogs</h1>
         <p>
-          Your trusted source for Goldendoodles, Cavapoos, and Bernedoodles raised with hands-on care in
-          Salado, Texas.
+          Family-run Goldendoodle, Cavapoo, and Bernedoodle puppies raised with hands-on care in Salado,
+          Texas.
         </p>
         <div className="actions">
           <Link href="/join-our-waitlist" className="button primary">
@@ -370,56 +511,209 @@ function HomeHero() {
           </Link>
         </div>
       </div>
-      <div className="home-hero-image" aria-hidden="true">
-        <img src={images.homeHero} alt="" />
-      </div>
+      <ImagePlaceholder label="Hero image placeholder" tall />
     </section>
   );
 }
 
+const breedPlaceholders = {
+  Goldendoodles: "Goldendoodle photo",
+  Cavapoos: "Cavapoo photo",
+  Bernedoodles: "Bernedoodle photo"
+};
+
+function SectionIntro({ eyebrow, title, copy }) {
+  return (
+    <div className="premium-section-intro">
+      <p className="premium-kicker">{eyebrow}</p>
+      <h2>{title}</h2>
+      {copy && <p>{copy}</p>}
+    </div>
+  );
+}
+
+function BreedCard({ breed }) {
+  return (
+    <Link href="/available-puppies" className="premium-breed-card">
+      <ImagePlaceholder label={breedPlaceholders[breed.name] || `${breed.name} photo`} />
+      <div>
+        <h3>{breed.name}</h3>
+        <p>{breed.copy}</p>
+        <span>
+          Learn More <ArrowRight size={16} />
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 function HomeDoodles() {
-  const cards = [
-    {
-      name: "Goldendoodles",
-      copy: breeds.find((breed) => breed.name === "Goldendoodles")?.copy,
-      image: "/images/litters/honey-bram.webp",
-      href: "/available-puppies"
-    },
-    {
-      name: "Cavapoos",
-      copy: breeds.find((breed) => breed.name === "Cavapoos")?.copy,
-      image: "/images/litters/penny-wyatt.webp",
-      href: "/current-litters"
-    },
-    {
-      name: "Bernedoodles",
-      copy: breeds.find((breed) => breed.name === "Bernedoodles")?.copy,
-      image: "/images/seed/dam-bernedoodle.webp",
-      href: "/upcoming-litters"
-    }
+  return (
+    <FadeInSection className="premium-section">
+      <SectionIntro
+        eyebrow="Our Doodles"
+        title="Thoughtful pairings for family-ready companions."
+        copy="Three breed programs, one standard for temperament, health, and communication."
+      />
+      <div className="premium-card-grid breed-grid">
+        {breeds.map((breed) => <BreedCard breed={breed} key={breed.name} />)}
+      </div>
+    </FadeInSection>
+  );
+}
+
+function TrustCard({ title, copy, Icon }) {
+  return (
+    <article className="premium-trust-card">
+      <Icon size={22} />
+      <h3>{title}</h3>
+      <p>{copy}</p>
+    </article>
+  );
+}
+
+function WhyRedRanch() {
+  const items = [
+    ["Health Tested Parents", "Pairings are guided by health, structure, temperament, and genetic fit.", ShieldCheck],
+    ["Ethical Breeding", "Puppies are raised with daily care, age-appropriate exposure, and clear family communication.", Heart],
+    ["Ongoing Support", "Guidance continues after go-home day with practical help for the transition.", MessageCircle]
   ];
 
   return (
-    <section className="home-doodles">
-      <div className="section-heading">
-        <p className="home-kicker">Our Doodles</p>
-        <h2>Healthy, well-tempered puppies ready for loving homes.</h2>
+    <FadeInSection className="premium-section trust-section">
+      <SectionIntro
+        eyebrow="Why Red Ranch Dogs"
+        title="A steady, transparent process from application to go-home."
+      />
+      <div className="premium-card-grid trust-grid">
+        {items.map(([title, copy, Icon]) => <TrustCard title={title} copy={copy} Icon={Icon} key={title} />)}
       </div>
-      <div className="breed-card-grid">
-        {cards.map((card) => (
-          <Link href={card.href} className="home-breed-card" key={card.name}>
-            <img src={card.image} alt={`${card.name} puppy`} />
-            <div>
-              <h3>{card.name}</h3>
-              <p>{card.copy}</p>
-              <span>
-                Learn More <ArrowRight size={16} />
-              </span>
-            </div>
-          </Link>
+    </FadeInSection>
+  );
+}
+
+function PuppyTemplateCard({ label, status }) {
+  return (
+    <article className="premium-puppy-card">
+      <ImagePlaceholder label="Available puppy photo" />
+      <div>
+        <span className="status-pill">{status}</span>
+        <h3>{label}</h3>
+        <dl>
+          <div><dt>Breed</dt><dd>To be added</dd></div>
+          <div><dt>Gender</dt><dd>To be added</dd></div>
+          <div><dt>Adult Weight</dt><dd>Estimate pending</dd></div>
+        </dl>
+        <Link href="/available-puppies" className="button small">View Availability</Link>
+      </div>
+    </article>
+  );
+}
+
+function AvailablePuppiesPreview() {
+  return (
+    <FadeInSection className="premium-section puppies-preview">
+      <SectionIntro
+        eyebrow="Available Puppies"
+        title="A clean card system ready for each puppy profile."
+        copy="When you send real photos and details, these placeholders become live puppy cards."
+      />
+      <div className="puppy-scroll" aria-label="Available puppy card templates">
+        <PuppyTemplateCard label="Puppy profile" status="Available" />
+        <PuppyTemplateCard label="Puppy profile" status="Pending" />
+        <PuppyTemplateCard label="Puppy profile" status="Reserved" />
+      </div>
+    </FadeInSection>
+  );
+}
+
+function WaitlistSteps() {
+  const steps = [
+    ["01", "Apply", "Tell us about your family, timing, breed preference, and questions."],
+    ["02", "Place Deposit", "Join the right waitlist with a deposit and a clear place in line."],
+    ["03", "Pick or Pass", "Review litter updates and choose when the right puppy is ready."]
+  ];
+
+  return (
+    <FadeInSection className="premium-section waitlist-section">
+      <SectionIntro
+        eyebrow="How the Waitlist Works"
+        title="Simple, fair, and easy to understand."
+      />
+      <div className="waitlist-steps">
+        {steps.map(([number, title, copy]) => (
+          <article key={title}>
+            <span>{number}</span>
+            <h3>{title}</h3>
+            <p>{copy}</p>
+          </article>
         ))}
       </div>
-    </section>
+    </FadeInSection>
+  );
+}
+
+function HomeTestimonials() {
+  return (
+    <FadeInSection className="premium-section testimonials-section">
+      <SectionIntro
+        eyebrow="Testimonials"
+        title="Families remember the care before the puppy comes home."
+      />
+      <div className="testimonial-row">
+        {reviews.slice(0, 3).map((review) => (
+          <article className="premium-testimonial-card" key={review.name}>
+            <ImagePlaceholder label="Family testimonial photo" />
+            <p>&quot;{review.quote}&quot;</p>
+            <strong>{review.name}</strong>
+          </article>
+        ))}
+      </div>
+    </FadeInSection>
+  );
+}
+
+function FinalCta() {
+  return (
+    <FadeInSection className="premium-section final-cta-section">
+      <div className="final-cta-panel">
+        <ImagePlaceholder label="Ranch lifestyle photo" />
+        <div>
+          <p className="premium-kicker">Ready to find your puppy?</p>
+          <h2>Our puppies go fast.</h2>
+          <p>Join the Red Ranch Dogs waitlist to secure your spot and be first to know when new puppies are available.</p>
+          <div className="actions">
+            <Link href="/join-our-waitlist" className="button primary">Join the Waitlist</Link>
+            <a href={brand.sms} className="button secondary">Text Us Now</a>
+          </div>
+        </div>
+      </div>
+    </FadeInSection>
+  );
+}
+
+function StickyMobileCta() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const hero = document.getElementById("home-hero");
+      const footer = document.querySelector(".premium-footer");
+      const pastHero = hero ? window.scrollY > hero.offsetTop + hero.offsetHeight * 0.7 : window.scrollY > 420;
+      const nearFooter = footer ? footer.getBoundingClientRect().top < window.innerHeight + 80 : false;
+      setVisible(pastHero && !nearFooter);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div className={`sticky-mobile-cta ${visible ? "visible" : ""}`}>
+      <Link href="/join-our-waitlist" className="button primary">Join Waitlist</Link>
+      <a href={brand.sms} className="button secondary">Text Us</a>
+    </div>
   );
 }
 
@@ -428,36 +722,12 @@ function HomePage() {
     <Layout>
       <HomeHero />
       <HomeDoodles />
-      <section className="feature-grid">
-        {[
-          ["Health-Tested Parents", "Our breeding dogs undergo genetic testing to support healthier puppies.", ShieldCheck],
-          ["Ethical Breeding", "We prioritize health, temperament, socialization, and thoughtful pairings.", Heart],
-          ["Ongoing Support", "Our relationship continues with advice on training, care, and transitions.", MessageCircle]
-        ].map(([title, copy, Icon]) => (
-          <article className="feature-card" key={title}>
-            <Icon size={28} />
-            <h3>{title}</h3>
-            <p>{copy}</p>
-          </article>
-        ))}
-      </section>
-      <ReviewsInline />
-      <section className="cta-band">
-        <img src={images.cta} alt="Red Ranch puppy" />
-        <div>
-          <p className="eyebrow">Ready to find your puppy?</p>
-          <h2>Our puppies go fast.</h2>
-          <p>Join the Red Ranch Dogs waitlist to secure your spot and be first to know when new puppies are ready to meet their forever families.</p>
-          <div className="actions">
-            <Link href="/join-our-waitlist" className="button primary">
-              Join the Waitlist
-            </Link>
-            <a href={brand.sms} className="button secondary">
-              Text Us Now
-            </a>
-          </div>
-        </div>
-      </section>
+      <WhyRedRanch />
+      <AvailablePuppiesPreview />
+      <WaitlistSteps />
+      <HomeTestimonials />
+      <FinalCta />
+      <StickyMobileCta />
     </Layout>
   );
 }
@@ -1399,9 +1669,9 @@ function CategoryPage({ title, copy, links }) {
 
 function Newsletter() {
   return (
-    <section className="newsletter">
+    <section className="premium-newsletter">
       <div>
-        <p className="eyebrow">Puppy Alert Email</p>
+        <p className="premium-kicker">Puppy Alert Email</p>
         <h2>Stay in the loop about upcoming litters.</h2>
       </div>
       <LeadForm formType="newsletter" title="Puppy Alert Email" compact newsletterOnly />
@@ -1530,14 +1800,17 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
 
 function Footer() {
   return (
-    <footer className="site-footer">
-      <div>
+    <footer className="premium-footer">
+      <div className="footer-brand">
         <img src={brand.logo} alt="Red Ranch Dogs" />
         <p>{brand.tagline}</p>
+        <span>{brand.location}</span>
       </div>
       <div className="footer-links">
         <Link href="/">Home</Link>
-        <Link href="/puppy-application">Puppy Application</Link>
+        <Link href="/available-puppies">Puppies</Link>
+        <Link href="/application-process">Application</Link>
+        <Link href="/parents-1">Parents</Link>
         <Link href="/contact">Contact</Link>
         <a href={brand.instagram} target="_blank" rel="noreferrer">Instagram</a>
       </div>
