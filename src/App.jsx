@@ -492,6 +492,12 @@ function ImagePlaceholder({ label, tall = false }) {
   );
 }
 
+const homeHeroImage = {
+  src: "/images/home/red-ranch-dogs-goldendoodle-puppy-hero-1365.jpeg",
+  mobileSrc: "/images/home/red-ranch-dogs-goldendoodle-puppy-hero-900.jpeg",
+  alt: "Goldendoodle puppy from Red Ranch Dogs in Salado, Texas"
+};
+
 function HomeHero() {
   return (
     <section className="premium-hero" id="home-hero">
@@ -511,7 +517,16 @@ function HomeHero() {
           </Link>
         </div>
       </div>
-      <ImagePlaceholder label="Hero image placeholder" tall />
+      <picture className="hero-image-frame">
+        <source srcSet={homeHeroImage.mobileSrc} media="(max-width: 760px)" />
+        <img
+          src={homeHeroImage.src}
+          alt={homeHeroImage.alt}
+          width="1365"
+          height="2048"
+          decoding="async"
+        />
+      </picture>
     </section>
   );
 }
