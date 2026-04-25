@@ -1,0 +1,45 @@
+{
+  "redirects": [
+    {
+      "source": "/new-page-2",
+      "destination": "/previous-litters-bernedoodles",
+      "permanent": true
+    },
+    {
+      "source": "/june-enzo-1",
+      "destination": "/previous-litters-cavapoos",
+      "permanent": true
+    },
+    {
+      "source": "/june-enzo-2",
+      "destination": "/previous-litters-cavapoos",
+      "permanent": true
+    },
+    {
+      "source": "/services-6",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

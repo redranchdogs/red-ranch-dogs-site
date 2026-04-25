@@ -1,0 +1,1207 @@
+const cdn = "https://images.squarespace-cdn.com/content/v1/5f62b20fcd7dbb04e4f4f5a6";
+const seed = "/images/seed";
+
+export const brand = {
+  name: "Red Ranch Dogs",
+  tagline: "Country Raised Doodles",
+  phone: "512-309-1077",
+  sms: "sms:+15123091077",
+  email: "support@redranchdogs.com",
+  paymentEmail: "adam@redranchdogs.com",
+  instagram: "https://www.instagram.com/redranchdogs/",
+  location: "Salado, Texas",
+  logo: `${seed}/logo.webp`,
+  favicon: `${cdn}/18651cef-f4eb-4430-9ab3-2826e9d3b2fc/favicon.ico?format=100w`
+};
+
+export const images = {
+  hero: `${seed}/hero-puppy.webp`,
+  doodles: `${seed}/doodles.webp`,
+  cta: `${seed}/cta-puppy.webp`,
+  family: `${seed}/family.webp`,
+  damsGoldendoodle: `${seed}/dam-goldendoodle.webp`,
+  damsBernedoodle: `${seed}/dam-bernedoodle.webp`,
+  damsPoodle: `${seed}/dam-poodle.webp`,
+  damsCavapoo: `${seed}/dam-cavapoo.webp`,
+  flora: `${seed}/flora.webp`,
+  studBernedoodle: `${seed}/stud-bernedoodle.webp`,
+  studGoldendoodle: `${seed}/stud-goldendoodle.webp`,
+  studPoodle: `${seed}/stud-poodle.webp`,
+  currentHoney: `${seed}/family.webp`,
+  currentBirdie: `${seed}/birdie.webp`
+};
+
+export const navGroups = [
+  { label: "Home", href: "/" },
+  {
+    label: "About",
+    href: "/about",
+    links: [
+      { label: "Prices", href: "/prices" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Contact", href: "/contact" },
+      { label: "Meet Our Team", href: "/meet-our-team" },
+      { label: "Our Family", href: "/our-family" },
+      { label: "Reviews", href: "/reviews-1" }
+    ]
+  },
+  {
+    label: "Puppies",
+    href: "/puppies-1",
+    links: [
+      { label: "What Comes With Your Puppy", href: "/what-come-with-your-puppy" },
+      { label: "Available Puppies", href: "/available-puppies" },
+      { label: "Current Litters", href: "/current-litters" },
+      { label: "Upcoming Litters", href: "/upcoming-litters" },
+      { label: "Previous Litters", href: "/previous-litters" },
+      { label: "Coat Traits", href: "/coat-traits" }
+    ]
+  },
+  {
+    label: "Parents",
+    href: "/parents-1",
+    links: [
+      { label: "Dams", href: "/dams" },
+      { label: "Studs", href: "/studs" }
+    ]
+  },
+  {
+    label: "Application & Waitlist",
+    href: "/application-1",
+    links: [
+      { label: "Puppy Application", href: "/puppy-application" },
+      { label: "Application Process", href: "/application-process" },
+      { label: "Waitlist", href: "/waitlist" }
+    ]
+  },
+  {
+    label: "Stud Services",
+    href: "/studservices",
+    links: [
+      { label: "Our Studs", href: "/our-studs" },
+      { label: "Reproductive Education", href: "/reproductive-education" }
+    ]
+  },
+  { label: "Guardian Program", href: "/guardianprogram" }
+];
+
+export const breeds = [
+  {
+    name: "Goldendoodles",
+    copy: "A friendly, intelligent Golden Retriever and Poodle mix known for low-shedding coats, family-friendly temperaments, and teddy-bear looks."
+  },
+  {
+    name: "Cavapoos",
+    copy: "A sweet Cavalier King Charles Spaniel and Poodle mix loved for cuddly personalities, adaptable size, and playful affection."
+  },
+  {
+    name: "Bernedoodles",
+    copy: "A loyal Bernese Mountain Dog and Poodle mix with affectionate personalities, calm confidence, and beautiful low-shedding coats."
+  }
+];
+
+export const availablePuppies = [
+  // The public Squarespace page currently does not expose individual available puppy cards.
+  // Add puppies here when the next available list is confirmed.
+];
+
+export const currentLitters = [
+  {
+    name: "Honey + Bram",
+    breed: "Micro Goldendoodles",
+    delivery: "March 15, 2026",
+    goHome: "May 2026",
+    coloring: "Red Abstract",
+    size: "10-15 lbs",
+    coat: "Wavy, Straight",
+    price: "$4500",
+    status: "Current Litter",
+    href: "/honey-bram",
+    image: "/images/litters/honey-bram.webp"
+  },
+  {
+    name: "Birdie + Waylon",
+    breed: "Micro Goldendoodles",
+    delivery: "April 1, 2026",
+    goHome: "May 22-24, 2026",
+    coloring: "Red Abstract",
+    size: "20-25 lbs",
+    coat: "Wavy, Straight",
+    price: "$3200",
+    status: "Current Litter",
+    href: "/birdie-waylon-jennings-1",
+    image: "/images/litters/birdie-waylon.webp"
+  }
+];
+
+export const litterDetails = {
+  "/honey-bram": {
+    name: "Honey + Bram",
+    breed: "Multigen Micro Goldendoodles",
+    image: "/images/litters/honey-bram.webp",
+    facts: [
+      ["Delivery", "March 16, 2026"],
+      ["Go Home", "May 9-10, 2026"],
+      ["Coloring", "Apricot, Red, Red Chocolate"],
+      ["Size", "10-15 lbs"],
+      ["Coat", "Straight"],
+      ["Price", "$4500"]
+    ],
+    parents: "Honey + Bram, outside stud",
+    genetics: ["~70% Poodle", "~30% Golden Retriever"],
+    copy: [
+      "We are so excited to share this very special pairing between Honey and Bram, producing a stunning litter of Multigen Micro Goldendoodles.",
+      "Honey is a beautiful multigen micro Goldendoodle weighing around 13 pounds. She has rich red-chocolate coloring, a gorgeous straight coat, and the sweetest temperament imaginable.",
+      "Bram weighs around 10 pounds and brings an energetic, confident, and playful personality to this pairing. He is spunky, intelligent, and full of charm.",
+      "These puppies are expected to be truly micro in size, likely falling right in the 10-15 pound full-grown range, with the potential for rich red-chocolate and caramel tones."
+    ],
+    puppies: [
+      ["Buzz", "Male", "Blue Collar"],
+      ["Bumble", "Male", "Orange Collar"],
+      ["Bee", "Female", "Yellow Collar"],
+      ["Honeycomb", "Female", "Pink Collar"],
+      ["Hive", "Male", "Mint Collar"]
+    ],
+    milestones: ["4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
+  },
+  "/birdie-waylon-jennings-1": {
+    name: "Birdie + Waylon",
+    breed: "Multigen Goldendoodles",
+    image: "/images/litters/birdie-waylon.webp",
+    facts: [
+      ["Delivery", "April 1, 2026"],
+      ["Go Home", "May 23-24, 2026"],
+      ["Coloring", "Red, Red Abstract"],
+      ["Size", "20-25 lbs"],
+      ["Coat", "Wavy, Straight"],
+      ["Price", "$3200"]
+    ],
+    parents: "Birdie + Waylon",
+    genetics: ["Approximately 42% Golden Retriever", "Approximately 58% Poodle"],
+    copy: [
+      "This pairing brings together gentle temperaments, intelligent instincts, and beautifully manageable coats.",
+      "The balanced genetic makeup combines the affectionate, family-friendly nature of the Golden Retriever with the intelligence and coat qualities of the Poodle.",
+      "These puppies are expected to have soft wavy to straight coats and genetically low-shedding traits.",
+      "They are expected to mature to a petite mini size, typically between 20 and 25 pounds full grown."
+    ],
+    theme: "Birdie's Route 66 Road Trip Litter",
+    puppies: [
+      ["Diesel", "Male", "Blue Collar"],
+      ["Arizona", "Female", "Pink Collar"],
+      ["Ranger", "Male", "Brown Collar"],
+      ["Axel", "Male", "Orange Collar"],
+      ["Dakota", "Female", "Red Collar"],
+      ["Indie", "Female", "Purple Collar"],
+      ["Sedona", "Female", "Yellow Collar"]
+    ],
+    milestones: ["3 Weeks Old", "2 Weeks Old", "Newborn Photos"]
+  },
+  "/penny-wyatt": {
+    name: "Penny + Wyatt",
+    breed: "F1b Micro Cavapoos",
+    image: "/images/litters/penny-wyatt.webp",
+    facts: [
+      ["Due", "April 2026"],
+      ["Go Home", "June 2026"],
+      ["Coloring", "Red Abstract, Parti"],
+      ["Size", "10-18 lbs"],
+      ["Coat", "Wavy"],
+      ["Price", "$4500"]
+    ],
+    parents: "Penny + Wyatt",
+    genetics: ["75% Poodle", "25% Cavalier King Charles Spaniel"],
+    copy: [
+      "We are incredibly excited about this sweet pairing between Penny and Wyatt, which will produce a beautiful litter of F1B Cavapoos.",
+      "Penny is a lovely F1 Cavapoo weighing around 25 pounds, with a beautiful red and white parti coat and a deeply people-oriented temperament.",
+      "Wyatt is a tiny 4 pound toy poodle with intelligence, confidence, and an affectionate temperament.",
+      "These puppies should have soft, silky, wavy coats with beautiful red, apricot, and red-and-white parti coloring possible."
+    ],
+    puppies: [],
+    milestones: []
+  },
+  "/winnie-redford": {
+    name: "Winnie + Redford",
+    breed: "F1b Cavapoos",
+    image: "/images/litters/winnie-redford.webp",
+    facts: [
+      ["Due", "Spring 2026"],
+      ["Go Home", "Early Summer 2026"],
+      ["Coloring", "Red Abstract"],
+      ["Size", "20-30 lbs"],
+      ["Coat", "Wavy"],
+      ["Price", "$3200"]
+    ],
+    parents: "Winnie + Redford",
+    genetics: [],
+    copy: ["This planned F1b Cavapoo pairing is expected to produce red abstract puppies in a 20-30 pound size range."],
+    puppies: [],
+    milestones: []
+  }
+};
+
+export const upcomingLitters = {
+  updated: "4/21/2026",
+  groups: [
+    {
+      breed: "Goldendoodles",
+      litters: [
+        ["Ginny + Butch", "Mini Petite Goldendoodles", "Red Abstract | 20-25 lbs", "Due April 2026", "Go Home June 2026"],
+        ["Whitley + Waylon", "Mini Goldendoodles", "Red Abstract | 25-30 lbs", "Due April 2026", "Go Home June 2026"],
+        ["Faye + Sundance", "Mini Goldendoodles", "Red Abstract | 25-30 lbs", "Due May 2026", "Go Home July 2026"],
+        ["Georgia + Waylon", "Mini Goldendoodles", "Red Abstract | 20-25 lbs", "Due May 2026", "Go Home July 2026"]
+      ]
+    },
+    {
+      breed: "Bernedoodles",
+      litters: [["Kylie + Ranger", "Micro Bernedoodles", "Tri Colored Chocolate | 20-25 lbs", "Planning in progress", ""]]
+    },
+    {
+      breed: "Cavapoos",
+      litters: [
+        ["Penny + Wyatt", "F1b Micro Cavapoos", "Red Abstract, Parti | 10-18 lbs", "Expected Spring 2026", "/penny-wyatt"],
+        ["Winnie + Redford", "F1b Mini Cavapoos", "Red Abstract | 20-30 lbs", "Expected Spring 2026", "/winnie-redford"]
+      ]
+    }
+  ],
+  pairingNote:
+    "Upcoming pairings are planned around genetics, color traits, breed percentage, timing, and stud availability. Pairings may change if a better option is needed or a planned stud is unavailable."
+};
+
+export const previousLitterGroups = [
+  {
+    name: "Previous Litters Goldendoodles",
+    href: "/previous-litters-goldendoodles",
+    image: "/images/previous-litters/birdie-waylon-jennings.webp",
+    copy: "Mini, petite mini, and micro Goldendoodle litter history."
+  },
+  {
+    name: "Previous Litters Bernedoodles",
+    href: "/previous-litters-bernedoodles",
+    image: "/images/previous-litters/tilly-redford.webp",
+    copy: "Mini and micro Bernedoodle litter history."
+  },
+  {
+    name: "Previous Litters Cavapoos",
+    href: "/previous-litters-cavapoos",
+    image: "/images/previous-litters/ruby-bodhe.webp",
+    copy: "Mini and micro Cavapoo litter history."
+  },
+  {
+    name: "Previous Litters Poodles",
+    href: "/previous-litters-poodles",
+    image: "/images/previous-litters/trudy-wayne-2.webp",
+    copy: "AKC Toy Poodle litter history."
+  }
+];
+
+export const previousLitterDetails = {
+  "/birdie-waylon-jennings": {
+    name: "Birdie + Waylon",
+    group: "Goldendoodles",
+    breed: "Multigen Goldendoodles",
+    image: "/images/previous-litters/birdie-waylon-jennings.webp",
+    facts: [["Born", "May 3, 2025"], ["Go Home", "June 24-26, 2025"], ["Coloring", "Red"], ["Size", "20-25 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$3200"]],
+    parents: "Birdie + Waylon",
+    theme: "Birdie's Summer Fun Litter",
+    puppies: ["Peach", "Splash", "Tank Top", "Sandy", "Snow Cone", "Bubbles", "Picnic"],
+    milestones: ["6 Weeks Old", "3 Weeks Old", "Newborn Photos"]
+  },
+  "/lady-redford": {
+    name: "Lady + Redford",
+    group: "Goldendoodles",
+    breed: "F1 Mini Goldendoodles",
+    image: "/images/previous-litters/lady-redford.webp",
+    facts: [["Born", "November 24, 2023"], ["Go Home", "January 12-16, 2024"], ["Coloring", "Hidden Phantom, Apricot, Cream"], ["Size", "35-45 lbs"], ["Coat", "Wavy"], ["Price", "$2800"]],
+    parents: "Lady + Redford",
+    theme: "Lady's Ski Day Litter",
+    puppies: ["Alpine", "Chalet", "Powder"],
+    milestones: ["5 Weeks Old", "4 Weeks Old", "2 Weeks Old", "Newborn Photos"]
+  },
+  "/june-waylon": {
+    name: "June + Waylon",
+    group: "Goldendoodles",
+    breed: "Micro Goldendoodles",
+    image: "/images/previous-litters/june-waylon.webp",
+    facts: [["Delivery", "July 18, 2025"], ["Go Home", "September 8-10, 2025"], ["Coloring", "Red Abstract, Parti"], ["Size", "Around 20-25 lbs"], ["Coat", "Wavy, Straight"], ["Shedding", "Minimal to no shedding"]],
+    parents: "June + Waylon",
+    theme: "June's Bakeshop Litter",
+    puppies: ["Muffin", "Scone", "Sugar", "Biscuit", "Honey", "Crumble", "Baker"],
+    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "2 Weeks Old", "Newborn Photos"]
+  },
+  "/floraenzo": {
+    name: "Flora + Enzo",
+    group: "Goldendoodles",
+    breed: "F1 Mini Goldendoodles",
+    image: "/images/previous-litters/floraenzo.webp",
+    facts: [["Born", "July 25, 2023"], ["Go Home", "September 12, 2023"], ["Coloring", "Red, Red Abstract"], ["Size", "25-35 lbs"], ["Coat", "Wavy"]],
+    parents: "Flora + Enzo",
+    theme: "Flora's New York Litter",
+    puppies: ["Queens", "SoHo", "Brooklyn", "Bronx", "Chelsea", "Hudson", "Madison", "Harlem"],
+    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old", "Newborn Photos"]
+  },
+  "/lady-enzo-2": {
+    name: "Lady + Enzo 2",
+    group: "Goldendoodles",
+    breed: "F1 Mini Goldendoodles",
+    image: "/images/previous-litters/lady-enzo-2.webp",
+    facts: [["Born", "April 18, 2025"], ["Go Home", "June 2025"], ["Coloring", "Red, Apricot, Cream"], ["Size", "30-40 lbs"], ["Coat", "Wavy"], ["Price", "$2500"]],
+    parents: "Lady + Enzo",
+    theme: "Lady's Cereal Litter",
+    puppies: ["Trix", "Cocoa Puffs", "Cheerio", "Kix", "Wheatie", "Cap'n Crunch"],
+    milestones: ["5 Weeks Old", "3 Weeks Old", "Newborn Photos"]
+  },
+  "/phoebe-waylon": {
+    name: "Phoebe + Waylon",
+    group: "Goldendoodles",
+    breed: "Petite Mini Multigen Goldendoodles",
+    image: "/images/previous-litters/phoebe-waylon.webp",
+    facts: [["Delivery", "July 22, 2025"], ["Go Home", "September 12-14, 2025"], ["Coloring", "Red Chocolate, Red Abstract"], ["Size", "Around 16-20 lbs"], ["Coat", "Straight, non-shedding"], ["Price", "$3800"]],
+    parents: "Phoebe + Waylon",
+    theme: "Phoebe's Musical Notes Litter",
+    puppies: ["Melody", "Treble", "Jazz", "Banjo"],
+    milestones: ["7 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "Newborn Photos"]
+  },
+  "/lady-enzo": {
+    name: "Lady + Enzo",
+    group: "Goldendoodles",
+    breed: "F1 Mini Goldendoodles",
+    image: "/images/previous-litters/lady-enzo.webp",
+    facts: [["Born", "July 13, 2024"], ["Go Home", "September 1-4, 2024"], ["Coloring", "Red, Apricot, Cream"], ["Size", "30-40 lbs"], ["Coat", "Wavy"], ["Price", "$2500"]],
+    parents: "Lady + Enzo",
+    theme: "Lady's Olympics Litter",
+    puppies: ["Champion", "Torch", "Relay", "Record", "Simone Biles", "Olympic", "Medal", "Caeleb Dressel", "Katie Ledecky", "Paris", "Anthem"],
+    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "Newborn Photos"]
+  },
+  "/beatrix-knox": {
+    name: "Beatrix + Knox",
+    group: "Goldendoodles",
+    breed: "Multigen Mini Goldendoodles",
+    image: "/images/previous-litters/beatrix-knox.webp",
+    facts: [["Delivery", "January 12, 2025"], ["Go Home", "March 5-8, 2025"], ["Coloring", "Red, Red Abstract"], ["Size", "25-36 lbs"], ["Coat", "Curly, Wavy, Straight"], ["Price", "$2800"]],
+    parents: "Beatrix + Knox",
+    theme: "Beatrix's Spring Fling Litter",
+    puppies: ["Peony", "Tulip", "Cedar", "Basil", "Hawthorn", "Marigold", "Poppy"],
+    milestones: ["2 Week Photos"]
+  },
+  "/honey-waylon": {
+    name: "Honey + Waylon",
+    group: "Goldendoodles",
+    breed: "Multigen Goldendoodles",
+    image: "/images/previous-litters/honey-waylon.webp",
+    facts: [["Delivery", "August 7, 2025"], ["Go Home", "September 29 - October 1, 2025"], ["Coloring", "Red Abstract"], ["Size", "~15 lbs"], ["Coat", "Straight"], ["Price", "$4200"]],
+    parents: "Honey + Waylon",
+    theme: "Honey's Cafe Drinks Litter",
+    puppies: ["Mocha", "Latte", "Java", "Chai"],
+    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "Newborn Photos"]
+  },
+  "/flora-enzo-2": {
+    name: "Flora + Enzo 2",
+    group: "Goldendoodles",
+    breed: "F1 Mini Goldendoodles",
+    image: "/images/previous-litters/flora-enzo-2.webp",
+    facts: [["Born", "March 9, 2024"], ["Go Home", "April 28 - May 1, 2024"], ["Coloring", "Red, Red Abstract"], ["Size", "25-35 lbs"], ["Coat", "Wavy"], ["Price", "$2500"]],
+    parents: "Flora + Enzo",
+    theme: "Flora's 80's Heartthrobs Litter",
+    puppies: ["Patrick Swayze", "Johnny Depp", "Molly Ringwald", "Julia Roberts", "Michelle Pfeiffer", "Demi Moore", "Whitney Houston", "Tom Cruise", "Denzel Washington", "Rob Lowe", "John Stamos"],
+    milestones: ["7 Weeks Old", "6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "Newborn Photos"]
+  },
+  "/birdie-leo": {
+    name: "Birdie + Leo",
+    group: "Goldendoodles",
+    breed: "Multigen Goldendoodles",
+    image: "/images/previous-litters/birdie-leo.webp",
+    facts: [["Born", "October 27, 2024"], ["Go Home", "December 19-23, 2024"], ["Coloring", "Red"], ["Size", "20-25 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$3500"]],
+    parents: "Birdie + Leo, outside stud",
+    theme: "Birdie's Christmas Litter",
+    puppies: ["Snowflake", "Nutcracker", "Peppermint", "Holly", "Cocoa", "Sleigh", "Garland", "Reindeer"],
+    milestones: ["5 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
+  },
+  "/phoebe-fynn": {
+    name: "Phoebe + Fynn",
+    group: "Goldendoodles",
+    breed: "Multigen Goldendoodles",
+    image: "/images/previous-litters/phoebe-fynn.webp",
+    facts: [["Born", "February 8, 2024"], ["Go Home", "April 3-6, 2024"], ["Coloring", "Red"], ["Size", "10-15 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$4500"]],
+    parents: "Phoebe + Fynn, outside stud",
+    theme: "Phoebe's Easter Candy Litter",
+    puppies: ["Peep", "Jelly Bean", "Cadbury", "Reeses"],
+    milestones: ["6 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "Newborn Photos"]
+  },
+  "/phoebe-fynn-2": {
+    name: "Phoebe + Fynn 2",
+    group: "Goldendoodles",
+    breed: "Multigen Goldendoodles",
+    image: "/images/previous-litters/phoebe-fynn-2.webp",
+    facts: [["Born", "August 22, 2024"], ["Go Home", "October 14-17, 2024"], ["Coloring", "Red, Apricot, Parti"], ["Size", "10-15 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$4500"]],
+    parents: "Phoebe + Fynn, outside stud",
+    theme: "Phoebe's Autumn Scents Litter",
+    puppies: ["Leaves", "Cloves", "Cinnamon", "Nutmeg", "Woodsmoke"],
+    milestones: ["5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
+  },
+  "/tilly-redford": {
+    name: "Tilly + Redford",
+    group: "Bernedoodles",
+    breed: "F1b Micro Bernedoodles",
+    image: "/images/previous-litters/tilly-redford.webp",
+    facts: [["Born", "July 16, 2025"], ["Go Home", "September 5-7, 2025"], ["Coloring", "Tri Color, Merle"], ["Size", "~25 lbs"], ["Coat", "Wavy"]],
+    parents: "Tilly + Redford",
+    theme: "Tilly's Cabin Getaway Litter",
+    puppies: ["Wren", "Juniper", "Timber", "Moss", "Flint"],
+    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "2 Weeks Old", "Newborn Photos"]
+  },
+  "/ruby-bodhe": {
+    name: "Ruby + Bodhe",
+    group: "Cavapoos",
+    breed: "F1 Cavapoos",
+    image: "/images/previous-litters/ruby-bodhe.webp",
+    facts: [["Born", "March 7, 2024"], ["Go Home", "April 28-30, 2024"], ["Coloring", "Red Abstract, Blenheim"], ["Size", "20-30 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$2800"]],
+    parents: "Ruby + Bodhe",
+    theme: "Ruby's Royal Litter",
+    puppies: ["Noble", "King", "Queen", "Prince", "Princess", "Duke", "Duchess", "Royal", "Reign", "Tiara"],
+    milestones: ["7 Weeks Old", "6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "Newborn Photos"]
+  },
+  "/ruby-bodhe-2": {
+    name: "Ruby + Bodhe 2",
+    group: "Cavapoos",
+    breed: "F1 Cavapoos",
+    image: "/images/previous-litters/ruby-bodhe-2.webp",
+    facts: [["Born", "September 1, 2024"], ["Go Home", "October 24-27, 2024"], ["Coloring", "Red Abstract, Blenheim"], ["Size", "20-30 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$2800"]],
+    parents: "Ruby + Bodhe",
+    theme: "Ruby's Fright Night Litter",
+    puppies: ["Cat", "Witch", "Scarecrow", "Jack-O-Lantern", "Ghost", "Bat", "Trick", "Treat", "Ghoul"],
+    milestones: ["6 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
+  },
+  "/faye-bodhe": {
+    name: "Faye + Bodhe",
+    group: "Cavapoos",
+    breed: "F1 Cavapoos",
+    image: "/images/previous-litters/faye-bodhe.webp",
+    facts: [["Expected", "September 2024"], ["Go Home", "November 12-15, 2024"], ["Coloring", "Red Abstract, Blenheim"], ["Size", "25-35 lbs"], ["Coat", "Wavy"], ["Price", "$2800"]],
+    parents: "Faye + Bodhe",
+    theme: "Faye's Fairy Litter",
+    puppies: ["Nymph", "Sprite", "Pixie", "Elf", "Gnome"],
+    milestones: ["3 Weeks Old", "1 Week Old"]
+  },
+  "/faye-bodhe-2": {
+    name: "Faye + Bodhe 2",
+    group: "Cavapoos",
+    breed: "F1 Mini Cavapoos",
+    image: "/images/previous-litters/faye-bodhe-2.webp",
+    facts: [["Born", "November 9, 2025"], ["Go Home", "December 31 - January 2"], ["Coloring", "Red Abstract, Blenheim"], ["Size", "30-40 lbs"], ["Coat", "Wavy"], ["Price", "$2800"]],
+    parents: "Faye + Bodhe",
+    theme: "Faye's New Year's in Paris Litter",
+    puppies: [],
+    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old", "Newborn Photos"]
+  },
+  "/trudy-wayne": {
+    name: "Trudy + Wayne",
+    group: "Poodles",
+    breed: "AKC Toy Poodles",
+    image: "/images/previous-litters/trudy-wayne.webp",
+    facts: [["Born", "April 21, 2023"], ["Go Home", "June 23, 2023"], ["Coloring", "Red Abstract"], ["Size", "4-6 lbs"], ["Coat", "Curly"]],
+    parents: "Trudy + Wayne",
+    theme: "Trudy's I Love Lucy Litter",
+    puppies: ["Lucy", "Ricky", "Ethel"],
+    milestones: ["8 Weeks Old", "7 Weeks Old", "6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
+  },
+  "/trudy-wayne-2": {
+    name: "Trudy + Wayne 2",
+    group: "Poodles",
+    breed: "AKC Toy Poodles",
+    image: "/images/previous-litters/trudy-wayne-2.webp",
+    facts: [["Born", "November 10, 2024"], ["Go Home", "January 9-12, 2025"], ["Coloring", "Red Abstract"], ["Size", "4-6 lbs"], ["Coat", "Curly"], ["Price", "$4500"]],
+    parents: "Trudy + Wayne",
+    theme: "Trudy's Three Stooges Litter",
+    puppies: ["Moe", "Larry", "Curly"],
+    milestones: ["3 Weeks Old", "2 Weeks Old", "1 Week Old"]
+  }
+};
+
+export const previousLitterArchiveGroups = {
+  "/previous-litters-goldendoodles": {
+    title: "Previous Litters Goldendoodles",
+    copy: "Mini, petite mini, and micro Goldendoodle litter history.",
+    litters: [
+      "/birdie-waylon-jennings",
+      "/lady-redford",
+      "/june-waylon",
+      "/floraenzo",
+      "/lady-enzo-2",
+      "/phoebe-waylon",
+      "/lady-enzo",
+      "/beatrix-knox",
+      "/honey-waylon",
+      "/flora-enzo-2",
+      "/birdie-leo",
+      "/phoebe-fynn",
+      "/phoebe-fynn-2"
+    ]
+  },
+  "/previous-litters-bernedoodles": {
+    title: "Previous Litters Bernedoodles",
+    copy: "Mini and micro Bernedoodle litter history.",
+    litters: ["/tilly-redford"]
+  },
+  "/previous-litters-cavapoos": {
+    title: "Previous Litters Cavapoos",
+    copy: "Mini and micro Cavapoo litter history.",
+    litters: ["/ruby-bodhe", "/ruby-bodhe-2", "/faye-bodhe", "/faye-bodhe-2"]
+  },
+  "/previous-litters-poodles": {
+    title: "Previous Litters Poodles",
+    copy: "AKC Toy Poodle litter history.",
+    litters: ["/trudy-wayne", "/trudy-wayne-2"]
+  }
+};
+
+export const parentDogs = {
+  dams: [
+    { name: "Goldendoodle Dams", type: "Goldendoodle moms", image: images.damsGoldendoodle, href: "/goldendoodle-dams" },
+    { name: "Bernedoodle Dams", type: "Bernedoodle moms", image: images.damsBernedoodle, href: "/bernedoodle-dams" },
+    { name: "Poodle Dams", type: "Poodle moms", image: images.damsPoodle, href: "/poodle-dams" },
+    { name: "Cavapoo Dams", type: "Cavalier and Poodle lines", image: images.damsCavapoo, href: "/cavapoo-dams" },
+    { name: "Golden Retriever Dams", type: "AKC Golden Retriever moms", image: images.flora, href: "/golden-retriever-dams" }
+  ],
+  studs: [
+    { name: "Bernedoodle Studs", type: "Tri, merle, chocolate and parti lines", image: images.studBernedoodle, href: "/our-studs" },
+    { name: "Goldendoodle Studs", type: "Red, chocolate and abstract lines", image: images.studGoldendoodle, href: "/our-studs" },
+    { name: "Poodle Studs", type: "Health-tested poodle studs", image: images.studPoodle, href: "/our-studs" }
+  ]
+};
+
+export const damProfiles = [
+  {
+    name: "Birdie",
+    href: "/birdie",
+    group: "Goldendoodle Dams",
+    type: "F1 Mini Goldendoodle",
+    weight: "28 lbs",
+    image: "/images/dams/birdie.webp",
+    genetics: "",
+    copy: "Birdie is a mini F1 Goldendoodle and is a momma to F1b and multigenerational goldendoodles with straight and wavy coats.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: ["Birdie Litter 1", "Birdie Litter 2"]
+  },
+  {
+    name: "Honey",
+    href: "/honey",
+    group: "Goldendoodle Dams",
+    type: "Multigen Micro Goldendoodle",
+    weight: "10-15 lbs",
+    image: "/images/dams/honey.webp",
+    genetics: "20% Golden Retriever, 80% Poodle",
+    copy: "Honey is a micro Goldendoodle momma with gorgeous brown points and a sweet temperament. Her puppies are known for beautiful straight coats.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: ["Honey Litter 1"]
+  },
+  {
+    name: "Phoebe",
+    href: "/phoebe",
+    group: "Goldendoodle Dams",
+    type: "Multigen Goldendoodle",
+    weight: "15 lbs",
+    image: "/images/dams/phoebe.webp",
+    genetics: "",
+    copy: "Phoebe is a multigen Goldendoodle with a deeply sweet personality and a love for chasing water from the hose.",
+    testing: ["Embark Testing", "GenSol Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips good"],
+    previousLitters: ["Phoebe Litter 1", "Phoebe Litter 2", "Phoebe Litter 3"]
+  },
+  {
+    name: "Daisy",
+    href: "/daisy",
+    group: "Goldendoodle Dams",
+    type: "F1 Mini Goldendoodle",
+    weight: "28 lbs",
+    image: "/images/dams/daisy.webp",
+    genetics: "",
+    copy: "Daisy is an F1 mini Goldendoodle planned for F1b mini and micro goldendoodles with straight and wavy coats.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: []
+  },
+  {
+    name: "Beatrix",
+    href: "/beatrix",
+    group: "Goldendoodle Dams",
+    type: "F1 Goldendoodle",
+    weight: "50 lbs",
+    image: "/images/dams/beatrix.webp",
+    genetics: "",
+    copy: "Beatrix is an F1 Goldendoodle and a momma to F1b mini goldendoodles with straight and wavy coats.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: ["Beatrix Litter 1"]
+  },
+  {
+    name: "June",
+    href: "/june-2",
+    group: "Goldendoodle Dams",
+    type: "F1 Mini Goldendoodle",
+    weight: "30 lbs",
+    image: "/images/dams/june-2.webp",
+    genetics: "ee KBKB ata BB SS FI +/- Curl, 7:3 Red Intensity, 50% Golden Retriever, 50% Poodle",
+    copy: "June is a micro Goldendoodle momma from Flora and Enzo. She will produce F1b and multigen Goldendoodles.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: ["June Litter 1"]
+  },
+  {
+    name: "Georgia",
+    href: "/georgia",
+    group: "Goldendoodle Dams",
+    type: "F1 Mini Goldendoodle",
+    weight: "25 lbs",
+    image: "/images/dams/georgia.webp",
+    genetics: "",
+    copy: "Georgia is a micro Goldendoodle momma from Flora and Enzo. She will produce F1b and multigen Goldendoodles.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: []
+  },
+  {
+    name: "Evie Nicks",
+    href: "/evie-nicks",
+    group: "Goldendoodle Dams",
+    type: "Multigen Mini Goldendoodle",
+    weight: "24 lbs",
+    image: "/images/dams/evie-nicks.webp",
+    genetics: "44% Golden Retriever, 56% Poodle",
+    copy: "Evie Nicks is a multigenerational Goldendoodle with a gentle, affectionate nature and a calm, friendly temperament.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: []
+  },
+  {
+    name: "Ginny",
+    href: "/ginny",
+    group: "Goldendoodle Dams",
+    type: "Multigen Mini Goldendoodle",
+    weight: "28 lbs",
+    image: "/images/dams/ginny.webp",
+    genetics: "52% Golden Retriever, 48% Poodle",
+    copy: "Ginny is a petite multigenerational Goldendoodle with a gentle nature, sweet personality, and calm companion temperament.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: []
+  },
+  {
+    name: "Whitley",
+    href: "/whitley",
+    group: "Goldendoodle Dams",
+    type: "F1 Goldendoodle",
+    weight: "Planning profile",
+    image: "/images/dams/whitley.webp",
+    genetics: "52% Golden Retriever, 47% Poodle",
+    copy: "Whitley is a joyful Goldendoodle with a classic, soulful look, a silky wavy coat, and an affectionate temperament.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: []
+  },
+  {
+    name: "Kylie",
+    href: "/kylie",
+    group: "Bernedoodle Dams",
+    type: "Ultra Bernedoodle",
+    weight: "est. 30-35 lbs",
+    image: "/images/dams/kylie.webp",
+    genetics: "",
+    copy: "Kylie is an ultra Bernedoodle momma planned for micro ultra Bernedoodles and chocolate-toned puppies.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips good"],
+    previousLitters: []
+  },
+  {
+    name: "Tilly",
+    href: "/tilly",
+    group: "Bernedoodle Dams",
+    type: "Ultra Bernedoodle",
+    weight: "40 lbs",
+    image: "/images/dams/tilly.webp",
+    genetics: "Ee kyky atat BB SS FF -/- Curl, 7:3 Red Intensity, 61% Bernese Mountain Dog, 39% Poodle",
+    copy: "Tilly is an ultra Bernedoodle from Aggy and Garth Brooks. Her higher Bernese Mountain Dog percentage supports mini ultra Bernedoodle pairings.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips good"],
+    previousLitters: ["Tilly Litter 1"]
+  },
+  {
+    name: "Sylvee",
+    href: "/sylvee",
+    group: "Bernedoodle Dams",
+    type: "Multigen Micro Bernedoodle",
+    weight: "22 lbs",
+    image: "/images/dams/sylvee.webp",
+    genetics: "Ee kyky atat bb Ssp FF +/- Curl, 8:2 Red Intensity, 25% Bernese Mountain Dog, 75% Poodle",
+    copy: "Sylvee is a micro Bernedoodle momma with brown points who is planned for straight and wavy coats.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: []
+  },
+  {
+    name: "Trudy",
+    href: "/trudy",
+    group: "Poodle Dams",
+    type: "AKC Toy Poodle",
+    weight: "6 lbs",
+    image: "/images/dams/trudy.webp",
+    genetics: "",
+    copy: "Trudy is an AKC toy poodle momma with an old soul and a love for kids.",
+    testing: ["Embark Testing", "UC Davis Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips good", "OFA patellas normal"],
+    previousLitters: ["Trudy Litter 1", "Trudy Litter 2"]
+  },
+  {
+    name: "Faye",
+    href: "/faye",
+    group: "Poodle Dams",
+    type: "AKC Standard Poodle",
+    weight: "40 lbs",
+    image: "/images/dams/faye.webp",
+    genetics: "",
+    copy: "Faye is an AKC standard poodle momma with a happy, well-tempered personality.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips good"],
+    previousLitters: ["Faye Litter 1", "Faye Litter 2", "Faye + Bodhe Litter 1"]
+  },
+  {
+    name: "Penny",
+    href: "/penny-2",
+    group: "Cavapoo Dams",
+    type: "F1 Cavapoo",
+    weight: "25 lbs",
+    image: "/images/dams/penny-2.webp",
+    genetics: "Ee kyky atat BB SS FF -/- Curl, 7:3 Red Intensity, 50% Cavalier King Charles Spaniel, 50% Poodle",
+    copy: "Penny is an F1 Cavapoo from Ruby and Bodhe. She will produce F1b and multigen Cavapoos.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair", "OFA patellas normal"],
+    previousLitters: []
+  },
+  {
+    name: "Winnie",
+    href: "/winnie",
+    group: "Cavapoo Dams",
+    type: "F1 Cavapoo",
+    weight: "34 lbs",
+    image: "/images/dams/winnie.webp",
+    genetics: "Ee kyky atat BB SS FF -/- Curl, 7:3 Red Intensity, 50% Cavalier King Charles Spaniel, 50% Poodle",
+    copy: "Winnie is an F1b Cavapoo momma from Ruby and Bodhe. She is planned for F1b and multigen Cavapoos.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: []
+  },
+  {
+    name: "Reece",
+    href: "/reece",
+    group: "Cavapoo Dams",
+    type: "F1 Cavapoo",
+    weight: "15 lbs",
+    image: "/images/dams/reece.webp",
+    genetics: "ee Kbky atat BB SS FI +/- Curl, 7:3 Red Intensity, 50% Cavalier King Charles Spaniel, 50% Poodle",
+    copy: "Reece is an F1b Cavapoo momma from Ember and Bodhe. She is planned for F1b and multigen Cavapoos.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: []
+  },
+  {
+    name: "Flora",
+    href: "/flora",
+    group: "Golden Retriever Dams",
+    type: "AKC Golden Retriever",
+    weight: "55 lbs",
+    image: "/images/dams/flora.webp",
+    genetics: "",
+    copy: "Flora is an AKC Golden Retriever momma with a sweet, adventurous personality.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips good"],
+    previousLitters: ["Flora Litter 1", "Flora Litter 2", "Flora Litter 3"]
+  },
+  {
+    name: "Lady",
+    href: "/lady",
+    group: "Golden Retriever Dams",
+    type: "AKC English Retriever",
+    weight: "60 lbs",
+    image: "/images/dams/lady.webp",
+    genetics: "",
+    copy: "Lady is an AKC English Retriever momma described as smart, sweet, and loyal.",
+    testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips fair"],
+    previousLitters: ["Lady Litter 1", "Lady Litter 2", "Lady Litter 3"]
+  }
+];
+
+export const damDetails = Object.fromEntries(damProfiles.map((profile) => [profile.href, profile]));
+
+export const damGroups = {
+  "/goldendoodle-dams": {
+    name: "Goldendoodle Dams",
+    image: images.damsGoldendoodle,
+    copy: "Goldendoodle mommas and future mommas, including F1, F1b, and multigenerational lines.",
+    profiles: ["/birdie", "/honey", "/phoebe", "/daisy", "/beatrix", "/june-2", "/georgia", "/evie-nicks", "/ginny", "/whitley"]
+  },
+  "/bernedoodle-dams": {
+    name: "Bernedoodle Dams",
+    image: images.damsBernedoodle,
+    copy: "Bernedoodle mommas and future mommas used for micro, mini, and ultra Bernedoodle pairings.",
+    profiles: ["/kylie", "/tilly", "/sylvee"]
+  },
+  "/poodle-dams": {
+    name: "Poodle Dams",
+    image: images.damsPoodle,
+    copy: "AKC poodle mommas supporting Goldendoodle, Cavapoo, and poodle pairings.",
+    profiles: ["/trudy", "/faye"]
+  },
+  "/cavapoo-dams": {
+    name: "Cavapoo Dams",
+    image: images.damsCavapoo,
+    copy: "Cavapoo mommas and future mommas used for F1b and multigenerational Cavapoo lines.",
+    profiles: ["/penny-2", "/winnie", "/reece"]
+  },
+  "/golden-retriever-dams": {
+    name: "Golden Retriever Dams",
+    image: images.flora,
+    copy: "AKC Golden Retriever and English Retriever mommas behind F1 Goldendoodle lines.",
+    profiles: ["/flora", "/lady"]
+  }
+};
+
+export const studCatalog = [
+  {
+    breed: "Bernedoodles",
+    dogs: [
+      ["Garth Brooks", "Multigen Mini Bernedoodle", "30 lbs", "Ee kyky atat Bb SS -/- FF, 7:3 Red Intensity, 32% Bernese Mountain Dog", "/garth-brooks"],
+      ["Hank Williams", "F1 Mini Bernedoodle", "42 lbs", "EE kyky atat Bb SS +/-, 6:4 Red Intensity", "/hank-williams"],
+      ["Beau", "F1 Mini Bernedoodle", "43 lbs", "Ee kyky atat Bb Ssp +/-, 6:4 Red Intensity", "/beau"]
+    ]
+  },
+  {
+    breed: "Goldendoodles",
+    dogs: [
+      ["Waylon Jennings", "Multigen Mini Goldendoodle", "19 lbs", "ee KBky atat Bb SS -/- FF, 10:0 Red Intensity, 32% Retriever", "/waylon-jennings"],
+      ["Sundance", "Micro Goldendoodle", "13 lbs", "ee KBky atat bb spsp FF -/- Curl TT Shedding, 22% Retriever", "/sundance"],
+      ["Enzo", "Micro Goldendoodle", "13 lbs", "ee KBky aya BB Ssp +/- FF, 10:0 Red Intensity, 94% Retriever", "/enzo"],
+      ["Butch Cassidy", "Micro Goldendoodle", "16 lbs", "ee KBky ata Bb Ssp FF -/- Curl TT Shedding, 16% Retriever", "/butch-cassidy"],
+      ["Knox", "F1b Mini Goldendoodle", "10 lbs", "ee KBKB ata BB SS +/- FF, 9:1 Red Intensity, 33% Retriever", "/knox"]
+    ]
+  },
+  {
+    breed: "Poodles",
+    dogs: [
+      ["Robert Redford", "AKC Registered Moyen Poodle", "20 lbs", "ee kyky atat Bb Ssp +/+ FF, 9:1 Red Intensity", "/robert-redford"],
+      ["John Wayne", "AKC Registered Toy Poodle", "4 lbs", "ee KBky atat BB SS +/+ FF, 9:1 Red Intensity", "/wayne"],
+      ["Johnny Cash", "AKC Registered Toy Poodle", "6 lbs", "Ee kyky ayat Bb Ssp +/+ FF, 5:5 Red Intensity", "/johnn-cash"],
+      ["Wyatt Earp", "AKC Toy Poodle", "est. 6 lbs", "ee KBky atat BB SSp FF, 7:3 Red Intensity", "/wyatt"]
+    ]
+  },
+  {
+    breed: "Cavalier King Charles Spaniel",
+    dogs: [["Bodhe", "AKC Cavalier King Charles Spaniel", "19 lbs", "ee kyky atat BB Ssp, 8:2 Red Intensity", "/bodhe"]]
+  }
+];
+
+export const studDetails = {
+  "/garth-brooks": {
+    name: "Garth Brooks",
+    group: "Bernedoodles",
+    type: "Multigen Mini Bernedoodle",
+    weight: "30 lbs",
+    genetics: "Ee kyky atat Bb SS -/- FF, 7:3 Red Intensity, 32% Bernese Mountain Dog",
+    image: "/images/studs/garth-brooks.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: ["Total Count: 1 billion 785 million, 94% motility", "Total Count: 900 million, 93% motility", "Total Count: 1 billion 150 million, 95% motility"],
+    notes: ["Public page includes Garth photos and litter history sections."]
+  },
+  "/hank-williams": {
+    name: "Hank Williams",
+    group: "Bernedoodles",
+    type: "F1 Mini Bernedoodle",
+    weight: "42 lbs",
+    genetics: "EE kyky atat Bb SS +/-, 6:4 Red Intensity",
+    image: "/images/studs/hank-williams.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: ["Total count: 2 billion 100 million, 97% motility", "Total count: 2 billion 178 million, 97% motility"],
+    notes: ["Public page states Hank has sired over 242 puppies and over 32 litters."]
+  },
+  "/beau": {
+    name: "Beau",
+    group: "Bernedoodles",
+    type: "F1 Mini Bernedoodle",
+    weight: "43 lbs",
+    genetics: "Ee kyky atat Bb Ssp +/-, 6:4 Red Intensity",
+    image: "/images/studs/beau.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: [],
+    notes: ["Public page includes Beau's litter history section."]
+  },
+  "/waylon-jennings": {
+    name: "Waylon Jennings",
+    group: "Goldendoodles",
+    type: "Multigen Mini Goldendoodle",
+    weight: "19 lbs",
+    genetics: "ee KBky atat Bb SS -/- FF, 10:0 Red Intensity, 32% Retriever",
+    image: "/images/studs/waylon-jennings.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: [],
+    notes: []
+  },
+  "/sundance": {
+    name: "Sundance",
+    group: "Goldendoodles",
+    type: "Micro Goldendoodle",
+    weight: "13 lbs",
+    genetics: "ee KBky atat bb spsp FF -/- Curl TT Shedding, 22% Retriever",
+    image: "/images/studs/sundance.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: [],
+    notes: []
+  },
+  "/enzo": {
+    name: "Enzo",
+    group: "Goldendoodles",
+    type: "Micro Goldendoodle",
+    weight: "13 lbs",
+    genetics: "ee KBky aya BB Ssp +/- FF, 10:0 Red Intensity, 94% Retriever",
+    image: "/images/studs/enzo.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: ["Total count: 1 billion 75 million, 97% motility", "Total count: 920 million, 97% motility"],
+    notes: ["Public page states Enzo has sired over 157 puppies and over 27 litters."]
+  },
+  "/butch-cassidy": {
+    name: "Butch Cassidy",
+    group: "Goldendoodles",
+    type: "Micro Goldendoodle",
+    weight: "16 lbs",
+    genetics: "ee KBky ata Bb Ssp FF -/- Curl TT Shedding, 16% Retriever",
+    image: "/images/studs/butch-cassidy.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: [],
+    notes: []
+  },
+  "/knox": {
+    name: "Knox",
+    group: "Goldendoodles",
+    type: "F1b Mini Goldendoodle",
+    weight: "10 lbs",
+    genetics: "ee KBKB ata BB SS +/- FF, 9:1 Red Intensity, 33% Retriever",
+    image: "/images/studs/knox.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: ["Total Count: 882 million, 93% motility"],
+    notes: []
+  },
+  "/robert-redford": {
+    name: "Robert Redford",
+    group: "Poodles",
+    type: "AKC Registered Moyen Poodle",
+    weight: "20 lbs",
+    genetics: "ee kyky atat Bb Ssp +/+ FF, 9:1 Red Intensity",
+    image: "/images/studs/robert-redford.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: [],
+    notes: []
+  },
+  "/wayne": {
+    name: "John Wayne",
+    group: "Poodles",
+    type: "AKC Registered Toy Poodle",
+    weight: "4 lbs",
+    genetics: "ee KBky atat BB SS +/+ FF, 9:1 Red Intensity",
+    image: "/images/studs/wayne.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: ["Total Count: 488 million, 85% motility", "Total Count: 284 million, 97% motility"],
+    notes: ["AKC Poodle breedings are decided case by case."]
+  },
+  "/johnn-cash": {
+    name: "Johnny Cash",
+    group: "Poodles",
+    type: "AKC Registered Toy Poodle",
+    weight: "6 lbs",
+    genetics: "Ee kyky ayat Bb Ssp +/+ FF, 5:5 Red Intensity",
+    image: "/images/studs/johnn-cash.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "PennHIP right 0.38, left 0.49"],
+    semenEvals: [],
+    notes: []
+  },
+  "/wyatt": {
+    name: "Wyatt Earp",
+    group: "Poodles",
+    type: "AKC Toy Poodle",
+    weight: "est. 6 lbs",
+    genetics: "ee KBky atat BB SSp FF, 7:3 Red Intensity",
+    image: "/images/studs/wyatt.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "Health Testing"],
+    semenEvals: [],
+    notes: []
+  },
+  "/bodhe": {
+    name: "Bodhe",
+    group: "Cavalier King Charles Spaniel",
+    type: "AKC Cavalier King Charles Spaniel",
+    weight: "19 lbs",
+    genetics: "ee kyky atat BB Ssp, 8:2 Red Intensity",
+    image: "/images/studs/bodhe.webp",
+    fee: "$1500",
+    testing: ["Embark Testing", "UC Davis Results"],
+    semenEvals: [],
+    notes: []
+  }
+};
+
+export const priceGroups = [
+  ["Goldendoodle Prices", ["Micro (15 lbs and under): $4,500", "Petite Mini (15-25 lbs): $3,200-$3,800", "Mini (25-40 lbs): $2,500"]],
+  ["Bernedoodle Prices", ["Micro (15-25 lbs): $4,500", "Mini (25-50 lbs): $3,500-$4,500"]],
+  ["Cavapoo Prices", ["Micro (15 lbs and under): $4,500", "Petite Mini (15-20 lbs): $3,800", "Mini (20-40 lbs): $2,800"]],
+  ["Poodle Prices", ["Toy Poodle (~5 lbs): $4,500"]]
+];
+
+export const faqs = [
+  ["Where are you located?", "We are located in Salado, Texas, conveniently between Austin and Waco."],
+  ["What are your prices?", "Our puppies are priced between $2,500 and $4,500, depending on breed, size, and individual traits."],
+  ["What comes with my puppy?", "A 2-year genetic health guarantee, microchip, health records, current food sample, training treats, Puppy Pal toy, and transition support."],
+  ["Which payment options do you accept?", "Zelle is the preferred payment method. No puppy is reserved without payment, and all puppy payments are considered non-refundable retainers."],
+  ["How do I reserve a puppy?", "Start with the puppy application. Once submitted, we contact you to confirm placement and guide next steps."],
+  ["What is your waitlist process?", "A $500 non-refundable deposit secures your spot. Deposits may transfer to another waitlist and apply toward the final puppy total."],
+  ["Do you perform genetic health testing?", "Yes. Parent dogs are genetically health-tested, with additional testing when needed for accuracy and peace of mind."],
+  ["Do you offer a health guarantee?", "Yes. Every puppy comes with a 2-year health guarantee covering life-threatening congenital or hereditary defects, with a licensed vet visit required within 3 business days of going home."],
+  ["Do you remove dew claws or dock tails?", "No. Puppies keep their dew claws and tails intact."],
+  ["Can I choose my own puppy?", "Yes. Selection is based on waitlist position and usually happens when puppies are between 2 and 4 weeks old."],
+  ["Do you allow visitors to meet puppies?", "No early puppy visits are allowed for health and safety before vaccinations. We provide frequent photo/video updates and can schedule video calls."],
+  ["Which generations of Doodles do you breed?", "We breed F1, F1b, and Multigen Doodles."],
+  ["Are Doodles hypoallergenic?", "No dog is entirely hypoallergenic, but many Doodles are low-shedding. For moderate to severe allergies, F1b or Multigen Doodles are often recommended."]
+];
+
+export const waitlists = [
+  {
+    breed: "Goldendoodle Waitlist",
+    size: "Mini & Micro",
+    names: ["Constantinos N. (Micro)", "Ben L. (Mini)", "Elise M. (2)", "Sara N. (Mini) (2)", "Sofia F.", "Meghan L. (Mini)", "Lauren T. (Mini)", "Sarvani R. (Micro)", "Samantha E. (Micro)", "Larissa B.", "Andrew F.", "Annika P."]
+  },
+  {
+    breed: "Cavapoo Waitlist",
+    size: "Micro & Mini",
+    names: ["Constance R. (Mini)", "Margy P. (Micro)", "Kaila J. (Mini)", "Divya B. (Mini)", "Claire F. (Mini)", "Fatima G. (Micro)", "Annika P. (Mini)", "Michelle W. (Mini)"]
+  },
+  {
+    breed: "Bernedoodle Waitlist",
+    size: "Mini & Micro",
+    names: ["Christine W.", "Kristin S.", "Naga K.", "Kyle N.", "Janae W."]
+  }
+];
+
+export const reviews = [
+  {
+    quote: "Red Ranch Dogs provided the best experience I could have ever hoped for. Willow came home with a tremendous head start in life.",
+    name: "Michelle"
+  },
+  {
+    quote: "Adam and Callie blessed us with an adorable Bernedoodle puppy and continued to be helpful as our pup grows.",
+    name: "Shan"
+  },
+  {
+    quote: "As first-time dog owners, they provided clear guidance and made the whole experience smooth and enjoyable.",
+    name: "Emile"
+  },
+  {
+    quote: "Our puppy is healthy, well-socialized, and has the sweetest temperament. You can tell he was raised in a loving environment.",
+    name: "Mel"
+  },
+  {
+    quote: "They matched us with our sweet Nori and made us feel confident and comfortable throughout the adoption process.",
+    name: "Kimberly"
+  },
+  {
+    quote: "The transition into our home has been so easy. Red Ranch Dogs raised the most perfect puppy for our family.",
+    name: "Eric"
+  }
+];
+
+export const puppyIncludedSections = [
+  ["Health & Wellness", ["Comprehensive vet check", "Age-appropriate first vaccinations", "Routine deworming and parasite prevention", "Microchip included", "2-year genetic health guarantee"]],
+  ["Training & Early Socialization", ["Early Neurological Stimulation (ENS)", "Early Scent Introduction (ESI)", "Sound and surface exposure", "Potty training foundations", "Crate exposure", "Litterbox training foundations"]],
+  ["Puppy Take-Home Kit", ["Puppy Pal comfort toy scented by mom and littermates", "Premium puppy food sample", "Toys and chews", "Health and vaccine records", "Puppy care guide"]],
+  ["Lifetime Support", ["Ongoing puppy family support", "Advice for feeding, grooming, training, and transition questions", "Optional flight nanny service", "Limited ground transportation in select regions"]]
+];
+
+export const teamMembers = [
+  { name: "Callie", image: images.family },
+  { name: "Nicole", image: images.cta },
+  { name: "Adam", image: images.hero }
+];
+
+export const familyStory = [
+  "Our journey began in two very different parts of the world: Dubai and New York. Callie was working as an international flight attendant for Emirates Airlines, and Adam was performing on Broadway. Despite the distance, we met, fell in love, and eventually moved back to Texas to start our family.",
+  "Now, we are proud parents to three wonderful boys, along with our beloved Goldendoodle, Bree.",
+  "Callie's passion for dog breeding started long before Red Ranch Dogs was born. She grew up in a family that bred dogs, so raising and caring for puppies has always been a big part of her life.",
+  "At Red Ranch Dogs in Salado, Texas, we prioritize the health, wellbeing, and temperament of every puppy. Our puppies are raised in a retrofitted barn designed for their care, comfort, and daily enrichment.",
+  "We are excited to continue improving our breeding practices and sharing the joy of Red Ranch Dogs with families across Texas."
+];
+
+export const guardianProgram = {
+  benefits: [
+    ["Top-Quality Dog", "Receive a pick-of-the-litter dog known for health, temperament, and quality."],
+    ["Minimal Costs", "The dog is provided at no charge; guardian families cover routine care and feeding."],
+    ["Compensation Per Litter", "Receive a financial benefit for every successful litter."],
+    ["Ongoing Support", "Receive guidance throughout the dog's breeding career."],
+    ["Ownership Transfer", "Full ownership transfers after the breeding career, including support for spaying costs."]
+  ],
+  expectations: [
+    ["Living Environment", "Own your home or be a long-term renter and maintain a secure fenced yard."],
+    ["Daily Care", "Keep the dog as an indoor pet, feed Victor Hi Pro Plus, and provide exercise and socialization."],
+    ["Veterinary Obligations", "Handle routine veterinary care and transport for breeding health tests, progesterone testing, and ultrasounds as needed."],
+    ["Communication", "Stay connected by text and notify Red Ranch Dogs about heat cycles, vacations, moves, or health concerns."]
+  ],
+  faqs: [
+    ["What happens during breeding?", "Breeding begins at the second heat cycle. After pregnancy is confirmed, the dog stays with Red Ranch Dogs for whelping and until puppies are weaned."],
+    ["Who covers breeding-related expenses?", "Red Ranch Dogs covers breeding-related expenses. Routine care and non-breeding emergencies are the guardian family's responsibility."],
+    ["Can I participate if I have other pets?", "Yes, as long as there are no intact males in the household and the breeding dog can be safely managed."],
+    ["What if I move?", "Relocation far from Salado, Texas may require rehoming the dog to a new guardian family."],
+    ["How long is the breeding career?", "The breeding career typically lasts until age 4-5, depending on health and litter count."]
+  ]
+};
+
+export const stopMarkingGuide = [
+  {
+    title: "The Mission",
+    copy: "Marking is usually a habit and territory issue, not a potty-training issue. The reset is simple: prevent any successful indoor marks while building a strong outside routine.",
+    items: ["Goal: zero successful indoor marks", "Timeline: 2 to 4 week reset", "Expect big improvement within the first week when the plan is consistent"]
+  },
+  {
+    title: "Phase 1: Boot Camp",
+    copy: "For the first 10 to 14 days, remove free roaming and keep the dog either supervised, tethered, crated, or outside for structured potty breaks.",
+    items: ["Potty breaks every 1 to 2 hours at first", "Reward outdoor pees immediately", "Interrupt any pre-mark behavior and go straight outside"]
+  },
+  {
+    title: "Clean the Scent Properly",
+    copy: "Old scent can invite repeat marking. Use an enzymatic cleaner anywhere marking happened and avoid cleaners that only cover the smell.",
+    items: ["Clean every known spot", "Use enzymatic cleaner", "Block access to favorite marking areas during reset"]
+  },
+  {
+    title: "Phase 2: Earned Freedom",
+    copy: "After 3 to 5 clean days, expand access slowly. If marking returns, shrink the space again for a few days and restart.",
+    items: ["Expand to one new room at a time", "Keep rewarding outdoor potty trips", "Go back a step after any indoor mark"]
+  }
+];
+
+export const reproductiveSections = [
+  ["Quick Clarity", ["Start progesterone testing early enough to trend.", "Identify LH surge and ovulation range.", "Breed in the fertilizable window.", "Use observation to support the data."]],
+  ["Progesterone Machines", ["IDEXX Catalyst and Wondfo Pro DX / PETlife can use different calibration and reference guidance.", "Trending over time matters more than one isolated number.", "Avoid switching analyzers mid-cycle when possible."]],
+  ["Progesterone Stalls", ["A stall can look like repeated similar values or a very slow climb.", "Shorten testing intervals to every 24 hours until movement is clear.", "Do not schedule breedings by calendar days alone in a stall cycle."]],
+  ["What Else To Watch", ["Bleeding amount and color shift.", "Flagging and standing behavior.", "Interest in males.", "Vulvar swelling changes.", "Vaginal cytology or vet exam when uncertain."]],
+  ["Breeding Timing Tips", ["Trend beats one number.", "Test more often as the window approaches.", "One or two breedings can cover the window.", "Semen quality changes timing decisions."]]
+];
+
+export const migrationChecklist = [
+  ["Homepage", "Public copy and seed images migrated. Needs final review against Squarespace admin image library."],
+  ["Pricing", "Public prices, deposit language, and Zelle details migrated. Needs QR code asset from Squarespace/export."],
+  ["FAQ", "Public FAQ migrated and expanded."],
+  ["Available Puppies", "No individual available puppy cards were visible in the public scrape. Needs current admin/source confirmation before launch."],
+  ["Current Litters", "Public 4/21/26 Honey + Bram and Birdie + Waylon data migrated."],
+  ["Upcoming Litters", "Public 4/21/26 planned pairings migrated."],
+  ["Reviews", "Visible public review excerpts migrated. Needs final Google review link and any desired full review import."],
+  ["Dams & Studs", "Breed groups, catalog pages, and individual public profiles migrated. Full galleries still need a later media pass."],
+  ["Previous Litters", "Archive groups and working public litter routes migrated with representative images. Full galleries still need a later media pass."],
+  ["Coat Traits", "Guide content and local visual assets migrated into a native React page."],
+  ["Utility Pages", "Guardian Application and Stop the Marking guide migrated. Dead Squarespace utility links documented for redirect cleanup."],
+  ["Forms", "Frontend, API, Google Sheet logging, and direct email alerts are working. Vercel still needs FORM_WEBHOOK_URL before production launch."],
+  ["Images", "Seed images copied locally. Needs full Squarespace media export for original-resolution assets."]
+];
+
+export const updateChecklist = [
+  "Add new puppy photos to public/images/puppies or replace seeded CDN URLs after Squarespace export.",
+  "Update src/data/siteData.js for puppy and litter facts.",
+  "Run npm run build before publishing.",
+  "Deploy through Vercel after content review."
+];
