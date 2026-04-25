@@ -339,7 +339,7 @@ function HomePage() {
         eyebrow={brand.tagline}
         title="Welcome to Red Ranch Dogs"
         copy="Your trusted source for Goldendoodles, Cavapoos, and Bernedoodles raised with hands-on care in Salado, Texas."
-        image={images.hero}
+        image={images.homeHero}
         actions={
           <>
             <Link href="/join-our-waitlist" className="button primary">

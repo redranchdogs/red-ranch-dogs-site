@@ -16,6 +16,7 @@ export const brand = {
 
 export const images = {
   hero: `${seed}/hero-puppy.webp`,
+  homeHero: `${seed}/home-scone-hero.jpg`,
   doodles: `${seed}/doodles.webp`,
   cta: `${seed}/cta-puppy.webp`,
   family: `${seed}/family.webp`,
