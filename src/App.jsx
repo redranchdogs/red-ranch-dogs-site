@@ -253,25 +253,41 @@ function applySeo(path) {
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const currentPath = pathNow();
 
   return (
     <header className="site-header">
+      <button
+        className="icon-button menu-toggle"
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        aria-label="Toggle menu"
+        aria-expanded={open}
+      >
+        {open ? <X size={22} /> : <Menu size={22} />}
+      </button>
       <Link href="/" className="logo-link" onClick={() => setOpen(false)}>
         <img src={brand.logo} alt="Red Ranch Dogs" />
       </Link>
-      <button className="icon-button menu-toggle" onClick={() => setOpen((value) => !value)} aria-label="Toggle menu">
-        {open ? <X size={22} /> : <Menu size={22} />}
-      </button>
       <nav className={`nav ${open ? "open" : ""}`}>
         {navGroups.map((group) => (
           <div className="nav-group" key={group.label}>
-            <Link href={group.href} onClick={() => setOpen(false)}>
+            <Link
+              href={group.href}
+              className={currentPath === group.href || group.links?.some((link) => link.href === currentPath) ? "active" : undefined}
+              onClick={() => setOpen(false)}
+            >
               {group.label}
             </Link>
             {group.links && (
               <div className="nav-menu">
                 {group.links.map((link) => (
-                  <Link href={link.href} key={link.href} onClick={() => setOpen(false)}>
+                  <Link
+                    href={link.href}
+                    className={currentPath === link.href ? "active" : undefined}
+                    key={link.href}
+                    onClick={() => setOpen(false)}
+                  >
                     {link.label}
                   </Link>
                 ))}
@@ -279,10 +295,10 @@ function Header() {
             )}
           </div>
         ))}
-        <a className="icon-button" href={brand.instagram} aria-label="Instagram" target="_blank" rel="noreferrer">
-          <Instagram size={18} />
-        </a>
       </nav>
+      <a className="icon-button header-instagram" href={brand.instagram} aria-label="Instagram" target="_blank" rel="noreferrer">
+        <Instagram size={18} />
+      </a>
     </header>
   );
 }
@@ -332,40 +348,86 @@ function StatBand() {
   );
 }
 
+function HomeHero() {
+  return (
+    <section className="home-hero">
+      <div className="home-hero-copy">
+        <p className="home-kicker">{brand.tagline}</p>
+        <h1>
+          <span>Welcome to</span>
+          <strong>Red Ranch Dogs</strong>
+        </h1>
+        <p>
+          Your trusted source for Goldendoodles, Cavapoos, and Bernedoodles raised with hands-on care in
+          Salado, Texas.
+        </p>
+        <div className="actions">
+          <Link href="/join-our-waitlist" className="button primary">
+            Join the Waitlist
+          </Link>
+          <Link href="/available-puppies" className="button secondary">
+            Available Puppies
+          </Link>
+        </div>
+      </div>
+      <div className="home-hero-image" aria-hidden="true">
+        <img src={images.homeHero} alt="" />
+      </div>
+    </section>
+  );
+}
+
+function HomeDoodles() {
+  const cards = [
+    {
+      name: "Goldendoodles",
+      copy: breeds.find((breed) => breed.name === "Goldendoodles")?.copy,
+      image: "/images/litters/honey-bram.webp",
+      href: "/available-puppies"
+    },
+    {
+      name: "Cavapoos",
+      copy: breeds.find((breed) => breed.name === "Cavapoos")?.copy,
+      image: "/images/litters/penny-wyatt.webp",
+      href: "/current-litters"
+    },
+    {
+      name: "Bernedoodles",
+      copy: breeds.find((breed) => breed.name === "Bernedoodles")?.copy,
+      image: "/images/seed/dam-bernedoodle.webp",
+      href: "/upcoming-litters"
+    }
+  ];
+
+  return (
+    <section className="home-doodles">
+      <div className="section-heading">
+        <p className="home-kicker">Our Doodles</p>
+        <h2>Healthy, well-tempered puppies ready for loving homes.</h2>
+      </div>
+      <div className="breed-card-grid">
+        {cards.map((card) => (
+          <Link href={card.href} className="home-breed-card" key={card.name}>
+            <img src={card.image} alt={`${card.name} puppy`} />
+            <div>
+              <h3>{card.name}</h3>
+              <p>{card.copy}</p>
+              <span>
+                Learn More <ArrowRight size={16} />
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function HomePage() {
   return (
     <Layout>
-      <PageHero
-        eyebrow={brand.tagline}
-        title="Welcome to Red Ranch Dogs"
-        copy="Your trusted source for Goldendoodles, Cavapoos, and Bernedoodles raised with hands-on care in Salado, Texas."
-        image={images.homeHero}
-        actions={
-          <>
-            <Link href="/join-our-waitlist" className="button primary">
-              Join the Waitlist <ArrowRight size={18} />
-            </Link>
-            <Link href="/available-puppies" className="button secondary">
-              Available Puppies
-            </Link>
-          </>
-        }
-      />
-      <section className="split-section">
-        <img src={images.doodles} alt="Red Ranch doodle puppies" />
-        <div>
-          <p className="eyebrow">Our Doodles</p>
-          <h2>Healthy, well-tempered puppies ready for loving homes.</h2>
-          <div className="stack">
-            {breeds.map((breed) => (
-              <article className="text-card" key={breed.name}>
-                <h3>{breed.name}</h3>
-                <p>{breed.copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HomeHero />
+      <HomeDoodles />
       <section className="feature-grid">
         {[
           ["Health-Tested Parents", "Our breeding dogs undergo genetic testing to support healthier puppies.", ShieldCheck],
