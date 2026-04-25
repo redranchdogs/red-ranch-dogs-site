@@ -502,14 +502,13 @@ function HomeHero() {
   return (
     <section className="premium-hero" id="home-hero">
       <div className="premium-hero-copy">
-        <p className="premium-kicker">{brand.tagline}</p>
+        <p className="premium-kicker">Country-raised doodles</p>
         <h1>
-          <span className="hero-title-intro">Welcome to</span>
-          <span className="hero-title-brand">Red Ranch Dogs</span>
+          <span className="hero-title-main">Goldendoodle</span>
+          <span className="hero-title-main">Cavapoo</span>
+          <span className="hero-title-main">&amp; Bernedoodle Puppies</span>
         </h1>
-        <p>
-          Country-raised Goldendoodles, Cavapoos, and Bernedoodles, lovingly raised in Central Texas.
-        </p>
+        <p>Lovingly raised in Central Texas.</p>
         <div className="actions hero-actions">
           <Link href="/join-our-waitlist" className="button primary">
             Join the Waitlist
