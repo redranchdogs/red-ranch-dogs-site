@@ -29,7 +29,7 @@
     "goHomeDate": "May 2026",
     "mainPhoto": "",
     "photos": [],
-    "description": "Placeholder card for a reserved puppy. Add photos and notes when ready.",
+    "description": "Reserved puppy profile. Updated photos and notes will be added as this litter grows.",
     "availabilityNote": "Reserved by a family on the waitlist.",
     "personalityNote": "Playful, confident, and social."
   },
@@ -46,7 +46,7 @@
     "goHomeDate": "To be announced",
     "mainPhoto": "",
     "photos": [],
-    "description": "Sample Cavapoo profile for route and card testing.",
+    "description": "Cavapoo profile prepared for upcoming availability updates.",
     "availabilityNote": "Pending waitlist confirmation.",
     "personalityNote": "Affectionate companion temperament expected."
   },
@@ -63,8 +63,8 @@
     "goHomeDate": "To be announced",
     "mainPhoto": "",
     "photos": [],
-    "description": "Sample Bernedoodle profile for route and card testing.",
-    "availabilityNote": "Matched as a future litter placeholder.",
+    "description": "Bernedoodle profile prepared for upcoming availability updates.",
+    "availabilityNote": "Matched with a family from an upcoming litter.",
     "personalityNote": "Steady, loyal companion temperament expected."
   }
 ]

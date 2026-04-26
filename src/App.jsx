@@ -142,7 +142,7 @@ const architectureSeo = {
   },
   "/process/pricing": {
     title: "Pricing | Red Ranch Dogs",
-    description: "Review placeholder-ready Red Ranch Dogs pricing sections by breed and size."
+    description: "Review Red Ranch Dogs pricing guidance by breed, size, deposits, and what is included with each puppy."
   },
   "/process/application-and-waitlist": {
     title: "Application & Waitlist | Red Ranch Dogs",
@@ -166,7 +166,7 @@ const architectureSeo = {
   },
   "/stud-services/reproductive-services": {
     title: "Reproductive Services | Red Ranch Dogs",
-    description: "Placeholder-ready reproductive service information for Red Ranch Dogs stud service inquiries."
+    description: "Review Red Ranch Dogs reproductive service information for stud service inquiries."
   },
   "/stud-services/reproductive-education": {
     title: "Reproductive Education | Red Ranch Dogs",
@@ -174,7 +174,7 @@ const architectureSeo = {
   },
   "/stud-services/shipping-and-collection-info": {
     title: "Shipping and Collection Info | Red Ranch Dogs",
-    description: "Placeholder-ready stud service collection, timing, and shipping information for breeder inquiries."
+    description: "Review Red Ranch Dogs stud service collection, timing, and shipping information for breeder inquiries."
   },
   "/guardian-program": {
     title: "Guardian Program | Red Ranch Dogs",
@@ -186,7 +186,7 @@ const architectureSeo = {
   },
   "/guardian-program/current-guardian-opportunities": {
     title: "Guardian Opportunities | Red Ranch Dogs",
-    description: "Placeholder-ready current guardian opportunities for Red Ranch Dogs."
+    description: "Review current Red Ranch Dogs guardian opportunities as they become available."
   },
   "/guardian-program/faq": {
     title: "Guardian FAQ | Red Ranch Dogs",
@@ -206,7 +206,7 @@ const architectureSeo = {
   },
   "/about/reviews": {
     title: "Reviews | Red Ranch Dogs",
-    description: "Read Red Ranch Dogs family testimonials and review placeholders."
+    description: "Read Red Ranch Dogs family testimonials and Google review highlights."
   },
   "/apply": {
     title: "Apply | Red Ranch Dogs",
@@ -966,7 +966,7 @@ function PuppyTemplateCard({ label, status }) {
         <dl>
           <div><dt>Breed</dt><dd>To be added</dd></div>
           <div><dt>Gender</dt><dd>To be added</dd></div>
-          <div><dt>Adult Weight</dt><dd>Estimate pending</dd></div>
+          <div><dt>Adult Weight</dt><dd>To be announced</dd></div>
         </dl>
         <Link href="/puppies/available" className="button small">View Availability</Link>
       </div>
@@ -979,13 +979,13 @@ function AvailablePuppiesPreview() {
     <FadeInSection className="premium-section puppies-preview">
       <SectionIntro
         eyebrow="Available Puppies"
-        title="A clean card system ready for each puppy profile."
-        copy="When you send real photos and details, these placeholders become live puppy cards."
+        title="See current puppy availability at a glance."
+        copy="Puppy cards are updated with photos, status, go-home timing, and personality notes as each litter grows."
       />
-      <div className="puppy-scroll" aria-label="Available puppy card templates">
-        <PuppyTemplateCard label="Puppy profile" status="Available" />
-        <PuppyTemplateCard label="Puppy profile" status="Pending" />
-        <PuppyTemplateCard label="Puppy profile" status="Reserved" />
+      <div className="puppy-scroll" aria-label="Available puppy card examples">
+        <PuppyTemplateCard label="Current puppy update" status="Available" />
+        <PuppyTemplateCard label="Current puppy update" status="Pending" />
+        <PuppyTemplateCard label="Current puppy update" status="Reserved" />
       </div>
     </FadeInSection>
   );
@@ -1112,14 +1112,14 @@ function ImageGallery({ images: gallery = [], label = "Gallery image" }) {
 }
 
 function PuppyCard({ puppy }) {
-  const breed = puppy.breed || "Breed pending";
-  const gender = puppy.gender || puppy.sex || "Gender pending";
-  const status = puppy.status || "Status pending";
+  const breed = puppy.breed || "Breed to be announced";
+  const gender = puppy.gender || puppy.sex || "To be announced";
+  const status = puppy.status || "Status to be announced";
   const route = puppy.slug ? `/puppies/${puppy.slug}` : puppy.litterHref;
   const photo = puppy.mainPhoto || puppy.image;
-  const litterName = puppy.litter || puppy.litterName || "Litter pending";
-  const goHome = puppy.goHomeDate || puppy.goHome || "Go-home pending";
-  const weight = puppy.estimatedAdultWeight || puppy.size || "Estimate pending";
+  const litterName = puppy.litter || puppy.litterName || "Litter to be announced";
+  const goHome = puppy.goHomeDate || puppy.goHome || "Go-home timing to be announced";
+  const weight = puppy.estimatedAdultWeight || puppy.size || "Estimate to be announced";
 
   return (
     <article className="puppy-card animal-card">
@@ -1137,7 +1137,7 @@ function PuppyCard({ puppy }) {
           <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{status}</span>
         </div>
         <h2>{puppy.name}</h2>
-        <p>{puppy.personalityNote || puppy.description || "Placeholder puppy notes can be replaced with weekly details."}</p>
+        <p>{puppy.personalityNote || puppy.description || "Updated puppy notes will be added as this puppy grows."}</p>
         <dl className="details">
           <div><dt>Litter</dt><dd>{litterName}</dd></div>
           <div><dt>Gender</dt><dd>{gender}</dd></div>
@@ -1154,9 +1154,9 @@ function PuppyCard({ puppy }) {
 
 function LitterCard({ litter }) {
   const route = litter.slug ? `/litters/${litter.slug}` : litter.href;
-  const delivery = litter.birthDate || litter.delivery || "Timing pending";
-  const goHome = litter.goHomeDate || litter.goHome || "Go-home pending";
-  const size = litter.expectedSize || litter.size || "Estimate pending";
+  const delivery = litter.birthDate || litter.delivery || "Timing to be announced";
+  const goHome = litter.goHomeDate || litter.goHome || "Go-home timing to be announced";
+  const size = litter.expectedSize || litter.size || "Estimate to be announced";
   const price = litter.priceRange || litter.price;
   const image = litter.weeklyUpdateGallery?.[0] || litter.image;
 
@@ -1169,8 +1169,8 @@ function LitterCard({ litter }) {
         <h3>{litter.breed}</h3>
         {litter.availabilitySummary && <p>{litter.availabilitySummary}</p>}
         <dl className="details">
-          <div><dt>Mama</dt><dd>{litter.mama || "Mama pending"}</dd></div>
-          <div><dt>Stud</dt><dd>{litter.stud || "Stud pending"}</dd></div>
+          <div><dt>Mama</dt><dd>{litter.mama || "Mama to be announced"}</dd></div>
+          <div><dt>Stud</dt><dd>{litter.stud || "Stud to be announced"}</dd></div>
           <div><dt>Expected Timing</dt><dd>{litter.expectedTiming || delivery}</dd></div>
           <div><dt>Go Home</dt><dd>{goHome}</dd></div>
           <div><dt>Expected Size</dt><dd>{size}</dd></div>
@@ -1399,11 +1399,11 @@ function BreedPageTemplate({ breed }) {
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Available Puppies" title={`Current ${breed.name} puppies`} copy="If a puppy is listed here, the card can be updated weekly with clean photos, status, go-home timing, and personality notes." />
-        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">No current placeholder puppies for this breed yet.</p>}
+        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">No current public puppy profiles for this breed yet.</p>}
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Upcoming Litters" title={`${breed.name} litter planning`} />
-        {litters.length ? litters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />) : <p className="small-note">Upcoming litter placeholders can be added in src/data/litters.json.</p>}
+        {litters.length ? litters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />) : <p className="small-note">Upcoming litter details will be added here as plans are confirmed.</p>}
       </section>
       <section className="tile-grid three">
         {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
@@ -1574,12 +1574,12 @@ function ProcessOverviewPage() {
 function PickupDeliveryPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Process" title="Puppy Pickup and Delivery" copy="Placeholder structure for go-home day, local pickup, travel coordination, and delivery options." />
+      <PageHero eyebrow="Process" title="Puppy Pickup and Delivery" copy="Go-home day, local pickup, travel coordination, and delivery options will be organized clearly for each litter." />
       <section className="tile-grid three">
         {["Pickup in Central Texas", "Flight nanny coordination", "Go-home preparation"].map((title) => (
           <article className="text-card" key={title}>
             <h2>{title}</h2>
-            <p>Placeholder copy for Phase 2 refinement.</p>
+            <p>Details will be confirmed with each family based on puppy timing, travel needs, and go-home preparation.</p>
           </article>
         ))}
       </section>
@@ -1590,7 +1590,7 @@ function PickupDeliveryPage() {
 function GuardianOpportunitiesPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Guardian Program" title="Current Guardian Opportunities" copy="Placeholder-ready page for future guardian openings." />
+      <PageHero eyebrow="Guardian Program" title="Current Guardian Opportunities" copy="Guardian openings will be listed here when Red Ranch Dogs is looking for the right local family fit." />
       <section className="content-section narrow">
         <h2>No public guardian openings listed yet</h2>
         <p>When an opportunity is ready, it can be added here with the dog profile, timing, household fit, and application CTA.</p>
@@ -1603,7 +1603,7 @@ function GuardianOpportunitiesPage() {
 function ReproductiveServicesPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Stud Services" title="Reproductive Services" copy="Placeholder-ready structure for stud service details, timing, paperwork, and communication." />
+      <PageHero eyebrow="Stud Services" title="Reproductive Services" copy="Stud service details, timing, paperwork, and communication are organized here for breeder inquiries." />
       <section className="tile-grid three">
         {["Stud inquiries", "Timing support", "Breeder communication"].map((title) => (
           <article className="text-card" key={title}>
@@ -1620,7 +1620,7 @@ function ReproductiveServicesPage() {
 function ShippingCollectionPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Stud Services" title="Shipping and Collection Info" copy="Placeholder-ready page for chilled semen shipping, collection timing, and required breeder coordination." />
+      <PageHero eyebrow="Stud Services" title="Shipping and Collection Info" copy="Chilled semen shipping, collection timing, and breeder coordination details will be confirmed before each collection." />
       <section className="content-section narrow">
         <h2>Information to collect</h2>
         <p>Add collection clinic details, shipping windows, progesterone timing expectations, and contact requirements here when finalized.</p>
@@ -2000,7 +2000,7 @@ function PricingPage() {
       <section className="content-section narrow intro-panel">
         <p className="eyebrow">Pricing Overview</p>
         <h2>Pricing varies by breed, size, coat traits, color, and availability.</h2>
-        <p>Exact puppy pricing should be confirmed before a family reserves a puppy. The placeholder ranges below are intentionally easy to update in structured pricing data.</p>
+        <p>Exact puppy pricing is confirmed before a family reserves a puppy. Current guidance is organized by breed and size so updates can stay clear and consistent.</p>
       </section>
       <PricingSection items={pricingProfiles.length ? pricingProfiles : priceGroups} />
       <section className="tile-grid four priority-grid">
