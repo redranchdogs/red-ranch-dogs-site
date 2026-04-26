@@ -554,15 +554,121 @@ function SocialProofStrip({
         </h2>
         <div className="social-proof-grid">
           {items.map(([label, Icon]) => (
-            <article className="social-proof-card" key={label}>
-              <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
-              <p>{label}</p>
-            </article>
+            <TrustItem label={label} Icon={Icon} key={label} className="social-proof-card" />
           ))}
         </div>
       </div>
     </section>
   );
+}
+
+function PageSection({ children, className = "", variant = "default", reveal = true }) {
+  const sectionClass = `page-section ${variant !== "default" ? `page-section-${variant}` : ""} ${className}`.trim();
+
+  if (reveal) {
+    return (
+      <FadeInSection className={sectionClass}>
+        {children}
+      </FadeInSection>
+    );
+  }
+
+  return <section className={sectionClass}>{children}</section>;
+}
+
+function ContentContainer({ children, className = "", size = "standard" }) {
+  return (
+    <div className={`content-container content-container-${size} ${className}`.trim()}>
+      {children}
+    </div>
+  );
+}
+
+function SectionHeader({ eyebrow, title, copy, align = "left" }) {
+  return (
+    <div className={`section-header section-header-${align}`}>
+      {eyebrow && <p className="premium-kicker">{eyebrow}</p>}
+      <h2>{title}</h2>
+      {copy && <p>{copy}</p>}
+    </div>
+  );
+}
+
+function CardGrid({ children, className = "", columns = 3 }) {
+  return (
+    <div className={`card-grid card-grid-${columns} ${className}`.trim()}>
+      {children}
+    </div>
+  );
+}
+
+function CTAButton({ href, children, variant = "primary", className = "", ...props }) {
+  const buttonClass = `button ${variant} ${className}`.trim();
+
+  if (href?.startsWith("http") || href?.startsWith("sms:") || href?.startsWith("mailto:")) {
+    return (
+      <a href={href} className={buttonClass} {...props}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={buttonClass} {...props}>
+      {children}
+    </Link>
+  );
+}
+
+function TrustItem({ label, Icon, className = "" }) {
+  return (
+    <article className={`trust-item ${className}`.trim()}>
+      <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
+      <p>{label}</p>
+    </article>
+  );
+}
+
+function ImageCard({
+  title,
+  copy,
+  image,
+  imageLabel,
+  href,
+  ctaLabel = "Learn More",
+  className = "",
+  variant = "standard"
+}) {
+  const content = (
+    <>
+      {image ? (
+        <img className="image-card-media" src={image} alt={imageLabel || title} loading="lazy" />
+      ) : (
+        <ImagePlaceholder label={imageLabel || `${title} photo`} />
+      )}
+      <div className="image-card-body">
+        <h3>{title}</h3>
+        <p>{copy}</p>
+        {href && (
+          <span>
+            {ctaLabel} <ArrowRight size={16} />
+          </span>
+        )}
+      </div>
+    </>
+  );
+
+  const cardClass = `image-card image-card-${variant} ${className}`.trim();
+
+  if (href) {
+    return (
+      <Link href={href} className={cardClass}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <article className={cardClass}>{content}</article>;
 }
 
 const breedPlaceholders = {
@@ -583,31 +689,35 @@ function SectionIntro({ eyebrow, title, copy }) {
 
 function BreedCard({ breed }) {
   return (
-    <Link href="/available-puppies" className="premium-breed-card">
-      <ImagePlaceholder label={breedPlaceholders[breed.name] || `${breed.name} photo`} />
-      <div>
-        <h3>{breed.name}</h3>
-        <p>{breed.copy}</p>
-        <span>
-          Learn More <ArrowRight size={16} />
-        </span>
-      </div>
-    </Link>
+    <ImageCard
+      title={breed.name}
+      copy={breed.copy}
+      imageLabel={breedPlaceholders[breed.name] || `${breed.name} photo`}
+      href="/available-puppies"
+      ctaLabel="View puppies"
+      variant="compact"
+    />
   );
 }
 
 function HomeDoodles() {
   return (
-    <FadeInSection className="premium-section">
-      <SectionIntro
-        eyebrow="Our Doodles"
-        title="Thoughtful pairings for family-ready companions."
-        copy="Three breed programs, one standard for temperament, health, and communication."
-      />
-      <div className="premium-card-grid breed-grid">
-        {breeds.map((breed) => <BreedCard breed={breed} key={breed.name} />)}
-      </div>
-    </FadeInSection>
+    <PageSection className="home-doodles-section" variant="compact">
+      <ContentContainer>
+        <SectionHeader
+          eyebrow="Our Doodles"
+          title="Find the right fit for your family"
+          copy="Goldendoodles, Cavapoos, and Bernedoodles raised with hands-on care in Central Texas."
+        />
+        <CardGrid className="breed-card-grid" columns={3}>
+          {breeds.map((breed) => <BreedCard breed={breed} key={breed.name} />)}
+        </CardGrid>
+        <div className="section-cta-row">
+          <CTAButton href="/available-puppies" variant="primary">View Available Puppies</CTAButton>
+          <CTAButton href="/join-our-waitlist" variant="secondary">Join the Waitlist</CTAButton>
+        </div>
+      </ContentContainer>
+    </PageSection>
   );
 }
 
