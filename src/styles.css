@@ -2609,23 +2609,36 @@ summary {
   }
 
   .hero-image-frame {
-    height: min(58svh, 492px);
+    height: min(61svh, 520px);
+  }
+
+  .premium-hero::before {
+    background:
+      radial-gradient(circle at 50% 35%, rgba(255, 250, 242, 0) 0 45%, rgba(247, 241, 230, 0.12) 60%, rgba(247, 241, 230, 0.9) 78%),
+      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 57%, rgba(247, 241, 230, 0.46) 72%, var(--premium-bg) 88%);
   }
 
   .premium-hero::after {
-    inset: min(44svh, 370px) 0 0;
+    inset: min(49svh, 420px) 0 0;
+    background: linear-gradient(180deg, rgba(247, 241, 230, 0), rgba(247, 241, 230, 0.72) 34%, var(--premium-bg) 74%);
+  }
+
+  .hero-image-frame::after {
+    background:
+      linear-gradient(90deg, rgba(247, 241, 230, 0.56) 0%, rgba(247, 241, 230, 0.08) 20%, rgba(247, 241, 230, 0) 52%, rgba(247, 241, 230, 0.04) 100%),
+      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 62%, rgba(247, 241, 230, 0.4) 82%, var(--premium-bg) 100%);
   }
 
   .premium-hero-copy {
     gap: 9px;
-    padding-top: min(50svh, 420px);
+    padding-top: min(52svh, 440px);
   }
 
   .premium-hero h1 {
     justify-self: center;
-    width: min(100%, 330px);
-    max-width: 330px;
-    font-size: clamp(1.32rem, 5.35vw, 1.85rem);
+    width: min(calc(100vw - 28px), 400px);
+    max-width: 400px;
+    font-size: clamp(1.62rem, 6.55vw, 2.38rem);
   }
 
   .premium-hero h1 .hero-title-line {
@@ -2638,13 +2651,31 @@ summary {
   }
 
   .premium-hero .hero-actions {
-    width: min(100%, 292px) !important;
-    max-width: 292px !important;
+    width: min(100%, 348px) !important;
+    max-width: 348px !important;
   }
 
   .premium-hero .hero-actions .button {
-    max-width: 142px !important;
+    max-width: 170px !important;
     min-height: 48px !important;
-    font-size: 0.58rem !important;
+    font-size: 0.72rem !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .premium-hero h1 {
+    width: min(100%, 308px);
+    max-width: 308px;
+    font-size: clamp(1.12rem, 4.7vw, 1.42rem);
+  }
+
+  .premium-hero .hero-actions {
+    width: min(100%, 270px) !important;
+    max-width: 270px !important;
+  }
+
+  .premium-hero .hero-actions .button {
+    max-width: 131px !important;
+    font-size: 0.54rem !important;
   }
 }
