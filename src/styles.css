@@ -2481,9 +2481,9 @@ summary {
     position: relative;
     width: min(1180px, calc(100% - 64px));
     min-height: min(680px, calc(100svh - 104px));
-    grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr);
+    grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
     align-items: center;
-    gap: clamp(34px, 4.2vw, 56px);
+    gap: clamp(20px, 2.6vw, 32px);
     margin: 0 auto;
     padding: 54px 0 70px;
     overflow: visible;
