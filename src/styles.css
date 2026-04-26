@@ -856,28 +856,33 @@ body.menu-locked {
 
 @media (max-width: 640px) {
   .premium-header {
-    min-height: 116px;
-    grid-template-columns: 54px 1fr 54px;
-    padding: 10px 28px 12px;
+    min-height: 88px;
+    grid-template-columns: 48px 1fr 48px;
+    padding: 6px 20px 8px;
     background: rgba(255, 250, 242, 0.96);
   }
 
   .premium-header.scrolled {
-    min-height: 86px;
+    min-height: 68px;
   }
 
   .premium-logo-link img {
-    width: min(46vw, 184px);
+    width: min(34vw, 126px);
   }
 
   .premium-header.scrolled .premium-logo-link img {
-    width: min(39vw, 150px);
+    width: min(30vw, 110px);
   }
 
   .premium-menu-button,
-  .premium-social-link {
-    width: 52px;
-    height: 52px;
+  .premium-icon-link {
+    width: 46px;
+    height: 46px;
+  }
+
+  .premium-mobile-menu {
+    inset: 76px 10px auto 10px;
+    max-height: calc(100dvh - 88px);
   }
 
   .premium-header.hide-on-mobile {
