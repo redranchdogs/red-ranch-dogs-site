@@ -1120,6 +1120,8 @@ function PuppyCard({ puppy }) {
   const litterName = puppy.litter || puppy.litterName || "Litter to be announced";
   const goHome = puppy.goHomeDate || puppy.goHome || "Go-home timing to be announced";
   const weight = puppy.estimatedAdultWeight || puppy.size || "Estimate to be announced";
+  const birthDate = puppy.birthDate || puppy.born;
+  const price = puppy.price;
 
   return (
     <article className="puppy-card animal-card">
@@ -1142,8 +1144,10 @@ function PuppyCard({ puppy }) {
           <div><dt>Litter</dt><dd>{litterName}</dd></div>
           <div><dt>Gender</dt><dd>{gender}</dd></div>
           <div><dt>Status</dt><dd>{status}</dd></div>
+          {birthDate && <div><dt>Birth Date</dt><dd>{birthDate}</dd></div>}
           <div><dt>Go Home</dt><dd>{goHome}</dd></div>
           <div><dt>Adult Weight</dt><dd>{weight}</dd></div>
+          {price && <div><dt>Price</dt><dd>{price}</dd></div>}
         </dl>
         {puppy.availabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
         {route && <Link href={route} className="button small">View Puppy</Link>}
@@ -1428,8 +1432,10 @@ function PuppyDetailPage({ puppy }) {
             <div><dt>Litter</dt><dd>{puppy.litter}</dd></div>
             <div><dt>Gender</dt><dd>{puppy.gender}</dd></div>
             <div><dt>Status</dt><dd>{puppy.status}</dd></div>
+            {puppy.birthDate && <div><dt>Birth date</dt><dd>{puppy.birthDate}</dd></div>}
             <div><dt>Estimated adult weight</dt><dd>{puppy.estimatedAdultWeight}</dd></div>
             <div><dt>Go-home date</dt><dd>{puppy.goHomeDate}</dd></div>
+            {puppy.price && <div><dt>Price</dt><dd>{puppy.price}</dd></div>}
           </dl>
           <div className="actions">
             <Link href="/apply" className="button primary">Apply</Link>
