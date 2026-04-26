@@ -11,8 +11,12 @@
     "birthDate": "April 2026",
     "goHomeDate": "May 2026",
     "expectedSize": "20-25 lbs",
+    "expectedTiming": "Born April 2026",
+    "expectedColors": "Red abstract and rich red coats possible",
+    "expectedCoatTraits": "Wavy to curly low-shedding coat possibilities",
     "priceRange": "$3,200-$4,500",
     "availabilitySummary": "Sample litter with a mix of available and reserved placeholder puppy profiles.",
+    "availabilityNote": "Approved families are contacted in waitlist order.",
     "weeklyUpdateGallery": ["/images/litters/birdie-waylon.webp"]
   },
   {
@@ -27,8 +31,12 @@
     "birthDate": "Planned",
     "goHomeDate": "To be announced",
     "expectedSize": "20-30 lbs",
+    "expectedTiming": "Summer 2026 planning",
+    "expectedColors": "Red, apricot, and abstract markings possible",
+    "expectedCoatTraits": "Soft wavy to curly companion coats",
     "priceRange": "$2,800-$4,500",
     "availabilitySummary": "Upcoming Cavapoo litter placeholder.",
+    "availabilityNote": "Join the waitlist to be notified when this litter is confirmed.",
     "weeklyUpdateGallery": ["/images/litters/winnie-redford.webp"]
   },
   {
@@ -43,8 +51,12 @@
     "birthDate": "Planned",
     "goHomeDate": "To be announced",
     "expectedSize": "25-45 lbs",
+    "expectedTiming": "Fall 2026 planning",
+    "expectedColors": "Chocolate, merle, tricolor, and abstract possibilities",
+    "expectedCoatTraits": "Wavy to curly low-shedding coat possibilities",
     "priceRange": "$3,500-$4,500",
     "availabilitySummary": "Upcoming Bernedoodle litter placeholder.",
+    "availabilityNote": "Families can pass on a litter and remain on the general waitlist.",
     "weeklyUpdateGallery": ["/images/seed/dam-bernedoodle.webp"]
   }
 ]

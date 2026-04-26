@@ -12,7 +12,9 @@
     "goHomeDate": "May 2026",
     "mainPhoto": "/images/home/red-ranch-dogs-goldendoodle-puppy-hero-900.jpeg",
     "photos": ["/images/home/red-ranch-dogs-goldendoodle-puppy-hero-900.jpeg"],
-    "description": "Placeholder puppy profile using the current hero puppy image. Replace with the clean original photo and weekly notes."
+    "description": "A sweet Goldendoodle girl from Birdie and Waylon's litter. Replace this note with her current personality and availability update.",
+    "availabilityNote": "Currently available for an approved family.",
+    "personalityNote": "Gentle, observant, and people-focused."
   },
   {
     "slug": "biscuit",
@@ -27,7 +29,9 @@
     "goHomeDate": "May 2026",
     "mainPhoto": "",
     "photos": [],
-    "description": "Placeholder card for a reserved puppy. Add photos and notes when ready."
+    "description": "Placeholder card for a reserved puppy. Add photos and notes when ready.",
+    "availabilityNote": "Reserved by a family on the waitlist.",
+    "personalityNote": "Playful, confident, and social."
   },
   {
     "slug": "peach",
@@ -37,12 +41,14 @@
     "litterSlug": "winnie-redford-summer-2026",
     "litter": "Winnie + Redford",
     "gender": "Female",
-    "status": "Waitlist",
+    "status": "Pending",
     "estimatedAdultWeight": "20-30 lbs",
     "goHomeDate": "To be announced",
     "mainPhoto": "",
     "photos": [],
-    "description": "Sample Cavapoo profile for route and card testing."
+    "description": "Sample Cavapoo profile for route and card testing.",
+    "availabilityNote": "Pending waitlist confirmation.",
+    "personalityNote": "Affectionate companion temperament expected."
   },
   {
     "slug": "cedar",
@@ -52,11 +58,13 @@
     "litterSlug": "kylie-wayne-fall-2026",
     "litter": "Kylie + Wayne",
     "gender": "Male",
-    "status": "Planned",
+    "status": "Matched",
     "estimatedAdultWeight": "25-45 lbs",
     "goHomeDate": "To be announced",
     "mainPhoto": "",
     "photos": [],
-    "description": "Sample Bernedoodle profile for route and card testing."
+    "description": "Sample Bernedoodle profile for route and card testing.",
+    "availabilityNote": "Matched as a future litter placeholder.",
+    "personalityNote": "Steady, loyal companion temperament expected."
   }
 ]

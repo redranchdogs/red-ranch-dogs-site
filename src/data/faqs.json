@@ -1,18 +1,48 @@
 [
   {
-    "category": "process",
+    "category": "Getting on the waitlist",
     "question": "How do I reserve a puppy?",
     "answer": "Start with the application. We will follow up about timing, availability, and the right waitlist."
   },
   {
-    "category": "process",
+    "category": "Getting on the waitlist",
     "question": "How does the waitlist work?",
     "answer": "A deposit secures your spot. Selection is guided by waitlist position, timing, and the best fit for each family."
   },
   {
-    "category": "goldendoodle",
+    "category": "Puppy selection",
+    "question": "What does pick or pass mean?",
+    "answer": "When a litter is announced, families can choose to move forward with that litter or pass and remain on the general waitlist."
+  },
+  {
+    "category": "Pricing and payments",
+    "question": "When is final payment due?",
+    "answer": "Final payment timing is confirmed before go-home. The current process is designed so families know what is due before pickup."
+  },
+  {
+    "category": "Pickup and transportation",
+    "question": "Can you help with transportation?",
+    "answer": "Pickup and transportation details are coordinated by litter and family needs. Flight nanny or delivery notes can be added as policies are finalized."
+  },
+  {
+    "category": "Health and care",
+    "question": "What comes home with my puppy?",
+    "answer": "Each puppy comes home with health records, transition support, and the care items listed on the What Comes With Your Puppy page."
+  },
+  {
+    "category": "Training and transition",
+    "question": "How do you help puppies transition home?",
+    "answer": "Red Ranch Dogs focuses on early handling, family communication, and clear go-home guidance so each puppy has a smoother transition."
+  },
+  {
+    "category": "Coat traits and shedding",
     "question": "Do Goldendoodles shed?",
     "answer": "Shedding varies by generation and coat genetics. F1b and multigen pairings are often lower shedding."
+  },
+  {
+    "category": "goldendoodle",
+    "question": "Are Goldendoodles good family dogs?",
+    "answer": "Goldendoodles are often affectionate, trainable, and social, making them a strong fit for families who want an active but people-focused companion."
   },
   {
     "category": "cavapoo",

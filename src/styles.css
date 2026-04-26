@@ -3502,3 +3502,245 @@ summary {
     min-height: 240px;
   }
 }
+
+.intro-panel {
+  display: grid;
+  gap: 12px;
+  padding-top: 34px;
+  padding-bottom: 34px;
+}
+
+.intro-panel h2 {
+  line-height: 1.08;
+}
+
+.intro-panel p {
+  margin: 0;
+}
+
+.priority-grid {
+  padding-top: 26px;
+  padding-bottom: 42px;
+}
+
+.tile-grid.four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.tile-grid.five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.no-section-padding {
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.icon-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.icon-card svg {
+  color: var(--brand-red);
+}
+
+.icon-card h2,
+.compact-card h2 {
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(1.9rem, 3vw, 2.7rem);
+  letter-spacing: 0.01em;
+}
+
+.card-kicker-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.card-kicker-row .eyebrow {
+  margin-bottom: 0;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 30px;
+  padding: 0 10px;
+  color: var(--brand-red);
+  background: rgba(156, 31, 22, 0.08);
+  border: 1px solid rgba(156, 31, 22, 0.22);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.status-available {
+  color: #fef8ef;
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+.status-reserved,
+.status-matched {
+  color: var(--clay-dark);
+  background: rgba(101, 91, 79, 0.12);
+  border-color: rgba(101, 91, 79, 0.24);
+}
+
+.status-pending,
+.status-guardian-candidate {
+  color: var(--clay);
+  background: rgba(175, 118, 51, 0.12);
+  border-color: rgba(175, 118, 51, 0.24);
+}
+
+.small-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.puppy-filter-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(260px, 1fr);
+  gap: 18px 28px;
+  align-items: start;
+  padding-top: 12px;
+  padding-bottom: 20px;
+}
+
+.puppy-filter-panel > div:first-child {
+  grid-row: span 2;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-pill {
+  min-height: 44px;
+  padding: 0 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.filter-pill.active,
+.filter-pill:hover {
+  color: var(--paper);
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+.status-legend {
+  padding-top: 4px;
+  padding-bottom: 30px;
+}
+
+.compact-card {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+}
+
+.compact-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.step-number {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: var(--paper);
+  background: var(--brand-red);
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.process-timeline {
+  padding-top: 10px;
+  padding-bottom: 52px;
+}
+
+.included-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 26px;
+  margin-bottom: 0;
+}
+
+.grouped-faq {
+  gap: 22px;
+}
+
+.faq-category {
+  display: grid;
+  gap: 10px;
+}
+
+.faq-category h2 {
+  margin-bottom: 4px;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.legacy-planning-notes {
+  padding-top: 8px;
+}
+
+@media (max-width: 980px) {
+  .tile-grid.four,
+  .tile-grid.five {
+    grid-template-columns: 1fr;
+  }
+
+  .priority-grid,
+  .status-legend {
+    gap: 16px;
+  }
+
+  .puppy-filter-panel {
+    grid-template-columns: 1fr;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .puppy-filter-panel > div:first-child {
+    grid-row: auto;
+  }
+
+  .included-list {
+    grid-template-columns: 1fr;
+  }
+
+  .card-list {
+    gap: 20px;
+    padding-top: 34px;
+    padding-bottom: 64px;
+  }
+
+  .content-section {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+
+  .intro-panel {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+}

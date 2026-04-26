@@ -1132,9 +1132,12 @@ function PuppyCard({ puppy }) {
         <figcaption>{puppy.name}</figcaption>
       </figure>
       <div>
-        <p className="eyebrow">{breed}</p>
+        <div className="card-kicker-row">
+          <p className="eyebrow">{breed}</p>
+          <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{status}</span>
+        </div>
         <h2>{puppy.name}</h2>
-        <p>{puppy.description || "Placeholder puppy notes can be replaced with weekly details."}</p>
+        <p>{puppy.personalityNote || puppy.description || "Placeholder puppy notes can be replaced with weekly details."}</p>
         <dl className="details">
           <div><dt>Litter</dt><dd>{litterName}</dd></div>
           <div><dt>Gender</dt><dd>{gender}</dd></div>
@@ -1142,6 +1145,7 @@ function PuppyCard({ puppy }) {
           <div><dt>Go Home</dt><dd>{goHome}</dd></div>
           <div><dt>Adult Weight</dt><dd>{weight}</dd></div>
         </dl>
+        {puppy.availabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
         {route && <Link href={route} className="button small">View Puppy</Link>}
       </div>
     </article>
@@ -1165,34 +1169,57 @@ function LitterCard({ litter }) {
         <h3>{litter.breed}</h3>
         {litter.availabilitySummary && <p>{litter.availabilitySummary}</p>}
         <dl className="details">
-          <div><dt>Birth Date</dt><dd>{delivery}</dd></div>
+          <div><dt>Mama</dt><dd>{litter.mama || "Mama pending"}</dd></div>
+          <div><dt>Stud</dt><dd>{litter.stud || "Stud pending"}</dd></div>
+          <div><dt>Expected Timing</dt><dd>{litter.expectedTiming || delivery}</dd></div>
           <div><dt>Go Home</dt><dd>{goHome}</dd></div>
           <div><dt>Expected Size</dt><dd>{size}</dd></div>
+          {litter.expectedColors && <div><dt>Colors</dt><dd>{litter.expectedColors}</dd></div>}
+          {litter.expectedCoatTraits && <div><dt>Coat Traits</dt><dd>{litter.expectedCoatTraits}</dd></div>}
           {litter.coloring && <div><dt>Coloring</dt><dd>{litter.coloring}</dd></div>}
           {litter.coat && <div><dt>Coat</dt><dd>{litter.coat}</dd></div>}
           {price && <div><dt>Price</dt><dd>{price}</dd></div>}
         </dl>
+        {litter.availabilityNote && <p className="small-note">{litter.availabilityNote}</p>}
         {route && <Link href={route} className="button small">View Litter</Link>}
       </div>
     </article>
   );
 }
 
-function FAQSection({ items = faqProfiles, category }) {
-  const scopedItems = category ? items.filter((item) => item.category === category || item.category === "process") : items;
+function FAQSection({ items = faqProfiles, category, grouped = false }) {
+  const normalizedItems = items.map((item) => Array.isArray(item) ? { category: "General", question: item[0], answer: item[1] } : item);
+  const scopedItems = category
+    ? normalizedItems.filter((item) => item.category === category || item.category === "Getting on the waitlist")
+    : normalizedItems;
+
+  if (grouped) {
+    const categories = [...new Set(scopedItems.map((item) => item.category || "General"))];
+    return (
+      <section className="faq-list grouped-faq">
+        {categories.map((group) => (
+          <div className="faq-category" key={group}>
+            <h2>{group}</h2>
+            {scopedItems.filter((item) => (item.category || "General") === group).map((item, index) => (
+              <details key={item.question} open={index === 0}>
+                <summary>{item.question}</summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        ))}
+      </section>
+    );
+  }
 
   return (
     <section className="faq-list">
-      {scopedItems.map((item, index) => {
-        const question = Array.isArray(item) ? item[0] : item.question;
-        const answer = Array.isArray(item) ? item[1] : item.answer;
-        return (
-          <details key={question} open={index === 0}>
-            <summary>{question}</summary>
-            <p>{answer}</p>
-          </details>
-        );
-      })}
+      {scopedItems.map((item, index) => (
+        <details key={item.question} open={index === 0}>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
     </section>
   );
 }
@@ -1203,6 +1230,7 @@ function PricingSection({ items = pricingProfiles }) {
       {items.map((group) => (
         <article className="text-card" key={group.breed || group[0]}>
           <h2>{group.breed || group[0]}</h2>
+          {group.summary && <p>{group.summary}</p>}
           <ul className="clean-list">
             {(group.items || group[1]).map((item) => <li key={item}>{item}</li>)}
           </ul>
@@ -1262,6 +1290,45 @@ function ParentCard({ parent }) {
 
 const puppyData = puppyProfiles.length ? puppyProfiles : availablePuppies;
 
+const puppyStatusLegend = [
+  ["Available", "Open for an approved family to move forward."],
+  ["Pending", "A family is reviewing or confirming next steps."],
+  ["Reserved", "A deposit or match is already in place."],
+  ["Matched", "Connected to a family or future litter plan."],
+  ["Guardian Candidate", "May be considered for the guardian program."]
+];
+
+const puppyNextSteps = [
+  ["Apply", "Start with a quick application so we understand your family, timing, breed preference, and questions."],
+  ["Talk Through Fit", "We follow up about current availability, waitlist timing, size range, and whether a puppy or future litter is the best fit."],
+  ["Reserve or Waitlist", "If everything lines up, the deposit reserves your puppy or your place on the general waitlist."]
+];
+
+const waitlistProcessSteps = [
+  ["Submit application", "Tell us about your home, timing, breed preference, and what kind of puppy would fit your family."],
+  ["Place deposit", "A deposit reserves your place on the waitlist and helps us communicate clearly about timing."],
+  ["Join the general waitlist", "Families are organized by deposit date so the process stays fair and easy to follow."],
+  ["Receive litter announcements", "When litters are born or planned, waitlist families receive updates in order."],
+  ["Pick or pass", "You can move forward with a litter or pass and remain on the general waitlist."],
+  ["Choose your puppy", "Puppy picks happen in waitlist order once personalities, coats, and family fit are clearer."],
+  ["Prepare for go-home", "We help with timing, supplies, records, and transition details before pickup."]
+];
+
+const pricingFactors = [
+  ["Breed and pairing", "Each pairing has different size, coat, color, and generation considerations."],
+  ["Size range", "Micro, petite mini, and mini ranges can affect availability and pricing."],
+  ["Coat and color traits", "Harder-to-produce traits may carry different pricing once confirmed."],
+  ["Timing and availability", "Current puppy availability and waitlist demand can affect final placement details."]
+];
+
+const includedWithPuppy = [
+  "Vet records and age-appropriate care notes",
+  "Early handling and socialization foundations",
+  "Go-home and transition guidance",
+  "Communication as your puppy grows",
+  "Support after pickup"
+];
+
 function SectionIndexPage({ eyebrow, title, copy, links, children }) {
   return (
     <Layout>
@@ -1284,10 +1351,40 @@ function BreedPageTemplate({ breed }) {
   const puppies = puppyData.filter((puppy) => puppy.breedSlug === breed.slug);
   const litters = litterProfiles.filter((litter) => litter.breedSlug === breed.slug);
   const parents = parentProfiles.filter((parent) => parent.breedSlug === breed.slug);
+  const breedHighlights = [
+    ["Best Fit", breed.bestFit || breed.idealFamilyFit, Heart],
+    ["Size Expectations", breed.expectedSizeRange, PawPrint],
+    ["Temperament", breed.temperament, Sparkles],
+    ["Coat and Shedding", `${breed.coatExpectations} ${breed.sheddingAllergyNotes}`, ShieldCheck]
+  ];
 
   return (
     <Layout>
-      <PageHero eyebrow="Breed Program" title={breed.heroTitle} copy={breed.intro} />
+      <PageHero
+        eyebrow="Breed Program"
+        title={breed.heroTitle}
+        copy={breed.intro}
+        actions={(
+          <>
+            <Link href="/apply" className="button primary">Apply for a Puppy</Link>
+            <Link href="/puppies/available" className="button secondary">View Available Puppies</Link>
+          </>
+        )}
+      />
+      <section className="content-section narrow intro-panel">
+        <p className="eyebrow">Quick Summary</p>
+        <h2>{breed.name} puppies at Red Ranch Dogs</h2>
+        <p>{breed.positioning || breed.intro}</p>
+      </section>
+      <section className="tile-grid four priority-grid">
+        {breedHighlights.map(([title, copy, Icon]) => (
+          <article className="text-card icon-card" key={title}>
+            <Icon size={24} />
+            <h2>{title}</h2>
+            <p>{copy}</p>
+          </article>
+        ))}
+      </section>
       <section className="content-section breed-template-grid">
         <article className="group-panel">
           <h2>Breed Snapshot</h2>
@@ -1301,7 +1398,7 @@ function BreedPageTemplate({ breed }) {
         </article>
       </section>
       <section className="card-list">
-        <SectionHeader eyebrow="Available Puppies" title={`Current ${breed.name} puppies`} copy="Placeholder puppy cards are ready for clean photos, names, status, and weekly details." />
+        <SectionHeader eyebrow="Available Puppies" title={`Current ${breed.name} puppies`} copy="If a puppy is listed here, the card can be updated weekly with clean photos, status, go-home timing, and personality notes." />
         {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">No current placeholder puppies for this breed yet.</p>}
       </section>
       <section className="card-list">
@@ -1312,7 +1409,7 @@ function BreedPageTemplate({ breed }) {
         {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
       </section>
       <FAQSection category={breed.faqCategory} />
-      <CTASection title={`Interested in a ${breed.name}?`} />
+      <CTASection title={`Interested in a ${breed.name}?`} copy="Apply now and we will help you understand current availability, upcoming litters, and the best next step for your family." primaryLabel="Apply for a Puppy" secondaryLabel="View Available Puppies" />
     </Layout>
   );
 }
@@ -1560,17 +1657,78 @@ function AboutOverviewPage() {
 }
 
 function AvailablePuppiesPage() {
+  const [breedFilter, setBreedFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const breedOptions = ["All", ...new Set(puppyData.map((puppy) => puppy.breed).filter(Boolean))];
+  const statusOptions = ["All", ...new Set(puppyData.map((puppy) => puppy.status).filter(Boolean))];
+  const filteredPuppies = puppyData.filter((puppy) => {
+    const breedMatch = breedFilter === "All" || puppy.breed === breedFilter;
+    const statusMatch = statusFilter === "All" || puppy.status === statusFilter;
+    return breedMatch && statusMatch;
+  });
+
   return (
     <Layout>
       <PageHero
         eyebrow="Puppies"
         title="Available Puppies"
-        copy="Current puppy availability is powered by structured data so new photos and updates can be added quickly."
+        copy="Meet the puppies currently available from Red Ranch Dogs."
+        actions={(
+          <>
+            <Link href="/apply" className="button primary">Apply for a Puppy</Link>
+            <Link href="/puppies/upcoming-litters" className="button secondary">View Upcoming Litters</Link>
+          </>
+        )}
       />
       {puppyData.length > 0 ? (
-        <section className="card-list">
-          {puppyData.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />)}
-        </section>
+        <>
+          <section className="content-section puppy-filter-panel">
+            <div>
+              <p className="eyebrow">Find a Puppy</p>
+              <h2>Browse by breed or status</h2>
+              <p>These simple filters keep the page easy to scan on mobile while still giving families a quick way to focus.</p>
+            </div>
+            <div className="filter-group" aria-label="Filter puppies by breed">
+              {breedOptions.map((breed) => (
+                <button className={breedFilter === breed ? "filter-pill active" : "filter-pill"} type="button" key={breed} onClick={() => setBreedFilter(breed)}>
+                  {breed}
+                </button>
+              ))}
+            </div>
+            <div className="filter-group" aria-label="Filter puppies by status">
+              {statusOptions.map((status) => (
+                <button className={statusFilter === status ? "filter-pill active" : "filter-pill"} type="button" key={status} onClick={() => setStatusFilter(status)}>
+                  {status}
+                </button>
+              ))}
+            </div>
+          </section>
+          <section className="card-list">
+            <SectionHeader eyebrow="Current Availability" title="Available puppy cards" copy="Names, status labels, and puppy details are rendered by the website so original photos can stay clean." />
+            {filteredPuppies.length ? filteredPuppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">No puppies match those filters yet.</p>}
+          </section>
+          <section className="tile-grid five status-legend">
+            {puppyStatusLegend.map(([status, copy]) => (
+              <article className="text-card compact-card" key={status}>
+                <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{status}</span>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </section>
+          <section className="content-section">
+            <SectionHeader eyebrow="Next Steps" title="What happens next?" copy="The process is meant to be clear and personal, not a guessing game." />
+            <div className="tile-grid three no-section-padding">
+              {puppyNextSteps.map(([title, copy], index) => (
+                <article className="text-card icon-card" key={title}>
+                  <span className="step-number">{index + 1}</span>
+                  <h2>{title}</h2>
+                  <p>{copy}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+          <CTASection title="Ready to ask about a puppy?" copy="Apply now and we will help you understand availability, timing, and whether a current puppy or future litter is the right fit." primaryLabel="Apply for a Puppy" secondaryHref="/puppies/upcoming-litters" secondaryLabel="View Upcoming Litters" />
+        </>
       ) : (
         <section className="content-section narrow">
           <h2>No publicly listed puppies right now</h2>
@@ -1599,39 +1757,29 @@ function CurrentLittersPage() {
 function UpcomingLittersPage() {
   return (
     <Layout>
-      <PageHero eyebrow={`Updated ${upcomingLitters.updated}`} title="Upcoming Litters" copy="Planned pairings are based on timing, genetics, colors, and availability. Pairings may change as breeding plans develop." />
+      <PageHero
+        eyebrow={`Updated ${upcomingLitters.updated}`}
+        title="Upcoming Litters"
+        copy="Planned and expected litters from our Goldendoodle, Cavapoo, and Bernedoodle program."
+        actions={<Link href="/apply" className="button primary">Join the Waitlist</Link>}
+      />
+      <section className="content-section narrow intro-panel">
+        <p className="eyebrow">How litter announcements work</p>
+        <h2>Waitlist families are contacted in order of deposit placed.</h2>
+        <p>Families can choose to move forward with a litter or pass and remain on the general waitlist. Pairings may shift based on timing, mama health, genetics, and what is best for the dogs.</p>
+      </section>
       <section className="card-list">
-        <SectionHeader eyebrow="Structured Litters" title="Data-driven litter cards" copy="These cards come from src/data/litters.json and are ready for weekly updates, puppy cards, and photo galleries." />
+        <SectionHeader eyebrow="Planned Litters" title="Upcoming litter cards" copy="Each litter card is powered by structured data and can be updated as pairings, timing, and availability are confirmed." />
         {litterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
       </section>
-      <section className="content-section">
-        {upcomingLitters.groups.map((group) => (
-          <article className="group-panel" key={group.breed}>
-            <h2>{group.breed}</h2>
-            <div className="mini-grid">
-              {group.litters.map(([name, breed, color, timing, extra]) => {
-                const href = extra?.startsWith("/") ? extra : null;
-                const goHome = href ? "" : extra;
-                return (
-                <div className="text-card" key={name}>
-                  <h3>{name}</h3>
-                  <p>{breed}</p>
-                  <p>{color}</p>
-                  <p>{timing}</p>
-                  {goHome && <p>{goHome}</p>}
-                  {href && <Link href={href} className="inline-link">View pairing</Link>}
-                </div>
-                );
-              })}
-            </div>
-          </article>
-        ))}
+      <section className="content-section legacy-planning-notes">
         <article className="note-panel">
-          <h2>The planned stud on my litter changed?</h2>
+          <h2>Planning notes from the migrated site</h2>
           <p>{upcomingLitters.pairingNote}</p>
           <p>Red Ranch Dogs prioritizes the well-being of each breeding dog. Guardian-family mamas live normal family lives and come to Red Ranch Dogs only during breeding and whelping windows.</p>
         </article>
       </section>
+      <CTASection title="Want to be notified about upcoming litters?" copy="Join the waitlist so we can help you understand breed fit, expected timing, and what to expect when litters are announced." primaryLabel="Join the Waitlist" secondaryLabel="View Available Puppies" />
     </Layout>
   );
 }
@@ -1843,13 +1991,45 @@ function StudDetailPage({ stud }) {
 function PricingPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Pricing" title="Puppy Prices & Deposits" copy="Pricing varies by breed, size, and individual traits. A $500 non-refundable deposit is required to join a waitlist or reserve a puppy." />
+      <PageHero
+        eyebrow="Pricing"
+        title="Puppy Prices & Deposits"
+        copy="Clear pricing helps families understand what affects cost, what is included, and when payments are due."
+        actions={<Link href="/apply" className="button primary">Apply for a Puppy</Link>}
+      />
+      <section className="content-section narrow intro-panel">
+        <p className="eyebrow">Pricing Overview</p>
+        <h2>Pricing varies by breed, size, coat traits, color, and availability.</h2>
+        <p>Exact puppy pricing should be confirmed before a family reserves a puppy. The placeholder ranges below are intentionally easy to update in structured pricing data.</p>
+      </section>
       <PricingSection items={pricingProfiles.length ? pricingProfiles : priceGroups} />
+      <section className="tile-grid four priority-grid">
+        {pricingFactors.map(([title, copy]) => (
+          <article className="text-card icon-card" key={title}>
+            <Sparkles size={24} />
+            <h2>{title}</h2>
+            <p>{copy}</p>
+          </article>
+        ))}
+      </section>
+      <section className="content-section">
+        <article className="group-panel">
+          <h2>What is included with each puppy?</h2>
+          <ul className="check-list included-list">
+            {includedWithPuppy.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </article>
+      </section>
       <section className="content-section narrow">
-        <h2>Payments</h2>
-        <p>Our preferred payment method is Zelle. No puppy will be reserved without payment. All payments toward puppies are considered retainers and are non-refundable.</p>
+        <h2>Deposit and final payment</h2>
+        <p>A $500 non-refundable deposit is required to join a waitlist or reserve a puppy. Final payment timing is confirmed before pickup so every family knows what is due and when.</p>
         <p><strong>Zelle recipient:</strong> Red Ranch Dogs, {brand.paymentEmail}</p>
       </section>
+      <section className="content-section narrow">
+        <h2>Transportation note</h2>
+        <p>Pickup and transportation details are coordinated by litter and family needs. If flight nanny or delivery options are used, those costs are handled separately from puppy pricing.</p>
+      </section>
+      <CTASection title="Ready to talk through pricing and availability?" copy="Apply now and we will help you understand current puppies, upcoming litters, and the right fit for your family." primaryLabel="Apply for a Puppy" secondaryLabel="View Available Puppies" />
     </Layout>
   );
 }
@@ -1857,8 +2037,14 @@ function PricingPage() {
 function FaqPage() {
   return (
     <Layout>
-      <PageHero eyebrow="FAQ" title="Puppy FAQ" copy="Quick answers about pricing, waitlists, health testing, puppy visits, and what comes home with your puppy." />
-      <FAQSection items={faqProfiles.length ? faqProfiles : faqs} />
+      <PageHero
+        eyebrow="FAQ"
+        title="Puppy FAQ"
+        copy="Clear answers about the waitlist, puppy selection, pricing, pickup, coat traits, health, and transition home."
+        actions={<Link href="/apply" className="button primary">Apply for a Puppy</Link>}
+      />
+      <FAQSection items={faqProfiles.length ? faqProfiles : faqs} grouped />
+      <CTASection title="Still have questions?" copy="Send an application or contact us and we will help you understand the next best step." primaryLabel="Apply for a Puppy" secondaryHref="/contact" secondaryLabel="Contact Us" />
     </Layout>
   );
 }
@@ -2128,9 +2314,49 @@ function WaitlistPage() {
 function JoinWaitlistPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Join the Waitlist" title="Application & Waitlist" copy="Start with the application and we will follow up about timing, deposit, and the best waitlist for your family." />
+      <PageHero
+        eyebrow="Application & Waitlist"
+        title="Application and Waitlist"
+        copy="A clear, fair process for moving from application to puppy selection and go-home day."
+        actions={<Link href="/apply" className="button primary">Apply for a Puppy</Link>}
+      />
+      <section className="content-section narrow intro-panel">
+        <p className="eyebrow">Simple Overview</p>
+        <h2>The deposit reserves your place on the waitlist.</h2>
+        <p>Families are contacted in order of deposit placed. When a litter is announced, you can move forward or pass and remain on the general waitlist for a future opportunity.</p>
+      </section>
+      <section className="timeline process-timeline">
+        {waitlistProcessSteps.map(([title, copy], index) => (
+          <article key={title}>
+            <span>{index + 1}</span>
+            <h2>{title}</h2>
+            <p>{copy}</p>
+          </article>
+        ))}
+      </section>
+      <section className="tile-grid three priority-grid">
+        <article className="text-card icon-card">
+          <ShieldCheck size={24} />
+          <h2>Deposit</h2>
+          <p>The deposit reserves your place and helps us keep communication clear as litters are planned and born.</p>
+        </article>
+        <article className="text-card icon-card">
+          <CheckCircle2 size={24} />
+          <h2>Pick or Pass</h2>
+          <p>Families can pass on a litter and remain on the general waitlist without starting over.</p>
+        </article>
+        <article className="text-card icon-card">
+          <Heart size={24} />
+          <h2>Litter Born</h2>
+          <p>When a litter is born, families receive updates and puppy picks happen in waitlist order.</p>
+        </article>
+      </section>
       <section className="form-shell">
         <LeadForm formType="waitlist" title="Join Our Waitlist" />
+      </section>
+      <section className="content-section narrow">
+        <SectionHeader eyebrow="FAQ Preview" title="Common waitlist questions" copy="These answers keep the process understandable before a family reaches out." />
+        <FAQSection items={(faqProfiles.length ? faqProfiles : faqs).filter((item) => Array.isArray(item) || item.category === "Getting on the waitlist" || item.category === "Puppy selection")} />
       </section>
     </Layout>
   );

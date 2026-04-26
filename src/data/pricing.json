@@ -1,14 +1,17 @@
 [
   {
     "breed": "Goldendoodle",
+    "summary": "Goldendoodle pricing varies by size, coat traits, color, and individual puppy availability.",
     "items": ["Micro: placeholder price range", "Petite mini: placeholder price range", "Mini: placeholder price range"]
   },
   {
     "breed": "Cavapoo",
+    "summary": "Cavapoo pricing varies by pairing, expected size, coat traits, and puppy availability.",
     "items": ["Micro: placeholder price range", "Petite mini: placeholder price range", "Mini: placeholder price range"]
   },
   {
     "breed": "Bernedoodle",
+    "summary": "Bernedoodle pricing varies by size, color, coat traits, and individual puppy availability.",
     "items": ["Micro: placeholder price range", "Mini: placeholder price range"]
   }
 ]
