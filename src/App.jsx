@@ -4,13 +4,16 @@ import {
   CheckCircle2,
   ChevronDown,
   Heart,
+  Home as HomeIcon,
   Instagram,
   Mail,
   MessageCircle,
+  PawPrint,
   Phone,
   Send,
   ShieldCheck,
-  Sparkles
+  Sparkles,
+  Star
 } from "lucide-react";
 import {
   availablePuppies,
@@ -498,6 +501,13 @@ const homeHeroImage = {
   alt: "Goldendoodle puppy from Red Ranch Dogs in Salado, Texas"
 };
 
+const socialProofItems = [
+  ["Nearly 100 Five-Star Google Reviews", Star],
+  ["Nearly 10,000 Instagram Followers", Instagram],
+  ["Health-Tested Parent Dogs", PawPrint],
+  ["Texas-Based, Family-Owned Program", HomeIcon]
+];
+
 function HomeHero() {
   return (
     <section className="premium-hero" id="home-hero">
@@ -527,6 +537,30 @@ function HomeHero() {
           decoding="async"
         />
       </picture>
+    </section>
+  );
+}
+
+function SocialProofStrip({
+  heading = "Loved by families nationwide",
+  items = socialProofItems,
+  className = ""
+}) {
+  return (
+    <section className={`social-proof-strip ${className}`.trim()} aria-labelledby="social-proof-heading">
+      <div className="social-proof-inner">
+        <h2 id="social-proof-heading" className="social-proof-heading">
+          <span>{heading}</span>
+        </h2>
+        <div className="social-proof-grid">
+          {items.map(([label, Icon]) => (
+            <article className="social-proof-card" key={label}>
+              <Icon size={34} strokeWidth={1.7} aria-hidden="true" />
+              <p>{label}</p>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
@@ -736,6 +770,7 @@ function HomePage() {
   return (
     <Layout>
       <HomeHero />
+      <SocialProofStrip className="hero-adjacent" />
       <HomeDoodles />
       <WhyRedRanch />
       <AvailablePuppiesPreview />

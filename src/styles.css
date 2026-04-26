@@ -430,6 +430,84 @@ body.menu-locked {
   gap: 16px;
 }
 
+.social-proof-strip {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 28px, 1180px);
+  margin: 0 auto;
+}
+
+.social-proof-strip.hero-adjacent {
+  margin-top: -64px;
+}
+
+.social-proof-inner {
+  display: grid;
+  gap: 20px;
+  padding: 22px 18px;
+  background: rgba(255, 250, 242, 0.88);
+  border: 1px solid rgba(95, 69, 45, 0.12);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 36px rgba(67, 42, 24, 0.05);
+  backdrop-filter: blur(14px);
+}
+
+.social-proof-heading {
+  display: grid;
+  grid-template-columns: minmax(24px, 1fr) auto minmax(24px, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: var(--brand-red);
+  font-family: "Libre Franklin", Avenir Next, Helvetica, Arial, sans-serif;
+  font-size: clamp(0.68rem, 2.2vw, 0.94rem);
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  line-height: 1.15;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.social-proof-heading::before,
+.social-proof-heading::after {
+  height: 1px;
+  background: currentColor;
+  opacity: 0.72;
+  content: "";
+}
+
+.social-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.social-proof-card {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 10px;
+  min-height: 118px;
+  padding: 16px 10px;
+  color: var(--premium-ink);
+  text-align: center;
+  background: rgba(255, 250, 242, 0.54);
+  border: 1px solid rgba(95, 69, 45, 0.13);
+  border-radius: var(--radius-md);
+}
+
+.social-proof-card svg {
+  color: var(--brand-red);
+}
+
+.social-proof-card p {
+  max-width: 13rem;
+  margin: 0;
+  font-size: clamp(0.9rem, 3.7vw, 1rem);
+  font-weight: 900;
+  line-height: 1.28;
+}
+
 .premium-breed-card,
 .premium-trust-card,
 .premium-puppy-card,
@@ -738,6 +816,36 @@ body.menu-locked {
     min-height: 460px;
   }
 
+  .social-proof-strip.hero-adjacent {
+    margin-top: -72px;
+  }
+
+  .social-proof-inner {
+    gap: 22px;
+    padding: 24px;
+  }
+
+  .social-proof-heading {
+    grid-template-columns: minmax(60px, 1fr) auto minmax(60px, 1fr);
+    gap: 14px;
+    letter-spacing: 0.18em;
+  }
+
+  .social-proof-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .social-proof-card {
+    min-height: 138px;
+    padding: 18px 14px;
+  }
+
+  .social-proof-card svg {
+    width: 40px;
+    height: 40px;
+  }
+
   .breed-grid,
   .trust-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -847,6 +955,14 @@ body.menu-locked {
 
   .premium-section {
     padding: 58px 0;
+  }
+
+  .social-proof-strip.hero-adjacent {
+    margin-top: -86px;
+  }
+
+  .social-proof-inner {
+    padding: 28px 32px;
   }
 
   .sticky-mobile-cta {
