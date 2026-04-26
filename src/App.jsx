@@ -18,7 +18,7 @@ import {
 import {
   availablePuppies,
   brand,
-  breeds,
+  breeds as homepageBreeds,
   currentLitters,
   damDetails,
   damGroups,
@@ -45,6 +45,14 @@ import {
   updateChecklist,
   waitlists
 } from "./data/siteData.js";
+import breedProfiles from "./data/breeds.json";
+import puppyProfiles from "./data/puppies.json";
+import litterProfiles from "./data/litters.json";
+import parentProfiles from "./data/parents.json";
+import testimonialProfiles from "./data/testimonials.json";
+import faqProfiles from "./data/faqs.json";
+import pricingProfiles from "./data/pricing.json";
+import teamProfiles from "./data/team.json";
 
 function pathNow() {
   return window.location.pathname.replace(/\/$/, "") || "/";
@@ -77,6 +85,133 @@ const siteOrigin = "https://www.redranchdogs.com";
 const defaultSeo = {
   title: "Red Ranch Dogs | Country Raised Doodles",
   description: "Red Ranch Dogs raises Goldendoodle, Cavapoo, Bernedoodle, and Poodle puppies in Salado, Texas."
+};
+
+const architectureSeo = {
+  "/puppies": {
+    title: "Puppies | Red Ranch Dogs",
+    description: "Browse Red Ranch Dogs puppy availability, upcoming litters, breed pages, and puppy care resources."
+  },
+  "/puppies/available": {
+    title: "Available Puppies | Red Ranch Dogs",
+    description: "View current Red Ranch Dogs puppy cards with status, litter, breed, and go-home timing."
+  },
+  "/puppies/upcoming-litters": {
+    title: "Upcoming Litters | Red Ranch Dogs",
+    description: "See planned Goldendoodle, Cavapoo, and Bernedoodle litters from Red Ranch Dogs."
+  },
+  "/puppies/what-comes-with-your-puppy": {
+    title: "What Comes With Your Puppy | Red Ranch Dogs",
+    description: "Review what Red Ranch Dogs puppies come home with, including care, socialization, records, and transition support."
+  },
+  "/puppies/coat-traits": {
+    title: "Coat Traits | Red Ranch Dogs",
+    description: "Learn about Red Ranch Dogs doodle coat colors, markings, textures, and lower-shedding trait planning."
+  },
+  "/parents": {
+    title: "Parent Dogs | Red Ranch Dogs",
+    description: "Meet Red Ranch Dogs mamas and studs with structured profiles, photos, traits, and related litters."
+  },
+  "/parents/mamas": {
+    title: "Mamas | Red Ranch Dogs",
+    description: "Meet the Red Ranch Dogs mamas organized by breed, weight, coat, status, and related litters."
+  },
+  "/parents/studs": {
+    title: "Studs | Red Ranch Dogs",
+    description: "Meet Red Ranch Dogs studs organized for puppy families and breeder service inquiries."
+  },
+  "/parents/goldendoodle-parents": {
+    title: "Goldendoodle Parents | Red Ranch Dogs",
+    description: "Meet Red Ranch Dogs Goldendoodle program parents with structured photos, traits, testing links, and related litters."
+  },
+  "/parents/cavapoo-parents": {
+    title: "Cavapoo Parents | Red Ranch Dogs",
+    description: "Meet Red Ranch Dogs Cavapoo program parents with structured photos, traits, testing links, and related litters."
+  },
+  "/parents/bernedoodle-parents": {
+    title: "Bernedoodle Parents | Red Ranch Dogs",
+    description: "Meet Red Ranch Dogs Bernedoodle program parents with structured photos, traits, testing links, and related litters."
+  },
+  "/process": {
+    title: "Process | Red Ranch Dogs",
+    description: "Learn how Red Ranch Dogs applications, pricing, waitlists, pickup, delivery, and FAQs fit together."
+  },
+  "/process/how-it-works": {
+    title: "How It Works | Red Ranch Dogs",
+    description: "Review the Red Ranch Dogs process from application and deposit through puppy selection and go-home day."
+  },
+  "/process/pricing": {
+    title: "Pricing | Red Ranch Dogs",
+    description: "Review placeholder-ready Red Ranch Dogs pricing sections by breed and size."
+  },
+  "/process/application-and-waitlist": {
+    title: "Application & Waitlist | Red Ranch Dogs",
+    description: "Start the Red Ranch Dogs application and waitlist process for Goldendoodles, Cavapoos, and Bernedoodles."
+  },
+  "/process/faq": {
+    title: "FAQ | Red Ranch Dogs",
+    description: "Answers to common Red Ranch Dogs questions about process, pricing, waitlists, and breed fit."
+  },
+  "/process/pickup-and-delivery": {
+    title: "Puppy Pickup & Delivery | Red Ranch Dogs",
+    description: "Learn how Red Ranch Dogs pickup, delivery, and go-home preparation will be organized."
+  },
+  "/stud-services": {
+    title: "Stud Services | Red Ranch Dogs",
+    description: "Browse Red Ranch Dogs stud services, reproductive education, and shipping or collection information."
+  },
+  "/stud-services/our-studs": {
+    title: "Our Studs | Red Ranch Dogs",
+    description: "Review Red Ranch Dogs stud profiles and service information."
+  },
+  "/stud-services/reproductive-services": {
+    title: "Reproductive Services | Red Ranch Dogs",
+    description: "Placeholder-ready reproductive service information for Red Ranch Dogs stud service inquiries."
+  },
+  "/stud-services/reproductive-education": {
+    title: "Reproductive Education | Red Ranch Dogs",
+    description: "Educational breeding timing and progesterone resources from Red Ranch Dogs."
+  },
+  "/stud-services/shipping-and-collection-info": {
+    title: "Shipping and Collection Info | Red Ranch Dogs",
+    description: "Placeholder-ready stud service collection, timing, and shipping information for breeder inquiries."
+  },
+  "/guardian-program": {
+    title: "Guardian Program | Red Ranch Dogs",
+    description: "Learn about the Red Ranch Dogs guardian family program, application, opportunities, and FAQs."
+  },
+  "/guardian-program/application": {
+    title: "Guardian Application | Red Ranch Dogs",
+    description: "Apply to become a Red Ranch Dogs guardian family near Salado, Texas."
+  },
+  "/guardian-program/current-guardian-opportunities": {
+    title: "Guardian Opportunities | Red Ranch Dogs",
+    description: "Placeholder-ready current guardian opportunities for Red Ranch Dogs."
+  },
+  "/guardian-program/faq": {
+    title: "Guardian FAQ | Red Ranch Dogs",
+    description: "Frequently asked questions about the Red Ranch Dogs guardian family program."
+  },
+  "/about": {
+    title: "About | Red Ranch Dogs",
+    description: "Learn about the Red Ranch Dogs family, team, reviews, and contact information."
+  },
+  "/about/our-family": {
+    title: "Our Family | Red Ranch Dogs",
+    description: "Read the family story behind Red Ranch Dogs in Salado, Texas."
+  },
+  "/about/meet-the-team": {
+    title: "Meet the Team | Red Ranch Dogs",
+    description: "Meet the Red Ranch Dogs team behind daily puppy care and family communication."
+  },
+  "/about/reviews": {
+    title: "Reviews | Red Ranch Dogs",
+    description: "Read Red Ranch Dogs family testimonials and review placeholders."
+  },
+  "/apply": {
+    title: "Apply | Red Ranch Dogs",
+    description: "Submit a puppy application for Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle availability."
+  }
 };
 
 const staticSeo = {
@@ -179,6 +314,41 @@ const staticSeo = {
 };
 
 function seoFor(path) {
+  if (architectureSeo[path]) return architectureSeo[path];
+  const breed = breedProfiles.find((item) => item.route === path);
+  if (breed) {
+    return {
+      title: `${breed.pluralName} | Red Ranch Dogs`,
+      description: breed.intro
+    };
+  }
+  if (path.startsWith("/puppies/")) {
+    const puppy = puppyProfiles.find((item) => `/puppies/${item.slug}` === path);
+    if (puppy) {
+      return {
+        title: `${puppy.name} | ${puppy.breed} Puppy | Red Ranch Dogs`,
+        description: `${puppy.name} is a ${puppy.gender} ${puppy.breed} puppy from the ${puppy.litter} litter.`
+      };
+    }
+  }
+  if (path.startsWith("/litters/")) {
+    const litter = litterProfiles.find((item) => `/litters/${item.slug}` === path);
+    if (litter) {
+      return {
+        title: `${litter.name} | ${litter.breed} Litter | Red Ranch Dogs`,
+        description: litter.availabilitySummary
+      };
+    }
+  }
+  if (path.startsWith("/parents/")) {
+    const parent = parentProfiles.find((item) => `/parents/${item.slug}` === path);
+    if (parent) {
+      return {
+        title: `${parent.name} | Parent Dog | Red Ranch Dogs`,
+        description: parent.description
+      };
+    }
+  }
   if (staticSeo[path]) return staticSeo[path];
   if (litterDetails[path]) {
     const litter = litterDetails[path];
@@ -253,50 +423,74 @@ function applySeo(path) {
   upsertMeta('meta[property="og:type"]', "meta", { property: "og:type", content: "website" });
 }
 
-const desktopNav = [
+const primaryNav = [
   { label: "Home", href: "/" },
-  { label: "Puppies", href: "/available-puppies" },
-  { label: "Parents", href: "/parents-1" },
-  { label: "Application", href: "/application-process" },
-  { label: "Stud Services", href: "/studservices" },
-  { label: "Guardian Program", href: "/guardianprogram" }
-];
-
-const mobileNav = [
-  { label: "Home", href: "/" },
-  { label: "Available Puppies", href: "/available-puppies" },
   {
     label: "Puppies",
+    href: "/puppies",
     links: [
-      { label: "Available Puppies", href: "/available-puppies" },
-      { label: "Upcoming Litters", href: "/upcoming-litters" },
-      { label: "Goldendoodles", href: "/previous-litters-goldendoodles" },
-      { label: "Cavapoos", href: "/previous-litters-cavapoos" },
-      { label: "Bernedoodles", href: "/previous-litters-bernedoodles" }
+      { label: "Available Puppies", href: "/puppies/available" },
+      { label: "Upcoming Litters", href: "/puppies/upcoming-litters" },
+      { label: "Goldendoodle Puppies", href: "/puppies/goldendoodle-puppies" },
+      { label: "Cavapoo Puppies", href: "/puppies/cavapoo-puppies" },
+      { label: "Bernedoodle Puppies", href: "/puppies/bernedoodle-puppies" },
+      { label: "What Comes With Your Puppy", href: "/puppies/what-comes-with-your-puppy" },
+      { label: "Coat Traits", href: "/puppies/coat-traits" }
+    ]
+  },
+  {
+    label: "Parents",
+    href: "/parents",
+    links: [
+      { label: "Mamas", href: "/parents/mamas" },
+      { label: "Studs", href: "/parents/studs" },
+      { label: "Goldendoodle Parents", href: "/parents/goldendoodle-parents" },
+      { label: "Cavapoo Parents", href: "/parents/cavapoo-parents" },
+      { label: "Bernedoodle Parents", href: "/parents/bernedoodle-parents" }
+    ]
+  },
+  {
+    label: "Process",
+    href: "/process",
+    links: [
+      { label: "How It Works", href: "/process/how-it-works" },
+      { label: "Pricing", href: "/process/pricing" },
+      { label: "Application and Waitlist", href: "/process/application-and-waitlist" },
+      { label: "FAQ", href: "/process/faq" },
+      { label: "Puppy Pickup and Delivery", href: "/process/pickup-and-delivery" }
+    ]
+  },
+  {
+    label: "Stud Services",
+    href: "/stud-services",
+    links: [
+      { label: "Our Studs", href: "/stud-services/our-studs" },
+      { label: "Reproductive Services", href: "/stud-services/reproductive-services" },
+      { label: "Reproductive Education", href: "/stud-services/reproductive-education" },
+      { label: "Shipping and Collection Info", href: "/stud-services/shipping-and-collection-info" }
+    ]
+  },
+  {
+    label: "Guardian Program",
+    href: "/guardian-program",
+    links: [
+      { label: "Guardian Program Overview", href: "/guardian-program" },
+      { label: "Guardian Application", href: "/guardian-program/application" },
+      { label: "Current Guardian Opportunities", href: "/guardian-program/current-guardian-opportunities" },
+      { label: "FAQ", href: "/guardian-program/faq" }
     ]
   },
   {
     label: "About",
+    href: "/about",
     links: [
-      { label: "Our Story", href: "/our-family" },
-      { label: "Parents", href: "/parents-1" },
-      { label: "Health Testing", href: "/what-come-with-your-puppy" },
-      { label: "Puppy Curriculum", href: "/what-come-with-your-puppy" }
+      { label: "Our Family", href: "/about/our-family" },
+      { label: "Meet the Team", href: "/about/meet-the-team" },
+      { label: "Reviews", href: "/about/reviews" },
+      { label: "Contact", href: "/contact" }
     ]
   },
-  {
-    label: "Application and Waitlist",
-    links: [
-      { label: "How the Waitlist Works", href: "/application-process" },
-      { label: "Puppy Application", href: "/puppy-application" },
-      { label: "Pricing", href: "/prices" },
-      { label: "FAQ", href: "/faq" }
-    ]
-  },
-  { label: "Parents", href: "/parents-1" },
-  { label: "Stud Services", href: "/studservices" },
-  { label: "Guardian Program", href: "/guardianprogram" },
-  { label: "Contact", href: "/contact" }
+  { label: "Apply", href: "/apply", cta: true }
 ];
 
 function AccordionNav({ item, currentPath, onNavigate, index }) {
@@ -370,6 +564,7 @@ function Header() {
   }, [open]);
 
   const closeMenu = () => setOpen(false);
+  const isActive = (item) => currentPath === item.href || (item.href !== "/" && currentPath.startsWith(`${item.href}/`));
 
   return (
     <header className={`premium-header ${scrolled ? "scrolled" : ""} ${hidden ? "hide-on-mobile" : ""}`}>
@@ -387,14 +582,24 @@ function Header() {
         <img src={brand.logo} alt="Red Ranch Dogs" />
       </Link>
       <nav className="premium-desktop-nav" aria-label="Primary navigation">
-        {desktopNav.map((item) => (
-          <Link
-            href={item.href}
-            className={currentPath === item.href ? "active" : undefined}
-            key={item.href}
-          >
-            {item.label}
-          </Link>
+        {primaryNav.map((item) => (
+          <div className={`premium-nav-item ${item.links ? "has-menu" : ""} ${item.cta ? "nav-cta" : ""}`} key={item.href}>
+            <Link
+              href={item.href}
+              className={isActive(item) ? "active" : undefined}
+            >
+              {item.label}
+            </Link>
+            {item.links && (
+              <div className="premium-desktop-menu">
+                {item.links.map((link) => (
+                  <Link href={link.href} key={link.href}>
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </nav>
       <a className="premium-icon-link" href={brand.instagram} aria-label="Instagram" target="_blank" rel="noreferrer">
@@ -402,13 +607,13 @@ function Header() {
       </a>
       <div className={`premium-mobile-menu ${open ? "open" : ""}`} aria-hidden={!open} inert={open ? undefined : ""}>
         <nav aria-label="Mobile navigation">
-          {mobileNav.map((item, index) => (
+          {primaryNav.map((item, index) => (
             <AccordionNav item={item} currentPath={currentPath} key={item.label} index={index} onNavigate={closeMenu} />
           ))}
         </nav>
         <div className="mobile-menu-ctas">
-          <Link href="/join-our-waitlist" className="button primary" onClick={closeMenu}>Join the Waitlist</Link>
-          <Link href="/available-puppies" className="button secondary" onClick={closeMenu}>Available Puppies</Link>
+          <Link href="/apply" className="button primary" onClick={closeMenu}>Apply</Link>
+          <Link href="/puppies/available" className="button secondary" onClick={closeMenu}>Available Puppies</Link>
           <a href={brand.sms} className="button text-button" onClick={closeMenu}>Text Us Now</a>
         </div>
       </div>
@@ -519,10 +724,10 @@ function HomeHero() {
         </h1>
         <p>Lovingly raised in Central Texas.</p>
         <div className="actions hero-actions">
-          <Link href="/join-our-waitlist" className="button primary">
+          <Link href="/apply" className="button primary">
             Join the Waitlist
           </Link>
-          <Link href="/available-puppies" className="button secondary">
+          <Link href="/puppies/available" className="button secondary">
             View Available Puppies
           </Link>
         </div>
@@ -693,7 +898,7 @@ function BreedCard({ breed }) {
       title={breed.name}
       copy={breed.copy}
       imageLabel={breedPlaceholders[breed.name] || `${breed.name} photo`}
-      href="/available-puppies"
+      href="/puppies/available"
       ctaLabel="View puppies"
       variant="compact"
     />
@@ -710,11 +915,11 @@ function HomeDoodles() {
           copy="Goldendoodles, Cavapoos, and Bernedoodles raised with hands-on care in Central Texas."
         />
         <CardGrid className="breed-card-grid" columns={3}>
-          {breeds.map((breed) => <BreedCard breed={breed} key={breed.name} />)}
+          {homepageBreeds.map((breed) => <BreedCard breed={breed} key={breed.name} />)}
         </CardGrid>
         <div className="section-cta-row">
-          <CTAButton href="/available-puppies" variant="primary">View Available Puppies</CTAButton>
-          <CTAButton href="/join-our-waitlist" variant="secondary">Join the Waitlist</CTAButton>
+          <CTAButton href="/puppies/available" variant="primary">View Available Puppies</CTAButton>
+          <CTAButton href="/apply" variant="secondary">Join the Waitlist</CTAButton>
         </div>
       </ContentContainer>
     </PageSection>
@@ -763,7 +968,7 @@ function PuppyTemplateCard({ label, status }) {
           <div><dt>Gender</dt><dd>To be added</dd></div>
           <div><dt>Adult Weight</dt><dd>Estimate pending</dd></div>
         </dl>
-        <Link href="/available-puppies" className="button small">View Availability</Link>
+        <Link href="/puppies/available" className="button small">View Availability</Link>
       </div>
     </article>
   );
@@ -842,7 +1047,7 @@ function FinalCta() {
           <h2>Our puppies go fast.</h2>
           <p>Join the Red Ranch Dogs waitlist to secure your spot and be first to know when new puppies are available.</p>
           <div className="actions">
-            <Link href="/join-our-waitlist" className="button primary">Join the Waitlist</Link>
+            <Link href="/apply" className="button primary">Join the Waitlist</Link>
             <a href={brand.sms} className="button secondary">Text Us Now</a>
           </div>
         </div>
@@ -870,7 +1075,7 @@ function StickyMobileCta() {
 
   return (
     <div className={`sticky-mobile-cta ${visible ? "visible" : ""}`}>
-      <Link href="/join-our-waitlist" className="button primary">Join Waitlist</Link>
+      <Link href="/apply" className="button primary">Join Waitlist</Link>
       <a href={brand.sms} className="button secondary">Text Us</a>
     </div>
   );
@@ -892,46 +1097,465 @@ function HomePage() {
   );
 }
 
-function PuppyCard({ puppy }) {
+function ImageGallery({ images: gallery = [], label = "Gallery image" }) {
+  if (!gallery.length) {
+    return <ImagePlaceholder label={label} tall />;
+  }
+
   return (
-    <article className="animal-card">
-      <img src={puppy.image} alt={`${puppy.name} - ${puppy.sex}`} />
+    <div className="image-gallery">
+      {gallery.map((image, index) => (
+        <img src={image} alt={`${label} ${index + 1}`} key={`${image}-${index}`} loading="lazy" />
+      ))}
+    </div>
+  );
+}
+
+function PuppyCard({ puppy }) {
+  const breed = puppy.breed || "Breed pending";
+  const gender = puppy.gender || puppy.sex || "Gender pending";
+  const status = puppy.status || "Status pending";
+  const route = puppy.slug ? `/puppies/${puppy.slug}` : puppy.litterHref;
+  const photo = puppy.mainPhoto || puppy.image;
+  const litterName = puppy.litter || puppy.litterName || "Litter pending";
+  const goHome = puppy.goHomeDate || puppy.goHome || "Go-home pending";
+  const weight = puppy.estimatedAdultWeight || puppy.size || "Estimate pending";
+
+  return (
+    <article className="puppy-card animal-card">
+      <figure className="puppy-photo-frame">
+        {photo ? (
+          <img src={photo} alt={`${puppy.name} - ${breed}`} loading="lazy" />
+        ) : (
+          <ImagePlaceholder label="Available puppy photo" />
+        )}
+        <figcaption>{puppy.name}</figcaption>
+      </figure>
       <div>
-        <p className="eyebrow">{puppy.breed}</p>
-        <h2>{puppy.name} - {puppy.sex}</h2>
+        <p className="eyebrow">{breed}</p>
+        <h2>{puppy.name}</h2>
+        <p>{puppy.description || "Placeholder puppy notes can be replaced with weekly details."}</p>
         <dl className="details">
-          <div><dt>Born</dt><dd>{puppy.born}</dd></div>
-          <div><dt>Go Home</dt><dd>{puppy.goHome}</dd></div>
-          <div><dt>Coloring</dt><dd>{puppy.coloring}</dd></div>
-          <div><dt>Size</dt><dd>{puppy.size}</dd></div>
-          <div><dt>Coat</dt><dd>{puppy.coat}</dd></div>
-          <div><dt>Price</dt><dd>{puppy.price}</dd></div>
+          <div><dt>Litter</dt><dd>{litterName}</dd></div>
+          <div><dt>Gender</dt><dd>{gender}</dd></div>
+          <div><dt>Status</dt><dd>{status}</dd></div>
+          <div><dt>Go Home</dt><dd>{goHome}</dd></div>
+          <div><dt>Adult Weight</dt><dd>{weight}</dd></div>
         </dl>
-        <Link href={puppy.litterHref} className="button small">View Litter</Link>
+        {route && <Link href={route} className="button small">View Puppy</Link>}
       </div>
     </article>
   );
 }
 
 function LitterCard({ litter }) {
+  const route = litter.slug ? `/litters/${litter.slug}` : litter.href;
+  const delivery = litter.birthDate || litter.delivery || "Timing pending";
+  const goHome = litter.goHomeDate || litter.goHome || "Go-home pending";
+  const size = litter.expectedSize || litter.size || "Estimate pending";
+  const price = litter.priceRange || litter.price;
+  const image = litter.weeklyUpdateGallery?.[0] || litter.image;
+
   return (
-    <article className="animal-card">
-      <img src={litter.image} alt={litter.name} />
+    <article className="litter-card animal-card">
+      {image ? <img src={image} alt={litter.name} loading="lazy" /> : <ImagePlaceholder label="Litter photo" />}
       <div>
-        <p className="eyebrow">{litter.status}</p>
+        <p className="eyebrow">{litter.status || "Litter"}</p>
         <h2>{litter.name}</h2>
         <h3>{litter.breed}</h3>
+        {litter.availabilitySummary && <p>{litter.availabilitySummary}</p>}
         <dl className="details">
-          <div><dt>Delivery Date</dt><dd>{litter.delivery}</dd></div>
-          <div><dt>Go Home</dt><dd>{litter.goHome}</dd></div>
-          <div><dt>Coloring</dt><dd>{litter.coloring}</dd></div>
-          <div><dt>Size</dt><dd>{litter.size}</dd></div>
-          <div><dt>Coat</dt><dd>{litter.coat}</dd></div>
-          {litter.price && <div><dt>Price</dt><dd>{litter.price}</dd></div>}
+          <div><dt>Birth Date</dt><dd>{delivery}</dd></div>
+          <div><dt>Go Home</dt><dd>{goHome}</dd></div>
+          <div><dt>Expected Size</dt><dd>{size}</dd></div>
+          {litter.coloring && <div><dt>Coloring</dt><dd>{litter.coloring}</dd></div>}
+          {litter.coat && <div><dt>Coat</dt><dd>{litter.coat}</dd></div>}
+          {price && <div><dt>Price</dt><dd>{price}</dd></div>}
         </dl>
-        <Link href={litter.href} className="button small">View Litter</Link>
+        {route && <Link href={route} className="button small">View Litter</Link>}
       </div>
     </article>
+  );
+}
+
+function FAQSection({ items = faqProfiles, category }) {
+  const scopedItems = category ? items.filter((item) => item.category === category || item.category === "process") : items;
+
+  return (
+    <section className="faq-list">
+      {scopedItems.map((item, index) => {
+        const question = Array.isArray(item) ? item[0] : item.question;
+        const answer = Array.isArray(item) ? item[1] : item.answer;
+        return (
+          <details key={question} open={index === 0}>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        );
+      })}
+    </section>
+  );
+}
+
+function PricingSection({ items = pricingProfiles }) {
+  return (
+    <section className="tile-grid three">
+      {items.map((group) => (
+        <article className="text-card" key={group.breed || group[0]}>
+          <h2>{group.breed || group[0]}</h2>
+          <ul className="clean-list">
+            {(group.items || group[1]).map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function TestimonialSection({ items = testimonialProfiles }) {
+  return (
+    <section className="reviews-row">
+      {items.map((review) => (
+        <article className="review-card" key={`${review.name}-${review.quote}`}>
+          {review.photo && <img src={review.photo} alt={review.name} />}
+          <p>&quot;{review.quote}&quot;</p>
+          <strong>{review.name}</strong>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function CTASection({ title = "Ready to take the next step?", copy = "Apply now or view current puppy availability.", primaryHref = "/apply", primaryLabel = "Apply", secondaryHref = "/puppies/available", secondaryLabel = "Available Puppies" }) {
+  return (
+    <section className="content-section narrow">
+      <article className="group-panel">
+        <h2>{title}</h2>
+        <p>{copy}</p>
+        <div className="actions">
+          <Link href={primaryHref} className="button primary">{primaryLabel}</Link>
+          <Link href={secondaryHref} className="button secondary">{secondaryLabel}</Link>
+        </div>
+      </article>
+    </section>
+  );
+}
+
+function ParentCard({ parent }) {
+  return (
+    <article className="text-card parent-card parent-profile-card">
+      {parent.mainPhoto ? <img src={parent.mainPhoto} alt={parent.name} loading="lazy" /> : <ImagePlaceholder label="Parent dog photo" />}
+      <p className="eyebrow">{parent.role === "stud" ? "Stud" : "Mama"}</p>
+      <h2>{parent.name}</h2>
+      <p>{parent.breed} · {parent.weight}</p>
+      <p>{parent.description}</p>
+      {(parent.healthTestingLinks?.length > 0 || parent.geneticTestingLinks?.length > 0) && (
+        <ul className="clean-list">
+          {(parent.healthTestingLinks || []).map((href) => <li key={href}><a href={href}>Health testing</a></li>)}
+          {(parent.geneticTestingLinks || []).map((href) => <li key={href}><a href={href}>Genetic testing</a></li>)}
+        </ul>
+      )}
+      <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
+    </article>
+  );
+}
+
+const puppyData = puppyProfiles.length ? puppyProfiles : availablePuppies;
+
+function SectionIndexPage({ eyebrow, title, copy, links, children }) {
+  return (
+    <Layout>
+      <PageHero eyebrow={eyebrow} title={title} copy={copy} />
+      <section className="tile-grid architecture-grid">
+        {links.map((link) => (
+          <article className="text-card" key={link.href}>
+            <h2>{link.label}</h2>
+            {link.copy && <p>{link.copy}</p>}
+            <Link href={link.href} className="inline-link">Open page</Link>
+          </article>
+        ))}
+      </section>
+      {children}
+    </Layout>
+  );
+}
+
+function BreedPageTemplate({ breed }) {
+  const puppies = puppyData.filter((puppy) => puppy.breedSlug === breed.slug);
+  const litters = litterProfiles.filter((litter) => litter.breedSlug === breed.slug);
+  const parents = parentProfiles.filter((parent) => parent.breedSlug === breed.slug);
+
+  return (
+    <Layout>
+      <PageHero eyebrow="Breed Program" title={breed.heroTitle} copy={breed.intro} />
+      <section className="content-section breed-template-grid">
+        <article className="group-panel">
+          <h2>Breed Snapshot</h2>
+          <dl className="details facts-wide">
+            <div><dt>Ideal family fit</dt><dd>{breed.idealFamilyFit}</dd></div>
+            <div><dt>Expected size range</dt><dd>{breed.expectedSizeRange}</dd></div>
+            <div><dt>Temperament</dt><dd>{breed.temperament}</dd></div>
+            <div><dt>Coat expectations</dt><dd>{breed.coatExpectations}</dd></div>
+            <div><dt>Shedding and allergies</dt><dd>{breed.sheddingAllergyNotes}</dd></div>
+          </dl>
+        </article>
+      </section>
+      <section className="card-list">
+        <SectionHeader eyebrow="Available Puppies" title={`Current ${breed.name} puppies`} copy="Placeholder puppy cards are ready for clean photos, names, status, and weekly details." />
+        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">No current placeholder puppies for this breed yet.</p>}
+      </section>
+      <section className="card-list">
+        <SectionHeader eyebrow="Upcoming Litters" title={`${breed.name} litter planning`} />
+        {litters.length ? litters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />) : <p className="small-note">Upcoming litter placeholders can be added in src/data/litters.json.</p>}
+      </section>
+      <section className="tile-grid three">
+        {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
+      </section>
+      <FAQSection category={breed.faqCategory} />
+      <CTASection title={`Interested in a ${breed.name}?`} />
+    </Layout>
+  );
+}
+
+function PuppyDetailPage({ puppy }) {
+  const litter = litterProfiles.find((item) => item.slug === puppy.litterSlug);
+
+  return (
+    <Layout>
+      <PageHero eyebrow={puppy.breed} title={puppy.name} copy={puppy.description} image={puppy.mainPhoto || images.hero} />
+      <section className="content-section stud-profile">
+        <article className="group-panel">
+          <h2>Puppy Details</h2>
+          <dl className="details facts-wide">
+            <div><dt>Breed</dt><dd>{puppy.breed}</dd></div>
+            <div><dt>Litter</dt><dd>{puppy.litter}</dd></div>
+            <div><dt>Gender</dt><dd>{puppy.gender}</dd></div>
+            <div><dt>Status</dt><dd>{puppy.status}</dd></div>
+            <div><dt>Estimated adult weight</dt><dd>{puppy.estimatedAdultWeight}</dd></div>
+            <div><dt>Go-home date</dt><dd>{puppy.goHomeDate}</dd></div>
+          </dl>
+          <div className="actions">
+            <Link href="/apply" className="button primary">Apply</Link>
+            {litter && <Link href={`/litters/${litter.slug}`} className="button secondary">View Litter</Link>}
+          </div>
+        </article>
+        <article className="group-panel">
+          <h2>Photos</h2>
+          <ImageGallery images={puppy.photos} label={`${puppy.name} puppy photo`} />
+        </article>
+      </section>
+    </Layout>
+  );
+}
+
+function LitterPage({ litter }) {
+  const puppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
+  const parents = parentProfiles.filter((parent) => parent.slug === litter.mamaSlug || parent.slug === litter.studSlug);
+
+  return (
+    <Layout>
+      <PageHero eyebrow="Litter" title={litter.name} copy={litter.availabilitySummary} image={litter.weeklyUpdateGallery?.[0] || images.doodles} />
+      <section className="content-section">
+        <article className="group-panel">
+          <h2>Litter Details</h2>
+          <dl className="details facts-wide">
+            <div><dt>Mama</dt><dd>{litter.mama}</dd></div>
+            <div><dt>Stud</dt><dd>{litter.stud}</dd></div>
+            <div><dt>Breed</dt><dd>{litter.breed}</dd></div>
+            <div><dt>Birth date</dt><dd>{litter.birthDate}</dd></div>
+            <div><dt>Go-home date</dt><dd>{litter.goHomeDate}</dd></div>
+            <div><dt>Expected size</dt><dd>{litter.expectedSize}</dd></div>
+            <div><dt>Price range</dt><dd>{litter.priceRange}</dd></div>
+          </dl>
+        </article>
+      </section>
+      <section className="card-list">
+        <SectionHeader eyebrow="Puppies" title="Puppy cards" copy="Names and labels are rendered by the website, so clean original photos can be uploaded without Canva text." />
+        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy cards can be added in src/data/puppies.json.</p>}
+      </section>
+      <section className="tile-grid three">
+        {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
+      </section>
+      <section className="content-section">
+        <h2>Weekly update gallery</h2>
+        <ImageGallery images={litter.weeklyUpdateGallery} label={`${litter.name} weekly update`} />
+      </section>
+      <CTASection title="Ask about this litter" copy="Join the waitlist or ask about availability for this pairing." />
+    </Layout>
+  );
+}
+
+function ParentDetailPage({ parent }) {
+  const relatedLitters = litterProfiles.filter((litter) => parent.relatedLitters.includes(litter.slug));
+
+  return (
+    <Layout>
+      <PageHero eyebrow={parent.role === "stud" ? "Stud Profile" : "Mama Profile"} title={parent.name} copy={parent.description} image={parent.mainPhoto || images.doodles} />
+      <section className="content-section stud-profile">
+        <article className="group-panel">
+          <h2>Profile</h2>
+          <dl className="details facts-wide">
+            <div><dt>Role</dt><dd>{parent.role === "stud" ? "Stud" : "Mama"}</dd></div>
+            <div><dt>Breed</dt><dd>{parent.breed}</dd></div>
+            <div><dt>Weight</dt><dd>{parent.weight}</dd></div>
+            <div><dt>Color</dt><dd>{parent.color}</dd></div>
+            <div><dt>Coat</dt><dd>{parent.coat}</dd></div>
+            <div><dt>Status</dt><dd>{parent.status}</dd></div>
+          </dl>
+        </article>
+        <article className="group-panel">
+          <h2>Photos</h2>
+          <ImageGallery images={parent.photos} label={`${parent.name} photo`} />
+        </article>
+      </section>
+      <section className="card-list">
+        <SectionHeader eyebrow="Related Litters" title={`${parent.name}'s related litters`} />
+        {relatedLitters.length ? relatedLitters.map((litter) => <LitterCard litter={litter} key={litter.slug} />) : <p className="small-note">Related litters can be connected in src/data/parents.json.</p>}
+      </section>
+    </Layout>
+  );
+}
+
+function PuppiesOverviewPage() {
+  return (
+    <SectionIndexPage
+      eyebrow="Puppies"
+      title="Puppies"
+      copy="The main sales section for available puppies, upcoming litters, breed education, and puppy preparation."
+      links={primaryNav.find((item) => item.label === "Puppies").links}
+    >
+      <section className="card-list">
+        <SectionHeader eyebrow="Current Cards" title="Sample puppy cards" />
+        {puppyData.slice(0, 3).map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />)}
+      </section>
+    </SectionIndexPage>
+  );
+}
+
+function ParentsDirectoryPage({ role }) {
+  const filteredParents = parentProfiles.filter((parent) => {
+    const roleMatch = role ? parent.role === role : true;
+    return roleMatch;
+  });
+  const title = role === "mama" ? "Mamas" : role === "stud" ? "Studs" : "Parent Dogs";
+
+  return (
+    <Layout>
+      <PageHero eyebrow="Parents" title={title} copy="Reusable parent cards are powered by structured data for photos, testing links, traits, and related litters." />
+      <section className="tile-grid three">
+        {filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
+      </section>
+    </Layout>
+  );
+}
+
+function BreedParentDirectoryPage({ breedSlug }) {
+  const breed = breedProfiles.find((item) => item.slug === breedSlug);
+  const filteredParents = parentProfiles.filter((parent) => parent.breedSlug === breedSlug);
+
+  return (
+    <Layout>
+      <PageHero eyebrow="Parents" title={`${breed?.name || "Breed"} Parents`} copy="Parent cards are powered by structured data so testing notes, traits, photos, and related litters can stay organized." />
+      <section className="tile-grid three">
+        {filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
+      </section>
+    </Layout>
+  );
+}
+
+function ProcessOverviewPage() {
+  return (
+    <SectionIndexPage
+      eyebrow="Process"
+      title="How the Red Ranch Dogs process fits together"
+      copy="Pricing, application, waitlist, FAQ, pickup, and delivery now live under Process instead of being scattered through About."
+      links={primaryNav.find((item) => item.label === "Process").links}
+    />
+  );
+}
+
+function PickupDeliveryPage() {
+  return (
+    <Layout>
+      <PageHero eyebrow="Process" title="Puppy Pickup and Delivery" copy="Placeholder structure for go-home day, local pickup, travel coordination, and delivery options." />
+      <section className="tile-grid three">
+        {["Pickup in Central Texas", "Flight nanny coordination", "Go-home preparation"].map((title) => (
+          <article className="text-card" key={title}>
+            <h2>{title}</h2>
+            <p>Placeholder copy for Phase 2 refinement.</p>
+          </article>
+        ))}
+      </section>
+    </Layout>
+  );
+}
+
+function GuardianOpportunitiesPage() {
+  return (
+    <Layout>
+      <PageHero eyebrow="Guardian Program" title="Current Guardian Opportunities" copy="Placeholder-ready page for future guardian openings." />
+      <section className="content-section narrow">
+        <h2>No public guardian openings listed yet</h2>
+        <p>When an opportunity is ready, it can be added here with the dog profile, timing, household fit, and application CTA.</p>
+        <Link href="/guardian-program/application" className="button primary">Guardian Application</Link>
+      </section>
+    </Layout>
+  );
+}
+
+function ReproductiveServicesPage() {
+  return (
+    <Layout>
+      <PageHero eyebrow="Stud Services" title="Reproductive Services" copy="Placeholder-ready structure for stud service details, timing, paperwork, and communication." />
+      <section className="tile-grid three">
+        {["Stud inquiries", "Timing support", "Breeder communication"].map((title) => (
+          <article className="text-card" key={title}>
+            <Sparkles size={24} />
+            <h2>{title}</h2>
+            <p>Phase 2 copy can expand this with exact service details, requirements, and next steps.</p>
+          </article>
+        ))}
+      </section>
+    </Layout>
+  );
+}
+
+function ShippingCollectionPage() {
+  return (
+    <Layout>
+      <PageHero eyebrow="Stud Services" title="Shipping and Collection Info" copy="Placeholder-ready page for chilled semen shipping, collection timing, and required breeder coordination." />
+      <section className="content-section narrow">
+        <h2>Information to collect</h2>
+        <p>Add collection clinic details, shipping windows, progesterone timing expectations, and contact requirements here when finalized.</p>
+      </section>
+    </Layout>
+  );
+}
+
+function GuardianFaqPage() {
+  return (
+    <Layout>
+      <PageHero eyebrow="Guardian Program" title="Guardian Program FAQ" copy="Common questions about guardian families, distance from Salado, timing, communication, and ownership transfer." />
+      <section className="faq-list">
+        {guardianProgram.faqs.map(([question, answer], index) => (
+          <details key={question} open={index === 0}>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </section>
+    </Layout>
+  );
+}
+
+function AboutOverviewPage() {
+  return (
+    <SectionIndexPage
+      eyebrow="About"
+      title="About Red Ranch Dogs"
+      copy="About is now focused on the family, team, reviews, and contact information."
+      links={primaryNav.find((item) => item.label === "About").links}
+    />
   );
 }
 
@@ -943,17 +1567,17 @@ function AvailablePuppiesPage() {
         title="Available Puppies"
         copy="Current puppy availability is powered by structured data so new photos and updates can be added quickly."
       />
-      {availablePuppies.length > 0 ? (
+      {puppyData.length > 0 ? (
         <section className="card-list">
-          {availablePuppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.name} />)}
+          {puppyData.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />)}
         </section>
       ) : (
         <section className="content-section narrow">
           <h2>No publicly listed puppies right now</h2>
           <p>The current Squarespace page does not show individual available puppy cards. The new site is ready for them as soon as the next availability list is confirmed.</p>
           <div className="actions">
-            <Link href="/join-our-waitlist" className="button primary">Join the Waitlist</Link>
-            <Link href="/current-litters" className="button secondary">View Current Litters</Link>
+            <Link href="/apply" className="button primary">Apply</Link>
+            <Link href="/puppies/upcoming-litters" className="button secondary">View Upcoming Litters</Link>
           </div>
         </section>
       )}
@@ -976,6 +1600,10 @@ function UpcomingLittersPage() {
   return (
     <Layout>
       <PageHero eyebrow={`Updated ${upcomingLitters.updated}`} title="Upcoming Litters" copy="Planned pairings are based on timing, genetics, colors, and availability. Pairings may change as breeding plans develop." />
+      <section className="card-list">
+        <SectionHeader eyebrow="Structured Litters" title="Data-driven litter cards" copy="These cards come from src/data/litters.json and are ready for weekly updates, puppy cards, and photo galleries." />
+        {litterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
+      </section>
       <section className="content-section">
         {upcomingLitters.groups.map((group) => (
           <article className="group-panel" key={group.breed}>
@@ -1169,7 +1797,7 @@ function StudDetailPage({ stud }) {
           </dl>
           <p><strong>Genetics:</strong> {stud.genetics}</p>
           <div className="actions">
-            <Link href="/studservices" className="button secondary">All Studs</Link>
+            <Link href="/stud-services/our-studs" className="button secondary">All Studs</Link>
             <Link href="/contact" className="button primary">Stud Inquiry</Link>
           </div>
         </article>
@@ -1216,16 +1844,7 @@ function PricingPage() {
   return (
     <Layout>
       <PageHero eyebrow="Pricing" title="Puppy Prices & Deposits" copy="Pricing varies by breed, size, and individual traits. A $500 non-refundable deposit is required to join a waitlist or reserve a puppy." />
-      <section className="tile-grid">
-        {priceGroups.map(([title, prices]) => (
-          <article className="text-card" key={title}>
-            <h2>{title}</h2>
-            <ul className="clean-list">
-              {prices.map((price) => <li key={price}>{price}</li>)}
-            </ul>
-          </article>
-        ))}
-      </section>
+      <PricingSection items={pricingProfiles.length ? pricingProfiles : priceGroups} />
       <section className="content-section narrow">
         <h2>Payments</h2>
         <p>Our preferred payment method is Zelle. No puppy will be reserved without payment. All payments toward puppies are considered retainers and are non-refundable.</p>
@@ -1239,14 +1858,7 @@ function FaqPage() {
   return (
     <Layout>
       <PageHero eyebrow="FAQ" title="Puppy FAQ" copy="Quick answers about pricing, waitlists, health testing, puppy visits, and what comes home with your puppy." />
-      <section className="faq-list">
-        {faqs.map(([question, answer]) => (
-          <details key={question} open={question === "Where are you located?"}>
-            <summary>{question}</summary>
-            <p>{answer}</p>
-          </details>
-        ))}
-      </section>
+      <FAQSection items={faqProfiles.length ? faqProfiles : faqs} />
     </Layout>
   );
 }
@@ -1275,15 +1887,18 @@ function ContactPage() {
 }
 
 function TeamPage() {
+  const cards = teamProfiles.length ? teamProfiles : teamMembers;
+
   return (
     <Layout>
       <PageHero eyebrow="Our Team" title="Meet Our Team" copy="Raising healthy, happy puppies is a team effort built on daily care, monitoring, socialization, cleaning, feeding, grooming, and communication." image={images.family} />
       <section className="tile-grid three">
-        {teamMembers.map((member) => (
+        {cards.map((member) => (
           <article className="text-card person-card" key={member.name}>
-            <img src={member.image} alt={member.name} />
+            <img src={member.photo || member.image} alt={member.name} />
             <h2>{member.name}</h2>
-            <p>Part of the hands-on Red Ranch Dogs care team.</p>
+            <p>{member.role || "Part of the hands-on Red Ranch Dogs care team."}</p>
+            {member.bio && <p>{member.bio}</p>}
           </article>
         ))}
       </section>
@@ -1303,24 +1918,11 @@ function FamilyPage() {
         <h2>A lifelong passion for dogs</h2>
         {familyStory.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         <div className="actions">
-          <Link href="/available-puppies" className="button primary">View Available Puppies</Link>
-          <Link href="/join-our-waitlist" className="button secondary">Join Our Waitlist</Link>
+          <Link href="/puppies/available" className="button primary">View Available Puppies</Link>
+          <Link href="/apply" className="button secondary">Join Our Waitlist</Link>
         </div>
       </section>
     </Layout>
-  );
-}
-
-function ReviewsInline() {
-  return (
-    <section className="reviews-row">
-      {reviews.map((review) => (
-        <article className="review-card" key={review.quote}>
-          <p>&quot;{review.quote}&quot;</p>
-          <strong>{review.name}</strong>
-        </article>
-      ))}
-    </section>
   );
 }
 
@@ -1328,7 +1930,7 @@ function ReviewsPage() {
   return (
     <Layout>
       <PageHero eyebrow="Reviews" title="Testimonials & Customer Reviews" copy="Visible public reviews have been migrated into the new site. The final migration can import more Google reviews once access is connected." />
-      <ReviewsInline />
+      <TestimonialSection items={testimonialProfiles.length ? testimonialProfiles : reviews.map((review) => ({ ...review, name: review.name || "Red Ranch family" }))} />
     </Layout>
   );
 }
@@ -1413,7 +2015,7 @@ function DamDetailPage({ dam }) {
           {dam.genetics && <p><strong>Genetics:</strong> {dam.genetics}</p>}
           <p>{dam.copy}</p>
           <div className="actions">
-            <Link href="/dams" className="button secondary">All Dams</Link>
+            <Link href="/parents/mamas" className="button secondary">All Dams</Link>
             <Link href={Object.keys(damGroups).find((href) => damGroups[href].name === dam.group) || "/dams"} className="button secondary">Breed Group</Link>
           </div>
         </article>
@@ -1489,7 +2091,7 @@ function ApplicationProcessPage() {
       <section className="content-section narrow">
         <h2>Ready to apply?</h2>
         <p>Questions are always welcome. Call or text {brand.phone} or email {brand.email}.</p>
-        <Link href="/puppy-application" className="button primary">Start Application</Link>
+        <Link href="/apply" className="button primary">Start Application</Link>
       </section>
     </Layout>
   );
@@ -1621,7 +2223,7 @@ function GuardianProgramPage() {
       <section className="content-section narrow">
         <h2>Have more questions?</h2>
         <p>Reach out at adam@redranchdogs.com or {brand.phone}.</p>
-        <Link href="/guardian-application" className="button primary">Guardian Application</Link>
+        <Link href="/guardian-program/application" className="button primary">Guardian Application</Link>
       </section>
     </Layout>
   );
@@ -1968,9 +2570,10 @@ function Footer() {
       </div>
       <div className="footer-links">
         <Link href="/">Home</Link>
-        <Link href="/available-puppies">Puppies</Link>
-        <Link href="/application-process">Application</Link>
-        <Link href="/parents-1">Parents</Link>
+        <Link href="/puppies">Puppies</Link>
+        <Link href="/process">Process</Link>
+        <Link href="/parents">Parents</Link>
+        <Link href="/apply">Apply</Link>
         <Link href="/contact">Contact</Link>
         <a href={brand.instagram} target="_blank" rel="noreferrer">Instagram</a>
       </div>
@@ -2056,6 +2659,40 @@ export default function App() {
     const routes = {
       "/": <HomePage />,
       "/home-maple": <HomePage />,
+      "/puppies": <PuppiesOverviewPage />,
+      "/puppies/available": <AvailablePuppiesPage />,
+      "/puppies/upcoming-litters": <UpcomingLittersPage />,
+      "/puppies/goldendoodle-puppies": <BreedPageTemplate breed={breedProfiles.find((breed) => breed.slug === "goldendoodle-puppies")} />,
+      "/puppies/cavapoo-puppies": <BreedPageTemplate breed={breedProfiles.find((breed) => breed.slug === "cavapoo-puppies")} />,
+      "/puppies/bernedoodle-puppies": <BreedPageTemplate breed={breedProfiles.find((breed) => breed.slug === "bernedoodle-puppies")} />,
+      "/puppies/what-comes-with-your-puppy": <WhatsIncludedPage />,
+      "/puppies/coat-traits": <CoatTraitsPage />,
+      "/parents": <ParentsDirectoryPage />,
+      "/parents/mamas": <ParentsDirectoryPage role="mama" />,
+      "/parents/studs": <ParentsDirectoryPage role="stud" />,
+      "/parents/goldendoodle-parents": <BreedParentDirectoryPage breedSlug="goldendoodle-puppies" />,
+      "/parents/cavapoo-parents": <BreedParentDirectoryPage breedSlug="cavapoo-puppies" />,
+      "/parents/bernedoodle-parents": <BreedParentDirectoryPage breedSlug="bernedoodle-puppies" />,
+      "/process": <ProcessOverviewPage />,
+      "/process/how-it-works": <ApplicationProcessPage />,
+      "/process/pricing": <PricingPage />,
+      "/process/application-and-waitlist": <JoinWaitlistPage />,
+      "/process/faq": <FaqPage />,
+      "/process/pickup-and-delivery": <PickupDeliveryPage />,
+      "/stud-services": <StudServicesPage />,
+      "/stud-services/our-studs": <StudServicesPage />,
+      "/stud-services/reproductive-services": <ReproductiveServicesPage />,
+      "/stud-services/reproductive-education": <ReproEducationPage />,
+      "/stud-services/shipping-and-collection-info": <ShippingCollectionPage />,
+      "/guardian-program": <GuardianProgramPage />,
+      "/guardian-program/application": <GuardianApplicationPage />,
+      "/guardian-program/current-guardian-opportunities": <GuardianOpportunitiesPage />,
+      "/guardian-program/faq": <GuardianFaqPage />,
+      "/about": <AboutOverviewPage />,
+      "/about/our-family": <FamilyPage />,
+      "/about/meet-the-team": <TeamPage />,
+      "/about/reviews": <ReviewsPage />,
+      "/apply": <ApplicationPage />,
       "/prices": <PricingPage />,
       "/faq": <FaqPage />,
       "/contact": <ContactPage />,
@@ -2084,6 +2721,12 @@ export default function App() {
     };
 
     if (routes[path]) return routes[path];
+    const puppy = puppyProfiles.find((item) => `/puppies/${item.slug}` === path);
+    if (puppy) return <PuppyDetailPage puppy={puppy} />;
+    const litter = litterProfiles.find((item) => `/litters/${item.slug}` === path);
+    if (litter) return <LitterPage litter={litter} />;
+    const parent = parentProfiles.find((item) => `/parents/${item.slug}` === path);
+    if (parent) return <ParentDetailPage parent={parent} />;
     if (litterDetails[path]) return <LitterDetailPage litter={litterDetails[path]} />;
     if (previousLitterArchiveGroups[path]) return <PreviousLitterArchivePage archive={previousLitterArchiveGroups[path]} />;
     if (previousLitterDetails[path]) return <PreviousLitterDetailPage litter={previousLitterDetails[path]} />;

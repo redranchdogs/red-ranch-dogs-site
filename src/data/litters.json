@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "birdie-waylon-spring-2026",
+    "name": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "birthDate": "April 2026",
+    "goHomeDate": "May 2026",
+    "expectedSize": "20-25 lbs",
+    "priceRange": "$3,200-$4,500",
+    "availabilitySummary": "Sample litter with a mix of available and reserved placeholder puppy profiles.",
+    "weeklyUpdateGallery": ["/images/litters/birdie-waylon.webp"]
+  },
+  {
+    "slug": "winnie-redford-summer-2026",
+    "name": "Winnie + Redford",
+    "mamaSlug": "winnie",
+    "mama": "Winnie",
+    "studSlug": "robert-redford",
+    "stud": "Robert Redford",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "Cavapoo",
+    "birthDate": "Planned",
+    "goHomeDate": "To be announced",
+    "expectedSize": "20-30 lbs",
+    "priceRange": "$2,800-$4,500",
+    "availabilitySummary": "Upcoming Cavapoo litter placeholder.",
+    "weeklyUpdateGallery": ["/images/litters/winnie-redford.webp"]
+  },
+  {
+    "slug": "kylie-wayne-fall-2026",
+    "name": "Kylie + Wayne",
+    "mamaSlug": "kylie",
+    "mama": "Kylie",
+    "studSlug": "wayne",
+    "stud": "Wayne",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Bernedoodle",
+    "birthDate": "Planned",
+    "goHomeDate": "To be announced",
+    "expectedSize": "25-45 lbs",
+    "priceRange": "$3,500-$4,500",
+    "availabilitySummary": "Upcoming Bernedoodle litter placeholder.",
+    "weeklyUpdateGallery": ["/images/seed/dam-bernedoodle.webp"]
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "goldendoodle-puppies",
+    "name": "Goldendoodle",
+    "pluralName": "Goldendoodle Puppies",
+    "shortName": "Goldendoodles",
+    "route": "/puppies/goldendoodle-puppies",
+    "heroTitle": "Goldendoodle Puppies",
+    "intro": "Friendly, intelligent doodles known for teddy-bear looks, family-focused temperaments, and beautiful low-shedding coat possibilities.",
+    "idealFamilyFit": "Often a good fit for families wanting an affectionate, trainable companion with a playful but people-focused personality.",
+    "expectedSizeRange": "Micro, petite mini, and mini sizes are planned by pairing and can vary by litter.",
+    "temperament": "Social, bright, eager to engage, and typically quick to bond with their people.",
+    "coatExpectations": "Coats may be wavy, straight, or curly depending on pairing and genetics.",
+    "sheddingAllergyNotes": "No dog is fully hypoallergenic. F1b and multigen pairings are often better for families prioritizing lower shedding.",
+    "faqCategory": "goldendoodle"
+  },
+  {
+    "slug": "cavapoo-puppies",
+    "name": "Cavapoo",
+    "pluralName": "Cavapoo Puppies",
+    "shortName": "Cavapoos",
+    "route": "/puppies/cavapoo-puppies",
+    "heroTitle": "Cavapoo Puppies",
+    "intro": "Sweet, people-loving companion puppies with Cavalier warmth and Poodle intelligence.",
+    "idealFamilyFit": "Often a good fit for families wanting a smaller companion with a cuddly, adaptable personality.",
+    "expectedSizeRange": "Micro, petite mini, and mini ranges may be available depending on pairing.",
+    "temperament": "Affectionate, gentle, playful, and usually very connected to their family.",
+    "coatExpectations": "Coats can range from silky waves to curlier doodle coats depending on the parents.",
+    "sheddingAllergyNotes": "Shedding can vary. Pairing notes and parent genetics help guide expectations.",
+    "faqCategory": "cavapoo"
+  },
+  {
+    "slug": "bernedoodle-puppies",
+    "name": "Bernedoodle",
+    "pluralName": "Bernedoodle Puppies",
+    "shortName": "Bernedoodles",
+    "route": "/puppies/bernedoodle-puppies",
+    "heroTitle": "Bernedoodle Puppies",
+    "intro": "Loyal, affectionate doodles with Bernese sweetness and Poodle intelligence.",
+    "idealFamilyFit": "Often a good fit for families wanting a calm, connected dog with a steady temperament.",
+    "expectedSizeRange": "Micro and mini ranges are planned by pairing and individual litter genetics.",
+    "temperament": "Affectionate, loyal, steady, and people-oriented.",
+    "coatExpectations": "Coats may be wavy or curly, with tricolor, merle, chocolate, and parti possibilities by pairing.",
+    "sheddingAllergyNotes": "Lower-shedding traits are planned through genetics, but individual results can vary.",
+    "faqCategory": "bernedoodle"
+  }
+]

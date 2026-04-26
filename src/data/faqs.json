@@ -1,0 +1,27 @@
+[
+  {
+    "category": "process",
+    "question": "How do I reserve a puppy?",
+    "answer": "Start with the application. We will follow up about timing, availability, and the right waitlist."
+  },
+  {
+    "category": "process",
+    "question": "How does the waitlist work?",
+    "answer": "A deposit secures your spot. Selection is guided by waitlist position, timing, and the best fit for each family."
+  },
+  {
+    "category": "goldendoodle",
+    "question": "Do Goldendoodles shed?",
+    "answer": "Shedding varies by generation and coat genetics. F1b and multigen pairings are often lower shedding."
+  },
+  {
+    "category": "cavapoo",
+    "question": "Are Cavapoos good family dogs?",
+    "answer": "Many Cavapoos are affectionate and adaptable, but fit depends on the puppy, household, and training plan."
+  },
+  {
+    "category": "bernedoodle",
+    "question": "How large are Bernedoodles?",
+    "answer": "Size depends on the pairing. Red Ranch Dogs plans micro and mini ranges by litter."
+  }
+]

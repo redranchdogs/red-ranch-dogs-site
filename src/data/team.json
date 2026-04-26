@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Callie",
+    "role": "Founder and puppy care lead",
+    "photo": "/images/seed/family.webp",
+    "bio": "Placeholder team profile for the family story and daily puppy care."
+  },
+  {
+    "name": "Adam",
+    "role": "Operations and family communication",
+    "photo": "/images/seed/hero-puppy.webp",
+    "bio": "Placeholder team profile for communication, updates, and systems."
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "scone",
+    "name": "Scone",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "birdie-waylon-spring-2026",
+    "litter": "Birdie + Waylon",
+    "gender": "Female",
+    "status": "Available",
+    "estimatedAdultWeight": "20-25 lbs",
+    "goHomeDate": "May 2026",
+    "mainPhoto": "/images/home/red-ranch-dogs-goldendoodle-puppy-hero-900.jpeg",
+    "photos": ["/images/home/red-ranch-dogs-goldendoodle-puppy-hero-900.jpeg"],
+    "description": "Placeholder puppy profile using the current hero puppy image. Replace with the clean original photo and weekly notes."
+  },
+  {
+    "slug": "biscuit",
+    "name": "Biscuit",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "birdie-waylon-spring-2026",
+    "litter": "Birdie + Waylon",
+    "gender": "Male",
+    "status": "Reserved",
+    "estimatedAdultWeight": "20-25 lbs",
+    "goHomeDate": "May 2026",
+    "mainPhoto": "",
+    "photos": [],
+    "description": "Placeholder card for a reserved puppy. Add photos and notes when ready."
+  },
+  {
+    "slug": "peach",
+    "name": "Peach",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "Cavapoo",
+    "litterSlug": "winnie-redford-summer-2026",
+    "litter": "Winnie + Redford",
+    "gender": "Female",
+    "status": "Waitlist",
+    "estimatedAdultWeight": "20-30 lbs",
+    "goHomeDate": "To be announced",
+    "mainPhoto": "",
+    "photos": [],
+    "description": "Sample Cavapoo profile for route and card testing."
+  },
+  {
+    "slug": "cedar",
+    "name": "Cedar",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Bernedoodle",
+    "litterSlug": "kylie-wayne-fall-2026",
+    "litter": "Kylie + Wayne",
+    "gender": "Male",
+    "status": "Planned",
+    "estimatedAdultWeight": "25-45 lbs",
+    "goHomeDate": "To be announced",
+    "mainPhoto": "",
+    "photos": [],
+    "description": "Sample Bernedoodle profile for route and card testing."
+  }
+]
