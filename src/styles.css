@@ -2614,19 +2614,19 @@ summary {
 
   .premium-hero::before {
     background:
-      radial-gradient(circle at 50% 35%, rgba(255, 250, 242, 0) 0 45%, rgba(247, 241, 230, 0.12) 60%, rgba(247, 241, 230, 0.9) 78%),
-      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 57%, rgba(247, 241, 230, 0.46) 72%, var(--premium-bg) 88%);
+      radial-gradient(circle at 50% 35%, rgba(255, 250, 242, 0) 0 51%, rgba(247, 241, 230, 0.1) 66%, rgba(247, 241, 230, 0.88) 84%),
+      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 66%, rgba(247, 241, 230, 0.42) 80%, var(--premium-bg) 94%);
   }
 
   .premium-hero::after {
-    inset: min(49svh, 420px) 0 0;
-    background: linear-gradient(180deg, rgba(247, 241, 230, 0), rgba(247, 241, 230, 0.72) 34%, var(--premium-bg) 74%);
+    inset: min(54svh, 458px) 0 0;
+    background: linear-gradient(180deg, rgba(247, 241, 230, 0), rgba(247, 241, 230, 0.72) 30%, var(--premium-bg) 70%);
   }
 
   .hero-image-frame::after {
     background:
       linear-gradient(90deg, rgba(247, 241, 230, 0.56) 0%, rgba(247, 241, 230, 0.08) 20%, rgba(247, 241, 230, 0) 52%, rgba(247, 241, 230, 0.04) 100%),
-      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 62%, rgba(247, 241, 230, 0.4) 82%, var(--premium-bg) 100%);
+      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 72%, rgba(247, 241, 230, 0.38) 90%, var(--premium-bg) 100%);
   }
 
   .premium-hero-copy {
@@ -2664,18 +2664,18 @@ summary {
 
 @media (max-width: 400px) {
   .premium-hero h1 {
-    width: min(100%, 308px);
-    max-width: 308px;
-    font-size: clamp(1.12rem, 4.7vw, 1.42rem);
+    width: min(calc(100vw - 20px), 370px);
+    max-width: 370px;
+    font-size: clamp(1.48rem, 6.25vw, 1.72rem);
   }
 
   .premium-hero .hero-actions {
-    width: min(100%, 270px) !important;
-    max-width: 270px !important;
+    width: min(calc(100vw - 28px), 348px) !important;
+    max-width: 348px !important;
   }
 
   .premium-hero .hero-actions .button {
-    max-width: 131px !important;
-    font-size: 0.54rem !important;
+    max-width: 170px !important;
+    font-size: 0.68rem !important;
   }
 }
