@@ -438,31 +438,31 @@ body.menu-locked {
 }
 
 .social-proof-strip.hero-adjacent {
-  margin-top: -64px;
+  margin-top: -56px;
 }
 
 .social-proof-inner {
   display: grid;
-  gap: 20px;
-  padding: 22px 18px;
-  background: rgba(255, 250, 242, 0.88);
+  gap: 12px;
+  padding: 14px;
+  background: rgba(255, 250, 242, 0.84);
   border: 1px solid rgba(95, 69, 45, 0.12);
   border-radius: var(--radius-md);
-  box-shadow: 0 12px 36px rgba(67, 42, 24, 0.05);
-  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 28px rgba(67, 42, 24, 0.04);
+  backdrop-filter: blur(12px);
 }
 
 .social-proof-heading {
   display: grid;
-  grid-template-columns: minmax(24px, 1fr) auto minmax(24px, 1fr);
+  grid-template-columns: minmax(20px, 1fr) auto minmax(20px, 1fr);
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin: 0;
   color: var(--brand-red);
   font-family: "Libre Franklin", Avenir Next, Helvetica, Arial, sans-serif;
-  font-size: clamp(0.68rem, 2.2vw, 0.94rem);
+  font-size: clamp(0.62rem, 2vw, 0.82rem);
   font-weight: 900;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.11em;
   line-height: 1.15;
   text-align: center;
   text-transform: uppercase;
@@ -479,33 +479,32 @@ body.menu-locked {
 .social-proof-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .social-proof-card {
-  display: grid;
-  justify-items: center;
-  align-content: center;
-  gap: 10px;
-  min-height: 118px;
-  padding: 16px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 54px;
+  padding: 10px;
   color: var(--premium-ink);
-  text-align: center;
-  background: rgba(255, 250, 242, 0.54);
+  text-align: left;
+  background: rgba(255, 250, 242, 0.4);
   border: 1px solid rgba(95, 69, 45, 0.13);
   border-radius: var(--radius-md);
 }
 
 .social-proof-card svg {
+  flex: 0 0 auto;
   color: var(--brand-red);
 }
 
 .social-proof-card p {
-  max-width: 13rem;
   margin: 0;
-  font-size: clamp(0.9rem, 3.7vw, 1rem);
-  font-weight: 900;
-  line-height: 1.28;
+  font-size: clamp(0.73rem, 3.1vw, 0.86rem);
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .premium-breed-card,
@@ -817,12 +816,12 @@ body.menu-locked {
   }
 
   .social-proof-strip.hero-adjacent {
-    margin-top: -72px;
+    margin-top: -64px;
   }
 
   .social-proof-inner {
-    gap: 22px;
-    padding: 24px;
+    gap: 14px;
+    padding: 16px 18px;
   }
 
   .social-proof-heading {
@@ -833,17 +832,30 @@ body.menu-locked {
 
   .social-proof-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 14px;
+    gap: 0;
   }
 
   .social-proof-card {
-    min-height: 138px;
-    padding: 18px 14px;
+    min-height: 58px;
+    justify-content: center;
+    padding: 10px 14px;
+    text-align: center;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .social-proof-card + .social-proof-card {
+    border-left: 1px solid rgba(95, 69, 45, 0.13);
   }
 
   .social-proof-card svg {
-    width: 40px;
-    height: 40px;
+    width: 21px;
+    height: 21px;
+  }
+
+  .social-proof-card p {
+    font-size: 0.82rem;
   }
 
   .breed-grid,
@@ -958,11 +970,11 @@ body.menu-locked {
   }
 
   .social-proof-strip.hero-adjacent {
-    margin-top: -86px;
+    margin-top: -72px;
   }
 
   .social-proof-inner {
-    padding: 28px 32px;
+    padding: 18px 28px;
   }
 
   .sticky-mobile-cta {

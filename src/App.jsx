@@ -502,10 +502,10 @@ const homeHeroImage = {
 };
 
 const socialProofItems = [
-  ["Nearly 100 Five-Star Google Reviews", Star],
-  ["Nearly 10,000 Instagram Followers", Instagram],
-  ["Health-Tested Parent Dogs", PawPrint],
-  ["Texas-Based, Family-Owned Program", HomeIcon]
+  ["Nearly 100 five-star Google reviews", Star],
+  ["Nearly 10,000 Instagram followers", Instagram],
+  ["Health-tested parent dogs", PawPrint],
+  ["Texas-based, family-owned program", HomeIcon]
 ];
 
 function HomeHero() {
@@ -555,7 +555,7 @@ function SocialProofStrip({
         <div className="social-proof-grid">
           {items.map(([label, Icon]) => (
             <article className="social-proof-card" key={label}>
-              <Icon size={34} strokeWidth={1.7} aria-hidden="true" />
+              <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
               <p>{label}</p>
             </article>
           ))}
