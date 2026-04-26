@@ -513,7 +513,7 @@ function HomeHero() {
             Join the Waitlist
           </Link>
           <Link href="/available-puppies" className="button secondary">
-            Available Puppies
+            View Available Puppies
           </Link>
         </div>
       </div>
