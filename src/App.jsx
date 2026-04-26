@@ -504,9 +504,8 @@ function HomeHero() {
       <div className="premium-hero-copy">
         <p className="premium-kicker">Country-raised doodles</p>
         <h1>
-          <span className="hero-title-main">Goldendoodle</span>
-          <span className="hero-title-main">Cavapoo</span>
-          <span className="hero-title-main">&amp; Bernedoodle Puppies</span>
+          <span className="hero-title-line">Goldendoodle, Cavapoo</span>
+          <span className="hero-title-line">&amp; Bernedoodle Puppies</span>
         </h1>
         <p>Lovingly raised in Central Texas.</p>
         <div className="actions hero-actions">
