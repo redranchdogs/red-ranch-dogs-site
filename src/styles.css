@@ -2619,32 +2619,32 @@ summary {
 
   .premium-hero::before {
     background:
-      radial-gradient(circle at 50% 35%, rgba(255, 250, 242, 0) 0 55%, rgba(247, 241, 230, 0.08) 69%, rgba(247, 241, 230, 0.86) 87%),
-      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 71%, rgba(247, 241, 230, 0.34) 85%, var(--premium-bg) 100%);
+      radial-gradient(circle at 50% 35%, rgba(255, 250, 242, 0) 0 52%, rgba(247, 241, 230, 0.12) 66%, rgba(247, 241, 230, 0.9) 85%),
+      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 66%, rgba(247, 241, 230, 0.46) 82%, var(--premium-bg) 98%);
   }
 
   .premium-hero::after {
-    inset: min(57svh, 480px) 0 0;
-    background: linear-gradient(180deg, rgba(247, 241, 230, 0), rgba(247, 241, 230, 0.7) 24%, var(--premium-bg) 64%);
+    inset: min(55svh, 462px) 0 0;
+    background: linear-gradient(180deg, rgba(247, 241, 230, 0), rgba(247, 241, 230, 0.76) 26%, var(--premium-bg) 68%);
   }
 
   .hero-image-frame::after {
     background:
       linear-gradient(90deg, rgba(247, 241, 230, 0.56) 0%, rgba(247, 241, 230, 0.08) 20%, rgba(247, 241, 230, 0) 52%, rgba(247, 241, 230, 0.04) 100%),
-      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 77%, rgba(247, 241, 230, 0.34) 90%, var(--premium-bg) 100%);
+      linear-gradient(180deg, rgba(247, 241, 230, 0) 0 72%, rgba(247, 241, 230, 0.5) 88%, var(--premium-bg) 100%);
   }
 
   .premium-hero-copy {
-    gap: 9px;
+    gap: 7px;
     padding-top: calc(min(52svh, 440px) + 12px);
-    background: linear-gradient(180deg, rgba(247, 241, 230, 0) 0 51%, rgba(247, 241, 230, 0.84) 68%, var(--premium-bg) 100%);
+    background: linear-gradient(180deg, rgba(247, 241, 230, 0) 0 48%, rgba(247, 241, 230, 0.9) 66%, var(--premium-bg) 100%);
   }
 
   .premium-hero h1 {
     justify-self: center;
     width: min(calc(100vw - 16px), 420px);
     max-width: 420px;
-    font-size: clamp(1.72rem, 7vw, 2.5rem);
+    font-size: clamp(1.95rem, 7.8vw, 2.78rem);
   }
 
   .premium-hero h1 .hero-title-line {
@@ -2672,7 +2672,7 @@ summary {
   .premium-hero h1 {
     width: min(calc(100vw - 14px), 376px);
     max-width: 376px;
-    font-size: clamp(1.56rem, 6.55vw, 1.82rem);
+    font-size: clamp(1.8rem, 7.6vw, 2.05rem);
   }
 
   .premium-hero .hero-actions {
