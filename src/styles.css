@@ -3106,3 +3106,233 @@ summary {
     padding-bottom: 58px;
   }
 }
+
+/* Focused responsive layout repair */
+@media (max-width: 640px) {
+  .premium-hero {
+    min-height: auto;
+    padding-bottom: 56px;
+  }
+
+  .premium-hero-copy {
+    overflow: visible;
+  }
+
+  .premium-hero h1 {
+    width: 100%;
+    max-width: min(100%, 390px);
+    font-size: clamp(1.8rem, 7.2vw, 2.35rem);
+  }
+
+  .premium-hero .hero-actions {
+    width: min(100%, 360px) !important;
+    max-width: 360px !important;
+    gap: 10px !important;
+    padding: 0 6px !important;
+  }
+
+  .premium-hero .hero-actions .button {
+    max-width: none !important;
+    min-height: 50px !important;
+    padding: 0 4px !important;
+    font-size: clamp(0.56rem, 2.45vw, 0.68rem) !important;
+  }
+
+  .hero-image-frame {
+    background: #eadccb;
+  }
+
+  .social-proof-strip.hero-adjacent {
+    margin-top: 0;
+  }
+
+  .premium-section,
+  .page-section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .page-section-compact {
+    padding-top: 64px;
+    padding-bottom: 72px;
+  }
+
+  .premium-section-intro,
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  .premium-card-grid,
+  .waitlist-steps,
+  .testimonial-row {
+    gap: 18px;
+  }
+
+  .puppy-scroll {
+    gap: 16px;
+  }
+
+  .section-cta-row {
+    margin-top: 24px;
+  }
+
+  .premium-newsletter {
+    margin-top: 36px;
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 400px) {
+  .premium-hero h1 {
+    max-width: 360px;
+    font-size: clamp(1.62rem, 7vw, 1.82rem);
+  }
+
+  .premium-hero .hero-actions {
+    width: min(100%, 354px) !important;
+    max-width: 354px !important;
+  }
+
+  .premium-hero .hero-actions .button {
+    font-size: clamp(0.52rem, 2.35vw, 0.58rem) !important;
+  }
+}
+
+@media (min-width: 641px) {
+  .premium-hero {
+    width: min(1180px, calc(100% - clamp(48px, 7vw, 104px)));
+    grid-template-columns: 1fr;
+    gap: 36px;
+    min-height: auto;
+    padding: 64px 0 48px;
+    overflow: visible;
+  }
+
+  .premium-hero-copy {
+    min-width: 0;
+    max-width: 720px;
+  }
+
+  .premium-hero h1 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(3rem, 5.8vw, 4rem);
+  }
+
+  .premium-hero h1 .hero-title-line {
+    white-space: nowrap;
+  }
+
+  .premium-hero .hero-actions {
+    gap: 16px !important;
+  }
+
+  .premium-hero .hero-actions .button {
+    min-width: 190px !important;
+  }
+
+  .hero-image-frame {
+    justify-self: center;
+    width: min(100%, 520px);
+    min-height: 0;
+    background: #eadccb;
+  }
+
+  .social-proof-strip.hero-adjacent {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 899px) {
+  .premium-hero {
+    gap: 30px;
+    padding-top: 56px;
+    padding-bottom: 48px;
+  }
+
+  .premium-hero h1 {
+    font-size: clamp(2.6rem, 5vw, 3.15rem);
+  }
+
+  .hero-image-frame {
+    width: min(100%, 460px);
+  }
+
+  .social-proof-strip.hero-adjacent {
+    margin-top: 18px;
+  }
+}
+
+@media (min-width: 900px) {
+  .premium-hero {
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.82fr);
+    align-items: center;
+    gap: clamp(28px, 4vw, 52px);
+    padding-top: 72px;
+    padding-bottom: 56px;
+  }
+
+  .premium-hero-copy {
+    max-width: 620px;
+  }
+
+  .premium-hero h1 {
+    max-width: 640px;
+    font-size: clamp(2.85rem, 3.8vw, 4.35rem);
+  }
+
+  .hero-image-frame {
+    justify-self: end;
+    width: 100%;
+    max-width: 500px;
+    min-height: clamp(410px, 42vw, 560px);
+  }
+
+  .social-proof-strip.hero-adjacent {
+    margin-top: 28px;
+  }
+
+  .premium-section,
+  .page-section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .page-section-compact {
+    padding-top: 72px;
+    padding-bottom: 76px;
+  }
+
+  .premium-section-intro,
+  .section-header {
+    margin-bottom: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .premium-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.84fr);
+    gap: 56px;
+    padding-top: 84px;
+    padding-bottom: 64px;
+  }
+
+  .premium-hero h1 {
+    max-width: 660px;
+  }
+
+  .hero-image-frame {
+    max-width: 520px;
+  }
+
+  .premium-section,
+  .page-section {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  .page-section-compact {
+    padding-top: 78px;
+    padding-bottom: 84px;
+  }
+}
