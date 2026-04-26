@@ -2636,7 +2636,7 @@ summary {
 
   .premium-hero-copy {
     gap: 9px;
-    padding-top: min(52svh, 440px);
+    padding-top: calc(min(52svh, 440px) + 12px);
     background: linear-gradient(180deg, rgba(247, 241, 230, 0) 0 51%, rgba(247, 241, 230, 0.84) 68%, var(--premium-bg) 100%);
   }
 
