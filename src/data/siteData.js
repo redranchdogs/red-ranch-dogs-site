@@ -89,20 +89,26 @@ export const navGroups = [
 export const breeds = [
   {
     name: "Goldendoodles",
+    route: "/puppies/goldendoodle-puppies",
     image: "/images/home/red-ranch-dogs-goldendoodle-home-card.jpg",
     imageAlt: "Goldendoodle puppy from Red Ranch Dogs",
+    imagePosition: "50% 34%",
     copy: "A friendly, intelligent Golden Retriever and Poodle mix known for low-shedding coats, family-friendly temperaments, and teddy-bear looks."
   },
   {
     name: "Cavapoos",
+    route: "/puppies/cavapoo-puppies",
     image: "/images/home/red-ranch-dogs-cavapoo-home-card.jpg",
     imageAlt: "Cavapoo puppy from Red Ranch Dogs",
+    imagePosition: "50% 36%",
     copy: "A sweet Cavalier King Charles Spaniel and Poodle mix loved for cuddly personalities, adaptable size, and playful affection."
   },
   {
     name: "Bernedoodles",
+    route: "/puppies/bernedoodle-puppies",
     image: "/images/home/red-ranch-dogs-bernedoodle-home-card.jpg",
     imageAlt: "Bernedoodle puppy from Red Ranch Dogs",
+    imagePosition: "50% 42%",
     copy: "A loyal Bernese Mountain Dog and Poodle mix with affectionate personalities, calm confidence, and beautiful low-shedding coats."
   }
 ];

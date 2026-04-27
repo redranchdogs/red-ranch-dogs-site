@@ -2961,6 +2961,10 @@ summary {
   box-shadow: 0 8px 24px rgba(67, 42, 24, 0.045);
 }
 
+.home-doodles-section .breed-card-grid {
+  gap: 12px;
+}
+
 .image-card .image-placeholder,
 .image-card-media {
   width: 100%;
@@ -2990,10 +2994,13 @@ summary {
 }
 
 .image-card-body {
+  position: relative;
+  z-index: 1;
   display: grid;
   align-content: center;
   gap: 6px;
   padding: 12px 13px;
+  background: rgba(255, 250, 242, 0.82);
 }
 
 .image-card h3 {
@@ -3080,6 +3087,10 @@ summary {
     gap: 16px;
   }
 
+  .home-doodles-section .breed-card-grid {
+    gap: 18px;
+  }
+
   .card-grid-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3095,6 +3106,7 @@ summary {
   .image-card {
     grid-template-columns: 1fr;
     min-height: 0;
+    grid-template-rows: auto 1fr;
   }
 
   .image-card .image-placeholder,
@@ -3118,7 +3130,8 @@ summary {
   .image-card-body {
     align-content: start;
     gap: 10px;
-    padding: 18px;
+    padding: 18px 18px 20px;
+    background: rgba(255, 250, 242, 0.92);
   }
 
   .image-card h3 {
@@ -3144,6 +3157,20 @@ summary {
 
   .home-doodles-section .section-cta-row .button.secondary {
     display: inline-flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-doodles-section .breed-card-grid {
+    gap: 22px;
+  }
+
+  .home-doodles-section .image-card-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .home-doodles-section .image-card-body {
+    min-height: 190px;
   }
 }
 

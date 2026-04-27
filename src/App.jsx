@@ -767,18 +767,18 @@ function SocialProofStrip({
   );
 }
 
-function PageSection({ children, className = "", variant = "default", reveal = true }) {
+function PageSection({ children, className = "", variant = "default", reveal = true, ...props }) {
   const sectionClass = `page-section ${variant !== "default" ? `page-section-${variant}` : ""} ${className}`.trim();
 
   if (reveal) {
     return (
-      <FadeInSection className={sectionClass}>
+      <FadeInSection className={sectionClass} {...props}>
         {children}
       </FadeInSection>
     );
   }
 
-  return <section className={sectionClass}>{children}</section>;
+  return <section className={sectionClass} {...props}>{children}</section>;
 }
 
 function ContentContainer({ children, className = "", size = "standard" }) {
@@ -839,6 +839,7 @@ function ImageCard({
   copy,
   image,
   imageLabel,
+  imagePosition,
   href,
   ctaLabel = "Learn More",
   className = "",
@@ -847,7 +848,13 @@ function ImageCard({
   const content = (
     <>
       {image ? (
-        <img className="image-card-media" src={image} alt={imageLabel || title} loading="lazy" />
+        <img
+          className="image-card-media"
+          src={image}
+          alt={imageLabel || title}
+          loading="lazy"
+          style={imagePosition ? { objectPosition: imagePosition } : undefined}
+        />
       ) : (
         <ImagePlaceholder label={imageLabel || `${title} photo`} />
       )}
@@ -899,8 +906,9 @@ function BreedCard({ breed }) {
       copy={breed.copy}
       image={breed.image}
       imageLabel={breed.imageAlt || breedPlaceholders[breed.name] || `${breed.name} photo`}
-      href="/puppies/available"
-      ctaLabel="View puppies"
+      imagePosition={breed.imagePosition}
+      href={breed.route || "/puppies/available"}
+      ctaLabel={`Explore ${breed.name}`}
       variant="compact"
     />
   );
@@ -908,7 +916,7 @@ function BreedCard({ breed }) {
 
 function HomeDoodles() {
   return (
-    <PageSection className="home-doodles-section" variant="compact">
+    <PageSection id="our-doodles" className="home-doodles-section" variant="compact">
       <ContentContainer>
         <SectionHeader
           eyebrow="Our Doodles"
@@ -952,41 +960,6 @@ function WhyRedRanch() {
       />
       <div className="premium-card-grid trust-grid">
         {items.map(([title, copy, Icon]) => <TrustCard title={title} copy={copy} Icon={Icon} key={title} />)}
-      </div>
-    </FadeInSection>
-  );
-}
-
-function PuppyTemplateCard({ label, status }) {
-  return (
-    <article className="premium-puppy-card">
-      <ImagePlaceholder label="Available puppy photo" />
-      <div>
-        <span className="status-pill">{status}</span>
-        <h3>{label}</h3>
-        <dl>
-          <div><dt>Breed</dt><dd>To be added</dd></div>
-          <div><dt>Gender</dt><dd>To be added</dd></div>
-          <div><dt>Adult Weight</dt><dd>To be announced</dd></div>
-        </dl>
-        <Link href="/puppies/available" className="button small">View Availability</Link>
-      </div>
-    </article>
-  );
-}
-
-function AvailablePuppiesPreview() {
-  return (
-    <FadeInSection className="premium-section puppies-preview">
-      <SectionIntro
-        eyebrow="Available Puppies"
-        title="See current puppy availability at a glance."
-        copy="Puppy cards are updated with photos, status, go-home timing, and personality notes as each litter grows."
-      />
-      <div className="puppy-scroll" aria-label="Available puppy card examples">
-        <PuppyTemplateCard label="Current puppy update" status="Available" />
-        <PuppyTemplateCard label="Current puppy update" status="Pending" />
-        <PuppyTemplateCard label="Current puppy update" status="Reserved" />
       </div>
     </FadeInSection>
   );
@@ -1089,7 +1062,6 @@ function HomePage() {
       <SocialProofStrip className="hero-adjacent" />
       <HomeDoodles />
       <WhyRedRanch />
-      <AvailablePuppiesPreview />
       <WaitlistSteps />
       <HomeTestimonials />
       <FinalCta />
