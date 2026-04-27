@@ -1865,6 +1865,57 @@ textarea {
   aspect-ratio: 4 / 3;
 }
 
+.pairing-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+  align-self: stretch;
+  min-height: 280px;
+  margin: 0;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.pairing-photo-grid div {
+  position: relative;
+  min-width: 0;
+  min-height: 280px;
+}
+
+.pairing-photo-grid img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+}
+
+.pairing-photo-grid figcaption {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  width: fit-content;
+  max-width: calc(100% - 24px);
+  padding: 7px 11px;
+  color: var(--paper);
+  background: rgba(36, 31, 28, 0.78);
+  border: 1px solid rgba(255, 250, 242, 0.28);
+  border-radius: 999px;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.pairing-photo-grid.large {
+  min-height: clamp(280px, 44vw, 460px);
+  margin-bottom: 28px;
+}
+
+.pairing-photo-grid.large div,
+.pairing-photo-grid.large img {
+  min-height: clamp(280px, 44vw, 460px);
+}
+
 .details {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3500,6 +3551,20 @@ summary {
   .puppy-photo-frame img,
   .puppy-photo-frame .image-placeholder {
     min-height: 240px;
+  }
+
+  .pairing-photo-grid,
+  .pairing-photo-grid div,
+  .pairing-photo-grid img {
+    min-height: 230px;
+  }
+
+  .pairing-photo-grid figcaption {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    max-width: calc(100% - 20px);
+    font-size: 1rem;
   }
 }
 

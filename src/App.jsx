@@ -1163,10 +1163,28 @@ function LitterCard({ litter }) {
   const size = litter.expectedSize || litter.size || "Estimate to be announced";
   const price = litter.priceRange || litter.price;
   const image = litter.weeklyUpdateGallery?.[0] || litter.image;
+  const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
+  const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
+  const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
 
   return (
     <article className="litter-card animal-card">
-      {image ? <img src={image} alt={litter.name} loading="lazy" /> : <ImagePlaceholder label="Litter photo" />}
+      {hasPairingPhotos ? (
+        <figure className="pairing-photo-grid" aria-label={`${litter.name} parent pairing`}>
+          <div>
+            <img src={mama.mainPhoto} alt={`${mama.name} - mama for ${litter.name}`} loading="lazy" />
+            <figcaption>{mama.name}</figcaption>
+          </div>
+          <div>
+            <img src={stud.mainPhoto} alt={`${stud.name} - stud for ${litter.name}`} loading="lazy" />
+            <figcaption>{stud.name}</figcaption>
+          </div>
+        </figure>
+      ) : image ? (
+        <img src={image} alt={litter.name} loading="lazy" />
+      ) : (
+        <ImagePlaceholder label="Litter photo" />
+      )}
       <div>
         <p className="eyebrow">{litter.status || "Litter"}</p>
         <h2>{litter.name}</h2>
@@ -1454,12 +1472,26 @@ function PuppyDetailPage({ puppy }) {
 function LitterPage({ litter }) {
   const puppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
   const parents = parentProfiles.filter((parent) => parent.slug === litter.mamaSlug || parent.slug === litter.studSlug);
+  const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
+  const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
 
   return (
     <Layout>
       <PageHero eyebrow="Litter" title={litter.name} copy={litter.availabilitySummary} image={litter.weeklyUpdateGallery?.[0] || images.doodles} />
       <section className="content-section">
         <article className="group-panel">
+          {mama?.mainPhoto && stud?.mainPhoto && (
+            <figure className="pairing-photo-grid large" aria-label={`${litter.name} parent pairing`}>
+              <div>
+                <img src={mama.mainPhoto} alt={`${mama.name} - mama for ${litter.name}`} loading="lazy" />
+                <figcaption>{mama.name}</figcaption>
+              </div>
+              <div>
+                <img src={stud.mainPhoto} alt={`${stud.name} - stud for ${litter.name}`} loading="lazy" />
+                <figcaption>{stud.name}</figcaption>
+              </div>
+            </figure>
+          )}
           <h2>Litter Details</h2>
           <dl className="details facts-wide">
             <div><dt>Mama</dt><dd>{litter.mama}</dd></div>

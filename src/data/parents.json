@@ -85,6 +85,23 @@
     "description": "Stud used in select Cavapoo and doodle pairings."
   },
   {
+    "slug": "kylie",
+    "name": "Kylie",
+    "role": "mama",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Ultra Bernedoodle",
+    "weight": "30-35 lbs",
+    "color": "Chocolate-toned",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/kylie.webp",
+    "photos": ["/images/dams/kylie.webp"],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": ["kylie-wayne-fall-2026"],
+    "description": "Bernedoodle program mama planned for select micro and mini Bernedoodle pairings."
+  },
+  {
     "slug": "wayne",
     "name": "Wayne",
     "role": "stud",
