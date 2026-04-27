@@ -1052,13 +1052,18 @@ function FinalCta() {
   return (
     <FadeInSection className="premium-section final-cta-section">
       <div className="final-cta-panel">
-        <ImagePlaceholder label="Ranch lifestyle photo" />
+        <img
+          className="final-cta-image"
+          src="/images/home/red-ranch-dogs-home-lifestyle-puppies.jpg"
+          alt="Red Ranch Dogs puppies being held"
+          loading="lazy"
+        />
         <div>
-          <p className="premium-kicker">Ready to find your puppy?</p>
-          <h2>Our puppies go fast.</h2>
-          <p>Join the Red Ranch Dogs waitlist to secure your spot and be first to know when new puppies are available.</p>
+          <p className="premium-kicker">Ready when you are</p>
+          <h2>Let&apos;s help you find the right puppy.</h2>
+          <p>Whether you&apos;re ready to apply or still deciding which breed fits your family, we&apos;ll help you understand availability, timing, and the next best step.</p>
           <div className="actions">
-            <Link href="/apply" className="button primary">Join the Waitlist</Link>
+            <Link href="/apply" className="button primary">Apply for a Puppy</Link>
             <a href={brand.sms} className="button secondary">Text Us Now</a>
           </div>
         </div>
