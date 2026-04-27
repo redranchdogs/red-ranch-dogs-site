@@ -835,6 +835,18 @@ body.menu-locked {
   color: var(--warm-paper);
 }
 
+.final-cta-panel .button.secondary {
+  color: var(--warm-paper);
+  background: rgba(255, 250, 242, 0.08);
+  border-color: rgba(255, 250, 242, 0.58);
+}
+
+.final-cta-panel .button.secondary:hover {
+  color: var(--warm-paper);
+  background: rgba(255, 250, 242, 0.14);
+  border-color: rgba(255, 250, 242, 0.78);
+}
+
 .final-cta-panel > div {
   display: grid;
   gap: 14px;
@@ -3181,6 +3193,12 @@ summary {
 .image-card-media {
   display: block;
   object-fit: cover;
+}
+
+.home-doodles-section .image-card-media {
+  object-fit: contain;
+  object-position: center !important;
+  background: #eadccb;
 }
 
 .image-card-body {
