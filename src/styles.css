@@ -3376,8 +3376,7 @@ summary {
 }
 
 .home-doodles-section .image-card-media {
-  object-fit: contain;
-  object-position: center !important;
+  object-fit: cover;
   background: #eadccb;
 }
 
@@ -3499,6 +3498,7 @@ summary {
 
   .image-card .image-placeholder,
   .image-card-media {
+    height: auto;
     aspect-ratio: 4 / 3;
   }
 
@@ -3554,6 +3554,7 @@ summary {
   }
 
   .home-doodles-section .image-card-media {
+    height: auto;
     aspect-ratio: 4 / 3;
   }
 
