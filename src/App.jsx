@@ -1010,18 +1010,39 @@ function WaitlistSteps() {
 function HomeTestimonials() {
   return (
     <FadeInSection className="premium-section testimonials-section">
-      <SectionIntro
-        eyebrow="Testimonials"
-        title="Families remember the care before the puppy comes home."
-      />
-      <div className="testimonial-row">
-        {reviews.slice(0, 3).map((review) => (
-          <article className="premium-testimonial-card" key={review.name}>
-            <ImagePlaceholder label="Family testimonial photo" />
-            <p>&quot;{review.quote}&quot;</p>
-            <strong>{review.name}</strong>
-          </article>
-        ))}
+      <div className="testimonial-feature">
+        <figure className="testimonial-media-card">
+          <img
+            src="/images/home/red-ranch-dogs-testimonial-puppy.jpg"
+            alt="Red Ranch Dogs puppy with a family member"
+            loading="lazy"
+          />
+          <figcaption>Red Ranch puppy raised with hands-on family care.</figcaption>
+        </figure>
+        <div className="testimonial-content">
+          <SectionIntro
+            eyebrow="Google Reviews"
+            title="Families feel the difference."
+            copy="From communication and puppy temperament to go-home day, families often mention how supported they felt through the Red Ranch Dogs process."
+          />
+          <div className="testimonial-card-list">
+            {reviews.slice(0, 3).map((review) => (
+              <article className="premium-testimonial-card" key={review.name}>
+                <div className="testimonial-stars" aria-label="Five-star Google review">
+                  {[1, 2, 3, 4, 5].map((star) => <Star size={14} fill="currentColor" key={star} />)}
+                </div>
+                <p>&quot;{review.quote}&quot;</p>
+                <div className="testimonial-source">
+                  <strong>{review.name}</strong>
+                  <span>Google Review</span>
+                </div>
+              </article>
+            ))}
+          </div>
+          <a className="button secondary testimonial-review-link" href={brand.googleReviews} target="_blank" rel="noreferrer">
+            Read Our Google Reviews
+          </a>
+        </div>
       </div>
     </FadeInSection>
   );

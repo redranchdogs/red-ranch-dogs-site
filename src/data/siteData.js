@@ -9,6 +9,7 @@ export const brand = {
   email: "support@redranchdogs.com",
   paymentEmail: "adam@redranchdogs.com",
   instagram: "https://www.instagram.com/redranchdogs/",
+  googleReviews: "https://www.google.com/maps/search/?api=1&query=Red%20Ranch%20Dogs&query_place_id=ChIJ70JDw_7GNIURHsrR6cWBqXQ",
   location: "Salado, Texas",
   logo: `${seed}/red-ranch-dogs-2026-logo-wide.png`,
   favicon: `${cdn}/18651cef-f4eb-4430-9ab3-2826e9d3b2fc/favicon.ico?format=100w`
