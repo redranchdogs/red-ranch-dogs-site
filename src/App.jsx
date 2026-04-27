@@ -897,7 +897,8 @@ function BreedCard({ breed }) {
     <ImageCard
       title={breed.name}
       copy={breed.copy}
-      imageLabel={breedPlaceholders[breed.name] || `${breed.name} photo`}
+      image={breed.image}
+      imageLabel={breed.imageAlt || breedPlaceholders[breed.name] || `${breed.name} photo`}
       href="/puppies/available"
       ctaLabel="View puppies"
       variant="compact"
