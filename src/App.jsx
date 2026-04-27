@@ -938,7 +938,9 @@ function HomeDoodles() {
 function TrustCard({ title, copy, Icon }) {
   return (
     <article className="premium-trust-card">
-      <Icon size={22} />
+      <span className="premium-trust-icon">
+        <Icon size={22} />
+      </span>
       <h3>{title}</h3>
       <p>{copy}</p>
     </article>
@@ -947,16 +949,17 @@ function TrustCard({ title, copy, Icon }) {
 
 function WhyRedRanch() {
   const items = [
-    ["Health Tested Parents", "Pairings are guided by health, structure, temperament, and genetic fit.", ShieldCheck],
-    ["Ethical Breeding", "Puppies are raised with daily care, age-appropriate exposure, and clear family communication.", Heart],
-    ["Ongoing Support", "Guidance continues after go-home day with practical help for the transition.", MessageCircle]
+    ["Health-Tested Parents", "Pairings are planned around health, temperament, structure, and the traits families care about most.", ShieldCheck],
+    ["Hands-On Puppy Raising", "Puppies are raised with daily handling, early socialization, and age-appropriate exposure inside a family-run program.", Heart],
+    ["Clear Family Support", "We help families understand timing, puppy fit, go-home preparation, and the transition after pickup.", MessageCircle]
   ];
 
   return (
-    <FadeInSection className="premium-section trust-section">
+    <FadeInSection id="why-red-ranch" className="premium-section trust-section">
       <SectionIntro
         eyebrow="Why Red Ranch Dogs"
-        title="A steady, transparent process from application to go-home."
+        title="Raised with intention, matched with care."
+        copy="From health-tested parent dogs to weekly litter updates, our process is built to help families feel confident before, during, and after puppy go-home."
       />
       <div className="premium-card-grid trust-grid">
         {items.map(([title, copy, Icon]) => <TrustCard title={title} copy={copy} Icon={Icon} key={title} />)}

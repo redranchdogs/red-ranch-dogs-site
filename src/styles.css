@@ -561,13 +561,39 @@ body.menu-locked {
 }
 
 .premium-trust-card {
+  position: relative;
   display: grid;
   gap: 12px;
-  padding: 22px;
+  overflow: hidden;
+  padding: 24px 22px 22px;
+}
+
+.premium-trust-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  content: "";
+  background: linear-gradient(90deg, rgba(148, 31, 23, 0.22), rgba(148, 31, 23, 0.68), rgba(148, 31, 23, 0.16));
+}
+
+.premium-trust-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: var(--brand-red);
+  background: rgba(148, 31, 23, 0.06);
+  border: 1px solid rgba(148, 31, 23, 0.16);
+  border-radius: 999px;
 }
 
 .premium-trust-card svg {
-  color: var(--brand-red);
+  display: block;
+}
+
+.trust-section .premium-section-intro {
+  max-width: 760px;
+  margin-bottom: 24px;
 }
 
 .puppy-scroll {
