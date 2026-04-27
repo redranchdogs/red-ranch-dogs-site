@@ -1022,8 +1022,8 @@ function HomeTestimonials() {
         <div className="testimonial-content">
           <SectionIntro
             eyebrow="Google Reviews"
-            title="Families feel the difference."
-            copy="From communication and puppy temperament to go-home day, families often mention how supported they felt through the Red Ranch Dogs process."
+            title="Kind words from puppy families."
+            copy="Families often mention the communication, care, and confidence they felt throughout the Red Ranch Dogs process."
           />
           <div className="testimonial-card-list">
             {reviews.slice(0, 3).map((review) => (

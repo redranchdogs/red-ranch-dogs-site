@@ -2717,6 +2717,22 @@ summary {
     object-position: 50% 18%;
   }
 
+  .testimonial-feature {
+    gap: 18px;
+  }
+
+  .testimonial-media-card {
+    justify-self: center;
+    width: min(70vw, 260px);
+    min-height: 0;
+    height: 180px;
+    border-radius: var(--radius-md);
+  }
+
+  .testimonial-media-card figcaption {
+    display: none;
+  }
+
   .premium-kicker {
     display: flex;
     align-items: center;
