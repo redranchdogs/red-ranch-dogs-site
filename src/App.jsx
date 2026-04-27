@@ -626,7 +626,6 @@ function Layout({ children }) {
     <>
       <Header />
       <main>{children}</main>
-      <Newsletter />
       <Footer />
     </>
   );
@@ -2708,12 +2707,13 @@ function CategoryPage({ title, copy, links }) {
   );
 }
 
-function Newsletter() {
+function PuppyAlertSignup() {
   return (
-    <section className="premium-newsletter">
+    <section className="footer-alert" aria-labelledby="puppy-alert-title">
       <div>
-        <p className="premium-kicker">Puppy Alert Email</p>
-        <h2>Stay in the loop about upcoming litters.</h2>
+        <p className="premium-kicker">Puppy Alerts</p>
+        <h2 id="puppy-alert-title">Get Red Ranch puppy updates.</h2>
+        <p>Be first to know about available puppies, upcoming litters, and Red Ranch Dogs news.</p>
       </div>
       <LeadForm formType="newsletter" title="Puppy Alert Email" compact newsletterOnly />
     </section>
@@ -2840,21 +2840,37 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
 }
 
 function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="premium-footer">
-      <div className="footer-brand">
-        <img src={brand.logo} alt="Red Ranch Dogs" />
-        <p>{brand.tagline}</p>
-        <span>{brand.location}</span>
+      <PuppyAlertSignup />
+      <div className="footer-main">
+        <div className="footer-brand">
+          <img src={brand.logo} alt="Red Ranch Dogs" />
+          <p>{brand.tagline}</p>
+          <span>{brand.location}</span>
+          <span>Goldendoodles, Cavapoos, and Bernedoodles</span>
+        </div>
+        <nav className="footer-links" aria-label="Footer navigation">
+          <Link href="/puppies/available">Available Puppies</Link>
+          <Link href="/puppies/upcoming-litters">Upcoming Litters</Link>
+          <Link href="/apply">Apply</Link>
+          <Link href="/process/pricing">Pricing</Link>
+          <Link href="/process/faq">FAQ</Link>
+          <Link href="/contact">Contact</Link>
+        </nav>
+        <div className="footer-contact">
+          <p className="footer-column-title">Connect</p>
+          <a href={brand.sms}>Text Us</a>
+          <a href={`mailto:${brand.email}`}>Email</a>
+          <a href={brand.instagram} target="_blank" rel="noreferrer">Instagram</a>
+          <a href={brand.googleReviews} target="_blank" rel="noreferrer">Google Reviews</a>
+        </div>
       </div>
-      <div className="footer-links">
-        <Link href="/">Home</Link>
-        <Link href="/puppies">Puppies</Link>
-        <Link href="/process">Process</Link>
-        <Link href="/parents">Parents</Link>
-        <Link href="/apply">Apply</Link>
-        <Link href="/contact">Contact</Link>
-        <a href={brand.instagram} target="_blank" rel="noreferrer">Instagram</a>
+      <div className="footer-bottom">
+        <span>© {year} Red Ranch Dogs.</span>
+        <span>Family-run in Salado, Texas.</span>
       </div>
     </footer>
   );
