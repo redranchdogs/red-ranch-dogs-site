@@ -27,7 +27,6 @@ import {
   guardianProgram,
   images,
   litterDetails,
-  migrationChecklist,
   navGroups,
   parentDogs,
   previousLitterArchiveGroups,
@@ -42,7 +41,6 @@ import {
   studDetails,
   teamMembers,
   upcomingLitters,
-  updateChecklist,
   waitlists
 } from "./data/siteData.js";
 import breedProfiles from "./data/breeds.json";
@@ -1155,7 +1153,7 @@ function PuppyCard({ puppy }) {
           <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{status}</span>
         </div>
         <h2>{puppy.name}</h2>
-        <p>{puppy.personalityNote || puppy.description || "Updated puppy notes will be added as this puppy grows."}</p>
+        <p>{puppy.personalityNote || puppy.description || "Personality notes are updated as puppies grow and we learn more about their temperament."}</p>
         <dl className="details">
           <div><dt>Litter</dt><dd>{litterName}</dd></div>
           <div><dt>Gender</dt><dd>{gender}</dd></div>
@@ -1452,11 +1450,11 @@ function BreedPageTemplate({ breed }) {
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Available Puppies" title="Current listings" copy="If a puppy is listed here, the card can be updated weekly with clean photos, status, go-home timing, and personality notes." />
-        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">No current public puppy profiles for this breed yet.</p>}
+        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">We do not have publicly listed puppies for this breed right now. Join the waitlist or check current availability for new openings.</p>}
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Upcoming Litters" title="Planned pairings" />
-        {litters.length ? litters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />) : <p className="small-note">Upcoming litter details will be added here as plans are confirmed.</p>}
+        {litters.length ? litters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />) : <p className="small-note">Litter plans for this breed will be shared as pairings and timing are confirmed.</p>}
       </section>
       <section className="tile-grid three">
         {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
@@ -1536,7 +1534,7 @@ function LitterPage({ litter }) {
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Puppies" title="Puppy cards" copy="Names and labels are rendered by the website, so clean original photos can be uploaded without Canva text." />
-        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy cards can be added in src/data/puppies.json.</p>}
+        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
       </section>
       <section className="tile-grid three">
         {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
@@ -1575,7 +1573,7 @@ function ParentDetailPage({ parent }) {
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Related Litters" title={`${parent.name}'s related litters`} />
-        {relatedLitters.length ? relatedLitters.map((litter) => <LitterCard litter={litter} key={litter.slug} />) : <p className="small-note">Related litters can be connected in src/data/parents.json.</p>}
+        {relatedLitters.length ? relatedLitters.map((litter) => <LitterCard litter={litter} key={litter.slug} />) : <p className="small-note">Related litter history will appear here as records are organized.</p>}
       </section>
     </Layout>
   );
@@ -1586,11 +1584,11 @@ function PuppiesOverviewPage() {
     <SectionIndexPage
       eyebrow="Puppies"
       title="Puppies"
-      copy="The main sales section for available puppies, upcoming litters, breed education, and puppy preparation."
+      copy="Browse current availability, upcoming litters, breed information, and what comes home with each puppy."
       links={primaryNav.find((item) => item.label === "Puppies").links}
     >
       <section className="card-list">
-        <SectionHeader eyebrow="Current Cards" title="Sample puppy cards" />
+        <SectionHeader eyebrow="Current Availability" title="Puppy preview" />
         {puppyData.slice(0, 3).map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />)}
       </section>
     </SectionIndexPage>
@@ -1606,7 +1604,7 @@ function ParentsDirectoryPage({ role }) {
 
   return (
     <Layout>
-      <PageHero eyebrow="Parents" title={title} copy="Reusable parent cards are powered by structured data for photos, testing links, traits, and related litters." />
+      <PageHero eyebrow="Parents" title={title} copy="Meet the mamas and studs behind the Red Ranch Dogs program, including breed, size, traits, photos, and related litters." />
       <section className="tile-grid three">
         {filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
       </section>
@@ -1620,7 +1618,7 @@ function BreedParentDirectoryPage({ breedSlug }) {
 
   return (
     <Layout>
-      <PageHero eyebrow="Parents" title={`${breed?.name || "Breed"} Parents`} copy="Parent cards are powered by structured data so testing notes, traits, photos, and related litters can stay organized." />
+      <PageHero eyebrow="Parents" title={`${breed?.name || "Breed"} Parents`} copy="Meet the parent dogs in this part of the Red Ranch Dogs program, with profile details, traits, photos, and related litters." />
       <section className="tile-grid three">
         {filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
       </section>
@@ -1633,7 +1631,7 @@ function ProcessOverviewPage() {
     <SectionIndexPage
       eyebrow="Process"
       title="How the Red Ranch Dogs process fits together"
-      copy="Pricing, application, waitlist, FAQ, pickup, and delivery now live under Process instead of being scattered through About."
+      copy="Pricing, applications, waitlist details, FAQs, pickup, and delivery guidance are organized in one clear place."
       links={primaryNav.find((item) => item.label === "Process").links}
     />
   );
@@ -1658,10 +1656,10 @@ function PickupDeliveryPage() {
 function GuardianOpportunitiesPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Guardian Program" title="Current Guardian Opportunities" copy="Guardian openings will be listed here when Red Ranch Dogs is looking for the right local family fit." />
+      <PageHero eyebrow="Guardian Program" title="Current Guardian Opportunities" copy="Openings are shared when Red Ranch Dogs is looking for the right local guardian family fit." />
       <section className="content-section narrow">
-        <h2>No public guardian openings listed yet</h2>
-        <p>When an opportunity is ready, it can be added here with the dog profile, timing, household fit, and application CTA.</p>
+        <h2>No guardian openings right now</h2>
+        <p>Check back for future opportunities or submit a guardian application so we can learn more about your family.</p>
         <Link href="/guardian-program/application" className="button primary">Guardian Application</Link>
       </section>
     </Layout>
@@ -1677,7 +1675,7 @@ function ReproductiveServicesPage() {
           <article className="text-card" key={title}>
             <Sparkles size={24} />
             <h2>{title}</h2>
-            <p>Phase 2 copy can expand this with exact service details, requirements, and next steps.</p>
+            <p>Share your breeding goals, timing, and questions so we can guide you through the next step.</p>
           </article>
         ))}
       </section>
@@ -1691,7 +1689,7 @@ function ShippingCollectionPage() {
       <PageHero eyebrow="Stud Services" title="Shipping and Collection Info" copy="Chilled semen shipping, collection timing, and breeder coordination details will be confirmed before each collection." />
       <section className="content-section narrow">
         <h2>Information to collect</h2>
-        <p>Add collection clinic details, shipping windows, progesterone timing expectations, and contact requirements here when finalized.</p>
+        <p>Collection timing, shipping windows, progesterone testing expectations, and breeder coordination are confirmed directly before each collection.</p>
       </section>
     </Layout>
   );
@@ -1718,7 +1716,7 @@ function AboutOverviewPage() {
     <SectionIndexPage
       eyebrow="About"
       title="About Red Ranch Dogs"
-      copy="About is now focused on the family, team, reviews, and contact information."
+      copy="Learn more about the family, team, reviews, and ways to contact Red Ranch Dogs."
       links={primaryNav.find((item) => item.label === "About").links}
     />
   );
@@ -1799,7 +1797,7 @@ function AvailablePuppiesPage() {
       ) : (
         <section className="content-section narrow">
           <h2>No publicly listed puppies right now</h2>
-          <p>The current Squarespace page does not show individual available puppy cards. The new site is ready for them as soon as the next availability list is confirmed.</p>
+          <p>We do not have publicly listed puppies right now. Join the waitlist or view upcoming litters to learn what is planned next.</p>
           <div className="actions">
             <Link href="/apply" className="button primary">Apply</Link>
             <Link href="/puppies/upcoming-litters" className="button secondary">View Upcoming Litters</Link>
@@ -1813,7 +1811,7 @@ function AvailablePuppiesPage() {
 function CurrentLittersPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Updated 4/21/26" title="Current Litters" copy="Current litter cards can be updated by changing one data file and adding new photos." />
+      <PageHero eyebrow="Updated 4/21/26" title="Current Litters" copy="See current Red Ranch Dogs litters, go-home timing, and puppy availability updates." />
       <section className="card-list">
         {currentLitters.map((litter) => <LitterCard litter={litter} key={litter.name} />)}
       </section>
@@ -1841,7 +1839,7 @@ function UpcomingLittersPage() {
         <p>Families can choose to move forward with a litter or pass and remain on the general waitlist. Pairings may shift based on timing, mama health, genetics, and what is best for the dogs.</p>
       </section>
       <section className="card-list">
-        <SectionHeader eyebrow="Planned Litters" title="Planned pairings" copy="Each litter card is powered by structured data and can be updated as pairings, timing, and availability are confirmed." />
+        <SectionHeader eyebrow="Planned Litters" title="Planned pairings" copy="Pairings, timing, and availability are updated as plans are confirmed." />
         {litterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
       </section>
       <section className="content-section legacy-planning-notes">
@@ -1923,7 +1921,7 @@ function PreviousLitterDetailPage({ litter }) {
             ))}
           </div>
         ) : (
-          <p className="small-note">Puppy names were not exposed in the public text for this archived litter.</p>
+          <p className="small-note">Individual puppy names are not shown for this archived litter.</p>
         )}
       </section>
       {litter.milestones.length > 0 && (
@@ -1932,7 +1930,7 @@ function PreviousLitterDetailPage({ litter }) {
           <ul className="check-list">
             {litter.milestones.map((item) => <li key={item}>{item}</li>)}
           </ul>
-          <p className="small-note">One representative image is migrated now. Full age-by-age gallery migration is queued for a later media pass.</p>
+          <p className="small-note">Additional gallery photos may be added over time.</p>
         </section>
       )}
     </Layout>
@@ -2040,7 +2038,7 @@ function StudDetailPage({ stud }) {
               {stud.semenEvals.map((item) => <li key={item}>{item}</li>)}
             </ul>
           ) : (
-            <p>Evaluation details can be added here when confirmed from the live records.</p>
+            <p>Semen evaluation details are shared with approved breeder inquiries when available.</p>
           )}
         </article>
         <article className="text-card">
@@ -2051,7 +2049,7 @@ function StudDetailPage({ stud }) {
               {stud.notes.map((item) => <li key={item}>{item}</li>)}
             </ul>
           ) : (
-            <p>Additional litter history, gallery notes, and breeder details can be expanded during the next admin pass.</p>
+            <p>Additional litter history, gallery notes, and breeder details are shared as records are updated.</p>
           )}
         </article>
       </section>
@@ -2195,7 +2193,7 @@ function FamilyPage() {
 function ReviewsPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Reviews" title="Testimonials & Customer Reviews" copy="Visible public reviews have been migrated into the new site. The final migration can import more Google reviews once access is connected." />
+      <PageHero eyebrow="Reviews" title="Testimonials & Customer Reviews" copy="Read kind words from puppy families about communication, care, and the Red Ranch Dogs process." />
       <TestimonialSection items={testimonialProfiles.length ? testimonialProfiles : reviews.map((review) => ({ ...review, name: review.name || "Red Ranch family" }))} />
     </Layout>
   );
@@ -2221,7 +2219,7 @@ function ParentsPage({ type = "all" }) {
   const cards = type === "studs" ? parentDogs.studs : type === "dams" ? parentDogs.dams : [...parentDogs.dams, ...parentDogs.studs];
   return (
     <Layout>
-      <PageHero eyebrow="Parents" title={type === "studs" ? "Studs" : type === "dams" ? "Dams" : "Parent Dogs"} copy="Parent profiles are structured so health testing, photos, traits, and previous litters can be expanded over time." />
+      <PageHero eyebrow="Parents" title={type === "studs" ? "Studs" : type === "dams" ? "Dams" : "Parent Dogs"} copy="Meet the parent dogs behind the program, including health testing, photos, traits, and litter history." />
       <section className="tile-grid">
         {cards.map((dog) => (
           <article className="text-card parent-card" key={dog.name}>
@@ -2305,13 +2303,13 @@ function DamDetailPage({ dam }) {
               {dam.previousLitters.map((item) => <li key={item}>{item}</li>)}
             </ul>
           ) : (
-            <p>No public previous-litter list was visible for this profile yet.</p>
+            <p>Previous litter history will appear here as records are organized.</p>
           )}
         </article>
         <article className="text-card">
           <Sparkles size={24} />
           <h2>Gallery Status</h2>
-          <p>Main profile photo is migrated. Full photo gallery migration is queued for the next media pass.</p>
+          <p>Additional profile photos may be added over time.</p>
         </article>
       </section>
     </Layout>
@@ -2444,7 +2442,7 @@ function JoinWaitlistPage() {
 function StudServicesPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Stud Services" title="Health-Tested Stud Services" copy="A rebuilt services page for stud profiles, reproductive education, and breeder inquiries." image={images.studGoldendoodle} />
+      <PageHero eyebrow="Stud Services" title="Health-Tested Stud Services" copy="Health-tested stud options, reproductive education, and breeder inquiry details for approved programs." image={images.studGoldendoodle} />
       <section className="content-section">
         {studCatalog.map((group) => (
           <article className="group-panel" key={group.breed}>
@@ -2905,7 +2903,7 @@ function Footer() {
 function NotFoundPage() {
   return (
     <Layout>
-      <PageHero eyebrow="404" title="Page Not Found" copy="This route is ready for a redirect once the final Squarespace URL map is exported." />
+      <PageHero eyebrow="404" title="Page Not Found" copy="The page you are looking for may have moved. Use the navigation or contact us if you need help finding something." />
     </Layout>
   );
 }
@@ -2937,31 +2935,6 @@ const categories = {
     links: navGroups.find((group) => group.label === "Stud Services").links
   }
 };
-
-function UpdatesGuidePage() {
-  return (
-    <Layout>
-      <PageHero eyebrow="Internal Workflow" title="Codex Update Workflow" copy="Use this checklist when new puppy photos, litter changes, or page updates need to be published." />
-      <section className="content-section narrow">
-        <h2>Routine update checklist</h2>
-        <ul className="check-list">
-          {updateChecklist.map((item) => <li key={item}>{item}</li>)}
-        </ul>
-      </section>
-      <section className="content-section narrow">
-        <h2>Migration status</h2>
-        <div className="stack">
-          {migrationChecklist.map(([area, status]) => (
-            <article className="text-card" key={area}>
-              <h3>{area}</h3>
-              <p>{status}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-    </Layout>
-  );
-}
 
 export default function App() {
   const [path, setPath] = useState(pathNow());
@@ -3037,8 +3010,7 @@ export default function App() {
       "/join-our-waitlist": <JoinWaitlistPage />,
       "/application-process": <ApplicationProcessPage />,
       "/waitlist": <WaitlistPage />,
-      "/puppy-application": <ApplicationPage />,
-      "/updates": <UpdatesGuidePage />
+      "/puppy-application": <ApplicationPage />
     };
 
     if (routes[path]) return routes[path];
