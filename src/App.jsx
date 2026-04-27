@@ -1013,7 +1013,7 @@ function HomeTestimonials() {
       <div className="testimonial-feature">
         <figure className="testimonial-media-card">
           <img
-            src="/images/home/red-ranch-dogs-testimonial-puppy.jpg"
+            src="/images/home/red-ranch-dogs-mobile-testimony-banner.jpg"
             alt="Red Ranch Dogs puppy with a family member"
             loading="lazy"
           />
