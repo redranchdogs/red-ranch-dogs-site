@@ -970,16 +970,18 @@ function WhyRedRanch() {
 
 function WaitlistSteps() {
   const steps = [
-    ["01", "Apply", "Tell us about your family, timing, breed preference, and questions."],
-    ["02", "Place Deposit", "Join the right waitlist with a deposit and a clear place in line."],
-    ["03", "Pick or Pass", "Review litter updates and choose when the right puppy is ready."]
+    ["01", "Apply or Ask", "Start with an application, or reach out if you see an available puppy you love."],
+    ["02", "Join the Right Waitlist", "A $500 non-refundable deposit reserves your spot on a breed-specific waitlist and applies toward your puppy."],
+    ["03", "Pick or Pass", "When a litter is born, families are contacted in deposit order. Choose a puppy or pass and keep your spot."],
+    ["04", "Choose Your Puppy", "Puppy picks are guided with photos, videos, personality notes, and video chats so you can feel confident."]
   ];
 
   return (
     <FadeInSection className="premium-section waitlist-section">
       <SectionIntro
-        eyebrow="How the Waitlist Works"
-        title="Simple, fair, and easy to understand."
+        eyebrow="See How It Works"
+        title="A simple, fair waitlist process."
+        copy="Apply when you're ready, join the breed waitlist that fits your family, and we'll guide you through each litter announcement, puppy pick, and go-home step."
       />
       <div className="waitlist-steps">
         {steps.map(([number, title, copy]) => (
@@ -989,6 +991,17 @@ function WaitlistSteps() {
             <p>{copy}</p>
           </article>
         ))}
+      </div>
+      <div className="waitlist-note">
+        <CheckCircle2 size={22} aria-hidden="true" />
+        <p>
+          For puppy health and safety, puppy picks are not done in person before go-home. We use photos,
+          videos, and video calls so families can choose confidently while protecting young puppies before vaccinations.
+        </p>
+      </div>
+      <div className="waitlist-actions actions">
+        <Link href="/apply" className="button primary">Apply for a Puppy</Link>
+        <Link href="/process/application-and-waitlist" className="button secondary">View Full Process</Link>
       </div>
     </FadeInSection>
   );

@@ -652,12 +652,13 @@ body.menu-locked {
 
 .waitlist-steps {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .waitlist-steps article {
+  position: relative;
   display: grid;
-  gap: 8px;
+  gap: 10px;
   padding: 20px;
   background: var(--warm-paper);
   border: 1px solid var(--premium-line);
@@ -665,8 +666,42 @@ body.menu-locked {
 }
 
 .waitlist-steps span {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
   color: var(--brand-red);
+  background: rgba(148, 31, 23, 0.07);
+  border: 1px solid rgba(148, 31, 23, 0.16);
+  border-radius: 999px;
+  font-size: 0.8rem;
   font-weight: 900;
+}
+
+.waitlist-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  margin-top: 16px;
+  padding: 16px;
+  color: var(--premium-muted);
+  background: rgba(255, 250, 242, 0.72);
+  border: 1px solid var(--premium-line);
+  border-radius: var(--radius-md);
+}
+
+.waitlist-note svg {
+  color: var(--brand-red);
+}
+
+.waitlist-note p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.waitlist-actions {
+  margin-top: 18px;
 }
 
 .testimonial-row {
@@ -896,7 +931,12 @@ body.menu-locked {
   }
 
   .waitlist-steps {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .waitlist-note {
+    margin-top: 20px;
+    padding: 18px 20px;
   }
 
   .testimonial-row {
