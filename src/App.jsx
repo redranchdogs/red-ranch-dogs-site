@@ -2826,9 +2826,9 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
         </div>
       )}
       {newsletterOnly && (
-        <label>
-          Email Address
-          <input name="email" type="email" required autoComplete="email" />
+        <label className="newsletter-email-field">
+          <span>Email Address</span>
+          <input name="email" type="email" required autoComplete="email" placeholder="Email Address" />
         </label>
       )}
       <button className="button primary" disabled={busy} type="submit">
@@ -2850,7 +2850,6 @@ function Footer() {
           <img src={brand.logo} alt="Red Ranch Dogs" />
           <p>{brand.tagline}</p>
           <span>{brand.location}</span>
-          <span>Goldendoodles, Cavapoos, and Bernedoodles</span>
         </div>
         <nav className="footer-links" aria-label="Footer navigation">
           <Link href="/puppies/available">Available Puppies</Link>
