@@ -1502,14 +1502,27 @@ function LitterPage({ litter }) {
   const parents = parentProfiles.filter((parent) => parent.slug === litter.mamaSlug || parent.slug === litter.studSlug);
   const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
+  const availablePuppies = puppies.filter((puppy) => puppy.status === "Available");
+  const gallery = litter.weeklyUpdateGallery || [];
+  const hasParentPairing = mama?.mainPhoto && stud?.mainPhoto;
 
   return (
     <Layout>
-      <PageHero eyebrow="Litter" title={litter.name} copy={litter.availabilitySummary} image={litter.weeklyUpdateGallery?.[0] || images.doodles} />
-      <section className="content-section">
-        <article className="group-panel">
-          {mama?.mainPhoto && stud?.mainPhoto && (
-            <figure className="pairing-photo-grid large" aria-label={`${litter.name} parent pairing`}>
+      <PageHero
+        eyebrow={litter.status || "Litter"}
+        title={litter.name}
+        copy={litter.availabilitySummary}
+        actions={(
+          <>
+            <Link href="/apply" className="button primary">Ask About This Litter</Link>
+            <Link href="/puppies/available" className="button secondary">View Available Puppies</Link>
+          </>
+        )}
+      />
+      <section className="litter-detail-shell">
+        <article className="litter-pairing-card group-panel">
+          {hasParentPairing ? (
+            <figure className="pairing-photo-grid large litter-pairing-media" aria-label={`${litter.name} parent pairing`}>
               <div>
                 <img src={mama.mainPhoto} alt={`${mama.name} - mama for ${litter.name}`} loading="lazy" />
                 <figcaption>{mama.name}</figcaption>
@@ -1519,31 +1532,47 @@ function LitterPage({ litter }) {
                 <figcaption>{stud.name}</figcaption>
               </div>
             </figure>
+          ) : gallery[0] ? (
+            <img className="litter-feature-photo" src={gallery[0]} alt={`${litter.name} litter update`} loading="lazy" />
+          ) : (
+            <ImagePlaceholder label="Litter pairing photo" tall />
           )}
-          <h2>Litter Details</h2>
-          <dl className="details facts-wide">
+        </article>
+        <aside className="litter-summary-panel group-panel">
+          <p className="eyebrow">Litter Snapshot</p>
+          <h2>{litter.breed} litter details</h2>
+          <p>{litter.availabilityNote || "Approved families are contacted in waitlist order as availability is confirmed."}</p>
+          <dl className="details litter-facts">
             <div><dt>Mama</dt><dd>{litter.mama}</dd></div>
             <div><dt>Stud</dt><dd>{litter.stud}</dd></div>
-            <div><dt>Breed</dt><dd>{litter.breed}</dd></div>
             <div><dt>Birth date</dt><dd>{litter.birthDate}</dd></div>
-            <div><dt>Go-home date</dt><dd>{litter.goHomeDate}</dd></div>
+            <div><dt>Go-home</dt><dd>{litter.goHomeDate}</dd></div>
             <div><dt>Expected size</dt><dd>{litter.expectedSize}</dd></div>
-            <div><dt>Price range</dt><dd>{litter.priceRange}</dd></div>
+            <div><dt>Price</dt><dd>{litter.priceRange}</dd></div>
           </dl>
-        </article>
+          <div className="litter-availability-callout">
+            <span>{availablePuppies.length || puppies.length || 0}</span>
+            <p>{availablePuppies.length ? "available puppies from this litter" : puppies.length ? "puppy profiles listed from this litter" : "puppy profiles will appear here when ready"}</p>
+          </div>
+          <div className="actions">
+            <Link href="/apply" className="button primary">Apply for a Puppy</Link>
+            <Link href="/contact" className="button secondary">Ask a Question</Link>
+          </div>
+        </aside>
       </section>
       <section className="card-list">
-        <SectionHeader eyebrow="Puppies" title="Puppy cards" copy="Names and labels are rendered by the website, so clean original photos can be uploaded without Canva text." />
+        <SectionHeader eyebrow="Puppies" title="Puppies from this litter" copy="Names, availability labels, and puppy details are handled by the website so clean original photos can stay clean." />
         {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
       </section>
-      <section className="tile-grid three">
+      <section className="tile-grid three litter-parent-grid">
+        <SectionHeader eyebrow="Parents" title={`${litter.mama} + ${litter.stud}`} copy="Meet the parent dogs behind this pairing." />
         {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
       </section>
-      <section className="content-section">
-        <h2>Weekly update gallery</h2>
-        <ImageGallery images={litter.weeklyUpdateGallery} label={`${litter.name} weekly update`} />
+      <section className="content-section litter-gallery-section">
+        <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="New puppy photos can be added here as the litter grows." />
+        <ImageGallery images={gallery} label={`${litter.name} weekly update`} />
       </section>
-      <CTASection title="Ask about this litter" copy="Join the waitlist or ask about availability for this pairing." />
+      <CTASection title="Interested in this litter?" copy="Apply now or ask about availability, timing, and whether this pairing is the right fit for your family." primaryLabel="Apply for a Puppy" secondaryHref="/contact" secondaryLabel="Ask a Question" />
     </Layout>
   );
 }

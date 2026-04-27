@@ -1690,6 +1690,7 @@ main {
 .newsletter,
 .site-footer,
 .content-section,
+.litter-detail-shell,
 .coat-grid,
 .marking-grid,
 .card-list,
@@ -2276,6 +2277,102 @@ textarea {
 .pairing-photo-grid.large div,
 .pairing-photo-grid.large img {
   min-height: clamp(280px, 44vw, 460px);
+}
+
+.litter-detail-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 24px;
+  align-items: stretch;
+  padding: 24px 0 42px;
+}
+
+.litter-pairing-card {
+  display: grid;
+  padding: 18px;
+}
+
+.litter-pairing-media {
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.litter-feature-photo,
+.litter-pairing-card > .image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(320px, 42vw, 500px);
+  object-fit: cover;
+}
+
+.litter-summary-panel {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.litter-summary-panel h2 {
+  max-width: 10ch;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.6rem, 4.8vw, 4.2rem);
+  line-height: 0.92;
+}
+
+.litter-summary-panel > p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.litter-facts {
+  grid-template-columns: 1fr;
+  margin: 8px 0 0;
+}
+
+.litter-availability-callout {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  margin-top: 2px;
+  padding: 16px;
+  background: rgba(156, 31, 22, 0.07);
+  border: 1px solid rgba(156, 31, 22, 0.18);
+  border-radius: 6px;
+}
+
+.litter-availability-callout span {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: var(--paper);
+  background: var(--brand-red);
+  border-radius: 999px;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.litter-availability-callout p {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.litter-parent-grid .section-header {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.tile-grid.three.litter-parent-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.litter-gallery-section .image-gallery {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .details {
@@ -3973,6 +4070,41 @@ summary {
   .pairing-photo-grid div,
   .pairing-photo-grid img {
     min-height: 230px;
+  }
+
+  .litter-detail-shell {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 16px;
+    padding-bottom: 34px;
+  }
+
+  .litter-pairing-card {
+    padding: 12px;
+  }
+
+  .litter-feature-photo,
+  .litter-pairing-card > .image-placeholder,
+  .litter-pairing-media,
+  .litter-pairing-media div,
+  .litter-pairing-media img {
+    min-height: 260px;
+  }
+
+  .litter-summary-panel h2 {
+    max-width: 12ch;
+  }
+
+  .litter-parent-grid {
+    gap: 18px;
+  }
+
+  .tile-grid.three.litter-parent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .litter-gallery-section .image-gallery {
+    grid-template-columns: 1fr;
   }
 
   .pairing-photo-grid figcaption {
