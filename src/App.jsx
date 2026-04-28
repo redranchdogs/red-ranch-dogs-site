@@ -146,6 +146,10 @@ const architectureSeo = {
     title: "Application & Waitlist | Red Ranch Dogs",
     description: "Start the Red Ranch Dogs application and waitlist process for Goldendoodles, Cavapoos, and Bernedoodles."
   },
+  "/process/waitlist": {
+    title: "Current Waitlist | Red Ranch Dogs",
+    description: "View current public Red Ranch Dogs waitlist positions for Goldendoodles, Cavapoos, and Bernedoodles."
+  },
   "/process/faq": {
     title: "FAQ | Red Ranch Dogs",
     description: "Answers to common Red Ranch Dogs questions about process, pricing, waitlists, and breed fit."
@@ -454,6 +458,7 @@ const primaryNav = [
       { label: "How It Works", href: "/process/how-it-works" },
       { label: "Pricing", href: "/process/pricing" },
       { label: "Application and Waitlist", href: "/process/application-and-waitlist" },
+      { label: "Current Waitlist", href: "/process/waitlist" },
       { label: "FAQ", href: "/process/faq" },
       { label: "Puppy Pickup and Delivery", href: "/process/pickup-and-delivery" }
     ]
@@ -1384,6 +1389,21 @@ const includedWithPuppy = [
   "Communication as your puppy grows",
   "Support after pickup"
 ];
+
+const waitlistPolicies = [
+  ["One row equals one spot", "Each public position represents one waitlist deposit. If a family has two spots, they appear twice."],
+  ["Breed-specific lists", "Goldendoodles, Cavapoos, and Bernedoodles each have their own waitlist."],
+  ["Pick or pass", "Families can pass on a litter and remain on their breed waitlist for a future opportunity."],
+  ["Privacy first", "The public list uses first name and last initial only."]
+];
+
+function publicWaitlistNames(names = []) {
+  return names.flatMap((name) => {
+    const repeat = /\(2\)/.test(name) ? 2 : 1;
+    const displayName = name.replace(/\s*\([^)]*\)/g, "").trim();
+    return Array.from({ length: repeat }, () => displayName);
+  });
+}
 
 function SectionIndexPage({ eyebrow, title, copy, links, children }) {
   return (
@@ -2412,19 +2432,74 @@ function ApplicationPage() {
 }
 
 function WaitlistPage() {
+  const publicWaitlists = waitlists.map((list) => ({
+    ...list,
+    breed: list.breed.replace(" Waitlist", ""),
+    names: publicWaitlistNames(list.names)
+  }));
+
   return (
-    <Layout>
-      <PageHero eyebrow="Updated 4/10/26" title="Waitlist" copy="Deposits are non-refundable but transferable to a different waitlist. Joining multiple waitlists requires one $500 deposit per list." />
-      <section className="tile-grid">
-        {waitlists.map((list) => (
-          <article className="text-card waitlist-card" key={list.breed}>
-            <h2>{list.breed}</h2>
-            <p>{list.size}</p>
-            <ol>{list.names.map((name) => <li key={name}>{name}</li>)}</ol>
+    <BuyerPageTemplate
+      eyebrow="Current Waitlist"
+      title="Public Waitlist"
+      copy="A transparent look at current Red Ranch Dogs waitlist positions for Goldendoodles, Cavapoos, and Bernedoodles."
+      actions={(
+        <>
+          <Link href="/apply" className="button primary">Apply for a Puppy</Link>
+          <Link href="/process/application-and-waitlist" className="button secondary">How It Works</Link>
+        </>
+      )}
+      cta={{
+        title: "Ready to join a waitlist?",
+        copy: "Apply now and we will help you understand breed fit, current availability, and what the next step looks like.",
+        primaryLabel: "Apply for a Puppy",
+        secondaryHref: "/puppies/available",
+        secondaryLabel: "View Available Puppies"
+      }}
+    >
+      <PageIntroPanel
+        eyebrow="How to read this list"
+        title="One position per deposit."
+        copy="This page is meant to help families understand current demand and waitlist order. Names are shown as first name and last initial only."
+      />
+      <section className="tile-grid four priority-grid waitlist-policy-grid">
+        {waitlistPolicies.map(([title, copy]) => (
+          <article className="text-card icon-card compact-card" key={title}>
+            <CheckCircle2 size={24} />
+            <h2>{title}</h2>
+            <p>{copy}</p>
           </article>
         ))}
       </section>
-    </Layout>
+      <section className="waitlist-board">
+        <SectionHeader eyebrow="Current Positions" title="Breed waitlists" copy="Families are contacted in order of deposit placed. When a family chooses a puppy, their public waitlist spot is removed." />
+        <div className="waitlist-board-grid">
+          {publicWaitlists.map((list) => (
+            <article className="text-card waitlist-card public-waitlist-card" key={list.breed}>
+              <div className="waitlist-card-header">
+                <p className="eyebrow">{list.breed}</p>
+                <span>{list.names.length} spots</span>
+              </div>
+              <ol>
+                {list.names.map((name, index) => (
+                  <li key={`${list.breed}-${name}-${index}`}>
+                    <span>{index + 1}</span>
+                    <strong>{name}</strong>
+                  </li>
+                ))}
+              </ol>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="content-section narrow waitlist-note-panel">
+        <article className="group-panel">
+          <h2>Waitlist updates</h2>
+          <p>This public list will eventually be fed from the Waitlist Sheet in the Website Hub. For now, it uses structured website data so we can build and verify the page template before automating the update flow.</p>
+          <p className="small-note">The public page should never show emails, phone numbers, deposit dates, application notes, or full last names.</p>
+        </article>
+      </section>
+    </BuyerPageTemplate>
   );
 }
 
@@ -3010,6 +3085,7 @@ export default function App() {
       "/process/how-it-works": <ApplicationProcessPage />,
       "/process/pricing": <PricingPage />,
       "/process/application-and-waitlist": <JoinWaitlistPage />,
+      "/process/waitlist": <WaitlistPage />,
       "/process/faq": <FaqPage />,
       "/process/pickup-and-delivery": <PickupDeliveryPage />,
       "/stud-services": <StudServicesPage />,

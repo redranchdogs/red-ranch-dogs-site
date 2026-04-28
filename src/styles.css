@@ -2570,6 +2570,98 @@ summary {
   padding-left: 22px;
 }
 
+.waitlist-board {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 26px 0 64px;
+}
+
+.waitlist-board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.public-waitlist-card {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.waitlist-card-header {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.waitlist-card-header .eyebrow {
+  margin: 0;
+}
+
+.waitlist-card-header span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  color: var(--brand-red);
+  background: rgba(156, 31, 22, 0.08);
+  border: 1px solid rgba(156, 31, 22, 0.18);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.public-waitlist-card ol {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.public-waitlist-card li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  min-height: 42px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(95, 69, 45, 0.1);
+}
+
+.public-waitlist-card li:last-child {
+  border-bottom: 0;
+}
+
+.public-waitlist-card li span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  color: var(--brand-red);
+  background: rgba(156, 31, 22, 0.08);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.public-waitlist-card li strong {
+  color: var(--ink);
+  font-size: 1.02rem;
+}
+
+.waitlist-note-panel {
+  padding-top: 6px;
+}
+
+.waitlist-policy-grid .compact-card h2 {
+  font-size: clamp(1.65rem, 2.8vw, 2.15rem);
+}
+
 .inline-link {
   display: inline-flex;
   margin-top: 12px;
@@ -4468,6 +4560,17 @@ summary {
   .page-intro-panel {
     padding-top: 34px;
     padding-bottom: 38px;
+  }
+
+  .waitlist-board {
+    width: min(100% - 30px, 720px);
+    padding-top: 18px;
+    padding-bottom: 58px;
+  }
+
+  .waitlist-board-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
