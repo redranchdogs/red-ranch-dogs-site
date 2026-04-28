@@ -20,10 +20,15 @@
     "priceRange": "$3,200",
     "availabilitySummary": "Two male Mini Goldendoodles are currently available from Birdie and Waylon's litter.",
     "availabilityNote": "Approved families are contacted in waitlist order.",
-    "puppySlugs": ["ranger", "axel"],
+    "puppySlugs": [
+      "ranger",
+      "axel"
+    ],
     "photoFolderHint": "Website Hub / Photos / Litters / Birdie 3 + Waylon",
     "weeklyUpdateStatus": "Week 3 photos loaded for Ranger and Axel.",
-    "weeklyUpdateGallery": ["/images/litters/birdie-waylon.webp"]
+    "weeklyUpdateGallery": [
+      "/images/litters/birdie-waylon.webp"
+    ]
   },
   {
     "slug": "winnie-redford-summer-2026",
@@ -49,7 +54,9 @@
     "puppySlugs": [],
     "photoFolderHint": "Website Hub / Photos / Litters / Winnie + Redford",
     "weeklyUpdateStatus": "No puppy photos yet. Planned litter only.",
-    "weeklyUpdateGallery": ["/images/litters/winnie-redford.webp"]
+    "weeklyUpdateGallery": [
+      "/images/litters/winnie-redford.webp"
+    ]
   },
   {
     "slug": "kylie-wayne-fall-2026",
@@ -75,6 +82,46 @@
     "puppySlugs": [],
     "photoFolderHint": "Website Hub / Photos / Litters / Kylie + Wayne",
     "weeklyUpdateStatus": "No puppy photos yet. Planned litter only.",
-    "weeklyUpdateGallery": ["/images/seed/dam-bernedoodle.webp"]
+    "weeklyUpdateGallery": [
+      "/images/seed/dam-bernedoodle.webp"
+    ]
+  },
+  {
+    "slug": "honey-bram-spring-2026",
+    "name": "Honey + Bram",
+    "visibility": "public",
+    "status": "Current Litter",
+    "litterNumber": "Honey 2",
+    "mamaSlug": "honey",
+    "mama": "Honey",
+    "studSlug": "bram",
+    "stud": "Bram",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Micro Goldendoodle",
+    "birthDate": "March 16, 2026",
+    "goHomeDate": "May 9-10, 2026",
+    "expectedSize": "10-15 lbs",
+    "expectedTiming": "Born March 16, 2026",
+    "expectedColors": "Apricot, red, and red chocolate possibilities",
+    "expectedCoatTraits": "Straight to slightly wavy, silky-soft coats with minimal to no shedding expected",
+    "priceRange": "$4,500",
+    "availabilitySummary": "Honey and Bram have a reserved litter of Multigen Micro Goldendoodles.",
+    "availabilityNote": "All puppies in this litter are currently reserved.",
+    "puppySlugs": [
+      "buzz",
+      "bumble",
+      "bee",
+      "honeycomb",
+      "hive"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Litters / Honey 2 + Bram",
+    "weeklyUpdateStatus": "Week 6 screenshot photos loaded as temporary placeholders until the next photo drop.",
+    "weeklyUpdateGallery": [
+      "/images/puppies/honey-bram-2026/buzz-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg",
+      "/images/puppies/honey-bram-2026/bumble-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg",
+      "/images/puppies/honey-bram-2026/bee-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg",
+      "/images/puppies/honey-bram-2026/honeycomb-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg",
+      "/images/puppies/honey-bram-2026/hive-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg"
+    ]
   }
 ]

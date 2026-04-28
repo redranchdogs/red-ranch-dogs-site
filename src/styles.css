@@ -4534,6 +4534,7 @@ summary {
   }
 
   .page-hero.with-image {
+    grid-template-columns: 1fr;
     gap: 18px;
   }
 

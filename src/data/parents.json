@@ -11,10 +11,14 @@
     "coat": "Wavy",
     "status": "Active",
     "mainPhoto": "/images/dams/birdie-goldendoodle-mama-red-ranch-dogs.jpg",
-    "photos": ["/images/dams/birdie-goldendoodle-mama-red-ranch-dogs.jpg"],
+    "photos": [
+      "/images/dams/birdie-goldendoodle-mama-red-ranch-dogs.jpg"
+    ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": ["birdie-waylon-spring-2026"],
+    "relatedLitters": [
+      "birdie-waylon-spring-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Birdie",
     "description": "Sweet Goldendoodle mama with a gentle family temperament."
   },
@@ -30,10 +34,14 @@
     "coat": "Straight to wavy",
     "status": "Active",
     "mainPhoto": "/images/dams/honey.webp",
-    "photos": ["/images/dams/honey.webp"],
+    "photos": [
+      "/images/dams/honey.webp"
+    ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [],
+    "relatedLitters": [
+      "honey-bram-spring-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Honey",
     "description": "Micro Goldendoodle mama known for beautiful color and compact size."
   },
@@ -49,10 +57,14 @@
     "coat": "Wavy",
     "status": "Active",
     "mainPhoto": "/images/dams/winnie.webp",
-    "photos": ["/images/dams/winnie.webp"],
+    "photos": [
+      "/images/dams/winnie.webp"
+    ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": ["winnie-redford-summer-2026"],
+    "relatedLitters": [
+      "winnie-redford-summer-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Winnie",
     "description": "Cavapoo program mama with an affectionate, steady personality."
   },
@@ -68,10 +80,14 @@
     "coat": "Curly",
     "status": "Active",
     "mainPhoto": "/images/studs/waylon-jennings-mini-goldendoodle-stud-red-ranch-dogs.jpg",
-    "photos": ["/images/studs/waylon-jennings-mini-goldendoodle-stud-red-ranch-dogs.jpg"],
+    "photos": [
+      "/images/studs/waylon-jennings-mini-goldendoodle-stud-red-ranch-dogs.jpg"
+    ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": ["birdie-waylon-spring-2026"],
+    "relatedLitters": [
+      "birdie-waylon-spring-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Waylon Jennings",
     "description": "Health-tested stud used in select Goldendoodle pairings."
   },
@@ -87,10 +103,14 @@
     "coat": "Curly",
     "status": "Active",
     "mainPhoto": "/images/studs/robert-redford.webp",
-    "photos": ["/images/studs/robert-redford.webp"],
+    "photos": [
+      "/images/studs/robert-redford.webp"
+    ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": ["winnie-redford-summer-2026"],
+    "relatedLitters": [
+      "winnie-redford-summer-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Robert Redford",
     "description": "Stud used in select Cavapoo and doodle pairings."
   },
@@ -106,10 +126,14 @@
     "coat": "Wavy",
     "status": "Active",
     "mainPhoto": "/images/dams/kylie.webp",
-    "photos": ["/images/dams/kylie.webp"],
+    "photos": [
+      "/images/dams/kylie.webp"
+    ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": ["kylie-wayne-fall-2026"],
+    "relatedLitters": [
+      "kylie-wayne-fall-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Kylie",
     "description": "Bernedoodle program mama planned for select micro and mini Bernedoodle pairings."
   },
@@ -125,11 +149,36 @@
     "coat": "Curly",
     "status": "Active",
     "mainPhoto": "/images/studs/wayne.webp",
-    "photos": ["/images/studs/wayne.webp"],
+    "photos": [
+      "/images/studs/wayne.webp"
+    ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": ["kylie-wayne-fall-2026"],
+    "relatedLitters": [
+      "kylie-wayne-fall-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Wayne",
     "description": "Stud used for select Bernedoodle and Poodle pairings."
+  },
+  {
+    "slug": "bram",
+    "name": "Bram",
+    "visibility": "private",
+    "role": "stud",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Outside stud",
+    "weight": "To be confirmed",
+    "color": "To be confirmed",
+    "coat": "To be confirmed",
+    "status": "Outside Stud",
+    "mainPhoto": "",
+    "photos": [],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "honey-bram-spring-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Bram",
+    "description": "Outside stud for Honey 2."
   }
 ]
