@@ -2224,6 +2224,49 @@ textarea {
   padding: 18px;
 }
 
+.puppy-card {
+  grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.08fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.puppy-card-body {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.puppy-card-body h2 {
+  margin: 0;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.puppy-card-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.puppy-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.litter-puppy-list {
+  gap: 22px;
+}
+
+.litter-puppy-list > .section-header {
+  margin-bottom: 2px;
+}
+
 .animal-card > img {
   aspect-ratio: 4 / 3;
 }
@@ -2326,7 +2369,7 @@ textarea {
 }
 
 .litter-facts {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 8px 0 0;
 }
 
@@ -2447,16 +2490,15 @@ textarea {
 }
 
 .compact-details {
-  gap: 0 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 14px;
   margin: 12px 0;
 }
 
 .compact-details div {
-  display: grid;
-  grid-template-columns: minmax(72px, 0.72fr) minmax(0, 1fr);
-  gap: 8px;
-  align-items: start;
-  padding: 7px 0;
+  display: block;
+  min-width: 0;
+  padding: 8px 0;
 }
 
 .compact-details dt {
@@ -2465,7 +2507,7 @@ textarea {
 }
 
 .compact-details dd {
-  margin: 0;
+  margin: 3px 0 0;
   color: var(--ink);
   font-size: 0.94rem;
   line-height: 1.25;
@@ -4238,7 +4280,7 @@ summary {
   .puppy-photo-frame,
   .puppy-photo-frame img,
   .puppy-photo-frame .image-placeholder {
-    min-height: 240px;
+    min-height: 260px;
   }
 
   .pairing-photo-grid,
@@ -4267,7 +4309,21 @@ summary {
   }
 
   .litter-summary-panel h2 {
-    max-width: 12ch;
+    max-width: 15ch;
+    font-size: clamp(2.35rem, 11vw, 3.35rem);
+  }
+
+  .litter-summary-panel {
+    gap: 12px;
+  }
+
+  .litter-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 14px;
+  }
+
+  .litter-facts div {
+    padding-top: 8px;
   }
 
   .litter-about-section {
@@ -4313,13 +4369,12 @@ summary {
   }
 
   .compact-details {
-    grid-template-columns: 1fr;
-    gap: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 12px;
   }
 
   .compact-details div {
-    grid-template-columns: minmax(82px, 0.65fr) minmax(0, 1fr);
-    padding: 6px 0;
+    padding: 7px 0;
   }
 
   .parent-profile-card > img,

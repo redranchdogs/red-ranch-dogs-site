@@ -1162,24 +1162,27 @@ function PuppyCard({ puppy }) {
         )}
         <figcaption>{puppy.name}</figcaption>
       </figure>
-      <div>
+      <div className="puppy-card-body">
         <div className="card-kicker-row">
           <p className="eyebrow">{breed}</p>
           <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{status}</span>
         </div>
         <h2>{puppy.name}</h2>
-        <p>{puppy.personalityNote || puppy.description || "Personality notes are updated as puppies grow and we learn more about their temperament."}</p>
+        <p className="puppy-card-note">{puppy.personalityNote || puppy.description || "Personality notes are updated as puppies grow and we learn more about their temperament."}</p>
         <dl className="details compact-details">
           <div><dt>Litter</dt><dd>{litterName}</dd></div>
           <div><dt>Gender</dt><dd>{gender}</dd></div>
-          <div><dt>Status</dt><dd>{status}</dd></div>
           {birthDate && <div><dt>Birth Date</dt><dd>{birthDate}</dd></div>}
           <div><dt>Go Home</dt><dd>{goHome}</dd></div>
           <div><dt>Adult Weight</dt><dd>{weight}</dd></div>
           {price && <div><dt>Price</dt><dd>{price}</dd></div>}
         </dl>
         {puppy.availabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
-        {route && <Link href={route} className="button small">View Puppy</Link>}
+        {route && (
+          <div className="puppy-card-actions">
+            <Link href={route} className="button small">View Puppy</Link>
+          </div>
+        )}
       </div>
     </article>
   );
@@ -1687,7 +1690,7 @@ function LitterPage({ litter }) {
           </article>
         </section>
       )}
-      <section className="card-list">
+      <section className="card-list litter-puppy-list">
         <SectionHeader eyebrow="Puppies" title="Puppies from this litter" copy="Names, availability labels, and puppy details are handled by the website so clean original photos can stay clean." />
         {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
       </section>
