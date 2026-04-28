@@ -19,7 +19,9 @@ npm run verify:routes
 
 ## Content Updates
 
-Most public puppy and litter updates live in `src/data/siteData.js`.
+Most public puppy, litter, parent, pricing, FAQ, and waitlist updates live in structured files under `src/data/`.
+
+The public waitlist page uses `src/data/waitlist.json`, which mirrors the `Public Waitlist` tab in the Website Hub waitlist sheet. Only display-safe fields should be copied into the public data file: breed, position, display name, status, and whether the row should show publicly.
 
 Migration notes:
 
@@ -31,7 +33,7 @@ Migration notes:
 When new puppy photos arrive:
 
 1. Add optimized images under `public/images/puppies/` or replace the seeded Squarespace CDN URLs after the Squarespace media export.
-2. Update `availablePuppies`, `currentLitters`, `upcomingLitters`, `litterDetails`, or `previousLitterDetails` in `src/data/siteData.js`.
+2. Update the matching structured data file in `src/data/`.
 3. Run `npm run build`.
 4. Deploy through Vercel after review.
 

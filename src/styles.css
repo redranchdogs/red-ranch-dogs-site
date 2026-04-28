@@ -2654,6 +2654,11 @@ summary {
   font-size: 1.02rem;
 }
 
+.waitlist-updated {
+  margin: 18px auto 0;
+  text-align: center;
+}
+
 .waitlist-note-panel {
   padding-top: 6px;
 }

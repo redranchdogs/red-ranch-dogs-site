@@ -40,8 +40,7 @@ import {
   studCatalog,
   studDetails,
   teamMembers,
-  upcomingLitters,
-  waitlists
+  upcomingLitters
 } from "./data/siteData.js";
 import breedProfiles from "./data/breeds.json";
 import puppyProfiles from "./data/puppies.json";
@@ -51,6 +50,7 @@ import testimonialProfiles from "./data/testimonials.json";
 import faqProfiles from "./data/faqs.json";
 import pricingProfiles from "./data/pricing.json";
 import teamProfiles from "./data/team.json";
+import waitlistData from "./data/waitlist.json";
 
 function pathNow() {
   return window.location.pathname.replace(/\/$/, "") || "/";
@@ -1397,11 +1397,60 @@ const waitlistPolicies = [
   ["Privacy first", "The public list uses first name and last initial only."]
 ];
 
-function publicWaitlistNames(names = []) {
-  return names.flatMap((name) => {
-    const repeat = /\(2\)/.test(name) ? 2 : 1;
-    const displayName = name.replace(/\s*\([^)]*\)/g, "").trim();
-    return Array.from({ length: repeat }, () => displayName);
+const waitlistBreedOrder = ["Goldendoodle", "Cavapoo", "Bernedoodle"];
+
+function isPublicWaitlistRow(row) {
+  return (
+    row?.display_name &&
+    String(row.status || "").toLowerCase() === "active" &&
+    String(row.show_publicly || "").toLowerCase() === "yes"
+  );
+}
+
+function groupPublicWaitlistRows(rows = []) {
+  const grouped = rows.filter(isPublicWaitlistRow).reduce((accumulator, row) => {
+    const breed = row.breed || "Other";
+    if (!accumulator[breed]) {
+      accumulator[breed] = [];
+    }
+
+    accumulator[breed].push({
+      ...row,
+      position: Number(row.position) || accumulator[breed].length + 1
+    });
+    return accumulator;
+  }, {});
+
+  return Object.entries(grouped)
+    .map(([breed, breedRows]) => ({
+      breed,
+      rows: breedRows.sort((first, second) => first.position - second.position)
+    }))
+    .sort((first, second) => {
+      const firstIndex = waitlistBreedOrder.indexOf(first.breed);
+      const secondIndex = waitlistBreedOrder.indexOf(second.breed);
+
+      if (firstIndex === -1 && secondIndex === -1) {
+        return first.breed.localeCompare(second.breed);
+      }
+
+      if (firstIndex === -1) return 1;
+      if (secondIndex === -1) return -1;
+      return firstIndex - secondIndex;
+    });
+}
+
+function formatWaitlistDate(dateString) {
+  const [year, month, day] = String(dateString || "").split("-").map(Number);
+
+  if (!year || !month || !day) {
+    return "";
+  }
+
+  return new Date(year, month - 1, day).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric"
   });
 }
 
@@ -2432,11 +2481,8 @@ function ApplicationPage() {
 }
 
 function WaitlistPage() {
-  const publicWaitlists = waitlists.map((list) => ({
-    ...list,
-    breed: list.breed.replace(" Waitlist", ""),
-    names: publicWaitlistNames(list.names)
-  }));
+  const publicWaitlists = groupPublicWaitlistRows(waitlistData.publicRows);
+  const lastUpdated = formatWaitlistDate(waitlistData.updatedAt);
 
   return (
     <BuyerPageTemplate
@@ -2478,24 +2524,25 @@ function WaitlistPage() {
             <article className="text-card waitlist-card public-waitlist-card" key={list.breed}>
               <div className="waitlist-card-header">
                 <p className="eyebrow">{list.breed}</p>
-                <span>{list.names.length} spots</span>
+                <span>{list.rows.length} spots</span>
               </div>
               <ol>
-                {list.names.map((name, index) => (
-                  <li key={`${list.breed}-${name}-${index}`}>
-                    <span>{index + 1}</span>
-                    <strong>{name}</strong>
+                {list.rows.map((row) => (
+                  <li key={`${list.breed}-${row.position}-${row.display_name}`}>
+                    <span>{row.position}</span>
+                    <strong>{row.display_name}</strong>
                   </li>
                 ))}
               </ol>
             </article>
           ))}
         </div>
+        {lastUpdated && <p className="waitlist-updated small-note">Last updated {lastUpdated} from the Website Hub waitlist data.</p>}
       </section>
       <section className="content-section narrow waitlist-note-panel">
         <article className="group-panel">
           <h2>Waitlist updates</h2>
-          <p>This public list will eventually be fed from the Waitlist Sheet in the Website Hub. For now, it uses structured website data so we can build and verify the page template before automating the update flow.</p>
+          <p>This public list mirrors the Waitlist Sheet structure in the Website Hub. Each public row represents one active waitlist spot and can be updated without changing the page template.</p>
           <p className="small-note">The public page should never show emails, phone numbers, deposit dates, application notes, or full last names.</p>
         </article>
       </section>

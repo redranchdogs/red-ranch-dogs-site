@@ -1077,24 +1077,6 @@ export const faqs = [
   ["Are Doodles hypoallergenic?", "No dog is entirely hypoallergenic, but many Doodles are low-shedding. For moderate to severe allergies, F1b or Multigen Doodles are often recommended."]
 ];
 
-export const waitlists = [
-  {
-    breed: "Goldendoodle Waitlist",
-    size: "Mini & Micro",
-    names: ["Constantinos N. (Micro)", "Ben L. (Mini)", "Elise M. (2)", "Sara N. (Mini) (2)", "Sofia F.", "Meghan L. (Mini)", "Lauren T. (Mini)", "Sarvani R. (Micro)", "Samantha E. (Micro)", "Larissa B.", "Andrew F.", "Annika P."]
-  },
-  {
-    breed: "Cavapoo Waitlist",
-    size: "Micro & Mini",
-    names: ["Constance R. (Mini)", "Margy P. (Micro)", "Kaila J. (Mini)", "Divya B. (Mini)", "Claire F. (Mini)", "Fatima G. (Micro)", "Annika P. (Mini)", "Michelle W. (Mini)"]
-  },
-  {
-    breed: "Bernedoodle Waitlist",
-    size: "Mini & Micro",
-    names: ["Christine W.", "Kristin S.", "Naga K.", "Kyle N.", "Janae W."]
-  }
-];
-
 export const reviews = [
   {
     quote: "Red Ranch Dogs provided the best experience I could have ever hoped for. Willow came home with a tremendous head start in life.",
