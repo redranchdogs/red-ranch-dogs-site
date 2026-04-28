@@ -1336,26 +1336,85 @@ function BuyerPageTemplate({ eyebrow, title, copy, actions, image, children, cta
 function ParentCard({ parent }) {
   const hasPublicProfile = parent.visibility !== "private";
   const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
+  const program = breedProfiles.find((breed) => breed.slug === parent.breedSlug);
+  const relatedLitterCount = parent.relatedLitters?.length || 0;
+  const hasTestingLinks = Boolean(parent.healthTestingLinks?.length || parent.geneticTestingLinks?.length);
 
   return (
     <article className="text-card parent-card parent-profile-card">
-      {parent.mainPhoto ? <img src={parent.mainPhoto} alt={parent.name} loading="lazy" /> : <ImagePlaceholder label="Parent dog photo" />}
-      <p className="eyebrow">{roleLabel}</p>
-      <h2>{parent.name}</h2>
-      <p>{parent.breed} · {parent.weight}</p>
-      <p>{parent.description}</p>
-      {(parent.healthTestingLinks?.length > 0 || parent.geneticTestingLinks?.length > 0) && (
-        <ul className="clean-list">
-          {(parent.healthTestingLinks || []).map((href) => <li key={href}><a href={href}>Health testing</a></li>)}
-          {(parent.geneticTestingLinks || []).map((href) => <li key={href}><a href={href}>Genetic testing</a></li>)}
-        </ul>
-      )}
-      {hasPublicProfile ? (
-        <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
-      ) : (
-        <p className="small-note">Profile details are shared for this pairing only.</p>
-      )}
+      <figure className="parent-card-media">
+        {parent.mainPhoto ? <img src={parent.mainPhoto} alt={parent.name} loading="lazy" /> : <ImagePlaceholder label="Parent dog photo" />}
+        <span className="parent-role-badge">{roleLabel}</span>
+      </figure>
+      <div className="parent-card-body">
+        <div className="parent-card-heading">
+          <p className="eyebrow">{program?.name || parent.breed}</p>
+          <h2>{parent.name}</h2>
+          <p>{parent.description}</p>
+        </div>
+        <dl className="details compact-details parent-card-facts">
+          <div><dt>Breed</dt><dd>{parent.breed}</dd></div>
+          <div><dt>Weight</dt><dd>{parent.weight}</dd></div>
+          <div><dt>Coat</dt><dd>{parent.coat}</dd></div>
+          <div><dt>Color</dt><dd>{parent.color}</dd></div>
+        </dl>
+        <div className="parent-card-tags" aria-label={`${parent.name} profile highlights`}>
+          <span>{parent.status}</span>
+          <span>{relatedLitterCount ? `${relatedLitterCount} related litter${relatedLitterCount === 1 ? "" : "s"}` : "Litter history coming"}</span>
+          <span>{hasTestingLinks ? "Testing links ready" : "Testing records pending"}</span>
+        </div>
+        {hasPublicProfile ? (
+          <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
+        ) : (
+          <p className="small-note">Profile details are shared for this pairing only.</p>
+        )}
+      </div>
     </article>
+  );
+}
+
+function ParentDirectorySummary({ parents, title = "Program snapshot", copy }) {
+  const mamaCount = parents.filter((parent) => parent.role === "mama").length;
+  const studCount = parents.filter((parent) => parent.role === "stud").length;
+  const programCount = new Set(parents.map((parent) => parent.breedSlug)).size;
+  const litterCount = new Set(parents.flatMap((parent) => parent.relatedLitters || [])).size;
+  const activeCount = parents.filter((parent) => parent.status === "Active").length;
+  const photoCount = parents.filter((parent) => parent.mainPhoto).length;
+  const roles = new Set(parents.map((parent) => parent.role));
+  const roleSpecific = roles.size === 1;
+  const roleLabel = parents[0]?.role === "stud" ? "studs" : "mamas";
+  const stats = roleSpecific
+    ? [
+        { value: parents.length, label: roleLabel },
+        { value: activeCount, label: "active" },
+        { value: programCount, label: "programs" },
+        { value: litterCount, label: "related litters" },
+        { value: photoCount, label: "with photos" }
+      ]
+    : [
+        { value: parents.length, label: "public profiles" },
+        { value: mamaCount, label: "mamas" },
+        { value: studCount, label: "studs" },
+        { value: programCount, label: "programs" },
+        { value: litterCount, label: "related litters" }
+      ];
+
+  return (
+    <section className="content-section parent-directory-summary">
+      <div>
+        <p className="eyebrow">Parent Dogs</p>
+        <h2>{title}</h2>
+        <p>{copy || "Each parent profile is built from structured data so photos, testing links, related litters, and program notes can be updated cleanly over time."}</p>
+      </div>
+      <dl className="parent-summary-stats">
+        {stats.map((stat) => (
+          <div key={stat.label}>
+            <dt>{stat.value}</dt>
+            <dd>{stat.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }
 
@@ -1819,12 +1878,19 @@ function ParentsDirectoryPage({ role }) {
     return roleMatch;
   });
   const title = role === "mama" ? "Mamas" : role === "stud" ? "Studs" : "Parent Dogs";
+  const summaryTitle = role === "mama" ? "Mamas in the program" : role === "stud" ? "Studs in the program" : "Parent dog overview";
+  const summaryCopy = role === "mama"
+    ? "Browse the mama profiles currently organized in the Red Ranch Dogs program, including size, coat, photos, and related litter history."
+    : role === "stud"
+      ? "Browse the stud profiles currently organized in the Red Ranch Dogs program, including size, coat, photos, and related litter history."
+      : "Browse the parent dogs behind the Red Ranch Dogs program. These cards are designed to grow as parent photos, health records, and litter history are added.";
 
   return (
     <Layout>
       <PageHero eyebrow="Parents" title={title} copy="Meet the mamas and studs behind the Red Ranch Dogs program, including breed, size, traits, photos, and related litters." />
+      <ParentDirectorySummary parents={filteredParents} title={summaryTitle} copy={summaryCopy} />
       <section className="tile-grid three parent-directory-grid">
-        {filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
+        {filteredParents.length ? filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />) : <p className="small-note">Parent profiles will appear here as structured records are added.</p>}
       </section>
     </Layout>
   );
@@ -1837,8 +1903,13 @@ function BreedParentDirectoryPage({ breedSlug }) {
   return (
     <Layout>
       <PageHero eyebrow="Parents" title={`${breed?.name || "Breed"} Parents`} copy="Meet the parent dogs in this part of the Red Ranch Dogs program, with profile details, traits, photos, and related litters." />
+      <ParentDirectorySummary
+        parents={filteredParents}
+        title={`${breed?.name || "Breed"} parent snapshot`}
+        copy={`These are the parent profiles currently connected to the ${breed?.name || "breed"} program. More photos, records, and litter history can be added from the parent dog sheet over time.`}
+      />
       <section className="tile-grid three parent-directory-grid">
-        {filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
+        {filteredParents.length ? filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />) : <p className="small-note">Parent profiles will appear here as structured records are added.</p>}
       </section>
     </Layout>
   );
