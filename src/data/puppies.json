@@ -2,18 +2,34 @@
   {
     "slug": "ranger",
     "name": "Ranger",
+    "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
     "breed": "Mini Goldendoodle",
     "litterSlug": "birdie-waylon-spring-2026",
     "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
     "gender": "Male",
+    "collarColor": "Green",
     "status": "Available",
+    "sizeCategory": "Mini",
     "estimatedAdultWeight": "20-25 lbs",
     "birthDate": "April 1, 2026",
     "goHomeDate": "May 23-25, 2026",
     "price": "$3,200",
+    "color": "Red abstract",
+    "coat": "Silky-soft, lower-shedding doodle coat",
     "mainPhoto": "/images/puppies/birdie-waylon-2026/ranger-mini-goldendoodle-puppy-red-ranch-dogs.jpg",
     "photos": ["/images/puppies/birdie-waylon-2026/ranger-mini-goldendoodle-puppy-red-ranch-dogs.jpg"],
+    "weeklyPhotos": [
+      {
+        "week": "Week 3",
+        "folderHint": "Website Hub / Photos / Litters / Birdie 3 + Waylon / Ranger / Week 3",
+        "photos": ["/images/puppies/birdie-waylon-2026/ranger-mini-goldendoodle-puppy-red-ranch-dogs.jpg"]
+      }
+    ],
     "description": "Ranger is a sweet, middle-of-the-pack Mini Goldendoodle boy from Birdie and Waylon's litter.",
     "availabilityNote": "Currently available for an approved family.",
     "personalityNote": "Super sweet, steady, and easygoing. A great fit for a family wanting a loving companion with a silky-soft, lower-shedding doodle coat."
@@ -21,18 +37,34 @@
   {
     "slug": "axel",
     "name": "Axel",
+    "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
     "breed": "Mini Goldendoodle",
     "litterSlug": "birdie-waylon-spring-2026",
     "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
     "gender": "Male",
+    "collarColor": "Blue",
     "status": "Available",
+    "sizeCategory": "Mini",
     "estimatedAdultWeight": "20-25 lbs",
     "birthDate": "April 1, 2026",
     "goHomeDate": "May 23-25, 2026",
     "price": "$3,200",
+    "color": "Red abstract",
+    "coat": "Silky-soft, lower-shedding doodle coat",
     "mainPhoto": "/images/puppies/birdie-waylon-2026/axel-mini-goldendoodle-puppy-red-ranch-dogs.jpg",
     "photos": ["/images/puppies/birdie-waylon-2026/axel-mini-goldendoodle-puppy-red-ranch-dogs.jpg"],
+    "weeklyPhotos": [
+      {
+        "week": "Week 3",
+        "folderHint": "Website Hub / Photos / Litters / Birdie 3 + Waylon / Axel / Week 3",
+        "photos": ["/images/puppies/birdie-waylon-2026/axel-mini-goldendoodle-puppy-red-ranch-dogs.jpg"]
+      }
+    ],
     "description": "Axel is a sweet, middle-of-the-pack Mini Goldendoodle boy from Birdie and Waylon's litter.",
     "availabilityNote": "Currently available for an approved family.",
     "personalityNote": "Super sweet, steady, and people-friendly. A great fit for a family wanting a loving companion with a silky-soft, lower-shedding doodle coat."

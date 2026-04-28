@@ -2,6 +2,9 @@
   {
     "slug": "birdie-waylon-spring-2026",
     "name": "Birdie + Waylon",
+    "visibility": "public",
+    "status": "Current Litter",
+    "litterNumber": "Birdie 3",
     "mamaSlug": "birdie",
     "mama": "Birdie",
     "studSlug": "waylon-jennings",
@@ -17,11 +20,17 @@
     "priceRange": "$3,200",
     "availabilitySummary": "Two male Mini Goldendoodles are currently available from Birdie and Waylon's litter.",
     "availabilityNote": "Approved families are contacted in waitlist order.",
+    "puppySlugs": ["ranger", "axel"],
+    "photoFolderHint": "Website Hub / Photos / Litters / Birdie 3 + Waylon",
+    "weeklyUpdateStatus": "Week 3 photos loaded for Ranger and Axel.",
     "weeklyUpdateGallery": ["/images/litters/birdie-waylon.webp"]
   },
   {
     "slug": "winnie-redford-summer-2026",
     "name": "Winnie + Redford",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "litterNumber": "",
     "mamaSlug": "winnie",
     "mama": "Winnie",
     "studSlug": "robert-redford",
@@ -37,11 +46,17 @@
     "priceRange": "$2,800-$4,500",
     "availabilitySummary": "Upcoming Cavapoo litter planning is in progress.",
     "availabilityNote": "Join the waitlist to be notified when this litter is confirmed.",
+    "puppySlugs": [],
+    "photoFolderHint": "Website Hub / Photos / Litters / Winnie + Redford",
+    "weeklyUpdateStatus": "No puppy photos yet. Planned litter only.",
     "weeklyUpdateGallery": ["/images/litters/winnie-redford.webp"]
   },
   {
     "slug": "kylie-wayne-fall-2026",
     "name": "Kylie + Wayne",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "litterNumber": "",
     "mamaSlug": "kylie",
     "mama": "Kylie",
     "studSlug": "wayne",
@@ -57,6 +72,9 @@
     "priceRange": "$3,500-$4,500",
     "availabilitySummary": "Upcoming Bernedoodle litter planning is in progress.",
     "availabilityNote": "Families can pass on a litter and remain on the general waitlist.",
+    "puppySlugs": [],
+    "photoFolderHint": "Website Hub / Photos / Litters / Kylie + Wayne",
+    "weeklyUpdateStatus": "No puppy photos yet. Planned litter only.",
     "weeklyUpdateGallery": ["/images/seed/dam-bernedoodle.webp"]
   }
 ]

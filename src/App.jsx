@@ -325,7 +325,7 @@ function seoFor(path) {
     };
   }
   if (path.startsWith("/puppies/")) {
-    const puppy = puppyProfiles.find((item) => `/puppies/${item.slug}` === path);
+    const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
     if (puppy) {
       return {
         title: `${puppy.name} | ${puppy.breed} Puppy | Red Ranch Dogs`,
@@ -334,7 +334,7 @@ function seoFor(path) {
     }
   }
   if (path.startsWith("/litters/")) {
-    const litter = litterProfiles.find((item) => `/litters/${item.slug}` === path);
+    const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
     if (litter) {
       return {
         title: `${litter.name} | ${litter.breed} Litter | Red Ranch Dogs`,
@@ -343,7 +343,7 @@ function seoFor(path) {
     }
   }
   if (path.startsWith("/parents/")) {
-    const parent = parentProfiles.find((item) => `/parents/${item.slug}` === path);
+    const parent = publicParentProfiles.find((item) => `/parents/${item.slug}` === path);
     if (parent) {
       return {
         title: `${parent.name} | Parent Dog | Red Ranch Dogs`,
@@ -1192,8 +1192,8 @@ function LitterCard({ litter }) {
   const size = litter.expectedSize || litter.size || "Estimate to be announced";
   const price = litter.priceRange || litter.price;
   const image = litter.weeklyUpdateGallery?.[0] || litter.image;
-  const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
-  const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
+  const mama = publicParentProfiles.find((parent) => parent.slug === litter.mamaSlug);
+  const stud = publicParentProfiles.find((parent) => parent.slug === litter.studSlug);
   const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
 
   return (
@@ -1349,7 +1349,14 @@ function ParentCard({ parent }) {
   );
 }
 
-const puppyData = puppyProfiles.length ? puppyProfiles : availablePuppies;
+function publicRecords(records = []) {
+  return records.filter((record) => record?.visibility !== "private");
+}
+
+const publicPuppyProfiles = publicRecords(puppyProfiles);
+const publicLitterProfiles = publicRecords(litterProfiles);
+const publicParentProfiles = publicRecords(parentProfiles);
+const puppyData = publicPuppyProfiles.length ? publicPuppyProfiles : availablePuppies;
 
 const puppyStatusLegend = [
   ["Available", "Open for an approved family to move forward."],
@@ -1474,8 +1481,8 @@ function SectionIndexPage({ eyebrow, title, copy, links, children }) {
 
 function BreedPageTemplate({ breed }) {
   const puppies = puppyData.filter((puppy) => puppy.breedSlug === breed.slug);
-  const litters = litterProfiles.filter((litter) => litter.breedSlug === breed.slug);
-  const parents = parentProfiles.filter((parent) => parent.breedSlug === breed.slug);
+  const litters = publicLitterProfiles.filter((litter) => litter.breedSlug === breed.slug);
+  const parents = publicParentProfiles.filter((parent) => parent.breedSlug === breed.slug);
   const breedHighlights = [
     ["Best Fit", breed.bestFit || breed.idealFamilyFit, Heart],
     ["Size Expectations", breed.expectedSizeRange, PawPrint],
@@ -1544,7 +1551,7 @@ function BreedPageTemplate({ breed }) {
 }
 
 function PuppyDetailPage({ puppy }) {
-  const litter = litterProfiles.find((item) => item.slug === puppy.litterSlug);
+  const litter = publicLitterProfiles.find((item) => item.slug === puppy.litterSlug);
 
   return (
     <Layout>
@@ -1578,9 +1585,9 @@ function PuppyDetailPage({ puppy }) {
 
 function LitterPage({ litter }) {
   const puppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
-  const parents = parentProfiles.filter((parent) => parent.slug === litter.mamaSlug || parent.slug === litter.studSlug);
-  const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
-  const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
+  const parents = publicParentProfiles.filter((parent) => parent.slug === litter.mamaSlug || parent.slug === litter.studSlug);
+  const mama = publicParentProfiles.find((parent) => parent.slug === litter.mamaSlug);
+  const stud = publicParentProfiles.find((parent) => parent.slug === litter.studSlug);
   const availablePuppies = puppies.filter((puppy) => puppy.status === "Available");
   const gallery = litter.weeklyUpdateGallery || [];
   const hasParentPairing = mama?.mainPhoto && stud?.mainPhoto;
@@ -1657,7 +1664,7 @@ function LitterPage({ litter }) {
 }
 
 function ParentDetailPage({ parent }) {
-  const relatedLitters = litterProfiles.filter((litter) => parent.relatedLitters.includes(litter.slug));
+  const relatedLitters = publicLitterProfiles.filter((litter) => parent.relatedLitters.includes(litter.slug));
 
   return (
     <Layout>
@@ -1704,7 +1711,7 @@ function PuppiesOverviewPage() {
 }
 
 function ParentsDirectoryPage({ role }) {
-  const filteredParents = parentProfiles.filter((parent) => {
+  const filteredParents = publicParentProfiles.filter((parent) => {
     const roleMatch = role ? parent.role === role : true;
     return roleMatch;
   });
@@ -1722,7 +1729,7 @@ function ParentsDirectoryPage({ role }) {
 
 function BreedParentDirectoryPage({ breedSlug }) {
   const breed = breedProfiles.find((item) => item.slug === breedSlug);
-  const filteredParents = parentProfiles.filter((parent) => parent.breedSlug === breedSlug);
+  const filteredParents = publicParentProfiles.filter((parent) => parent.breedSlug === breedSlug);
 
   return (
     <Layout>
@@ -1948,7 +1955,7 @@ function UpcomingLittersPage() {
       />
       <section className="card-list">
         <SectionHeader eyebrow="Planned Litters" title="Pairing preview" copy="Pairings, timing, and availability are updated as plans are confirmed." />
-        {litterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
+        {publicLitterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
       </section>
       <section className="content-section legacy-planning-notes">
         <article className="note-panel">
@@ -3176,11 +3183,11 @@ export default function App() {
     };
 
     if (routes[path]) return routes[path];
-    const puppy = puppyProfiles.find((item) => `/puppies/${item.slug}` === path);
+    const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
     if (puppy) return <PuppyDetailPage puppy={puppy} />;
-    const litter = litterProfiles.find((item) => `/litters/${item.slug}` === path);
+    const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
     if (litter) return <LitterPage litter={litter} />;
-    const parent = parentProfiles.find((item) => `/parents/${item.slug}` === path);
+    const parent = publicParentProfiles.find((item) => `/parents/${item.slug}` === path);
     if (parent) return <ParentDetailPage parent={parent} />;
     if (litterDetails[path]) return <LitterDetailPage litter={litterDetails[path]} />;
     if (previousLitterArchiveGroups[path]) return <PreviousLitterArchivePage archive={previousLitterArchiveGroups[path]} />;

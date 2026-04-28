@@ -14,6 +14,7 @@ npm run dev
 ```bash
 npm run build
 npm run lint
+npm run validate:content
 npm run verify:routes
 ```
 
@@ -28,6 +29,7 @@ Migration notes:
 - `docs/CONTENT_MIGRATION.md` tracks what has been moved from Squarespace and what still needs admin/export access.
 - `docs/ACCESS_HANDOFF.md` explains exactly what access is needed and when.
 - `docs/FORM_SETUP.md` lists the Google Sheet headers, Apps Script setup, and form environment variables.
+- `docs/CONTENT_OPERATIONS.md` explains the Website Hub, weekly photo workflow, and puppy/litter/parent data patterns.
 - `docs/LAUNCH_CHECKLIST.md` tracks the final preview, forms, SEO, redirects, and DNS checklist.
 
 When new puppy photos arrive:
