@@ -4357,3 +4357,132 @@ summary {
     padding-bottom: 42px;
   }
 }
+
+/* Site template cohesion pass: shared interior-page rhythm, without touching the locked homepage hero. */
+.page-hero {
+  padding-top: clamp(38px, 5vw, 58px);
+  padding-bottom: clamp(22px, 3.2vw, 36px);
+}
+
+.page-hero.with-image {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+  gap: clamp(22px, 3.4vw, 44px);
+}
+
+.page-hero.text-only .hero-copy {
+  max-width: 760px;
+}
+
+.hero-copy h1 {
+  max-width: min(17ch, 100%);
+  font-size: clamp(2.85rem, 5.8vw, 5.9rem);
+}
+
+.page-hero.with-image .hero-copy h1 {
+  max-width: min(13ch, 100%);
+}
+
+.page-hero .lead {
+  max-width: 50rem;
+}
+
+.page-hero .actions {
+  margin-top: 20px;
+}
+
+.hero-image {
+  max-height: 420px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.page-hero + .content-section,
+.page-hero + .card-list,
+.page-hero + .tile-grid,
+.page-hero + .timeline,
+.page-hero + .form-shell,
+.page-hero + .stat-band,
+.page-hero + .litter-detail-shell {
+  margin-top: clamp(8px, 1.8vw, 18px);
+}
+
+.page-directory-grid {
+  padding-top: 20px;
+  padding-bottom: 72px;
+}
+
+.page-intro-panel {
+  padding-top: 28px;
+  padding-bottom: 34px;
+}
+
+.page-intro-panel h2 {
+  max-width: 16ch;
+  margin: 0;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.15rem, 5vw, 3.35rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.card-list > .section-header {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 900px) {
+  .page-hero {
+    padding-top: 34px;
+    padding-bottom: 20px;
+  }
+
+  .page-hero.with-image {
+    gap: 18px;
+  }
+
+  .hero-copy h1,
+  .page-hero.with-image .hero-copy h1 {
+    max-width: 12.5ch;
+    font-size: clamp(2.75rem, 14vw, 4.25rem);
+  }
+
+  .page-hero .lead {
+    margin-top: 14px;
+    font-size: 1rem;
+  }
+
+  .page-hero .actions {
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .hero-image {
+    max-height: none;
+  }
+
+  .page-directory-grid {
+    padding-top: 16px;
+    padding-bottom: 58px;
+  }
+
+  .page-intro-panel {
+    padding-top: 34px;
+    padding-bottom: 38px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-copy h1,
+  .page-hero.with-image .hero-copy h1 {
+    max-width: 11ch;
+    font-size: clamp(2.65rem, 15vw, 3.65rem);
+  }
+
+  .page-hero .actions .button {
+    width: 100%;
+  }
+
+  .page-intro-panel h2 {
+    max-width: 11ch;
+  }
+}

@@ -623,15 +623,15 @@ function Layout({ children }) {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className="site-main">{children}</main>
       <Footer />
     </>
   );
 }
 
-function PageHero({ eyebrow, title, copy, image = null, actions }) {
+function PageHero({ eyebrow, title, copy, image = null, actions, className = "" }) {
   return (
-    <section className={`page-hero ${image ? "with-image" : "text-only"}`}>
+    <section className={`page-hero ${image ? "with-image" : "text-only"} ${className}`.trim()}>
       <div className="hero-copy">
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h1>{title}</h1>
@@ -795,6 +795,16 @@ function SectionHeader({ eyebrow, title, copy, align = "left" }) {
       <h2>{title}</h2>
       {copy && <p>{copy}</p>}
     </div>
+  );
+}
+
+function PageIntroPanel({ eyebrow, title, copy, className = "" }) {
+  return (
+    <section className={`content-section narrow intro-panel compact-panel page-intro-panel ${className}`.trim()}>
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+      <h2>{title}</h2>
+      {copy && <p>{copy}</p>}
+    </section>
   );
 }
 
@@ -1379,7 +1389,7 @@ function SectionIndexPage({ eyebrow, title, copy, links, children }) {
   return (
     <Layout>
       <PageHero eyebrow={eyebrow} title={title} copy={copy} />
-      <section className="tile-grid architecture-grid">
+      <section className="tile-grid architecture-grid page-directory-grid">
         {links.map((link) => (
           <article className="text-card" key={link.href}>
             <h2>{link.label}</h2>
@@ -1422,11 +1432,11 @@ function BreedPageTemplate({ breed }) {
         secondaryLabel: "View Available Puppies"
       }}
     >
-      <section className="content-section narrow intro-panel compact-panel">
-        <p className="eyebrow">Quick Summary</p>
-        <h2>Is this breed a fit?</h2>
-        <p>{breed.positioning || breed.intro}</p>
-      </section>
+      <PageIntroPanel
+        eyebrow="Quick Summary"
+        title="At a glance"
+        copy={breed.positioning || breed.intro}
+      />
       <section className="tile-grid four priority-grid">
         {breedHighlights.map(([title, copy, Icon]) => (
           <article className="text-card icon-card" key={title}>
@@ -1798,7 +1808,7 @@ function AvailablePuppiesPage() {
             </div>
           </section>
           <section className="card-list">
-            <SectionHeader eyebrow="Current Availability" title="Current listings" copy="Puppy names, status labels, and details are rendered by the website so original photos can stay clean." />
+            <SectionHeader eyebrow="Current Availability" title="Puppies ready to view" copy="Puppy names, status labels, and details are rendered by the website so original photos can stay clean." />
             {filteredPuppies.length ? filteredPuppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">No puppies match those filters yet.</p>}
           </section>
           <section className="tile-grid five status-legend compact-grid">
@@ -1810,7 +1820,7 @@ function AvailablePuppiesPage() {
             ))}
           </section>
           <section className="content-section">
-            <SectionHeader eyebrow="Next Steps" title="What happens next?" copy="The process is meant to be clear and personal, not a guessing game." />
+            <SectionHeader eyebrow="Next Steps" title="How families move forward" copy="The process is meant to be clear and personal, not a guessing game." />
             <div className="tile-grid three no-section-padding">
               {puppyNextSteps.map(([title, copy], index) => (
                 <article className="text-card icon-card" key={title}>
@@ -1862,13 +1872,13 @@ function UpcomingLittersPage() {
         secondaryLabel: "View Available Puppies"
       }}
     >
-      <section className="content-section narrow intro-panel compact-panel">
-        <p className="eyebrow">How litter announcements work</p>
-        <h2>Waitlist families are contacted in order of deposit placed.</h2>
-        <p>Families can choose to move forward with a litter or pass and remain on the general waitlist. Pairings may shift based on timing, mama health, genetics, and what is best for the dogs.</p>
-      </section>
+      <PageIntroPanel
+        eyebrow="How litter announcements work"
+        title="Families are contacted in order of deposit placed."
+        copy="Families can choose to move forward with a litter or pass and remain on the general waitlist. Pairings may shift based on timing, mama health, genetics, and what is best for the dogs."
+      />
       <section className="card-list">
-        <SectionHeader eyebrow="Planned Litters" title="Planned pairings" copy="Pairings, timing, and availability are updated as plans are confirmed." />
+        <SectionHeader eyebrow="Planned Litters" title="Pairing preview" copy="Pairings, timing, and availability are updated as plans are confirmed." />
         {litterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
       </section>
       <section className="content-section legacy-planning-notes">
@@ -2100,11 +2110,11 @@ function PricingPage() {
         secondaryLabel: "View Available Puppies"
       }}
     >
-      <section className="content-section narrow intro-panel compact-panel">
-        <p className="eyebrow">Pricing Overview</p>
-        <h2>What affects puppy pricing</h2>
-        <p>Exact puppy pricing is confirmed before a family reserves a puppy. Current guidance is organized by breed and size so updates can stay clear and consistent.</p>
-      </section>
+      <PageIntroPanel
+        eyebrow="Pricing Overview"
+        title="How pricing is organized"
+        copy="Exact puppy pricing is confirmed before a family reserves a puppy. Current guidance is organized by breed and size so updates can stay clear and consistent."
+      />
       <PricingSection items={pricingProfiles.length ? pricingProfiles : priceGroups} />
       <section className="tile-grid four priority-grid">
         {pricingFactors.map(([title, copy]) => (
@@ -2426,11 +2436,11 @@ function JoinWaitlistPage() {
       copy="A clear, fair process for moving from application to puppy selection and go-home day."
       actions={<Link href="/apply" className="button primary">Apply for a Puppy</Link>}
     >
-      <section className="content-section narrow intro-panel compact-panel">
-        <p className="eyebrow">Simple Overview</p>
-        <h2>How your waitlist spot works</h2>
-        <p>Families are contacted in order of deposit placed. When a litter is announced, you can move forward or pass and remain on the general waitlist for a future opportunity.</p>
-      </section>
+      <PageIntroPanel
+        eyebrow="Simple Overview"
+        title="Your place on the list"
+        copy="Families are contacted in order of deposit placed. When a litter is announced, you can move forward or pass and remain on the general waitlist for a future opportunity."
+      />
       <section className="timeline process-timeline">
         {waitlistProcessSteps.map(([title, copy], index) => (
           <article key={title}>
