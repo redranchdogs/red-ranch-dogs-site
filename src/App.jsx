@@ -1335,11 +1335,12 @@ function BuyerPageTemplate({ eyebrow, title, copy, actions, image, children, cta
 
 function ParentCard({ parent }) {
   const hasPublicProfile = parent.visibility !== "private";
+  const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
 
   return (
     <article className="text-card parent-card parent-profile-card">
       {parent.mainPhoto ? <img src={parent.mainPhoto} alt={parent.name} loading="lazy" /> : <ImagePlaceholder label="Parent dog photo" />}
-      <p className="eyebrow">{parent.role === "stud" ? "Stud" : "Mama"}</p>
+      <p className="eyebrow">{roleLabel}</p>
       <h2>{parent.name}</h2>
       <p>{parent.breed} · {parent.weight}</p>
       <p>{parent.description}</p>
@@ -1353,6 +1354,21 @@ function ParentCard({ parent }) {
         <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
       ) : (
         <p className="small-note">Profile details are shared for this pairing only.</p>
+      )}
+    </article>
+  );
+}
+
+function ParentTestingPanel({ title, links = [], emptyCopy }) {
+  return (
+    <article className="text-card parent-testing-card">
+      <h3>{title}</h3>
+      {links.length ? (
+        <ul className="clean-list">
+          {links.map((href) => <li key={href}><a href={href}>{title}</a></li>)}
+        </ul>
+      ) : (
+        <p>{emptyCopy}</p>
       )}
     </article>
   );
@@ -1709,15 +1725,32 @@ function LitterPage({ litter }) {
 
 function ParentDetailPage({ parent }) {
   const relatedLitters = publicLitterProfiles.filter((litter) => parent.relatedLitters.includes(litter.slug));
+  const breed = breedProfiles.find((item) => item.slug === parent.breedSlug);
+  const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
+  const familyRole = parent.role === "stud" ? "stud" : "mama";
+  const gallery = parent.photos?.length ? parent.photos : parent.mainPhoto ? [parent.mainPhoto] : [];
 
   return (
     <Layout>
-      <PageHero eyebrow={parent.role === "stud" ? "Stud Profile" : "Mama Profile"} title={parent.name} copy={parent.description} image={parent.mainPhoto || images.doodles} />
-      <section className="content-section stud-profile">
-        <article className="group-panel">
-          <h2>Profile</h2>
-          <dl className="details facts-wide">
-            <div><dt>Role</dt><dd>{parent.role === "stud" ? "Stud" : "Mama"}</dd></div>
+      <PageHero
+        eyebrow={`${roleLabel} Profile`}
+        title={parent.name}
+        copy={parent.description}
+        image={parent.mainPhoto || images.doodles}
+        actions={(
+          <>
+            <Link href="/apply" className="button primary">Ask About Puppies</Link>
+            <Link href={parent.role === "stud" ? "/parents/studs" : "/parents/mamas"} className="button secondary">View {parent.role === "stud" ? "Studs" : "Mamas"}</Link>
+          </>
+        )}
+      />
+      <section className="content-section parent-profile-template">
+        <article className="group-panel parent-snapshot-panel">
+          <p className="eyebrow">Quick Snapshot</p>
+          <h2>{parent.name} at a glance</h2>
+          <p>{parent.description}</p>
+          <dl className="details facts-wide parent-facts">
+            <div><dt>Role</dt><dd>{roleLabel}</dd></div>
             <div><dt>Breed</dt><dd>{parent.breed}</dd></div>
             <div><dt>Weight</dt><dd>{parent.weight}</dd></div>
             <div><dt>Color</dt><dd>{parent.color}</dd></div>
@@ -1725,15 +1758,41 @@ function ParentDetailPage({ parent }) {
             <div><dt>Status</dt><dd>{parent.status}</dd></div>
           </dl>
         </article>
-        <article className="group-panel">
-          <h2>Photos</h2>
-          <ImageGallery images={parent.photos} label={`${parent.name} photo`} />
+        <article className="group-panel parent-role-panel">
+          <p className="eyebrow">Program Role</p>
+          <h2>How {parent.name} fits the program</h2>
+          <p>
+            {parent.name} is part of the Red Ranch Dogs {breed?.name || parent.breed} program. This profile is designed to collect the details families ask about most: size, coat, color, personality notes, health testing, photos, and related litters.
+          </p>
+          <ul className="clean-list parent-profile-list">
+            <li>{parent.name} is listed as a {familyRole} in the structured parent dog data.</li>
+            <li>Related litters connect automatically as litter records are added.</li>
+            <li>Additional photos and testing links can be added later without changing this page layout.</li>
+          </ul>
         </article>
       </section>
-      <section className="card-list">
+      <section className="content-section parent-testing-section">
+        <SectionHeader eyebrow="Health & Testing" title={`${parent.name}'s records`} copy="Testing and records are organized here so each parent profile can become more complete as links and documents are added." />
+        <div className="parent-testing-grid">
+          <ParentTestingPanel title="Health testing" links={parent.healthTestingLinks} emptyCopy="Health testing links will appear here once the final records are attached to this parent profile." />
+          <ParentTestingPanel title="Genetic testing" links={parent.geneticTestingLinks} emptyCopy="Genetic testing links will appear here once the final records are attached to this parent profile." />
+        </div>
+      </section>
+      <section className="content-section parent-gallery-section">
+        <SectionHeader eyebrow="Photos" title={`${parent.name} photos`} copy="Profile photos can be expanded over time from the Website Hub photo folders." />
+        <ImageGallery images={gallery} label={`${parent.name} photo`} />
+      </section>
+      <section className="card-list parent-related-list">
         <SectionHeader eyebrow="Related Litters" title={`${parent.name}'s related litters`} />
         {relatedLitters.length ? relatedLitters.map((litter) => <LitterCard litter={litter} key={litter.slug} />) : <p className="small-note">Related litter history will appear here as records are organized.</p>}
       </section>
+      <CTASection
+        title={`Interested in ${parent.name}'s puppies?`}
+        copy="Apply now or ask about current and upcoming litter timing, availability, and whether this program is the right fit for your family."
+        primaryLabel="Apply for a Puppy"
+        secondaryHref="/contact"
+        secondaryLabel="Ask a Question"
+      />
     </Layout>
   );
 }
@@ -1764,7 +1823,7 @@ function ParentsDirectoryPage({ role }) {
   return (
     <Layout>
       <PageHero eyebrow="Parents" title={title} copy="Meet the mamas and studs behind the Red Ranch Dogs program, including breed, size, traits, photos, and related litters." />
-      <section className="tile-grid three">
+      <section className="tile-grid three parent-directory-grid">
         {filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
       </section>
     </Layout>
@@ -1778,7 +1837,7 @@ function BreedParentDirectoryPage({ breedSlug }) {
   return (
     <Layout>
       <PageHero eyebrow="Parents" title={`${breed?.name || "Breed"} Parents`} copy="Meet the parent dogs in this part of the Red Ranch Dogs program, with profile details, traits, photos, and related litters." />
-      <section className="tile-grid three">
+      <section className="tile-grid three parent-directory-grid">
         {filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
       </section>
     </Layout>
