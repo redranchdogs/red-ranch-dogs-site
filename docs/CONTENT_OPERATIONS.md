@@ -34,6 +34,23 @@ Recommended Drive structure:
 - `src/data/parents.json`: mama and stud profile records.
 - `src/data/waitlist.json`: public waitlist rows copied from the Website Hub waitlist sheet.
 
+## Sheet Column Exports
+
+The website now has a repeatable sheet export command. It turns the current website data into clean tab-separated files that can be pasted into, or imported into, the Website Hub Google Sheets.
+
+```bash
+npm run export:sheets
+```
+
+This creates:
+
+- `outputs/content-sheet-exports/puppy-tracker.tsv`
+- `outputs/content-sheet-exports/litters.tsv`
+- `outputs/content-sheet-exports/parent-dogs.tsv`
+- `outputs/content-sheet-exports/column-guide.tsv`
+
+Use these files as the canonical column layout for the Puppy Tracker, Litter Sheet, and Parent Dog Sheet. The column names intentionally match the website data fields so future sheet-to-website automation can stay simple.
+
 ## Puppy Record Pattern
 
 Each puppy should include:
@@ -119,7 +136,13 @@ Each parent dog should include:
 2. Confirm status changes: Available, Pending, Reserved, Matched, Guardian Candidate, or Private.
 3. Update each puppy's `mainPhoto`, `photos`, `weeklyPhotos`, `status`, and short personality note.
 4. Update the litter's `availabilitySummary`, `availabilityNote`, `puppySlugs`, and `weeklyUpdateStatus`.
-5. Run:
+5. If sheet columns drift or a fresh template is needed, run:
+
+```bash
+npm run export:sheets
+```
+
+6. Run:
 
 ```bash
 npm run validate:content
