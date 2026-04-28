@@ -1169,7 +1169,7 @@ function PuppyCard({ puppy }) {
         </div>
         <h2>{puppy.name}</h2>
         <p>{puppy.personalityNote || puppy.description || "Personality notes are updated as puppies grow and we learn more about their temperament."}</p>
-        <dl className="details">
+        <dl className="details compact-details">
           <div><dt>Litter</dt><dd>{litterName}</dd></div>
           <div><dt>Gender</dt><dd>{gender}</dd></div>
           <div><dt>Status</dt><dd>{status}</dd></div>
@@ -1191,9 +1191,9 @@ function LitterCard({ litter }) {
   const goHome = litter.goHomeDate || litter.goHome || "Go-home timing to be announced";
   const size = litter.expectedSize || litter.size || "Estimate to be announced";
   const price = litter.priceRange || litter.price;
-  const image = litter.weeklyUpdateGallery?.[0] || litter.image;
-  const mama = publicParentProfiles.find((parent) => parent.slug === litter.mamaSlug);
-  const stud = publicParentProfiles.find((parent) => parent.slug === litter.studSlug);
+  const image = litter.parentPairingImage || litter.image || litter.weeklyUpdateGallery?.[0];
+  const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
+  const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
 
   return (
@@ -1331,6 +1331,8 @@ function BuyerPageTemplate({ eyebrow, title, copy, actions, image, children, cta
 }
 
 function ParentCard({ parent }) {
+  const hasPublicProfile = parent.visibility !== "private";
+
   return (
     <article className="text-card parent-card parent-profile-card">
       {parent.mainPhoto ? <img src={parent.mainPhoto} alt={parent.name} loading="lazy" /> : <ImagePlaceholder label="Parent dog photo" />}
@@ -1344,7 +1346,11 @@ function ParentCard({ parent }) {
           {(parent.geneticTestingLinks || []).map((href) => <li key={href}><a href={href}>Genetic testing</a></li>)}
         </ul>
       )}
-      <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
+      {hasPublicProfile ? (
+        <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
+      ) : (
+        <p className="small-note">Profile details are shared for this pairing only.</p>
+      )}
     </article>
   );
 }
@@ -1585,12 +1591,14 @@ function PuppyDetailPage({ puppy }) {
 
 function LitterPage({ litter }) {
   const puppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
-  const parents = publicParentProfiles.filter((parent) => parent.slug === litter.mamaSlug || parent.slug === litter.studSlug);
-  const mama = publicParentProfiles.find((parent) => parent.slug === litter.mamaSlug);
-  const stud = publicParentProfiles.find((parent) => parent.slug === litter.studSlug);
+  const parents = parentProfiles.filter((parent) => parent.slug === litter.mamaSlug || parent.slug === litter.studSlug);
+  const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
+  const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const availablePuppies = puppies.filter((puppy) => puppy.status === "Available");
   const gallery = litter.weeklyUpdateGallery || [];
+  const fallbackLitterImage = litter.parentPairingImage || litter.image || gallery[0];
   const hasParentPairing = mama?.mainPhoto && stud?.mainPhoto;
+  const hasAboutSection = litter.aboutThisLitter?.length || litter.geneticMakeup?.length || litter.aboutHighlights?.length;
 
   return (
     <Layout>
@@ -1618,8 +1626,8 @@ function LitterPage({ litter }) {
                 <figcaption>{stud.name}</figcaption>
               </div>
             </figure>
-          ) : gallery[0] ? (
-            <img className="litter-feature-photo" src={gallery[0]} alt={`${litter.name} litter update`} loading="lazy" />
+          ) : fallbackLitterImage ? (
+            <img className="litter-feature-photo" src={fallbackLitterImage} alt={`${litter.name} parent pairing`} loading="lazy" />
           ) : (
             <ImagePlaceholder label="Litter pairing photo" tall />
           )}
@@ -1646,6 +1654,39 @@ function LitterPage({ litter }) {
           </div>
         </aside>
       </section>
+      {hasAboutSection && (
+        <section className="content-section litter-about-section">
+          <article className="group-panel litter-about-panel">
+            <div className="litter-about-copy">
+              <p className="eyebrow">About This Litter</p>
+              <h2>{litter.aboutTitle || `${litter.name} details`}</h2>
+              {(litter.aboutThisLitter || []).map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            {(litter.geneticMakeup?.length || litter.aboutHighlights?.length) && (
+              <aside className="litter-about-aside">
+                {litter.geneticMakeup?.length && (
+                  <div>
+                    <h3>Genetic makeup</h3>
+                    <ul className="clean-list">
+                      {litter.geneticMakeup.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                  </div>
+                )}
+                {litter.aboutHighlights?.length && (
+                  <div>
+                    <h3>What to expect</h3>
+                    <ul className="clean-list">
+                      {litter.aboutHighlights.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </aside>
+            )}
+          </article>
+        </section>
+      )}
       <section className="card-list">
         <SectionHeader eyebrow="Puppies" title="Puppies from this litter" copy="Names, availability labels, and puppy details are handled by the website so clean original photos can stay clean." />
         {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}

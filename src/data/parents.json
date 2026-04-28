@@ -171,14 +171,16 @@
     "color": "To be confirmed",
     "coat": "To be confirmed",
     "status": "Outside Stud",
-    "mainPhoto": "",
-    "photos": [],
+    "mainPhoto": "/images/studs/bram-outside-stud-honey-bram-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/studs/bram-outside-stud-honey-bram-red-ranch-dogs.jpg"
+    ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
     "relatedLitters": [
       "honey-bram-spring-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Bram",
-    "description": "Outside stud for Honey 2."
+    "description": "Outside stud for Honey 2 with a confident, playful temperament."
   }
 ]
