@@ -1006,13 +1006,6 @@ function WaitlistSteps() {
           </article>
         ))}
       </div>
-      <div className="waitlist-note">
-        <CheckCircle2 size={22} aria-hidden="true" />
-        <p>
-          For puppy health and safety, puppy picks are not done in person before go-home. We use photos,
-          videos, and video calls so families can choose confidently while protecting young puppies before vaccinations.
-        </p>
-      </div>
       <div className="waitlist-actions actions">
         <Link href="/apply" className="button primary">Apply for a Puppy</Link>
         <Link href="/process/application-and-waitlist" className="button secondary">View Full Process</Link>
@@ -2786,7 +2779,7 @@ function JoinWaitlistPage() {
         <article className="text-card icon-card">
           <Heart size={24} />
           <h2>Litter Born</h2>
-          <p>When a litter is born, families receive updates and puppy picks happen in waitlist order.</p>
+          <p>When a litter is born, families receive updates and puppy picks happen in waitlist order using photos, videos, personality notes, and video calls.</p>
         </article>
       </section>
       <section className="form-shell">
