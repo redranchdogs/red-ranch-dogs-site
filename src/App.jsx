@@ -2523,7 +2523,7 @@ function ContactPage() {
   return (
     <Layout>
       <PageHero eyebrow="Contact" title="Contact Us" copy="Questions are always welcome. Call, text, email, or send a quick message through the form." image={images.cta} />
-      <section className="contact-grid">
+      <section className="contact-grid contact-page-grid">
         <article className="text-card">
           <Phone size={24} />
           <h2>Call or text</h2>
@@ -3380,10 +3380,162 @@ function ApplicationFields() {
   );
 }
 
+function ContactFields() {
+  return (
+    <div className="application-form-sections">
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Contact</p>
+          <h3>Send Us a Note</h3>
+          <p>Ask about puppy availability, upcoming litters, waitlist timing, or anything else you need help with.</p>
+        </div>
+        <div className="field-grid">
+          <label>
+            Name
+            <input name="name" required autoComplete="name" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" required autoComplete="email" />
+          </label>
+          <label>
+            Phone
+            <input name="phone" autoComplete="tel" />
+          </label>
+          <label>
+            What can we help with?
+            <select name="inquiryType" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Available puppy</option>
+              <option>Upcoming litter</option>
+              <option>Application or waitlist</option>
+              <option>Guardian program</option>
+              <option>Stud services</option>
+              <option>General question</option>
+            </select>
+          </label>
+          <label>
+            Preferred breed
+            <select name="preferredBreed" defaultValue="">
+              <option value="">Optional</option>
+              <option>Goldendoodle</option>
+              <option>Cavapoo</option>
+              <option>Bernedoodle</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label className="full">
+            Message
+            <textarea name="message" rows="4" required placeholder="A short note is perfect. Tell us what you are wondering about." />
+          </label>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function GuardianFields() {
+  return (
+    <div className="application-form-sections">
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 1</p>
+          <h3>Contact Info</h3>
+          <p>Tell us who to follow up with and where your family is located.</p>
+        </div>
+        <div className="field-grid">
+          <label>
+            Full name
+            <input name="name" required autoComplete="name" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" required autoComplete="email" />
+          </label>
+          <label>
+            Phone
+            <input name="phone" required autoComplete="tel" />
+          </label>
+          <label>
+            City / area
+            <input name="location" required autoComplete="address-level2" placeholder="Salado, Belton, Georgetown..." />
+          </label>
+        </div>
+      </section>
+
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 2</p>
+          <h3>Home Fit</h3>
+          <p>Guardian families need a stable home setup and clear communication with Red Ranch Dogs.</p>
+        </div>
+        <div className="field-grid">
+          <label>
+            Housing
+            <select name="housing" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Own home</option>
+              <option>Long-term renter</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Secure fenced yard
+            <select name="fencedYard" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>Planning to add one</option>
+            </select>
+          </label>
+          <label>
+            Other pets
+            <input name="otherPets" placeholder="Current pets at home" />
+          </label>
+          <label>
+            Preferred breed
+            <select name="preferredBreed" defaultValue="">
+              <option value="">Optional</option>
+              <option>Goldendoodle</option>
+              <option>Cavapoo</option>
+              <option>Bernedoodle</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 3</p>
+          <h3>Guardian Interest</h3>
+          <p>A short note helps us understand whether the program may be a good fit.</p>
+        </div>
+        <div className="field-grid">
+          <label className="full">
+            Schedule and dog experience
+            <textarea name="dogExperience" rows="4" placeholder="Tell us about your daily schedule, dog experience, and household rhythm." />
+          </label>
+          <label className="full">
+            Why are you interested in the guardian program?
+            <textarea name="guardianReason" rows="4" placeholder="What interests you about being a guardian family?" />
+          </label>
+          <label className="checkbox-line full">
+            <input name="guardianAgreement" type="checkbox" value="Understands guardian families need clear communication and breeding-related availability" required />
+            <span>I understand guardian families need to be available for clear communication and breeding-related visits when needed.</span>
+          </label>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function LeadForm({ formType, title, compact = false, newsletterOnly = false, guardianFields = false }) {
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
   const applicationFields = formType === "application" && !newsletterOnly;
+  const contactFields = formType === "contact" && !newsletterOnly;
+  const guardianApplicationFields = formType === "guardian" && guardianFields && !newsletterOnly;
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -3422,7 +3574,9 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
         <input name="companyWebsite" tabIndex="-1" autoComplete="off" />
       </label>
       {!newsletterOnly && applicationFields && <ApplicationFields />}
-      {!newsletterOnly && !applicationFields && (
+      {!newsletterOnly && contactFields && <ContactFields />}
+      {!newsletterOnly && guardianApplicationFields && <GuardianFields />}
+      {!newsletterOnly && !applicationFields && !contactFields && !guardianApplicationFields && (
         <div className="field-grid">
           <label>
             Name
@@ -3447,40 +3601,6 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
               <option>Not sure yet</option>
             </select>
           </label>
-          {guardianFields && (
-            <>
-              <label>
-                City / area
-                <input name="location" autoComplete="address-level2" />
-              </label>
-              <label>
-                Housing
-                <select name="housing" defaultValue="">
-                  <option value="" disabled>Select one</option>
-                  <option>Own home</option>
-                  <option>Long-term renter</option>
-                  <option>Other</option>
-                </select>
-              </label>
-              <label>
-                Secure fenced yard
-                <select name="fencedYard" defaultValue="">
-                  <option value="" disabled>Select one</option>
-                  <option>Yes</option>
-                  <option>No</option>
-                  <option>Planning to add one</option>
-                </select>
-              </label>
-              <label>
-                Other pets
-                <input name="otherPets" placeholder="Current pets at home" />
-              </label>
-              <label className="full">
-                Schedule and dog experience
-                <textarea name="dogExperience" rows="4" placeholder="Tell us about your daily schedule, dog experience, and why the guardian program interests you." />
-              </label>
-            </>
-          )}
           <label className="full">
             Message
             <textarea name="message" rows="5" placeholder="Tell us about your timing, size preference, and questions." />

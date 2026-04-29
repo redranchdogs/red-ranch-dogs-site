@@ -11,29 +11,52 @@ function submissionText(payload) {
     .join("\n");
 }
 
-function applicationMessage(payload) {
-  if (payload.formType !== "application") {
+const detailFieldsByForm = {
+  application: [
+    ["Preferred breed", "preferredBreed"],
+    ["Gender preference", "genderPreference"],
+    ["Size preference", "sizePreference"],
+    ["Timing", "timing"],
+    ["Specific interest", "specificInterest"],
+    ["Home description", "homeDescription"],
+    ["Puppy fit notes", "puppyFitNotes"],
+    ["Pickup or delivery", "pickupOrDelivery"],
+    ["Process agreement", "processAgreement"],
+    ["How they heard about us", "hearAbout"],
+    ["Signature", "signature"]
+  ],
+  contact: [
+    ["Inquiry type", "inquiryType"],
+    ["Preferred breed", "preferredBreed"],
+    ["Location", "location"]
+  ],
+  guardian: [
+    ["Preferred breed", "preferredBreed"],
+    ["Location", "location"],
+    ["Housing", "housing"],
+    ["Fenced yard", "fencedYard"],
+    ["Other pets", "otherPets"],
+    ["Dog experience", "dogExperience"],
+    ["Guardian reason", "guardianReason"],
+    ["Guardian agreement", "guardianAgreement"]
+  ]
+};
+
+function expandedMessage(payload) {
+  const fields = detailFieldsByForm[payload.formType];
+
+  if (!fields) {
     return payload.message;
   }
 
-  const details = [
-    ["Preferred breed", payload.preferredBreed],
-    ["Gender preference", payload.genderPreference],
-    ["Size preference", payload.sizePreference],
-    ["Timing", payload.timing],
-    ["Specific interest", payload.specificInterest],
-    ["Home description", payload.homeDescription],
-    ["Puppy fit notes", payload.puppyFitNotes],
-    ["Pickup or delivery", payload.pickupOrDelivery],
-    ["Process agreement", payload.processAgreement],
-    ["How they heard about us", payload.hearAbout],
-    ["Signature", payload.signature]
-  ]
+  const details = fields
+    .map(([label, key]) => [label, payload[key]])
     .filter(([, value]) => value)
     .map(([label, value]) => `${label}: ${value}`)
     .join("\n");
 
-  return [payload.message, details && `Application Details:\n${details}`].filter(Boolean).join("\n\n");
+  const heading = payload.formType === "application" ? "Application Details" : "Submission Details";
+  return [payload.message, details && `${heading}:\n${details}`].filter(Boolean).join("\n\n");
 }
 
 async function sendEmail(payload) {
@@ -105,6 +128,7 @@ export default async function handler(request, response) {
     name: clean(body.name),
     email: clean(body.email),
     phone: clean(body.phone),
+    inquiryType: clean(body.inquiryType),
     preferredBreed: clean(body.preferredBreed),
     location: clean(body.location),
     housing: clean(body.housing),
@@ -120,11 +144,13 @@ export default async function handler(request, response) {
     pickupOrDelivery: clean(body.pickupOrDelivery),
     processAgreement: clean(body.processAgreement),
     hearAbout: clean(body.hearAbout),
+    guardianReason: clean(body.guardianReason),
+    guardianAgreement: clean(body.guardianAgreement),
     signature: clean(body.signature),
     message: clean(body.message)
   };
 
-  payload.message = applicationMessage(payload);
+  payload.message = expandedMessage(payload);
 
   if (!payload.email) {
     return response.status(400).json({ message: "Email is required." });

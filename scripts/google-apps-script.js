@@ -17,6 +17,7 @@ var SUBMISSION_HEADERS = [
   "Name",
   "Email",
   "Phone",
+  "Inquiry Type",
   "Preferred Breed",
   "Location",
   "Housing",
@@ -32,6 +33,8 @@ var SUBMISSION_HEADERS = [
   "Pickup Or Delivery",
   "Process Agreement",
   "Hear About",
+  "Guardian Reason",
+  "Guardian Agreement",
   "Signature",
   "Message",
   "Source"
@@ -59,6 +62,7 @@ function doPost(e) {
     payload.name || "",
     payload.email || "",
     payload.phone || "",
+    payload.inquiryType || "",
     payload.preferredBreed || "",
     payload.location || "",
     payload.housing || "",
@@ -74,6 +78,8 @@ function doPost(e) {
     payload.pickupOrDelivery || "",
     payload.processAgreement || "",
     payload.hearAbout || "",
+    payload.guardianReason || "",
+    payload.guardianAgreement || "",
     payload.signature || "",
     payload.message || "",
     payload.source || ""

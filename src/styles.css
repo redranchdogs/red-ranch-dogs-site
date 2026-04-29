@@ -2086,6 +2086,11 @@ h3 {
   padding: 34px 0;
 }
 
+.contact-page-grid {
+  align-items: start;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 0.78fr) minmax(460px, 1.35fr);
+}
+
 .tile-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
