@@ -3219,6 +3219,15 @@ function ChoiceGroup({ legend, name, options, required = false }) {
 function ApplicationFields() {
   return (
     <div className="application-form-sections">
+      <div className="application-form-note">
+        <p>Before applying, you can review our pricing, waitlist process, and FAQs.</p>
+        <div className="application-form-links" aria-label="Helpful application links">
+          <Link href="/process/pricing">Pricing</Link>
+          <Link href="/process/how-it-works">How it works</Link>
+          <Link href="/process/faq">FAQ</Link>
+        </div>
+      </div>
+
       <section className="form-section">
         <div className="form-section-heading">
           <p className="eyebrow">Step 1</p>
@@ -3269,7 +3278,7 @@ function ApplicationFields() {
           <ChoiceGroup
             legend="Size preference"
             name="sizePreference"
-            options={["Micro", "Mini", "Medium", "Not sure yet"]}
+            options={["Micro mini (10-15 lbs)", "Mini (15-35 lbs)", "Not sure yet"]}
           />
           <label>
             Timing
@@ -3293,55 +3302,23 @@ function ApplicationFields() {
         <div className="form-section-heading">
           <p className="eyebrow">Step 3</p>
           <h3>Family Fit</h3>
-          <p>A few practical details help us match temperament, timing, and support.</p>
+          <p>A couple of practical details help us understand the kind of puppy that may fit best.</p>
         </div>
         <div className="field-grid">
           <label>
-            Main purpose for getting a puppy
-            <select name="puppyPurpose" defaultValue="">
+            What best describes your home?
+            <select name="homeDescription" defaultValue="">
               <option value="" disabled>Select one</option>
-              <option>Family companion</option>
-              <option>Companion for one adult</option>
-              <option>Therapy or emotional support prospect</option>
-              <option>Active outdoor companion</option>
-              <option>Other</option>
-            </select>
-          </label>
-          <label>
-            Other pets at home
-            <select name="otherPets" defaultValue="">
-              <option value="" disabled>Select one</option>
-              <option>No current pets</option>
-              <option>Dog or dogs</option>
-              <option>Cat or cats</option>
-              <option>Multiple types of pets</option>
-            </select>
-          </label>
-          <label>
-            Children in the home
-            <select name="childrenAtHome" defaultValue="">
-              <option value="" disabled>Select one</option>
-              <option>No children at home</option>
-              <option>Young children</option>
-              <option>School-age children</option>
-              <option>Teenagers</option>
-              <option>Grandchildren or visiting children</option>
-            </select>
-          </label>
-          <label>
-            Home environment
-            <select name="housing" defaultValue="">
-              <option value="" disabled>Select one</option>
-              <option>House with yard</option>
-              <option>House without fenced yard</option>
-              <option>Apartment or condo</option>
-              <option>Rural property</option>
+              <option>Family with children</option>
+              <option>Adult household</option>
+              <option>Single adult</option>
+              <option>Couple</option>
               <option>Other</option>
             </select>
           </label>
           <label className="full">
-            What should we know about your home, schedule, or dog experience?
-            <textarea name="dogExperience" rows="4" placeholder="A short note is perfect. Tell us what would help us guide you well." />
+            What are you looking for in a puppy?
+            <textarea name="puppyFitNotes" rows="4" placeholder="Personality, energy level, timing, family needs, or anything that would help us guide you." />
           </label>
         </div>
       </section>
@@ -3358,25 +3335,13 @@ function ApplicationFields() {
             <select name="pickupOrDelivery" defaultValue="">
               <option value="" disabled>Select one</option>
               <option>We can pick up in Salado, Texas</option>
-              <option>We may need flight nanny or delivery help</option>
+              <option>We may need delivery help</option>
               <option>Not sure yet</option>
             </select>
           </label>
-          <label>
-            Preferred airport, if delivery is needed
-            <input name="airportPreference" placeholder="Optional" />
-          </label>
           <label className="checkbox-line full">
-            <input name="processAcknowledgement" type="checkbox" value="Understands process, pricing, and deposit policy" required />
-            <span>I understand the Red Ranch Dogs process, pricing, and deposit policy.</span>
-          </label>
-          <label className="checkbox-line full">
-            <input name="spayNeuterAgreement" type="checkbox" value="Agrees to spay/neuter contract" required />
-            <span>I understand puppies are placed under a spay/neuter contract unless otherwise discussed in writing.</span>
-          </label>
-          <label className="checkbox-line full">
-            <input name="depositAgreement" type="checkbox" value="Understands non-refundable deposit applies toward final puppy price" required />
-            <span>I understand the deposit is non-refundable and applies toward the final puppy price.</span>
+            <input name="processAgreement" type="checkbox" value="Understands process, pricing, deposit policy, and spay/neuter agreement" required />
+            <span>I understand the Red Ranch Dogs process, pricing, deposit policy, and spay/neuter agreement.</span>
           </label>
         </div>
       </section>
@@ -3389,8 +3354,21 @@ function ApplicationFields() {
         </div>
         <div className="field-grid">
           <label className="full">
-            Message
+            Anything else you want us to know?
             <textarea name="message" rows="4" placeholder="Questions, personality preferences, timing notes, or anything helpful." />
+          </label>
+          <label>
+            How did you hear about Red Ranch Dogs?
+            <select name="hearAbout" defaultValue="">
+              <option value="">Optional</option>
+              <option>Google search</option>
+              <option>Instagram</option>
+              <option>Facebook</option>
+              <option>Referral / friend</option>
+              <option>Previous Red Ranch Dogs family</option>
+              <option>Website / online search</option>
+              <option>Other</option>
+            </select>
           </label>
           <label className="full">
             Electronic signature

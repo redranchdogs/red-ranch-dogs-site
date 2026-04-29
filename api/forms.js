@@ -22,13 +22,11 @@ function applicationMessage(payload) {
     ["Size preference", payload.sizePreference],
     ["Timing", payload.timing],
     ["Specific interest", payload.specificInterest],
-    ["Puppy purpose", payload.puppyPurpose],
-    ["Children at home", payload.childrenAtHome],
+    ["Home description", payload.homeDescription],
+    ["Puppy fit notes", payload.puppyFitNotes],
     ["Pickup or delivery", payload.pickupOrDelivery],
-    ["Airport preference", payload.airportPreference],
-    ["Process acknowledgement", payload.processAcknowledgement],
-    ["Spay/neuter agreement", payload.spayNeuterAgreement],
-    ["Deposit agreement", payload.depositAgreement],
+    ["Process agreement", payload.processAgreement],
+    ["How they heard about us", payload.hearAbout],
     ["Signature", payload.signature]
   ]
     .filter(([, value]) => value)
@@ -117,13 +115,11 @@ export default async function handler(request, response) {
     sizePreference: clean(body.sizePreference),
     timing: clean(body.timing),
     specificInterest: clean(body.specificInterest),
-    puppyPurpose: clean(body.puppyPurpose),
-    childrenAtHome: clean(body.childrenAtHome),
+    homeDescription: clean(body.homeDescription),
+    puppyFitNotes: clean(body.puppyFitNotes),
     pickupOrDelivery: clean(body.pickupOrDelivery),
-    airportPreference: clean(body.airportPreference),
-    processAcknowledgement: clean(body.processAcknowledgement),
-    spayNeuterAgreement: clean(body.spayNeuterAgreement),
-    depositAgreement: clean(body.depositAgreement),
+    processAgreement: clean(body.processAgreement),
+    hearAbout: clean(body.hearAbout),
     signature: clean(body.signature),
     message: clean(body.message)
   };

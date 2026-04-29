@@ -27,13 +27,11 @@ var SUBMISSION_HEADERS = [
   "Size Preference",
   "Timing",
   "Specific Interest",
-  "Puppy Purpose",
-  "Children At Home",
+  "Home Description",
+  "Puppy Fit Notes",
   "Pickup Or Delivery",
-  "Airport Preference",
-  "Process Acknowledgement",
-  "Spay Neuter Agreement",
-  "Deposit Agreement",
+  "Process Agreement",
+  "Hear About",
   "Signature",
   "Message",
   "Source"
@@ -50,6 +48,7 @@ function doPost(e) {
     sheet = SpreadsheetApp.openById(sheetId).insertSheet("Submissions");
     sheet.appendRow(SUBMISSION_HEADERS);
   } else {
+    sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), SUBMISSION_HEADERS.length)).clearContent();
     sheet.getRange(1, 1, 1, SUBMISSION_HEADERS.length).setValues([SUBMISSION_HEADERS]);
   }
 
@@ -70,13 +69,11 @@ function doPost(e) {
     payload.sizePreference || "",
     payload.timing || "",
     payload.specificInterest || "",
-    payload.puppyPurpose || "",
-    payload.childrenAtHome || "",
+    payload.homeDescription || "",
+    payload.puppyFitNotes || "",
     payload.pickupOrDelivery || "",
-    payload.airportPreference || "",
-    payload.processAcknowledgement || "",
-    payload.spayNeuterAgreement || "",
-    payload.depositAgreement || "",
+    payload.processAgreement || "",
+    payload.hearAbout || "",
     payload.signature || "",
     payload.message || "",
     payload.source || ""
