@@ -2356,12 +2356,13 @@ textarea {
 }
 
 .available-puppy-list {
+  width: min(1040px, calc(100% - 36px));
   gap: 20px;
   padding-top: 18px;
 }
 
 .available-puppy-card {
-  grid-template-columns: minmax(320px, 0.62fr) minmax(0, 1fr);
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
   gap: 20px;
   padding: 14px;
   align-items: stretch;
@@ -2370,8 +2371,8 @@ textarea {
 .available-puppy-card .puppy-photo-frame {
   width: 100%;
   min-width: 0;
-  aspect-ratio: 4 / 3;
-  min-height: 300px;
+  aspect-ratio: 4 / 5;
+  min-height: 420px;
   background: var(--line);
 }
 
