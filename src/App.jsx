@@ -1198,6 +1198,13 @@ function LitterCard({ litter }) {
   const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
+  const litterPuppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
+  const availableCount = litterPuppies.filter((puppy) => puppy.status === "Available").length;
+  const puppyCountLabel = litterPuppies.length
+    ? availableCount
+      ? `${availableCount} available`
+      : `${litterPuppies.length} puppy profile${litterPuppies.length === 1 ? "" : "s"}`
+    : "Planning stage";
 
   return (
     <article className="litter-card animal-card">
@@ -1217,25 +1224,37 @@ function LitterCard({ litter }) {
       ) : (
         <ImagePlaceholder label="Litter photo" />
       )}
-      <div>
-        <p className="eyebrow">{litter.status || "Litter"}</p>
-        <h2>{litter.name}</h2>
-        <h3>{litter.breed}</h3>
-        {litter.availabilitySummary && <p>{litter.availabilitySummary}</p>}
-        <dl className="details">
+      <div className="litter-card-body">
+        <div className="litter-card-heading">
+          <div className="card-kicker-row">
+            <p className="eyebrow">{litter.status || "Litter"}</p>
+            <span className="status-badge">{puppyCountLabel}</span>
+          </div>
+          <h2>{litter.name}</h2>
+          <h3>{litter.breed}</h3>
+          {litter.availabilitySummary && <p>{litter.availabilitySummary}</p>}
+        </div>
+        <dl className="details compact-details litter-card-facts">
           <div><dt>Mama</dt><dd>{litter.mama || "Mama to be announced"}</dd></div>
           <div><dt>Stud</dt><dd>{litter.stud || "Stud to be announced"}</dd></div>
-          <div><dt>Expected Timing</dt><dd>{litter.expectedTiming || delivery}</dd></div>
+          <div><dt>Timing</dt><dd>{litter.expectedTiming || delivery}</dd></div>
           <div><dt>Go Home</dt><dd>{goHome}</dd></div>
-          <div><dt>Expected Size</dt><dd>{size}</dd></div>
-          {litter.expectedColors && <div><dt>Colors</dt><dd>{litter.expectedColors}</dd></div>}
-          {litter.expectedCoatTraits && <div><dt>Coat Traits</dt><dd>{litter.expectedCoatTraits}</dd></div>}
-          {litter.coloring && <div><dt>Coloring</dt><dd>{litter.coloring}</dd></div>}
-          {litter.coat && <div><dt>Coat</dt><dd>{litter.coat}</dd></div>}
+          <div><dt>Size</dt><dd>{size}</dd></div>
           {price && <div><dt>Price</dt><dd>{price}</dd></div>}
         </dl>
+        {(litter.expectedColors || litter.expectedCoatTraits || litter.coloring || litter.coat) && (
+          <div className="litter-preview-notes">
+            {(litter.expectedColors || litter.coloring) && <p><strong>Colors:</strong> {litter.expectedColors || litter.coloring}</p>}
+            {(litter.expectedCoatTraits || litter.coat) && <p><strong>Coat:</strong> {litter.expectedCoatTraits || litter.coat}</p>}
+          </div>
+        )}
         {litter.availabilityNote && <p className="small-note">{litter.availabilityNote}</p>}
-        {route && <Link href={route} className="button small">View Litter</Link>}
+        {route && (
+          <div className="litter-card-actions">
+            <Link href={route} className="button small">View Litter</Link>
+            <Link href="/apply" className="button small secondary">Join Waitlist</Link>
+          </div>
+        )}
       </div>
     </article>
   );
