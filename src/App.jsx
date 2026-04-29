@@ -19,7 +19,6 @@ import {
   availablePuppies,
   brand,
   breeds as homepageBreeds,
-  currentLitters,
   damDetails,
   damGroups,
   faqs,
@@ -93,6 +92,10 @@ const architectureSeo = {
   "/puppies/available": {
     title: "Available Puppies | Red Ranch Dogs",
     description: "View current Red Ranch Dogs puppy cards with status, litter, breed, and go-home timing."
+  },
+  "/puppies/current-litters": {
+    title: "Current Litters | Red Ranch Dogs",
+    description: "Follow current Red Ranch Dogs litters, weekly puppy photos, go-home dates, and availability notes."
   },
   "/puppies/upcoming-litters": {
     title: "Upcoming Litters | Red Ranch Dogs",
@@ -432,6 +435,7 @@ const primaryNav = [
     href: "/puppies",
     links: [
       { label: "Available Puppies", href: "/puppies/available" },
+      { label: "Current Litters", href: "/puppies/current-litters" },
       { label: "Upcoming Litters", href: "/puppies/upcoming-litters" },
       { label: "Goldendoodle Puppies", href: "/puppies/goldendoodle-puppies" },
       { label: "Cavapoo Puppies", href: "/puppies/cavapoo-puppies" },
@@ -1501,14 +1505,9 @@ const publicPuppyProfiles = publicRecords(puppyProfiles);
 const publicLitterProfiles = publicRecords(litterProfiles);
 const publicParentProfiles = publicRecords(parentProfiles);
 const puppyData = publicPuppyProfiles.length ? publicPuppyProfiles : availablePuppies;
-
-const puppyStatusLegend = [
-  ["Available", "Open for an approved family to move forward."],
-  ["Pending", "A family is reviewing or confirming next steps."],
-  ["Reserved", "A deposit or match is already in place."],
-  ["Matched", "Connected to a family or future litter plan."],
-  ["Guardian Candidate", "May be considered for the guardian program."]
-];
+const isCurrentLitter = (litter) => String(litter?.status || "").toLowerCase().includes("current");
+const currentLitterProfiles = publicLitterProfiles.filter(isCurrentLitter);
+const plannedLitterProfiles = publicLitterProfiles.filter((litter) => !isCurrentLitter(litter));
 
 const puppyNextSteps = [
   ["Apply or Ask", "Start with a quick application or ask about a specific puppy so we understand your family, timing, and preferences."],
@@ -2099,24 +2098,17 @@ function AboutOverviewPage() {
 
 function AvailablePuppiesPage() {
   const [breedFilter, setBreedFilter] = useState("All");
-  const [statusFilter, setStatusFilter] = useState("Available");
-  const breedOptions = ["All", ...new Set(puppyData.map((puppy) => puppy.breed).filter(Boolean))];
-  const statusOptions = ["All", ...new Set(puppyData.map((puppy) => puppy.status).filter(Boolean))];
   const availableNow = puppyData.filter((puppy) => puppy.status === "Available");
+  const breedOptions = ["All", ...new Set(availableNow.map((puppy) => puppy.breed).filter(Boolean))];
   const activeLitters = new Set(availableNow.map((puppy) => puppy.litter).filter(Boolean));
   const nextGoHomeDates = [...new Set(availableNow.map((puppy) => puppy.goHomeDate || puppy.goHome).filter(Boolean))];
-  const filteredPuppies = puppyData
+  const filteredPuppies = availableNow
     .map((puppy, index) => ({ puppy, index }))
     .filter(({ puppy }) => {
       const breedMatch = breedFilter === "All" || puppy.breed === breedFilter;
-      const statusMatch = statusFilter === "All" || puppy.status === statusFilter;
-      return breedMatch && statusMatch;
+      return breedMatch;
     })
-    .sort((first, second) => {
-      if (first.puppy.status === "Available" && second.puppy.status !== "Available") return -1;
-      if (first.puppy.status !== "Available" && second.puppy.status === "Available") return 1;
-      return first.index - second.index;
-    })
+    .sort((first, second) => first.index - second.index)
     .map(({ puppy }) => puppy);
 
   return (
@@ -2127,11 +2119,11 @@ function AvailablePuppiesPage() {
       actions={(
         <>
           <Link href="/apply" className="button primary">Apply for a Puppy</Link>
-          <Link href="/puppies/upcoming-litters" className="button secondary">View Upcoming Litters</Link>
+          <Link href="/puppies/current-litters" className="button secondary">View Current Litters</Link>
         </>
       )}
     >
-      {puppyData.length > 0 ? (
+      {availableNow.length > 0 ? (
         <>
           <section className="availability-summary-band">
             <article>
@@ -2151,48 +2143,35 @@ function AvailablePuppiesPage() {
             <div>
               <p className="eyebrow">Find a Puppy</p>
               <h2>Current listings</h2>
-              <p>We show available puppies first. You can also view reserved or pending puppies to see how current litters are progressing.</p>
+              <p>This page only shows puppies that are currently open for an approved family. Reserved puppies live on their litter pages.</p>
             </div>
-            <div className="filter-group" aria-label="Filter puppies by breed">
-              {breedOptions.map((breed) => (
-                <button className={breedFilter === breed ? "filter-pill active" : "filter-pill"} type="button" key={breed} onClick={() => setBreedFilter(breed)}>
-                  {breed}
-                </button>
-              ))}
-            </div>
-            <div className="filter-group" aria-label="Filter puppies by status">
-              {statusOptions.map((status) => (
-                <button className={statusFilter === status ? "filter-pill active" : "filter-pill"} type="button" key={status} onClick={() => setStatusFilter(status)}>
-                  {status}
-                </button>
-              ))}
-            </div>
+            {breedOptions.length > 2 && (
+              <div className="filter-group" aria-label="Filter puppies by breed">
+                {breedOptions.map((breed) => (
+                  <button className={breedFilter === breed ? "filter-pill active" : "filter-pill"} type="button" key={breed} onClick={() => setBreedFilter(breed)}>
+                    {breed}
+                  </button>
+                ))}
+              </div>
+            )}
           </section>
           <section className="card-list available-puppy-list">
-            <SectionHeader eyebrow="Current Availability" title={statusFilter === "Available" ? "Available now" : "Puppy listings"} copy="Each card keeps the original photo clean while the website handles name overlays, status labels, and weekly puppy details." />
+            <SectionHeader eyebrow="Current Availability" title="Available now" copy="Each card keeps the original photo clean while the website handles name overlays, status labels, and weekly puppy details." />
             {filteredPuppies.length ? filteredPuppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />) : <p className="small-note">No puppies match those filters yet.</p>}
-          </section>
-          <section className="tile-grid five status-legend compact-grid">
-            {puppyStatusLegend.map(([status, copy]) => (
-              <article className="text-card compact-card" key={status}>
-                <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{status}</span>
-                <p>{copy}</p>
-              </article>
-            ))}
           </section>
           <section className="content-section">
             <SectionHeader eyebrow="Next Steps" title="How families move forward" copy="The process is meant to be clear and personal, not a guessing game." />
             <ProcessStepCards steps={puppyNextSteps} />
           </section>
-          <CTASection title="Ready to ask about a puppy?" copy="Apply now and we will help you understand availability, timing, and whether a current puppy or future litter is the right fit." primaryLabel="Apply for a Puppy" secondaryHref="/puppies/upcoming-litters" secondaryLabel="View Upcoming Litters" />
+          <CTASection title="Ready to ask about a puppy?" copy="Apply now and we will help you understand availability, timing, and whether a current puppy or future litter is the right fit." primaryLabel="Apply for a Puppy" secondaryHref="/puppies/current-litters" secondaryLabel="View Current Litters" />
         </>
       ) : (
         <section className="content-section narrow">
-          <h2>No publicly listed puppies right now</h2>
-          <p>We do not have publicly listed puppies right now. Join the waitlist or view upcoming litters to learn what is planned next.</p>
+          <h2>No available puppies right now</h2>
+          <p>Our puppies are often reserved through the waitlist before they are listed publicly. Join the waitlist or follow our current litters to see what is growing now.</p>
           <div className="actions">
             <Link href="/apply" className="button primary">Apply</Link>
-            <Link href="/puppies/upcoming-litters" className="button secondary">View Upcoming Litters</Link>
+            <Link href="/puppies/current-litters" className="button secondary">View Current Litters</Link>
           </div>
         </section>
       )}
@@ -2202,12 +2181,38 @@ function AvailablePuppiesPage() {
 
 function CurrentLittersPage() {
   return (
-    <Layout>
-      <PageHero eyebrow="Updated 4/21/26" title="Current Litters" copy="See current Red Ranch Dogs litters, go-home timing, and puppy availability updates." />
+    <BuyerPageTemplate
+      eyebrow="Puppies"
+      title="Current Litters"
+      copy="Follow the Red Ranch Dogs litters that are born now, including weekly puppy photos, go-home timing, and availability notes."
+      actions={(
+        <>
+          <Link href="/apply" className="button primary">Join the Waitlist</Link>
+          <Link href="/puppies/available" className="button secondary">View Available Puppies</Link>
+        </>
+      )}
+      cta={{
+        title: "Interested in a current or future litter?",
+        copy: "Apply now and we will help you understand availability, waitlist timing, and whether a puppy from a current litter may be the right fit.",
+        primaryLabel: "Apply for a Puppy",
+        secondaryHref: "/puppies/upcoming-litters",
+        secondaryLabel: "View Upcoming Litters"
+      }}
+    >
+      <PageIntroPanel
+        eyebrow="Weekly updates"
+        title="Current litters are where the weekly puppy photos live."
+        copy="Available Puppies stays focused on puppies that are truly open. Current Litters gives families a clean way to follow born litters, reserved puppies, parent pairings, and weekly growth updates."
+      />
       <section className="card-list">
-        {currentLitters.map((litter) => <LitterCard litter={litter} key={litter.name} />)}
+        <SectionHeader eyebrow="Growing Now" title="Current litter updates" copy="Each litter card leads to parent details, puppy cards, weekly photos, and go-home information." />
+        {currentLitterProfiles.length ? (
+          currentLitterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)
+        ) : (
+          <p className="small-note">No current litters are posted right now. View upcoming litters or join the waitlist to hear what is planned next.</p>
+        )}
       </section>
-    </Layout>
+    </BuyerPageTemplate>
   );
 }
 
@@ -2232,7 +2237,7 @@ function UpcomingLittersPage() {
       />
       <section className="card-list">
         <SectionHeader eyebrow="Planned Litters" title="Pairing preview" copy="Pairings, timing, and availability are updated as plans are confirmed." />
-        {publicLitterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
+        {plannedLitterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
       </section>
       <section className="content-section legacy-planning-notes">
         <article className="note-panel">
@@ -3635,6 +3640,7 @@ function Footer() {
         </div>
         <nav className="footer-links" aria-label="Footer navigation">
           <Link href="/puppies/available">Available Puppies</Link>
+          <Link href="/puppies/current-litters">Current Litters</Link>
           <Link href="/puppies/upcoming-litters">Upcoming Litters</Link>
           <Link href="/apply">Apply</Link>
           <Link href="/process/pricing">Pricing</Link>
@@ -3712,6 +3718,7 @@ export default function App() {
       "/home-maple": <HomePage />,
       "/puppies": <PuppiesOverviewPage />,
       "/puppies/available": <AvailablePuppiesPage />,
+      "/puppies/current-litters": <CurrentLittersPage />,
       "/puppies/upcoming-litters": <UpcomingLittersPage />,
       "/puppies/goldendoodle-puppies": <BreedPageTemplate breed={breedProfiles.find((breed) => breed.slug === "goldendoodle-puppies")} />,
       "/puppies/cavapoo-puppies": <BreedPageTemplate breed={breedProfiles.find((breed) => breed.slug === "cavapoo-puppies")} />,
