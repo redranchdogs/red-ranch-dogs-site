@@ -2351,35 +2351,68 @@ textarea {
 .litter-summary-panel {
   display: grid;
   align-content: start;
-  gap: 14px;
+  gap: 10px;
+  padding: 20px;
 }
 
 .litter-summary-panel h2 {
-  max-width: 10ch;
+  max-width: 12ch;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.6rem, 4.8vw, 4.2rem);
+  font-size: clamp(2.35rem, 4.4vw, 3.5rem);
   line-height: 0.92;
 }
 
 .litter-summary-panel > p:not(.eyebrow) {
   margin: 0;
   color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.litter-summary-panel .actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.litter-summary-panel .button {
+  min-height: 46px;
+  padding-inline: 12px;
+  font-size: 0.82rem;
 }
 
 .litter-facts {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 8px 0 0;
+  gap: 0 14px;
+  margin: 4px 0 0;
+}
+
+.litter-facts div {
+  padding-top: 8px;
+}
+
+.litter-facts dt,
+.parent-facts dt {
+  font-size: 0.68rem;
+  line-height: 1.2;
+}
+
+.litter-facts dd,
+.parent-facts dd {
+  margin-top: 3px;
+  color: var(--ink);
+  font-size: 0.98rem;
+  line-height: 1.25;
 }
 
 .litter-availability-callout {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 14px;
+  gap: 12px;
   align-items: center;
   margin-top: 2px;
-  padding: 16px;
+  padding: 12px;
   background: rgba(156, 31, 22, 0.07);
   border: 1px solid rgba(156, 31, 22, 0.18);
   border-radius: 6px;
@@ -2388,8 +2421,8 @@ textarea {
 .litter-availability-callout span {
   display: inline-grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   color: var(--paper);
   background: var(--brand-red);
   border-radius: 999px;
@@ -2636,7 +2669,7 @@ textarea {
 .parent-profile-template {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-  gap: 22px;
+  gap: 16px;
   align-items: stretch;
 }
 
@@ -2644,15 +2677,16 @@ textarea {
 .parent-role-panel {
   display: grid;
   align-content: start;
-  gap: 14px;
+  gap: 10px;
+  padding: 20px;
 }
 
 .parent-snapshot-panel h2,
 .parent-role-panel h2 {
-  max-width: 12ch;
+  max-width: 13ch;
   margin: 0;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.45rem, 4.5vw, 4rem);
+  font-size: clamp(2.25rem, 4.1vw, 3.5rem);
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: 0;
@@ -2664,7 +2698,13 @@ textarea {
 }
 
 .parent-facts {
+  gap: 0 14px;
+  margin-top: 4px;
   margin-bottom: 0;
+}
+
+.parent-facts div {
+  padding-top: 8px;
 }
 
 .parent-profile-list {
@@ -4537,20 +4577,32 @@ summary {
 
   .litter-summary-panel h2 {
     max-width: 15ch;
-    font-size: clamp(2.35rem, 11vw, 3.35rem);
+    font-size: clamp(2rem, 9vw, 2.7rem);
   }
 
   .litter-summary-panel {
-    gap: 12px;
+    gap: 9px;
+    padding: 16px;
   }
 
   .litter-facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 14px;
+    gap: 0 12px;
   }
 
   .litter-facts div {
-    padding-top: 8px;
+    padding-top: 7px;
+  }
+
+  .litter-summary-panel .actions {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .litter-summary-panel .button {
+    min-height: 44px;
+    padding-inline: 8px;
+    font-size: 0.76rem;
   }
 
   .litter-about-section {
@@ -4629,13 +4681,28 @@ summary {
   }
 
   .parent-profile-template {
-    gap: 16px;
+    gap: 12px;
   }
 
   .parent-snapshot-panel h2,
   .parent-role-panel h2 {
     max-width: 13ch;
-    font-size: clamp(2.2rem, 11vw, 3.25rem);
+    font-size: clamp(2rem, 9.5vw, 2.85rem);
+  }
+
+  .parent-snapshot-panel,
+  .parent-role-panel {
+    gap: 9px;
+    padding: 16px;
+  }
+
+  .parent-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 12px;
+  }
+
+  .parent-facts div {
+    padding-top: 7px;
   }
 
   .parent-testing-section,

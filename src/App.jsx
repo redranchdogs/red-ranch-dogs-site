@@ -1712,7 +1712,7 @@ function LitterPage({ litter }) {
         </article>
         <aside className="litter-summary-panel group-panel">
           <p className="eyebrow">Litter Snapshot</p>
-          <h2>{litter.breed} litter details</h2>
+          <h2>Litter details</h2>
           <p>{litter.availabilityNote || "Approved families are contacted in waitlist order as availability is confirmed."}</p>
           <dl className="details litter-facts">
             <div><dt>Mama</dt><dd>{litter.mama}</dd></div>
