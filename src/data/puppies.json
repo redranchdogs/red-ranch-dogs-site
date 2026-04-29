@@ -12,7 +12,7 @@
     "studSlug": "waylon-jennings",
     "stud": "Waylon Jennings",
     "gender": "Male",
-    "collarColor": "Green",
+    "collarColor": "Brown",
     "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "20-25 lbs",
@@ -51,7 +51,7 @@
     "studSlug": "waylon-jennings",
     "stud": "Waylon Jennings",
     "gender": "Male",
-    "collarColor": "Blue",
+    "collarColor": "Orange",
     "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "20-25 lbs",
@@ -76,6 +76,201 @@
     "description": "Axel is a sweet, middle-of-the-pack Mini Goldendoodle boy from Birdie and Waylon's litter.",
     "availabilityNote": "Currently available for an approved family.",
     "personalityNote": "Super sweet, steady, and people-friendly. A great fit for a family wanting a loving companion with a silky-soft, lower-shedding doodle coat."
+  },
+  {
+    "slug": "diesel",
+    "name": "Diesel",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Mini Goldendoodle",
+    "litterSlug": "birdie-waylon-spring-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "April 1, 2026",
+    "goHomeDate": "May 23-25, 2026",
+    "price": "$3,200",
+    "color": "Red abstract",
+    "coat": "Silky-soft, lower-shedding doodle coat",
+    "gender": "Male",
+    "collarColor": "Blue",
+    "status": "Reserved",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/diesel-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png",
+    "photos": [
+      "/images/puppies/birdie-waylon-2026/diesel-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 4",
+        "folderHint": "Website Hub / Photos / Litters / Birdie 3 + Waylon / Diesel / Week 4",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/diesel-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+        ]
+      }
+    ],
+    "description": "Diesel is a reserved Mini Goldendoodle puppy from Birdie and Waylon's litter.",
+    "availabilityNote": "Reserved for a family from the waitlist.",
+    "personalityNote": "Personality notes will be updated after the next puppy photo and temperament update."
+  },
+  {
+    "slug": "dakota",
+    "name": "Dakota",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Mini Goldendoodle",
+    "litterSlug": "birdie-waylon-spring-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "April 1, 2026",
+    "goHomeDate": "May 23-25, 2026",
+    "price": "$3,200",
+    "color": "Red abstract",
+    "coat": "Silky-soft, lower-shedding doodle coat",
+    "gender": "Female",
+    "collarColor": "Red",
+    "status": "Reserved",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/dakota-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png",
+    "photos": [
+      "/images/puppies/birdie-waylon-2026/dakota-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 4",
+        "folderHint": "Website Hub / Photos / Litters / Birdie 3 + Waylon / Dakota / Week 4",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/dakota-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+        ]
+      }
+    ],
+    "description": "Dakota is a reserved Mini Goldendoodle puppy from Birdie and Waylon's litter.",
+    "availabilityNote": "Reserved for a family from the waitlist.",
+    "personalityNote": "Personality notes will be updated after the next puppy photo and temperament update."
+  },
+  {
+    "slug": "sedona",
+    "name": "Sedona",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Mini Goldendoodle",
+    "litterSlug": "birdie-waylon-spring-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "April 1, 2026",
+    "goHomeDate": "May 23-25, 2026",
+    "price": "$3,200",
+    "color": "Red abstract",
+    "coat": "Silky-soft, lower-shedding doodle coat",
+    "gender": "Female",
+    "collarColor": "Yellow",
+    "status": "Reserved",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/sedona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png",
+    "photos": [
+      "/images/puppies/birdie-waylon-2026/sedona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 4",
+        "folderHint": "Website Hub / Photos / Litters / Birdie 3 + Waylon / Sedona / Week 4",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/sedona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+        ]
+      }
+    ],
+    "description": "Sedona is a reserved Mini Goldendoodle puppy from Birdie and Waylon's litter.",
+    "availabilityNote": "Reserved for a family from the waitlist.",
+    "personalityNote": "Personality notes will be updated after the next puppy photo and temperament update."
+  },
+  {
+    "slug": "arizona",
+    "name": "Arizona",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Mini Goldendoodle",
+    "litterSlug": "birdie-waylon-spring-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "April 1, 2026",
+    "goHomeDate": "May 23-25, 2026",
+    "price": "$3,200",
+    "color": "Red abstract",
+    "coat": "Silky-soft, lower-shedding doodle coat",
+    "gender": "Female",
+    "collarColor": "Pink",
+    "status": "Reserved",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/arizona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png",
+    "photos": [
+      "/images/puppies/birdie-waylon-2026/arizona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 4",
+        "folderHint": "Website Hub / Photos / Litters / Birdie 3 + Waylon / Arizona / Week 4",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/arizona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+        ]
+      }
+    ],
+    "description": "Arizona is a reserved Mini Goldendoodle puppy from Birdie and Waylon's litter.",
+    "availabilityNote": "Reserved for a family from the waitlist.",
+    "personalityNote": "Personality notes will be updated after the next puppy photo and temperament update."
+  },
+  {
+    "slug": "indie",
+    "name": "Indie",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Mini Goldendoodle",
+    "litterSlug": "birdie-waylon-spring-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "April 1, 2026",
+    "goHomeDate": "May 23-25, 2026",
+    "price": "$3,200",
+    "color": "Red abstract",
+    "coat": "Silky-soft, lower-shedding doodle coat",
+    "gender": "Female",
+    "collarColor": "Purple",
+    "status": "Reserved",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/indie-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png",
+    "photos": [
+      "/images/puppies/birdie-waylon-2026/indie-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 4",
+        "folderHint": "Website Hub / Photos / Litters / Birdie 3 + Waylon / Indie / Week 4",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/indie-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.png"
+        ]
+      }
+    ],
+    "description": "Indie is a reserved Mini Goldendoodle puppy from Birdie and Waylon's litter.",
+    "availabilityNote": "Reserved for a family from the waitlist.",
+    "personalityNote": "Personality notes will be updated after the next puppy photo and temperament update."
   },
   {
     "slug": "buzz",

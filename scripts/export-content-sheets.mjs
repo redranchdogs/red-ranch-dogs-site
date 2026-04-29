@@ -9,44 +9,58 @@ const SHEETS = {
     fileName: "puppy-tracker.tsv",
     source: "src/data/puppies.json",
     columns: [
+      "publish_status",
+      "puppy_name",
       "slug",
-      "name",
-      "visibility",
-      "breedSlug",
+      "breed_group",
       "breed",
-      "litterSlug",
-      "litter",
-      "mamaSlug",
-      "mama",
-      "studSlug",
-      "stud",
+      "litter_name",
+      "litter_slug",
       "gender",
-      "collarColor",
-      "status",
-      "sizeCategory",
-      "estimatedAdultWeight",
-      "birthDate",
-      "goHomeDate",
+      "collar_color",
+      "birth_date",
+      "go_home_date",
+      "estimated_adult_weight",
       "price",
-      "color",
-      "coat",
-      "mainPhoto",
-      "photos",
-      "weeklyPhotos",
-      "description",
-      "availabilityNote",
-      "personalityNote",
-      "photoFolderHint",
-      "publicPage",
-      "internalNotes",
+      "availability_status",
+      "display_on_available_puppies",
+      "display_on_homepage",
+      "matched_family_display",
+      "main_photo_file",
+      "gallery_folder",
+      "personality_note",
+      "availability_note",
+      "weekly_update_folder",
+      "last_photo_update",
+      "public_page",
+      "internal_notes",
     ],
     mapRecord: (puppy) => ({
-      ...puppy,
-      photos: list(puppy.photos),
-      weeklyPhotos: weeklyPhotos(puppy.weeklyPhotos),
-      photoFolderHint: puppy.weeklyPhotos?.[0]?.folderHint?.replace(/ \/ Week \d+$/, "") || "",
-      publicPage: `/puppies/${puppy.slug}`,
-      internalNotes: "",
+      publish_status: puppy.visibility === "public" ? "Public" : "Private",
+      puppy_name: puppy.name,
+      slug: puppy.slug,
+      breed_group: breedGroup(puppy.breed),
+      breed: puppy.breed,
+      litter_name: puppy.litter,
+      litter_slug: puppy.litterSlug,
+      gender: puppy.gender,
+      collar_color: puppy.collarColor,
+      birth_date: puppy.birthDate,
+      go_home_date: puppy.goHomeDate,
+      estimated_adult_weight: puppy.estimatedAdultWeight,
+      price: puppy.price,
+      availability_status: puppy.status,
+      display_on_available_puppies: puppy.status === "Available" ? "Yes" : "No",
+      display_on_homepage: "No",
+      matched_family_display: "",
+      main_photo_file: fileName(puppy.mainPhoto),
+      gallery_folder: photoFolder(puppy.weeklyPhotos),
+      personality_note: puppy.personalityNote,
+      availability_note: puppy.availabilityNote,
+      weekly_update_folder: puppy.weeklyPhotos?.[0]?.folderHint || "",
+      last_photo_update: puppy.weeklyPhotos?.[0]?.week || "",
+      public_page: `/puppies/${puppy.slug}`,
+      internal_notes: "",
     }),
   },
   litters: {
@@ -139,6 +153,27 @@ const FIELD_NOTES = {
   photoFolderHint: "Google Drive folder path where the working photos live.",
   publicPage: "Website path generated from the slug.",
   internalNotes: "Working notes only. Do not publish private family, payment, phone, or email details.",
+  publish_status: "Use Public for website-ready records and Private for working records.",
+  puppy_name: "Public puppy display name.",
+  breed_group: "High-level breed group, such as Goldendoodle, Cavapoo, or Bernedoodle.",
+  litter_name: "Public litter name, such as Birdie + Waylon.",
+  litter_slug: "Connects the puppy to a litter detail page.",
+  collar_color: "Collar color used to identify the puppy.",
+  birth_date: "Puppy's birth date.",
+  go_home_date: "Expected go-home window.",
+  estimated_adult_weight: "Estimated adult weight range.",
+  availability_status: "Public status such as Available, Pending, Reserved, Matched, or Guardian Candidate.",
+  display_on_available_puppies: "Yes only when the puppy should appear on the Available Puppies page.",
+  display_on_homepage: "Optional homepage feature flag. Default No.",
+  matched_family_display: "Optional public first-name display for reserved or matched puppies.",
+  main_photo_file: "Primary public image file name.",
+  gallery_folder: "Google Drive folder where this puppy's working photo set lives.",
+  personality_note: "Short public personality or fit note.",
+  availability_note: "Short public availability status note.",
+  weekly_update_folder: "Exact Google Drive folder for the current weekly photo drop.",
+  last_photo_update: "Latest weekly photo update label.",
+  public_page: "Website path generated from the slug.",
+  internal_notes: "Working notes only. Do not publish private family, payment, phone, or email details.",
 };
 
 function readJson(filePath) {
@@ -154,11 +189,20 @@ function links(value = []) {
   return value.map((link) => [link.label, link.url].filter(Boolean).join(": ")).join(" | ");
 }
 
-function weeklyPhotos(value = []) {
-  if (!Array.isArray(value)) return "";
-  return value
-    .map((week) => [week.week, list(week.photos)].filter(Boolean).join(": "))
-    .join(" | ");
+function breedGroup(breed = "") {
+  const normalized = breed.toLowerCase();
+  if (normalized.includes("cavapoo")) return "Cavapoo";
+  if (normalized.includes("bernedoodle")) return "Bernedoodle";
+  return "Goldendoodle";
+}
+
+function fileName(value = "") {
+  return value.split("/").filter(Boolean).pop() || "";
+}
+
+function photoFolder(weeklyPhotos = []) {
+  const folderHint = weeklyPhotos?.[0]?.folderHint || "";
+  return folderHint.replace(/ \/ Week \d+$/, "");
 }
 
 function clean(value) {
