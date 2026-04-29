@@ -2355,6 +2355,67 @@ textarea {
   margin-top: 2px;
 }
 
+.available-puppy-list {
+  gap: 20px;
+  padding-top: 18px;
+}
+
+.available-puppy-card {
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+  gap: 18px;
+  padding: 14px;
+}
+
+.available-puppy-card .puppy-photo-frame,
+.available-puppy-card .puppy-photo-frame img,
+.available-puppy-card .puppy-photo-frame .image-placeholder {
+  aspect-ratio: 4 / 3;
+  min-height: 260px;
+}
+
+.available-puppy-card .puppy-photo-frame img,
+.available-puppy-card .puppy-photo-frame .image-placeholder {
+  display: block;
+  height: 100%;
+  min-height: 0;
+}
+
+.available-puppy-card .puppy-card-body {
+  gap: 9px;
+}
+
+.available-puppy-card .puppy-card-body h2 {
+  font-size: clamp(2.35rem, 4vw, 3.5rem);
+}
+
+.available-puppy-card .puppy-card-note {
+  max-width: 62ch;
+  font-size: 0.96rem;
+  line-height: 1.42;
+}
+
+.available-puppy-card .compact-details {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 4px 0;
+}
+
+.available-puppy-card .small-note {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.available-puppy-card .puppy-card-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+  gap: 8px;
+}
+
+.available-puppy-card .puppy-card-actions .button {
+  min-height: 44px;
+  padding-inline: 10px;
+  font-size: 0.78rem;
+}
+
 .litter-puppy-list {
   gap: 22px;
 }
@@ -5142,6 +5203,40 @@ summary {
   font-size: 0.95rem;
 }
 
+.availability-summary-band {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 20px 0 6px;
+}
+
+.availability-summary-band article {
+  display: grid;
+  gap: 6px;
+  align-content: center;
+  min-height: 118px;
+  padding: 18px;
+  background: rgba(255, 250, 242, 0.74);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.availability-summary-band span {
+  color: var(--brand-red);
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.15rem, 4vw, 3.25rem);
+  line-height: 0.9;
+}
+
+.availability-summary-band p {
+  max-width: 18ch;
+  margin: 0;
+  color: var(--muted);
+  font-weight: 850;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
 .puppy-filter-panel {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(260px, 1fr);
@@ -5251,12 +5346,75 @@ summary {
 
   .puppy-filter-panel {
     grid-template-columns: 1fr;
-    padding-top: 24px;
-    padding-bottom: 24px;
+    gap: 14px;
+    padding-top: 16px;
+    padding-bottom: 18px;
   }
 
   .puppy-filter-panel > div:first-child {
     grid-row: auto;
+  }
+
+  .availability-summary-band {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    padding-top: 16px;
+  }
+
+  .availability-summary-band article {
+    min-height: 96px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+
+  .availability-summary-band p {
+    max-width: none;
+    font-size: 0.68rem;
+    line-height: 1.2;
+  }
+
+  .available-puppy-list {
+    gap: 16px;
+    padding-top: 10px;
+  }
+
+  .available-puppy-card {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .available-puppy-card .puppy-photo-frame,
+  .available-puppy-card .puppy-photo-frame img,
+  .available-puppy-card .puppy-photo-frame .image-placeholder {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+
+  .available-puppy-card .puppy-card-body {
+    gap: 7px;
+    padding: 2px 2px 4px;
+  }
+
+  .available-puppy-card .puppy-card-body h2 {
+    font-size: clamp(2.15rem, 9vw, 2.85rem);
+  }
+
+  .available-puppy-card .puppy-card-note {
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .available-puppy-card .compact-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 10px;
+  }
+
+  .available-puppy-card .compact-details div {
+    padding: 6px 0;
+  }
+
+  .available-puppy-card .puppy-card-actions {
+    grid-template-columns: 1fr 0.72fr;
   }
 
   .included-list {

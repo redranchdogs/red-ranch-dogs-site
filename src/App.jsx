@@ -1138,6 +1138,7 @@ function PuppyCard({ puppy, variant = "default" }) {
   const gender = puppy.gender || puppy.sex || "To be announced";
   const status = puppy.status || "Status to be announced";
   const route = puppy.slug ? `/puppies/${puppy.slug}` : puppy.litterHref;
+  const litterRoute = puppy.litterSlug ? `/litters/${puppy.litterSlug}` : puppy.litterHref;
   const photo = puppy.mainPhoto || puppy.image;
   const litterName = puppy.litter || puppy.litterName || "Litter to be announced";
   const goHome = puppy.goHomeDate || puppy.goHome || "Go-home timing to be announced";
@@ -1145,7 +1146,8 @@ function PuppyCard({ puppy, variant = "default" }) {
   const birthDate = puppy.birthDate || puppy.born;
   const price = puppy.price;
   const isLitterVariant = variant === "litter";
-  const cardClasses = ["puppy-card", "animal-card", isLitterVariant ? "litter-puppy-card" : ""].filter(Boolean).join(" ");
+  const isAvailableVariant = variant === "available";
+  const cardClasses = ["puppy-card", "animal-card", isLitterVariant ? "litter-puppy-card" : "", isAvailableVariant ? "available-puppy-card" : ""].filter(Boolean).join(" ");
   const puppyFacts = isLitterVariant
     ? [
         ["Gender", gender],
@@ -1154,6 +1156,15 @@ function PuppyCard({ puppy, variant = "default" }) {
         ["Adult Weight", weight],
         price && ["Price", price]
       ].filter(Boolean)
+    : isAvailableVariant
+      ? [
+          ["Breed", breed],
+          ["Litter", litterName],
+          ["Gender", gender],
+          ["Go Home", goHome],
+          ["Adult Weight", weight],
+          price && ["Price", price]
+        ].filter(Boolean)
     : [
         ["Litter", litterName],
         ["Gender", gender],
@@ -1187,7 +1198,12 @@ function PuppyCard({ puppy, variant = "default" }) {
           ))}
         </dl>
         {puppy.availabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
-        {route && (
+        {isAvailableVariant ? (
+          <div className="puppy-card-actions">
+            <Link href="/apply" className="button small">Ask About {puppy.name}</Link>
+            {litterRoute && <Link href={litterRoute} className="button small secondary">View Litter</Link>}
+          </div>
+        ) : route && (
           <div className="puppy-card-actions">
             <Link href={route} className="button small">View Puppy</Link>
           </div>
@@ -2067,20 +2083,31 @@ function AboutOverviewPage() {
 
 function AvailablePuppiesPage() {
   const [breedFilter, setBreedFilter] = useState("All");
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("Available");
   const breedOptions = ["All", ...new Set(puppyData.map((puppy) => puppy.breed).filter(Boolean))];
   const statusOptions = ["All", ...new Set(puppyData.map((puppy) => puppy.status).filter(Boolean))];
-  const filteredPuppies = puppyData.filter((puppy) => {
-    const breedMatch = breedFilter === "All" || puppy.breed === breedFilter;
-    const statusMatch = statusFilter === "All" || puppy.status === statusFilter;
-    return breedMatch && statusMatch;
-  });
+  const availableNow = puppyData.filter((puppy) => puppy.status === "Available");
+  const activeLitters = new Set(availableNow.map((puppy) => puppy.litter).filter(Boolean));
+  const nextGoHomeDates = [...new Set(availableNow.map((puppy) => puppy.goHomeDate || puppy.goHome).filter(Boolean))];
+  const filteredPuppies = puppyData
+    .map((puppy, index) => ({ puppy, index }))
+    .filter(({ puppy }) => {
+      const breedMatch = breedFilter === "All" || puppy.breed === breedFilter;
+      const statusMatch = statusFilter === "All" || puppy.status === statusFilter;
+      return breedMatch && statusMatch;
+    })
+    .sort((first, second) => {
+      if (first.puppy.status === "Available" && second.puppy.status !== "Available") return -1;
+      if (first.puppy.status !== "Available" && second.puppy.status === "Available") return 1;
+      return first.index - second.index;
+    })
+    .map(({ puppy }) => puppy);
 
   return (
     <BuyerPageTemplate
       eyebrow="Puppies"
       title="Available Puppies"
-      copy="Meet the puppies currently available from Red Ranch Dogs."
+      copy="Meet the puppies currently available from Red Ranch Dogs, then apply or ask about the fit when one catches your eye."
       actions={(
         <>
           <Link href="/apply" className="button primary">Apply for a Puppy</Link>
@@ -2090,11 +2117,25 @@ function AvailablePuppiesPage() {
     >
       {puppyData.length > 0 ? (
         <>
+          <section className="availability-summary-band">
+            <article>
+              <span>{availableNow.length}</span>
+              <p>available {availableNow.length === 1 ? "puppy" : "puppies"} right now</p>
+            </article>
+            <article>
+              <span>{activeLitters.size || "0"}</span>
+              <p>{activeLitters.size === 1 ? "current litter" : "current litters"} with openings</p>
+            </article>
+            <article>
+              <span>{nextGoHomeDates[0] || "Ask"}</span>
+              <p>next go-home timing</p>
+            </article>
+          </section>
           <section className="content-section puppy-filter-panel compact-panel">
             <div>
               <p className="eyebrow">Find a Puppy</p>
-              <h2>Filter current listings</h2>
-              <p>Use breed and status filters to quickly narrow what is publicly available.</p>
+              <h2>Current listings</h2>
+              <p>We show available puppies first. You can also view reserved or pending puppies to see how current litters are progressing.</p>
             </div>
             <div className="filter-group" aria-label="Filter puppies by breed">
               {breedOptions.map((breed) => (
@@ -2111,9 +2152,9 @@ function AvailablePuppiesPage() {
               ))}
             </div>
           </section>
-          <section className="card-list">
-            <SectionHeader eyebrow="Current Availability" title="Puppies ready to view" copy="Puppy names, status labels, and details are rendered by the website so original photos can stay clean." />
-            {filteredPuppies.length ? filteredPuppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">No puppies match those filters yet.</p>}
+          <section className="card-list available-puppy-list">
+            <SectionHeader eyebrow="Current Availability" title={statusFilter === "Available" ? "Available now" : "Puppy listings"} copy="Each card keeps the original photo clean while the website handles name overlays, status labels, and weekly puppy details." />
+            {filteredPuppies.length ? filteredPuppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />) : <p className="small-note">No puppies match those filters yet.</p>}
           </section>
           <section className="tile-grid five status-legend compact-grid">
             {puppyStatusLegend.map(([status, copy]) => (
