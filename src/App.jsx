@@ -1133,7 +1133,7 @@ function ImageGallery({ images: gallery = [], label = "Gallery image" }) {
   );
 }
 
-function PuppyCard({ puppy }) {
+function PuppyCard({ puppy, variant = "default" }) {
   const breed = puppy.breed || "Breed to be announced";
   const gender = puppy.gender || puppy.sex || "To be announced";
   const status = puppy.status || "Status to be announced";
@@ -1144,9 +1144,28 @@ function PuppyCard({ puppy }) {
   const weight = puppy.estimatedAdultWeight || puppy.size || "Estimate to be announced";
   const birthDate = puppy.birthDate || puppy.born;
   const price = puppy.price;
+  const isLitterVariant = variant === "litter";
+  const cardClasses = ["puppy-card", "animal-card", isLitterVariant ? "litter-puppy-card" : ""].filter(Boolean).join(" ");
+  const puppyFacts = isLitterVariant
+    ? [
+        ["Gender", gender],
+        puppy.collarColor && ["Collar", puppy.collarColor],
+        ["Go Home", goHome],
+        ["Adult Weight", weight],
+        price && ["Price", price]
+      ].filter(Boolean)
+    : [
+        ["Litter", litterName],
+        ["Gender", gender],
+        puppy.collarColor && ["Collar", puppy.collarColor],
+        birthDate && ["Birth Date", birthDate],
+        ["Go Home", goHome],
+        ["Adult Weight", weight],
+        price && ["Price", price]
+      ].filter(Boolean);
 
   return (
-    <article className="puppy-card animal-card">
+    <article className={cardClasses}>
       <figure className="puppy-photo-frame">
         {photo ? (
           <img src={photo} alt={`${puppy.name} - ${breed}`} loading="lazy" />
@@ -1163,12 +1182,9 @@ function PuppyCard({ puppy }) {
         <h2>{puppy.name}</h2>
         <p className="puppy-card-note">{puppy.personalityNote || puppy.description || "Personality notes are updated as puppies grow and we learn more about their temperament."}</p>
         <dl className="details compact-details">
-          <div><dt>Litter</dt><dd>{litterName}</dd></div>
-          <div><dt>Gender</dt><dd>{gender}</dd></div>
-          {birthDate && <div><dt>Birth Date</dt><dd>{birthDate}</dd></div>}
-          <div><dt>Go Home</dt><dd>{goHome}</dd></div>
-          <div><dt>Adult Weight</dt><dd>{weight}</dd></div>
-          {price && <div><dt>Price</dt><dd>{price}</dd></div>}
+          {puppyFacts.map(([label, value]) => (
+            <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
+          ))}
         </dl>
         {puppy.availabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
         {route && (
@@ -1689,6 +1705,15 @@ function LitterPage({ litter }) {
   const fallbackLitterImage = litter.parentPairingImage || litter.image || gallery[0];
   const hasParentPairing = mama?.mainPhoto && stud?.mainPhoto;
   const hasAboutSection = litter.aboutThisLitter?.length || litter.geneticMakeup?.length || litter.aboutHighlights?.length;
+  const aboutParagraphs = litter.aboutThisLitter || [];
+  const visibleAboutParagraphs = aboutParagraphs.slice(0, 2);
+  const extraAboutParagraphs = aboutParagraphs.slice(2);
+  const currentWeek = litter.weeklyUpdateStatus?.match(/Week\s+\d+/i)?.[0];
+  const statusLabel = availablePuppies.length
+    ? `${availablePuppies.length} available`
+    : puppies.length
+      ? `${puppies.length} puppy profile${puppies.length === 1 ? "" : "s"}`
+      : "Profiles coming soon";
 
   return (
     <Layout>
@@ -1723,8 +1748,11 @@ function LitterPage({ litter }) {
           )}
         </article>
         <aside className="litter-summary-panel group-panel">
-          <p className="eyebrow">Litter Snapshot</p>
-          <h2>Litter details</h2>
+          <div className="litter-summary-heading">
+            <p className="eyebrow">Litter Snapshot</p>
+            <span className="status-badge">{statusLabel}</span>
+          </div>
+          <h2>{litter.name} at a glance</h2>
           <p>{litter.availabilityNote || "Approved families are contacted in waitlist order as availability is confirmed."}</p>
           <dl className="details litter-facts">
             <div><dt>Mama</dt><dd>{litter.mama}</dd></div>
@@ -1738,6 +1766,12 @@ function LitterPage({ litter }) {
             <span>{availablePuppies.length || puppies.length || 0}</span>
             <p>{availablePuppies.length ? "available puppies from this litter" : puppies.length ? "puppy profiles listed from this litter" : "puppy profiles will appear here when ready"}</p>
           </div>
+          {(currentWeek || litter.photoFolderHint) && (
+            <div className="litter-update-note">
+              {currentWeek && <strong>{currentWeek}</strong>}
+              <span>{litter.weeklyUpdateStatus || "Weekly photos will be added here as this litter grows."}</span>
+            </div>
+          )}
           <div className="actions">
             <Link href="/apply" className="button primary">Apply for a Puppy</Link>
             <Link href="/contact" className="button secondary">Ask a Question</Link>
@@ -1750,9 +1784,17 @@ function LitterPage({ litter }) {
             <div className="litter-about-copy">
               <p className="eyebrow">About This Litter</p>
               <h2>{litter.aboutTitle || `${litter.name} details`}</h2>
-              {(litter.aboutThisLitter || []).map((paragraph) => (
+              {visibleAboutParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
+              {extraAboutParagraphs.length > 0 && (
+                <details className="litter-more-details">
+                  <summary>More about this pairing</summary>
+                  {extraAboutParagraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </details>
+              )}
             </div>
             {(litter.geneticMakeup?.length || litter.aboutHighlights?.length) && (
               <aside className="litter-about-aside">
@@ -1778,8 +1820,8 @@ function LitterPage({ litter }) {
         </section>
       )}
       <section className="card-list litter-puppy-list">
-        <SectionHeader eyebrow="Puppies" title="Puppies from this litter" copy="Names, availability labels, and puppy details are handled by the website so clean original photos can stay clean." />
-        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
+        <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Each puppy card uses clean photos, website-rendered names, status labels, and compact details that can be updated weekly." />
+        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
       </section>
       <section className="tile-grid three litter-parent-grid">
         <SectionHeader eyebrow="Parents" title={`${litter.mama} + ${litter.stud}`} copy="Meet the parent dogs behind this pairing." />

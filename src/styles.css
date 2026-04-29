@@ -2421,15 +2421,15 @@ textarea {
 
 .litter-detail-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-  gap: 24px;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 18px;
   align-items: stretch;
-  padding: 24px 0 42px;
+  padding: 18px 0 32px;
 }
 
 .litter-pairing-card {
   display: grid;
-  padding: 18px;
+  padding: 14px;
 }
 
 .litter-pairing-media {
@@ -2441,21 +2441,33 @@ textarea {
 .litter-pairing-card > .image-placeholder {
   width: 100%;
   height: 100%;
-  min-height: clamp(320px, 42vw, 500px);
+  min-height: clamp(300px, 38vw, 460px);
   object-fit: cover;
 }
 
 .litter-summary-panel {
   display: grid;
   align-content: start;
-  gap: 10px;
-  padding: 20px;
+  gap: 9px;
+  padding: 18px;
+}
+
+.litter-summary-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.litter-summary-heading .eyebrow {
+  margin-bottom: 0;
 }
 
 .litter-summary-panel h2 {
-  max-width: 12ch;
+  max-width: 14ch;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.35rem, 4.4vw, 3.5rem);
+  font-size: clamp(2.25rem, 4vw, 3.2rem);
   line-height: 0.92;
 }
 
@@ -2470,7 +2482,7 @@ textarea {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .litter-summary-panel .button {
@@ -2482,11 +2494,11 @@ textarea {
 .litter-facts {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 14px;
-  margin: 4px 0 0;
+  margin: 2px 0 0;
 }
 
 .litter-facts div {
-  padding-top: 8px;
+  padding-top: 7px;
 }
 
 .litter-facts dt,
@@ -2506,10 +2518,10 @@ textarea {
 .litter-availability-callout {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 12px;
+  gap: 10px;
   align-items: center;
   margin-top: 2px;
-  padding: 12px;
+  padding: 10px;
   background: rgba(156, 31, 22, 0.07);
   border: 1px solid rgba(156, 31, 22, 0.18);
   border-radius: 6px;
@@ -2535,6 +2547,26 @@ textarea {
   line-height: 1.35;
 }
 
+.litter-update-note {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 9px 10px;
+  color: var(--muted);
+  background: rgba(255, 252, 245, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.litter-update-note strong {
+  flex: 0 0 auto;
+  color: var(--brand-red);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .litter-parent-grid .section-header {
   grid-column: 1 / -1;
   margin-bottom: 0;
@@ -2549,13 +2581,14 @@ textarea {
 }
 
 .litter-about-section {
-  padding-top: 18px;
+  padding-top: 10px;
+  padding-bottom: 32px;
 }
 
 .litter-about-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.8fr);
-  gap: clamp(22px, 4vw, 44px);
+  grid-template-columns: minmax(0, 1.48fr) minmax(250px, 0.78fr);
+  gap: clamp(18px, 3vw, 34px);
   align-items: start;
 }
 
@@ -2568,12 +2601,33 @@ textarea {
   max-width: 14ch;
   margin: 0;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.5rem, 4.6vw, 4.4rem);
+  font-size: clamp(2.35rem, 4vw, 3.75rem);
   line-height: 0.92;
 }
 
 .litter-about-copy p {
   margin: 0;
+  line-height: 1.55;
+}
+
+.litter-more-details {
+  display: grid;
+  gap: 10px;
+  margin-top: 2px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.litter-more-details summary {
+  width: fit-content;
+  color: var(--brand-red);
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.litter-more-details p {
+  margin-top: 10px;
 }
 
 .litter-about-aside {
@@ -2582,7 +2636,7 @@ textarea {
 }
 
 .litter-about-aside > div {
-  padding: 18px;
+  padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 252, 245, 0.7);
@@ -2594,6 +2648,50 @@ textarea {
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
   font-size: 1.45rem;
   letter-spacing: 0.03em;
+}
+
+.litter-puppy-card {
+  grid-template-columns: minmax(230px, 0.62fr) minmax(0, 1.38fr);
+  gap: 16px;
+  padding: 14px;
+}
+
+.litter-puppy-card .puppy-photo-frame,
+.litter-puppy-card .puppy-photo-frame img,
+.litter-puppy-card .puppy-photo-frame .image-placeholder {
+  aspect-ratio: 4 / 3;
+  min-height: 240px;
+}
+
+.litter-puppy-card .puppy-photo-frame img,
+.litter-puppy-card .puppy-photo-frame .image-placeholder {
+  display: block;
+  height: 100%;
+  min-height: 0;
+}
+
+.litter-puppy-card .puppy-card-body {
+  gap: 8px;
+}
+
+.litter-puppy-card .puppy-card-body h2 {
+  font-size: clamp(2.25rem, 4vw, 3.35rem);
+}
+
+.litter-puppy-card .puppy-card-note {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.litter-puppy-card .compact-details {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 4px 0;
+}
+
+.litter-puppy-card .small-note {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.35;
 }
 
 .details {
@@ -4718,13 +4816,13 @@ summary {
 
   .litter-detail-shell {
     grid-template-columns: 1fr;
-    gap: 16px;
-    padding-top: 16px;
-    padding-bottom: 34px;
+    gap: 12px;
+    padding-top: 12px;
+    padding-bottom: 24px;
   }
 
   .litter-pairing-card {
-    padding: 12px;
+    padding: 10px;
   }
 
   .litter-feature-photo,
@@ -4732,26 +4830,41 @@ summary {
   .litter-pairing-media,
   .litter-pairing-media div,
   .litter-pairing-media img {
-    min-height: 260px;
+    min-height: 220px;
   }
 
   .litter-summary-panel h2 {
-    max-width: 15ch;
-    font-size: clamp(2rem, 9vw, 2.7rem);
+    max-width: 16ch;
+    font-size: clamp(1.95rem, 8vw, 2.55rem);
   }
 
   .litter-summary-panel {
-    gap: 9px;
-    padding: 16px;
+    gap: 8px;
+    padding: 14px;
   }
 
   .litter-facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 12px;
+    gap: 0 10px;
   }
 
   .litter-facts div {
-    padding-top: 7px;
+    padding-top: 6px;
+  }
+
+  .litter-availability-callout {
+    padding: 9px;
+  }
+
+  .litter-availability-callout span {
+    width: 34px;
+    height: 34px;
+    font-size: 1.45rem;
+  }
+
+  .litter-update-note {
+    padding: 8px 9px;
+    font-size: 0.8rem;
   }
 
   .litter-summary-panel .actions {
@@ -4766,12 +4879,14 @@ summary {
   }
 
   .litter-about-section {
-    padding-top: 8px;
+    padding-top: 4px;
+    padding-bottom: 26px;
   }
 
   .litter-about-panel {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 14px;
+    padding: 16px;
   }
 
   .litter-about-copy {
@@ -4779,12 +4894,16 @@ summary {
   }
 
   .litter-about-copy h2 {
-    max-width: 11ch;
-    font-size: clamp(2.25rem, 12vw, 3.5rem);
+    max-width: 14ch;
+    font-size: clamp(2.05rem, 9.5vw, 3rem);
   }
 
   .litter-about-aside {
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .litter-about-aside > div {
+    padding: 12px;
   }
 
   .litter-parent-grid {
@@ -4797,6 +4916,49 @@ summary {
 
   .litter-gallery-section .image-gallery {
     grid-template-columns: 1fr;
+  }
+
+  .litter-puppy-card {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .litter-puppy-card .puppy-photo-frame,
+  .litter-puppy-card .puppy-photo-frame img,
+  .litter-puppy-card .puppy-photo-frame .image-placeholder {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+
+  .litter-puppy-card .puppy-card-body {
+    gap: 7px;
+    padding: 2px 2px 4px;
+  }
+
+  .litter-puppy-card .puppy-card-body h2 {
+    font-size: clamp(2.15rem, 9vw, 2.75rem);
+  }
+
+  .litter-puppy-card .puppy-card-note {
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .litter-puppy-card .compact-details {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 8px;
+  }
+
+  .litter-puppy-card .compact-details div {
+    padding: 6px 0;
+  }
+
+  .litter-puppy-card .compact-details dt {
+    font-size: 0.62rem;
+  }
+
+  .litter-puppy-card .compact-details dd {
+    font-size: 0.84rem;
   }
 
   .pairing-photo-grid figcaption {
