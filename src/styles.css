@@ -2830,23 +2830,27 @@ textarea {
 }
 
 .litter-puppy-card {
-  grid-template-columns: minmax(230px, 0.62fr) minmax(0, 1.38fr);
-  gap: 16px;
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+  gap: 20px;
   padding: 14px;
+  align-items: stretch;
 }
 
-.litter-puppy-card .puppy-photo-frame,
-.litter-puppy-card .puppy-photo-frame img,
-.litter-puppy-card .puppy-photo-frame .image-placeholder {
-  aspect-ratio: 4 / 3;
-  min-height: 240px;
+.litter-puppy-card .puppy-photo-frame {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+  min-height: 420px;
+  background: var(--line);
 }
 
 .litter-puppy-card .puppy-photo-frame img,
 .litter-puppy-card .puppy-photo-frame .image-placeholder {
   display: block;
+  width: 100%;
   height: 100%;
   min-height: 0;
+  object-fit: contain;
 }
 
 .litter-puppy-card .puppy-card-body {
@@ -4897,6 +4901,7 @@ summary {
 
 .parent-card-media {
   position: relative;
+  aspect-ratio: 4 / 5;
   min-height: 0;
   margin: 0;
   overflow: hidden;
@@ -4907,9 +4912,10 @@ summary {
 .parent-card-media .image-placeholder {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: center 28%;
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  object-position: center;
 }
 
 .parent-role-badge {
@@ -5124,8 +5130,8 @@ summary {
   .litter-puppy-card .puppy-photo-frame,
   .litter-puppy-card .puppy-photo-frame img,
   .litter-puppy-card .puppy-photo-frame .image-placeholder {
-    aspect-ratio: 4 / 3;
-    min-height: 0;
+    aspect-ratio: auto;
+    min-height: min(86vw, 380px);
   }
 
   .litter-puppy-card .puppy-card-body {
@@ -5178,8 +5184,8 @@ summary {
 
   .parent-card-media img,
   .parent-card-media .image-placeholder {
-    aspect-ratio: 4 / 3;
-    object-position: center 24%;
+    aspect-ratio: 4 / 5;
+    object-position: center;
   }
 
   .parent-directory-summary {
