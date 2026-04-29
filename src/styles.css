@@ -2361,23 +2361,27 @@ textarea {
 }
 
 .available-puppy-card {
-  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
-  gap: 18px;
+  grid-template-columns: minmax(320px, 0.62fr) minmax(0, 1fr);
+  gap: 20px;
   padding: 14px;
+  align-items: stretch;
 }
 
-.available-puppy-card .puppy-photo-frame,
-.available-puppy-card .puppy-photo-frame img,
-.available-puppy-card .puppy-photo-frame .image-placeholder {
+.available-puppy-card .puppy-photo-frame {
+  width: 100%;
+  min-width: 0;
   aspect-ratio: 4 / 3;
-  min-height: 260px;
+  min-height: 300px;
+  background: var(--line);
 }
 
 .available-puppy-card .puppy-photo-frame img,
 .available-puppy-card .puppy-photo-frame .image-placeholder {
   display: block;
+  width: 100%;
   height: 100%;
   min-height: 0;
+  object-fit: contain;
 }
 
 .available-puppy-card .puppy-card-body {
@@ -5302,6 +5306,39 @@ summary {
   font-weight: 900;
 }
 
+.process-step-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.process-step-card {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  min-width: 0;
+  padding: 20px;
+  background: rgba(255, 250, 242, 0.74);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.process-step-card h2 {
+  margin: 0;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+}
+
+.process-step-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
 .process-timeline {
   padding-top: 10px;
   padding-bottom: 52px;
@@ -5383,11 +5420,9 @@ summary {
     padding: 10px;
   }
 
-  .available-puppy-card .puppy-photo-frame,
-  .available-puppy-card .puppy-photo-frame img,
-  .available-puppy-card .puppy-photo-frame .image-placeholder {
-    aspect-ratio: 4 / 3;
-    min-height: 0;
+  .available-puppy-card .puppy-photo-frame {
+    aspect-ratio: auto;
+    min-height: min(86vw, 380px);
   }
 
   .available-puppy-card .puppy-card-body {
@@ -5415,6 +5450,28 @@ summary {
 
   .available-puppy-card .puppy-card-actions {
     grid-template-columns: 1fr 0.72fr;
+  }
+
+  .process-step-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-top: 2px;
+  }
+
+  .process-step-card {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 14px;
+    padding: 15px;
+  }
+
+  .process-step-card h2 {
+    font-size: clamp(1.85rem, 7.5vw, 2.4rem);
+  }
+
+  .process-step-card p {
+    margin-top: 5px;
+    font-size: 0.92rem;
+    line-height: 1.36;
   }
 
   .included-list {

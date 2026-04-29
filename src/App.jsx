@@ -1213,6 +1213,22 @@ function PuppyCard({ puppy, variant = "default" }) {
   );
 }
 
+function ProcessStepCards({ steps }) {
+  return (
+    <div className="process-step-cards">
+      {steps.map(([title, copy], index) => (
+        <article className="process-step-card" key={title}>
+          <span className="step-number">{index + 1}</span>
+          <div>
+            <h2>{title}</h2>
+            <p>{copy}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
 function LitterCard({ litter }) {
   const route = litter.slug ? `/litters/${litter.slug}` : litter.href;
   const delivery = litter.birthDate || litter.delivery || "Timing to be announced";
@@ -1495,9 +1511,9 @@ const puppyStatusLegend = [
 ];
 
 const puppyNextSteps = [
-  ["Apply", "Start with a quick application so we understand your family, timing, breed preference, and questions."],
-  ["Talk Through Fit", "We follow up about current availability, waitlist timing, size range, and whether a puppy or future litter is the best fit."],
-  ["Reserve or Waitlist", "If everything lines up, the deposit reserves your puppy or your place on the general waitlist."]
+  ["Apply or Ask", "Start with a quick application or ask about a specific puppy so we understand your family, timing, and preferences."],
+  ["Talk Through Fit", "We confirm availability, personality notes, size expectations, and whether this puppy or a future litter is the best path."],
+  ["Reserve With Deposit", "When everything lines up, a $500 deposit reserves your puppy or your place on the breed waitlist and applies toward the final price."]
 ];
 
 const waitlistProcessSteps = [
@@ -2166,15 +2182,7 @@ function AvailablePuppiesPage() {
           </section>
           <section className="content-section">
             <SectionHeader eyebrow="Next Steps" title="How families move forward" copy="The process is meant to be clear and personal, not a guessing game." />
-            <div className="tile-grid three no-section-padding">
-              {puppyNextSteps.map(([title, copy], index) => (
-                <article className="text-card icon-card" key={title}>
-                  <span className="step-number">{index + 1}</span>
-                  <h2>{title}</h2>
-                  <p>{copy}</p>
-                </article>
-              ))}
-            </div>
+            <ProcessStepCards steps={puppyNextSteps} />
           </section>
           <CTASection title="Ready to ask about a puppy?" copy="Apply now and we will help you understand availability, timing, and whether a current puppy or future litter is the right fit." primaryLabel="Apply for a Puppy" secondaryHref="/puppies/upcoming-litters" secondaryLabel="View Upcoming Litters" />
         </>
