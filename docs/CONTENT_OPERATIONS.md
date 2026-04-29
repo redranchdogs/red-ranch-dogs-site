@@ -51,6 +51,44 @@ This creates:
 
 Use these files as the canonical column layout for the Puppy Tracker, Litter Sheet, and Parent Dog Sheet. The column names intentionally match the website data fields so future sheet-to-website automation can stay simple.
 
+## Smart Sheet Sync
+
+The safer workflow is the smart sync. It reads the live Website Hub sheet first, merges rows by stable IDs, and then writes the merged result back. This keeps extra manual columns and internal notes instead of wiping them away.
+
+Before running the smart sync, deploy the bridge code in:
+
+```bash
+scripts/website-bridge-apps-script.js
+```
+
+Set these environment variables locally before syncing:
+
+```bash
+export RED_RANCH_BRIDGE_URL="YOUR_APPS_SCRIPT_WEB_APP_URL"
+export RED_RANCH_BRIDGE_SECRET="YOUR_BRIDGE_SECRET"
+```
+
+Preview the generated row counts without touching Google Sheets:
+
+```bash
+npm run sync:sheets:dry-run
+```
+
+Run the actual smart sync:
+
+```bash
+npm run sync:sheets
+```
+
+Stable sync keys:
+
+- Puppy Tracker: `slug`
+- Litter Sheet: `slug`
+- Parent Dog Sheet: `slug`
+- Waitlist Sheet: `breed` + `position`
+
+The smart sync preserves extra live sheet columns and protects note-style fields such as `internal_notes`, `internalNotes`, and `matched_family_display` when those fields already have values in Google Sheets.
+
 ## Puppy Record Pattern
 
 Each puppy should include:

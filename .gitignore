@@ -1,6 +1,8 @@
 node_modules
+node_modules_codex_runtime
 dist
 .vercel
 .env
 .env.local
+outputs
 npm-debug.log*
