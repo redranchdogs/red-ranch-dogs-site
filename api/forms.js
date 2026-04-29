@@ -11,6 +11,33 @@ function submissionText(payload) {
     .join("\n");
 }
 
+function applicationMessage(payload) {
+  if (payload.formType !== "application") {
+    return payload.message;
+  }
+
+  const details = [
+    ["Preferred breed", payload.preferredBreed],
+    ["Gender preference", payload.genderPreference],
+    ["Size preference", payload.sizePreference],
+    ["Timing", payload.timing],
+    ["Specific interest", payload.specificInterest],
+    ["Puppy purpose", payload.puppyPurpose],
+    ["Children at home", payload.childrenAtHome],
+    ["Pickup or delivery", payload.pickupOrDelivery],
+    ["Airport preference", payload.airportPreference],
+    ["Process acknowledgement", payload.processAcknowledgement],
+    ["Spay/neuter agreement", payload.spayNeuterAgreement],
+    ["Deposit agreement", payload.depositAgreement],
+    ["Signature", payload.signature]
+  ]
+    .filter(([, value]) => value)
+    .map(([label, value]) => `${label}: ${value}`)
+    .join("\n");
+
+  return [payload.message, details && `Application Details:\n${details}`].filter(Boolean).join("\n\n");
+}
+
 async function sendEmail(payload) {
   if (!process.env.RESEND_API_KEY || !process.env.FORM_TO_EMAIL || !process.env.FORM_FROM_EMAIL) {
     return { skipped: true };
@@ -86,8 +113,22 @@ export default async function handler(request, response) {
     fencedYard: clean(body.fencedYard),
     otherPets: clean(body.otherPets),
     dogExperience: clean(body.dogExperience),
+    genderPreference: clean(body.genderPreference),
+    sizePreference: clean(body.sizePreference),
+    timing: clean(body.timing),
+    specificInterest: clean(body.specificInterest),
+    puppyPurpose: clean(body.puppyPurpose),
+    childrenAtHome: clean(body.childrenAtHome),
+    pickupOrDelivery: clean(body.pickupOrDelivery),
+    airportPreference: clean(body.airportPreference),
+    processAcknowledgement: clean(body.processAcknowledgement),
+    spayNeuterAgreement: clean(body.spayNeuterAgreement),
+    depositAgreement: clean(body.depositAgreement),
+    signature: clean(body.signature),
     message: clean(body.message)
   };
+
+  payload.message = applicationMessage(payload);
 
   if (!payload.email) {
     return response.status(400).json({ message: "Email is required." });

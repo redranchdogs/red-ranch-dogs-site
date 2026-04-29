@@ -3190,16 +3190,229 @@ function PuppyAlertSignup() {
   );
 }
 
+function collectFormPayload(formData) {
+  const payload = {};
+
+  for (const [key, value] of formData.entries()) {
+    payload[key] = payload[key] ? `${payload[key]}, ${value}` : value;
+  }
+
+  return payload;
+}
+
+function ChoiceGroup({ legend, name, options, required = false }) {
+  return (
+    <fieldset className="choice-group">
+      <legend>{legend}</legend>
+      <div className="option-grid">
+        {options.map((option, index) => (
+          <label className="checkbox-line" key={option}>
+            <input name={name} type="checkbox" value={option} required={required && index === 0} />
+            <span>{option}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
+function ApplicationFields() {
+  return (
+    <div className="application-form-sections">
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 1</p>
+          <h3>Contact Info</h3>
+          <p>Tell us who to follow up with and where your family is located.</p>
+        </div>
+        <div className="field-grid">
+          <label>
+            Full name
+            <input name="name" required autoComplete="name" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" required autoComplete="email" />
+          </label>
+          <label>
+            Phone
+            <input name="phone" required autoComplete="tel" />
+          </label>
+          <label>
+            City / state
+            <input name="location" autoComplete="address-level2" placeholder="Austin, Texas" />
+          </label>
+        </div>
+      </section>
+
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 2</p>
+          <h3>Puppy Interest</h3>
+          <p>Share what you are hoping for so we can guide you toward the right puppy or waitlist.</p>
+        </div>
+        <div className="field-grid">
+          <ChoiceGroup
+            legend="Breed interest"
+            name="preferredBreed"
+            options={["Goldendoodle", "Cavapoo", "Bernedoodle", "Not sure yet"]}
+          />
+          <label>
+            Gender preference
+            <select name="genderPreference" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>No preference</option>
+            </select>
+          </label>
+          <ChoiceGroup
+            legend="Size preference"
+            name="sizePreference"
+            options={["Micro", "Mini", "Medium", "Not sure yet"]}
+          />
+          <label>
+            Timing
+            <select name="timing" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Ready now</option>
+              <option>Within 1-3 months</option>
+              <option>Within 3-6 months</option>
+              <option>6+ months from now</option>
+              <option>Flexible</option>
+            </select>
+          </label>
+          <label className="full">
+            Specific puppy, litter, or parent pairing
+            <input name="specificInterest" placeholder="Example: Ranger, Birdie + Waylon, Honey + Bram, or not sure yet" />
+          </label>
+        </div>
+      </section>
+
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 3</p>
+          <h3>Family Fit</h3>
+          <p>A few practical details help us match temperament, timing, and support.</p>
+        </div>
+        <div className="field-grid">
+          <label>
+            Main purpose for getting a puppy
+            <select name="puppyPurpose" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Family companion</option>
+              <option>Companion for one adult</option>
+              <option>Therapy or emotional support prospect</option>
+              <option>Active outdoor companion</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Other pets at home
+            <select name="otherPets" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>No current pets</option>
+              <option>Dog or dogs</option>
+              <option>Cat or cats</option>
+              <option>Multiple types of pets</option>
+            </select>
+          </label>
+          <label>
+            Children in the home
+            <select name="childrenAtHome" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>No children at home</option>
+              <option>Young children</option>
+              <option>School-age children</option>
+              <option>Teenagers</option>
+              <option>Grandchildren or visiting children</option>
+            </select>
+          </label>
+          <label>
+            Home environment
+            <select name="housing" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>House with yard</option>
+              <option>House without fenced yard</option>
+              <option>Apartment or condo</option>
+              <option>Rural property</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label className="full">
+            What should we know about your home, schedule, or dog experience?
+            <textarea name="dogExperience" rows="4" placeholder="A short note is perfect. Tell us what would help us guide you well." />
+          </label>
+        </div>
+      </section>
+
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 4</p>
+          <h3>Process Readiness</h3>
+          <p>These help make sure expectations are clear before anyone moves forward.</p>
+        </div>
+        <div className="field-grid">
+          <label>
+            Pickup or delivery needs
+            <select name="pickupOrDelivery" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>We can pick up in Salado, Texas</option>
+              <option>We may need flight nanny or delivery help</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label>
+            Preferred airport, if delivery is needed
+            <input name="airportPreference" placeholder="Optional" />
+          </label>
+          <label className="checkbox-line full">
+            <input name="processAcknowledgement" type="checkbox" value="Understands process, pricing, and deposit policy" required />
+            <span>I understand the Red Ranch Dogs process, pricing, and deposit policy.</span>
+          </label>
+          <label className="checkbox-line full">
+            <input name="spayNeuterAgreement" type="checkbox" value="Agrees to spay/neuter contract" required />
+            <span>I understand puppies are placed under a spay/neuter contract unless otherwise discussed in writing.</span>
+          </label>
+          <label className="checkbox-line full">
+            <input name="depositAgreement" type="checkbox" value="Understands non-refundable deposit applies toward final puppy price" required />
+            <span>I understand the deposit is non-refundable and applies toward the final puppy price.</span>
+          </label>
+        </div>
+      </section>
+
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 5</p>
+          <h3>Final Notes</h3>
+          <p>Add anything else you want us to know before we follow up.</p>
+        </div>
+        <div className="field-grid">
+          <label className="full">
+            Message
+            <textarea name="message" rows="4" placeholder="Questions, personality preferences, timing notes, or anything helpful." />
+          </label>
+          <label className="full">
+            Electronic signature
+            <input name="signature" required placeholder="Type your full name" />
+          </label>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function LeadForm({ formType, title, compact = false, newsletterOnly = false, guardianFields = false }) {
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
+  const applicationFields = formType === "application" && !newsletterOnly;
 
   async function onSubmit(event) {
     event.preventDefault();
     setBusy(true);
     setStatus("");
     const form = new FormData(event.currentTarget);
-    const payload = Object.fromEntries(form.entries());
+    const payload = collectFormPayload(form);
     payload.formType = formType;
     payload.page = window.location.pathname;
 
@@ -3230,7 +3443,8 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
         Company website
         <input name="companyWebsite" tabIndex="-1" autoComplete="off" />
       </label>
-      {!newsletterOnly && (
+      {!newsletterOnly && applicationFields && <ApplicationFields />}
+      {!newsletterOnly && !applicationFields && (
         <div className="field-grid">
           <label>
             Name

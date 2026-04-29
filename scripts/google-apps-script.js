@@ -10,6 +10,34 @@
 
 var DEFAULT_SHEET_ID = "1872yXbOwwtio73bK5wlZJKEaBez4czsGuU0bcYaxriE";
 var DEFAULT_NOTIFY_EMAIL = "adam@redranchdogs.com";
+var SUBMISSION_HEADERS = [
+  "Submitted At",
+  "Form Type",
+  "Page",
+  "Name",
+  "Email",
+  "Phone",
+  "Preferred Breed",
+  "Location",
+  "Housing",
+  "Fenced Yard",
+  "Other Pets",
+  "Dog Experience",
+  "Gender Preference",
+  "Size Preference",
+  "Timing",
+  "Specific Interest",
+  "Puppy Purpose",
+  "Children At Home",
+  "Pickup Or Delivery",
+  "Airport Preference",
+  "Process Acknowledgement",
+  "Spay Neuter Agreement",
+  "Deposit Agreement",
+  "Signature",
+  "Message",
+  "Source"
+];
 
 function doPost(e) {
   var payload = JSON.parse(e.postData.contents || "{}");
@@ -20,22 +48,9 @@ function doPost(e) {
 
   if (!sheet) {
     sheet = SpreadsheetApp.openById(sheetId).insertSheet("Submissions");
-    sheet.appendRow([
-      "Submitted At",
-      "Form Type",
-      "Page",
-      "Name",
-      "Email",
-      "Phone",
-      "Preferred Breed",
-      "Location",
-      "Housing",
-      "Fenced Yard",
-      "Other Pets",
-      "Dog Experience",
-      "Message",
-      "Source"
-    ]);
+    sheet.appendRow(SUBMISSION_HEADERS);
+  } else {
+    sheet.getRange(1, 1, 1, SUBMISSION_HEADERS.length).setValues([SUBMISSION_HEADERS]);
   }
 
   sheet.appendRow([
@@ -51,6 +66,18 @@ function doPost(e) {
     payload.fencedYard || "",
     payload.otherPets || "",
     payload.dogExperience || "",
+    payload.genderPreference || "",
+    payload.sizePreference || "",
+    payload.timing || "",
+    payload.specificInterest || "",
+    payload.puppyPurpose || "",
+    payload.childrenAtHome || "",
+    payload.pickupOrDelivery || "",
+    payload.airportPreference || "",
+    payload.processAcknowledgement || "",
+    payload.spayNeuterAgreement || "",
+    payload.depositAgreement || "",
+    payload.signature || "",
     payload.message || "",
     payload.source || ""
   ]);
