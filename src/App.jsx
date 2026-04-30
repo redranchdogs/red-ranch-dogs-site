@@ -58,6 +58,13 @@ function pathNow() {
 function goTo(href) {
   window.history.pushState({}, "", href);
   window.dispatchEvent(new PopStateEvent("popstate"));
+  const hash = href.includes("#") ? href.split("#")[1] : "";
+  if (hash) {
+    window.requestAnimationFrame(() => {
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return;
+  }
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -2460,7 +2467,7 @@ function StudDetailPage({ stud }) {
           <p><strong>Genetics:</strong> {stud.genetics}</p>
           <div className="actions">
             <Link href="/stud-services/our-studs" className="button secondary">All Studs</Link>
-            <Link href="/contact" className="button primary">Stud Inquiry</Link>
+            <Link href="/stud-services#stud-inquiry" className="button primary">Stud Inquiry</Link>
           </div>
         </article>
         <article className="flyer-panel">
@@ -2941,6 +2948,50 @@ function StudServicesPage() {
   return (
     <Layout>
       <PageHero eyebrow="Stud Services" title="Health-Tested Stud Services" copy="Health-tested stud options, reproductive education, and breeder inquiry details for approved programs." image={images.studGoldendoodle} />
+      <section className="content-section narrow">
+        <article className="text-card">
+          <SectionHeader
+            eyebrow="Breeder Inquiry"
+            title="A simple first step for stud service questions"
+            copy="If you have a stud in mind, tell us who you are considering. If you are still matching traits, describe what you are hoping for and we can point you toward the best fit."
+          />
+          <dl className="details facts-wide compact-details">
+            <div>
+              <dt>Stud Fee</dt>
+              <dd>$1,500 for most studs</dd>
+            </div>
+            <div>
+              <dt>Garth Brooks</dt>
+              <dd>$2,000 stud fee</dd>
+            </div>
+            <div>
+              <dt>Side-by-side AI</dt>
+              <dd>Included at Red Ranch Dogs</dd>
+            </div>
+            <div>
+              <dt>Health Requirement</dt>
+              <dd>Negative brucellosis required</dd>
+            </div>
+          </dl>
+        </article>
+      </section>
+      <section className="tile-grid three compact-grid">
+        <article className="text-card icon-card">
+          <MessageCircle size={24} />
+          <h2>Start With an Inquiry</h2>
+          <p>Send the basics about your program, your female, timing, and which Red Ranch Dogs stud you are considering.</p>
+        </article>
+        <article className="text-card icon-card">
+          <Heart size={24} />
+          <h2>Text When She Is in Heat</h2>
+          <p>When your girl comes in, we usually start a group text to coordinate cycle timing, progesterone updates, AI, or shipping.</p>
+        </article>
+        <article className="text-card icon-card">
+          <ShieldCheck size={24} />
+          <h2>Confirm Records and Timing</h2>
+          <p>Before service, we confirm negative brucellosis, timing, payment, and whether you are coming to Salado or using shipped semen.</p>
+        </article>
+      </section>
       <section className="content-section">
         {studCatalog.map((group) => (
           <article className="group-panel" key={group.breed}>
@@ -2961,6 +3012,9 @@ function StudServicesPage() {
         ))}
       </section>
       <ParentCardGrid cards={parentDogs.studs} />
+      <section className="form-shell" id="stud-inquiry">
+        <LeadForm formType="stud" title="Stud Inquiry" />
+      </section>
     </Layout>
   );
 }
@@ -2980,6 +3034,7 @@ function ReproEducationPage() {
       <section className="content-section narrow">
         <h2>Interested in using one of our studs?</h2>
         <p>Reach out early in the heat cycle. If you have progesterone results, include dates, values, and the machine used.</p>
+        <Link href="/stud-services#stud-inquiry" className="button primary">Start Stud Inquiry</Link>
         <p><strong>Text:</strong> {brand.phone}</p>
         <p><strong>Email:</strong> studs@redranchdogs.com</p>
         <p className="small-note">Educational information only. For diagnosis or medical decisions, consult your veterinarian.</p>
@@ -3253,6 +3308,10 @@ function collectFormPayload(formData) {
   return payload;
 }
 
+const studInquiryOptions = Array.from(
+  new Set(Object.values(studDetails).map((stud) => stud.name).filter(Boolean))
+);
+
 function ChoiceGroup({ legend, name, options, required = false }) {
   return (
     <fieldset className="choice-group">
@@ -3487,6 +3546,123 @@ function ContactFields() {
   );
 }
 
+function StudInquiryFields() {
+  return (
+    <div className="application-form-sections">
+      <div className="application-form-note">
+        <p>Stud inquiries are for breeding programs. A short note is enough to start the conversation.</p>
+        <div className="application-form-links" aria-label="Helpful stud service links">
+          <Link href="/stud-services/our-studs">View studs</Link>
+          <Link href="/stud-services/shipping-and-collection-info">Shipping info</Link>
+        </div>
+      </div>
+
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 1</p>
+          <h3>Breeder Contact</h3>
+          <p>Tell us who to follow up with and the best way to coordinate timing.</p>
+        </div>
+        <div className="field-grid">
+          <label>
+            Full name
+            <input name="name" required autoComplete="name" />
+          </label>
+          <label>
+            Program / kennel name
+            <input name="programName" placeholder="Optional" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" required autoComplete="email" />
+          </label>
+          <label>
+            Phone
+            <input name="phone" required autoComplete="tel" />
+          </label>
+        </div>
+      </section>
+
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 2</p>
+          <h3>Stud Interest</h3>
+          <p>Let us know if you already have a stud in mind or what traits you are hoping to pair for.</p>
+        </div>
+        <div className="field-grid">
+          <label>
+            Preferred stud
+            <select name="preferredStud" defaultValue="">
+              <option value="">Not sure yet</option>
+              {studInquiryOptions.map((studName) => <option key={studName}>{studName}</option>)}
+            </select>
+          </label>
+          <label>
+            Service type
+            <select name="serviceType" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Artificial insemination at Red Ranch Dogs</option>
+              <option>Shipped semen</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label>
+            Cycle timing
+            <select name="cycleTiming" defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Planning ahead</option>
+              <option>Currently in heat</option>
+              <option>Next cycle soon</option>
+              <option>Progesterone testing has started</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label className="full">
+            What are you looking for?
+            <textarea name="studGoals" rows="4" required placeholder="Stud preference, size, coat, color, structure, temperament, timing, or questions." />
+          </label>
+        </div>
+      </section>
+
+      <section className="form-section">
+        <div className="form-section-heading">
+          <p className="eyebrow">Step 3</p>
+          <h3>Your Female</h3>
+          <p>Just the basics are enough for the first inquiry. We can request records once timing is closer.</p>
+        </div>
+        <div className="field-grid">
+          <label>
+            Female dog name
+            <input name="femaleDogName" required placeholder="Dam name" />
+          </label>
+          <label>
+            Female dog breed
+            <input name="femaleDogBreed" required placeholder="Goldendoodle, Cavapoo, Poodle..." />
+          </label>
+          <label className="full">
+            Brucellosis status
+            <select name="brucellosisStatus" required defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Negative test completed</option>
+              <option>Test is scheduled</option>
+              <option>Will complete before service</option>
+              <option>I have questions about the requirement</option>
+            </select>
+          </label>
+          <label className="checkbox-line full">
+            <input name="studPolicyAgreement" type="checkbox" value="Understands negative brucellosis and payment timing requirements" required />
+            <span>I understand a current negative brucellosis test is required before service, and payment is due before breeding or shipment.</span>
+          </label>
+          <label className="full">
+            Anything else we should know?
+            <textarea name="message" rows="3" placeholder="Progesterone notes, vet clinic details, shipping questions, or anything helpful." />
+          </label>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function GuardianFields() {
   return (
     <div className="application-form-sections">
@@ -3589,6 +3765,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
   const applicationFields = formType === "application" && !newsletterOnly;
   const contactFields = formType === "contact" && !newsletterOnly;
   const guardianApplicationFields = formType === "guardian" && guardianFields && !newsletterOnly;
+  const studInquiryFields = formType === "stud" && !newsletterOnly;
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -3628,8 +3805,9 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       </label>
       {!newsletterOnly && applicationFields && <ApplicationFields />}
       {!newsletterOnly && contactFields && <ContactFields />}
+      {!newsletterOnly && studInquiryFields && <StudInquiryFields />}
       {!newsletterOnly && guardianApplicationFields && <GuardianFields />}
-      {!newsletterOnly && !applicationFields && !contactFields && !guardianApplicationFields && (
+      {!newsletterOnly && !applicationFields && !contactFields && !studInquiryFields && !guardianApplicationFields && (
         <div className="field-grid">
           <label>
             Name

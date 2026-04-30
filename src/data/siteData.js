@@ -903,7 +903,7 @@ export const studDetails = {
     weight: "30 lbs",
     genetics: "Ee kyky atat Bb SS -/- FF, 7:3 Red Intensity, 32% Bernese Mountain Dog",
     image: "/images/studs/garth-brooks.webp",
-    fee: "$1500",
+    fee: "$2000",
     testing: ["Embark Testing", "UC Davis Results"],
     semenEvals: ["Total Count: 1 billion 785 million, 94% motility", "Total Count: 900 million, 93% motility", "Total Count: 1 billion 150 million, 95% motility"],
     notes: ["Public page includes Garth photos and litter history sections."]

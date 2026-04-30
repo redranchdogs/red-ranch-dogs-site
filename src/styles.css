@@ -1717,6 +1717,10 @@ main {
   margin: 0 auto;
 }
 
+#stud-inquiry {
+  scroll-margin-top: 96px;
+}
+
 .page-hero {
   display: grid;
   align-items: center;

@@ -1,4 +1,4 @@
-const allowedForms = new Set(["application", "contact", "guardian", "newsletter", "waitlist"]);
+const allowedForms = new Set(["application", "contact", "guardian", "newsletter", "stud", "waitlist"]);
 
 function clean(value) {
   if (typeof value !== "string") return "";
@@ -39,6 +39,17 @@ const detailFieldsByForm = {
     ["Dog experience", "dogExperience"],
     ["Guardian reason", "guardianReason"],
     ["Guardian agreement", "guardianAgreement"]
+  ],
+  stud: [
+    ["Program / kennel", "programName"],
+    ["Preferred stud", "preferredStud"],
+    ["Service type", "serviceType"],
+    ["Cycle timing", "cycleTiming"],
+    ["Female dog name", "femaleDogName"],
+    ["Female dog breed", "femaleDogBreed"],
+    ["Brucellosis status", "brucellosisStatus"],
+    ["Stud goals", "studGoals"],
+    ["Stud policy agreement", "studPolicyAgreement"]
   ]
 };
 
@@ -129,6 +140,15 @@ export default async function handler(request, response) {
     email: clean(body.email),
     phone: clean(body.phone),
     inquiryType: clean(body.inquiryType),
+    programName: clean(body.programName),
+    preferredStud: clean(body.preferredStud),
+    serviceType: clean(body.serviceType),
+    cycleTiming: clean(body.cycleTiming),
+    femaleDogName: clean(body.femaleDogName),
+    femaleDogBreed: clean(body.femaleDogBreed),
+    brucellosisStatus: clean(body.brucellosisStatus),
+    studGoals: clean(body.studGoals),
+    studPolicyAgreement: clean(body.studPolicyAgreement),
     preferredBreed: clean(body.preferredBreed),
     location: clean(body.location),
     housing: clean(body.housing),
