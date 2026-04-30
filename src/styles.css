@@ -5380,6 +5380,46 @@ summary {
   text-transform: uppercase;
 }
 
+.listing-status-strip {
+  padding: 14px 0 8px;
+}
+
+.listing-status-strip article {
+  min-height: 84px;
+  padding: 14px 16px;
+  background: rgba(255, 250, 242, 0.58);
+}
+
+.listing-status-strip span {
+  font-size: clamp(1.55rem, 2.7vw, 2.35rem);
+}
+
+.listing-status-strip p {
+  max-width: none;
+  font-size: 0.78rem;
+}
+
+.breed-status-strip article {
+  align-content: start;
+}
+
+.breed-status-strip p {
+  text-transform: none;
+}
+
+.listing-content-section {
+  padding-top: 18px;
+}
+
+.breed-first-section {
+  padding-top: 18px;
+}
+
+.compact-filter-strip {
+  padding-top: 2px;
+  padding-bottom: 8px;
+}
+
 .puppy-filter-panel {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(260px, 1fr);
@@ -5547,6 +5587,34 @@ summary {
     max-width: none;
     font-size: 0.68rem;
     line-height: 1.2;
+  }
+
+  .listing-status-strip {
+    gap: 7px;
+    padding-top: 12px;
+    padding-bottom: 6px;
+  }
+
+  .listing-status-strip article {
+    min-height: 78px;
+    padding: 11px 7px;
+  }
+
+  .listing-status-strip span {
+    font-size: clamp(1.2rem, 5.2vw, 1.7rem);
+  }
+
+  .listing-status-strip p {
+    font-size: 0.62rem;
+  }
+
+  .breed-status-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .breed-status-strip article {
+    min-height: auto;
+    text-align: left;
   }
 
   .available-puppy-list {
