@@ -1418,8 +1418,11 @@ function ParentCard({ parent }) {
   const hasPublicProfile = parent.visibility !== "private";
   const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
   const program = breedProfiles.find((breed) => breed.slug === parent.breedSlug);
-  const relatedLitterCount = parent.relatedLitters?.length || 0;
-  const hasTestingLinks = Boolean(parent.healthTestingLinks?.length || parent.geneticTestingLinks?.length);
+  const previewFacts = [
+    parent.weight,
+    parent.coat,
+    parent.status
+  ].filter(Boolean);
 
   return (
     <article className="text-card parent-card parent-profile-card">
@@ -1433,16 +1436,8 @@ function ParentCard({ parent }) {
           <h2>{parent.name}</h2>
           <p>{parent.description}</p>
         </div>
-        <dl className="details compact-details parent-card-facts">
-          <div><dt>Breed</dt><dd>{parent.breed}</dd></div>
-          <div><dt>Weight</dt><dd>{parent.weight}</dd></div>
-          <div><dt>Coat</dt><dd>{parent.coat}</dd></div>
-          <div><dt>Color</dt><dd>{parent.color}</dd></div>
-        </dl>
-        <div className="parent-card-tags" aria-label={`${parent.name} profile highlights`}>
-          <span>{parent.status}</span>
-          <span>{relatedLitterCount ? `${relatedLitterCount} litter${relatedLitterCount === 1 ? "" : "s"}` : "Litter history coming"}</span>
-          <span>{hasTestingLinks ? "Testing links" : "Testing pending"}</span>
+        <div className="parent-card-meta" aria-label={`${parent.name} quick profile details`}>
+          {previewFacts.map((fact) => <span key={fact}>{fact}</span>)}
         </div>
         {hasPublicProfile ? (
           <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
@@ -1797,12 +1792,6 @@ function LitterPage({ litter }) {
         eyebrow={litter.status || "Litter"}
         title={litter.name}
         copy={litter.availabilitySummary}
-        actions={(
-          <>
-            <Link href="/apply" className="button primary">Ask About This Litter</Link>
-            <Link href="/puppies/available" className="button secondary">View Available Puppies</Link>
-          </>
-        )}
       />
       <section className="litter-detail-shell">
         <article className="litter-pairing-card group-panel">
@@ -1926,12 +1915,6 @@ function ParentDetailPage({ parent }) {
         title={parent.name}
         copy={parent.description}
         image={parent.mainPhoto || images.doodles}
-        actions={(
-          <>
-            <Link href="/apply" className="button primary">Ask About Puppies</Link>
-            <Link href={parent.role === "stud" ? "/parents/studs" : "/parents/mamas"} className="button secondary">View {parent.role === "stud" ? "Studs" : "Mamas"}</Link>
-          </>
-        )}
       />
       <section className="content-section parent-profile-template">
         <article className="group-panel parent-snapshot-panel">
