@@ -466,5 +466,317 @@
     "description": "Hive is a reserved Multigen Micro Goldendoodle puppy from Honey and Bram's litter.",
     "availabilityNote": "Reserved for a family from the waitlist.",
     "personalityNote": "Week 6 notes will be updated after the next puppy photo and personality update."
+  },
+  {
+    "slug": "messi",
+    "name": "Messi",
+    "visibility": "public",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "litterSlug": "penny-wyatt-spring-2026",
+    "litter": "Penny + Wyatt",
+    "mamaSlug": "penny",
+    "mama": "Penny",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "gender": "Male",
+    "collarColor": "Light Blue",
+    "status": "Reserved",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "10-18 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$4,500",
+    "color": "Red abstract and parti possibilities",
+    "coat": "Soft, silky, wavy Cavapoo coat",
+    "mainPhoto": "/images/puppies/penny-wyatt-2026/messi-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/penny-wyatt-2026/messi-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
+        "photos": [
+          "/images/puppies/penny-wyatt-2026/messi-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Messi is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "ronaldo",
+    "name": "Ronaldo",
+    "visibility": "public",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "litterSlug": "penny-wyatt-spring-2026",
+    "litter": "Penny + Wyatt",
+    "mamaSlug": "penny",
+    "mama": "Penny",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "gender": "Male",
+    "collarColor": "Brown",
+    "status": "Reserved",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "10-18 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$4,500",
+    "color": "Red abstract and parti possibilities",
+    "coat": "Soft, silky, wavy Cavapoo coat",
+    "mainPhoto": "/images/puppies/penny-wyatt-2026/ronaldo-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/penny-wyatt-2026/ronaldo-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
+        "photos": [
+          "/images/puppies/penny-wyatt-2026/ronaldo-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Ronaldo is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "striker",
+    "name": "Striker",
+    "visibility": "public",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "litterSlug": "penny-wyatt-spring-2026",
+    "litter": "Penny + Wyatt",
+    "mamaSlug": "penny",
+    "mama": "Penny",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "gender": "Male",
+    "collarColor": "Orange",
+    "status": "Reserved",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "10-18 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$4,500",
+    "color": "Red abstract and parti possibilities",
+    "coat": "Soft, silky, wavy Cavapoo coat",
+    "mainPhoto": "/images/puppies/penny-wyatt-2026/striker-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/penny-wyatt-2026/striker-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
+        "photos": [
+          "/images/puppies/penny-wyatt-2026/striker-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Striker is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "samba",
+    "name": "Samba",
+    "visibility": "public",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "litterSlug": "penny-wyatt-spring-2026",
+    "litter": "Penny + Wyatt",
+    "mamaSlug": "penny",
+    "mama": "Penny",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "gender": "Male",
+    "collarColor": "Dark Blue",
+    "status": "Reserved",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "10-18 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$4,500",
+    "color": "Red abstract and parti possibilities",
+    "coat": "Soft, silky, wavy Cavapoo coat",
+    "mainPhoto": "/images/puppies/penny-wyatt-2026/samba-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/penny-wyatt-2026/samba-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
+        "photos": [
+          "/images/puppies/penny-wyatt-2026/samba-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Samba is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "goalie",
+    "name": "Goalie",
+    "visibility": "public",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "litterSlug": "penny-wyatt-spring-2026",
+    "litter": "Penny + Wyatt",
+    "mamaSlug": "penny",
+    "mama": "Penny",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "gender": "Male",
+    "collarColor": "Dark Gray",
+    "status": "Reserved",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "10-18 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$4,500",
+    "color": "Red abstract and parti possibilities",
+    "coat": "Soft, silky, wavy Cavapoo coat",
+    "mainPhoto": "/images/puppies/penny-wyatt-2026/goalie-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/penny-wyatt-2026/goalie-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
+        "photos": [
+          "/images/puppies/penny-wyatt-2026/goalie-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Goalie is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "ref",
+    "name": "Ref",
+    "visibility": "public",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "litterSlug": "penny-wyatt-spring-2026",
+    "litter": "Penny + Wyatt",
+    "mamaSlug": "penny",
+    "mama": "Penny",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "gender": "Male",
+    "collarColor": "Black",
+    "status": "Reserved",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "10-18 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$4,500",
+    "color": "Red abstract and parti possibilities",
+    "coat": "Soft, silky, wavy Cavapoo coat",
+    "mainPhoto": "/images/puppies/penny-wyatt-2026/ref-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/penny-wyatt-2026/ref-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
+        "photos": [
+          "/images/puppies/penny-wyatt-2026/ref-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Ref is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "pitch",
+    "name": "Pitch",
+    "visibility": "public",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "litterSlug": "penny-wyatt-spring-2026",
+    "litter": "Penny + Wyatt",
+    "mamaSlug": "penny",
+    "mama": "Penny",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "gender": "Male",
+    "collarColor": "Red",
+    "status": "Reserved",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "10-18 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$4,500",
+    "color": "Red abstract and parti possibilities",
+    "coat": "Soft, silky, wavy Cavapoo coat",
+    "mainPhoto": "/images/puppies/penny-wyatt-2026/pitch-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/penny-wyatt-2026/pitch-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
+        "photos": [
+          "/images/puppies/penny-wyatt-2026/pitch-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Pitch is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "fifa",
+    "name": "FIFA",
+    "visibility": "public",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "litterSlug": "penny-wyatt-spring-2026",
+    "litter": "Penny + Wyatt",
+    "mamaSlug": "penny",
+    "mama": "Penny",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "gender": "Male",
+    "collarColor": "Light Gray",
+    "status": "Reserved",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "10-18 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$4,500",
+    "color": "Red abstract and parti possibilities",
+    "coat": "Soft, silky, wavy Cavapoo coat",
+    "mainPhoto": "/images/puppies/penny-wyatt-2026/fifa-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/penny-wyatt-2026/fifa-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
+        "photos": [
+          "/images/puppies/penny-wyatt-2026/fifa-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "FIFA is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
   }
 ]

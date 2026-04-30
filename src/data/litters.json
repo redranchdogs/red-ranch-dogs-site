@@ -153,5 +153,70 @@
       "/images/puppies/honey-bram-2026/honeycomb-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg",
       "/images/puppies/honey-bram-2026/hive-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg"
     ]
+  },
+  {
+    "slug": "penny-wyatt-spring-2026",
+    "name": "Penny + Wyatt",
+    "visibility": "public",
+    "status": "Current Litter",
+    "litterNumber": "Penny 1",
+    "mamaSlug": "penny",
+    "mama": "Penny",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "theme": "Penny's FIFA World Cup Litter",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "expectedSize": "10-18 lbs",
+    "expectedTiming": "Born April 23, 2026",
+    "expectedColors": "Red abstract, parti, red, and apricot possibilities",
+    "expectedCoatTraits": "Soft, silky, wavy coats with minimal to very low shedding expected",
+    "priceRange": "$4,500",
+    "image": "/images/litters/penny-wyatt.webp",
+    "parentPairingImage": "/images/litters/penny-wyatt.webp",
+    "availabilitySummary": "Penny and Wyatt have a current litter of F1B Micro Cavapoos.",
+    "availabilityNote": "Puppies from this litter are being matched through the Cavapoo waitlist.",
+    "aboutTitle": "A tiny F1B Cavapoo pairing with sweet companion temperaments.",
+    "aboutThisLitter": [
+      "Penny and Wyatt have produced a beautiful litter of F1B Micro Cavapoos with soft coats, joyful temperaments, and classic companion-dog sweetness.",
+      "Penny is a lovely F1 Cavapoo weighing around 25 pounds with a red and white parti coat and a gentle, people-oriented personality. Wyatt is a tiny 4 pound toy Poodle who brings confidence, intelligence, and affectionate temperament to this pairing.",
+      "These puppies are expected to mature to approximately 10 to 18 pounds full grown, placing them in the micro Cavapoo range.",
+      "Coats are expected to be soft, silky, and wavy, with red, apricot, and red and white parti coloring possible throughout the litter. With the stronger Poodle influence, these puppies should have minimal to very low shedding.",
+      "We expect this litter to be sweet, intelligent, eager to please, and well suited for families wanting a small, people-focused companion."
+    ],
+    "geneticMakeup": [
+      "75% Poodle",
+      "25% Cavalier King Charles Spaniel"
+    ],
+    "aboutHighlights": [
+      "F1B Micro Cavapoos",
+      "Estimated 10-18 lbs full grown",
+      "Soft, silky, wavy coats",
+      "FIFA World Cup litter theme"
+    ],
+    "puppySlugs": [
+      "messi",
+      "ronaldo",
+      "striker",
+      "samba",
+      "goalie",
+      "ref",
+      "pitch",
+      "fifa"
+    ],
+    "photoFolderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
+    "weeklyUpdateStatus": "Newborn photos loaded from Penny 1 + Wyatt's FIFA World Cup litter.",
+    "weeklyUpdateGallery": [
+      "/images/puppies/penny-wyatt-2026/messi-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/penny-wyatt-2026/ronaldo-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/penny-wyatt-2026/striker-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/penny-wyatt-2026/samba-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/penny-wyatt-2026/goalie-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/penny-wyatt-2026/ref-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/penny-wyatt-2026/pitch-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/penny-wyatt-2026/fifa-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
+    ]
   }
 ]

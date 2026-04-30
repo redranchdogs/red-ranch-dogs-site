@@ -182,5 +182,51 @@
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Bram",
     "description": "Outside stud for Honey 2 with a confident, playful temperament."
+  },
+  {
+    "slug": "penny",
+    "name": "Penny",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1 Cavapoo",
+    "weight": "25 lbs",
+    "color": "Red and white parti",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/penny-2.webp",
+    "photos": [
+      "/images/dams/penny-2.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "penny-wyatt-spring-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Penny",
+    "description": "Sweet F1 Cavapoo mama with a cheerful parti coat and people-focused temperament."
+  },
+  {
+    "slug": "wyatt-earp",
+    "name": "Wyatt Earp",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "Toy Poodle",
+    "weight": "4 lbs",
+    "color": "Apricot red",
+    "coat": "Curly",
+    "status": "Active",
+    "mainPhoto": "/images/studs/wyatt-earp-toy-poodle-stud-red-ranch-dogs.png",
+    "photos": [
+      "/images/studs/wyatt-earp-toy-poodle-stud-red-ranch-dogs.png"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "penny-wyatt-spring-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Wyatt Earp",
+    "description": "Tiny toy Poodle stud with a confident, affectionate temperament for select Cavapoo pairings."
   }
 ]
