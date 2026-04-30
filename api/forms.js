@@ -31,13 +31,17 @@ const detailFieldsByForm = {
     ["Location", "location"]
   ],
   guardian: [
+    ["Guardian interest", "guardianType"],
+    ["Distance from Salado", "guardianDistance"],
     ["Preferred breed", "preferredBreed"],
     ["Location", "location"],
     ["Housing", "housing"],
     ["Fenced yard", "fencedYard"],
+    ["Children in home", "childrenInHome"],
     ["Other pets", "otherPets"],
     ["Dog experience", "dogExperience"],
     ["Guardian reason", "guardianReason"],
+    ["Phone call timing", "phoneCallTiming"],
     ["Guardian agreement", "guardianAgreement"]
   ],
   stud: [
@@ -151,8 +155,11 @@ export default async function handler(request, response) {
     studPolicyAgreement: clean(body.studPolicyAgreement),
     preferredBreed: clean(body.preferredBreed),
     location: clean(body.location),
+    guardianType: clean(body.guardianType),
+    guardianDistance: clean(body.guardianDistance),
     housing: clean(body.housing),
     fencedYard: clean(body.fencedYard),
+    childrenInHome: clean(body.childrenInHome),
     otherPets: clean(body.otherPets),
     dogExperience: clean(body.dogExperience),
     genderPreference: clean(body.genderPreference),
@@ -165,6 +172,7 @@ export default async function handler(request, response) {
     processAgreement: clean(body.processAgreement),
     hearAbout: clean(body.hearAbout),
     guardianReason: clean(body.guardianReason),
+    phoneCallTiming: clean(body.phoneCallTiming),
     guardianAgreement: clean(body.guardianAgreement),
     signature: clean(body.signature),
     message: clean(body.message)

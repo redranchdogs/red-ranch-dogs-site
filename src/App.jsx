@@ -3046,7 +3046,20 @@ function ReproEducationPage() {
 function GuardianProgramPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Guardian Program" title="Guardian Family Program" copy="A unique opportunity to care for an exceptional dog while supporting responsible breeding practices." />
+      <PageHero
+        eyebrow="Guardian Program"
+        title="Guardian Family Program"
+        copy="A local partnership for families near Salado who want to love and care for an exceptional Red Ranch dog while supporting our responsible breeding program."
+      />
+      <section className="tile-grid compact-grid guardian-fit-strip">
+        {guardianProgram.fitHighlights.map(([title, copy]) => (
+          <article className="text-card compact-card" key={title}>
+            <CheckCircle2 size={22} />
+            <h2>{title}</h2>
+            <p>{copy}</p>
+          </article>
+        ))}
+      </section>
       <section className="tile-grid">
         {guardianProgram.benefits.map(([title, copy]) => (
           <article className="text-card" key={title}>
@@ -3066,6 +3079,13 @@ function GuardianProgramPage() {
               </div>
             ))}
           </div>
+        </article>
+      </section>
+      <section className="content-section">
+        <article className="group-panel">
+          <p className="eyebrow">How It Starts</p>
+          <h2>The Fit Conversation</h2>
+          <ProcessStepCards steps={guardianProgram.process} />
         </article>
       </section>
       <section className="faq-list">
@@ -3088,10 +3108,36 @@ function GuardianProgramPage() {
 function GuardianApplicationPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Guardian Program" title="Guardian Application" copy="Please fill out an application and we will be in touch." image={images.family} />
+      <PageHero
+        eyebrow="Guardian Program"
+        title="Guardian Application"
+        copy="Start here if you live near Salado and are interested in partnering with Red Ranch Dogs as a guardian family."
+        image={images.family}
+      />
       <section className="content-section narrow">
-        <h2>Guardian family fit</h2>
-        <p>Guardian families should be close enough to Salado for breeding-related visits, comfortable with clear communication, and ready to keep the dog as a loved indoor family pet.</p>
+        <article className="group-panel guardian-before-apply">
+          <p className="eyebrow">Before You Apply</p>
+          <h2>Guardian family fit</h2>
+          <p>Guardian families should be close enough to Salado for breeding-related visits, comfortable with clear communication, and ready to keep the dog as a loved indoor family pet.</p>
+          <dl className="compact-details">
+            <div>
+              <dt>Female Guardians</dt>
+              <dd>Usually 30-60 minutes from Salado</dd>
+            </div>
+            <div>
+              <dt>Stud Guardians</dt>
+              <dd>Salado or very close by</dd>
+            </div>
+            <div>
+              <dt>Home Setup</dt>
+              <dd>Secure fenced yard required</dd>
+            </div>
+            <div>
+              <dt>Next Step</dt>
+              <dd>30-45 minute phone call</dd>
+            </div>
+          </dl>
+        </article>
       </section>
       <section className="form-shell">
         <LeadForm formType="guardian" title="Guardian Application" guardianFields />
@@ -3700,8 +3746,27 @@ function GuardianFields() {
         </div>
         <div className="field-grid">
           <label>
+            Guardian interest
+            <select name="guardianType" defaultValue="" required>
+              <option value="" disabled>Select one</option>
+              <option>Female guardian</option>
+              <option>Stud guardian</option>
+              <option>Either / not sure yet</option>
+            </select>
+          </label>
+          <label>
+            Distance from Salado
+            <select name="guardianDistance" defaultValue="" required>
+              <option value="" disabled>Select one</option>
+              <option>In Salado or very close</option>
+              <option>Within 30 minutes</option>
+              <option>30-60 minutes away</option>
+              <option>More than 1 hour away</option>
+            </select>
+          </label>
+          <label>
             Housing
-            <select name="housing" defaultValue="">
+            <select name="housing" defaultValue="" required>
               <option value="" disabled>Select one</option>
               <option>Own home</option>
               <option>Long-term renter</option>
@@ -3710,7 +3775,7 @@ function GuardianFields() {
           </label>
           <label>
             Secure fenced yard
-            <select name="fencedYard" defaultValue="">
+            <select name="fencedYard" defaultValue="" required>
               <option value="" disabled>Select one</option>
               <option>Yes</option>
               <option>No</option>
@@ -3718,8 +3783,22 @@ function GuardianFields() {
             </select>
           </label>
           <label>
+            Children in the home
+            <select name="childrenInHome" defaultValue="">
+              <option value="">Optional</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </label>
+          <label>
             Other pets
-            <input name="otherPets" placeholder="Current pets at home" />
+            <select name="otherPets" defaultValue="">
+              <option value="">Optional</option>
+              <option>No other pets</option>
+              <option>Yes - all spayed/neutered</option>
+              <option>Yes - one or more intact pets</option>
+              <option>Other / needs explanation</option>
+            </select>
           </label>
           <label>
             Preferred breed
@@ -3749,9 +3828,19 @@ function GuardianFields() {
             Why are you interested in the guardian program?
             <textarea name="guardianReason" rows="4" placeholder="What interests you about being a guardian family?" />
           </label>
+          <label>
+            Best time for a phone call
+            <select name="phoneCallTiming" defaultValue="">
+              <option value="">Optional</option>
+              <option>Weekdays</option>
+              <option>Evenings</option>
+              <option>Weekends</option>
+              <option>Flexible</option>
+            </select>
+          </label>
           <label className="checkbox-line full">
-            <input name="guardianAgreement" type="checkbox" value="Understands guardian families need clear communication and breeding-related availability" required />
-            <span>I understand guardian families need to be available for clear communication and breeding-related visits when needed.</span>
+            <input name="guardianAgreement" type="checkbox" value="Understands guardian requirements and phone conversation before placement" required />
+            <span>I understand guardian families need a secure fenced yard, clear communication, local availability for breeding-related visits, and a phone conversation before moving forward.</span>
           </label>
         </div>
       </section>

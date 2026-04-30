@@ -1126,25 +1126,39 @@ export const familyStory = [
 ];
 
 export const guardianProgram = {
+  fitHighlights: [
+    ["Female guardians", "Usually within 30 to 60 minutes of Salado."],
+    ["Stud guardians", "Must live in Salado or very close by."],
+    ["Home setup", "Secure fenced yard and indoor family life required."],
+    ["Next step", "A 30 to 45 minute phone call helps both sides confirm fit."]
+  ],
   benefits: [
-    ["Top-Quality Dog", "Receive a pick-of-the-litter dog known for health, temperament, and quality."],
-    ["Minimal Costs", "The dog is provided at no charge; guardian families cover routine care and feeding."],
-    ["Compensation Per Litter", "Receive a financial benefit for every successful litter."],
-    ["Ongoing Support", "Receive guidance throughout the dog's breeding career."],
-    ["Ownership Transfer", "Full ownership transfers after the breeding career, including support for spaying costs."]
+    ["Exceptional Red Ranch dog", "Welcome a health-tested Red Ranch dog into your home as a loved family pet."],
+    ["No upfront puppy purchase", "Guardian families provide everyday care while Red Ranch Dogs retains breeding rights during the breeding career."],
+    ["Purposeful partnership", "Help us raise exceptional future mamas and studs in real family homes."],
+    ["Ongoing support", "Stay connected with us for questions, timing, care guidance, and breeding-related logistics."],
+    ["Ownership after retirement", "When the breeding career is complete, ownership transfers fully to the guardian family."]
+  ],
+  process: [
+    ["Apply", "Tell us where you live, your home setup, and whether you are interested in a female or stud guardian opportunity."],
+    ["Talk it through", "We schedule a real conversation to explain the commitment, answer questions, and make sure expectations are clear."],
+    ["Match only if it fits", "If the timing, dog, family, and location are right, we move forward with a guardian placement."]
   ],
   expectations: [
-    ["Living Environment", "Own your home or be a long-term renter and maintain a secure fenced yard."],
-    ["Daily Care", "Keep the dog as an indoor pet, feed Victor Hi Pro Plus, and provide exercise and socialization."],
-    ["Veterinary Obligations", "Handle routine veterinary care and transport for breeding health tests, progesterone testing, and ultrasounds as needed."],
-    ["Communication", "Stay connected by text and notify Red Ranch Dogs about heat cycles, vacations, moves, or health concerns."]
+    ["Local availability", "Female guardians should be close enough for breeding-related visits without it becoming a burden. Stud guardians need to be in Salado or very close."],
+    ["Secure fenced yard", "A physical fenced yard is required so the dog can be safely managed at home."],
+    ["Indoor family life", "Guardian dogs live as indoor family pets, never outside-only dogs."],
+    ["Routine care", "Guardian families handle routine care, approved food, grooming, exercise, training, and normal veterinary needs."],
+    ["Clear communication", "Quick communication matters, especially around heat cycles, appointments, travel, moves, or health concerns."],
+    ["Breeding season support", "Guardians help with transportation and availability for breeding-related appointments, whelping handoff, and return timing."]
   ],
   faqs: [
-    ["What happens during breeding?", "Breeding begins at the second heat cycle. After pregnancy is confirmed, the dog stays with Red Ranch Dogs for whelping and until puppies are weaned."],
-    ["Who covers breeding-related expenses?", "Red Ranch Dogs covers breeding-related expenses. Routine care and non-breeding emergencies are the guardian family's responsibility."],
-    ["Can I participate if I have other pets?", "Yes, as long as there are no intact males in the household and the breeding dog can be safely managed."],
-    ["What if I move?", "Relocation far from Salado, Texas may require rehoming the dog to a new guardian family."],
-    ["How long is the breeding career?", "The breeding career typically lasts until age 4-5, depending on health and litter count."]
+    ["How close do guardian families need to live?", "Female guardians are usually best within about 30 to 60 minutes of Salado. Stud guardians need to live in Salado or very close by because timing can be more immediate."],
+    ["Can guardian families have children or other pets?", "Yes. Children are welcome, and other pets can be fine as long as they are safely managed and spayed or neutered."],
+    ["What happens when a female goes into heat?", "Guardians notify us right away so we can coordinate timing, testing, and breeding-related appointments."],
+    ["Where does a mama go for whelping?", "When it is time for puppies, the mama comes back to Red Ranch Dogs for whelping and puppy care, then returns home after that season is complete."],
+    ["Who covers veterinary costs?", "Guardian families handle routine and non-breeding veterinary care. Red Ranch Dogs covers breeding-related expenses and appointments."],
+    ["Is the relationship personal or businesslike?", "It can be both. Some guardian families become close friends, while others prefer a more structured relationship. Either is great as long as care and communication are excellent."]
   ]
 };
 
