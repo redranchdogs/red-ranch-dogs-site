@@ -3131,13 +3131,13 @@ textarea {
 }
 
 .parent-directory-grid {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   padding-top: 24px;
   padding-bottom: 70px;
 }
 
 .tile-grid.three.litter-parent-grid {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
 }
 
 .parent-directory-summary {
@@ -4901,13 +4901,14 @@ summary {
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 0;
+  height: 100%;
   overflow: hidden;
   padding: 0;
 }
 
 .parent-card-media {
   position: relative;
-  aspect-ratio: 4 / 4.6;
+  aspect-ratio: 4 / 4.7;
   min-height: 0;
   margin: 0;
   overflow: hidden;
@@ -4919,11 +4920,12 @@ summary {
   display: block;
   width: 100%;
   height: 100%;
-  aspect-ratio: 4 / 4.6;
+  aspect-ratio: 4 / 4.7;
   margin: 0;
   max-width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background: var(--line);
 }
 
 .parent-role-badge {
@@ -4947,6 +4949,7 @@ summary {
   display: grid;
   align-content: start;
   gap: 12px;
+  min-width: 0;
   padding: 16px;
 }
 
@@ -4962,7 +4965,7 @@ summary {
 .parent-card-heading h2 {
   margin: 0;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.15rem, 3.5vw, 2.8rem);
+  font-size: clamp(2.15rem, 3vw, 2.8rem);
   font-weight: 400;
   line-height: 0.92;
   overflow-wrap: normal;
@@ -4989,6 +4992,7 @@ summary {
   display: inline-flex;
   align-items: center;
   min-height: 28px;
+  max-width: 100%;
   padding: 0 9px;
   color: var(--clay-dark);
   background: rgba(156, 31, 22, 0.07);
@@ -4997,10 +5001,43 @@ summary {
   font-size: 0.7rem;
   font-weight: 900;
   text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .parent-profile-card .inline-link {
   margin-top: 2px;
+}
+
+.parent-directory-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 0 0 12px;
+}
+
+.parent-directory-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 13px;
+  color: var(--clay-dark);
+  background: rgba(255, 250, 240, 0.72);
+  border: 1px solid rgba(156, 31, 22, 0.16);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.parent-directory-nav a.active {
+  color: #fffaf2;
+  background: var(--clay);
+  border-color: var(--clay);
 }
 
 .breed-parent-preview {
@@ -5273,7 +5310,11 @@ summary {
   }
 
   .parent-summary-stats div {
-    min-height: 104px;
+    min-height: 88px;
+  }
+
+  .parent-summary-stats div:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .parent-profile-template,

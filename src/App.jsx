@@ -1419,9 +1419,9 @@ function ParentCard({ parent }) {
   const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
   const program = breedProfiles.find((breed) => breed.slug === parent.breedSlug);
   const previewFacts = [
+    parent.breed,
     parent.weight,
-    parent.coat,
-    parent.status
+    parent.coat
   ].filter(Boolean);
 
   return (
@@ -1446,6 +1446,28 @@ function ParentCard({ parent }) {
         )}
       </div>
     </article>
+  );
+}
+
+function ParentDirectoryNav() {
+  const links = [
+    ["All Parents", "/parents"],
+    ["Mamas", "/parents/mamas"],
+    ["Studs", "/parents/studs"],
+    ["Goldendoodles", "/parents/goldendoodle-parents"],
+    ["Cavapoos", "/parents/cavapoo-parents"],
+    ["Bernedoodles", "/parents/bernedoodle-parents"]
+  ];
+  const currentPath = pathNow();
+
+  return (
+    <nav className="parent-directory-nav" aria-label="Parent dog categories">
+      {links.map(([label, href]) => (
+        <Link href={href} className={currentPath === href ? "active" : undefined} key={href}>
+          {label}
+        </Link>
+      ))}
+    </nav>
   );
 }
 
@@ -1934,12 +1956,12 @@ function ParentDetailPage({ parent }) {
           <p className="eyebrow">Program Role</p>
           <h2>How {parent.name} fits the program</h2>
           <p>
-            {parent.name} is part of the Red Ranch Dogs {breed?.name || parent.breed} program. This profile is designed to collect the details families ask about most: size, coat, color, personality notes, health testing, photos, and related litters.
+            {parent.name} is part of the Red Ranch Dogs {breed?.name || parent.breed} program. This profile collects the details families ask about most: size, coat, color, personality notes, health testing, photos, and related litters.
           </p>
           <ul className="clean-list parent-profile-list">
-            <li>{parent.name} is listed as a {familyRole} in the structured parent dog data.</li>
-            <li>Related litters connect automatically as litter records are added.</li>
-            <li>Additional photos and testing links can be added later without changing this page layout.</li>
+            <li>{parent.name} is one of the {familyRole}s connected to our current and planned puppy program.</li>
+            <li>Related litters are shown below as they are added to the website.</li>
+            <li>Additional photos and testing links can be added here as records are finalized.</li>
           </ul>
         </article>
       </section>
@@ -1991,6 +2013,11 @@ function ParentsDirectoryPage({ role }) {
     return roleMatch;
   });
   const title = role === "mama" ? "Mamas" : role === "stud" ? "Studs" : "Parent Dogs";
+  const heroCopy = role === "mama"
+    ? "Meet the mamas behind the Red Ranch Dogs program, organized by breed, size, coat, photos, and related litters."
+    : role === "stud"
+      ? "Meet the studs behind the Red Ranch Dogs program, organized by breed, size, coat, photos, and related litters."
+      : "Meet the mamas and studs behind the Red Ranch Dogs program, including breed, size, traits, photos, and related litters.";
   const summaryTitle = role === "mama" ? "Mamas in the program" : role === "stud" ? "Studs in the program" : "Parent dog overview";
   const summaryCopy = role === "mama"
     ? "Browse the mama profiles currently organized in the Red Ranch Dogs program, including size, coat, photos, and related litter history."
@@ -2000,7 +2027,8 @@ function ParentsDirectoryPage({ role }) {
 
   return (
     <Layout>
-      <PageHero eyebrow="Parents" title={title} copy="Meet the mamas and studs behind the Red Ranch Dogs program, including breed, size, traits, photos, and related litters." />
+      <PageHero eyebrow="Parents" title={title} copy={heroCopy} />
+      <ParentDirectoryNav />
       <ParentDirectorySummary parents={filteredParents} title={summaryTitle} copy={summaryCopy} />
       <section className="tile-grid three parent-directory-grid">
         {filteredParents.length ? filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />) : <p className="small-note">Parent profiles will appear here as structured records are added.</p>}
@@ -2016,6 +2044,7 @@ function BreedParentDirectoryPage({ breedSlug }) {
   return (
     <Layout>
       <PageHero eyebrow="Parents" title={`${breed?.name || "Breed"} Parents`} copy="Meet the parent dogs in this part of the Red Ranch Dogs program, with profile details, traits, photos, and related litters." />
+      <ParentDirectoryNav />
       <ParentDirectorySummary
         parents={filteredParents}
         title={`${breed?.name || "Breed"} parent snapshot`}
