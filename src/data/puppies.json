@@ -778,5 +778,239 @@
     "description": "FIFA is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
     "availabilityNote": "Being matched through the Cavapoo waitlist.",
     "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "meadow",
+    "name": "Meadow",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "litterSlug": "ginny-butch-spring-2026",
+    "litter": "Ginny + Butch Cassidy",
+    "mamaSlug": "ginny",
+    "mama": "Ginny",
+    "studSlug": "butch-cassidy",
+    "stud": "Butch Cassidy",
+    "gender": "Female",
+    "collarColor": "Red",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "15-20 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$3,500",
+    "color": "Red abstract and apricot possibilities",
+    "coat": "Wavy to curly, lower-shedding Goldendoodle coat",
+    "mainPhoto": "/images/puppies/ginny-butch-2026/meadow-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/ginny-butch-2026/meadow-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Newborn Photos",
+        "photos": [
+          "/images/puppies/ginny-butch-2026/meadow-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Meadow is a female Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
+    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "vista",
+    "name": "Vista",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "litterSlug": "ginny-butch-spring-2026",
+    "litter": "Ginny + Butch Cassidy",
+    "mamaSlug": "ginny",
+    "mama": "Ginny",
+    "studSlug": "butch-cassidy",
+    "stud": "Butch Cassidy",
+    "gender": "Female",
+    "collarColor": "Maroon",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "15-20 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$3,500",
+    "color": "Red abstract and apricot possibilities",
+    "coat": "Wavy to curly, lower-shedding Goldendoodle coat",
+    "mainPhoto": "/images/puppies/ginny-butch-2026/vista-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/ginny-butch-2026/vista-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Newborn Photos",
+        "photos": [
+          "/images/puppies/ginny-butch-2026/vista-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Vista is a female Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
+    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "camper",
+    "name": "Camper",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "litterSlug": "ginny-butch-spring-2026",
+    "litter": "Ginny + Butch Cassidy",
+    "mamaSlug": "ginny",
+    "mama": "Ginny",
+    "studSlug": "butch-cassidy",
+    "stud": "Butch Cassidy",
+    "gender": "Male",
+    "collarColor": "Gray",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "15-20 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$3,500",
+    "color": "Red abstract and apricot possibilities",
+    "coat": "Wavy to curly, lower-shedding Goldendoodle coat",
+    "mainPhoto": "/images/puppies/ginny-butch-2026/camper-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/ginny-butch-2026/camper-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Newborn Photos",
+        "photos": [
+          "/images/puppies/ginny-butch-2026/camper-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Camper is a male Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
+    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "sage",
+    "name": "Sage",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "litterSlug": "ginny-butch-spring-2026",
+    "litter": "Ginny + Butch Cassidy",
+    "mamaSlug": "ginny",
+    "mama": "Ginny",
+    "studSlug": "butch-cassidy",
+    "stud": "Butch Cassidy",
+    "gender": "Female",
+    "collarColor": "Pink",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "15-20 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$3,500",
+    "color": "Red abstract and apricot possibilities",
+    "coat": "Wavy to curly, lower-shedding Goldendoodle coat",
+    "mainPhoto": "/images/puppies/ginny-butch-2026/sage-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/ginny-butch-2026/sage-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Newborn Photos",
+        "photos": [
+          "/images/puppies/ginny-butch-2026/sage-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Sage is a female Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
+    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "ridge",
+    "name": "Ridge",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "litterSlug": "ginny-butch-spring-2026",
+    "litter": "Ginny + Butch Cassidy",
+    "mamaSlug": "ginny",
+    "mama": "Ginny",
+    "studSlug": "butch-cassidy",
+    "stud": "Butch Cassidy",
+    "gender": "Male",
+    "collarColor": "Orange",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "15-20 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$3,500",
+    "color": "Red abstract and apricot possibilities",
+    "coat": "Wavy to curly, lower-shedding Goldendoodle coat",
+    "mainPhoto": "/images/puppies/ginny-butch-2026/ridge-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/ginny-butch-2026/ridge-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Newborn Photos",
+        "photos": [
+          "/images/puppies/ginny-butch-2026/ridge-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Ridge is a male Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
+    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "trek",
+    "name": "Trek",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "litterSlug": "ginny-butch-spring-2026",
+    "litter": "Ginny + Butch Cassidy",
+    "mamaSlug": "ginny",
+    "mama": "Ginny",
+    "studSlug": "butch-cassidy",
+    "stud": "Butch Cassidy",
+    "gender": "Male",
+    "collarColor": "Black",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "15-20 lbs",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "price": "$3,500",
+    "color": "Red abstract and apricot possibilities",
+    "coat": "Wavy to curly, lower-shedding Goldendoodle coat",
+    "mainPhoto": "/images/puppies/ginny-butch-2026/trek-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/puppies/ginny-butch-2026/trek-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Newborn Photos",
+        "folderHint": "Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Newborn Photos",
+        "photos": [
+          "/images/puppies/ginny-butch-2026/trek-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+        ]
+      }
+    ],
+    "description": "Trek is a male Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
+    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
   }
 ]

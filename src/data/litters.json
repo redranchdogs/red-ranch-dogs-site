@@ -218,5 +218,67 @@
       "/images/puppies/penny-wyatt-2026/pitch-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
       "/images/puppies/penny-wyatt-2026/fifa-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
     ]
+  },
+  {
+    "slug": "ginny-butch-spring-2026",
+    "name": "Ginny + Butch Cassidy",
+    "visibility": "public",
+    "status": "Current Litter",
+    "litterNumber": "Ginny 1",
+    "mamaSlug": "ginny",
+    "mama": "Ginny",
+    "studSlug": "butch-cassidy",
+    "stud": "Butch Cassidy",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "theme": "Ginny's Van Life Litter",
+    "birthDate": "April 23, 2026",
+    "goHomeDate": "June 14-16, 2026",
+    "expectedSize": "15-20 lbs",
+    "expectedTiming": "Born April 23, 2026",
+    "expectedColors": "Red abstract and apricot tones possible",
+    "expectedCoatTraits": "Wavy to curly coats with minimal to very low shedding expected",
+    "priceRange": "$3,500",
+    "image": "/images/litters/ginny-butch-cassidy-parent-pairing-red-ranch-dogs.webp",
+    "parentPairingImage": "/images/litters/ginny-butch-cassidy-parent-pairing-red-ranch-dogs.webp",
+    "availabilitySummary": "Ginny and Butch Cassidy have a current litter of Multigen Mini Goldendoodles.",
+    "availabilityNote": "Puppies are being offered to the Goldendoodle waitlist before public availability is updated.",
+    "aboutTitle": "A multigen mini Goldendoodle pairing with warm family temperaments.",
+    "aboutThisLitter": [
+      "Ginny and Butch Cassidy have produced a beautiful litter of Multigen Mini Goldendoodles with soft coats, warm apricot and red tones, and the steady companion temperament families love.",
+      "Ginny is a gorgeous F1 Goldendoodle weighing around 30 pounds with a rich apricot coat and a soft, wavy texture. She is affectionate, gentle, deeply people-focused, and this is her very first litter.",
+      "Butch Cassidy weighs about 16 pounds and brings refined structure, intelligence, confidence, and a beautifully soft coat to this pairing.",
+      "These puppies are expected to mature around 15 to 20 pounds full grown, making them a wonderful mini size for many families.",
+      "Coats are expected to range from wavy to curly with minimal to very low shedding. Color-wise, we anticipate warm apricot and red tones with abstract markings that make each puppy unique.",
+      "Puppy picks have not happened yet, so these puppies are being shared as a current litter while we work through the Goldendoodle waitlist."
+    ],
+    "geneticMakeup": [
+      "~67% Poodle",
+      "~33% Golden Retriever"
+    ],
+    "aboutHighlights": [
+      "Multigen Mini Goldendoodles",
+      "Estimated 15-20 lbs full grown",
+      "Wavy to curly coats",
+      "Van Life litter theme"
+    ],
+    "puppySlugs": [
+      "meadow",
+      "vista",
+      "camper",
+      "sage",
+      "ridge",
+      "trek"
+    ],
+    "photoFolderHint": "Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Newborn Photos",
+    "weeklyUpdateStatus": "Newborn photos loaded from Ginny 1 + Butch Cassidy's Van Life litter.",
+    "weeklyUpdateGallery": [
+      "/images/puppies/ginny-butch-2026/meadow-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/ginny-butch-2026/vista-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/ginny-butch-2026/camper-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/ginny-butch-2026/sage-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/ginny-butch-2026/ridge-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg",
+      "/images/puppies/ginny-butch-2026/trek-mini-goldendoodle-puppy-ginny-butch-newborn-red-ranch-dogs.jpg"
+    ]
   }
 ]

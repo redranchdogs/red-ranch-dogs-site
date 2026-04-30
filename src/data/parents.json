@@ -228,5 +228,52 @@
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Wyatt Earp",
     "description": "Tiny toy Poodle stud with a confident, affectionate temperament for select Cavapoo pairings."
+  },
+  {
+    "slug": "ginny",
+    "name": "Ginny",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1 Goldendoodle",
+    "weight": "30 lbs",
+    "color": "Apricot",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/ginny.webp",
+    "photos": [
+      "/images/dams/ginny.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "ginny-butch-spring-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Ginny",
+    "description": "Sweet F1 Goldendoodle mama with a soft wavy coat and a gentle, people-focused temperament."
+  },
+  {
+    "slug": "butch-cassidy",
+    "name": "Butch Cassidy",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Poodle",
+    "weight": "16 lbs",
+    "color": "Apricot",
+    "coat": "Curly",
+    "status": "Active",
+    "mainPhoto": "/images/studs/butch-cassidy-mini-goldendoodle-stud-red-ranch-dogs.jpg",
+    "photos": [
+      "/images/studs/butch-cassidy-mini-goldendoodle-stud-red-ranch-dogs.jpg",
+      "/images/studs/butch-cassidy.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "ginny-butch-spring-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Butch Cassidy",
+    "description": "Mini Poodle stud with confidence, intelligence, soft coat quality, and an affectionate temperament."
   }
 ]
