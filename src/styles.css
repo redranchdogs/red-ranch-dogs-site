@@ -5963,6 +5963,134 @@ summary {
   }
 }
 
+/* Process pages: compact, reusable rhythm for pricing, FAQ, waitlist, and expectations pages. */
+.page-hero.compact-page-hero {
+  padding-top: clamp(28px, 4vw, 44px);
+  padding-bottom: clamp(12px, 2vw, 20px);
+}
+
+.page-hero.compact-page-hero .hero-copy {
+  max-width: 860px;
+}
+
+.page-hero.compact-page-hero .hero-copy h1 {
+  max-width: min(15ch, 100%);
+}
+
+.page-hero.compact-page-hero .lead {
+  max-width: 58rem;
+  margin-top: 12px;
+}
+
+.process-status-strip {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  padding-top: 8px;
+  padding-bottom: 18px;
+}
+
+.process-status-strip article {
+  min-height: 74px;
+  padding: 13px 14px;
+}
+
+.process-status-strip span {
+  font-size: clamp(1.45rem, 2.3vw, 2.2rem);
+}
+
+.process-status-strip p {
+  font-size: 0.72rem;
+  line-height: 1.22;
+}
+
+.process-link-grid,
+.process-compact-grid,
+.process-note-grid {
+  padding-top: 12px;
+  padding-bottom: 36px;
+}
+
+.process-compact-section {
+  padding-top: 18px;
+  padding-bottom: 38px;
+}
+
+.process-compact-section .section-header {
+  margin-bottom: 14px;
+}
+
+.process-note-panel,
+.process-faq-preview,
+.process-form-shell {
+  padding-top: 18px;
+  padding-bottom: 42px;
+}
+
+.process-note-grid + .content-section,
+.process-compact-section + .tile-grid,
+.waitlist-board + .tile-grid {
+  margin-top: -10px;
+}
+
+.process-link-grid .compact-card,
+.process-note-grid .compact-card {
+  min-height: 0;
+}
+
+.process-note-grid .compact-card h2,
+.process-link-grid .compact-card h2 {
+  font-size: clamp(1.85rem, 3vw, 2.55rem);
+}
+
+.waitlist-board {
+  padding-top: 14px;
+  padding-bottom: 42px;
+}
+
+@media (max-width: 720px) {
+  .page-hero.compact-page-hero {
+    padding-top: 26px;
+    padding-bottom: 10px;
+  }
+
+  .page-hero.compact-page-hero .hero-copy h1 {
+    max-width: min(12ch, 100%);
+  }
+
+  .process-status-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-top: 6px;
+    padding-bottom: 14px;
+  }
+
+  .process-status-strip article {
+    min-height: 68px;
+    padding: 10px 8px;
+  }
+
+  .process-status-strip span {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  .process-status-strip p {
+    font-size: 0.6rem;
+  }
+
+  .process-link-grid,
+  .process-compact-grid,
+  .process-note-grid {
+    padding-top: 8px;
+    padding-bottom: 26px;
+  }
+
+  .process-compact-section,
+  .process-note-panel,
+  .process-faq-preview,
+  .process-form-shell {
+    padding-top: 14px;
+    padding-bottom: 34px;
+  }
+}
+
 @media (max-width: 900px) {
   .tile-grid.three.parent-directory-grid,
   .tile-grid.three.litter-parent-grid {

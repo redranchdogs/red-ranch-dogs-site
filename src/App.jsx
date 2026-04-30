@@ -663,24 +663,6 @@ function PageHero({ eyebrow, title, copy, image = null, actions, className = "" 
   );
 }
 
-function StatBand() {
-  return (
-    <section className="stat-band">
-      {[
-        ["Breeds", "Goldendoodle, Bernedoodle, Cavapoo"],
-        ["Deposit", "$500 per waitlist"],
-        ["Pick Order", "By deposit date"],
-        ["Go-Home", "7-8 weeks old"]
-      ].map(([label, value]) => (
-        <article key={label}>
-          <span>{label}</span>
-          <strong>{value}</strong>
-        </article>
-      ))}
-    </section>
-  );
-}
-
 function FadeInSection({ as: Element = "section", className = "", children, ...props }) {
   const [visible, setVisible] = useState(false);
   const [node, setNode] = useState(null);
@@ -811,16 +793,6 @@ function SectionHeader({ eyebrow, title, copy, align = "left" }) {
       <h2>{title}</h2>
       {copy && <p>{copy}</p>}
     </div>
-  );
-}
-
-function PageIntroPanel({ eyebrow, title, copy, className = "" }) {
-  return (
-    <section className={`content-section narrow intro-panel compact-panel page-intro-panel ${className}`.trim()}>
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2>{title}</h2>
-      {copy && <p>{copy}</p>}
-    </section>
   );
 }
 
@@ -1421,6 +1393,17 @@ function BuyerPageTemplate({ eyebrow, title, copy, actions, image, children, cta
   );
 }
 
+function ProcessPageTemplate({ eyebrow = "Process", title, copy, stats = [], children, cta }) {
+  return (
+    <Layout>
+      <PageHero eyebrow={eyebrow} title={title} copy={copy} className="compact-page-hero" />
+      <ListingStatusStrip items={stats} className="process-status-strip" />
+      {children}
+      {cta && <CTASection {...cta} />}
+    </Layout>
+  );
+}
+
 function ParentCard({ parent }) {
   const hasPublicProfile = parent.visibility !== "private";
   const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
@@ -1587,13 +1570,44 @@ const puppyNextSteps = [
 ];
 
 const waitlistProcessSteps = [
-  ["Submit application", "Tell us about your home, timing, breed preference, and what kind of puppy would fit your family."],
-  ["Place deposit", "A deposit reserves your place on the waitlist and helps us communicate clearly about timing."],
-  ["Join the general waitlist", "Families are organized by deposit date so the process stays fair and easy to follow."],
-  ["Receive litter announcements", "When litters are born or planned, waitlist families receive updates in order."],
-  ["Pick or pass", "You can move forward with a litter or pass and remain on the general waitlist."],
-  ["Choose your puppy", "Puppy picks happen in waitlist order once personalities, coats, and family fit are clearer."],
-  ["Prepare for go-home", "We help with timing, supplies, records, and transition details before pickup."]
+  ["Apply", "Tell us your preferred breed, size range, timeline, and any questions so we can understand fit."],
+  ["Deposit", "A $500 non-refundable deposit reserves your place on that breed's waitlist and applies toward your puppy."],
+  ["Updates", "When a litter is born or planned, waitlist families are contacted in order of deposit placed."],
+  ["Pick or pass", "You can move forward with a litter or pass and remain on your breed waitlist for a future opportunity."],
+  ["Choose puppy", "Puppy picks happen in waitlist order using photos, videos, personality notes, and video calls."],
+  ["Go home", "We help with timing, records, supplies, and transition details before pickup."]
+];
+
+const processOverviewStats = [
+  { value: "$500", label: "deposit applies toward final puppy price" },
+  { value: "3", label: "breed-specific waitlists" },
+  { value: "7-8", label: "weeks old at go-home" }
+];
+
+const pricingStats = [
+  { value: "$500", label: "non-refundable deposit" },
+  { value: "Zelle", label: "preferred payment method" },
+  { value: "Before", label: "final payment due before pickup" },
+  { value: "Separate", label: "travel costs if needed" }
+];
+
+const faqStats = [
+  { value: "Waitlist", label: "deposit, order, and pick-or-pass questions" },
+  { value: "Pricing", label: "payments, deposits, and timing" },
+  { value: "Pickup", label: "go-home and transportation details" },
+  { value: "Coats", label: "traits, shedding, and care" }
+];
+
+const pickupDeliveryStats = [
+  { value: "7-8", label: "weeks old for go-home" },
+  { value: "Texas", label: "local pickup coordination" },
+  { value: "Travel", label: "flight nanny or delivery by plan" }
+];
+
+const pricingTimingCards = [
+  ["Deposit", "A $500 non-refundable deposit joins a breed waitlist or reserves a puppy when one is available. It applies toward the final puppy price."],
+  ["Final Payment", "Final payment timing is confirmed before pickup so each family knows what is due and when. Zelle is currently preferred."],
+  ["Transportation", "Pickup and travel plans are coordinated by litter and family needs. Flight nanny or delivery costs are separate from puppy pricing."]
 ];
 
 const pricingFactors = [
@@ -2065,29 +2079,43 @@ function BreedParentDirectoryPage({ breedSlug }) {
 }
 
 function ProcessOverviewPage() {
+  const processLinks = primaryNav.find((item) => item.label === "Process").links;
+
   return (
-    <SectionIndexPage
-      eyebrow="Process"
+    <ProcessPageTemplate
       title="How the Red Ranch Dogs process fits together"
       copy="Pricing, applications, waitlist details, FAQs, pickup, and delivery guidance are organized in one clear place."
-      links={primaryNav.find((item) => item.label === "Process").links}
-    />
+      stats={processOverviewStats}
+    >
+      <section className="tile-grid three process-link-grid">
+        {processLinks.map((link) => (
+          <article className="text-card compact-card" key={link.href}>
+            <h2>{link.label}</h2>
+            {link.copy && <p>{link.copy}</p>}
+            <Link href={link.href} className="inline-link">Open page</Link>
+          </article>
+        ))}
+      </section>
+    </ProcessPageTemplate>
   );
 }
 
 function PickupDeliveryPage() {
   return (
-    <Layout>
-      <PageHero eyebrow="Process" title="Puppy Pickup and Delivery" copy="Go-home day, local pickup, travel coordination, and delivery options will be organized clearly for each litter." />
-      <section className="tile-grid three">
+    <ProcessPageTemplate
+      title="Puppy Pickup and Delivery"
+      copy="Go-home day, local pickup, travel coordination, and delivery options are organized clearly for each litter."
+      stats={pickupDeliveryStats}
+    >
+      <section className="tile-grid three process-compact-grid">
         {["Pickup in Central Texas", "Flight nanny coordination", "Go-home preparation"].map((title) => (
-          <article className="text-card" key={title}>
+          <article className="text-card compact-card" key={title}>
             <h2>{title}</h2>
             <p>Details will be confirmed with each family based on puppy timing, travel needs, and go-home preparation.</p>
           </article>
         ))}
       </section>
-    </Layout>
+    </ProcessPageTemplate>
   );
 }
 
@@ -2511,11 +2539,11 @@ function StudDetailPage({ stud }) {
 
 function PricingPage() {
   return (
-    <BuyerPageTemplate
+    <ProcessPageTemplate
       eyebrow="Pricing"
       title="Puppy Prices & Deposits"
       copy="Clear pricing helps families understand what affects cost, what is included, and when payments are due."
-      actions={<Link href="/apply" className="button primary">Apply for a Puppy</Link>}
+      stats={pricingStats}
       cta={{
         title: "Ready to talk through pricing and availability?",
         copy: "Apply now and we will help you understand current puppies, upcoming litters, and the right fit for your family.",
@@ -2523,22 +2551,17 @@ function PricingPage() {
         secondaryLabel: "View Available Puppies"
       }}
     >
-      <PageIntroPanel
-        eyebrow="Pricing Overview"
-        title="How pricing is organized"
-        copy="Exact puppy pricing is confirmed before a family reserves a puppy. Current guidance is organized by breed and size so updates can stay clear and consistent."
-      />
       <PricingSection items={pricingProfiles.length ? pricingProfiles : priceGroups} />
-      <section className="tile-grid four priority-grid">
+      <section className="tile-grid four priority-grid process-compact-grid">
         {pricingFactors.map(([title, copy]) => (
-          <article className="text-card icon-card" key={title}>
+          <article className="text-card icon-card compact-card" key={title}>
             <Sparkles size={24} />
             <h2>{title}</h2>
             <p>{copy}</p>
           </article>
         ))}
       </section>
-      <section className="content-section">
+      <section className="content-section process-compact-section">
         <article className="group-panel">
           <h2>What is included with each puppy?</h2>
           <ul className="check-list included-list">
@@ -2546,26 +2569,26 @@ function PricingPage() {
           </ul>
         </article>
       </section>
-      <section className="content-section narrow">
-        <h2>Deposit and final payment</h2>
-        <p>A $500 non-refundable deposit is required to join a waitlist or reserve a puppy. Final payment timing is confirmed before pickup so every family knows what is due and when.</p>
-        <p><strong>Zelle recipient:</strong> Red Ranch Dogs, {brand.paymentEmail}</p>
+      <section className="tile-grid three process-note-grid">
+        {pricingTimingCards.map(([title, copy]) => (
+          <article className="text-card compact-card" key={title}>
+            <h2>{title}</h2>
+            <p>{copy}</p>
+            {title === "Final Payment" && <p><strong>Zelle recipient:</strong> Red Ranch Dogs, {brand.paymentEmail}</p>}
+          </article>
+        ))}
       </section>
-      <section className="content-section narrow">
-        <h2>Transportation note</h2>
-        <p>Pickup and transportation details are coordinated by litter and family needs. If flight nanny or delivery options are used, those costs are handled separately from puppy pricing.</p>
-      </section>
-    </BuyerPageTemplate>
+    </ProcessPageTemplate>
   );
 }
 
 function FaqPage() {
   return (
-    <BuyerPageTemplate
+    <ProcessPageTemplate
       eyebrow="FAQ"
       title="Puppy FAQ"
       copy="Clear answers about the waitlist, puppy selection, pricing, pickup, coat traits, health, and transition home."
-      actions={<Link href="/apply" className="button primary">Apply for a Puppy</Link>}
+      stats={faqStats}
       cta={{
         title: "Still have questions?",
         copy: "Send an application or contact us and we will help you understand the next best step.",
@@ -2575,7 +2598,7 @@ function FaqPage() {
       }}
     >
       <FAQSection items={faqProfiles.length ? faqProfiles : faqs} grouped />
-    </BuyerPageTemplate>
+    </ProcessPageTemplate>
   );
 }
 
@@ -2785,31 +2808,30 @@ function ParentCardGrid({ cards }) {
 
 function ApplicationProcessPage() {
   const steps = [
-    ["Submit Your Application", "Tell us your preferred breed, size range, gender preference, and timeline."],
-    ["Join the Waitlist", "A $500 non-refundable deposit secures your place on a waitlist."],
-    ["Litter Updates & Selection", "We notify waitlists when litters are born and share photos and videos as puppies grow."],
-    ["Final Payment", "Final payment is due one week before pickup. Zelle is preferred."],
-    ["Go-Home Day", "Puppies go home at 7-8 weeks old with vet records, vaccines, and starter supplies."]
+    ["Apply", "Tell us your preferred breed, size range, gender preference, and timeline."],
+    ["Join waitlist", "A $500 non-refundable deposit secures your place on a breed-specific waitlist."],
+    ["Get updates", "We notify waitlists when litters are planned or born and share photos and videos as puppies grow."],
+    ["Pick or pass", "You can move forward with a litter or pass and remain on your breed waitlist."],
+    ["Go home", "Puppies go home at 7-8 weeks old with vet records, vaccines, and starter guidance."]
   ];
+
   return (
-    <Layout>
-      <PageHero eyebrow={brand.location} title="Puppy Application Process" copy="A clear, fair, and stress-free path from application to go-home day." />
-      <StatBand />
-      <section className="timeline">
-        {steps.map(([title, copy], index) => (
-          <article key={title}>
-            <span>{index + 1}</span>
-            <h2>{title}</h2>
-            <p>{copy}</p>
-          </article>
-        ))}
+    <ProcessPageTemplate
+      eyebrow={brand.location}
+      title="Puppy Application Process"
+      copy="A clear, fair, and stress-free path from application to go-home day."
+      stats={processOverviewStats}
+    >
+      <section className="content-section process-compact-section">
+        <SectionHeader eyebrow="How It Works" title="The path families follow" copy="A simple process keeps the experience clear without making families guess what comes next." />
+        <ProcessStepCards steps={steps} />
       </section>
-      <section className="content-section narrow">
+      <section className="content-section narrow process-note-panel">
         <h2>Ready to apply?</h2>
         <p>Questions are always welcome. Call or text {brand.phone} or email {brand.email}.</p>
         <Link href="/apply" className="button primary">Start Application</Link>
       </section>
-    </Layout>
+    </ProcessPageTemplate>
   );
 }
 
@@ -2827,18 +2849,17 @@ function ApplicationPage() {
 function WaitlistPage() {
   const publicWaitlists = groupPublicWaitlistRows(waitlistData.publicRows);
   const lastUpdated = formatWaitlistDate(waitlistData.updatedAt);
+  const waitlistStats = waitlistBreedOrder.map((breed) => {
+    const list = publicWaitlists.find((item) => item.breed === breed);
+    return { value: list?.rows.length || 0, label: `${breed} active spots` };
+  });
 
   return (
-    <BuyerPageTemplate
+    <ProcessPageTemplate
       eyebrow="Current Waitlist"
       title="Public Waitlist"
       copy="A transparent look at current Red Ranch Dogs waitlist positions for Goldendoodles, Cavapoos, and Bernedoodles."
-      actions={(
-        <>
-          <Link href="/apply" className="button primary">Apply for a Puppy</Link>
-          <Link href="/process/application-and-waitlist" className="button secondary">How It Works</Link>
-        </>
-      )}
+      stats={waitlistStats}
       cta={{
         title: "Ready to join a waitlist?",
         copy: "Apply now and we will help you understand breed fit, current availability, and what the next step looks like.",
@@ -2847,20 +2868,6 @@ function WaitlistPage() {
         secondaryLabel: "View Available Puppies"
       }}
     >
-      <PageIntroPanel
-        eyebrow="How to read this list"
-        title="One position per deposit."
-        copy="This page is meant to help families understand current demand and waitlist order. Names are shown as first name and last initial only."
-      />
-      <section className="tile-grid four priority-grid waitlist-policy-grid">
-        {waitlistPolicies.map(([title, copy]) => (
-          <article className="text-card icon-card compact-card" key={title}>
-            <CheckCircle2 size={24} />
-            <h2>{title}</h2>
-            <p>{copy}</p>
-          </article>
-        ))}
-      </section>
       <section className="waitlist-board">
         <SectionHeader eyebrow="Current Positions" title="Breed waitlists" copy="Families are contacted in order of deposit placed. When a family chooses a puppy, their public waitlist spot is removed." />
         <div className="waitlist-board-grid">
@@ -2883,64 +2890,63 @@ function WaitlistPage() {
         </div>
         {lastUpdated && <p className="waitlist-updated small-note">Last updated {lastUpdated} from the Website Hub waitlist data.</p>}
       </section>
-      <section className="content-section narrow waitlist-note-panel">
-        <article className="group-panel">
-          <h2>Waitlist updates</h2>
-          <p>This public list mirrors the Waitlist Sheet structure in the Website Hub. Each public row represents one active waitlist spot and can be updated without changing the page template.</p>
-          <p className="small-note">The public page should never show emails, phone numbers, deposit dates, application notes, or full last names.</p>
-        </article>
-      </section>
-    </BuyerPageTemplate>
-  );
-}
-
-function JoinWaitlistPage() {
-  return (
-    <BuyerPageTemplate
-      eyebrow="Application & Waitlist"
-      title="Application and Waitlist"
-      copy="A clear, fair process for moving from application to puppy selection and go-home day."
-      actions={<Link href="/apply" className="button primary">Apply for a Puppy</Link>}
-    >
-      <PageIntroPanel
-        eyebrow="Simple Overview"
-        title="Your place on the list"
-        copy="Families are contacted in order of deposit placed. When a litter is announced, you can move forward or pass and remain on the general waitlist for a future opportunity."
-      />
-      <section className="timeline process-timeline">
-        {waitlistProcessSteps.map(([title, copy], index) => (
-          <article key={title}>
-            <span>{index + 1}</span>
+      <section className="tile-grid four priority-grid waitlist-policy-grid process-note-grid">
+        {waitlistPolicies.map(([title, copy]) => (
+          <article className="text-card icon-card compact-card" key={title}>
+            <CheckCircle2 size={24} />
             <h2>{title}</h2>
             <p>{copy}</p>
           </article>
         ))}
       </section>
-      <section className="tile-grid three priority-grid">
-        <article className="text-card icon-card">
+      <section className="content-section narrow waitlist-note-panel process-note-panel">
+        <article className="group-panel">
+          <h2>Public list privacy</h2>
+          <p>This public list mirrors the Waitlist Sheet structure in the Website Hub. Each row represents one active waitlist spot, using first name and last initial only.</p>
+          <p className="small-note">The public page should never show emails, phone numbers, deposit dates, application notes, or full last names.</p>
+        </article>
+      </section>
+    </ProcessPageTemplate>
+  );
+}
+
+function JoinWaitlistPage() {
+  return (
+    <ProcessPageTemplate
+      eyebrow="Application & Waitlist"
+      title="Application and Waitlist"
+      copy="A clear, fair process for moving from application to puppy selection and go-home day."
+      stats={processOverviewStats}
+    >
+      <section className="content-section process-compact-section">
+        <SectionHeader eyebrow="Simple Overview" title="Your place on the list" copy="Families are contacted in order of deposit placed. When a litter is announced, you can move forward or pass and remain on your breed waitlist for a future opportunity." />
+        <ProcessStepCards steps={waitlistProcessSteps} />
+      </section>
+      <section className="tile-grid three priority-grid process-note-grid">
+        <article className="text-card icon-card compact-card">
           <ShieldCheck size={24} />
           <h2>Deposit</h2>
           <p>The deposit reserves your place and helps us keep communication clear as litters are planned and born.</p>
         </article>
-        <article className="text-card icon-card">
+        <article className="text-card icon-card compact-card">
           <CheckCircle2 size={24} />
           <h2>Pick or Pass</h2>
           <p>Families can pass on a litter and remain on the general waitlist without starting over.</p>
         </article>
-        <article className="text-card icon-card">
+        <article className="text-card icon-card compact-card">
           <Heart size={24} />
           <h2>Litter Born</h2>
           <p>When a litter is born, families receive updates and puppy picks happen in waitlist order using photos, videos, personality notes, and video calls.</p>
         </article>
       </section>
-      <section className="form-shell">
+      <section className="form-shell process-form-shell">
         <LeadForm formType="waitlist" title="Join Our Waitlist" />
       </section>
-      <section className="content-section narrow">
+      <section className="content-section narrow process-faq-preview">
         <SectionHeader eyebrow="FAQ Preview" title="Common questions" copy="These answers keep the process understandable before a family reaches out." />
         <FAQSection items={(faqProfiles.length ? faqProfiles : faqs).filter((item) => Array.isArray(item) || item.category === "Getting on the waitlist" || item.category === "Puppy selection")} />
       </section>
-    </BuyerPageTemplate>
+    </ProcessPageTemplate>
   );
 }
 
