@@ -1323,7 +1323,7 @@ function FAQSection({ items = faqProfiles, category, grouped = false }) {
 
 function PricingSection({ items = pricingProfiles }) {
   return (
-    <section className="tile-grid three">
+    <section className="tile-grid three pricing-profile-grid">
       {items.map((group) => (
         <article className="text-card" key={group.breed || group[0]}>
           <h2>{group.breed || group[0]}</h2>
@@ -2087,7 +2087,7 @@ function ProcessOverviewPage() {
       copy="Pricing, applications, waitlist details, FAQs, pickup, and delivery guidance are organized in one clear place."
       stats={processOverviewStats}
     >
-      <section className="tile-grid three process-link-grid">
+      <section className="tile-grid three process-card-grid process-link-grid">
         {processLinks.map((link) => (
           <article className="text-card compact-card" key={link.href}>
             <h2>{link.label}</h2>
@@ -2107,7 +2107,7 @@ function PickupDeliveryPage() {
       copy="Go-home day, local pickup, travel coordination, and delivery options are organized clearly for each litter."
       stats={pickupDeliveryStats}
     >
-      <section className="tile-grid three process-compact-grid">
+      <section className="tile-grid three process-card-grid process-compact-grid">
         {["Pickup in Central Texas", "Flight nanny coordination", "Go-home preparation"].map((title) => (
           <article className="text-card compact-card" key={title}>
             <h2>{title}</h2>
@@ -2552,7 +2552,7 @@ function PricingPage() {
       }}
     >
       <PricingSection items={pricingProfiles.length ? pricingProfiles : priceGroups} />
-      <section className="tile-grid four priority-grid process-compact-grid">
+      <section className="tile-grid four priority-grid process-card-grid process-compact-grid">
         {pricingFactors.map(([title, copy]) => (
           <article className="text-card icon-card compact-card" key={title}>
             <Sparkles size={24} />
@@ -2569,7 +2569,7 @@ function PricingPage() {
           </ul>
         </article>
       </section>
-      <section className="tile-grid three process-note-grid">
+      <section className="tile-grid three process-card-grid process-note-grid">
         {pricingTimingCards.map(([title, copy]) => (
           <article className="text-card compact-card" key={title}>
             <h2>{title}</h2>
@@ -2890,7 +2890,7 @@ function WaitlistPage() {
         </div>
         {lastUpdated && <p className="waitlist-updated small-note">Last updated {lastUpdated} from the Website Hub waitlist data.</p>}
       </section>
-      <section className="tile-grid four priority-grid waitlist-policy-grid process-note-grid">
+      <section className="tile-grid four priority-grid waitlist-policy-grid process-card-grid process-note-grid">
         {waitlistPolicies.map(([title, copy]) => (
           <article className="text-card icon-card compact-card" key={title}>
             <CheckCircle2 size={24} />
@@ -2922,7 +2922,7 @@ function JoinWaitlistPage() {
         <SectionHeader eyebrow="Simple Overview" title="Your place on the list" copy="Families are contacted in order of deposit placed. When a litter is announced, you can move forward or pass and remain on your breed waitlist for a future opportunity." />
         <ProcessStepCards steps={waitlistProcessSteps} />
       </section>
-      <section className="tile-grid three priority-grid process-note-grid">
+      <section className="tile-grid three priority-grid process-card-grid process-note-grid">
         <article className="text-card icon-card compact-card">
           <ShieldCheck size={24} />
           <h2>Deposit</h2>
