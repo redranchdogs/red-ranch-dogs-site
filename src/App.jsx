@@ -1441,8 +1441,8 @@ function ParentCard({ parent }) {
         </dl>
         <div className="parent-card-tags" aria-label={`${parent.name} profile highlights`}>
           <span>{parent.status}</span>
-          <span>{relatedLitterCount ? `${relatedLitterCount} related litter${relatedLitterCount === 1 ? "" : "s"}` : "Litter history coming"}</span>
-          <span>{hasTestingLinks ? "Testing links ready" : "Testing records pending"}</span>
+          <span>{relatedLitterCount ? `${relatedLitterCount} litter${relatedLitterCount === 1 ? "" : "s"}` : "Litter history coming"}</span>
+          <span>{hasTestingLinks ? "Testing links" : "Testing pending"}</span>
         </div>
         {hasPublicProfile ? (
           <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
@@ -1451,6 +1451,36 @@ function ParentCard({ parent }) {
         )}
       </div>
     </article>
+  );
+}
+
+function BreedParentsCTA({ breed, parents = [] }) {
+  const parentPath = `/parents/${breed.slug.replace("-puppies", "-parents")}`;
+  const parentPhotos = parents.filter((parent) => parent.mainPhoto).slice(0, 3);
+
+  return (
+    <section className="content-section breed-parent-preview">
+      <article className="group-panel">
+        <div>
+          <p className="eyebrow">Parent Dogs</p>
+          <h2>Meet our {breed.name} parents</h2>
+          <p>Our {breed.name} mamas and studs are selected for health, temperament, size, coat quality, and family-friendly personalities.</p>
+        </div>
+        <div className="breed-parent-preview-actions">
+          {parentPhotos.length > 0 && (
+            <div className="parent-preview-photos" aria-label={`${breed.name} parent photo preview`}>
+              {parentPhotos.map((parent) => (
+                <img src={parent.mainPhoto} alt={parent.name} key={parent.slug} loading="lazy" />
+              ))}
+            </div>
+          )}
+          <div className="actions">
+            <Link href={parentPath} className="button primary">View {breed.name} Parents</Link>
+            <Link href="/parents" className="button secondary">View All Parents</Link>
+          </div>
+        </div>
+      </article>
+    </section>
   );
 }
 
@@ -1702,9 +1732,7 @@ function BreedPageTemplate({ breed }) {
         <SectionHeader eyebrow="Litters" title={`${breed.name} litters`} copy="Current and planned pairings live here so families can follow timing, parent dogs, and weekly updates without crowding the Available Puppies page." />
         {litters.length ? litters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />) : <p className="small-note">Litter plans for this breed will be shared as pairings and timing are confirmed.</p>}
       </section>
-      <section className="tile-grid three">
-        {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
-      </section>
+      <BreedParentsCTA breed={breed} parents={parents} />
       <FAQSection category={breed.faqCategory} />
     </BuyerPageTemplate>
   );
