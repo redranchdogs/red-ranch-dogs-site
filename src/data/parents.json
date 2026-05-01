@@ -153,6 +153,29 @@
     "description": "F1 Mini Goldendoodle mama with a bright, friendly temperament."
   },
   {
+    "slug": "ginny",
+    "name": "Ginny",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1 Goldendoodle",
+    "weight": "30 lbs",
+    "color": "Apricot",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/ginny.webp",
+    "photos": [
+      "/images/dams/ginny.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "ginny-butch-spring-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Ginny",
+    "description": "Current Goldendoodle mama with a gentle, affectionate, people-focused temperament."
+  },
+  {
     "slug": "trudy",
     "name": "Trudy",
     "visibility": "public",
@@ -212,9 +235,7 @@
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [
-      "kylie-wayne-fall-2026"
-    ],
+    "relatedLitters": [],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Kylie",
     "description": "Bernedoodle program mama planned for select micro and mini Bernedoodle pairings."
   },
