@@ -5,13 +5,14 @@
     "visibility": "public",
     "role": "mama",
     "breedSlug": "goldendoodle-puppies",
-    "breed": "Goldendoodle",
-    "weight": "20 lbs",
+    "breed": "F1 Mini Goldendoodle",
+    "weight": "28 lbs",
     "color": "Red abstract",
     "coat": "Wavy",
     "status": "Active",
-    "mainPhoto": "/images/dams/birdie-goldendoodle-mama-red-ranch-dogs.jpg",
+    "mainPhoto": "/images/dams/birdie-red-ranch-dogs.webp",
     "photos": [
+      "/images/dams/birdie-red-ranch-dogs.webp",
       "/images/dams/birdie-goldendoodle-mama-red-ranch-dogs.jpg"
     ],
     "healthTestingLinks": [],
@@ -20,7 +21,7 @@
       "birdie-waylon-spring-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Birdie",
-    "description": "Sweet Goldendoodle mama with a gentle family temperament."
+    "description": "Sweet F1 Mini Goldendoodle mama with a gentle, family-ready temperament."
   },
   {
     "slug": "honey",
@@ -28,13 +29,14 @@
     "visibility": "public",
     "role": "mama",
     "breedSlug": "goldendoodle-puppies",
-    "breed": "Goldendoodle",
-    "weight": "15 lbs",
+    "breed": "Multigen Micro Goldendoodle",
+    "weight": "10-15 lbs",
     "color": "Chocolate points",
     "coat": "Straight to wavy",
     "status": "Active",
-    "mainPhoto": "/images/dams/honey.webp",
+    "mainPhoto": "/images/dams/honey-red-ranch-dogs.webp",
     "photos": [
+      "/images/dams/honey-red-ranch-dogs.webp",
       "/images/dams/honey.webp"
     ],
     "healthTestingLinks": [],
@@ -43,76 +45,154 @@
       "honey-bram-spring-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Honey",
-    "description": "Micro Goldendoodle mama known for beautiful color and compact size."
+    "description": "Micro Goldendoodle mama known for beautiful color, compact size, and a cuddly temperament."
   },
   {
-    "slug": "winnie",
-    "name": "Winnie",
+    "slug": "phoebe",
+    "name": "Phoebe",
     "visibility": "public",
     "role": "mama",
-    "breedSlug": "cavapoo-puppies",
-    "breed": "Cavapoo",
-    "weight": "22 lbs",
-    "color": "Red abstract",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Goldendoodle",
+    "weight": "15 lbs",
+    "color": "Apricot",
     "coat": "Wavy",
     "status": "Active",
-    "mainPhoto": "/images/dams/winnie.webp",
+    "mainPhoto": "/images/dams/phoebe-red-ranch-dogs.webp",
     "photos": [
-      "/images/dams/winnie.webp"
+      "/images/dams/phoebe-red-ranch-dogs.webp"
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [
-      "winnie-redford-summer-2026"
-    ],
-    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Winnie",
-    "description": "Cavapoo program mama with an affectionate, steady personality."
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Phoebe",
+    "description": "Compact multigen Goldendoodle mama selected for soft coat quality and a sweet nature."
   },
   {
-    "slug": "waylon-jennings",
-    "name": "Waylon Jennings",
+    "slug": "daisy",
+    "name": "Daisy",
     "visibility": "public",
-    "role": "stud",
+    "role": "mama",
     "breedSlug": "goldendoodle-puppies",
-    "breed": "Poodle",
-    "weight": "18 lbs",
-    "color": "Red abstract",
-    "coat": "Curly",
+    "breed": "F1 Mini Goldendoodle",
+    "weight": "28 lbs",
+    "color": "Apricot",
+    "coat": "Wavy",
     "status": "Active",
-    "mainPhoto": "/images/studs/waylon-jennings-mini-goldendoodle-stud-red-ranch-dogs.jpg",
+    "mainPhoto": "/images/dams/daisy-red-ranch-dogs.webp",
     "photos": [
-      "/images/studs/waylon-jennings-mini-goldendoodle-stud-red-ranch-dogs.jpg"
+      "/images/dams/daisy-red-ranch-dogs.webp"
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [
-      "birdie-waylon-spring-2026"
-    ],
-    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Waylon Jennings",
-    "description": "Health-tested stud used in select Goldendoodle pairings."
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Daisy",
+    "description": "F1 Mini Goldendoodle mama with a warm, people-focused temperament."
   },
   {
-    "slug": "robert-redford",
-    "name": "Robert Redford",
+    "slug": "beatrix",
+    "name": "Beatrix",
     "visibility": "public",
-    "role": "stud",
-    "breedSlug": "cavapoo-puppies",
-    "breed": "Poodle",
-    "weight": "18 lbs",
-    "color": "Red abstract",
-    "coat": "Curly",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1 Goldendoodle",
+    "weight": "50 lbs",
+    "color": "Apricot",
+    "coat": "Wavy",
     "status": "Active",
-    "mainPhoto": "/images/studs/robert-redford.webp",
+    "mainPhoto": "/images/dams/beatrix-red-ranch-dogs.webp",
     "photos": [
-      "/images/studs/robert-redford.webp"
+      "/images/dams/beatrix-red-ranch-dogs.webp"
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [
-      "winnie-redford-summer-2026"
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Beatrix",
+    "description": "F1 Goldendoodle mama with classic family-dog sweetness and an affectionate personality."
+  },
+  {
+    "slug": "june",
+    "name": "June",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1 Mini Goldendoodle",
+    "weight": "30 lbs",
+    "color": "Apricot",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/june-red-ranch-dogs.webp",
+    "photos": [
+      "/images/dams/june-red-ranch-dogs.webp"
     ],
-    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Robert Redford",
-    "description": "Stud used in select Cavapoo and doodle pairings."
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / June",
+    "description": "F1 Mini Goldendoodle mama with a steady, loving presence."
+  },
+  {
+    "slug": "georgia",
+    "name": "Georgia",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1 Mini Goldendoodle",
+    "weight": "25 lbs",
+    "color": "Apricot",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/georgia-red-ranch-dogs.webp",
+    "photos": [
+      "/images/dams/georgia-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Georgia",
+    "description": "F1 Mini Goldendoodle mama with a bright, friendly temperament."
+  },
+  {
+    "slug": "trudy",
+    "name": "Trudy",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "AKC Toy Poodle",
+    "weight": "6 lbs",
+    "color": "Apricot",
+    "coat": "Curly",
+    "status": "Active",
+    "mainPhoto": "/images/dams/trudy-red-ranch-dogs.webp",
+    "photos": [
+      "/images/dams/trudy-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Trudy",
+    "description": "AKC Toy Poodle mama used for select small doodle pairings."
+  },
+  {
+    "slug": "faye",
+    "name": "Faye",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "AKC Standard Poodle",
+    "weight": "40 lbs",
+    "color": "Apricot",
+    "coat": "Curly",
+    "status": "Active",
+    "mainPhoto": "/images/dams/faye-red-ranch-dogs.webp",
+    "photos": [
+      "/images/dams/faye-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Faye",
+    "description": "AKC Standard Poodle mama with classic Poodle intelligence and structure."
   },
   {
     "slug": "kylie",
@@ -125,8 +205,9 @@
     "color": "Chocolate-toned",
     "coat": "Wavy",
     "status": "Active",
-    "mainPhoto": "/images/dams/kylie.webp",
+    "mainPhoto": "/images/dams/kylie-red-ranch-dogs.webp",
     "photos": [
+      "/images/dams/kylie-red-ranch-dogs.webp",
       "/images/dams/kylie.webp"
     ],
     "healthTestingLinks": [],
@@ -138,27 +219,393 @@
     "description": "Bernedoodle program mama planned for select micro and mini Bernedoodle pairings."
   },
   {
-    "slug": "wayne",
-    "name": "Wayne",
+    "slug": "tilly",
+    "name": "Tilly",
     "visibility": "public",
-    "role": "stud",
+    "role": "mama",
     "breedSlug": "bernedoodle-puppies",
-    "breed": "Poodle",
-    "weight": "30 lbs",
-    "color": "Chocolate merle",
-    "coat": "Curly",
+    "breed": "Ultra Bernedoodle",
+    "weight": "40 lbs",
+    "color": "Tri-color",
+    "coat": "Wavy",
     "status": "Active",
-    "mainPhoto": "/images/studs/wayne.webp",
+    "mainPhoto": "/images/dams/tilly-red-ranch-dogs.webp",
     "photos": [
-      "/images/studs/wayne.webp"
+      "/images/dams/tilly-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Tilly",
+    "description": "Ultra Bernedoodle mama with sturdy structure and a steady family temperament."
+  },
+  {
+    "slug": "sylvee",
+    "name": "Sylvee",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "F1b Bernedoodle",
+    "weight": "22 lbs",
+    "color": "Tri-color",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/sylvee-red-ranch-dogs.webp",
+    "photos": [
+      "/images/dams/sylvee-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Sylvee",
+    "description": "F1b Bernedoodle mama with a gentle, people-oriented personality."
+  },
+  {
+    "slug": "penny",
+    "name": "Penny",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1 Cavapoo",
+    "weight": "25 lbs",
+    "color": "Red and white parti",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/penny-red-ranch-dogs.webp",
+    "photos": [
+      "/images/dams/penny-red-ranch-dogs.webp",
+      "/images/dams/penny-2.webp"
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
     "relatedLitters": [
-      "kylie-wayne-fall-2026"
+      "penny-wyatt-spring-2026"
     ],
-    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Wayne",
-    "description": "Stud used for select Bernedoodle and Poodle pairings."
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Penny",
+    "description": "Sweet F1 Cavapoo mama with a cheerful parti coat and people-focused temperament."
+  },
+  {
+    "slug": "winnie",
+    "name": "Winnie",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1 Cavapoo",
+    "weight": "34 lbs",
+    "color": "Red abstract",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/winnie-red-ranch-dogs.webp",
+    "photos": [
+      "/images/dams/winnie-red-ranch-dogs.webp",
+      "/images/dams/winnie.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "winnie-redford-summer-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Winnie",
+    "description": "F1 Cavapoo mama with an affectionate, steady personality."
+  },
+  {
+    "slug": "reece",
+    "name": "Reece",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1 Cavapoo",
+    "weight": "15 lbs",
+    "color": "Red abstract",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/reece-red-ranch-dogs.webp",
+    "photos": [
+      "/images/dams/reece-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Reece",
+    "description": "Small F1 Cavapoo mama with a sweet, companion-focused temperament."
+  },
+  {
+    "slug": "garth-brooks",
+    "name": "Garth Brooks",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Multigen Mini Bernedoodle",
+    "weight": "30 lbs",
+    "color": "Red abstract",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/studs/garth-brooks-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/garth-brooks-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Garth Brooks",
+    "description": "Multigen Mini Bernedoodle stud with rich color genetics and strong Bernedoodle structure.",
+    "genetics": "Ee kyky atat Bb SS -/- FF; 7:3 Red Intensity; 32% Bernese Mountain Dog",
+    "fee": "$2,000"
+  },
+  {
+    "slug": "hank-williams",
+    "name": "Hank Williams",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "F1 Mini Bernedoodle",
+    "weight": "42 lbs",
+    "color": "Apricot",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/studs/hank-williams-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/hank-williams-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Hank Williams",
+    "description": "F1 Mini Bernedoodle stud used for select Bernedoodle pairings.",
+    "genetics": "EE kyky atat Bb SS +/-; 6:4 Red Intensity"
+  },
+  {
+    "slug": "beau",
+    "name": "Beau",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "F1 Mini Bernedoodle",
+    "weight": "43 lbs",
+    "color": "Apricot",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/studs/beau-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/beau-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Beau",
+    "description": "F1 Mini Bernedoodle stud with confident structure and a warm temperament.",
+    "genetics": "Ee kyky atat Bb Ssp +/-; 6:4 Red Intensity"
+  },
+  {
+    "slug": "waylon-jennings",
+    "name": "Waylon Jennings",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "weight": "19 lbs",
+    "color": "Red abstract",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/studs/waylon-jennings-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/waylon-jennings-red-ranch-dogs.webp",
+      "/images/studs/waylon-jennings-mini-goldendoodle-stud-red-ranch-dogs.jpg"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "birdie-waylon-spring-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Waylon Jennings",
+    "description": "Health-tested stud used in select Goldendoodle pairings.",
+    "genetics": "ee KBky atat Bb SS -/- FF; 10:0 Red Intensity; 32% Retriever"
+  },
+  {
+    "slug": "sundance",
+    "name": "Sundance",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Micro Goldendoodle",
+    "weight": "13 lbs",
+    "color": "Red",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/studs/sundance-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/sundance-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Sundance",
+    "description": "Micro Goldendoodle stud used for compact, people-focused Goldendoodle pairings.",
+    "genetics": "ee KBky atat bb spsp; FF -/- Curl TT Shedding; 22% Retriever"
+  },
+  {
+    "slug": "enzo",
+    "name": "Enzo",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Micro Goldendoodle",
+    "weight": "13 lbs",
+    "color": "Red",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/studs/enzo-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/enzo-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Enzo",
+    "description": "Micro Goldendoodle stud with a compact frame and soft coat traits.",
+    "genetics": "ee KBky aya BB Ssp +/- FF; 10:0 Red Intensity; 94% Poodle"
+  },
+  {
+    "slug": "butch-cassidy",
+    "name": "Butch Cassidy",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Micro Goldendoodle",
+    "weight": "16 lbs",
+    "color": "Apricot",
+    "coat": "Curly",
+    "status": "Active",
+    "mainPhoto": "/images/studs/butch-cassidy-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/butch-cassidy-red-ranch-dogs.webp",
+      "/images/studs/butch-cassidy-mini-goldendoodle-stud-red-ranch-dogs.jpg",
+      "/images/studs/butch-cassidy.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "ginny-butch-spring-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Butch Cassidy",
+    "description": "Mini Poodle stud with confidence, intelligence, soft coat quality, and an affectionate temperament.",
+    "genetics": "ee KBky ata Bb Ssp; FF -/- Curl TT Shedding; 16% Retriever"
+  },
+  {
+    "slug": "knox",
+    "name": "Knox",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1b Mini Goldendoodle",
+    "weight": "10 lbs",
+    "color": "Apricot",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/studs/knox-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/knox-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Knox",
+    "description": "F1b Mini Goldendoodle stud used for small, family-friendly Goldendoodle pairings.",
+    "genetics": "ee KBKB ata BB SS +/- FF; 9:1 Red Intensity; 33% Retriever"
+  },
+  {
+    "slug": "robert-redford",
+    "name": "Robert Redford",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "AKC Moyen Poodle",
+    "weight": "20 lbs",
+    "color": "Red",
+    "coat": "Curly",
+    "status": "Active",
+    "mainPhoto": "/images/studs/robert-redford-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/robert-redford-red-ranch-dogs.webp",
+      "/images/studs/robert-redford.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "winnie-redford-summer-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Robert Redford",
+    "description": "AKC Moyen Poodle stud used in select Cavapoo and doodle pairings.",
+    "genetics": "ee kyky atat Bb Ssp +/+ FF; 9:1 Red Intensity"
+  },
+  {
+    "slug": "johnny-cash",
+    "name": "Johnny Cash",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "AKC Toy Poodle",
+    "weight": "6 lbs",
+    "color": "Red",
+    "coat": "Curly",
+    "status": "Active",
+    "mainPhoto": "/images/studs/johnny-cash-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/johnny-cash-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Johnny Cash",
+    "description": "AKC Toy Poodle stud for select small Cavapoo and doodle pairings.",
+    "genetics": "Ee kyky ayat Bb Ssp +/+ FF; 5:5 Red Intensity"
+  },
+  {
+    "slug": "wyatt-earp",
+    "name": "Wyatt Earp",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "AKC Toy Poodle",
+    "weight": "6 lbs",
+    "color": "Apricot red",
+    "coat": "Curly",
+    "status": "Active",
+    "mainPhoto": "/images/studs/wyatt-earp-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/wyatt-earp-red-ranch-dogs.webp",
+      "/images/studs/wyatt-earp-toy-poodle-stud-red-ranch-dogs.png"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "penny-wyatt-spring-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Wyatt Earp",
+    "description": "Tiny toy Poodle stud with a confident, affectionate temperament for select Cavapoo pairings.",
+    "genetics": "ee KBky atat BB SSp FF; 7:3 Red Intensity"
+  },
+  {
+    "slug": "bodhe",
+    "name": "Bodhe",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "AKC Cavalier King Charles Spaniel",
+    "weight": "19 lbs",
+    "color": "Ruby",
+    "coat": "Straight",
+    "status": "Active",
+    "mainPhoto": "/images/studs/bodhe-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/bodhe-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Bodhe",
+    "description": "AKC Cavalier King Charles Spaniel stud used for select Cavapoo pairings.",
+    "genetics": "ee kyky atat BB Ssp; 8:2 Red Intensity"
   },
   {
     "slug": "bram",
@@ -182,98 +629,5 @@
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Bram",
     "description": "Outside stud for Honey 2 with a confident, playful temperament."
-  },
-  {
-    "slug": "penny",
-    "name": "Penny",
-    "visibility": "public",
-    "role": "mama",
-    "breedSlug": "cavapoo-puppies",
-    "breed": "F1 Cavapoo",
-    "weight": "25 lbs",
-    "color": "Red and white parti",
-    "coat": "Wavy",
-    "status": "Active",
-    "mainPhoto": "/images/dams/penny-2.webp",
-    "photos": [
-      "/images/dams/penny-2.webp"
-    ],
-    "healthTestingLinks": [],
-    "geneticTestingLinks": [],
-    "relatedLitters": [
-      "penny-wyatt-spring-2026"
-    ],
-    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Penny",
-    "description": "Sweet F1 Cavapoo mama with a cheerful parti coat and people-focused temperament."
-  },
-  {
-    "slug": "wyatt-earp",
-    "name": "Wyatt Earp",
-    "visibility": "public",
-    "role": "stud",
-    "breedSlug": "cavapoo-puppies",
-    "breed": "Toy Poodle",
-    "weight": "4 lbs",
-    "color": "Apricot red",
-    "coat": "Curly",
-    "status": "Active",
-    "mainPhoto": "/images/studs/wyatt-earp-toy-poodle-stud-red-ranch-dogs.png",
-    "photos": [
-      "/images/studs/wyatt-earp-toy-poodle-stud-red-ranch-dogs.png"
-    ],
-    "healthTestingLinks": [],
-    "geneticTestingLinks": [],
-    "relatedLitters": [
-      "penny-wyatt-spring-2026"
-    ],
-    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Wyatt Earp",
-    "description": "Tiny toy Poodle stud with a confident, affectionate temperament for select Cavapoo pairings."
-  },
-  {
-    "slug": "ginny",
-    "name": "Ginny",
-    "visibility": "public",
-    "role": "mama",
-    "breedSlug": "goldendoodle-puppies",
-    "breed": "F1 Goldendoodle",
-    "weight": "30 lbs",
-    "color": "Apricot",
-    "coat": "Wavy",
-    "status": "Active",
-    "mainPhoto": "/images/dams/ginny.webp",
-    "photos": [
-      "/images/dams/ginny.webp"
-    ],
-    "healthTestingLinks": [],
-    "geneticTestingLinks": [],
-    "relatedLitters": [
-      "ginny-butch-spring-2026"
-    ],
-    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Ginny",
-    "description": "Sweet F1 Goldendoodle mama with a soft wavy coat and a gentle, people-focused temperament."
-  },
-  {
-    "slug": "butch-cassidy",
-    "name": "Butch Cassidy",
-    "visibility": "public",
-    "role": "stud",
-    "breedSlug": "goldendoodle-puppies",
-    "breed": "Poodle",
-    "weight": "16 lbs",
-    "color": "Apricot",
-    "coat": "Curly",
-    "status": "Active",
-    "mainPhoto": "/images/studs/butch-cassidy-mini-goldendoodle-stud-red-ranch-dogs.jpg",
-    "photos": [
-      "/images/studs/butch-cassidy-mini-goldendoodle-stud-red-ranch-dogs.jpg",
-      "/images/studs/butch-cassidy.webp"
-    ],
-    "healthTestingLinks": [],
-    "geneticTestingLinks": [],
-    "relatedLitters": [
-      "ginny-butch-spring-2026"
-    ],
-    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Butch Cassidy",
-    "description": "Mini Poodle stud with confidence, intelligence, soft coat quality, and an affectionate temperament."
   }
 ]
