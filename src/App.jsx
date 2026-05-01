@@ -2705,18 +2705,18 @@ function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Contact Us"
-        copy="Questions are always welcome. Call, text, email, or send a quick message through the form."
+        copy="Questions are always welcome. Call, text, email, or send a quick message and we will point you toward the right next step."
         image={contactPuppyImage}
         className="contact-page-hero"
       />
       <section className="contact-grid contact-page-grid">
-        <article className="text-card">
+        <article className="text-card contact-method-card">
           <Phone size={24} />
           <h2>Call or text</h2>
           <p>{brand.phone}</p>
           <a className="button small" href={`tel:+1${brand.phone.replace(/\D/g, "")}`}>Call</a>
         </article>
-        <article className="text-card">
+        <article className="text-card contact-method-card">
           <Mail size={24} />
           <h2>Email</h2>
           <p>{brand.email}</p>
@@ -2754,7 +2754,7 @@ function TeamPage() {
         ))}
       </section>
       <section className="content-section narrow">
-        <h2>A full-time team effort</h2>
+        <h2>Care is in the daily details</h2>
         <p>From cleaning and feeding to monitoring weights, providing ENS and ESI, potty training, bathing, and grooming, the team handles the day-to-day work that helps each puppy thrive.</p>
       </section>
     </Layout>

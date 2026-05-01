@@ -6384,10 +6384,12 @@ summary {
 .reviews-page-hero .hero-image,
 .contact-page-hero .hero-image {
   aspect-ratio: 4 / 3;
+  background: color-mix(in srgb, var(--paper) 72%, var(--tan));
 }
 
 .family-page-hero .hero-image img {
-  object-position: 50% 34%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .reviews-page-hero .hero-image img {
@@ -6395,7 +6397,7 @@ summary {
 }
 
 .contact-page-hero .hero-image img {
-  object-position: 50% 34%;
+  object-position: 50% 44%;
 }
 
 .family-story-section {
@@ -6405,7 +6407,7 @@ summary {
 .story-panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr);
-  gap: 24px;
+  gap: clamp(18px, 3vw, 28px);
   align-items: start;
   padding: clamp(22px, 4vw, 34px);
   background: var(--paper);
@@ -6426,13 +6428,16 @@ summary {
 
 .story-panel p:not(.eyebrow) {
   max-width: 74ch;
-  margin: 0 0 13px;
+  margin: 0 0 12px;
+  line-height: 1.5;
 }
 
 .story-actions {
   display: grid;
   gap: 12px;
   align-content: start;
+  position: sticky;
+  top: 94px;
 }
 
 .story-actions .button {
@@ -6449,7 +6454,7 @@ summary {
 }
 
 .tile-grid.three.team-card-grid {
-  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   padding-top: 18px;
   padding-bottom: 64px;
 }
@@ -6458,22 +6463,29 @@ summary {
   overflow: hidden;
   display: grid;
   align-content: start;
+  gap: 0;
+  min-width: 0;
+  padding: 0;
 }
 
 .team-profile-card img {
-  aspect-ratio: 4 / 3.15;
+  display: block;
+  aspect-ratio: 4 / 3.2;
   object-position: 50% 32%;
 }
 
 .team-profile-card span {
+  display: block;
+  margin: 20px 22px 0;
   color: var(--brand-red);
   font-size: 0.76rem;
   font-weight: 900;
+  line-height: 1.1;
   text-transform: uppercase;
 }
 
 .team-profile-card h2 {
-  margin-top: 8px;
+  margin: 7px 22px 0;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
   font-size: clamp(2.45rem, 4vw, 3.35rem);
   font-weight: 400;
@@ -6481,7 +6493,9 @@ summary {
 }
 
 .team-profile-card p {
-  margin-bottom: 0;
+  margin: 14px 22px 22px;
+  font-size: 0.98rem;
+  line-height: 1.48;
 }
 
 .reviews-status-strip {
@@ -6496,7 +6510,7 @@ summary {
 
 .reviews-intro-panel .group-panel {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   justify-items: start;
   padding: clamp(22px, 4vw, 32px);
 }
@@ -6516,6 +6530,8 @@ summary {
   display: grid;
   gap: 14px;
   align-content: start;
+  min-width: 0;
+  border-radius: var(--radius-sm);
 }
 
 .review-card p {
@@ -6544,6 +6560,33 @@ summary {
   text-transform: uppercase;
 }
 
+.contact-page-grid {
+  padding-top: 22px;
+}
+
+.contact-method-card {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.contact-method-card svg {
+  color: var(--brand-red);
+}
+
+.contact-method-card h2 {
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.contact-method-card p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 720px) {
   .process-row-list .compact-card {
     grid-template-columns: 1fr;
@@ -6561,10 +6604,11 @@ summary {
 
   .story-actions {
     grid-template-columns: 1fr;
+    position: static;
   }
 
   .family-page-hero .hero-image {
-    aspect-ratio: 4 / 4.5;
+    aspect-ratio: 4 / 3.35;
   }
 
   .reviews-page-hero .hero-image,
@@ -6578,27 +6622,31 @@ summary {
   }
 
   .team-profile-card {
-    grid-template-columns: minmax(110px, 0.42fr) minmax(0, 1fr);
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: 0;
     padding: 0;
   }
 
   .team-profile-card img {
-    grid-row: 1 / 4;
-    height: 100%;
-    min-height: 170px;
-    aspect-ratio: auto;
+    grid-row: auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: 50% 32%;
   }
 
   .team-profile-card span,
   .team-profile-card h2,
   .team-profile-card p {
-    grid-column: 2;
-    margin-right: 16px;
+    grid-column: 1;
+    margin-right: 18px;
+    margin-left: 18px;
   }
 
   .team-profile-card span {
-    margin-top: 16px;
+    margin-top: 18px;
   }
 
   .team-profile-card h2 {
@@ -6606,6 +6654,6 @@ summary {
   }
 
   .team-profile-card p {
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 }
