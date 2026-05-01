@@ -1449,7 +1449,7 @@ function ParentCard({ parent }) {
           <p>{parent.description}</p>
         </div>
         <div className="parent-card-meta" aria-label={`${parent.name} quick profile details`}>
-          {previewFacts.map((fact) => <span key={fact}>{fact}</span>)}
+          {previewFacts.map((fact, index) => <span key={`${fact}-${index}`}>{fact}</span>)}
         </div>
         {hasPublicProfile ? (
           <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
