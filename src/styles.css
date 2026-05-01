@@ -6031,6 +6031,17 @@ summary {
   border-radius: var(--radius-md);
 }
 
+.animal-profile-hero .hero-image {
+  aspect-ratio: 3 / 4;
+  max-height: min(640px, 72vh);
+  background: var(--paper);
+}
+
+.animal-profile-hero .hero-image img {
+  object-fit: contain;
+  object-position: center;
+}
+
 .page-hero + .content-section,
 .page-hero + .card-list,
 .page-hero + .tile-grid,

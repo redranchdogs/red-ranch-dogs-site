@@ -2576,7 +2576,7 @@ function StudDetailPage({ stud }) {
 
   return (
     <Layout>
-      <PageHero eyebrow="Stud Profile" title={stud.name} copy={stud.type} image={stud.image} />
+      <PageHero eyebrow="Stud Profile" title={stud.name} copy={stud.type} image={stud.image} className="animal-profile-hero" />
       <section className="content-section stud-profile">
         <article className="group-panel">
           <h2>Profile</h2>
@@ -2889,7 +2889,7 @@ function DamDetailPage({ dam }) {
 
   return (
     <Layout>
-      <PageHero eyebrow="Dam Profile" title={dam.name} copy={dam.type} image={dam.image} />
+      <PageHero eyebrow="Dam Profile" title={dam.name} copy={dam.type} image={dam.image} className="animal-profile-hero" />
       <section className="content-section stud-profile">
         <article className="group-panel">
           <h2>Profile</h2>
