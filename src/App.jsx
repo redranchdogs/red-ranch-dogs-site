@@ -1461,6 +1461,80 @@ function ParentCard({ parent }) {
   );
 }
 
+function StudCard({ stud }) {
+  return (
+    <article className="stud-card">
+      <figure className="stud-card-media">
+        {stud.image ? <img src={stud.image} alt={`${stud.name} stud at Red Ranch Dogs`} loading="lazy" /> : <ImagePlaceholder label="Stud photo" />}
+        <span className="stud-card-fee">{stud.fee || "$1,500"}</span>
+      </figure>
+      <div className="stud-card-body">
+        <div className="stud-card-heading">
+          <p className="eyebrow">{stud.group}</p>
+          <h3>{stud.name}</h3>
+          <p>{stud.type}</p>
+        </div>
+        <dl className="stud-card-facts">
+          <div>
+            <dt>Weight</dt>
+            <dd>{stud.weight}</dd>
+          </div>
+          <div>
+            <dt>Testing</dt>
+            <dd>{stud.testing?.length ? "Available" : "Pending"}</dd>
+          </div>
+        </dl>
+        {stud.genetics && <p className="stud-card-genetics">{stud.genetics}</p>}
+        <Link href={stud.href} className="button small secondary">View Profile</Link>
+      </div>
+    </article>
+  );
+}
+
+function StudCatalogSection() {
+  return (
+    <section className="content-section stud-catalog-section">
+      <SectionHeader
+        eyebrow="Our Studs"
+        title="Available stud profiles"
+        copy="Each stud card keeps the photo, fee, size, testing status, and profile link in one repeatable format."
+      />
+      {studCatalog.map((group) => {
+        const groupLabel = group.breed.endsWith("s") ? group.breed.slice(0, -1) : group.breed;
+        return (
+          <article className="stud-group-panel" key={group.breed}>
+            <div className="stud-group-heading">
+              <h2>{groupLabel} Studs</h2>
+              <p>{group.breed === "Poodles" ? "Health-tested poodle studs used across select doodle pairings." : `Health-tested ${groupLabel.toLowerCase()} studs for approved breeding programs.`}</p>
+            </div>
+            <div className="stud-card-grid">
+              {group.dogs.map(([name, type, weight, genetics, href]) => {
+                const stud = studDetails[href] || {};
+                return (
+                  <StudCard
+                    key={`${group.breed}-${name}`}
+                    stud={{
+                      href,
+                      name,
+                      type,
+                      weight,
+                      genetics,
+                      group: groupLabel,
+                      image: stud.image,
+                      fee: stud.fee,
+                      testing: stud.testing
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </article>
+        );
+      })}
+    </section>
+  );
+}
+
 function ParentDirectoryNav() {
   const links = [
     ["All Parents", "/parents"],
@@ -2867,21 +2941,6 @@ function DamDetailPage({ dam }) {
   );
 }
 
-function ParentCardGrid({ cards }) {
-  return (
-    <section className="tile-grid">
-      {cards.map((dog) => (
-        <article className="text-card parent-card" key={dog.name}>
-          <img src={dog.image} alt={dog.name} />
-          <h2>{dog.name}</h2>
-          <p>{dog.type}</p>
-          <Link href={dog.href} className="inline-link">View profile</Link>
-        </article>
-      ))}
-    </section>
-  );
-}
-
 function ApplicationProcessPage() {
   const steps = [
     ["Apply", "Tell us your preferred breed, size range, gender preference, and timeline."],
@@ -3057,44 +3116,31 @@ function StudServicesPage() {
           </dl>
         </article>
       </section>
-      <section className="tile-grid three compact-grid">
-        <article className="text-card icon-card">
+      <section className="tile-grid three compact-grid process-row-list stud-service-steps">
+        <article className="text-card icon-card compact-card">
           <MessageCircle size={24} />
-          <h2>Start With an Inquiry</h2>
-          <p>Send the basics about your program, your female, timing, and which Red Ranch Dogs stud you are considering.</p>
+          <div>
+            <h2>Start With an Inquiry</h2>
+            <p>Send the basics about your program, female, timing, and which Red Ranch Dogs stud you are considering.</p>
+          </div>
         </article>
-        <article className="text-card icon-card">
+        <article className="text-card icon-card compact-card">
           <Heart size={24} />
-          <h2>Text When She Is in Heat</h2>
-          <p>When your girl comes in, we usually start a group text to coordinate cycle timing, progesterone updates, AI, or shipping.</p>
+          <div>
+            <h2>Text When She Is in Heat</h2>
+            <p>When your girl comes in, we usually start a group text to coordinate cycle timing, progesterone updates, AI, or shipping.</p>
+          </div>
         </article>
-        <article className="text-card icon-card">
+        <article className="text-card icon-card compact-card">
           <ShieldCheck size={24} />
-          <h2>Confirm Records and Timing</h2>
-          <p>Before service, we confirm negative brucellosis, timing, payment, and whether you are coming to Salado or using shipped semen.</p>
+          <div>
+            <h2>Confirm Records and Timing</h2>
+            <p>Before service, we confirm negative brucellosis, timing, payment, and whether you are coming to Salado or using shipped semen.</p>
+          </div>
         </article>
       </section>
-      <section className="content-section">
-        {studCatalog.map((group) => (
-          <article className="group-panel" key={group.breed}>
-            <h2>{group.breed}</h2>
-            <div className="mini-grid">
-              {group.dogs.map(([name, type, weight, genetics, href]) => (
-                <div className="text-card" key={name}>
-                  <Sparkles size={22} />
-                  <h3>{name}</h3>
-                  <p>{type}</p>
-                  <p>{weight}</p>
-                  <p>{genetics}</p>
-                  <Link href={href} className="inline-link">View profile</Link>
-                </div>
-              ))}
-            </div>
-          </article>
-        ))}
-      </section>
-      <ParentCardGrid cards={parentDogs.studs} />
-      <section className="form-shell" id="stud-inquiry">
+      <StudCatalogSection />
+      <section className="form-shell stud-inquiry-shell" id="stud-inquiry">
         <LeadForm formType="stud" title="Stud Inquiry" />
       </section>
     </Layout>
