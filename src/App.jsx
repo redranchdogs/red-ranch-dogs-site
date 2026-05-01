@@ -1462,30 +1462,31 @@ function ParentCard({ parent }) {
 }
 
 function StudCard({ stud }) {
+  const testingStatus = stud.testing?.length ? "Testing available" : "Testing pending";
+  const facts = [
+    stud.group,
+    stud.weight,
+    stud.fee || "$1,500",
+    testingStatus
+  ].filter(Boolean);
+
   return (
-    <article className="stud-card">
-      <figure className="stud-card-media">
+    <article className="text-card parent-card parent-profile-card stud-card">
+      <figure className="parent-card-media stud-card-media">
         {stud.image ? <img src={stud.image} alt={`${stud.name} stud at Red Ranch Dogs`} loading="lazy" /> : <ImagePlaceholder label="Stud photo" />}
-        <span className="stud-card-fee">{stud.fee || "$1,500"}</span>
+        <span className="parent-role-badge stud-role-badge">Stud</span>
       </figure>
-      <div className="stud-card-body">
-        <div className="stud-card-heading">
+      <div className="parent-card-body stud-card-body">
+        <div className="parent-card-heading stud-card-heading">
           <p className="eyebrow">{stud.group}</p>
-          <h3>{stud.name}</h3>
+          <h2>{stud.name}</h2>
           <p>{stud.type}</p>
         </div>
-        <dl className="stud-card-facts">
-          <div>
-            <dt>Weight</dt>
-            <dd>{stud.weight}</dd>
-          </div>
-          <div>
-            <dt>Testing</dt>
-            <dd>{stud.testing?.length ? "Available" : "Pending"}</dd>
-          </div>
-        </dl>
+        <div className="parent-card-meta stud-card-facts" aria-label={`${stud.name} quick stud details`}>
+          {facts.map((fact, index) => <span key={`${fact}-${index}`}>{fact}</span>)}
+        </div>
         {stud.genetics && <p className="stud-card-genetics">{stud.genetics}</p>}
-        <Link href={stud.href} className="button small secondary">View Profile</Link>
+        <Link href={stud.href} className="inline-link">View profile</Link>
       </div>
     </article>
   );

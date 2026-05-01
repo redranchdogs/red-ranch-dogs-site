@@ -5054,135 +5054,49 @@ summary {
 }
 
 .stud-card {
-  display: grid;
-  grid-template-rows: auto 1fr;
   min-width: 0;
-  height: 100%;
-  overflow: hidden;
-  color: var(--cream);
-  background:
-    linear-gradient(145deg, rgba(255, 250, 242, 0.04), rgba(255, 250, 242, 0)),
-    #29261f;
-  border: 1px solid rgba(156, 31, 22, 0.28);
-  border-radius: 8px;
-  box-shadow: 0 18px 36px rgba(39, 35, 28, 0.12);
+  color: var(--ink);
+  background: rgba(255, 250, 242, 0.78);
+  border-color: var(--line);
+  box-shadow: none;
 }
 
 .stud-card-media {
-  position: relative;
-  aspect-ratio: 4 / 4.35;
-  margin: 0;
-  overflow: hidden;
-  background: rgba(255, 250, 242, 0.09);
+  aspect-ratio: 4 / 4.7;
+  background: var(--line);
 }
 
 .stud-card-media img,
 .stud-card-media .image-placeholder {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.stud-card-fee {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 0 12px;
-  color: #fffaf2;
-  background: rgba(156, 31, 22, 0.95);
-  border: 1px solid rgba(255, 250, 242, 0.35);
-  border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 900;
-  text-transform: uppercase;
+  object-fit: contain;
+  background: var(--line);
 }
 
 .stud-card-body {
-  display: grid;
-  align-content: start;
-  gap: 13px;
   padding: 16px;
 }
 
-.stud-card-heading {
-  display: grid;
-  gap: 7px;
-}
-
 .stud-card-heading .eyebrow {
-  margin: 0;
-  color: #d94b3f;
+  color: var(--clay);
 }
 
-.stud-card-heading h3 {
-  margin: 0;
-  color: #fffaf2;
-  font-family: var(--font-display);
-  font-size: clamp(2.35rem, 4vw, 3.2rem);
-  font-weight: 400;
-  line-height: 0.9;
+.stud-card-heading h2 {
+  font-size: clamp(2.15rem, 3vw, 2.8rem);
 }
 
-.stud-card-heading p,
 .stud-card-genetics {
   margin: 0;
-  color: rgba(255, 250, 242, 0.78);
+  color: var(--muted);
   line-height: 1.35;
-}
-
-.stud-card-genetics {
   display: -webkit-box;
   overflow: hidden;
   font-size: 0.94rem;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
 }
 
 .stud-card-facts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
   margin: 0;
-}
-
-.stud-card-facts div {
-  display: grid;
-  gap: 3px;
-  min-width: 0;
-  padding-top: 9px;
-  border-top: 1px solid rgba(255, 250, 242, 0.24);
-}
-
-.stud-card-facts dt {
-  color: rgba(255, 250, 242, 0.62);
-  font-size: 0.68rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.stud-card-facts dd {
-  min-width: 0;
-  margin: 0;
-  color: #fffaf2;
-  font-size: 1rem;
-  line-height: 1.2;
-}
-
-.stud-card .button.secondary {
-  justify-self: start;
-  color: #fffaf2;
-  border-color: rgba(255, 250, 242, 0.34);
-  background: transparent;
-}
-
-.stud-card .button.secondary:hover {
-  border-color: rgba(255, 250, 242, 0.64);
-  background: rgba(255, 250, 242, 0.09);
 }
 
 .parent-directory-nav {
@@ -6368,21 +6282,9 @@ summary {
     grid-template-columns: 1fr;
   }
 
-  .stud-card {
-    grid-template-columns: minmax(120px, 0.44fr) minmax(0, 1fr);
-  }
-
   .stud-card-media {
-    aspect-ratio: auto;
-    min-height: 100%;
-  }
-
-  .stud-card-fee {
-    right: 8px;
-    bottom: 8px;
-    min-height: 28px;
-    padding: 0 9px;
-    font-size: 0.66rem;
+    aspect-ratio: 4 / 4.7;
+    min-height: 0;
   }
 
   .stud-card-body {
@@ -6390,23 +6292,12 @@ summary {
     padding: 14px;
   }
 
-  .stud-card-heading h3 {
+  .stud-card-heading h2 {
     font-size: clamp(2rem, 12vw, 2.85rem);
   }
 
-  .stud-card-heading p,
   .stud-card-genetics {
     font-size: 0.9rem;
-  }
-
-  .stud-card-facts {
-    grid-template-columns: 1fr;
-    gap: 7px;
-  }
-
-  .stud-card .button.secondary {
-    width: 100%;
-    min-height: 40px;
   }
 }
 
