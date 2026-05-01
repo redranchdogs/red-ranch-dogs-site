@@ -2,13 +2,19 @@
   {
     "name": "Callie",
     "role": "Founder and puppy care lead",
-    "photo": "/images/seed/family.webp",
-    "bio": "Leads the family story, daily puppy care, and hands-on raising approach behind Red Ranch Dogs."
+    "photo": "/images/about/red-ranch-dogs-our-story-family.jpg",
+    "bio": "Leads the family story, hands-on puppy care, and the daily raising approach behind Red Ranch Dogs."
+  },
+  {
+    "name": "Nicole",
+    "role": "Puppy care and daily support",
+    "photo": "/images/home/red-ranch-dogs-home-lifestyle-puppies.jpg",
+    "bio": "Helps with the practical, day-to-day care that keeps puppies clean, loved, monitored, and ready for families."
   },
   {
     "name": "Adam",
     "role": "Operations and family communication",
-    "photo": "/images/seed/hero-puppy.webp",
+    "photo": "/images/home/red-ranch-dogs-goldendoodle-puppy-hero-900.jpeg",
     "bio": "Supports family communication, website updates, application flow, and the systems that keep puppy families informed."
   }
 ]

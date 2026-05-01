@@ -703,6 +703,14 @@ const homeHeroImage = {
   alt: "Goldendoodle puppy from Red Ranch Dogs in Salado, Texas"
 };
 
+const aboutStoryImage = "/images/about/red-ranch-dogs-our-story-family.jpg";
+const contactPuppyImage = "/images/puppies/honey-bram-2026/bumble-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg";
+const reviewHeroStats = [
+  { value: "100+", label: "five-star reviews soon" },
+  { value: "Family", label: "communication focused" },
+  { value: "Texas", label: "raised in Salado" }
+];
+
 const socialProofItems = [
   ["Nearly 100 five-star Google reviews", Star],
   ["Nearly 10,000 Instagram followers", Instagram],
@@ -1337,14 +1345,28 @@ function PricingSection({ items = pricingProfiles }) {
   );
 }
 
+function StarRating() {
+  return (
+    <div className="star-rating" aria-label="Five-star review">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <Star key={index} size={18} fill="currentColor" />
+      ))}
+    </div>
+  );
+}
+
 function TestimonialSection({ items = testimonialProfiles }) {
   return (
     <section className="reviews-row">
       {items.map((review) => (
         <article className="review-card" key={`${review.name}-${review.quote}`}>
+          <StarRating />
           {review.photo && <img src={review.photo} alt={review.name} />}
           <p>&quot;{review.quote}&quot;</p>
-          <strong>{review.name}</strong>
+          <footer>
+            <strong>{review.name}</strong>
+            <span>Google review</span>
+          </footer>
         </article>
       ))}
     </section>
@@ -2107,7 +2129,7 @@ function PickupDeliveryPage() {
       copy="Go-home day, local pickup, travel coordination, and delivery options are organized clearly for each litter."
       stats={pickupDeliveryStats}
     >
-      <section className="tile-grid three process-card-grid process-compact-grid">
+      <section className="tile-grid three process-card-grid process-compact-grid process-row-list">
         {["Pickup in Central Texas", "Flight nanny coordination", "Go-home preparation"].map((title) => (
           <article className="text-card compact-card" key={title}>
             <h2>{title}</h2>
@@ -2569,7 +2591,7 @@ function PricingPage() {
           </ul>
         </article>
       </section>
-      <section className="tile-grid three process-card-grid process-note-grid">
+      <section className="tile-grid three process-card-grid process-note-grid process-row-list">
         {pricingTimingCards.map(([title, copy]) => (
           <article className="text-card compact-card" key={title}>
             <h2>{title}</h2>
@@ -2605,7 +2627,13 @@ function FaqPage() {
 function ContactPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Contact" title="Contact Us" copy="Questions are always welcome. Call, text, email, or send a quick message through the form." image={images.cta} />
+      <PageHero
+        eyebrow="Contact"
+        title="Contact Us"
+        copy="Questions are always welcome. Call, text, email, or send a quick message through the form."
+        image={contactPuppyImage}
+        className="contact-page-hero"
+      />
       <section className="contact-grid contact-page-grid">
         <article className="text-card">
           <Phone size={24} />
@@ -2630,13 +2658,22 @@ function TeamPage() {
 
   return (
     <Layout>
-      <PageHero eyebrow="Our Team" title="Meet Our Team" copy="Raising healthy, happy puppies is a team effort built on daily care, monitoring, socialization, cleaning, feeding, grooming, and communication." image={images.family} />
-      <section className="tile-grid three">
+      <PageHero
+        eyebrow="Our Team"
+        title="Meet the Team"
+        copy="Raising healthy, happy puppies is a team effort built on daily care, monitoring, socialization, cleaning, feeding, grooming, and communication."
+        image={aboutStoryImage}
+        className="family-page-hero"
+      />
+      <section className="content-section narrow team-intro-panel">
+        <p>Behind every puppy update, clean pen, vet check, bath, photo day, and family conversation is a hands-on team working through the details together.</p>
+      </section>
+      <section className="tile-grid three team-card-grid">
         {cards.map((member) => (
-          <article className="text-card person-card" key={member.name}>
+          <article className="text-card person-card team-profile-card" key={member.name}>
             <img src={member.photo || member.image} alt={member.name} />
+            <span>{member.role || "Red Ranch Dogs team"}</span>
             <h2>{member.name}</h2>
-            <p>{member.role || "Part of the hands-on Red Ranch Dogs care team."}</p>
             {member.bio && <p>{member.bio}</p>}
           </article>
         ))}
@@ -2652,24 +2689,63 @@ function TeamPage() {
 function FamilyPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Our Story" title="Callie & Adam | Red Ranch Dogs" copy="Our family, our mentors, and our love of dogs shaped Red Ranch Dogs into a responsible breeding program focused on health, temperament, and a smooth transition into family life." image={images.family} />
-      <section className="content-section narrow">
-        <h2>A lifelong passion for dogs</h2>
-        {familyStory.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-        <div className="actions">
-          <Link href="/puppies/available" className="button primary">View Available Puppies</Link>
-          <Link href="/apply" className="button secondary">Join Our Waitlist</Link>
-        </div>
+      <PageHero
+        eyebrow="Our Story"
+        title="Callie & Adam"
+        copy="Our family, our mentors, and our love of dogs shaped Red Ranch Dogs into a responsible breeding program focused on health, temperament, and a smooth transition into family life."
+        image={aboutStoryImage}
+        className="family-page-hero"
+      />
+      <section className="content-section family-story-section">
+        <article className="story-panel">
+          <div>
+            <p className="eyebrow">Red Ranch Dogs</p>
+            <h2>A family-run program in Salado, Texas</h2>
+            {familyStory.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+          <div className="story-actions">
+            <Link href="/puppies/current-litters" className="button primary">View Current Litters</Link>
+            <Link href="/apply" className="button secondary">Join Our Waitlist</Link>
+          </div>
+        </article>
       </section>
     </Layout>
   );
 }
 
 function ReviewsPage() {
+  const reviewItems = reviews.map((review) => ({ ...review, name: review.name || "Red Ranch family" }));
+
   return (
     <Layout>
-      <PageHero eyebrow="Reviews" title="Testimonials & Customer Reviews" copy="Read kind words from puppy families about communication, care, and the Red Ranch Dogs process." />
-      <TestimonialSection items={testimonialProfiles.length ? testimonialProfiles : reviews.map((review) => ({ ...review, name: review.name || "Red Ranch family" }))} />
+      <PageHero
+        eyebrow="Google Reviews"
+        title="Kind Words from Puppy Families"
+        copy="Families often mention the communication, care, and confidence they felt throughout the Red Ranch Dogs process."
+        image="/images/home/red-ranch-dogs-mobile-testimony-banner.jpg"
+        className="reviews-page-hero"
+      />
+      <ListingStatusStrip items={reviewHeroStats} className="reviews-status-strip" />
+      <section className="content-section reviews-intro-panel">
+        <article className="group-panel">
+          <p className="eyebrow">Five-star feedback</p>
+          <h2>Trusted by families across the country</h2>
+          <p>We are grateful to be nearing 100 five-star Google reviews from puppy families who trusted Red Ranch Dogs with one of the sweetest decisions they will make.</p>
+          <div className="actions">
+            <a className="button primary" href={brand.googleReviews} target="_blank" rel="noreferrer">Read Google Reviews</a>
+            <Link className="button secondary" href="/apply">Apply for a Puppy</Link>
+          </div>
+        </article>
+      </section>
+      <TestimonialSection items={reviewItems} />
+      <CTASection
+        title="Ready to talk through your puppy fit?"
+        copy="Start with the application and we will help you understand timing, availability, and the best next step."
+        primaryHref="/apply"
+        primaryLabel="Apply for a Puppy"
+        secondaryHref="/puppies/current-litters"
+        secondaryLabel="Current Litters"
+      />
     </Layout>
   );
 }

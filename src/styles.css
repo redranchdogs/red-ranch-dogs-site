@@ -6169,3 +6169,270 @@ summary {
     grid-template-columns: 1fr;
   }
 }
+
+/* Shared compact row template for process pages and simple policy cards. */
+.tile-grid.process-row-list,
+.tile-grid.three.process-row-list {
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding-top: 10px;
+}
+
+.process-row-list .compact-card {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.34fr) minmax(0, 1fr);
+  gap: 14px 22px;
+  align-items: start;
+  padding: 18px 22px;
+}
+
+.process-row-list .compact-card h2 {
+  max-width: 100%;
+  margin: 0;
+  font-size: clamp(1.85rem, 3.1vw, 2.65rem);
+  line-height: 0.96;
+}
+
+.process-row-list .compact-card p {
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.14rem);
+  line-height: 1.34;
+}
+
+.process-row-list .compact-card p + p {
+  grid-column: 1 / -1;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 0.96rem;
+}
+
+/* Shared about/review page templates. */
+.family-page-hero .hero-image,
+.reviews-page-hero .hero-image,
+.contact-page-hero .hero-image {
+  aspect-ratio: 4 / 3;
+}
+
+.family-page-hero .hero-image img {
+  object-position: 50% 34%;
+}
+
+.reviews-page-hero .hero-image img {
+  object-position: 50% 44%;
+}
+
+.contact-page-hero .hero-image img {
+  object-position: 50% 34%;
+}
+
+.family-story-section {
+  padding-top: 20px;
+}
+
+.story-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr);
+  gap: 24px;
+  align-items: start;
+  padding: clamp(22px, 4vw, 34px);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 34px rgba(67, 42, 24, 0.08);
+}
+
+.story-panel h2,
+.reviews-intro-panel h2 {
+  max-width: 13ch;
+  margin: 0 0 16px;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.4rem, 4.4vw, 4.1rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.story-panel p:not(.eyebrow) {
+  max-width: 74ch;
+  margin: 0 0 13px;
+}
+
+.story-actions {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.story-actions .button {
+  width: 100%;
+}
+
+.team-intro-panel {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.team-intro-panel p {
+  margin: 0;
+}
+
+.tile-grid.three.team-card-grid {
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  padding-top: 18px;
+  padding-bottom: 64px;
+}
+
+.team-profile-card {
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+}
+
+.team-profile-card img {
+  aspect-ratio: 4 / 3.15;
+  object-position: 50% 32%;
+}
+
+.team-profile-card span {
+  color: var(--brand-red);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.team-profile-card h2 {
+  margin-top: 8px;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.45rem, 4vw, 3.35rem);
+  font-weight: 400;
+  line-height: 0.92;
+}
+
+.team-profile-card p {
+  margin-bottom: 0;
+}
+
+.reviews-status-strip {
+  padding-top: 4px;
+  padding-bottom: 12px;
+}
+
+.reviews-intro-panel {
+  padding-top: 12px;
+  padding-bottom: 18px;
+}
+
+.reviews-intro-panel .group-panel {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  padding: clamp(22px, 4vw, 32px);
+}
+
+.reviews-intro-panel .group-panel p {
+  max-width: 64ch;
+  margin: 0;
+}
+
+.star-rating {
+  display: flex;
+  gap: 4px;
+  color: var(--brand-red);
+}
+
+.review-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.review-card p {
+  margin: 0;
+  font-size: clamp(1rem, 1.45vw, 1.14rem);
+  line-height: 1.42;
+}
+
+.review-card footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: baseline;
+  margin-top: 4px;
+}
+
+.review-card footer strong {
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
+.review-card footer span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .process-row-list .compact-card {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 15px 16px;
+  }
+
+  .process-row-list .compact-card h2 {
+    font-size: clamp(1.8rem, 7vw, 2.25rem);
+  }
+
+  .story-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .story-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .family-page-hero .hero-image {
+    aspect-ratio: 4 / 4.5;
+  }
+
+  .reviews-page-hero .hero-image,
+  .contact-page-hero .hero-image {
+    aspect-ratio: 4 / 3.1;
+  }
+
+  .tile-grid.three.team-card-grid {
+    grid-template-columns: 1fr;
+    padding-bottom: 48px;
+  }
+
+  .team-profile-card {
+    grid-template-columns: minmax(110px, 0.42fr) minmax(0, 1fr);
+    gap: 16px;
+    padding: 0;
+  }
+
+  .team-profile-card img {
+    grid-row: 1 / 4;
+    height: 100%;
+    min-height: 170px;
+    aspect-ratio: auto;
+  }
+
+  .team-profile-card span,
+  .team-profile-card h2,
+  .team-profile-card p {
+    grid-column: 2;
+    margin-right: 16px;
+  }
+
+  .team-profile-card span {
+    margin-top: 16px;
+  }
+
+  .team-profile-card h2 {
+    font-size: clamp(2.3rem, 12vw, 3rem);
+  }
+
+  .team-profile-card p {
+    margin-bottom: 16px;
+  }
+}
