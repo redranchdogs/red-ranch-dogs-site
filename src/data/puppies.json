@@ -13,7 +13,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Brown",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "20-25 lbs",
     "birthDate": "April 1, 2026",
@@ -21,11 +21,18 @@
     "price": "$3,200",
     "color": "Red abstract",
     "coat": "Silky-soft, lower-shedding doodle coat",
-    "mainPhoto": "/images/puppies/birdie-waylon-2026/ranger-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/ranger-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
-      "/images/puppies/birdie-waylon-2026/ranger-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg"
+      "/images/puppies/birdie-waylon-2026/ranger-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
     ],
     "weeklyPhotos": [
+      {
+        "week": "Week 5",
+        "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 5",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/ranger-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
+        ]
+      },
       {
         "week": "Week 4",
         "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 4",
@@ -34,8 +41,8 @@
         ]
       }
     ],
-    "description": "Ranger is a sweet, middle-of-the-pack Mini Goldendoodle boy from Birdie and Waylon's litter.",
-    "availabilityNote": "Currently available for an approved family.",
+    "description": "Ranger is a reserved Mini Goldendoodle boy from Birdie and Waylon's litter.",
+    "availabilityNote": "Ranger has found his home and is reserved.",
     "personalityNote": "Super sweet, steady, and easygoing. A great fit for a family wanting a loving companion with a silky-soft, lower-shedding doodle coat."
   },
   {
@@ -52,7 +59,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Orange",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "20-25 lbs",
     "birthDate": "April 1, 2026",
@@ -60,11 +67,18 @@
     "price": "$3,200",
     "color": "Red abstract",
     "coat": "Silky-soft, lower-shedding doodle coat",
-    "mainPhoto": "/images/puppies/birdie-waylon-2026/axel-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/axel-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
-      "/images/puppies/birdie-waylon-2026/axel-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg"
+      "/images/puppies/birdie-waylon-2026/axel-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
     ],
     "weeklyPhotos": [
+      {
+        "week": "Week 5",
+        "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 5",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/axel-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
+        ]
+      },
       {
         "week": "Week 4",
         "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 4",
@@ -73,8 +87,8 @@
         ]
       }
     ],
-    "description": "Axel is a sweet, middle-of-the-pack Mini Goldendoodle boy from Birdie and Waylon's litter.",
-    "availabilityNote": "Currently available for an approved family.",
+    "description": "Axel is a reserved Mini Goldendoodle boy from Birdie and Waylon's litter.",
+    "availabilityNote": "Axel has found his home and is reserved.",
     "personalityNote": "Super sweet, steady, and people-friendly. A great fit for a family wanting a loving companion with a silky-soft, lower-shedding doodle coat."
   },
   {
@@ -99,11 +113,18 @@
     "gender": "Male",
     "collarColor": "Blue",
     "status": "Reserved",
-    "mainPhoto": "/images/puppies/birdie-waylon-2026/diesel-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/diesel-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
-      "/images/puppies/birdie-waylon-2026/diesel-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg"
+      "/images/puppies/birdie-waylon-2026/diesel-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
     ],
     "weeklyPhotos": [
+      {
+        "week": "Week 5",
+        "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 5",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/diesel-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
+        ]
+      },
       {
         "week": "Week 4",
         "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 4",
@@ -138,11 +159,18 @@
     "gender": "Female",
     "collarColor": "Red",
     "status": "Reserved",
-    "mainPhoto": "/images/puppies/birdie-waylon-2026/dakota-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/dakota-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
-      "/images/puppies/birdie-waylon-2026/dakota-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg"
+      "/images/puppies/birdie-waylon-2026/dakota-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
     ],
     "weeklyPhotos": [
+      {
+        "week": "Week 5",
+        "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 5",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/dakota-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
+        ]
+      },
       {
         "week": "Week 4",
         "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 4",
@@ -177,11 +205,18 @@
     "gender": "Female",
     "collarColor": "Yellow",
     "status": "Reserved",
-    "mainPhoto": "/images/puppies/birdie-waylon-2026/sedona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/sedona-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
-      "/images/puppies/birdie-waylon-2026/sedona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg"
+      "/images/puppies/birdie-waylon-2026/sedona-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
     ],
     "weeklyPhotos": [
+      {
+        "week": "Week 5",
+        "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 5",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/sedona-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
+        ]
+      },
       {
         "week": "Week 4",
         "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 4",
@@ -216,11 +251,18 @@
     "gender": "Female",
     "collarColor": "Pink",
     "status": "Reserved",
-    "mainPhoto": "/images/puppies/birdie-waylon-2026/arizona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/arizona-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
-      "/images/puppies/birdie-waylon-2026/arizona-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg"
+      "/images/puppies/birdie-waylon-2026/arizona-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
     ],
     "weeklyPhotos": [
+      {
+        "week": "Week 5",
+        "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 5",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/arizona-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
+        ]
+      },
       {
         "week": "Week 4",
         "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 4",
@@ -255,11 +297,18 @@
     "gender": "Female",
     "collarColor": "Purple",
     "status": "Reserved",
-    "mainPhoto": "/images/puppies/birdie-waylon-2026/indie-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg",
+    "mainPhoto": "/images/puppies/birdie-waylon-2026/indie-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
-      "/images/puppies/birdie-waylon-2026/indie-mini-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg"
+      "/images/puppies/birdie-waylon-2026/indie-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
     ],
     "weeklyPhotos": [
+      {
+        "week": "Week 5",
+        "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 5",
+        "photos": [
+          "/images/puppies/birdie-waylon-2026/indie-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
+        ]
+      },
       {
         "week": "Week 4",
         "folderHint": "Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 4",
@@ -275,7 +324,7 @@
   {
     "slug": "buzz",
     "name": "Buzz",
-    "visibility": "public",
+    "visibility": "hidden",
     "breedSlug": "goldendoodle-puppies",
     "breed": "Multigen Micro Goldendoodle",
     "litterSlug": "honey-bram-spring-2026",
@@ -314,7 +363,7 @@
   {
     "slug": "bumble",
     "name": "Bumble",
-    "visibility": "public",
+    "visibility": "hidden",
     "breedSlug": "goldendoodle-puppies",
     "breed": "Multigen Micro Goldendoodle",
     "litterSlug": "honey-bram-spring-2026",
@@ -353,7 +402,7 @@
   {
     "slug": "bee",
     "name": "Bee",
-    "visibility": "public",
+    "visibility": "hidden",
     "breedSlug": "goldendoodle-puppies",
     "breed": "Multigen Micro Goldendoodle",
     "litterSlug": "honey-bram-spring-2026",
@@ -392,7 +441,7 @@
   {
     "slug": "honeycomb",
     "name": "Honeycomb",
-    "visibility": "public",
+    "visibility": "hidden",
     "breedSlug": "goldendoodle-puppies",
     "breed": "Multigen Micro Goldendoodle",
     "litterSlug": "honey-bram-spring-2026",
@@ -431,7 +480,7 @@
   {
     "slug": "hive",
     "name": "Hive",
-    "visibility": "public",
+    "visibility": "hidden",
     "breedSlug": "goldendoodle-puppies",
     "breed": "Multigen Micro Goldendoodle",
     "litterSlug": "honey-bram-spring-2026",
@@ -468,84 +517,6 @@
     "personalityNote": "Week 6 notes will be updated after the next puppy photo and personality update."
   },
   {
-    "slug": "messi",
-    "name": "Messi",
-    "visibility": "public",
-    "breedSlug": "cavapoo-puppies",
-    "breed": "F1B Micro Cavapoo",
-    "litterSlug": "penny-wyatt-spring-2026",
-    "litter": "Penny + Wyatt",
-    "mamaSlug": "penny",
-    "mama": "Penny",
-    "studSlug": "wyatt-earp",
-    "stud": "Wyatt Earp",
-    "gender": "Male",
-    "collarColor": "Light Blue",
-    "status": "Reserved",
-    "sizeCategory": "Micro",
-    "estimatedAdultWeight": "10-18 lbs",
-    "birthDate": "April 23, 2026",
-    "goHomeDate": "June 14-16, 2026",
-    "price": "$4,500",
-    "color": "Red abstract and parti possibilities",
-    "coat": "Soft, silky, wavy Cavapoo coat",
-    "mainPhoto": "/images/puppies/penny-wyatt-2026/messi-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
-    "photos": [
-      "/images/puppies/penny-wyatt-2026/messi-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
-    ],
-    "weeklyPhotos": [
-      {
-        "week": "Newborn Photos",
-        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
-        "photos": [
-          "/images/puppies/penny-wyatt-2026/messi-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
-        ]
-      }
-    ],
-    "description": "Messi is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
-    "availabilityNote": "Being matched through the Cavapoo waitlist.",
-    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
-  },
-  {
-    "slug": "ronaldo",
-    "name": "Ronaldo",
-    "visibility": "public",
-    "breedSlug": "cavapoo-puppies",
-    "breed": "F1B Micro Cavapoo",
-    "litterSlug": "penny-wyatt-spring-2026",
-    "litter": "Penny + Wyatt",
-    "mamaSlug": "penny",
-    "mama": "Penny",
-    "studSlug": "wyatt-earp",
-    "stud": "Wyatt Earp",
-    "gender": "Male",
-    "collarColor": "Brown",
-    "status": "Reserved",
-    "sizeCategory": "Micro",
-    "estimatedAdultWeight": "10-18 lbs",
-    "birthDate": "April 23, 2026",
-    "goHomeDate": "June 14-16, 2026",
-    "price": "$4,500",
-    "color": "Red abstract and parti possibilities",
-    "coat": "Soft, silky, wavy Cavapoo coat",
-    "mainPhoto": "/images/puppies/penny-wyatt-2026/ronaldo-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg",
-    "photos": [
-      "/images/puppies/penny-wyatt-2026/ronaldo-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
-    ],
-    "weeklyPhotos": [
-      {
-        "week": "Newborn Photos",
-        "folderHint": "Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Newborn Photos",
-        "photos": [
-          "/images/puppies/penny-wyatt-2026/ronaldo-f1b-micro-cavapoo-puppy-penny-wyatt-newborn-red-ranch-dogs.jpg"
-        ]
-      }
-    ],
-    "description": "Ronaldo is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
-    "availabilityNote": "Being matched through the Cavapoo waitlist.",
-    "personalityNote": "Newborn profile loaded. Personality notes will be updated as this puppy grows."
-  },
-  {
     "slug": "striker",
     "name": "Striker",
     "visibility": "public",
@@ -559,7 +530,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Orange",
-    "status": "Reserved",
+    "status": "Waitlist Matching",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",
@@ -598,7 +569,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Dark Blue",
-    "status": "Reserved",
+    "status": "Waitlist Matching",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",
@@ -637,7 +608,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Dark Gray",
-    "status": "Reserved",
+    "status": "Waitlist Matching",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",
@@ -676,7 +647,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Black",
-    "status": "Reserved",
+    "status": "Waitlist Matching",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",
@@ -715,7 +686,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Red",
-    "status": "Reserved",
+    "status": "Waitlist Matching",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",
@@ -754,7 +725,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Light Gray",
-    "status": "Reserved",
+    "status": "Waitlist Matching",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",

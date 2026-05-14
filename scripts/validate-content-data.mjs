@@ -9,11 +9,21 @@ function readJson(filePath) {
 
 const puppies = readJson("src/data/puppies.json");
 const litters = readJson("src/data/litters.json");
+const previousLitters = readJson("src/data/previousLitters.json");
 const parents = readJson("src/data/parents.json");
 const waitlist = readJson("src/data/waitlist.json");
 
 const errors = [];
 const warnings = [];
+const normalizedStatus = (value = "") => String(value).trim().toLowerCase();
+const puppyStatuses = new Set(["available", "pending", "reserved", "matched", "guardian candidate", "waitlist matching"]);
+const publicLitterStatuses = new Set(["current litter", "planned litter", "previous litter"]);
+const parentRoles = new Set(["mama", "stud"]);
+
+function isPublicRecord(item = {}) {
+  const visibility = normalizedStatus(item.visibility || "public");
+  return visibility !== "hidden" && visibility !== "private";
+}
 
 function addError(message) {
   errors.push(message);
@@ -54,11 +64,13 @@ function checkImageList(images = [], context) {
 
 uniqueBy(puppies, "slug", "Puppy");
 uniqueBy(litters, "slug", "Litter");
+uniqueBy(previousLitters, "href", "Previous litter");
 uniqueBy(parents, "slug", "Parent");
 
 const puppySlugs = new Set(puppies.map((puppy) => puppy.slug));
 const litterSlugs = new Set(litters.map((litter) => litter.slug));
 const parentSlugs = new Set(parents.map((parent) => parent.slug));
+const previousLitterHrefs = new Set(previousLitters.map((litter) => litter.href));
 
 puppies.forEach((puppy) => {
   ["name", "breed", "litterSlug", "gender", "status", "birthDate", "goHomeDate"].forEach((field) => {
@@ -66,6 +78,23 @@ puppies.forEach((puppy) => {
       addError(`Puppy ${puppy.slug || puppy.name || "unknown"} is missing ${field}.`);
     }
   });
+
+  const status = normalizedStatus(puppy.status);
+  if (status && !puppyStatuses.has(status)) {
+    addWarning(`Puppy ${puppy.slug} has an unrecognized status: ${puppy.status}`);
+  }
+
+  if (status === "available" && !isPublicRecord(puppy)) {
+    addError(`Puppy ${puppy.slug} is marked Available but not public on the site.`);
+  }
+
+  if (status === "available") {
+    ["mainPhoto", "price", "availabilityNote", "personalityNote"].forEach((field) => {
+      if (!puppy[field]) {
+        addWarning(`Available puppy ${puppy.slug} is missing ${field}.`);
+      }
+    });
+  }
 
   if (puppy.litterSlug && !litterSlugs.has(puppy.litterSlug)) {
     addError(`Puppy ${puppy.slug} points to missing litterSlug ${puppy.litterSlug}.`);
@@ -79,9 +108,11 @@ puppies.forEach((puppy) => {
     addError(`Puppy ${puppy.slug} points to missing studSlug ${puppy.studSlug}.`);
   }
 
-  pathExists(puppy.mainPhoto, `Puppy ${puppy.slug}`);
-  checkImageList(puppy.photos, `Puppy ${puppy.slug}`);
-  (puppy.weeklyPhotos || []).forEach((week) => checkImageList(week.photos, `Puppy ${puppy.slug} ${week.week}`));
+  if (isPublicRecord(puppy)) {
+    pathExists(puppy.mainPhoto, `Puppy ${puppy.slug}`);
+    checkImageList(puppy.photos, `Puppy ${puppy.slug}`);
+    (puppy.weeklyPhotos || []).forEach((week) => checkImageList(week.photos, `Puppy ${puppy.slug} ${week.week}`));
+  }
 });
 
 litters.forEach((litter) => {
@@ -91,6 +122,11 @@ litters.forEach((litter) => {
     }
   });
 
+  const status = normalizedStatus(litter.status);
+  if (status && !publicLitterStatuses.has(status)) {
+    addWarning(`Litter ${litter.slug} has an unrecognized status: ${litter.status}`);
+  }
+
   if (litter.mamaSlug && !parentSlugs.has(litter.mamaSlug)) {
     addError(`Litter ${litter.slug} points to missing mamaSlug ${litter.mamaSlug}.`);
   }
@@ -99,13 +135,57 @@ litters.forEach((litter) => {
     addError(`Litter ${litter.slug} points to missing studSlug ${litter.studSlug}.`);
   }
 
+  if (litter.previousLitterHref && !previousLitterHrefs.has(litter.previousLitterHref)) {
+    addError(`Litter ${litter.slug} points to missing previousLitterHref ${litter.previousLitterHref}.`);
+  }
+
   (litter.puppySlugs || []).forEach((slug) => {
     if (!puppySlugs.has(slug)) {
       addError(`Litter ${litter.slug} includes missing puppy slug ${slug}.`);
+      return;
+    }
+
+    const puppy = puppies.find((item) => item.slug === slug);
+    if (puppy?.litterSlug && puppy.litterSlug !== litter.slug) {
+      addError(`Litter ${litter.slug} includes puppy ${slug}, but that puppy points to ${puppy.litterSlug}.`);
     }
   });
 
-  checkImageList(litter.weeklyUpdateGallery, `Litter ${litter.slug}`);
+  if (isPublicRecord(litter)) {
+    checkImageList(litter.weeklyUpdateGallery, `Litter ${litter.slug}`);
+  }
+});
+
+previousLitters.forEach((litter) => {
+  ["href", "name", "group", "breed", "parents", "image"].forEach((field) => {
+    if (!litter[field]) {
+      addError(`Previous litter ${litter.href || litter.name || "unknown"} is missing ${field}.`);
+    }
+  });
+
+  if (litter.href && !litter.href.startsWith("/")) {
+    addError(`Previous litter ${litter.href} must use a website path beginning with /.`);
+  }
+
+  if (isPublicRecord(litter) && litter.group === "Poodles") {
+    addWarning(`Previous litter ${litter.href} is public but belongs to the hidden Poodles archive.`);
+  }
+
+  if (isPublicRecord(litter)) {
+    pathExists(litter.image, `Previous litter ${litter.href}`);
+    (litter.parentPhotos || []).forEach((parentPhoto) => {
+      if (!parentPhoto.name || !parentPhoto.image) {
+        addWarning(`Previous litter ${litter.href} has a parentPhotos entry missing name or image.`);
+      }
+      pathExists(parentPhoto.image, `Previous litter ${litter.href} parent ${parentPhoto.name || "photo"}`);
+    });
+    (litter.puppyPhotos || []).forEach((puppyPhoto) => {
+      if (!puppyPhoto.name || !puppyPhoto.image) {
+        addWarning(`Previous litter ${litter.href} has a puppyPhotos entry missing name or image.`);
+      }
+      pathExists(puppyPhoto.image, `Previous litter ${litter.href} puppy ${puppyPhoto.name || "photo"}`);
+    });
+  }
 });
 
 parents.forEach((parent) => {
@@ -115,8 +195,15 @@ parents.forEach((parent) => {
     }
   });
 
-  pathExists(parent.mainPhoto, `Parent ${parent.slug}`);
-  checkImageList(parent.photos, `Parent ${parent.slug}`);
+  const role = normalizedStatus(parent.role);
+  if (role && !parentRoles.has(role)) {
+    addError(`Parent ${parent.slug} has an invalid role: ${parent.role}. Expected Mama or Stud.`);
+  }
+
+  if (isPublicRecord(parent)) {
+    pathExists(parent.mainPhoto, `Parent ${parent.slug}`);
+    checkImageList(parent.photos, `Parent ${parent.slug}`);
+  }
   (parent.relatedLitters || []).forEach((slug) => {
     if (!litterSlugs.has(slug)) {
       addError(`Parent ${parent.slug} points to missing related litter ${slug}.`);
@@ -141,4 +228,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${puppies.length} puppies, ${litters.length} litters, ${parents.length} parents, and ${waitlist.publicRows.length} waitlist rows.`);
+console.log(`Validated ${puppies.length} puppies, ${litters.length} litters, ${previousLitters.length} previous litters, ${parents.length} parents, and ${waitlist.publicRows.length} waitlist rows.`);

@@ -1,3 +1,4 @@
+import previousLitters from "./previousLitters.json";
 const cdn = "https://images.squarespace-cdn.com/content/v1/5f62b20fcd7dbb04e4f4f5a6";
 const seed = "/images/seed";
 
@@ -36,55 +37,73 @@ export const images = {
 export const navGroups = [
   { label: "Home", href: "/" },
   {
-    label: "About",
-    href: "/about",
-    links: [
-      { label: "Prices", href: "/prices" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Contact", href: "/contact" },
-      { label: "Meet Our Team", href: "/meet-our-team" },
-      { label: "Our Family", href: "/our-family" },
-      { label: "Reviews", href: "/reviews-1" }
-    ]
-  },
-  {
     label: "Puppies",
-    href: "/puppies-1",
+    href: "/puppies",
     links: [
-      { label: "What Comes With Your Puppy", href: "/what-come-with-your-puppy" },
-      { label: "Available Puppies", href: "/available-puppies" },
-      { label: "Current Litters", href: "/current-litters" },
-      { label: "Upcoming Litters", href: "/upcoming-litters" },
-      { label: "Previous Litters", href: "/previous-litters" },
-      { label: "Coat Traits", href: "/coat-traits" }
+      { label: "Available Puppies", href: "/puppies/available" },
+      { label: "Current Litters", href: "/puppies/current-litters" },
+      { label: "Upcoming Litters", href: "/puppies/upcoming-litters" },
+      { label: "Previous Litters", href: "/puppies/previous-litters" },
+      { label: "Goldendoodle Puppies", href: "/puppies/goldendoodle-puppies" },
+      { label: "Cavapoo Puppies", href: "/puppies/cavapoo-puppies" },
+      { label: "Bernedoodle Puppies", href: "/puppies/bernedoodle-puppies" }
     ]
   },
   {
     label: "Parents",
-    href: "/parents-1",
+    href: "/parents",
     links: [
-      { label: "Dams", href: "/dams" },
-      { label: "Studs", href: "/studs" }
+      { label: "Mamas", href: "/parents/mamas" },
+      { label: "Studs", href: "/parents/studs" },
+      { label: "Goldendoodle Parents", href: "/parents/goldendoodle-parents" },
+      { label: "Cavapoo Parents", href: "/parents/cavapoo-parents" },
+      { label: "Bernedoodle Parents", href: "/parents/bernedoodle-parents" }
     ]
   },
   {
-    label: "Application & Waitlist",
-    href: "/application-1",
+    label: "Process",
+    href: "/process",
     links: [
-      { label: "Puppy Application", href: "/puppy-application" },
-      { label: "Application Process", href: "/application-process" },
-      { label: "Waitlist", href: "/waitlist" }
+      { label: "How It Works", href: "/process/how-it-works" },
+      { label: "Pricing", href: "/process/pricing" },
+      { label: "Application and Waitlist", href: "/process/application-and-waitlist" },
+      { label: "Public Waitlist", href: "/process/waitlist" },
+      { label: "What Comes With Your Puppy", href: "/puppies/what-comes-with-your-puppy" },
+      { label: "Coat Traits", href: "/puppies/coat-traits" },
+      { label: "FAQ", href: "/process/faq" },
+      { label: "Puppy Pickup and Delivery", href: "/process/pickup-and-delivery" }
     ]
   },
   {
     label: "Stud Services",
-    href: "/studservices",
+    href: "/stud-services",
     links: [
-      { label: "Our Studs", href: "/our-studs" },
-      { label: "Reproductive Education", href: "/reproductive-education" }
+      { label: "Our Studs", href: "/stud-services/our-studs" },
+      { label: "Reproductive Services", href: "/stud-services/reproductive-services" },
+      { label: "Reproductive Education", href: "/stud-services/reproductive-education" }
     ]
   },
-  { label: "Guardian Program", href: "/guardianprogram" }
+  {
+    label: "Guardian Program",
+    href: "/guardian-program",
+    links: [
+      { label: "Guardian Program Overview", href: "/guardian-program" },
+      { label: "Guardian Application", href: "/guardian-program/application" },
+      { label: "Guardian Opportunities", href: "/guardian-program" },
+      { label: "Guardian FAQ", href: "/guardian-program/faq" }
+    ]
+  },
+  {
+    label: "About",
+    href: "/about",
+    links: [
+      { label: "Our Family", href: "/about/our-family" },
+      { label: "Meet the Team", href: "/about/meet-the-team" },
+      { label: "Reviews", href: "/about/reviews" },
+      { label: "Contact", href: "/contact" }
+    ]
+  },
+  { label: "Apply", href: "/apply" }
 ];
 
 export const breeds = [
@@ -233,10 +252,10 @@ export const litterDetails = {
     puppies: [],
     milestones: []
   },
-  "/winnie-redford": {
-    name: "Winnie + Redford",
+  "/winnie-wyatt": {
+    name: "Winnie + Wyatt",
     breed: "F1b Cavapoos",
-    image: "/images/litters/winnie-redford.webp",
+    image: "/images/dams/winnie-red-ranch-dogs.webp",
     facts: [
       ["Due", "Spring 2026"],
       ["Go Home", "Early Summer 2026"],
@@ -245,7 +264,7 @@ export const litterDetails = {
       ["Coat", "Wavy"],
       ["Price", "$3200"]
     ],
-    parents: "Winnie + Redford",
+    parents: "Winnie + Wyatt",
     genetics: [],
     copy: ["This planned F1b Cavapoo pairing is expected to produce red abstract puppies in a 20-30 pound size range."],
     puppies: [],
@@ -254,7 +273,7 @@ export const litterDetails = {
 };
 
 export const upcomingLitters = {
-  updated: "4/21/2026",
+  updated: "5/12/2026",
   groups: [
     {
       breed: "Goldendoodles",
@@ -273,7 +292,7 @@ export const upcomingLitters = {
       breed: "Cavapoos",
       litters: [
         ["Penny + Wyatt", "F1b Micro Cavapoos", "Red Abstract, Parti | 10-18 lbs", "Expected Spring 2026", "/penny-wyatt"],
-        ["Winnie + Redford", "F1b Mini Cavapoos", "Red Abstract | 20-30 lbs", "Expected Spring 2026", "/winnie-redford"]
+        ["Winnie + Wyatt", "F1b Mini Cavapoos", "Red Abstract | 20-30 lbs", "Expected Spring 2026", "/winnie-wyatt"]
       ]
     }
   ],
@@ -281,305 +300,79 @@ export const upcomingLitters = {
     "Upcoming pairings are planned around genetics, color traits, breed percentage, timing, and stud availability. Pairings may change if a better option is needed or a planned stud is unavailable."
 };
 
-export const previousLitterGroups = [
+const publicPreviousLitterGroups = [
   {
+    group: "Goldendoodles",
     name: "Previous Litters Goldendoodles",
     href: "/previous-litters-goldendoodles",
-    image: "/images/previous-litters/birdie-waylon-jennings.webp",
     copy: "Mini, petite mini, and micro Goldendoodle litter history."
   },
   {
+    group: "Bernedoodles",
     name: "Previous Litters Bernedoodles",
     href: "/previous-litters-bernedoodles",
-    image: "/images/previous-litters/tilly-redford.webp",
-    copy: "Mini and micro Bernedoodle litter history."
+    copy: "Browse previous Red Ranch Dogs Bernedoodle pairings with parent dogs, puppy photo examples, coat notes, and size history."
   },
   {
+    group: "Cavapoos",
     name: "Previous Litters Cavapoos",
     href: "/previous-litters-cavapoos",
-    image: "/images/previous-litters/ruby-bodhe.webp",
-    copy: "Mini and micro Cavapoo litter history."
-  },
-  {
-    name: "Previous Litters Poodles",
-    href: "/previous-litters-poodles",
-    image: "/images/previous-litters/trudy-wayne-2.webp",
-    copy: "AKC Toy Poodle litter history."
+    copy: "Browse previous Red Ranch Dogs Cavapoo pairings with parent dogs, puppy photo examples, coat notes, and size history."
   }
 ];
 
-export const previousLitterDetails = {
-  "/birdie-waylon-jennings": {
-    name: "Birdie + Waylon",
-    group: "Goldendoodles",
-    breed: "Multigen Goldendoodles",
-    image: "/images/previous-litters/birdie-waylon-jennings.webp",
-    facts: [["Born", "May 3, 2025"], ["Go Home", "June 24-26, 2025"], ["Coloring", "Red"], ["Size", "20-25 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$3200"]],
-    parents: "Birdie + Waylon",
-    theme: "Birdie's Summer Fun Litter",
-    puppies: ["Peach", "Splash", "Tank Top", "Sandy", "Snow Cone", "Bubbles", "Picnic"],
-    milestones: ["6 Weeks Old", "3 Weeks Old", "Newborn Photos"]
-  },
-  "/lady-redford": {
-    name: "Lady + Redford",
-    group: "Goldendoodles",
-    breed: "F1 Mini Goldendoodles",
-    image: "/images/previous-litters/lady-redford.webp",
-    facts: [["Born", "November 24, 2023"], ["Go Home", "January 12-16, 2024"], ["Coloring", "Hidden Phantom, Apricot, Cream"], ["Size", "35-45 lbs"], ["Coat", "Wavy"], ["Price", "$2800"]],
-    parents: "Lady + Redford",
-    theme: "Lady's Ski Day Litter",
-    puppies: ["Alpine", "Chalet", "Powder"],
-    milestones: ["5 Weeks Old", "4 Weeks Old", "2 Weeks Old", "Newborn Photos"]
-  },
-  "/june-waylon": {
-    name: "June + Waylon",
-    group: "Goldendoodles",
-    breed: "Micro Goldendoodles",
-    image: "/images/previous-litters/june-waylon.webp",
-    facts: [["Delivery", "July 18, 2025"], ["Go Home", "September 8-10, 2025"], ["Coloring", "Red Abstract, Parti"], ["Size", "Around 20-25 lbs"], ["Coat", "Wavy, Straight"], ["Shedding", "Minimal to no shedding"]],
-    parents: "June + Waylon",
-    theme: "June's Bakeshop Litter",
-    puppies: ["Muffin", "Scone", "Sugar", "Biscuit", "Honey", "Crumble", "Baker"],
-    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "2 Weeks Old", "Newborn Photos"]
-  },
-  "/floraenzo": {
-    name: "Flora + Enzo",
-    group: "Goldendoodles",
-    breed: "F1 Mini Goldendoodles",
-    image: "/images/previous-litters/floraenzo.webp",
-    facts: [["Born", "July 25, 2023"], ["Go Home", "September 12, 2023"], ["Coloring", "Red, Red Abstract"], ["Size", "25-35 lbs"], ["Coat", "Wavy"]],
-    parents: "Flora + Enzo",
-    theme: "Flora's New York Litter",
-    puppies: ["Queens", "SoHo", "Brooklyn", "Bronx", "Chelsea", "Hudson", "Madison", "Harlem"],
-    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old", "Newborn Photos"]
-  },
-  "/lady-enzo-2": {
-    name: "Lady + Enzo 2",
-    group: "Goldendoodles",
-    breed: "F1 Mini Goldendoodles",
-    image: "/images/previous-litters/lady-enzo-2.webp",
-    facts: [["Born", "April 18, 2025"], ["Go Home", "June 2025"], ["Coloring", "Red, Apricot, Cream"], ["Size", "30-40 lbs"], ["Coat", "Wavy"], ["Price", "$2500"]],
-    parents: "Lady + Enzo",
-    theme: "Lady's Cereal Litter",
-    puppies: ["Trix", "Cocoa Puffs", "Cheerio", "Kix", "Wheatie", "Cap'n Crunch"],
-    milestones: ["5 Weeks Old", "3 Weeks Old", "Newborn Photos"]
-  },
-  "/phoebe-waylon": {
-    name: "Phoebe + Waylon",
-    group: "Goldendoodles",
-    breed: "Petite Mini Multigen Goldendoodles",
-    image: "/images/previous-litters/phoebe-waylon.webp",
-    facts: [["Delivery", "July 22, 2025"], ["Go Home", "September 12-14, 2025"], ["Coloring", "Red Chocolate, Red Abstract"], ["Size", "Around 16-20 lbs"], ["Coat", "Straight, non-shedding"], ["Price", "$3800"]],
-    parents: "Phoebe + Waylon",
-    theme: "Phoebe's Musical Notes Litter",
-    puppies: ["Melody", "Treble", "Jazz", "Banjo"],
-    milestones: ["7 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "Newborn Photos"]
-  },
-  "/lady-enzo": {
-    name: "Lady + Enzo",
-    group: "Goldendoodles",
-    breed: "F1 Mini Goldendoodles",
-    image: "/images/previous-litters/lady-enzo.webp",
-    facts: [["Born", "July 13, 2024"], ["Go Home", "September 1-4, 2024"], ["Coloring", "Red, Apricot, Cream"], ["Size", "30-40 lbs"], ["Coat", "Wavy"], ["Price", "$2500"]],
-    parents: "Lady + Enzo",
-    theme: "Lady's Olympics Litter",
-    puppies: ["Champion", "Torch", "Relay", "Record", "Simone Biles", "Olympic", "Medal", "Caeleb Dressel", "Katie Ledecky", "Paris", "Anthem"],
-    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "Newborn Photos"]
-  },
-  "/beatrix-knox": {
-    name: "Beatrix + Knox",
-    group: "Goldendoodles",
-    breed: "Multigen Mini Goldendoodles",
-    image: "/images/previous-litters/beatrix-knox.webp",
-    facts: [["Delivery", "January 12, 2025"], ["Go Home", "March 5-8, 2025"], ["Coloring", "Red, Red Abstract"], ["Size", "25-36 lbs"], ["Coat", "Curly, Wavy, Straight"], ["Price", "$2800"]],
-    parents: "Beatrix + Knox",
-    theme: "Beatrix's Spring Fling Litter",
-    puppies: ["Peony", "Tulip", "Cedar", "Basil", "Hawthorn", "Marigold", "Poppy"],
-    milestones: ["2 Week Photos"]
-  },
-  "/honey-waylon": {
-    name: "Honey + Waylon",
-    group: "Goldendoodles",
-    breed: "Multigen Goldendoodles",
-    image: "/images/previous-litters/honey-waylon.webp",
-    facts: [["Delivery", "August 7, 2025"], ["Go Home", "September 29 - October 1, 2025"], ["Coloring", "Red Abstract"], ["Size", "~15 lbs"], ["Coat", "Straight"], ["Price", "$4200"]],
-    parents: "Honey + Waylon",
-    theme: "Honey's Cafe Drinks Litter",
-    puppies: ["Mocha", "Latte", "Java", "Chai"],
-    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "Newborn Photos"]
-  },
-  "/flora-enzo-2": {
-    name: "Flora + Enzo 2",
-    group: "Goldendoodles",
-    breed: "F1 Mini Goldendoodles",
-    image: "/images/previous-litters/flora-enzo-2.webp",
-    facts: [["Born", "March 9, 2024"], ["Go Home", "April 28 - May 1, 2024"], ["Coloring", "Red, Red Abstract"], ["Size", "25-35 lbs"], ["Coat", "Wavy"], ["Price", "$2500"]],
-    parents: "Flora + Enzo",
-    theme: "Flora's 80's Heartthrobs Litter",
-    puppies: ["Patrick Swayze", "Johnny Depp", "Molly Ringwald", "Julia Roberts", "Michelle Pfeiffer", "Demi Moore", "Whitney Houston", "Tom Cruise", "Denzel Washington", "Rob Lowe", "John Stamos"],
-    milestones: ["7 Weeks Old", "6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "Newborn Photos"]
-  },
-  "/birdie-leo": {
-    name: "Birdie + Leo",
-    group: "Goldendoodles",
-    breed: "Multigen Goldendoodles",
-    image: "/images/previous-litters/birdie-leo.webp",
-    facts: [["Born", "October 27, 2024"], ["Go Home", "December 19-23, 2024"], ["Coloring", "Red"], ["Size", "20-25 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$3500"]],
-    parents: "Birdie + Leo, outside stud",
-    theme: "Birdie's Christmas Litter",
-    puppies: ["Snowflake", "Nutcracker", "Peppermint", "Holly", "Cocoa", "Sleigh", "Garland", "Reindeer"],
-    milestones: ["5 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
-  },
-  "/phoebe-fynn": {
-    name: "Phoebe + Fynn",
-    group: "Goldendoodles",
-    breed: "Multigen Goldendoodles",
-    image: "/images/previous-litters/phoebe-fynn.webp",
-    facts: [["Born", "February 8, 2024"], ["Go Home", "April 3-6, 2024"], ["Coloring", "Red"], ["Size", "10-15 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$4500"]],
-    parents: "Phoebe + Fynn, outside stud",
-    theme: "Phoebe's Easter Candy Litter",
-    puppies: ["Peep", "Jelly Bean", "Cadbury", "Reeses"],
-    milestones: ["6 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "Newborn Photos"]
-  },
-  "/phoebe-fynn-2": {
-    name: "Phoebe + Fynn 2",
-    group: "Goldendoodles",
-    breed: "Multigen Goldendoodles",
-    image: "/images/previous-litters/phoebe-fynn-2.webp",
-    facts: [["Born", "August 22, 2024"], ["Go Home", "October 14-17, 2024"], ["Coloring", "Red, Apricot, Parti"], ["Size", "10-15 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$4500"]],
-    parents: "Phoebe + Fynn, outside stud",
-    theme: "Phoebe's Autumn Scents Litter",
-    puppies: ["Leaves", "Cloves", "Cinnamon", "Nutmeg", "Woodsmoke"],
-    milestones: ["5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
-  },
-  "/tilly-redford": {
-    name: "Tilly + Redford",
-    group: "Bernedoodles",
-    breed: "F1b Micro Bernedoodles",
-    image: "/images/previous-litters/tilly-redford.webp",
-    facts: [["Born", "July 16, 2025"], ["Go Home", "September 5-7, 2025"], ["Coloring", "Tri Color, Merle"], ["Size", "~25 lbs"], ["Coat", "Wavy"]],
-    parents: "Tilly + Redford",
-    theme: "Tilly's Cabin Getaway Litter",
-    puppies: ["Wren", "Juniper", "Timber", "Moss", "Flint"],
-    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "2 Weeks Old", "Newborn Photos"]
-  },
-  "/ruby-bodhe": {
-    name: "Ruby + Bodhe",
-    group: "Cavapoos",
-    breed: "F1 Cavapoos",
-    image: "/images/previous-litters/ruby-bodhe.webp",
-    facts: [["Born", "March 7, 2024"], ["Go Home", "April 28-30, 2024"], ["Coloring", "Red Abstract, Blenheim"], ["Size", "20-30 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$2800"]],
-    parents: "Ruby + Bodhe",
-    theme: "Ruby's Royal Litter",
-    puppies: ["Noble", "King", "Queen", "Prince", "Princess", "Duke", "Duchess", "Royal", "Reign", "Tiara"],
-    milestones: ["7 Weeks Old", "6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "Newborn Photos"]
-  },
-  "/ruby-bodhe-2": {
-    name: "Ruby + Bodhe 2",
-    group: "Cavapoos",
-    breed: "F1 Cavapoos",
-    image: "/images/previous-litters/ruby-bodhe-2.webp",
-    facts: [["Born", "September 1, 2024"], ["Go Home", "October 24-27, 2024"], ["Coloring", "Red Abstract, Blenheim"], ["Size", "20-30 lbs"], ["Coat", "Wavy, Straight"], ["Price", "$2800"]],
-    parents: "Ruby + Bodhe",
-    theme: "Ruby's Fright Night Litter",
-    puppies: ["Cat", "Witch", "Scarecrow", "Jack-O-Lantern", "Ghost", "Bat", "Trick", "Treat", "Ghoul"],
-    milestones: ["6 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
-  },
-  "/faye-bodhe": {
-    name: "Faye + Bodhe",
-    group: "Cavapoos",
-    breed: "F1 Cavapoos",
-    image: "/images/previous-litters/faye-bodhe.webp",
-    facts: [["Expected", "September 2024"], ["Go Home", "November 12-15, 2024"], ["Coloring", "Red Abstract, Blenheim"], ["Size", "25-35 lbs"], ["Coat", "Wavy"], ["Price", "$2800"]],
-    parents: "Faye + Bodhe",
-    theme: "Faye's Fairy Litter",
-    puppies: ["Nymph", "Sprite", "Pixie", "Elf", "Gnome"],
-    milestones: ["3 Weeks Old", "1 Week Old"]
-  },
-  "/faye-bodhe-2": {
-    name: "Faye + Bodhe 2",
-    group: "Cavapoos",
-    breed: "F1 Mini Cavapoos",
-    image: "/images/previous-litters/faye-bodhe-2.webp",
-    facts: [["Born", "November 9, 2025"], ["Go Home", "December 31 - January 2"], ["Coloring", "Red Abstract, Blenheim"], ["Size", "30-40 lbs"], ["Coat", "Wavy"], ["Price", "$2800"]],
-    parents: "Faye + Bodhe",
-    theme: "Faye's New Year's in Paris Litter",
-    puppies: [],
-    milestones: ["6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old", "Newborn Photos"]
-  },
-  "/trudy-wayne": {
-    name: "Trudy + Wayne",
-    group: "Poodles",
-    breed: "AKC Toy Poodles",
-    image: "/images/previous-litters/trudy-wayne.webp",
-    facts: [["Born", "April 21, 2023"], ["Go Home", "June 23, 2023"], ["Coloring", "Red Abstract"], ["Size", "4-6 lbs"], ["Coat", "Curly"]],
-    parents: "Trudy + Wayne",
-    theme: "Trudy's I Love Lucy Litter",
-    puppies: ["Lucy", "Ricky", "Ethel"],
-    milestones: ["8 Weeks Old", "7 Weeks Old", "6 Weeks Old", "5 Weeks Old", "4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
-  },
-  "/trudy-wayne-2": {
-    name: "Trudy + Wayne 2",
-    group: "Poodles",
-    breed: "AKC Toy Poodles",
-    image: "/images/previous-litters/trudy-wayne-2.webp",
-    facts: [["Born", "November 10, 2024"], ["Go Home", "January 9-12, 2025"], ["Coloring", "Red Abstract"], ["Size", "4-6 lbs"], ["Coat", "Curly"], ["Price", "$4500"]],
-    parents: "Trudy + Wayne",
-    theme: "Trudy's Three Stooges Litter",
-    puppies: ["Moe", "Larry", "Curly"],
-    milestones: ["3 Weeks Old", "2 Weeks Old", "1 Week Old"]
-  }
-};
+const publicPreviousLitters = previousLitters.filter((litter) =>
+  litter.visibility === "public" && publicPreviousLitterGroups.some((group) => group.group === litter.group)
+);
 
-export const previousLitterArchiveGroups = {
-  "/previous-litters-goldendoodles": {
-    title: "Previous Litters Goldendoodles",
-    copy: "Mini, petite mini, and micro Goldendoodle litter history.",
-    litters: [
-      "/birdie-waylon-jennings",
-      "/lady-redford",
-      "/june-waylon",
-      "/floraenzo",
-      "/lady-enzo-2",
-      "/phoebe-waylon",
-      "/lady-enzo",
-      "/beatrix-knox",
-      "/honey-waylon",
-      "/flora-enzo-2",
-      "/birdie-leo",
-      "/phoebe-fynn",
-      "/phoebe-fynn-2"
-    ]
-  },
-  "/previous-litters-bernedoodles": {
-    title: "Previous Litters Bernedoodles",
-    copy: "Mini and micro Bernedoodle litter history.",
-    litters: ["/tilly-redford"]
-  },
-  "/previous-litters-cavapoos": {
-    title: "Previous Litters Cavapoos",
-    copy: "Mini and micro Cavapoo litter history.",
-    litters: ["/ruby-bodhe", "/ruby-bodhe-2", "/faye-bodhe", "/faye-bodhe-2"]
-  },
-  "/previous-litters-poodles": {
-    title: "Previous Litters Poodles",
-    copy: "AKC Toy Poodle litter history.",
-    litters: ["/trudy-wayne", "/trudy-wayne-2"]
-  }
-};
+export const previousLitterGroups = publicPreviousLitterGroups.map((group) => {
+  const featuredLitter = publicPreviousLitters.find((litter) => litter.group === group.group);
+
+  return {
+    name: group.name,
+    href: group.href,
+    image: featuredLitter?.image || images.doodles,
+    copy: group.copy
+  };
+});
+
+export const previousLitterDetails = Object.fromEntries(
+  publicPreviousLitters.map((litter) => {
+    const details = { ...litter };
+    const { href } = details;
+
+    delete details.href;
+    delete details.visibility;
+
+    return [href, details];
+  })
+);
+
+export const previousLitterArchiveGroups = Object.fromEntries(
+  publicPreviousLitterGroups.map((group) => [
+    group.href,
+    {
+      title: group.name,
+      copy: group.copy,
+      litters: publicPreviousLitters
+        .filter((litter) => litter.group === group.group)
+        .map((litter) => litter.href)
+    }
+  ])
+);
 
 export const parentDogs = {
   dams: [
-    { name: "Goldendoodle Dams", type: "Goldendoodle moms", image: images.damsGoldendoodle, href: "/goldendoodle-dams" },
-    { name: "Bernedoodle Dams", type: "Bernedoodle moms", image: images.damsBernedoodle, href: "/bernedoodle-dams" },
-    { name: "Poodle Dams", type: "Poodle moms", image: images.damsPoodle, href: "/poodle-dams" },
-    { name: "Cavapoo Dams", type: "Cavalier and Poodle lines", image: images.damsCavapoo, href: "/cavapoo-dams" },
-    { name: "Golden Retriever Dams", type: "AKC Golden Retriever moms", image: images.flora, href: "/golden-retriever-dams" }
+    { name: "Goldendoodle Mamas", type: "Goldendoodle moms", image: images.damsGoldendoodle, href: "/parents/goldendoodle-parents" },
+    { name: "Bernedoodle Mamas", type: "Bernedoodle moms", image: images.damsBernedoodle, href: "/parents/bernedoodle-parents" },
+    { name: "Poodle Mamas", type: "Poodle moms", image: images.damsPoodle, href: "/parents/mamas" },
+    { name: "Cavapoo Mamas", type: "Cavalier and Poodle lines", image: images.damsCavapoo, href: "/parents/cavapoo-parents" },
+    { name: "Golden Retriever Mamas", type: "AKC Golden Retriever moms", image: images.flora, href: "/parents/mamas" }
   ],
   studs: [
-    { name: "Bernedoodle Studs", type: "Tri, merle, chocolate and parti lines", image: images.studBernedoodle, href: "/our-studs" },
-    { name: "Goldendoodle Studs", type: "Red, chocolate and abstract lines", image: images.studGoldendoodle, href: "/our-studs" },
-    { name: "Poodle Studs", type: "Health-tested poodle studs", image: images.studPoodle, href: "/our-studs" }
+    { name: "Bernedoodle Studs", type: "Tri, merle, chocolate and parti lines", image: images.studBernedoodle, href: "/stud-services/our-studs" },
+    { name: "Goldendoodle Studs", type: "Red, chocolate and abstract lines", image: images.studGoldendoodle, href: "/stud-services/our-studs" },
+    { name: "Poodle Studs", type: "Health-tested poodle studs", image: images.studPoodle, href: "/stud-services/our-studs" }
   ]
 };
 
@@ -1045,7 +838,7 @@ export const studDetails = {
     type: "AKC Cavalier King Charles Spaniel",
     weight: "19 lbs",
     genetics: "ee kyky atat BB Ssp, 8:2 Red Intensity",
-    image: "/images/studs/bodhe-red-ranch-dogs.webp",
+    image: "/images/studs/bodhe-red-ranch-dogs.jpg",
     fee: "$1500",
     testing: ["Embark Testing", "UC Davis Results"],
     semenEvals: [],
@@ -1066,11 +859,11 @@ export const faqs = [
   ["What comes with my puppy?", "A 2-year genetic health guarantee, microchip, health records, current food sample, training treats, Puppy Pal toy, and transition support."],
   ["Which payment options do you accept?", "Zelle is the preferred payment method. No puppy is reserved without payment, and all puppy payments are considered non-refundable retainers."],
   ["How do I reserve a puppy?", "Start with the puppy application. Once submitted, we contact you to confirm placement and guide next steps."],
-  ["What is your waitlist process?", "A $500 non-refundable deposit secures your spot. Deposits may transfer to another waitlist and apply toward the final puppy total."],
+  ["What is your waitlist process?", "A $500 non-refundable deposit secures your spot on the breed-specific waitlist you choose and applies toward the final puppy total."],
   ["Do you perform genetic health testing?", "Yes. Parent dogs are genetically health-tested, with additional testing when needed for accuracy and peace of mind."],
   ["Do you offer a health guarantee?", "Yes. Every puppy comes with a 2-year health guarantee covering life-threatening congenital or hereditary defects, with a licensed vet visit required within 3 business days of going home."],
   ["Do you remove dew claws or dock tails?", "No. Puppies keep their dew claws and tails intact."],
-  ["Can I choose my own puppy?", "Yes. Selection is based on waitlist position and usually happens when puppies are between 2 and 4 weeks old."],
+  ["Can I choose my own puppy?", "Yes. Puppy selection is based on waitlist order and happens through photos, videos, personality notes, and video calls rather than early in-person visits."],
   ["Do you allow visitors to meet puppies?", "No early puppy visits are allowed for health and safety before vaccinations. We provide frequent photo/video updates and can schedule video calls."],
   ["Which generations of Doodles do you breed?", "We breed F1, F1b, and Multigen Doodles."],
   ["Are Doodles hypoallergenic?", "No dog is entirely hypoallergenic, but many Doodles are low-shedding. For moderate to severe allergies, F1b or Multigen Doodles are often recommended."]
@@ -1193,19 +986,17 @@ export const reproductiveSections = [
 ];
 
 export const migrationChecklist = [
-  ["Homepage", "Public copy and seed images migrated. Needs final review against Squarespace admin image library."],
-  ["Pricing", "Public prices, deposit language, and Zelle details migrated. Needs QR code asset from Squarespace/export."],
-  ["FAQ", "Public FAQ migrated and expanded."],
-  ["Available Puppies", "No individual available puppy cards were visible in the public scrape. Needs current admin/source confirmation before launch."],
-  ["Current Litters", "Public 4/21/26 Honey + Bram and Birdie + Waylon data migrated."],
-  ["Upcoming Litters", "Public 4/21/26 planned pairings migrated."],
-  ["Reviews", "Visible public review excerpts migrated. Needs final Google review link and any desired full review import."],
-  ["Dams & Studs", "Breed groups, catalog pages, and individual public profiles migrated. Full galleries still need a later media pass."],
-  ["Previous Litters", "Archive groups and working public litter routes migrated with representative images. Full galleries still need a later media pass."],
-  ["Coat Traits", "Guide content and local visual assets migrated into a native React page."],
-  ["Utility Pages", "Guardian Application and Stop the Marking guide migrated. Dead Squarespace utility links documented for redirect cleanup."],
-  ["Forms", "Frontend, API, Google Sheet logging, and direct email alerts are working. Vercel still needs FORM_WEBHOOK_URL before production launch."],
-  ["Images", "Seed images copied locally. Needs full Squarespace media export for original-resolution assets."]
+  ["Homepage", "Homepage sections are native, mobile-first, and using local brand imagery where available."],
+  ["Pricing", "Pricing, deposit language, Zelle details, and payment timing are represented in the process flow."],
+  ["FAQ", "FAQ content is organized into reusable accordion sections by buyer topic."],
+  ["Available Puppies", "Available Puppies now shows only puppies that are truly available and a clear empty state when none are open."],
+  ["Current Litters", "Current litter routes use the shared litter template and are ordered by go-home timing."],
+  ["Upcoming Litters", "Planned pairings are represented with reusable litter cards and waitlist-focused CTAs."],
+  ["Reviews", "Review pages and homepage testimonials use branded reusable review cards with Google review links."],
+  ["Parents", "Mamas and studs use shared parent card/profile templates and structured parent data."],
+  ["Coat Traits", "Coat trait guidance is migrated into a native reusable content page."],
+  ["Forms", "Application, contact, stud, guardian, newsletter, and waitlist forms route through the shared lead handler."],
+  ["Images", "Local image references validate in launch checks; remaining upgrades are ongoing media quality passes."]
 ];
 
 export const updateChecklist = [

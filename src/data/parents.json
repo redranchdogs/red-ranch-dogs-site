@@ -148,7 +148,9 @@
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [],
+    "relatedLitters": [
+      "georgia-waylon-may-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Georgia",
     "description": "F1 Mini Goldendoodle mama with a bright, friendly temperament."
   },
@@ -213,7 +215,9 @@
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [],
+    "relatedLitters": [
+      "faye-sundance-may-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Faye",
     "description": "AKC Standard Poodle mama with classic Poodle intelligence and structure."
   },
@@ -235,7 +239,9 @@
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [],
+    "relatedLitters": [
+      "kylie-ranger-late-summer-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Kylie",
     "description": "Bernedoodle program mama planned for select micro and mini Bernedoodle pairings."
   },
@@ -306,6 +312,29 @@
     "description": "Sweet F1 Cavapoo mama with a cheerful parti coat and people-focused temperament."
   },
   {
+    "slug": "whitley",
+    "name": "Whitley",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "weight": "To be confirmed",
+    "color": "Red abstract",
+    "coat": "Wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/whitley.webp",
+    "photos": [
+      "/images/dams/whitley.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "whitley-waylon-april-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Whitley",
+    "description": "Goldendoodle mama planned for a Multigen Mini Goldendoodle pairing with Waylon Jennings."
+  },
+  {
     "slug": "winnie",
     "name": "Winnie",
     "visibility": "public",
@@ -324,7 +353,7 @@
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
     "relatedLitters": [
-      "winnie-redford-summer-2026"
+      "winnie-wyatt-spring-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Winnie",
     "description": "F1 Cavapoo mama with an affectionate, steady personality."
@@ -346,7 +375,9 @@
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [],
+    "relatedLitters": [
+      "reece-wyatt-summer-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Reece",
     "description": "Small F1 Cavapoo mama with a sweet, companion-focused temperament."
   },
@@ -436,7 +467,9 @@
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
     "relatedLitters": [
-      "birdie-waylon-spring-2026"
+      "birdie-waylon-spring-2026",
+      "whitley-waylon-april-2026",
+      "georgia-waylon-may-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Waylon Jennings",
     "description": "Health-tested stud used in select Goldendoodle pairings.",
@@ -459,7 +492,9 @@
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [],
+    "relatedLitters": [
+      "faye-sundance-may-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Sundance",
     "description": "Micro Goldendoodle stud used for compact, people-focused Goldendoodle pairings.",
     "genetics": "ee KBky atat bb spsp; FF -/- Curl TT Shedding; 22% Retriever"
@@ -552,9 +587,7 @@
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
-    "relatedLitters": [
-      "winnie-redford-summer-2026"
-    ],
+    "relatedLitters": [],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Robert Redford",
     "description": "AKC Moyen Poodle stud used in select Cavapoo and doodle pairings.",
     "genetics": "ee kyky atat Bb Ssp +/+ FF; 9:1 Red Intensity"
@@ -600,7 +633,9 @@
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
     "relatedLitters": [
-      "penny-wyatt-spring-2026"
+      "penny-wyatt-spring-2026",
+      "winnie-wyatt-spring-2026",
+      "reece-wyatt-summer-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Wyatt Earp",
     "description": "Tiny toy Poodle stud with a confident, affectionate temperament for select Cavapoo pairings.",
@@ -617,9 +652,9 @@
     "color": "Ruby",
     "coat": "Straight",
     "status": "Active",
-    "mainPhoto": "/images/studs/bodhe-red-ranch-dogs.webp",
+    "mainPhoto": "/images/studs/bodhe-red-ranch-dogs.jpg",
     "photos": [
-      "/images/studs/bodhe-red-ranch-dogs.webp"
+      "/images/studs/bodhe-red-ranch-dogs.jpg"
     ],
     "healthTestingLinks": [],
     "geneticTestingLinks": [],
@@ -650,5 +685,28 @@
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Bram",
     "description": "Outside stud for Honey 2 with a confident, playful temperament."
+  },
+  {
+    "slug": "ranger-outside-stud",
+    "name": "Ranger",
+    "visibility": "private",
+    "role": "stud",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Outside Bernedoodle stud",
+    "weight": "To be confirmed",
+    "color": "To be confirmed",
+    "coat": "To be confirmed",
+    "status": "Outside Stud",
+    "mainPhoto": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
+    "photos": [
+      "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "kylie-ranger-late-summer-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Studs / Ranger",
+    "description": "Outside Bernedoodle stud planned for Kylie's repeat Bernedoodle pairing."
   }
 ]

@@ -2,17 +2,22 @@
   {
     "category": "Getting on the waitlist",
     "question": "How do I reserve a puppy?",
-    "answer": "Start with the application. We will follow up about timing, availability, and the right waitlist."
+    "answer": "Start with the application. We will follow up about breed fit, timing, current availability, and the right breed-specific waitlist."
   },
   {
     "category": "Getting on the waitlist",
     "question": "How does the waitlist work?",
-    "answer": "A deposit secures your spot. Selection is guided by waitlist position, timing, and the best fit for each family."
+    "answer": "A $500 non-refundable deposit secures your spot on the breed-specific waitlist you choose and applies toward your final puppy price. Families are contacted in order of deposit placed."
   },
   {
     "category": "Puppy selection",
     "question": "What does pick or pass mean?",
-    "answer": "When a litter is announced, families can choose to move forward with that litter or pass and remain on the general waitlist."
+    "answer": "When a litter is announced, families can choose to move forward with that litter or pass and remain on their breed waitlist for a future opportunity."
+  },
+  {
+    "category": "Puppy selection",
+    "question": "How do puppy picks happen?",
+    "answer": "Puppy picks are handled with photos, videos, personality notes, and video calls so families can choose confidently while protecting young puppies before vaccinations."
   },
   {
     "category": "Pricing and payments",

@@ -16,7 +16,6 @@ import {
   Star
 } from "lucide-react";
 import {
-  availablePuppies,
   brand,
   breeds as homepageBreeds,
   damDetails,
@@ -30,7 +29,6 @@ import {
   parentDogs,
   previousLitterArchiveGroups,
   previousLitterDetails,
-  previousLitterGroups,
   priceGroups,
   puppyIncludedSections,
   reproductiveSections,
@@ -86,9 +84,15 @@ function Link({ href, children, className, onClick, ...props }) {
 }
 
 const siteOrigin = "https://www.redranchdogs.com";
-const defaultSeo = {
-  title: "Red Ranch Dogs | Country Raised Doodles",
-  description: "Red Ranch Dogs raises Goldendoodle, Cavapoo, Bernedoodle, and Poodle puppies in Salado, Texas."
+const notFoundSeo = {
+  title: "Page Moved | Red Ranch Dogs",
+  description: "Find the right Red Ranch Dogs page for current litters, upcoming litters, puppy applications, process details, and contact information."
+};
+const defaultSocialImage = `${siteOrigin}/images/home/red-ranch-dogs-goldendoodle-puppy-hero-900.jpeg`;
+const socialProfiles = [brand.instagram, brand.googleReviews].filter(Boolean);
+const localGeo = {
+  region: "US-TX",
+  placeName: brand.location || "Salado, Texas"
 };
 
 const architectureSeo = {
@@ -107,6 +111,10 @@ const architectureSeo = {
   "/puppies/upcoming-litters": {
     title: "Upcoming Litters | Red Ranch Dogs",
     description: "See planned Goldendoodle, Cavapoo, and Bernedoodle litters from Red Ranch Dogs."
+  },
+  "/puppies/previous-litters": {
+    title: "Previous Litters | Red Ranch Dogs",
+    description: "Browse past Red Ranch Dogs litters by breed, pairing, puppy photo history, size, coat, and color."
   },
   "/puppies/what-comes-with-your-puppy": {
     title: "What Comes With Your Puppy | Red Ranch Dogs",
@@ -170,7 +178,7 @@ const architectureSeo = {
   },
   "/stud-services": {
     title: "Stud Services | Red Ranch Dogs",
-    description: "Browse Red Ranch Dogs stud services, reproductive education, and shipping or collection information."
+    description: "Browse Red Ranch Dogs stud services, reproductive education, timing, and breeder inquiry information."
   },
   "/stud-services/our-studs": {
     title: "Our Studs | Red Ranch Dogs",
@@ -183,10 +191,6 @@ const architectureSeo = {
   "/stud-services/reproductive-education": {
     title: "Reproductive Education | Red Ranch Dogs",
     description: "Educational breeding timing and progesterone resources from Red Ranch Dogs."
-  },
-  "/stud-services/shipping-and-collection-info": {
-    title: "Shipping and Collection Info | Red Ranch Dogs",
-    description: "Review Red Ranch Dogs stud service collection, timing, and shipping information for breeder inquiries."
   },
   "/guardian-program": {
     title: "Guardian Program | Red Ranch Dogs",
@@ -229,11 +233,15 @@ const architectureSeo = {
 const staticSeo = {
   "/": {
     title: "Red Ranch Dogs | Goldendoodle, Cavapoo & Bernedoodle Puppies in Texas",
-    description: "Country-raised Goldendoodle, Cavapoo, Bernedoodle, and Poodle puppies from Red Ranch Dogs in Salado, Texas."
+    description: "Country-raised Goldendoodle, Cavapoo, and Bernedoodle puppies from Red Ranch Dogs in Salado, Texas."
+  },
+  "/home-maple": {
+    title: "Red Ranch Dogs | Goldendoodle, Cavapoo & Bernedoodle Puppies in Texas",
+    description: "Country-raised Goldendoodle, Cavapoo, and Bernedoodle puppies from Red Ranch Dogs in Salado, Texas."
   },
   "/prices": {
     title: "Puppy Prices & Deposits | Red Ranch Dogs",
-    description: "Review Red Ranch Dogs puppy prices, deposit details, and payment expectations for Goldendoodles, Cavapoos, Bernedoodles, and Poodles."
+    description: "Review Red Ranch Dogs puppy prices, deposit details, and payment expectations for Goldendoodles, Cavapoos, and Bernedoodles."
   },
   "/faq": {
     title: "Puppy FAQ | Red Ranch Dogs",
@@ -283,6 +291,10 @@ const staticSeo = {
     title: "Dams | Red Ranch Dogs",
     description: "Meet the Red Ranch Dogs dams and dam breed groups behind the Goldendoodle, Cavapoo, Bernedoodle, Poodle, and Retriever lines."
   },
+  "/evie-nicks": {
+    title: "Dams | Red Ranch Dogs",
+    description: "Meet the Red Ranch Dogs dams and dam breed groups behind the Goldendoodle, Cavapoo, Bernedoodle, Poodle, and Retriever lines."
+  },
   "/studs": {
     title: "Studs | Red Ranch Dogs",
     description: "Browse Red Ranch Dogs stud categories and health-tested stud service information."
@@ -309,7 +321,7 @@ const staticSeo = {
   },
   "/join-our-waitlist": {
     title: "Join the Waitlist | Red Ranch Dogs",
-    description: "Start the Red Ranch Dogs waitlist process for Goldendoodle, Cavapoo, Bernedoodle, and Poodle puppies."
+    description: "Start the Red Ranch Dogs waitlist process for Goldendoodle, Cavapoo, and Bernedoodle puppies."
   },
   "/application-process": {
     title: "Puppy Application Process | Red Ranch Dogs",
@@ -324,6 +336,106 @@ const staticSeo = {
     description: "Submit a Red Ranch Dogs puppy application with your family details, timing, breed preference, and questions."
   }
 };
+
+const clientRedirects = Object.fromEntries([
+  ["/available-puppies", "/puppies/available"],
+  ["/current-litters", "/puppies/current-litters"],
+  ["/upcoming-litters", "/puppies/upcoming-litters"],
+  ["/join-our-waitlist", "/process/application-and-waitlist"],
+  ["/application-process", "/process/how-it-works"],
+  ["/waitlist", "/process/waitlist"],
+  ["/puppy-application", "/apply"],
+  ["/prices", "/process/pricing"],
+  ["/faq", "/process/faq"],
+  ["/what-come-with-your-puppy", "/puppies/what-comes-with-your-puppy"],
+  ["/coat-traits", "/puppies/coat-traits"],
+  ["/dams", "/parents/mamas"],
+  ["/studs", "/parents/studs"],
+  ["/goldendoodle-dams", "/parents/goldendoodle-parents"],
+  ["/cavapoo-dams", "/parents/cavapoo-parents"],
+  ["/bernedoodle-dams", "/parents/bernedoodle-parents"],
+  ["/poodle-dams", "/parents/mamas"],
+  ["/golden-retriever-dams", "/parents/mamas"],
+  ["/our-studs", "/stud-services/our-studs"],
+  ["/reproductive-education", "/stud-services/reproductive-education"],
+  ["/stud-services/shipping-and-collection-info", "/stud-services"],
+  ["/guardianprogram", "/guardian-program"],
+  ["/guardian-application", "/guardian-program/application"],
+  ["/our-family", "/about/our-family"],
+  ["/meet-our-team", "/about/meet-the-team"],
+  ["/reviews-1", "/about/reviews"],
+  ["/contact-1", "/contact"],
+  ["/birdie-waylon-jennings-1", "/litters/birdie-waylon-spring-2026"],
+  ["/penny-wyatt", "/litters/penny-wyatt-spring-2026"],
+  ["/ginnybutch", "/litters/ginny-butch-spring-2026"],
+  ["/winnie-wyatt", "/litters/winnie-wyatt-spring-2026"],
+  ["/winnie-redford", "/litters/winnie-wyatt-spring-2026"],
+  ["/kylie-ranger", "/litters/kylie-ranger-late-summer-2026"],
+  ["/birdie", "/parents/birdie"],
+  ["/honey", "/parents/honey"],
+  ["/phoebe", "/parents/phoebe"],
+  ["/daisy", "/parents/daisy"],
+  ["/beatrix", "/parents/beatrix"],
+  ["/june-2", "/parents/june"],
+  ["/georgia", "/parents/georgia"],
+  ["/evie-nicks", "/parents/mamas"],
+  ["/ginny", "/parents/ginny"],
+  ["/trudy", "/parents/trudy"],
+  ["/faye", "/parents/faye"],
+  ["/kylie", "/parents/kylie"],
+  ["/tilly", "/parents/tilly"],
+  ["/sylvee", "/parents/sylvee"],
+  ["/penny-2", "/parents/penny"],
+  ["/whitley", "/parents/whitley"],
+  ["/winnie", "/parents/winnie"],
+  ["/reece", "/parents/reece"],
+  ["/garth-brooks", "/parents/garth-brooks"],
+  ["/hank-williams", "/parents/hank-williams"],
+  ["/beau", "/parents/beau"],
+  ["/waylon-jennings", "/parents/waylon-jennings"],
+  ["/sundance", "/parents/sundance"],
+  ["/enzo", "/parents/enzo"],
+  ["/butch-cassidy", "/parents/butch-cassidy"],
+  ["/knox", "/parents/knox"],
+  ["/robert-redford", "/parents/robert-redford"],
+  ["/johnn-cash", "/parents/johnny-cash"],
+  ["/johnny-cash", "/parents/johnny-cash"],
+  ["/wyatt", "/parents/wyatt-earp"],
+  ["/wyatt-earp", "/parents/wyatt-earp"],
+  ["/bodhe", "/parents/bodhe"],
+  ["/wayne", "/parents/studs"],
+  ["/flora", "/parents/mamas"],
+  ["/lady", "/parents/mamas"],
+  ["/lady-redford", "/puppies/previous-litters"],
+  ["/lady-enzo", "/puppies/previous-litters"],
+  ["/lady-enzo-2", "/puppies/previous-litters"],
+  ["/floraenzo", "/puppies/previous-litters"],
+  ["/flora-enzo-2", "/puppies/previous-litters"],
+  ["/ruby-bodhe", "/puppies/previous-litters"],
+  ["/ruby-bodhe-2", "/puppies/previous-litters"],
+  ["/new-page-2", "/previous-litters-bernedoodles"],
+  ["/june-enzo-1", "/previous-litters-cavapoos"],
+  ["/june-enzo-2", "/previous-litters-cavapoos"],
+  ["/services-6", "/"]
+]);
+
+function isKnownPublicPath(path) {
+  return Boolean(
+    architectureSeo[path] ||
+      staticSeo[path] ||
+      breedProfiles.some((item) => item.route === path) ||
+      publicPuppyProfiles.some((item) => `/puppies/${item.slug}` === path) ||
+      publicLitterProfiles.some((item) => `/litters/${item.slug}` === path) ||
+      publicParentProfiles.some((item) => `/parents/${item.slug}` === path) ||
+      litterDetails[path] ||
+      previousLitterArchiveGroups[path] ||
+      previousLitterDetails[path] ||
+      studDetails[path] ||
+      damGroups[path] ||
+      damDetails[path] ||
+      categories[path]
+  );
+}
 
 function seoFor(path) {
   if (architectureSeo[path]) return architectureSeo[path];
@@ -362,13 +474,6 @@ function seoFor(path) {
     }
   }
   if (staticSeo[path]) return staticSeo[path];
-  if (litterDetails[path]) {
-    const litter = litterDetails[path];
-    return {
-      title: `${litter.name} | ${litter.breed} | Red Ranch Dogs`,
-      description: `Details for the ${litter.name} ${litter.breed} litter, including timing, size, coat, color, and puppy milestones.`
-    };
-  }
   if (previousLitterArchiveGroups[path]) {
     const archive = previousLitterArchiveGroups[path];
     return {
@@ -381,6 +486,13 @@ function seoFor(path) {
     return {
       title: `${litter.name} | Previous Litter | Red Ranch Dogs`,
       description: `Archive details for the ${litter.name} ${litter.breed} litter from Red Ranch Dogs.`
+    };
+  }
+  if (litterDetails[path]) {
+    const litter = litterDetails[path];
+    return {
+      title: `${litter.name} | ${litter.breed} | Red Ranch Dogs`,
+      description: `Details for the ${litter.name} ${litter.breed} litter, including timing, size, coat, color, and puppy milestones.`
     };
   }
   if (studDetails[path]) {
@@ -411,7 +523,7 @@ function seoFor(path) {
       description: category.copy
     };
   }
-  return defaultSeo;
+  return notFoundSeo;
 }
 
 function upsertMeta(selector, createTag, attributes) {
@@ -423,16 +535,537 @@ function upsertMeta(selector, createTag, attributes) {
   Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
 }
 
+function upsertJsonLd(id, data) {
+  let element = document.head.querySelector(`script[data-schema="${id}"]`);
+  if (!element) {
+    element = document.createElement("script");
+    element.type = "application/ld+json";
+    element.dataset.schema = id;
+    document.head.appendChild(element);
+  }
+  element.textContent = JSON.stringify(data);
+}
+
+const breadcrumbLabels = {
+  puppies: "Puppies",
+  available: "Available Puppies",
+  "current-litters": "Current Litters",
+  "upcoming-litters": "Upcoming Litters",
+  "previous-litters": "Previous Litters",
+  "goldendoodle-puppies": "Goldendoodle Puppies",
+  "cavapoo-puppies": "Cavapoo Puppies",
+  "bernedoodle-puppies": "Bernedoodle Puppies",
+  "what-comes-with-your-puppy": "What Comes With Your Puppy",
+  "coat-traits": "Coat Traits",
+  litters: "Litters",
+  parents: "Parents",
+  mamas: "Mamas",
+  studs: "Studs",
+  "goldendoodle-parents": "Goldendoodle Parents",
+  "cavapoo-parents": "Cavapoo Parents",
+  "bernedoodle-parents": "Bernedoodle Parents",
+  process: "Process",
+  "how-it-works": "How It Works",
+  pricing: "Pricing",
+  "application-and-waitlist": "Application & Waitlist",
+  waitlist: "Current Waitlist",
+  faq: "FAQ",
+  "pickup-and-delivery": "Pickup & Delivery",
+  "stud-services": "Stud Services",
+  "our-studs": "Our Studs",
+  "reproductive-services": "Reproductive Services",
+  "reproductive-education": "Reproductive Education",
+  "guardian-program": "Guardian Program",
+  application: "Application",
+  "current-guardian-opportunities": "Guardian Opportunities",
+  about: "About",
+  "our-family": "Our Family",
+  "meet-the-team": "Meet the Team",
+  reviews: "Reviews",
+  contact: "Contact",
+  apply: "Apply"
+};
+
+function titleCaseSlug(slug) {
+  return slug
+    .split("-")
+    .filter(Boolean)
+    .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
+    .join(" ");
+}
+
+function recordTitleForPath(path) {
+  const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
+  if (puppy) return puppy.name;
+  const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
+  if (litter) return litter.name;
+  const parent = publicParentProfiles.find((item) => `/parents/${item.slug}` === path);
+  if (parent) return parent.name;
+  return null;
+}
+
+function breadcrumbDataFor(path) {
+  if (path === "/") return null;
+  const segments = path.split("/").filter(Boolean);
+  const items = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${siteOrigin}/`
+    }
+  ];
+
+  segments.forEach((segment, index) => {
+    const partialPath = `/${segments.slice(0, index + 1).join("/")}`;
+    const isLast = index === segments.length - 1;
+    const name = isLast ? recordTitleForPath(partialPath) || breadcrumbLabels[segment] || titleCaseSlug(segment) : breadcrumbLabels[segment] || titleCaseSlug(segment);
+    items.push({
+      "@type": "ListItem",
+      position: items.length + 1,
+      name,
+      item: `${siteOrigin}${partialPath}`
+    });
+  });
+
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: items
+  };
+}
+
+function absoluteUrl(pathOrUrl) {
+  if (!pathOrUrl) return defaultSocialImage;
+  if (pathOrUrl.startsWith("http")) return pathOrUrl;
+  if (pathOrUrl.startsWith("/")) return `${siteOrigin}${pathOrUrl}`;
+  return `${siteOrigin}/${pathOrUrl}`;
+}
+
+function schemaIdSlug(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function teamPersonSchema(member) {
+  const slug = schemaIdSlug(member.name);
+
+  return {
+    "@type": "Person",
+    "@id": `${siteOrigin}/about/meet-the-team#${slug}`,
+    name: member.name,
+    jobTitle: member.role,
+    description: member.bio,
+    image: member.photo ? absoluteUrl(member.photo) : undefined,
+    worksFor: {
+      "@id": `${siteOrigin}/#organization`
+    }
+  };
+}
+
+function socialImageFor(path) {
+  const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
+  if (puppy?.mainPhoto) return absoluteUrl(puppy.mainPhoto);
+
+  const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
+  if (litter?.weeklyUpdateGallery?.[0]) return absoluteUrl(litter.weeklyUpdateGallery[0]);
+
+  const parent = publicParentProfiles.find((item) => `/parents/${item.slug}` === path);
+  if (parent?.mainPhoto) return absoluteUrl(parent.mainPhoto);
+
+  return defaultSocialImage;
+}
+
+function socialImageAltFor(path, meta) {
+  const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
+  if (puppy?.name) return `${puppy.name}, a ${puppy.breed} puppy at Red Ranch Dogs`;
+
+  const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
+  if (litter?.name) return `${litter.name} litter at Red Ranch Dogs`;
+
+  const parent = publicParentProfiles.find((item) => `/parents/${item.slug}` === path);
+  if (parent?.name) return `${parent.name}, a Red Ranch Dogs ${parent.role || "parent dog"}`;
+
+  return `${meta?.title || "Red Ranch Dogs"} photo`;
+}
+
+function normalizeFaqRecord(record) {
+  if (Array.isArray(record)) {
+    return {
+      question: record[0],
+      answer: record[1]
+    };
+  }
+
+  return {
+    question: record?.question,
+    answer: record?.answer
+  };
+}
+
+function faqRecordsForPath(path) {
+  if (path === "/guardian-program/faq") {
+    return guardianProgram.faqs.map(normalizeFaqRecord);
+  }
+
+  if (path === "/process/faq" || path === "/faq") {
+    return (faqProfiles.length ? faqProfiles : faqs).map(normalizeFaqRecord);
+  }
+
+  const breed = breedProfiles.find((item) => item.route === path);
+  if (breed?.faqCategory) {
+    return faqProfiles
+      .filter((item) => item.category === breed.faqCategory)
+      .map(normalizeFaqRecord);
+  }
+
+  return [];
+}
+
+function faqSchemaForPath(path) {
+  const records = faqRecordsForPath(path).filter((item) => item.question && item.answer);
+  if (!records.length) return null;
+
+  const canonical = `${siteOrigin}${path === "/" ? "/" : path}`;
+  return {
+    "@type": "FAQPage",
+    "@id": `${canonical}#faq`,
+    mainEntity: records.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  };
+}
+
+function listItemForRecord(item, index, url, image) {
+  return {
+    "@type": "ListItem",
+    position: index + 1,
+    url,
+    item: {
+      "@type": "Thing",
+      name: item.name,
+      description: item.description || item.availabilitySummary || item.availabilityNote || item.breed,
+      image: image ? absoluteUrl(image) : undefined,
+      url
+    }
+  };
+}
+
+function itemListSchemaForPath(path) {
+  const canonical = `${siteOrigin}${path === "/" ? "/" : path}`;
+  let name = "";
+  let records = [];
+  let getUrl = () => canonical;
+  let getImage = () => "";
+
+  if (path === "/puppies/available") {
+    name = "Available Red Ranch Dogs puppies";
+    records = publicPuppyProfiles.filter((item) => item.status === "Available");
+    getUrl = (item) => `${siteOrigin}/puppies/${item.slug}`;
+    getImage = (item) => item.mainPhoto;
+  } else if (path === "/puppies/current-litters") {
+    name = "Current Red Ranch Dogs litters";
+    records = publicLitterProfiles.filter((item) => String(item.status || "").toLowerCase().includes("current"));
+    getUrl = (item) => `${siteOrigin}/litters/${item.slug}`;
+    getImage = (item) => item.weeklyUpdateGallery?.[0];
+  } else if (path === "/puppies/upcoming-litters") {
+    name = "Upcoming Red Ranch Dogs litters";
+    records = publicLitterProfiles.filter((item) => {
+      const status = String(item.status || "").toLowerCase();
+      return status.includes("planned") || status.includes("upcoming");
+    });
+    getUrl = (item) => `${siteOrigin}/litters/${item.slug}`;
+    getImage = (item) => item.weeklyUpdateGallery?.[0];
+  } else if (path === "/parents" || path === "/parents/mamas" || path === "/parents/studs") {
+    name = path === "/parents/studs" ? "Red Ranch Dogs studs" : path === "/parents/mamas" ? "Red Ranch Dogs mamas" : "Red Ranch Dogs parent dogs";
+    records = publicParentProfiles.filter((item) => {
+      if (path === "/parents/mamas") return item.role === "mama";
+      if (path === "/parents/studs") return item.role === "stud";
+      return true;
+    });
+    getUrl = (item) => `${siteOrigin}/parents/${item.slug}`;
+    getImage = (item) => item.mainPhoto;
+  } else if (path.endsWith("-parents")) {
+    const breedSlug = path.replace("/parents/", "").replace("-parents", "-puppies");
+    name = `${breadcrumbLabels[path.split("/").pop()] || "Red Ranch Dogs parents"}`;
+    records = publicParentProfiles.filter((item) => item.breedSlug === breedSlug);
+    getUrl = (item) => `${siteOrigin}/parents/${item.slug}`;
+    getImage = (item) => item.mainPhoto;
+  } else {
+    const breed = breedProfiles.find((item) => item.route === path);
+    if (breed) {
+      name = `${breed.pluralName} at Red Ranch Dogs`;
+      records = [
+        ...publicPuppyProfiles.filter((item) => item.breedSlug === breed.slug && item.status === "Available"),
+        ...publicLitterProfiles.filter((item) => item.breedSlug === breed.slug && String(item.status || "").toLowerCase().includes("current"))
+      ];
+      getUrl = (item) => item.litterNumber !== undefined ? `${siteOrigin}/litters/${item.slug}` : `${siteOrigin}/puppies/${item.slug}`;
+      getImage = (item) => item.mainPhoto || item.weeklyUpdateGallery?.[0];
+    }
+  }
+
+  if (!records.length) return null;
+
+  return {
+    "@type": "ItemList",
+    "@id": `${canonical}#item-list`,
+    name,
+    itemListElement: records.map((item, index) => listItemForRecord(item, index, getUrl(item), getImage(item))).map((item) => JSON.parse(JSON.stringify(item)))
+  };
+}
+
+function pageSpecificSchemaForPath(path) {
+  const canonical = `${siteOrigin}${path === "/" ? "/" : path}`;
+
+  if (path.startsWith("/stud-services")) {
+    return {
+      "@type": "Service",
+      "@id": `${canonical}#stud-service`,
+      name: "Red Ranch Dogs stud services",
+      serviceType: "Dog stud service and reproductive coordination",
+      provider: {
+        "@id": `${siteOrigin}/#local-business`
+      },
+      areaServed: "United States"
+    };
+  }
+
+  if (path === "/contact" || path === "/contact-1") {
+    return {
+      "@type": "ContactPage",
+      "@id": `${canonical}#contact-page`,
+      name: "Contact Red Ranch Dogs",
+      description: "Contact Red Ranch Dogs in Salado, Texas about puppies, waitlists, current litters, guardian families, or stud services.",
+      mainEntity: {
+        "@id": `${siteOrigin}/#local-business`
+      }
+    };
+  }
+
+  if (path === "/about" || path === "/about/our-family" || path === "/our-family") {
+    return {
+      "@type": "AboutPage",
+      "@id": `${canonical}#about-page`,
+      name: "About Red Ranch Dogs",
+      description: "Learn about the family behind Red Ranch Dogs and the Salado, Texas breeding program.",
+      mainEntity: {
+        "@id": `${siteOrigin}/#organization`
+      }
+    };
+  }
+
+  if (path === "/apply" || path === "/puppy-application") {
+    return {
+      "@type": "Service",
+      "@id": `${canonical}#puppy-application`,
+      name: "Red Ranch Dogs puppy application",
+      serviceType: "Puppy application and waitlist inquiry",
+      provider: {
+        "@id": `${siteOrigin}/#local-business`
+      }
+    };
+  }
+
+  return null;
+}
+
+function structuredDataFor(path) {
+  const canonical = `${siteOrigin}${path === "/" ? "/" : path}`;
+  const meta = seoFor(path);
+  const socialImage = socialImageFor(path);
+  const graph = [
+    {
+      "@type": "Organization",
+      "@id": `${siteOrigin}/#organization`,
+      name: "Red Ranch Dogs",
+      url: `${siteOrigin}/`,
+      description: "A family-run doodle breeding program in Salado, Texas specializing in Goldendoodles, Cavapoos, and Bernedoodles.",
+      logo: `${siteOrigin}/images/seed/red-ranch-dogs-2026-logo-wide.png`,
+      sameAs: socialProfiles,
+      slogan: brand.tagline,
+      founder: [
+        {
+          "@type": "Person",
+          "@id": `${siteOrigin}/about/meet-the-team#adam`,
+          name: "Adam Dietlein",
+          url: `${siteOrigin}/about/meet-the-team`
+        },
+        {
+          "@type": "Person",
+          "@id": `${siteOrigin}/about/meet-the-team#callie`,
+          name: "Callie Dietlein",
+          url: `${siteOrigin}/about/meet-the-team`
+        }
+      ],
+      employee: teamProfiles.map(teamPersonSchema),
+      foundingLocation: {
+        "@type": "Place",
+        name: "Salado, Texas"
+      },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: `+1${brand.phone.replace(/\D/g, "")}`,
+          email: brand.email,
+          contactType: "customer service",
+          areaServed: "US"
+        }
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteOrigin}/#local-business`,
+      name: "Red Ranch Dogs",
+      url: `${siteOrigin}/`,
+      telephone: `+1${brand.phone.replace(/\D/g, "")}`,
+      email: brand.email,
+      description: "Red Ranch Dogs is a family-run puppy program in Salado, Texas raising Goldendoodles, Cavapoos, and Bernedoodles.",
+      image: socialImage,
+      priceRange: "$$$",
+      slogan: brand.tagline,
+      sameAs: socialProfiles,
+      hasMap: brand.googleReviews,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Salado",
+        addressRegion: "TX",
+        addressCountry: "US"
+      },
+      areaServed: ["Texas", "United States"],
+      knowsAbout: ["Goldendoodles", "Cavapoos", "Bernedoodles", "Poodle genetics", "Doodle puppy waitlists", "Doodle coat traits"],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: `+1${brand.phone.replace(/\D/g, "")}`,
+          email: brand.email,
+          contactType: "customer service",
+          areaServed: "US",
+          availableLanguage: "English"
+        }
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Red Ranch Dogs programs",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Goldendoodle puppies and waitlist"
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Cavapoo puppies and waitlist"
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Bernedoodle puppies and waitlist"
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Stud services for breeders"
+            }
+          }
+        ]
+      },
+      parentOrganization: {
+        "@id": `${siteOrigin}/#organization`
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteOrigin}/#website`,
+      name: "Red Ranch Dogs",
+      url: `${siteOrigin}/`,
+      publisher: {
+        "@id": `${siteOrigin}/#organization`
+      },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${siteOrigin}/puppies/available?query={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: meta.title,
+      description: meta.description,
+      inLanguage: "en-US",
+      isPartOf: {
+        "@id": `${siteOrigin}/#website`
+      },
+      author: {
+        "@id": `${siteOrigin}/#organization`
+      },
+      publisher: {
+        "@id": `${siteOrigin}/#organization`
+      },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: socialImage
+      },
+      about: {
+        "@id": `${siteOrigin}/#organization`
+      }
+    },
+    breadcrumbDataFor(path),
+    faqSchemaForPath(path),
+    itemListSchemaForPath(path),
+    pageSpecificSchemaForPath(path)
+  ].filter(Boolean);
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": graph
+  };
+}
+
 function applySeo(path) {
   const meta = seoFor(path);
   const canonical = `${siteOrigin}${path === "/" ? "/" : path}`;
+  const socialImage = socialImageFor(path);
+  const socialImageAlt = socialImageAltFor(path, meta);
+  const robots = isKnownPublicPath(path) ? "index, follow" : "noindex, follow";
   document.title = meta.title;
   upsertMeta('meta[name="description"]', "meta", { name: "description", content: meta.description });
+  upsertMeta('meta[name="author"]', "meta", { name: "author", content: "Red Ranch Dogs" });
+  upsertMeta('meta[name="creator"]', "meta", { name: "creator", content: "Red Ranch Dogs" });
+  upsertMeta('meta[name="robots"]', "meta", { name: "robots", content: robots });
+  upsertMeta('meta[name="geo.region"]', "meta", { name: "geo.region", content: localGeo.region });
+  upsertMeta('meta[name="geo.placename"]', "meta", { name: "geo.placename", content: localGeo.placeName });
   upsertMeta('link[rel="canonical"]', "link", { rel: "canonical", href: canonical });
   upsertMeta('meta[property="og:title"]', "meta", { property: "og:title", content: meta.title });
   upsertMeta('meta[property="og:description"]', "meta", { property: "og:description", content: meta.description });
   upsertMeta('meta[property="og:url"]', "meta", { property: "og:url", content: canonical });
   upsertMeta('meta[property="og:type"]', "meta", { property: "og:type", content: "website" });
+  upsertMeta('meta[property="og:site_name"]', "meta", { property: "og:site_name", content: "Red Ranch Dogs" });
+  upsertMeta('meta[property="og:locale"]', "meta", { property: "og:locale", content: "en_US" });
+  upsertMeta('meta[property="og:image"]', "meta", { property: "og:image", content: socialImage });
+  upsertMeta('meta[property="og:image:secure_url"]', "meta", { property: "og:image:secure_url", content: socialImage });
+  upsertMeta('meta[property="og:image:alt"]', "meta", { property: "og:image:alt", content: socialImageAlt });
+  upsertMeta('meta[name="twitter:card"]', "meta", { name: "twitter:card", content: "summary_large_image" });
+  upsertMeta('meta[name="twitter:title"]', "meta", { name: "twitter:title", content: meta.title });
+  upsertMeta('meta[name="twitter:description"]', "meta", { name: "twitter:description", content: meta.description });
+  upsertMeta('meta[name="twitter:image"]', "meta", { name: "twitter:image", content: socialImage });
+  upsertMeta('meta[name="twitter:image:alt"]', "meta", { name: "twitter:image:alt", content: socialImageAlt });
+  upsertJsonLd("red-ranch-dogs-schema", structuredDataFor(path));
 }
 
 const primaryNav = [
@@ -444,11 +1077,10 @@ const primaryNav = [
       { label: "Available Puppies", href: "/puppies/available" },
       { label: "Current Litters", href: "/puppies/current-litters" },
       { label: "Upcoming Litters", href: "/puppies/upcoming-litters" },
+      { label: "Previous Litters", href: "/puppies/previous-litters" },
       { label: "Goldendoodle Puppies", href: "/puppies/goldendoodle-puppies" },
       { label: "Cavapoo Puppies", href: "/puppies/cavapoo-puppies" },
-      { label: "Bernedoodle Puppies", href: "/puppies/bernedoodle-puppies" },
-      { label: "What Comes With Your Puppy", href: "/puppies/what-comes-with-your-puppy" },
-      { label: "Coat Traits", href: "/puppies/coat-traits" }
+      { label: "Bernedoodle Puppies", href: "/puppies/bernedoodle-puppies" }
     ]
   },
   {
@@ -470,6 +1102,8 @@ const primaryNav = [
       { label: "Pricing", href: "/process/pricing" },
       { label: "Application and Waitlist", href: "/process/application-and-waitlist" },
       { label: "Current Waitlist", href: "/process/waitlist" },
+      { label: "What Comes With Your Puppy", href: "/puppies/what-comes-with-your-puppy" },
+      { label: "Coat Traits", href: "/puppies/coat-traits" },
       { label: "FAQ", href: "/process/faq" },
       { label: "Puppy Pickup and Delivery", href: "/process/pickup-and-delivery" }
     ]
@@ -480,8 +1114,7 @@ const primaryNav = [
     links: [
       { label: "Our Studs", href: "/stud-services/our-studs" },
       { label: "Reproductive Services", href: "/stud-services/reproductive-services" },
-      { label: "Reproductive Education", href: "/stud-services/reproductive-education" },
-      { label: "Shipping and Collection Info", href: "/stud-services/shipping-and-collection-info" }
+      { label: "Reproductive Education", href: "/stud-services/reproductive-education" }
     ]
   },
   {
@@ -645,7 +1278,7 @@ function Layout({ children }) {
   );
 }
 
-function PageHero({ eyebrow, title, copy, image = null, actions, className = "" }) {
+function PageHero({ eyebrow, title, copy, image = null, imageAlt, actions, className = "" }) {
   return (
     <section className={`page-hero ${image ? "with-image" : "text-only"} ${className}`.trim()}>
       <div className="hero-copy">
@@ -656,7 +1289,7 @@ function PageHero({ eyebrow, title, copy, image = null, actions, className = "" 
       </div>
       {image && (
         <div className="hero-image">
-          <img src={image} alt="" />
+          <img src={image} alt={imageAlt || `${title} - Red Ranch Dogs`} />
         </div>
       )}
     </section>
@@ -669,9 +1302,11 @@ function FadeInSection({ as: Element = "section", className = "", children, ...p
 
   useEffect(() => {
     if (!node) return undefined;
+    const fallback = window.setTimeout(() => setVisible(true), 900);
     const observer = new window.IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          window.clearTimeout(fallback);
           setVisible(true);
           observer.disconnect();
         }
@@ -679,7 +1314,10 @@ function FadeInSection({ as: Element = "section", className = "", children, ...p
       { rootMargin: "0px 0px -12% 0px" }
     );
     observer.observe(node);
-    return () => observer.disconnect();
+    return () => {
+      window.clearTimeout(fallback);
+      observer.disconnect();
+    };
   }, [node]);
 
   return (
@@ -709,6 +1347,24 @@ const reviewHeroStats = [
   { value: "100+", label: "five-star reviews soon" },
   { value: "Family", label: "communication focused" },
   { value: "Texas", label: "raised in Salado" }
+];
+
+const reviewThemes = [
+  {
+    title: "Clear communication",
+    copy: "Families know what is happening, what comes next, and how to prepare before go-home.",
+    icon: MessageCircle
+  },
+  {
+    title: "Thoughtful puppy matches",
+    copy: "We help families think through breed fit, timing, temperament, and the puppy that fits their home.",
+    icon: Heart
+  },
+  {
+    title: "Confidence at go-home",
+    copy: "Puppies are raised with hands-on care, early routines, and support that continues after pickup.",
+    icon: ShieldCheck
+  }
 ];
 
 const socialProofItems = [
@@ -932,7 +1588,7 @@ function HomeDoodles() {
           {homepageBreeds.map((breed) => <BreedCard breed={breed} key={breed.name} />)}
         </CardGrid>
         <div className="section-cta-row">
-          <CTAButton href="/puppies/available" variant="primary">View Available Puppies</CTAButton>
+          <CTAButton href="/puppies/current-litters" variant="primary">View Current Litters</CTAButton>
           <CTAButton href="/apply" variant="secondary">Join the Waitlist</CTAButton>
         </div>
       </ContentContainer>
@@ -1204,9 +1860,9 @@ function PuppyCard({ puppy, variant = "default" }) {
   );
 }
 
-function ProcessStepCards({ steps }) {
+function ProcessStepCards({ steps, className = "" }) {
   return (
-    <div className="process-step-cards">
+    <div className={`process-step-cards ${className}`.trim()}>
       {steps.map(([title, copy], index) => (
         <article className="process-step-card" key={title}>
           <span className="step-number">{index + 1}</span>
@@ -1220,8 +1876,95 @@ function ProcessStepCards({ steps }) {
   );
 }
 
+function CompactTextCardGrid({ items = [], columns = "three", className = "" }) {
+  if (!items.length) {
+    return null;
+  }
+
+  return (
+    <section className={`tile-grid ${columns} process-card-grid process-compact-grid process-row-list ${className}`.trim()}>
+      {items.map((item) => {
+        const title = Array.isArray(item) ? item[0] : item.title;
+        const copy = Array.isArray(item) ? item[1] : item.copy;
+        const Icon = Array.isArray(item) ? item[2] : item.icon;
+
+        return (
+          <article className={`text-card compact-card${Icon ? " icon-card" : ""}`} key={title}>
+            {Icon ? (
+              <>
+                <Icon size={24} />
+                <div>
+                  <h2>{title}</h2>
+                  <p>{copy}</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <h2>{title}</h2>
+                <p>{copy}</p>
+              </>
+            )}
+          </article>
+        );
+      })}
+    </section>
+  );
+}
+
+function ChecklistCardGrid({ items = [], columns = "three", className = "" }) {
+  if (!items.length) {
+    return null;
+  }
+
+  return (
+    <section className={`tile-grid ${columns} process-card-grid process-checklist-grid ${className}`.trim()}>
+      {items.map((item) => {
+        const title = Array.isArray(item) ? item[0] : item.title;
+        const points = Array.isArray(item) ? item[1] : item.items;
+        const copy = Array.isArray(item) ? item[2] : item.copy;
+        const Icon = Array.isArray(item) ? item[3] : item.icon;
+
+        return (
+          <article className="text-card compact-card checklist-card" key={title}>
+            {Icon ? <Icon size={24} aria-hidden="true" /> : <CheckCircle2 size={24} aria-hidden="true" />}
+            <div>
+              <h2>{title}</h2>
+              {copy && <p>{copy}</p>}
+              {points?.length ? (
+                <ul className="check-list">
+                  {points.map((point) => <li key={point}>{point}</li>)}
+                </ul>
+              ) : null}
+            </div>
+          </article>
+        );
+      })}
+    </section>
+  );
+}
+
+function pastLitterHrefsFor(litter) {
+  const hrefs = [
+    litter.previousLitterHref,
+    litter.pastLitterHref,
+    ...(litter.previousLitterHrefs || []),
+    ...(litter.pastLitterHrefs || [])
+  ].filter(Boolean);
+
+  return [...new Set(hrefs)].filter((href) => previousLitterDetails[href]);
+}
+
+function currentLitterHrefForPastLitter(href) {
+  const litter = publicLitterProfiles.find((item) => pastLitterHrefsFor(item).includes(href));
+
+  return litter?.slug ? `/litters/${litter.slug}` : "";
+}
+
 function LitterCard({ litter }) {
   const route = litter.slug ? `/litters/${litter.slug}` : litter.href;
+  const pastLitterHrefs = pastLitterHrefsFor(litter);
+  const pastLitterHref = pastLitterHrefs[0] || "";
+  const pastLitterLabel = pastLitterHrefs.length > 1 ? "View Past Litters" : "View Past Litter";
   const delivery = litter.birthDate || litter.delivery || "Timing to be announced";
   const goHome = litter.goHomeDate || litter.goHome || "Go-home timing to be announced";
   const size = litter.expectedSize || litter.size || "Estimate to be announced";
@@ -1230,13 +1973,9 @@ function LitterCard({ litter }) {
   const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
-  const litterPuppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
-  const availableCount = litterPuppies.filter((puppy) => puppy.status === "Available").length;
-  const puppyCountLabel = litterPuppies.length
-    ? availableCount
-      ? `${availableCount} available`
-      : `${litterPuppies.length} puppy profile${litterPuppies.length === 1 ? "" : "s"}`
-    : "Planning stage";
+  const litterPuppies = puppiesForLitter(litter);
+  const puppyCountLabel = litterAvailabilityLabel(litter, litterPuppies);
+  const actionLabel = isCurrentLitter(litter) ? "View Litter" : "View Pairing";
 
   return (
     <article className="litter-card animal-card">
@@ -1281,12 +2020,164 @@ function LitterCard({ litter }) {
           </div>
         )}
         {litter.availabilityNote && <p className="small-note">{litter.availabilityNote}</p>}
-        {route && (
+        {(route || pastLitterHref) && (
           <div className="litter-card-actions">
-            <Link href={route} className="button small">View Litter</Link>
-            <Link href="/apply" className="button small secondary">Join Waitlist</Link>
+            {route && <Link href={route} className="button small">{actionLabel}</Link>}
+            {pastLitterHref && <Link href={pastLitterHref} className="button small secondary">{pastLitterLabel}</Link>}
           </div>
         )}
+      </div>
+    </article>
+  );
+}
+
+const publicPreviousLitterArchivePaths = [
+  "/previous-litters-goldendoodles",
+  "/previous-litters-cavapoos",
+  "/previous-litters-bernedoodles"
+];
+
+function previousLitterDate(litter) {
+  return litter.facts.find(([label]) => ["Born", "Delivery", "Expected"].includes(label))?.[1] || "Previous litter";
+}
+
+function previousLitterFact(litter, labels) {
+  return litter.facts.find(([label]) => labels.includes(label))?.[1] || "See litter notes";
+}
+
+function publicPreviousLitterFacts(litter) {
+  return litter.facts.filter(([label]) => !["Price", "Pricing"].includes(label));
+}
+
+function archiveHrefForPreviousLitter(href) {
+  return publicPreviousLitterArchivePaths.find((archiveHref) => {
+    const archive = previousLitterArchiveGroups[archiveHref];
+    return archive?.litters?.includes(href);
+  }) || "/puppies/previous-litters";
+}
+
+function normalizedParentLookupName(value = "") {
+  return String(value)
+    .replace(/\boutside stud\b/gi, "")
+    .replace(/jennings/gi, "")
+    .replace(/robert/gi, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function previousLitterParentNames(litter) {
+  return String(litter.parents || litter.name || "")
+    .split("+")
+    .map((name) => name.split(",")[0].trim())
+    .filter(Boolean)
+    .slice(0, 2);
+}
+
+function previousLitterParentProfile(name) {
+  const normalizedName = normalizedParentLookupName(name);
+
+  return publicParentProfiles.find((parent) => {
+    const parentName = normalizedParentLookupName(parent.name);
+    const parentSlug = normalizedParentLookupName(parent.slug);
+
+    return (
+      parentName === normalizedName ||
+      parentSlug === normalizedName ||
+      parentName.startsWith(normalizedName) ||
+      normalizedName.startsWith(parentName)
+    );
+  });
+}
+
+function previousLitterParentPhoto(litter, name) {
+  const normalizedName = normalizedParentLookupName(name);
+
+  return (litter.parentPhotos || []).find((photo) => {
+    const photoName = normalizedParentLookupName(photo.name);
+    return photoName === normalizedName || photoName.startsWith(normalizedName) || normalizedName.startsWith(photoName);
+  });
+}
+
+function PreviousLitterPairingMedia({ litter, large = false }) {
+  const parentNames = previousLitterParentNames(litter);
+
+  if (parentNames.length >= 2) {
+    return (
+      <figure
+        className={`pairing-photo-grid previous-pairing-photo-grid ${large ? "large" : ""}`.trim()}
+        aria-label={`${litter.name} parent pairing`}
+      >
+        {parentNames.map((name) => {
+          const parent = previousLitterParentProfile(name);
+          const photo = previousLitterParentPhoto(litter, name);
+          const image = photo?.image || parent?.mainPhoto;
+          const displayName = photo?.name || parent?.name || name;
+          const profileHref = photo?.href || (parent?.slug ? `/parents/${parent.slug}` : "");
+          const parentWindow = (
+            <>
+              {image ? (
+                <img src={image} alt={`${displayName} - parent for ${litter.name}`} loading="lazy" />
+              ) : (
+                <ImagePlaceholder label={`${displayName} parent photo`} />
+              )}
+              <figcaption>{displayName}</figcaption>
+            </>
+          );
+
+          return (
+            <div key={`${litter.name}-${displayName}`}>
+              {profileHref ? (
+                <Link
+                  href={profileHref}
+                  className="previous-pairing-parent-link"
+                  aria-label={`View ${displayName} profile`}
+                >
+                  {parentWindow}
+                </Link>
+              ) : (
+                parentWindow
+              )}
+            </div>
+          );
+        })}
+      </figure>
+    );
+  }
+
+  return litter.image ? (
+    <img src={litter.image} alt={`${litter.name} previous litter`} loading="lazy" />
+  ) : (
+    <ImagePlaceholder label="Previous litter photo" />
+  );
+}
+
+function PreviousLitterCard({ litter, href }) {
+  return (
+    <article className="litter-card animal-card previous-litter-card">
+      <PreviousLitterPairingMedia litter={litter} />
+      <div className="litter-card-body">
+        <div className="litter-card-heading">
+          <div className="card-kicker-row">
+            <p className="eyebrow">{litter.group}</p>
+            <span className="status-badge">Past litter</span>
+          </div>
+          <h2>{litter.name}</h2>
+          <h3>{litter.breed}</h3>
+          {litter.theme && <p>{litter.theme}</p>}
+        </div>
+        <dl className="details compact-details litter-card-facts">
+          <div><dt>Date</dt><dd>{previousLitterDate(litter)}</dd></div>
+          <div><dt>Size</dt><dd>{previousLitterFact(litter, ["Size"])}</dd></div>
+          <div><dt>Coat</dt><dd>{previousLitterFact(litter, ["Coat"])}</dd></div>
+          <div><dt>Parents</dt><dd>{litter.parents}</dd></div>
+        </dl>
+        <div className="litter-preview-notes">
+          <p><strong>Pairing reference:</strong> Past litters show families the puppy style a pairing has produced before.</p>
+        </div>
+        <div className="litter-card-actions">
+          <Link href={href} className="button small">View Past Litter</Link>
+        </div>
       </div>
     </article>
   );
@@ -1332,15 +2223,33 @@ function FAQSection({ items = faqProfiles, category, grouped = false }) {
 function PricingSection({ items = pricingProfiles }) {
   return (
     <section className="tile-grid three pricing-profile-grid">
-      {items.map((group) => (
-        <article className="text-card" key={group.breed || group[0]}>
-          <h2>{group.breed || group[0]}</h2>
-          {group.summary && <p>{group.summary}</p>}
-          <ul className="clean-list">
-            {(group.items || group[1]).map((item) => <li key={item}>{item}</li>)}
-          </ul>
-        </article>
-      ))}
+      {items.map((group) => {
+        const title = group.breed || group[0];
+        const summary = group.summary;
+        const details = group.items || group[1] || [];
+
+        return (
+          <article className="text-card pricing-profile-card" key={title}>
+            <div className="pricing-profile-heading">
+              <p className="eyebrow">Breed pricing</p>
+              <h2>{title}</h2>
+            </div>
+            {summary && <p>{summary}</p>}
+            <dl className="pricing-profile-list">
+              {details.map((item) => {
+                const [label, value] = String(item).split(":").map((part) => part.trim());
+
+                return (
+                  <div key={item}>
+                    <dt>{label || item}</dt>
+                    <dd>{value || "Confirmed by litter"}</dd>
+                  </div>
+                );
+              })}
+            </dl>
+          </article>
+        );
+      })}
     </section>
   );
 }
@@ -1381,7 +2290,7 @@ function CTASection({ title = "Ready to take the next step?", copy = "Apply now 
         <p>{copy}</p>
         <div className="actions">
           <Link href={primaryHref} className="button primary">{primaryLabel}</Link>
-          <Link href={secondaryHref} className="button secondary">{secondaryLabel}</Link>
+          {secondaryHref && secondaryLabel && <Link href={secondaryHref} className="button secondary">{secondaryLabel}</Link>}
         </div>
       </article>
     </section>
@@ -1405,10 +2314,67 @@ function ListingStatusStrip({ items = [], className = "" }) {
   );
 }
 
-function BuyerPageTemplate({ eyebrow, title, copy, actions, image, children, cta }) {
+function BuyerGuidancePanel({ eyebrow, title, copy, steps = [], primaryHref = "/apply", primaryLabel = "Apply for a Puppy", secondaryHref, secondaryLabel, showActions = true }) {
+  return (
+    <section className={`buyer-guidance-panel group-panel${showActions ? "" : " no-actions"}`}>
+      <div>
+        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+        <h2>{title}</h2>
+        {copy && <p>{copy}</p>}
+      </div>
+      {steps.length > 0 && (
+        <div className="buyer-guidance-steps">
+          {steps.map((step, index) => (
+            <article key={step}>
+              <span>{index + 1}</span>
+              <p>{step}</p>
+            </article>
+          ))}
+        </div>
+      )}
+      {showActions && (
+        <div className="actions">
+          {primaryHref && primaryLabel && <Link href={primaryHref} className="button primary">{primaryLabel}</Link>}
+          {secondaryHref && secondaryLabel && <Link href={secondaryHref} className="button secondary">{secondaryLabel}</Link>}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function SmartEmptyState({ eyebrow = "Update", title, copy, steps = [], primaryHref = "/apply", primaryLabel = "Apply for a Puppy", secondaryHref, secondaryLabel }) {
+  const hasPrimaryAction = Boolean(primaryHref && primaryLabel);
+  const hasSecondaryAction = Boolean(secondaryHref && secondaryLabel);
+
+  return (
+    <section className="content-section narrow availability-empty-panel smart-empty-state">
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+      <h2>{title}</h2>
+      {copy && <p>{copy}</p>}
+      {steps.length > 0 && (
+        <div className="availability-empty-steps" aria-label="Best next steps">
+          {steps.map((step, index) => (
+            <article key={step}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <p>{step}</p>
+            </article>
+          ))}
+        </div>
+      )}
+      {(hasPrimaryAction || hasSecondaryAction) && (
+        <div className="actions">
+          {hasPrimaryAction && <Link href={primaryHref} className="button primary">{primaryLabel}</Link>}
+          {hasSecondaryAction && <Link href={secondaryHref} className="button secondary">{secondaryLabel}</Link>}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function BuyerPageTemplate({ eyebrow, title, copy, actions, image, children, cta, heroClassName = "compact-page-hero buyer-page-hero" }) {
   return (
     <Layout>
-      <PageHero eyebrow={eyebrow} title={title} copy={copy} image={image} actions={actions} />
+      <PageHero eyebrow={eyebrow} title={title} copy={copy} image={image} actions={actions} className={heroClassName} />
       {children}
       {cta && <CTASection {...cta} />}
     </Layout>
@@ -1431,14 +2397,15 @@ function ParentCard({ parent }) {
   const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
   const program = breedProfiles.find((breed) => breed.slug === parent.breedSlug);
   const previewFacts = [
-    parent.breed,
-    parent.weight,
-    parent.coat
-  ].filter(Boolean);
+    ["Breed", parent.breed],
+    ["Weight", parent.weight],
+    ["Coat", parent.coat],
+    ["Color", parent.color]
+  ].filter(([, value]) => Boolean(value));
 
   return (
     <article className="text-card parent-card parent-profile-card">
-      <figure className="parent-card-media">
+      <figure className={`parent-card-media ${parent.mainPhoto ? "" : "is-placeholder"}`.trim()}>
         {parent.mainPhoto ? <img src={parent.mainPhoto} alt={parent.name} loading="lazy" /> : <ImagePlaceholder label="Parent dog photo" />}
         <span className="parent-role-badge">{roleLabel}</span>
       </figure>
@@ -1448,8 +2415,17 @@ function ParentCard({ parent }) {
           <h2>{parent.name}</h2>
           <p>{parent.description}</p>
         </div>
-        <div className="parent-card-meta" aria-label={`${parent.name} quick profile details`}>
-          {previewFacts.map((fact, index) => <span key={`${fact}-${index}`}>{fact}</span>)}
+        <dl className="parent-card-facts" aria-label={`${parent.name} quick profile details`}>
+          {previewFacts.map(([label, value]) => (
+            <div key={`${parent.slug}-${label}`}>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="parent-card-meta" aria-label={`${parent.name} status details`}>
+          {parent.status && <span>{parent.status}</span>}
+          {parent.relatedLitters?.length ? <span>{parent.relatedLitters.length} related litter{parent.relatedLitters.length === 1 ? "" : "s"}</span> : null}
         </div>
         {hasPublicProfile ? (
           <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
@@ -1462,7 +2438,7 @@ function ParentCard({ parent }) {
 }
 
 function StudCard({ stud }) {
-  const testingStatus = stud.testing?.length ? "Testing available" : "Testing pending";
+  const testingStatus = stud.testing?.length ? "Testing noted" : "Records by request";
   const facts = [
     stud.group,
     stud.weight,
@@ -1472,7 +2448,7 @@ function StudCard({ stud }) {
 
   return (
     <article className="text-card parent-card parent-profile-card stud-card">
-      <figure className="parent-card-media stud-card-media">
+      <figure className={`parent-card-media stud-card-media ${stud.image ? "" : "is-placeholder"}`.trim()}>
         {stud.image ? <img src={stud.image} alt={`${stud.name} stud at Red Ranch Dogs`} loading="lazy" /> : <ImagePlaceholder label="Stud photo" />}
         <span className="parent-role-badge stud-role-badge">Stud</span>
       </figure>
@@ -1498,7 +2474,7 @@ function StudCatalogSection() {
       <SectionHeader
         eyebrow="Our Studs"
         title="Available stud profiles"
-        copy="Each stud card keeps the photo, fee, size, testing status, and profile link in one repeatable format."
+        copy="Browse current Red Ranch Dogs studs by breed, size, fee, and profile details. Breeders can inquire about a specific stud or ask which fit makes sense for their program."
       />
       {studCatalog.map((group) => {
         const groupLabel = group.breed.endsWith("s") ? group.breed.slice(0, -1) : group.breed;
@@ -1588,51 +2564,6 @@ function BreedParentsCTA({ breed, parents = [] }) {
   );
 }
 
-function ParentDirectorySummary({ parents, title = "Program snapshot", copy }) {
-  const mamaCount = parents.filter((parent) => parent.role === "mama").length;
-  const studCount = parents.filter((parent) => parent.role === "stud").length;
-  const programCount = new Set(parents.map((parent) => parent.breedSlug)).size;
-  const litterCount = new Set(parents.flatMap((parent) => parent.relatedLitters || [])).size;
-  const activeCount = parents.filter((parent) => parent.status === "Active").length;
-  const photoCount = parents.filter((parent) => parent.mainPhoto).length;
-  const roles = new Set(parents.map((parent) => parent.role));
-  const roleSpecific = roles.size === 1;
-  const roleLabel = parents[0]?.role === "stud" ? "studs" : "mamas";
-  const stats = roleSpecific
-    ? [
-        { value: parents.length, label: roleLabel },
-        { value: activeCount, label: "active" },
-        { value: programCount, label: "programs" },
-        { value: litterCount, label: "related litters" },
-        { value: photoCount, label: "with photos" }
-      ]
-    : [
-        { value: parents.length, label: "public profiles" },
-        { value: mamaCount, label: "mamas" },
-        { value: studCount, label: "studs" },
-        { value: programCount, label: "programs" },
-        { value: litterCount, label: "related litters" }
-      ];
-
-  return (
-    <section className="content-section parent-directory-summary">
-      <div>
-        <p className="eyebrow">Parent Dogs</p>
-        <h2>{title}</h2>
-        <p>{copy || "Each parent profile is built from structured data so photos, testing links, related litters, and program notes can be updated cleanly over time."}</p>
-      </div>
-      <dl className="parent-summary-stats">
-        {stats.map((stat) => (
-          <div key={stat.label}>
-            <dt>{stat.value}</dt>
-            <dd>{stat.label}</dd>
-          </div>
-        ))}
-      </dl>
-    </section>
-  );
-}
-
 function ParentTestingPanel({ title, links = [], emptyCopy }) {
   return (
     <article className="text-card parent-testing-card">
@@ -1648,17 +2579,102 @@ function ParentTestingPanel({ title, links = [], emptyCopy }) {
   );
 }
 
+const normalizedStatus = (value = "") => String(value).trim().toLowerCase();
+
 function publicRecords(records = []) {
-  return records.filter((record) => record?.visibility !== "private");
+  return records.filter((record) => !["hidden", "private"].includes(normalizedStatus(record?.visibility || "public")));
 }
 
 const publicPuppyProfiles = publicRecords(puppyProfiles);
 const publicLitterProfiles = publicRecords(litterProfiles);
 const publicParentProfiles = publicRecords(parentProfiles);
-const puppyData = publicPuppyProfiles.length ? publicPuppyProfiles : availablePuppies;
-const isCurrentLitter = (litter) => String(litter?.status || "").toLowerCase().includes("current");
-const currentLitterProfiles = publicLitterProfiles.filter(isCurrentLitter);
-const plannedLitterProfiles = publicLitterProfiles.filter((litter) => !isCurrentLitter(litter));
+const puppyData = publicPuppyProfiles;
+const isCurrentLitter = (litter) => normalizedStatus(litter?.status).includes("current");
+const isPlannedLitter = (litter) => {
+  const status = normalizedStatus(litter?.status);
+  return status.includes("planned") || status.includes("upcoming");
+};
+
+function sortableLitterDate(value = "") {
+  const text = String(value).trim();
+  const rangeMatch = text.match(/^([A-Za-z]+)\s+(\d{1,2})(?:-\d{1,2})?,\s*(\d{4})$/);
+  const monthMatch = text.match(/^([A-Za-z]+)\s+(\d{4})$/);
+  const monthInTextMatch = text.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})\b/i);
+  const seasonMatch = text.match(/\b(early summer|late summer|spring|summer|fall|autumn|winter)\s+(\d{4})\b/i);
+
+  if (rangeMatch) {
+    return Date.parse(`${rangeMatch[1]} ${rangeMatch[2]}, ${rangeMatch[3]}`);
+  }
+
+  if (monthMatch) {
+    return Date.parse(`${monthMatch[1]} 1, ${monthMatch[2]}`);
+  }
+
+  if (monthInTextMatch) {
+    return Date.parse(`${monthInTextMatch[1]} 1, ${monthInTextMatch[2]}`);
+  }
+
+  if (seasonMatch) {
+    const seasonStartMonth = {
+      winter: "January",
+      spring: "March",
+      "early summer": "June",
+      summer: "July",
+      "late summer": "August",
+      fall: "September",
+      autumn: "September"
+    };
+    return Date.parse(`${seasonStartMonth[seasonMatch[1].toLowerCase()]} 1, ${seasonMatch[2]}`);
+  }
+
+  const parsed = Date.parse(text);
+  return Number.isNaN(parsed) ? Number.POSITIVE_INFINITY : parsed;
+}
+
+const currentLitterProfiles = publicLitterProfiles
+  .filter(isCurrentLitter)
+  .sort((first, second) => sortableLitterDate(first.goHomeDate || first.goHome) - sortableLitterDate(second.goHomeDate || second.goHome));
+const plannedLitterProfiles = publicLitterProfiles
+  .filter(isPlannedLitter)
+  .sort((first, second) => sortableLitterDate(first.expectedTiming || first.delivery || first.goHomeDate || first.goHome) - sortableLitterDate(second.expectedTiming || second.delivery || second.goHomeDate || second.goHome));
+const plannedLitterBreedGroups = [
+  {
+    slug: "goldendoodle-puppies",
+    eyebrow: "Goldendoodles",
+    title: "Planned Goldendoodle litters",
+    copy: "Classic family doodles with mini and petite pairings planned around temperament, coat, and size."
+  },
+  {
+    slug: "cavapoo-puppies",
+    eyebrow: "Cavapoos",
+    title: "Planned Cavapoo litters",
+    copy: "Smaller companion-focused puppies with sweet temperaments and soft coat possibilities."
+  },
+  {
+    slug: "bernedoodle-puppies",
+    eyebrow: "Bernedoodles",
+    title: "Planned Bernedoodle litters",
+    copy: "People-focused Bernedoodles with compact size, beautiful color, and steady family temperament."
+  }
+];
+const puppiesForLitter = (litter) => puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
+const statusMatches = (puppy, status) => normalizedStatus(puppy?.status) === normalizedStatus(status);
+const isAvailablePuppy = (puppy) => statusMatches(puppy, "available");
+const isReservedPuppy = (puppy) => ["reserved", "matched"].includes(normalizedStatus(puppy?.status));
+const isWaitlistMatchingPuppy = (puppy) => statusMatches(puppy, "waitlist matching");
+const availablePuppiesForLitter = (litter) => puppiesForLitter(litter).filter(isAvailablePuppy);
+const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter)) => {
+  const availableCount = litterPuppies.filter(isAvailablePuppy).length;
+  const waitlistCount = litterPuppies.filter(isWaitlistMatchingPuppy).length;
+  const reservedCount = litterPuppies.filter(isReservedPuppy).length;
+
+  if (availableCount) return `${availableCount} available`;
+  if (waitlistCount) return "Waitlist matching";
+  if (litterPuppies.length && reservedCount === litterPuppies.length) return "Reserved";
+  if (!isCurrentLitter(litter)) return "Planning";
+  if (litterPuppies.length) return `${litterPuppies.length} puppy profiles`;
+  return "Updates soon";
+};
 
 const puppyNextSteps = [
   ["Apply or Ask", "Start with a quick application or ask about a specific puppy so we understand your family, timing, and preferences."],
@@ -1677,7 +2693,7 @@ const waitlistProcessSteps = [
 
 const processOverviewStats = [
   { value: "$500", label: "deposit applies toward final puppy price" },
-  { value: "3", label: "breed-specific waitlists" },
+  { value: "3", label: "separate breed waitlists" },
   { value: "7-8", label: "weeks old at go-home" }
 ];
 
@@ -1702,9 +2718,46 @@ const pickupDeliveryStats = [
 ];
 
 const pricingTimingCards = [
-  ["Deposit", "A $500 non-refundable deposit joins a breed waitlist or reserves a puppy when one is available. It applies toward the final puppy price."],
-  ["Final Payment", "Final payment timing is confirmed before pickup so each family knows what is due and when. Zelle is currently preferred."],
-  ["Transportation", "Pickup and travel plans are coordinated by litter and family needs. Flight nanny or delivery costs are separate from puppy pricing."]
+  ["Deposit", "A $500 non-refundable deposit joins the selected breed waitlist or reserves an available puppy. It applies toward the final puppy price."],
+  ["Final Payment", "Final payment is confirmed before pickup so each family knows the amount due and timing. Zelle is currently preferred."],
+  ["Transportation", "Pickup, delivery, or flight nanny plans are coordinated by litter and family. Travel costs are separate from puppy pricing."]
+];
+
+const pickupDeliveryCards = [
+  ["Pickup in Central Texas", "Most families pick up in Salado or Central Texas. We confirm timing, records, and what to bring before go-home."],
+  ["Flight nanny coordination", "When travel is needed, we can help coordinate options. Flight nanny or delivery costs are separate from puppy pricing."],
+  ["Go-home preparation", "Families receive timing, records, supply notes, and transition guidance before pickup so go-home feels clear."]
+];
+
+const studServiceStats = [
+  { value: "$1,500", label: "most Red Ranch Dogs stud fees" },
+  { value: "$2,000", label: "Garth Brooks stud fee" },
+  { value: "AI", label: "side-by-side included in Salado" },
+  { value: "Test", label: "negative brucellosis required" }
+];
+
+const studServiceStepCards = [
+  ["Start With an Inquiry", "Send the basics about your program, female, timing, and which Red Ranch Dogs stud you are considering.", MessageCircle],
+  ["Text When She Is in Heat", "When your girl comes in, we usually start a group text to coordinate cycle timing, progesterone updates, AI, or shipping.", Heart],
+  ["Confirm Records and Timing", "Before service, we confirm negative brucellosis, timing, payment, and whether you are coming to Salado or using shipped semen.", ShieldCheck]
+];
+
+const reproductiveServiceCards = [
+  ["Stud inquiries", "Share your program, female, timing, and which Red Ranch Dogs stud you are considering.", Sparkles],
+  ["Timing support", "We help coordinate heat-cycle timing, progesterone updates, side-by-side AI, or shipping details.", Heart],
+  ["Breeder communication", "Once timing is close, we keep records, payment, collection, and delivery details clear.", MessageCircle]
+];
+
+const guardianOpportunityStats = [
+  { value: "Local", label: "guardian homes near Salado" },
+  { value: "Females", label: "most common placements" },
+  { value: "Fit", label: "conversation before placement" }
+];
+
+const guardianOpportunityCards = [
+  ["No openings right now", "Guardian openings are shared when we are looking for the right local family fit."],
+  ["Apply early", "You can still submit a guardian application so we know your location, home setup, and interest."],
+  ["Fit comes first", "We look for great care, clear communication, a fenced yard, and reasonable distance from Salado."]
 ];
 
 const pricingFactors = [
@@ -1795,7 +2848,7 @@ function SectionIndexPage({ eyebrow, title, copy, links, children }) {
           <article className="text-card" key={link.href}>
             <h2>{link.label}</h2>
             {link.copy && <p>{link.copy}</p>}
-            <Link href={link.href} className="inline-link">Open page</Link>
+            <Link href={link.href} className="inline-link">View page</Link>
           </article>
         ))}
       </section>
@@ -1806,7 +2859,7 @@ function SectionIndexPage({ eyebrow, title, copy, links, children }) {
 
 function BreedPageTemplate({ breed }) {
   const puppies = puppyData.filter((puppy) => puppy.breedSlug === breed.slug);
-  const availableBreedPuppies = puppies.filter((puppy) => puppy.status === "Available");
+  const availableBreedPuppies = puppies.filter(isAvailablePuppy);
   const litters = publicLitterProfiles.filter((litter) => litter.breedSlug === breed.slug);
   const parents = publicParentProfiles.filter((parent) => parent.breedSlug === breed.slug);
   const breedHighlights = [
@@ -1825,7 +2878,8 @@ function BreedPageTemplate({ breed }) {
         title: `Interested in a ${breed.name}?`,
         copy: "Apply now and we will help you understand current availability, upcoming litters, and the best next step for your family.",
         primaryLabel: "Apply for a Puppy",
-        secondaryLabel: "View Available Puppies"
+        secondaryHref: "/puppies/current-litters",
+        secondaryLabel: "View Current Litters"
       }}
     >
       <ListingStatusStrip
@@ -1861,7 +2915,7 @@ function BreedPageTemplate({ breed }) {
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Available Puppies" title={`Available ${breed.name} puppies`} copy="Only puppies truly open for an approved family appear here. Reserved puppies stay on their litter pages." />
-        {availableBreedPuppies.length ? availableBreedPuppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">We do not have publicly available puppies for this breed right now. Join the waitlist or follow current litters for the newest updates.</p>}
+        {availableBreedPuppies.length ? availableBreedPuppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">We do not have available puppies for this breed right now. Join the waitlist or follow current litters for the newest updates.</p>}
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Litters" title={`${breed.name} litters`} copy="Current and planned pairings live here so families can follow timing, parent dogs, and weekly updates without crowding the Available Puppies page." />
@@ -1911,7 +2965,9 @@ function LitterPage({ litter }) {
   const parents = parentProfiles.filter((parent) => parent.slug === litter.mamaSlug || parent.slug === litter.studSlug);
   const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
-  const availablePuppies = puppies.filter((puppy) => puppy.status === "Available");
+  const availablePuppies = puppies.filter(isAvailablePuppy);
+  const reservedPuppies = puppies.filter(isReservedPuppy);
+  const waitlistMatchingPuppies = puppies.filter(isWaitlistMatchingPuppy);
   const gallery = litter.weeklyUpdateGallery || [];
   const fallbackLitterImage = litter.parentPairingImage || litter.image || gallery[0];
   const hasParentPairing = mama?.mainPhoto && stud?.mainPhoto;
@@ -1919,12 +2975,65 @@ function LitterPage({ litter }) {
   const aboutParagraphs = litter.aboutThisLitter || [];
   const visibleAboutParagraphs = aboutParagraphs.slice(0, 2);
   const extraAboutParagraphs = aboutParagraphs.slice(2);
-  const currentWeek = litter.weeklyUpdateStatus?.match(/Week\s+\d+/i)?.[0];
-  const statusLabel = availablePuppies.length
-    ? `${availablePuppies.length} available`
-    : puppies.length
-      ? `${puppies.length} puppy profile${puppies.length === 1 ? "" : "s"}`
-      : "Profiles coming soon";
+  const currentWeek =
+    puppies.flatMap((puppy) => puppy.weeklyPhotos?.map((update) => update.week) || [])[0] ||
+    litter.weeklyUpdateStatus?.match(/Week\s+\d+/i)?.[0];
+  const statusLabel = litterAvailabilityLabel(litter, puppies);
+  const pastLitterHrefs = pastLitterHrefsFor(litter);
+  const pastLitterHref = pastLitterHrefs[0] || "";
+  const pastLitterLabel = pastLitterHrefs.length > 1 ? "View Past Litters" : "View Past Litter";
+  const availabilityCallout = availablePuppies.length
+    ? {
+        count: availablePuppies.length,
+        copy: `${availablePuppies.length === 1 ? "available puppy" : "available puppies"} from this litter`
+      }
+    : waitlistMatchingPuppies.length
+      ? {
+          count: waitlistMatchingPuppies.length,
+          copy: "being offered to the breed waitlist"
+        }
+      : puppies.length && reservedPuppies.length === puppies.length
+        ? {
+            count: puppies.length,
+            copy: `${puppies.length === 1 ? "reserved puppy" : "reserved puppies"} in this litter`
+          }
+        : puppies.length
+          ? {
+              count: puppies.length,
+              copy: `${puppies.length === 1 ? "puppy profile" : "puppy profiles"} listed from this litter`
+            }
+          : {
+              count: 0,
+              copy: "puppy updates will be shared when ready"
+            };
+  const litterCta = availablePuppies.length
+    ? {
+        title: "Interested in an available puppy?",
+        copy: "Apply now or ask about availability, timing, and whether this puppy is the right fit for your family."
+      }
+    : waitlistMatchingPuppies.length
+      ? {
+          title: "Want to join this breed waitlist?",
+          copy: "Puppies from this litter are being offered to waitlist families first. Apply now to get in line for this breed."
+        }
+      : {
+          title: "Want updates on future litters?",
+          copy: "This litter is currently reserved, but you can apply for a future pairing or ask about upcoming availability."
+        };
+  const litterNextStep = availablePuppies.length
+    ? {
+        title: "Best next step",
+        copy: "If a puppy here feels like a fit, apply and mention the puppy name so we can follow up clearly."
+      }
+    : waitlistMatchingPuppies.length
+      ? {
+          title: "Best next step",
+          copy: "This litter is being worked through the breed waitlist first. Apply if you want to join the line for this breed."
+        }
+      : {
+          title: "Best next step",
+          copy: "Use this page to follow the litter photos and details. Apply when you want help with a future pairing or breed waitlist."
+        };
 
   return (
     <Layout>
@@ -1968,19 +3077,18 @@ function LitterPage({ litter }) {
             <div><dt>Price</dt><dd>{litter.priceRange}</dd></div>
           </dl>
           <div className="litter-availability-callout">
-            <span>{availablePuppies.length || puppies.length || 0}</span>
-            <p>{availablePuppies.length ? "available puppies from this litter" : puppies.length ? "puppy profiles listed from this litter" : "puppy profiles will appear here when ready"}</p>
+            <span>{availabilityCallout.count}</span>
+            <p>{availabilityCallout.copy}</p>
           </div>
-          {(currentWeek || litter.photoFolderHint) && (
-            <div className="litter-update-note">
-              {currentWeek && <strong>{currentWeek}</strong>}
-              <span>{litter.weeklyUpdateStatus || "Weekly photos will be added here as this litter grows."}</span>
+          <div className="litter-next-step-note">
+            <p className="eyebrow">{litterNextStep.title}</p>
+            <p>{litterNextStep.copy}</p>
+          </div>
+          {pastLitterHref && (
+            <div className="actions litter-summary-actions">
+              <Link href={pastLitterHref} className="button secondary">{pastLitterLabel}</Link>
             </div>
           )}
-          <div className="actions">
-            <Link href="/apply" className="button primary">Apply for a Puppy</Link>
-            <Link href="/contact" className="button secondary">Ask a Question</Link>
-          </div>
         </aside>
       </section>
       {hasAboutSection && (
@@ -2025,7 +3133,7 @@ function LitterPage({ litter }) {
         </section>
       )}
       <section className="card-list litter-puppy-list">
-        <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Each puppy card uses clean photos, website-rendered names, status labels, and compact details that can be updated weekly." />
+        <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
         {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
       </section>
       <section className="tile-grid three litter-parent-grid">
@@ -2033,10 +3141,10 @@ function LitterPage({ litter }) {
         {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
       </section>
       <section className="content-section litter-gallery-section">
-        <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="New puppy photos can be added here as the litter grows." />
+        <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
         <ImageGallery images={gallery} label={`${litter.name} weekly update`} />
       </section>
-      <CTASection title="Interested in this litter?" copy="Apply now or ask about availability, timing, and whether this pairing is the right fit for your family." primaryLabel="Apply for a Puppy" secondaryHref="/contact" secondaryLabel="Ask a Question" />
+      <CTASection title={litterCta.title} copy={litterCta.copy} primaryLabel="Apply for a Puppy" secondaryHref="/contact" secondaryLabel="Ask a Question" />
     </Layout>
   );
 }
@@ -2078,25 +3186,25 @@ function ParentDetailPage({ parent }) {
           </p>
           <ul className="clean-list parent-profile-list">
             <li>{parent.name} is one of the {familyRole}s connected to our current and planned puppy program.</li>
-            <li>Related litters are shown below as they are added to the website.</li>
-            <li>Additional photos and testing links can be added here as records are finalized.</li>
+            <li>Related litters are listed below when this parent dog has a current or planned pairing.</li>
+            <li>Health and genetic testing details are shared when families or breeders need a closer look.</li>
           </ul>
         </article>
       </section>
       <section className="content-section parent-testing-section">
-        <SectionHeader eyebrow="Health & Testing" title={`${parent.name}'s records`} copy="Testing and records are organized here so each parent profile can become more complete as links and documents are added." />
+        <SectionHeader eyebrow="Health & Testing" title={`${parent.name}'s records`} copy="Health and genetic records help families understand the care behind each Red Ranch Dogs pairing." />
         <div className="parent-testing-grid">
-          <ParentTestingPanel title="Health testing" links={parent.healthTestingLinks} emptyCopy="Health testing links will appear here once the final records are attached to this parent profile." />
-          <ParentTestingPanel title="Genetic testing" links={parent.geneticTestingLinks} emptyCopy="Genetic testing links will appear here once the final records are attached to this parent profile." />
+          <ParentTestingPanel title="Health testing" links={parent.healthTestingLinks} emptyCopy="Ask us for the latest health testing notes for this parent dog." />
+          <ParentTestingPanel title="Genetic testing" links={parent.geneticTestingLinks} emptyCopy="Ask us for the latest genetic testing notes for this parent dog." />
         </div>
       </section>
       <section className="content-section parent-gallery-section">
-        <SectionHeader eyebrow="Photos" title={`${parent.name} photos`} copy="Profile photos can be expanded over time from the Website Hub photo folders." />
+        <SectionHeader eyebrow="Photos" title={`${parent.name} photos`} copy={`A closer look at ${parent.name} from the Red Ranch Dogs program.`} />
         <ImageGallery images={gallery} label={`${parent.name} photo`} />
       </section>
       <section className="card-list parent-related-list">
         <SectionHeader eyebrow="Related Litters" title={`${parent.name}'s related litters`} />
-        {relatedLitters.length ? relatedLitters.map((litter) => <LitterCard litter={litter} key={litter.slug} />) : <p className="small-note">Related litter history will appear here as records are organized.</p>}
+        {relatedLitters.length ? relatedLitters.map((litter) => <LitterCard litter={litter} key={litter.slug} />) : <p className="small-note">Ask us about current or planned pairings connected to this parent dog.</p>}
       </section>
       <CTASection
         title={`Interested in ${parent.name}'s puppies?`}
@@ -2110,6 +3218,10 @@ function ParentDetailPage({ parent }) {
 }
 
 function PuppiesOverviewPage() {
+  const availableNow = puppyData.filter(isAvailablePuppy);
+  const nextGoHomeDates = [...new Set(availableNow.map((puppy) => puppy.goHomeDate || puppy.goHome).filter(Boolean))];
+  const previewCurrentLitters = currentLitterProfiles.slice(0, 3);
+
   return (
     <SectionIndexPage
       eyebrow="Puppies"
@@ -2117,9 +3229,43 @@ function PuppiesOverviewPage() {
       copy="Browse current availability, upcoming litters, breed information, and what comes home with each puppy."
       links={primaryNav.find((item) => item.label === "Puppies").links}
     >
-      <section className="card-list">
-        <SectionHeader eyebrow="Current Availability" title="Puppy preview" />
-        {puppyData.slice(0, 3).map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />)}
+      <ListingStatusStrip
+        items={[
+              { value: availableNow.length, label: `${availableNow.length === 1 ? "puppy" : "puppies"} available now` },
+              { value: previewCurrentLitters.length, label: `${previewCurrentLitters.length === 1 ? "current litter" : "current litters"} growing now` },
+              { value: nextGoHomeDates[0] || "Waitlist", label: availableNow.length ? "next go-home timing" : "families contacted first" }
+        ]}
+      />
+      <section className="card-list listing-content-section">
+        <SectionHeader
+          eyebrow="Current Availability"
+          title={availableNow.length ? "Available puppies" : "No puppies available right now"}
+          copy={availableNow.length ? "Only puppies truly open for an approved family appear here." : "Most picks happen through our breed-specific waitlists first. When a puppy opens for a new family, it will appear on the Available Puppies page."}
+        />
+        {availableNow.length ? (
+          availableNow.slice(0, 2).map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />)
+        ) : (
+          <article className="note-panel puppy-overview-note">
+            <h2>Want priority when a puppy opens?</h2>
+            <p>Join the waitlist for the breed you are interested in, or follow our current litters to see which puppies are growing now.</p>
+            <div className="actions">
+              <Link href="/apply" className="button primary">Apply for a Puppy</Link>
+              <Link href="/puppies/current-litters" className="button secondary">View Current Litters</Link>
+            </div>
+          </article>
+        )}
+      </section>
+      <section className="card-list listing-content-section">
+        <SectionHeader
+          eyebrow="Current Litters"
+          title="Litters growing now"
+          copy="Current litter cards show parent pairings, go-home timing, weekly puppy photos, and availability notes without crowding the Available Puppies page."
+        />
+        {previewCurrentLitters.length ? (
+          previewCurrentLitters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)
+        ) : (
+          <p className="small-note">Current litters will appear here as soon as they are ready to share.</p>
+        )}
       </section>
     </SectionIndexPage>
   );
@@ -2136,20 +3282,13 @@ function ParentsDirectoryPage({ role }) {
     : role === "stud"
       ? "Meet the studs behind the Red Ranch Dogs program, organized by breed, size, coat, photos, and related litters."
       : "Meet the mamas and studs behind the Red Ranch Dogs program, including breed, size, traits, photos, and related litters.";
-  const summaryTitle = role === "mama" ? "Mamas in the program" : role === "stud" ? "Studs in the program" : "Parent dog overview";
-  const summaryCopy = role === "mama"
-    ? "Browse the mama profiles currently organized in the Red Ranch Dogs program, including size, coat, photos, and related litter history."
-    : role === "stud"
-      ? "Browse the stud profiles currently organized in the Red Ranch Dogs program, including size, coat, photos, and related litter history."
-      : "Browse the parent dogs behind the Red Ranch Dogs program. These cards are designed to grow as parent photos, health records, and litter history are added.";
 
   return (
     <Layout>
       <PageHero eyebrow="Parents" title={title} copy={heroCopy} />
       <ParentDirectoryNav />
-      <ParentDirectorySummary parents={filteredParents} title={summaryTitle} copy={summaryCopy} />
       <section className="tile-grid three parent-directory-grid">
-        {filteredParents.length ? filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />) : <p className="small-note">Parent profiles will appear here as structured records are added.</p>}
+        {filteredParents.length ? filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />) : <p className="small-note">Ask us which parent dogs are connected to current and planned Red Ranch Dogs litters.</p>}
       </section>
     </Layout>
   );
@@ -2163,13 +3302,8 @@ function BreedParentDirectoryPage({ breedSlug }) {
     <Layout>
       <PageHero eyebrow="Parents" title={`${breed?.name || "Breed"} Parents`} copy="Meet the parent dogs in this part of the Red Ranch Dogs program, with profile details, traits, photos, and related litters." />
       <ParentDirectoryNav />
-      <ParentDirectorySummary
-        parents={filteredParents}
-        title={`${breed?.name || "Breed"} parent snapshot`}
-        copy={`These are the parent profiles currently connected to the ${breed?.name || "breed"} program. More photos, records, and litter history can be added from the parent dog sheet over time.`}
-      />
       <section className="tile-grid three parent-directory-grid">
-        {filteredParents.length ? filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />) : <p className="small-note">Parent profiles will appear here as structured records are added.</p>}
+        {filteredParents.length ? filteredParents.map((parent) => <ParentCard parent={parent} key={parent.slug} />) : <p className="small-note">Ask us which parent dogs are connected to this breed program.</p>}
       </section>
     </Layout>
   );
@@ -2189,7 +3323,7 @@ function ProcessOverviewPage() {
           <article className="text-card compact-card" key={link.href}>
             <h2>{link.label}</h2>
             {link.copy && <p>{link.copy}</p>}
-            <Link href={link.href} className="inline-link">Open page</Link>
+            <Link href={link.href} className="inline-link">View page</Link>
           </article>
         ))}
       </section>
@@ -2204,14 +3338,7 @@ function PickupDeliveryPage() {
       copy="Go-home day, local pickup, travel coordination, and delivery options are organized clearly for each litter."
       stats={pickupDeliveryStats}
     >
-      <section className="tile-grid three process-card-grid process-compact-grid process-row-list">
-        {["Pickup in Central Texas", "Flight nanny coordination", "Go-home preparation"].map((title) => (
-          <article className="text-card compact-card" key={title}>
-            <h2>{title}</h2>
-            <p>Details will be confirmed with each family based on puppy timing, travel needs, and go-home preparation.</p>
-          </article>
-        ))}
-      </section>
+      <CompactTextCardGrid items={pickupDeliveryCards} />
     </ProcessPageTemplate>
   );
 }
@@ -2220,11 +3347,16 @@ function GuardianOpportunitiesPage() {
   return (
     <Layout>
       <PageHero eyebrow="Guardian Program" title="Current Guardian Opportunities" copy="Openings are shared when Red Ranch Dogs is looking for the right local guardian family fit." />
-      <section className="content-section narrow">
-        <h2>No guardian openings right now</h2>
-        <p>Check back for future opportunities or submit a guardian application so we can learn more about your family.</p>
-        <Link href="/guardian-program/application" className="button primary">Guardian Application</Link>
-      </section>
+      <ListingStatusStrip items={guardianOpportunityStats} className="process-status-strip" />
+      <CompactTextCardGrid items={guardianOpportunityCards} />
+      <CTASection
+        title="Interested in future guardian opportunities?"
+        copy="Submit the guardian application now so we can learn about your family and follow up when the right fit opens."
+        primaryHref="/guardian-program/application"
+        primaryLabel="Guardian Application"
+        secondaryHref="/guardian-program/faq"
+        secondaryLabel="Guardian FAQ"
+      />
     </Layout>
   );
 }
@@ -2233,27 +3365,15 @@ function ReproductiveServicesPage() {
   return (
     <Layout>
       <PageHero eyebrow="Stud Services" title="Reproductive Services" copy="Stud service details, timing, paperwork, and communication are organized here for breeder inquiries." />
-      <section className="tile-grid three">
-        {["Stud inquiries", "Timing support", "Breeder communication"].map((title) => (
-          <article className="text-card" key={title}>
-            <Sparkles size={24} />
-            <h2>{title}</h2>
-            <p>Share your breeding goals, timing, and questions so we can guide you through the next step.</p>
-          </article>
-        ))}
-      </section>
-    </Layout>
-  );
-}
-
-function ShippingCollectionPage() {
-  return (
-    <Layout>
-      <PageHero eyebrow="Stud Services" title="Shipping and Collection Info" copy="Chilled semen shipping, collection timing, and breeder coordination details will be confirmed before each collection." />
-      <section className="content-section narrow">
-        <h2>Information to collect</h2>
-        <p>Collection timing, shipping windows, progesterone testing expectations, and breeder coordination are confirmed directly before each collection.</p>
-      </section>
+      <CompactTextCardGrid items={reproductiveServiceCards} className="stud-service-steps" />
+      <CTASection
+        title="Ready to ask about stud services?"
+        copy="Send a short breeder inquiry and we will help with stud fit, timing, records, AI, or service coordination."
+        primaryHref="/stud-services#stud-inquiry"
+        primaryLabel="Start Stud Inquiry"
+        secondaryHref="/stud-services/our-studs"
+        secondaryLabel="View Studs"
+      />
     </Layout>
   );
 }
@@ -2287,7 +3407,7 @@ function AboutOverviewPage() {
 
 function AvailablePuppiesPage() {
   const [breedFilter, setBreedFilter] = useState("All");
-  const availableNow = puppyData.filter((puppy) => puppy.status === "Available");
+  const availableNow = puppyData.filter(isAvailablePuppy);
   const breedOptions = ["All", ...new Set(availableNow.map((puppy) => puppy.breed).filter(Boolean))];
   const nextGoHomeDates = [...new Set(availableNow.map((puppy) => puppy.goHomeDate || puppy.goHome).filter(Boolean))];
   const filteredPuppies = availableNow
@@ -2303,7 +3423,7 @@ function AvailablePuppiesPage() {
     <BuyerPageTemplate
       eyebrow="Puppies"
       title="Available Puppies"
-      copy="Meet the puppies currently available from Red Ranch Dogs, then apply or ask about the fit when one catches your eye."
+      copy={availableNow.length ? "Meet the puppies currently available from Red Ranch Dogs, then apply or ask about the fit when one catches your eye." : "When a puppy is truly open for a new family, it will appear here. In the meantime, the breed waitlists and current litter pages are the best next steps."}
     >
       {availableNow.length > 0 ? (
         <>
@@ -2326,12 +3446,12 @@ function AvailablePuppiesPage() {
             </section>
           )}
           <section className="card-list available-puppy-list listing-content-section">
-            <SectionHeader eyebrow="Current Availability" title="Available now" copy="This page only shows puppies that are currently open for an approved family. Reserved puppies live on their litter pages." />
+            <SectionHeader eyebrow="Current Availability" title="Available now" copy="This page only shows puppies that are truly open for an approved family. Reserved puppies and waitlist-matching litters stay on their litter pages." />
             {filteredPuppies.length ? filteredPuppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />) : <p className="small-note">No puppies match those filters yet.</p>}
           </section>
           <section className="content-section">
             <SectionHeader eyebrow="Next Steps" title="How families move forward" copy="The process is meant to be clear and personal, not a guessing game." />
-            <ProcessStepCards steps={puppyNextSteps} />
+            <ProcessStepCards steps={puppyNextSteps} className="buyer-next-step-cards" />
           </section>
           <CTASection title="Ready to ask about a puppy?" copy="Apply now and we will help you understand availability, timing, and whether a current puppy or future litter is the right fit." primaryLabel="Apply for a Puppy" secondaryHref="/puppies/current-litters" secondaryLabel="View Current Litters" />
         </>
@@ -2340,18 +3460,23 @@ function AvailablePuppiesPage() {
           <ListingStatusStrip
             items={[
               { value: "0", label: "available puppies now" },
-              { value: "First", label: "waitlist families receive priority picking" },
-              { value: "Soon", label: "new updates posted as openings happen" }
+              { value: "Waitlist", label: "priority picking for deposit families" },
+              { value: "Soon", label: "new openings post here" }
             ]}
           />
-          <section className="content-section narrow">
-            <h2>No available puppies right now</h2>
-            <p>We are currently working through breed-specific waitlists, where families with deposits receive priority picking. When a puppy opens publicly, it will appear here first.</p>
-            <div className="actions">
-              <Link href="/apply" className="button primary">Apply</Link>
-              <Link href="/puppies/current-litters" className="button secondary">View Current Litters</Link>
-            </div>
-          </section>
+          <SmartEmptyState
+            eyebrow="Availability Update"
+            title="No puppies available right now"
+            copy="We are currently working through breed-specific waitlists. Families with deposits receive priority picking first, and if a puppy opens for a new family, this page is where it will appear."
+            steps={[
+              "Apply for the breed waitlist that fits your family.",
+              "Follow current litters for photos, timing, and availability notes.",
+              "Check back here when new openings are posted."
+            ]}
+            primaryLabel="Apply for a Puppy"
+            secondaryHref="/puppies/current-litters"
+            secondaryLabel="View Current Litters"
+          />
         </>
       )}
     </BuyerPageTemplate>
@@ -2360,156 +3485,307 @@ function AvailablePuppiesPage() {
 
 function CurrentLittersPage() {
   const currentLitterCount = currentLitterProfiles.length;
+  const currentAvailablePuppies = currentLitterProfiles.flatMap((litter) => availablePuppiesForLitter(litter));
+  const currentWaitlistMatchingPuppies = currentLitterProfiles.flatMap((litter) => puppiesForLitter(litter).filter(isWaitlistMatchingPuppy));
+  const currentAvailableLitter = currentLitterProfiles.find((litter) => availablePuppiesForLitter(litter).length);
+  const nextAvailableGoHome = currentAvailableLitter?.goHomeDate || currentAvailableLitter?.goHome || "By litter";
+  const nextCurrentGoHome = currentLitterProfiles[0]?.goHomeDate || currentLitterProfiles[0]?.goHome || "By litter";
+  const availabilityValue = currentAvailablePuppies.length
+    || (currentWaitlistMatchingPuppies.length ? "Waitlist" : "Reserved");
+  const availabilityLabel = currentAvailablePuppies.length
+    ? "puppies open now"
+    : currentWaitlistMatchingPuppies.length
+      ? "matching in progress"
+      : "future waitlist best";
 
   return (
     <BuyerPageTemplate
       eyebrow="Puppies"
       title="Current Litters"
-      copy="Follow the Red Ranch Dogs litters that are born now, including weekly puppy photos, go-home timing, and availability notes."
-      cta={{
-        title: "Interested in a current or future litter?",
-        copy: "Apply now and we will help you understand availability, waitlist timing, and whether a puppy from a current litter may be the right fit.",
-        primaryLabel: "Apply for a Puppy",
-        secondaryHref: "/puppies/upcoming-litters",
-        secondaryLabel: "View Upcoming Litters"
-      }}
+      copy="Current Red Ranch Dogs litters with parent pairings, puppy photos, go-home timing, and availability notes."
     >
       <ListingStatusStrip
         items={[
           { value: currentLitterCount, label: `${currentLitterCount === 1 ? "current litter" : "current litters"} growing now` },
-          { value: "Weekly", label: "puppy photos and notes live here" },
-          { value: "First", label: "waitlist families pick in order" }
+          { value: availabilityValue, label: availabilityLabel },
+          { value: currentAvailablePuppies.length ? nextAvailableGoHome : nextCurrentGoHome, label: currentAvailablePuppies.length ? "next available go-home" : "next current go-home" }
         ]}
       />
-      <section className="card-list listing-content-section">
-        <SectionHeader eyebrow="Growing Now" title="Current litters" copy="Each litter card leads to parent details, puppy cards, weekly photos, and go-home information." />
-        {currentLitterProfiles.length ? (
-          currentLitterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)
-        ) : (
-          <p className="small-note">No current litters are posted right now. View upcoming litters or join the waitlist to hear what is planned next.</p>
-        )}
-      </section>
+      {currentLitterProfiles.length ? (
+        <>
+          <section className="card-list listing-content-section current-litter-list">
+            <SectionHeader
+              eyebrow="Growing Now"
+              title="Current litters"
+              copy="Litters are ordered by go-home timing. Each card opens the full litter page with parent details, puppy photos, compact status notes, and availability."
+            />
+            {currentLitterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
+          </section>
+          <CTASection
+            title="Want help choosing a path?"
+            copy="Apply and we will help you understand current litters, waitlist timing, and whether an available puppy or future pairing is the right fit."
+            primaryLabel="Apply for a Puppy"
+            secondaryHref="/puppies/upcoming-litters"
+            secondaryLabel="View Upcoming Litters"
+          />
+        </>
+      ) : (
+        <SmartEmptyState
+          eyebrow="Current Litter Update"
+          title="No current litters posted"
+          copy="When puppies are growing now, this page will show parent pairings, weekly photos, go-home timing, and availability notes."
+          steps={[
+            "View upcoming litters to see planned pairings.",
+            "Apply for the breed waitlist that fits your family.",
+            "Watch this page for current litter updates."
+          ]}
+          primaryLabel="Apply for a Puppy"
+          secondaryHref="/puppies/upcoming-litters"
+          secondaryLabel="View Upcoming Litters"
+        />
+      )}
     </BuyerPageTemplate>
   );
 }
 
 function UpcomingLittersPage() {
   const plannedLitterCount = plannedLitterProfiles.length;
+  const nextPlannedTiming = plannedLitterProfiles.find((litter) => litter.expectedTiming || litter.delivery)?.expectedTiming || "To be announced";
+  const nextPlannedTimingDisplay = nextPlannedTiming.replace(/^Expected\s+/i, "");
+  const groupedPlannedLitters = plannedLitterBreedGroups
+    .map((group) => ({
+      ...group,
+      litters: plannedLitterProfiles.filter((litter) => litter.breedSlug === group.slug)
+    }))
+    .filter((group) => group.litters.length);
+  const ungroupedPlannedLitters = plannedLitterProfiles.filter((litter) => !plannedLitterBreedGroups.some((group) => group.slug === litter.breedSlug));
 
   return (
     <BuyerPageTemplate
       eyebrow={`Updated ${upcomingLitters.updated}`}
       title="Upcoming Litters"
-      copy="Planned and expected litters from our Goldendoodle, Cavapoo, and Bernedoodle program."
-      cta={{
-        title: "Want to be notified about upcoming litters?",
-        copy: "Join the waitlist so we can help you understand breed fit, expected timing, and what to expect when litters are announced.",
-        primaryLabel: "Join the Waitlist",
-        secondaryLabel: "View Available Puppies"
-      }}
+      copy="Planned and expected pairings from our Goldendoodle, Cavapoo, and Bernedoodle program."
     >
       <ListingStatusStrip
         items={[
           { value: plannedLitterCount, label: `${plannedLitterCount === 1 ? "planned pairing" : "planned pairings"}` },
-          { value: "First", label: "waitlist families are contacted in order" },
-          { value: "Updated", label: "timing shifts as plans are confirmed" }
+          { value: nextPlannedTimingDisplay, label: "next expected timing" },
+          { value: "Waitlist", label: "families contacted in order" }
         ]}
       />
-      <section className="card-list listing-content-section">
-        <SectionHeader eyebrow="Planned Litters" title="Pairing preview" copy="Pairings, timing, and availability are updated as plans are confirmed." />
-        {plannedLitterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
-      </section>
-      <section className="content-section legacy-planning-notes">
-        <article className="note-panel">
-          <h2>Planning notes</h2>
-          <p>{upcomingLitters.pairingNote}</p>
-          <p>Red Ranch Dogs prioritizes the well-being of each breeding dog. Guardian-family mamas live normal family lives and come to Red Ranch Dogs only during breeding and whelping windows.</p>
-        </article>
-      </section>
+      {plannedLitterCount > 0 ? (
+        <>
+          <section className="upcoming-litter-groups listing-content-section">
+            <SectionHeader eyebrow="Planned Litters" title="Pairing previews" copy="Pairings are grouped by breed and ordered by expected timing, with availability updated as plans are confirmed." />
+            {groupedPlannedLitters.map((group) => (
+              <section className="upcoming-litter-group" key={group.slug} aria-labelledby={`${group.slug}-upcoming-heading`}>
+                <div className="compact-section-heading">
+                  <p className="eyebrow">{group.eyebrow}</p>
+                  <h2 id={`${group.slug}-upcoming-heading`}>{group.title}</h2>
+                  <p>{group.copy}</p>
+                </div>
+                <div className="upcoming-litter-card-list">
+                  {group.litters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
+                </div>
+              </section>
+            ))}
+            {ungroupedPlannedLitters.length > 0 && (
+              <section className="upcoming-litter-group" aria-labelledby="other-upcoming-litters-heading">
+                <div className="compact-section-heading">
+                  <p className="eyebrow">More Pairings</p>
+                  <h2 id="other-upcoming-litters-heading">Additional planned litters</h2>
+                  <p>Additional pairings will be updated as program plans are confirmed.</p>
+                </div>
+                <div className="upcoming-litter-card-list">
+                  {ungroupedPlannedLitters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
+                </div>
+              </section>
+            )}
+          </section>
+          <CTASection
+            title="Want to be contacted when a litter fits?"
+            copy="Apply for the breed waitlist and we will help you understand timing, puppy picks, and which pairings may be a good fit."
+            primaryLabel="Apply for a Puppy"
+            secondaryHref="/puppies/current-litters"
+            secondaryLabel="View Current Litters"
+          />
+        </>
+      ) : (
+        <SmartEmptyState
+          eyebrow="Litter Planning"
+          title="No upcoming litters posted"
+          copy="When planned pairings are ready to share, this page will show expected timing, parent dogs, size range, coat notes, and availability updates."
+          steps={[
+            "Apply for the breed waitlist that fits your family.",
+            "Watch Current Litters for puppies already growing.",
+            "Check back as pairings and timing are confirmed."
+          ]}
+          primaryLabel="Apply for a Puppy"
+          secondaryHref="/puppies/current-litters"
+          secondaryLabel="View Current Litters"
+        />
+      )}
     </BuyerPageTemplate>
   );
 }
 
 function PreviousLittersPage() {
+  const publicArchives = publicPreviousLitterArchivePaths
+    .map((href) => ({ href, ...previousLitterArchiveGroups[href] }))
+    .filter((archive) => archive.title);
+
   return (
     <Layout>
-      <PageHero eyebrow="Archive" title="Previous Litters" copy="A clean archive keeps past pairings easy to find and gives future puppy families a sense of size, color, and coat history." />
-      <section className="tile-grid">
-        {previousLitterGroups.map((group) => (
-          <article className="text-card parent-card" key={group.href}>
-            <img src={group.image} alt={group.name} />
-            <h2>{group.name}</h2>
-            <p>{group.copy}</p>
-            <Link href={group.href} className="inline-link">View archive</Link>
-          </article>
-        ))}
+      <PageHero
+        eyebrow="Previous Litters"
+        title="Past puppy pairings"
+        copy="Browse previous Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle litters by breed and pairing. These pages are here to show the parents and the puppies they produced."
+      />
+      <section className="previous-litter-breed-groups listing-content-section">
+        {publicArchives.map((archive) => {
+          const litters = archive.litters
+            .map((href) => ({ href, litter: previousLitterDetails[href] }))
+            .filter(({ litter }) => Boolean(litter));
+          const archiveBreed = archive.title.replace("Previous Litters ", "");
+          const pairingBreed = archiveBreed.replace(/s$/, "");
+
+          return (
+            <section className="upcoming-litter-group previous-litter-group" key={archive.href} id={`previous-${archiveBreed.toLowerCase()}`}>
+              <div className="compact-section-heading">
+                <p className="eyebrow">{archiveBreed}</p>
+                <h2>{pairingBreed} pairings</h2>
+                <p>{archive.copy}</p>
+              </div>
+              <div className="upcoming-litter-card-list">
+                {litters.map(({ href, litter }) => <PreviousLitterCard litter={litter} href={href} key={href} />)}
+              </div>
+            </section>
+          );
+        })}
       </section>
+      <CTASection
+        title="Interested in a similar future litter?"
+        copy="If you like a previous pairing, apply for the breed waitlist and we can help you understand current timing, parent dogs, and upcoming options."
+        primaryLabel="Apply for a Puppy"
+        secondaryHref="/puppies/upcoming-litters"
+        secondaryLabel="View Upcoming Litters"
+      />
     </Layout>
   );
 }
 
 function PreviousLitterArchivePage({ archive }) {
-  const litters = archive.litters.map((href) => previousLitterDetails[href]).filter(Boolean);
+  const litters = archive.litters
+    .map((href) => ({ href, litter: previousLitterDetails[href] }))
+    .filter(({ litter }) => Boolean(litter));
+  const archiveBreed = archive.title.replace("Previous Litters ", "");
+  const pairingBreed = archiveBreed.replace(/s$/, "");
 
   return (
     <Layout>
-      <PageHero eyebrow="Previous Litters" title={archive.title} copy={archive.copy} image={litters[0]?.image || images.doodles} />
-      <section className="tile-grid">
-        {litters.map((litter) => (
-          <article className="text-card parent-card" key={litter.name}>
-            <img src={litter.image} alt={litter.name} />
-            <h2>{litter.name}</h2>
-            <p>{litter.breed}</p>
-            <p>{litter.facts.find(([label]) => label === "Born" || label === "Delivery" || label === "Expected")?.[1]}</p>
-            <Link href={Object.keys(previousLitterDetails).find((href) => previousLitterDetails[href] === litter)} className="inline-link">View litter</Link>
-          </article>
-        ))}
+      <PageHero
+        eyebrow="Previous Litters"
+        title={`${pairingBreed} pairings`}
+        copy={archive.copy}
+      />
+      <section className="card-list listing-content-section previous-litter-archive-list">
+        <SectionHeader
+          eyebrow="Pairings"
+          title={`Past ${pairingBreed.toLowerCase()} litters`}
+          copy="Each card opens a past litter page with the parent pairing and puppy names from that litter."
+        />
+        {litters.map(({ href, litter }) => <PreviousLitterCard litter={litter} href={href} key={href} />)}
       </section>
+      <CTASection
+        title="Want a puppy from a similar pairing?"
+        copy="Past litters are a helpful reference, but current and upcoming timing changes by season. Apply and we can help you find the closest fit."
+        primaryLabel="Apply for a Puppy"
+        secondaryHref="/puppies/upcoming-litters"
+        secondaryLabel="View Upcoming Litters"
+      />
     </Layout>
   );
 }
 
-function PreviousLitterDetailPage({ litter }) {
+function PreviousLitterDetailPage({ litter, href }) {
+  const currentLitterHref = currentLitterHrefForPastLitter(href);
+  const archiveHref = archiveHrefForPreviousLitter(href);
+  const puppyPhotos = litter.puppyPhotos || [];
+  const hasPuppyPhotos = puppyPhotos.length > 0;
+
   return (
     <Layout>
-      <PageHero eyebrow="Previous Litter" title={litter.name} copy={litter.breed} image={litter.image} />
-      <section className="content-section">
-        <article className="group-panel">
-          <h2>Overview</h2>
+      <PageHero eyebrow="Previous Litter" title={litter.name} copy={litter.breed} />
+      <section className="previous-litter-detail-shell">
+        <article className="previous-litter-feature-card group-panel">
+          <PreviousLitterPairingMedia litter={litter} large />
+          <div className="previous-litter-feature-caption">
+            <span className="status-badge">Past litter</span>
+            <strong>{litter.parents}</strong>
+          </div>
+        </article>
+        <article className="group-panel previous-litter-overview-panel">
+          <p className="eyebrow">Pairing Reference</p>
+          <h2>{litter.name} at a glance</h2>
+          <p>
+            This past litter shows the parent pairing and puppies from a previous Red Ranch Dogs litter.
+            It is meant as a visual reference for families, not a current availability or pricing page.
+          </p>
           <dl className="details facts-wide">
-            {litter.facts.map(([label, value]) => (
+            {publicPreviousLitterFacts(litter).map(([label, value]) => (
               <div key={`${label}-${value}`}>
                 <dt>{label}</dt>
                 <dd>{value}</dd>
               </div>
             ))}
+            <div>
+              <dt>Pairing</dt>
+              <dd>{litter.parents}</dd>
+            </div>
           </dl>
-          <p><strong>Parents:</strong> {litter.parents}</p>
         </article>
       </section>
-      <section className="content-section">
-        <h2>{litter.theme}</h2>
-        {litter.puppies.length > 0 ? (
-          <div className="tile-grid">
+      <section className="content-section previous-puppy-section">
+        <SectionHeader
+          eyebrow="Puppies"
+          title={litter.theme || "Puppies from this litter"}
+          copy={
+            hasPuppyPhotos
+              ? "These photos show the puppies from this previous litter so families can see the look and style this pairing produced."
+              : "These names show the puppy theme from this pairing so families can understand the look and style of previous Red Ranch Dogs litters."
+          }
+        />
+        {hasPuppyPhotos ? (
+          <div className="previous-puppy-photo-grid">
+            {puppyPhotos.map((puppy) => (
+              <article className="previous-puppy-photo-card" key={puppy.name}>
+                <img src={puppy.image} alt={`${puppy.name} from ${litter.name}`} loading="lazy" />
+                <div>
+                  <h3>{puppy.name}</h3>
+                  {puppy.note && <p>{puppy.note}</p>}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : litter.puppies.length > 0 ? (
+          <div className="previous-puppy-grid">
             {litter.puppies.map((name) => (
-              <article className="text-card" key={name}>
+              <article className="previous-puppy-chip" key={name}>
                 <h3>{name}</h3>
               </article>
             ))}
           </div>
         ) : (
-          <p className="small-note">Individual puppy names are not shown for this archived litter.</p>
+          <p className="small-note">Individual puppy names are not shown for this past litter.</p>
         )}
       </section>
-      {litter.milestones.length > 0 && (
-        <section className="content-section narrow">
-          <h2>Photo Milestones</h2>
-          <ul className="check-list">
-            {litter.milestones.map((item) => <li key={item}>{item}</li>)}
-          </ul>
-          <p className="small-note">Additional gallery photos may be added over time.</p>
-        </section>
-      )}
+      <CTASection
+        title="Looking for this kind of puppy?"
+        copy="Use this past litter as a reference point, then apply or review upcoming litters to see what is currently planned."
+        primaryLabel="Apply for a Puppy"
+        secondaryHref={currentLitterHref || archiveHref}
+        secondaryLabel={currentLitterHref ? "View Current Pairing" : "Back to Previous Litters"}
+      />
     </Layout>
   );
 }
@@ -2645,36 +3921,34 @@ function PricingPage() {
         title: "Ready to talk through pricing and availability?",
         copy: "Apply now and we will help you understand current puppies, upcoming litters, and the right fit for your family.",
         primaryLabel: "Apply for a Puppy",
-        secondaryLabel: "View Available Puppies"
+        secondaryHref: "/puppies/current-litters",
+        secondaryLabel: "View Current Litters"
       }}
     >
       <PricingSection items={pricingProfiles.length ? pricingProfiles : priceGroups} />
-      <section className="tile-grid four priority-grid process-card-grid process-compact-grid">
-        {pricingFactors.map(([title, copy]) => (
-          <article className="text-card icon-card compact-card" key={title}>
-            <Sparkles size={24} />
-            <h2>{title}</h2>
-            <p>{copy}</p>
-          </article>
-        ))}
-      </section>
-      <section className="content-section process-compact-section">
-        <article className="group-panel">
-          <h2>What is included with each puppy?</h2>
-          <ul className="check-list included-list">
-            {includedWithPuppy.map((item) => <li key={item}>{item}</li>)}
-          </ul>
-        </article>
-      </section>
-      <section className="tile-grid three process-card-grid process-note-grid process-row-list">
-        {pricingTimingCards.map(([title, copy]) => (
-          <article className="text-card compact-card" key={title}>
-            <h2>{title}</h2>
-            <p>{copy}</p>
-            {title === "Final Payment" && <p><strong>Zelle recipient:</strong> Red Ranch Dogs, {brand.paymentEmail}</p>}
-          </article>
-        ))}
-      </section>
+      <CompactTextCardGrid
+        columns="four"
+        className="pricing-factor-grid"
+        items={pricingFactors.map(([title, copy]) => ({ title, copy, icon: Sparkles }))}
+      />
+      <ChecklistCardGrid
+        columns="one"
+        className="pricing-included-grid"
+        items={[{
+          title: "What is included with each puppy?",
+          copy: "Every puppy goes home with the essentials families need for a clear transition.",
+          items: includedWithPuppy,
+          icon: ShieldCheck
+        }]}
+      />
+      <CompactTextCardGrid
+        className="pricing-timing-grid"
+        items={pricingTimingCards.map(([title, copy]) => ({
+          title,
+          copy: title === "Final Payment" ? `${copy} Zelle recipient: Red Ranch Dogs, ${brand.paymentEmail}.` : copy,
+          icon: title === "Deposit" ? CheckCircle2 : MessageCircle
+        }))}
+      />
     </ProcessPageTemplate>
   );
 }
@@ -2714,7 +3988,10 @@ function ContactPage() {
           <Phone size={24} />
           <h2>Call or text</h2>
           <p>{brand.phone}</p>
-          <a className="button small" href={`tel:+1${brand.phone.replace(/\D/g, "")}`}>Call</a>
+          <div className="contact-method-actions">
+            <a className="button primary small" href={brand.sms}>Text Us</a>
+            <a className="button secondary small" href={`tel:+1${brand.phone.replace(/\D/g, "")}`}>Call</a>
+          </div>
         </article>
         <article className="text-card contact-method-card">
           <Mail size={24} />
@@ -2736,10 +4013,19 @@ function TeamPage() {
       <PageHero
         eyebrow="Our Team"
         title="Meet the Team"
-        copy="Raising healthy, happy puppies is a team effort built on daily care, monitoring, socialization, cleaning, feeding, grooming, and communication."
-        image={aboutStoryImage}
-        className="family-page-hero"
+        copy="Meet the people helping keep puppy care, parent dog care, communication, and weekly updates moving at Red Ranch Dogs."
+        className="team-page-hero"
       />
+      <section className="team-collage-section" aria-label="Red Ranch Dogs team photos">
+        <div className="team-collage">
+          {cards.map((member) => (
+            <figure className="team-collage-frame" key={`collage-${member.name}`}>
+              <img src={member.photo || member.image} alt={`${member.name} with Red Ranch Dogs`} />
+              <figcaption>{member.name}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
       <section className="content-section narrow team-intro-panel">
         <p>Behind every puppy update, clean pen, vet check, bath, photo day, and family conversation is a hands-on team working through the details together.</p>
       </section>
@@ -2755,7 +4041,7 @@ function TeamPage() {
       </section>
       <section className="content-section narrow">
         <h2>Care is in the daily details</h2>
-        <p>From cleaning and feeding to monitoring weights, providing ENS and ESI, potty training, bathing, and grooming, the team handles the day-to-day work that helps each puppy thrive.</p>
+        <p>From cleaning and feeding to monitoring weights, enrichment, potty training, bathing, grooming, and family communication, the team handles the daily work that helps each puppy thrive.</p>
       </section>
     </Layout>
   );
@@ -2804,13 +4090,22 @@ function ReviewsPage() {
       <section className="content-section reviews-intro-panel">
         <article className="group-panel">
           <p className="eyebrow">Five-star feedback</p>
-          <h2>Trusted by families across the country</h2>
+          <h2>Trusted by puppy families</h2>
           <p>We are grateful to be nearing 100 five-star Google reviews from puppy families who trusted Red Ranch Dogs with one of the sweetest decisions they will make.</p>
           <div className="actions">
             <a className="button primary" href={brand.googleReviews} target="_blank" rel="noreferrer">Read Google Reviews</a>
             <Link className="button secondary" href="/apply">Apply for a Puppy</Link>
           </div>
         </article>
+      </section>
+      <section className="feature-grid review-theme-grid" aria-label="Common review themes">
+        {reviewThemes.map(({ title, copy, icon: Icon }) => (
+          <article className="feature-card review-theme-card" key={title}>
+            <Icon size={22} aria-hidden="true" />
+            <h2>{title}</h2>
+            <p>{copy}</p>
+          </article>
+        ))}
       </section>
       <TestimonialSection items={reviewItems} />
       <CTASection
@@ -2829,14 +4124,15 @@ function WhatsIncludedPage() {
   return (
     <Layout>
       <PageHero eyebrow="Puppy Care" title="What Comes With Your Puppy?" copy="Every puppy is prepared for home with health care, early socialization, confidence-building, and transition support." />
-      <section className="tile-grid">
-        {puppyIncludedSections.map(([title, items]) => (
-          <article className="text-card" key={title}>
-            <h2>{title}</h2>
-            <ul className="check-list">{items.map((item) => <li key={item}>{item}</li>)}</ul>
-          </article>
-        ))}
-      </section>
+      <ChecklistCardGrid items={puppyIncludedSections} />
+      <CTASection
+        title="Ready to understand the full puppy process?"
+        copy="Start with the application or browse current litters when you are comparing timing, breed fit, and availability."
+        primaryHref="/apply"
+        primaryLabel="Apply for a Puppy"
+        secondaryHref="/process/faq"
+        secondaryLabel="Puppy FAQ"
+      />
     </Layout>
   );
 }
@@ -2929,13 +4225,13 @@ function DamDetailPage({ dam }) {
               {dam.previousLitters.map((item) => <li key={item}>{item}</li>)}
             </ul>
           ) : (
-            <p>Previous litter history will appear here as records are organized.</p>
+            <p>Ask us about current or planned pairings connected to this parent dog.</p>
           )}
         </article>
         <article className="text-card">
           <Sparkles size={24} />
-          <h2>Gallery Status</h2>
-          <p>Additional profile photos may be added over time.</p>
+          <h2>Photos</h2>
+          <p>See more of this parent dog in the profile photos above.</p>
         </article>
       </section>
     </Layout>
@@ -2944,10 +4240,10 @@ function DamDetailPage({ dam }) {
 
 function ApplicationProcessPage() {
   const steps = [
-    ["Apply", "Tell us your preferred breed, size range, gender preference, and timeline."],
-    ["Join waitlist", "A $500 non-refundable deposit secures your place on a breed-specific waitlist."],
-    ["Get updates", "We notify waitlists when litters are planned or born and share photos and videos as puppies grow."],
-    ["Pick or pass", "You can move forward with a litter or pass and remain on your breed waitlist."],
+    ["Apply", "Tell us which breed you are interested in, your size range, gender preference, and timing."],
+    ["Join the right list", "A $500 non-refundable deposit secures your place on that breed's waitlist and applies toward your puppy."],
+    ["Get updates", "We notify the matching breed waitlist when litters are planned or born and share updates as puppies grow."],
+    ["Pick or pass", "You can move forward with a litter or pass and remain on that breed's waitlist for a future opportunity."],
     ["Go home", "Puppies go home at 7-8 weeks old with vet records, vaccines, and starter guidance."]
   ];
 
@@ -2959,7 +4255,7 @@ function ApplicationProcessPage() {
       stats={processOverviewStats}
     >
       <section className="content-section process-compact-section">
-        <SectionHeader eyebrow="How It Works" title="The path families follow" copy="A simple process keeps the experience clear without making families guess what comes next." />
+        <SectionHeader eyebrow="How It Works" title="The path families follow" copy="Families choose the breed they are interested in, then we keep the process clear from waitlist to puppy pick to go-home day." />
         <ProcessStepCards steps={steps} />
       </section>
       <section className="content-section narrow process-note-panel">
@@ -2975,6 +4271,16 @@ function ApplicationPage() {
   return (
     <Layout>
       <PageHero eyebrow="Application & Waitlist" title="Puppy Application" copy="Tell us about your family, puppy preferences, timing, and any questions so we can help you understand the best next step." />
+      <BuyerGuidancePanel
+        eyebrow="Before You Apply"
+        title="A simple first step"
+        copy="The application starts the conversation. We will help you understand breed fit, timing, current litters, and whether a waitlist spot makes sense."
+        steps={["Share your breed, size, timing, and any puppy or litter you are watching.", "We follow up with availability, waitlist guidance, and next-step details.", "A deposit only comes after the fit and timing make sense."]}
+        primaryHref="/process/faq"
+        primaryLabel="Read FAQ"
+        secondaryHref="/process/waitlist"
+        secondaryLabel="View Waitlist"
+      />
       <section className="form-shell">
         <LeadForm formType="application" title="Application details" />
       </section>
@@ -3000,8 +4306,8 @@ function WaitlistPage() {
         title: "Ready to join a waitlist?",
         copy: "Apply now and we will help you understand breed fit, current availability, and what the next step looks like.",
         primaryLabel: "Apply for a Puppy",
-        secondaryHref: "/puppies/available",
-        secondaryLabel: "View Available Puppies"
+        secondaryHref: "/puppies/current-litters",
+        secondaryLabel: "View Current Litters"
       }}
     >
       <section className="waitlist-board">
@@ -3024,7 +4330,7 @@ function WaitlistPage() {
             </article>
           ))}
         </div>
-        {lastUpdated && <p className="waitlist-updated small-note">Last updated {lastUpdated} from the Website Hub waitlist data.</p>}
+        {lastUpdated && <p className="waitlist-updated small-note">Last updated {lastUpdated}.</p>}
       </section>
       <section className="tile-grid four priority-grid waitlist-policy-grid process-card-grid process-note-grid">
         {waitlistPolicies.map(([title, copy]) => (
@@ -3038,7 +4344,7 @@ function WaitlistPage() {
       <section className="content-section narrow waitlist-note-panel process-note-panel">
         <article className="group-panel">
           <h2>Public list privacy</h2>
-          <p>This public list mirrors the Waitlist Sheet structure in the Website Hub. Each row represents one active waitlist spot, using first name and last initial only.</p>
+          <p>Each row represents one active waitlist spot using first name and last initial only. Families are contacted in order of deposit placed.</p>
           <p className="small-note">The public page should never show emails, phone numbers, deposit dates, application notes, or full last names.</p>
         </article>
       </section>
@@ -3067,7 +4373,7 @@ function JoinWaitlistPage() {
         <article className="text-card icon-card compact-card">
           <CheckCircle2 size={24} />
           <h2>Pick or Pass</h2>
-          <p>Families can pass on a litter and remain on the general waitlist without starting over.</p>
+          <p>Families can pass on a litter and remain on their breed waitlist without starting over.</p>
         </article>
         <article className="text-card icon-card compact-card">
           <Heart size={24} />
@@ -3090,56 +4396,15 @@ function StudServicesPage() {
   return (
     <Layout>
       <PageHero eyebrow="Stud Services" title="Health-Tested Stud Services" copy="Health-tested stud options, reproductive education, and breeder inquiry details for approved programs." image={images.studGoldendoodle} />
-      <section className="content-section narrow">
-        <article className="text-card">
-          <SectionHeader
-            eyebrow="Breeder Inquiry"
-            title="A simple first step for stud service questions"
-            copy="If you have a stud in mind, tell us who you are considering. If you are still matching traits, describe what you are hoping for and we can point you toward the best fit."
-          />
-          <dl className="details facts-wide compact-details">
-            <div>
-              <dt>Stud Fee</dt>
-              <dd>$1,500 for most studs</dd>
-            </div>
-            <div>
-              <dt>Garth Brooks</dt>
-              <dd>$2,000 stud fee</dd>
-            </div>
-            <div>
-              <dt>Side-by-side AI</dt>
-              <dd>Included at Red Ranch Dogs</dd>
-            </div>
-            <div>
-              <dt>Health Requirement</dt>
-              <dd>Negative brucellosis required</dd>
-            </div>
-          </dl>
-        </article>
+      <ListingStatusStrip items={studServiceStats} className="process-status-strip" />
+      <section className="content-section process-compact-section">
+        <SectionHeader
+          eyebrow="Breeder Inquiry"
+          title="A simple first step for stud service questions"
+          copy="If you have a stud in mind, tell us who you are considering. If you are still matching traits, describe what you are hoping for and we can point you toward the best fit."
+        />
       </section>
-      <section className="tile-grid three compact-grid process-row-list stud-service-steps">
-        <article className="text-card icon-card compact-card">
-          <MessageCircle size={24} />
-          <div>
-            <h2>Start With an Inquiry</h2>
-            <p>Send the basics about your program, female, timing, and which Red Ranch Dogs stud you are considering.</p>
-          </div>
-        </article>
-        <article className="text-card icon-card compact-card">
-          <Heart size={24} />
-          <div>
-            <h2>Text When She Is in Heat</h2>
-            <p>When your girl comes in, we usually start a group text to coordinate cycle timing, progesterone updates, AI, or shipping.</p>
-          </div>
-        </article>
-        <article className="text-card icon-card compact-card">
-          <ShieldCheck size={24} />
-          <div>
-            <h2>Confirm Records and Timing</h2>
-            <p>Before service, we confirm negative brucellosis, timing, payment, and whether you are coming to Salado or using shipped semen.</p>
-          </div>
-        </article>
-      </section>
+      <CompactTextCardGrid items={studServiceStepCards} className="stud-service-steps" />
       <StudCatalogSection />
       <section className="form-shell stud-inquiry-shell" id="stud-inquiry">
         <LeadForm formType="stud" title="Stud Inquiry" />
@@ -3152,22 +4417,15 @@ function ReproEducationPage() {
   return (
     <Layout>
       <PageHero eyebrow="Education" title="Breeding Timing and Progesterone Testing" copy="Educational guidance for breeders who want clearer timing, fewer missed windows, and better conversations around stud availability." />
-      <section className="tile-grid">
-        {reproductiveSections.map(([topic, items]) => (
-          <article className="text-card" key={topic}>
-            <h2>{topic}</h2>
-            <ul className="check-list">{items.map((item) => <li key={item}>{item}</li>)}</ul>
-          </article>
-        ))}
-      </section>
-      <section className="content-section narrow">
-        <h2>Interested in using one of our studs?</h2>
-        <p>Reach out early in the heat cycle. If you have progesterone results, include dates, values, and the machine used.</p>
-        <Link href="/stud-services#stud-inquiry" className="button primary">Start Stud Inquiry</Link>
-        <p><strong>Text:</strong> {brand.phone}</p>
-        <p><strong>Email:</strong> studs@redranchdogs.com</p>
-        <p className="small-note">Educational information only. For diagnosis or medical decisions, consult your veterinarian.</p>
-      </section>
+      <ChecklistCardGrid items={reproductiveSections} className="repro-education-grid" />
+      <CTASection
+        title="Interested in using one of our studs?"
+        copy="Reach out early in the heat cycle. If you have progesterone results, include dates, values, and the machine used."
+        primaryHref="/stud-services#stud-inquiry"
+        primaryLabel="Start Stud Inquiry"
+        secondaryHref="/contact"
+        secondaryLabel="Contact Us"
+      />
     </Layout>
   );
 }
@@ -3189,27 +4447,15 @@ function GuardianProgramPage() {
           </article>
         ))}
       </section>
-      <section className="tile-grid">
-        {guardianProgram.benefits.map(([title, copy]) => (
-          <article className="text-card" key={title}>
-            <h2>{title}</h2>
-            <p>{copy}</p>
-          </article>
-        ))}
+      <CompactTextCardGrid items={guardianProgram.benefits} />
+      <section className="content-section process-compact-section">
+        <SectionHeader
+          eyebrow="Guardian Fit"
+          title="What's expected of guardian families?"
+          copy="A practical snapshot of the home setup, distance, communication, and daily care we look for before a phone conversation."
+        />
       </section>
-      <section className="content-section">
-        <article className="group-panel">
-          <h2>What&apos;s Expected of Guardian Families?</h2>
-          <div className="mini-grid">
-            {guardianProgram.expectations.map(([title, copy]) => (
-              <div className="text-card" key={title}>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </div>
-            ))}
-          </div>
-        </article>
-      </section>
+      <CompactTextCardGrid items={guardianProgram.expectations} />
       <section className="content-section">
         <article className="group-panel">
           <p className="eyebrow">How It Starts</p>
@@ -3225,11 +4471,14 @@ function GuardianProgramPage() {
           </details>
         ))}
       </section>
-      <section className="content-section narrow">
-        <h2>Have more questions?</h2>
-        <p>Reach out at adam@redranchdogs.com or {brand.phone}.</p>
-        <Link href="/guardian-program/application" className="button primary">Guardian Application</Link>
-      </section>
+      <CTASection
+        title="Have more questions?"
+        copy={`Reach out at ${brand.email} or ${brand.phone}, or start the guardian application when you are ready.`}
+        primaryHref="/guardian-program/application"
+        primaryLabel="Guardian Application"
+        secondaryHref="/contact"
+        secondaryLabel="Contact Us"
+      />
     </Layout>
   );
 }
@@ -3242,6 +4491,7 @@ function GuardianApplicationPage() {
         title="Guardian Application"
         copy="Start here if you live near Salado and are interested in partnering with Red Ranch Dogs as a guardian family."
         image={images.family}
+        className="guardian-application-hero"
       />
       <section className="content-section narrow">
         <article className="group-panel guardian-before-apply">
@@ -3279,29 +4529,31 @@ function StopMarkingPage() {
   return (
     <Layout>
       <PageHero eyebrow="Marking Reset Guide" title="Stop Indoor Marking" copy="A practical 2 to 4 week reset for preventing indoor marks and rebuilding a strong outside routine." image={images.doodles} />
-      <section className="tile-grid">
-        {stopMarkingGuide.map((section) => (
-          <article className="text-card" key={section.title}>
-            <CheckCircle2 size={24} />
-            <h2>{section.title}</h2>
-            <p>{section.copy}</p>
-            <ul className="check-list">
-              {section.items.map((item) => <li key={item}>{item}</li>)}
-            </ul>
-          </article>
-        ))}
-      </section>
-      <section className="content-section narrow">
-        <h2>Quick Checklist</h2>
-        <ul className="check-list">
-          <li>No free roaming for 10 to 14 days.</li>
-          <li>Potty breaks every 1 to 2 hours at first.</li>
-          <li>Reward outdoor pees immediately.</li>
-          <li>Interrupt leg-lift behavior and go outside.</li>
-          <li>Use enzymatic cleaner for any accident spots.</li>
-          <li>Expand to new rooms only after 3 to 5 clean days.</li>
-        </ul>
-      </section>
+      <ChecklistCardGrid
+        items={stopMarkingGuide.map((section) => ({
+          ...section,
+          icon: CheckCircle2
+        }))}
+        className="stop-marking-grid"
+      />
+      <ChecklistCardGrid
+        columns="two"
+        className="stop-marking-quick-grid"
+        items={[
+          {
+            title: "Quick Checklist",
+            copy: "Keep the reset simple and consistent for the first clean stretch.",
+            items: [
+              "No free roaming for 10 to 14 days.",
+              "Potty breaks every 1 to 2 hours at first.",
+              "Reward outdoor pees immediately.",
+              "Interrupt leg-lift behavior and go outside.",
+              "Use enzymatic cleaner for any accident spots.",
+              "Expand to new rooms only after 3 to 5 clean days."
+            ]
+          }
+        ]}
+      />
     </Layout>
   );
 }
@@ -3452,7 +4704,7 @@ function CategoryPage({ title, copy, links }) {
         {links.map((link) => (
           <article className="text-card" key={link.href}>
             <h2>{link.label}</h2>
-            <Link href={link.href} className="inline-link">Open page</Link>
+            <Link href={link.href} className="inline-link">View page</Link>
           </article>
         ))}
       </section>
@@ -3477,10 +4729,147 @@ function collectFormPayload(formData) {
   const payload = {};
 
   for (const [key, value] of formData.entries()) {
-    payload[key] = payload[key] ? `${payload[key]}, ${value}` : value;
+    const cleanValue = typeof value === "string" ? value.trim() : value;
+    if (!cleanValue) continue;
+    payload[key] = payload[key] ? `${payload[key]}, ${cleanValue}` : cleanValue;
   }
 
   return payload;
+}
+
+const formSuccessMessages = {
+  application: "Thank you. Your puppy application was received, and we will follow up soon.",
+  contact: "Thank you. Your message was received, and we will follow up soon.",
+  guardian: "Thank you. Your guardian application was received, and we will follow up soon.",
+  newsletter: "You are on the Puppy Alerts list. We will keep you posted on litters and availability.",
+  stud: "Thank you. Your stud inquiry was received, and we will follow up about timing and next steps.",
+  waitlist: "Thank you. Your waitlist note was received, and we will follow up soon."
+};
+
+const formSubmitLabels = {
+  application: "Submit Application",
+  contact: "Send Message",
+  guardian: "Submit Guardian Application",
+  newsletter: "Submit",
+  stud: "Send Stud Inquiry",
+  waitlist: "Send Waitlist Note"
+};
+
+const formNextStepNotes = {
+  application: "After you submit, we will reply with availability, waitlist timing, and the cleanest next step for your family.",
+  contact: "Your note will be routed to the right follow-up, whether it is puppy availability, waitlist timing, guardians, or stud services.",
+  guardian: "We will review location, home setup, fenced yard, and timing before scheduling a fit conversation.",
+  stud: "We will review stud fit, cycle timing, service type, and brucellosis status before coordinating the next step.",
+  waitlist: "We will reply with breed-specific waitlist guidance, deposit details, and current litter timing."
+};
+
+const requiredFieldsByForm = {
+  application: [
+    ["name", "full name"],
+    ["email", "email"],
+    ["phone", "phone"],
+    ["preferredBreed", "breed interest"],
+    ["processAgreement", "process agreement"],
+    ["signature", "electronic signature"]
+  ],
+  contact: [
+    ["name", "name"],
+    ["email", "email"],
+    ["message", "message"]
+  ],
+  guardian: [
+    ["name", "full name"],
+    ["email", "email"],
+    ["phone", "phone"],
+    ["location", "city or area"],
+    ["guardianType", "guardian interest"],
+    ["guardianDistance", "distance from Salado"],
+    ["housing", "housing"],
+    ["fencedYard", "secure fenced yard"],
+    ["guardianAgreement", "guardian agreement"]
+  ],
+  newsletter: [["email", "email"]],
+  stud: [
+    ["name", "full name"],
+    ["email", "email"],
+    ["phone", "phone"],
+    ["femaleDogName", "female dog name"],
+    ["femaleDogBreed", "female dog breed"],
+    ["brucellosisStatus", "brucellosis status"],
+    ["studGoals", "stud goals"],
+    ["studPolicyAgreement", "stud policy agreement"]
+  ],
+  waitlist: [
+    ["name", "name"],
+    ["email", "email"],
+    ["preferredBreed", "preferred breed"]
+  ]
+};
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value || "");
+}
+
+function validateLeadPayload(formType, payload) {
+  const requiredFields = requiredFieldsByForm[formType] || [];
+  const missingFields = requiredFields.filter(([key]) => !payload[key]);
+
+  if (missingFields.length) {
+    const missingLabels = missingFields.map(([, label]) => label);
+    return {
+      fieldName: missingFields[0][0],
+      message: `Please add ${formatList(missingLabels)} before submitting.`
+    };
+  }
+
+  if (payload.email && !isValidEmail(payload.email)) {
+    return {
+      fieldName: "email",
+      message: "Please enter a valid email address before submitting."
+    };
+  }
+
+  return null;
+}
+
+function formatList(items) {
+  if (items.length <= 1) return items[0] || "";
+  if (items.length === 2) return `${items[0]} and ${items[1]}`;
+  return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
+const trackingParamKeys = {
+  utm_source: "utmSource",
+  utm_medium: "utmMedium",
+  utm_campaign: "utmCampaign",
+  utm_content: "utmContent",
+  utm_term: "utmTerm"
+};
+
+function collectTrackingPayload() {
+  if (typeof window === "undefined") return {};
+
+  const search = new window.URLSearchParams(window.location.search);
+  let landingPage = window.location.href;
+
+  try {
+    landingPage = window.sessionStorage.getItem("rrdLandingPage") || window.location.href;
+
+    if (!window.sessionStorage.getItem("rrdLandingPage")) {
+      window.sessionStorage.setItem("rrdLandingPage", window.location.href);
+    }
+  } catch {
+    landingPage = window.location.href;
+  }
+
+  const tracking = { landingPage };
+
+  Object.entries(trackingParamKeys).forEach(([queryKey, payloadKey]) => {
+    const value = search.get(queryKey);
+    if (value) tracking[payloadKey] = value.trim();
+  });
+
+  return tracking;
 }
 
 const studInquiryOptions = Array.from(
@@ -3489,12 +4878,15 @@ const studInquiryOptions = Array.from(
 
 function ChoiceGroup({ legend, name, options, required = false }) {
   return (
-    <fieldset className="choice-group">
-      <legend>{legend}</legend>
+    <fieldset className="choice-group" aria-required={required ? "true" : undefined}>
+      <legend>
+        {legend}
+        {required && <span className="required-mark">Required</span>}
+      </legend>
       <div className="option-grid">
-        {options.map((option, index) => (
+        {options.map((option) => (
           <label className="checkbox-line" key={option}>
-            <input name={name} type="checkbox" value={option} required={required && index === 0} />
+            <input name={name} type="checkbox" value={option} />
             <span>{option}</span>
           </label>
         ))}
@@ -3532,7 +4924,7 @@ function ApplicationFields() {
           </label>
           <label>
             Phone
-            <input name="phone" required autoComplete="tel" />
+            <input name="phone" required autoComplete="tel" inputMode="tel" />
           </label>
           <label>
             City / state
@@ -3552,6 +4944,7 @@ function ApplicationFields() {
             legend="Breed interest"
             name="preferredBreed"
             options={["Goldendoodle", "Cavapoo", "Bernedoodle", "Not sure yet"]}
+            required
           />
           <label>
             Gender preference
@@ -3605,7 +4998,7 @@ function ApplicationFields() {
           </label>
           <label className="full">
             What are you looking for in a puppy?
-            <textarea name="puppyFitNotes" rows="4" placeholder="Personality, energy level, timing, family needs, or anything that would help us guide you." />
+            <textarea name="puppyFitNotes" rows="3" placeholder="Personality, energy level, timing, family needs, or anything that would help us guide you." />
           </label>
         </div>
       </section>
@@ -3642,7 +5035,7 @@ function ApplicationFields() {
         <div className="field-grid">
           <label className="full">
             Anything else you want us to know?
-            <textarea name="message" rows="4" placeholder="Questions, personality preferences, timing notes, or anything helpful." />
+            <textarea name="message" rows="3" placeholder="Questions, personality preferences, timing notes, or anything helpful." />
           </label>
           <label>
             How did you hear about Red Ranch Dogs?
@@ -3687,7 +5080,17 @@ function ContactFields() {
           </label>
           <label>
             Phone
-            <input name="phone" autoComplete="tel" />
+            <input name="phone" autoComplete="tel" inputMode="tel" />
+          </label>
+          <label>
+            Preferred reply
+            <select name="preferredContactMethod" defaultValue="">
+              <option value="">Optional</option>
+              <option>Text</option>
+              <option>Call</option>
+              <option>Email</option>
+              <option>No preference</option>
+            </select>
           </label>
           <label>
             What can we help with?
@@ -3728,7 +5131,7 @@ function StudInquiryFields() {
         <p>Stud inquiries are for breeding programs. A short note is enough to start the conversation.</p>
         <div className="application-form-links" aria-label="Helpful stud service links">
           <Link href="/stud-services/our-studs">View studs</Link>
-          <Link href="/stud-services/shipping-and-collection-info">Shipping info</Link>
+          <Link href="/stud-services/reproductive-services">Service details</Link>
         </div>
       </div>
 
@@ -3753,7 +5156,7 @@ function StudInquiryFields() {
           </label>
           <label>
             Phone
-            <input name="phone" required autoComplete="tel" />
+            <input name="phone" required autoComplete="tel" inputMode="tel" />
           </label>
         </div>
       </section>
@@ -3794,7 +5197,7 @@ function StudInquiryFields() {
           </label>
           <label className="full">
             What are you looking for?
-            <textarea name="studGoals" rows="4" required placeholder="Stud preference, size, coat, color, structure, temperament, timing, or questions." />
+            <textarea name="studGoals" rows="3" required placeholder="Stud preference, size, coat, color, structure, temperament, timing, or questions." />
           </label>
         </div>
       </section>
@@ -3812,7 +5215,7 @@ function StudInquiryFields() {
           </label>
           <label>
             Female dog breed
-            <input name="femaleDogBreed" required placeholder="Goldendoodle, Cavapoo, Poodle..." />
+            <input name="femaleDogBreed" required placeholder="Goldendoodle, Cavapoo, Bernedoodle..." />
           </label>
           <label className="full">
             Brucellosis status
@@ -3858,7 +5261,7 @@ function GuardianFields() {
           </label>
           <label>
             Phone
-            <input name="phone" required autoComplete="tel" />
+            <input name="phone" required autoComplete="tel" inputMode="tel" />
           </label>
           <label>
             City / area
@@ -3951,11 +5354,11 @@ function GuardianFields() {
         <div className="field-grid">
           <label className="full">
             Schedule and dog experience
-            <textarea name="dogExperience" rows="4" placeholder="Tell us about your daily schedule, dog experience, and household rhythm." />
+            <textarea name="dogExperience" rows="3" placeholder="Tell us about your daily schedule, dog experience, and household rhythm." />
           </label>
           <label className="full">
             Why are you interested in the guardian program?
-            <textarea name="guardianReason" rows="4" placeholder="What interests you about being a guardian family?" />
+            <textarea name="guardianReason" rows="3" placeholder="What interests you about being a guardian family?" />
           </label>
           <label>
             Best time for a phone call
@@ -3979,20 +5382,56 @@ function GuardianFields() {
 
 function LeadForm({ formType, title, compact = false, newsletterOnly = false, guardianFields = false }) {
   const [status, setStatus] = useState("");
+  const [statusType, setStatusType] = useState("");
   const [busy, setBusy] = useState(false);
   const applicationFields = formType === "application" && !newsletterOnly;
   const contactFields = formType === "contact" && !newsletterOnly;
   const guardianApplicationFields = formType === "guardian" && guardianFields && !newsletterOnly;
   const studInquiryFields = formType === "stud" && !newsletterOnly;
+  const submitLabel = formSubmitLabels[formType] || "Submit";
+  const nextStepNote = newsletterOnly ? "" : formNextStepNotes[formType];
+
+  function updateStatus(message, type) {
+    setStatus(message);
+    setStatusType(type);
+  }
+
+  function focusField(formElement, fieldName) {
+    if (!fieldName) return;
+    const field = formElement.elements[fieldName];
+    const target = field?.length ? field[0] : field;
+    target?.focus?.();
+  }
 
   async function onSubmit(event) {
     event.preventDefault();
     setBusy(true);
-    setStatus("");
+    updateStatus("", "");
     const form = new FormData(event.currentTarget);
+    if (form.get("companyWebsite")?.trim()) {
+      event.currentTarget.reset();
+      setBusy(false);
+      updateStatus(formSuccessMessages[formType] || "Thank you. We received your submission.", "success");
+      return;
+    }
+
     const payload = collectFormPayload(form);
+    const validationError = validateLeadPayload(formType, payload);
+    if (validationError) {
+      focusField(event.currentTarget, validationError.fieldName);
+      setBusy(false);
+      updateStatus(validationError.message, "error");
+      return;
+    }
+
     payload.formType = formType;
+    payload.formTitle = title;
     payload.page = window.location.pathname;
+    payload.currentUrl = window.location.href;
+    payload.referrer = document.referrer;
+    payload.userAgent = window.navigator.userAgent;
+    payload.submittedAt = new Date().toISOString();
+    Object.assign(payload, collectTrackingPayload());
 
     try {
       const response = await fetch("/api/forms", {
@@ -4005,16 +5444,27 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
         throw new Error(result.message || "Submission failed.");
       }
       event.currentTarget.reset();
-      setStatus(result.message || "Thank you. We received your submission.");
+      const serverMessage = result.message || "";
+      updateStatus(
+        serverMessage && !serverMessage.startsWith("Thank you. We received")
+          ? serverMessage
+          : formSuccessMessages[formType] || "Thank you. We received your submission.",
+        "success"
+      );
     } catch (error) {
-      setStatus(error.message || "Unable to submit right now. Please call or text us.");
+      updateStatus(error.message || "Unable to submit right now. Please call or text us.", "error");
     } finally {
       setBusy(false);
     }
   }
 
   return (
-    <form className={`lead-form ${compact ? "compact" : ""}`} onSubmit={onSubmit}>
+    <form
+      className={`lead-form ${compact ? "compact" : ""}`}
+      data-form-type={formType}
+      aria-busy={busy}
+      onSubmit={onSubmit}
+    >
       <h2>{title}</h2>
       <input type="hidden" name="source" value="red-ranch-dogs-site" />
       <label className="form-honeypot" aria-hidden="true">
@@ -4037,22 +5487,21 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
           </label>
           <label>
             Phone
-            <input name="phone" autoComplete="tel" />
+            <input name="phone" autoComplete="tel" inputMode="tel" />
           </label>
           <label>
             Preferred breed
-            <select name="preferredBreed" defaultValue="">
+            <select name="preferredBreed" defaultValue="" required>
               <option value="" disabled>Select one</option>
               <option>Goldendoodle</option>
               <option>Cavapoo</option>
               <option>Bernedoodle</option>
-              <option>Poodle</option>
               <option>Not sure yet</option>
             </select>
           </label>
           <label className="full">
             Message
-            <textarea name="message" rows="5" placeholder="Tell us about your timing, size preference, and questions." />
+            <textarea name="message" rows="4" placeholder="Tell us about your timing, size preference, and questions." />
           </label>
         </div>
       )}
@@ -4062,10 +5511,20 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
           <input name="email" type="email" required autoComplete="email" placeholder="Email Address" />
         </label>
       )}
+      {nextStepNote && (
+        <p className="form-next-step">
+          <CheckCircle2 size={18} aria-hidden="true" />
+          <span>{nextStepNote}</span>
+        </p>
+      )}
       <button className="button primary" disabled={busy} type="submit">
-        {busy ? "Sending..." : "Submit"} <Send size={16} />
+        {busy ? "Sending..." : submitLabel} <Send size={16} />
       </button>
-      {status && <p className="form-status" role="status" aria-live="polite">{status}</p>}
+      {status && (
+        <p className={`form-status ${statusType}`} role={statusType === "error" ? "alert" : "status"} aria-live="polite">
+          {status}
+        </p>
+      )}
     </form>
   );
 }
@@ -4108,9 +5567,38 @@ function Footer() {
 }
 
 function NotFoundPage() {
+  const recoveryLinks = [
+    { href: "/puppies/current-litters", label: "Current Litters", copy: "See the litters growing now, weekly photos, and availability notes." },
+    { href: "/puppies/upcoming-litters", label: "Upcoming Litters", copy: "Preview planned pairings and expected timing for future Red Ranch Dogs litters." },
+    { href: "/apply", label: "Apply", copy: "Start the puppy application when you are ready to talk through fit and timing." },
+    { href: "/contact", label: "Contact", copy: "Send us a quick note if you are looking for a specific puppy, litter, or parent dog." }
+  ];
+
   return (
     <Layout>
-      <PageHero eyebrow="404" title="Page Not Found" copy="The page you are looking for may have moved. Use the navigation or contact us if you need help finding something." />
+      <PageHero
+        eyebrow="Page moved"
+        title="Let's get you back on track"
+        copy="This page may have moved during the Red Ranch Dogs site update. Use one of these quick paths to get back to puppies, litters, or the application."
+        className="compact-page-hero"
+      />
+      <section className="tile-grid four page-directory-grid not-found-link-grid">
+        {recoveryLinks.map((link) => (
+          <article className="text-card compact-card" key={link.href}>
+            <h2>{link.label}</h2>
+            <p>{link.copy}</p>
+            <Link href={link.href} className="inline-link">View page</Link>
+          </article>
+        ))}
+      </section>
+      <CTASection
+        title="Still looking for something?"
+        copy="Tell us what you were trying to find and we will point you toward the right puppy, litter, process, or parent dog page."
+        primaryHref="/contact"
+        primaryLabel="Contact Us"
+        secondaryHref="/"
+        secondaryLabel="Back to Home"
+      />
     </Layout>
   );
 }
@@ -4123,18 +5611,18 @@ const categories = {
   },
   "/puppies-1": {
     title: "Puppies",
-    copy: "Browse available puppies, current litters, upcoming litters, previous litters, and puppy care information.",
+    copy: "Browse available puppies, current litters, upcoming litters, breed pages, and puppy care information.",
     links: navGroups.find((group) => group.label === "Puppies").links
   },
   "/parents-1": {
     title: "Parents",
-    copy: "Meet the dams and studs behind the Red Ranch Dogs program.",
+    copy: "Meet the mamas and studs behind the Red Ranch Dogs program.",
     links: navGroups.find((group) => group.label === "Parents").links
   },
   "/application-1": {
-    title: "Application & Waitlist",
-    copy: "Start an application, review the process, or check the current waitlist.",
-    links: navGroups.find((group) => group.label === "Application & Waitlist").links
+    title: "Process",
+    copy: "Start an application, review the waitlist process, check pricing, or read the FAQ.",
+    links: navGroups.find((group) => group.label === "Process").links
   },
   "/studservices": {
     title: "Stud Services",
@@ -4153,6 +5641,14 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const destination = clientRedirects[path];
+    if (!destination) return;
+    window.history.replaceState({}, "", destination);
+    setPath(pathNow());
+  }, [path]);
+
+  useEffect(() => {
+    if (clientRedirects[path]) return;
     applySeo(path);
   }, [path]);
 
@@ -4164,6 +5660,7 @@ export default function App() {
       "/puppies/available": <AvailablePuppiesPage />,
       "/puppies/current-litters": <CurrentLittersPage />,
       "/puppies/upcoming-litters": <UpcomingLittersPage />,
+      "/puppies/previous-litters": <PreviousLittersPage />,
       "/puppies/goldendoodle-puppies": <BreedPageTemplate breed={breedProfiles.find((breed) => breed.slug === "goldendoodle-puppies")} />,
       "/puppies/cavapoo-puppies": <BreedPageTemplate breed={breedProfiles.find((breed) => breed.slug === "cavapoo-puppies")} />,
       "/puppies/bernedoodle-puppies": <BreedPageTemplate breed={breedProfiles.find((breed) => breed.slug === "bernedoodle-puppies")} />,
@@ -4186,7 +5683,7 @@ export default function App() {
       "/stud-services/our-studs": <StudServicesPage />,
       "/stud-services/reproductive-services": <ReproductiveServicesPage />,
       "/stud-services/reproductive-education": <ReproEducationPage />,
-      "/stud-services/shipping-and-collection-info": <ShippingCollectionPage />,
+      "/stud-services/shipping-and-collection-info": <StudServicesPage />,
       "/guardian-program": <GuardianProgramPage />,
       "/guardian-program/application": <GuardianApplicationPage />,
       "/guardian-program/current-guardian-opportunities": <GuardianOpportunitiesPage />,
@@ -4210,6 +5707,7 @@ export default function App() {
       "/previous-litters": <PreviousLittersPage />,
       "/coat-traits": <CoatTraitsPage />,
       "/dams": <ParentsPage type="dams" />,
+      "/evie-nicks": <ParentsPage type="dams" />,
       "/studs": <ParentsPage type="studs" />,
       "/our-studs": <StudServicesPage />,
       "/reproductive-education": <ReproEducationPage />,
@@ -4229,9 +5727,9 @@ export default function App() {
     if (litter) return <LitterPage litter={litter} />;
     const parent = publicParentProfiles.find((item) => `/parents/${item.slug}` === path);
     if (parent) return <ParentDetailPage parent={parent} />;
-    if (litterDetails[path]) return <LitterDetailPage litter={litterDetails[path]} />;
     if (previousLitterArchiveGroups[path]) return <PreviousLitterArchivePage archive={previousLitterArchiveGroups[path]} />;
-    if (previousLitterDetails[path]) return <PreviousLitterDetailPage litter={previousLitterDetails[path]} />;
+    if (previousLitterDetails[path]) return <PreviousLitterDetailPage litter={previousLitterDetails[path]} href={path} />;
+    if (litterDetails[path]) return <LitterDetailPage litter={litterDetails[path]} />;
     if (studDetails[path]) return <StudDetailPage stud={studDetails[path]} />;
     if (damGroups[path]) return <DamGroupPage group={damGroups[path]} />;
     if (damDetails[path]) return <DamDetailPage dam={damDetails[path]} />;

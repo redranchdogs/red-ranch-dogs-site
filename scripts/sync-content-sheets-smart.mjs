@@ -5,6 +5,34 @@ import { spawnSync } from "node:child_process";
 const root = process.cwd();
 const outputDir = path.join(root, "outputs", "content-sheet-exports");
 const dryRun = process.argv.includes("--dry-run");
+const liveBackupDir = path.join(
+  root,
+  "outputs",
+  "live-sheet-backups",
+  new Date().toISOString().replace(/[:.]/g, "-")
+);
+
+function loadLocalEnv() {
+  const envPath = path.join(root, ".env.local");
+
+  if (!fs.existsSync(envPath)) return;
+
+  fs.readFileSync(envPath, "utf8")
+    .split(/\r?\n/)
+    .forEach((line) => {
+      const trimmed = line.trim();
+
+      if (!trimmed || trimmed.startsWith("#") || !trimmed.includes("=")) return;
+
+      const [key, ...valueParts] = trimmed.split("=");
+
+      if (!process.env[key]) {
+        process.env[key] = valueParts.join("=").trim();
+      }
+    });
+}
+
+loadLocalEnv();
 
 const BRIDGE_URL = process.env.RED_RANCH_BRIDGE_URL;
 const BRIDGE_SECRET = process.env.RED_RANCH_BRIDGE_SECRET;
@@ -17,6 +45,7 @@ const JOBS = [
     generatedFile: "puppy-tracker.tsv",
     keyColumns: ["slug"],
     preserveIfExisting: ["matched_family_display", "internal_notes"],
+    keepUnmatchedExisting: false,
   },
   {
     label: "Litters",
@@ -25,6 +54,17 @@ const JOBS = [
     generatedFile: "litters.tsv",
     keyColumns: ["slug"],
     preserveIfExisting: ["internalNotes"],
+    keepUnmatchedExisting: false,
+  },
+  {
+    label: "Previous Litters",
+    spreadsheetId: "1oS382V4YJ9hMMYB78ixEDilJz2iETfIxwUuXMIxjK2U",
+    sheetName: "Previous Litters",
+    generatedFile: "previous-litters.tsv",
+    keyColumns: ["href"],
+    preserveIfExisting: ["internalNotes"],
+    dropExistingHeaders: ["price"],
+    keepUnmatchedExisting: true,
   },
   {
     label: "Parent Dogs",
@@ -33,6 +73,7 @@ const JOBS = [
     generatedFile: "parent-dogs.tsv",
     keyColumns: ["slug"],
     preserveIfExisting: ["internalNotes"],
+    keepUnmatchedExisting: false,
   },
   {
     label: "Public Waitlist",
@@ -41,6 +82,7 @@ const JOBS = [
     generatedValues: waitlistValues,
     keyColumns: ["breed", "position"],
     preserveIfExisting: ["notes", "internal_notes"],
+    keepUnmatchedExisting: false,
   },
 ];
 
@@ -62,6 +104,16 @@ function readTsv(fileName) {
     .trimEnd()
     .split(/\r?\n/)
     .map((line) => line.split("\t"));
+}
+
+function writeTsv(filePath, values) {
+  const content = values.map((row) => row.map((cell) => String(cell ?? "")).join("\t")).join("\n");
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${content}\n`);
+}
+
+function backupFileName(label) {
+  return `${label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}.tsv`;
 }
 
 function waitlistValues() {
@@ -88,11 +140,16 @@ function makeKey(rowMap, keyColumns) {
   return keyColumns.map((column) => String(rowMap[column] || "").trim().toLowerCase()).join("::");
 }
 
-function mergeValues(existingValues, generatedValues, { keyColumns, preserveIfExisting }) {
+function mergeValues(
+  existingValues,
+  generatedValues,
+  { keyColumns, preserveIfExisting, dropExistingHeaders = [], keepUnmatchedExisting = false }
+) {
   const generatedHeaders = generatedValues[0] || [];
   const existingHeaders = existingValues[0] || [];
+  const droppedHeaders = new Set(dropExistingHeaders || []);
   const extraExistingHeaders = existingHeaders.filter(
-    (header) => header && !generatedHeaders.includes(header)
+    (header) => header && !generatedHeaders.includes(header) && !droppedHeaders.has(header)
   );
   const headers = [...generatedHeaders, ...extraExistingHeaders];
   const preserveColumns = new Set(preserveIfExisting || []);
@@ -123,7 +180,7 @@ function mergeValues(existingValues, generatedValues, { keyColumns, preserveIfEx
         return existingValue;
       }
 
-      if (!generatedValue && existingValue) {
+      if (!generatedHeaders.includes(header) && !generatedValue && existingValue) {
         return existingValue;
       }
 
@@ -131,14 +188,16 @@ function mergeValues(existingValues, generatedValues, { keyColumns, preserveIfEx
     });
   });
 
-  existingValues.slice(1).forEach((row) => {
-    const existingMap = rowToMap(existingHeaders, row);
-    const key = makeKey(existingMap, keyColumns);
+  if (keepUnmatchedExisting) {
+    existingValues.slice(1).forEach((row) => {
+      const existingMap = rowToMap(existingHeaders, row);
+      const key = makeKey(existingMap, keyColumns);
 
-    if (key.replace(/:/g, "") && !seenKeys.has(key)) {
-      mergedRows.push(headers.map((header) => existingMap[header] || ""));
-    }
-  });
+      if (key.replace(/:/g, "") && !seenKeys.has(key)) {
+        mergedRows.push(headers.map((header) => existingMap[header] || ""));
+      }
+    });
+  }
 
   return [headers, ...mergedRows];
 }
@@ -184,6 +243,10 @@ async function syncJob(job) {
   if (!existing.ok) {
     throw new Error(`${job.label}: ${existing.error || "could not read live sheet"}`);
   }
+
+  const backupPath = path.join(liveBackupDir, backupFileName(job.label));
+  writeTsv(backupPath, existing.values || []);
+  console.log(`${job.label}: backed up live sheet to ${path.relative(root, backupPath)}`);
 
   const mergedValues = mergeValues(existing.values || [], generatedValues, job);
   const writeResult = await callBridge({

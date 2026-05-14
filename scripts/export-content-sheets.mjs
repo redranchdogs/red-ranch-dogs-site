@@ -3,6 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const outputDir = path.join(root, "outputs", "content-sheet-exports");
+const normalizedStatus = (value = "") => String(value).trim().toLowerCase();
 
 const SHEETS = {
   puppies: {
@@ -50,7 +51,7 @@ const SHEETS = {
       estimated_adult_weight: puppy.estimatedAdultWeight,
       price: puppy.price,
       availability_status: puppy.status,
-      display_on_available_puppies: puppy.status === "Available" ? "Yes" : "No",
+      display_on_available_puppies: normalizedStatus(puppy.status) === "available" ? "Yes" : "No",
       display_on_homepage: "No",
       matched_family_display: "",
       main_photo_file: fileName(puppy.mainPhoto),
@@ -91,6 +92,7 @@ const SHEETS = {
       "photoFolderHint",
       "weeklyUpdateStatus",
       "weeklyUpdateGallery",
+      "previousLitterHref",
       "publicPage",
       "internalNotes",
     ],
@@ -99,6 +101,51 @@ const SHEETS = {
       puppySlugs: list(litter.puppySlugs),
       weeklyUpdateGallery: list(litter.weeklyUpdateGallery),
       publicPage: `/litters/${litter.slug}`,
+      internalNotes: "",
+    }),
+  },
+  previousLitters: {
+    fileName: "previous-litters.tsv",
+    source: "src/data/previousLitters.json",
+    columns: [
+      "href",
+      "visibility",
+      "name",
+      "group",
+      "breed",
+      "parents",
+      "mama",
+      "stud",
+      "theme",
+      "born",
+      "goHome",
+      "coloring",
+      "size",
+      "coat",
+      "image",
+      "parentPhotos",
+      "puppies",
+      "puppyPhotos",
+      "milestones",
+      "photoFolderHint",
+      "publicPage",
+      "internalNotes",
+    ],
+    mapRecord: (litter) => ({
+      ...litter,
+      mama: splitParents(litter.parents).mama,
+      stud: splitParents(litter.parents).stud,
+      born: fact(litter, ["Born", "Delivery", "Expected"]),
+      goHome: fact(litter, ["Go Home"]),
+      coloring: fact(litter, ["Coloring"]),
+      size: fact(litter, ["Size"]),
+      coat: fact(litter, ["Coat"]),
+      parentPhotos: nameImageList(litter.parentPhotos),
+      puppies: list(litter.puppies),
+      puppyPhotos: nameImageList(litter.puppyPhotos),
+      milestones: list(litter.milestones),
+      photoFolderHint: litter.photoFolderHint || "",
+      publicPage: litter.visibility === "public" ? litter.href : "",
       internalNotes: "",
     }),
   },
@@ -151,6 +198,21 @@ const FIELD_NOTES = {
   photos: "Additional public image paths separated by |.",
   weeklyPhotos: "Weekly puppy image notes separated by |.",
   photoFolderHint: "Google Drive folder path where the working photos live.",
+  previousLitterHref: "Optional path to the matching previous litter page, such as /birdie-waylon-jennings.",
+  href: "Stable website path for this previous litter page.",
+  group: "Previous litter group. Use Goldendoodles, Cavapoos, or Bernedoodles for public archives.",
+  parents: "Public parent pairing display, such as Birdie + Waylon.",
+  mama: "Mama display name parsed from the parent pairing when available.",
+  stud: "Stud display name parsed from the parent pairing when available.",
+  theme: "Optional litter theme or nickname.",
+  born: "Previous litter birth, delivery, or expected date.",
+  coloring: "Coloring notes for the previous litter.",
+  size: "Expected or actual size range.",
+  coat: "Coat notes for the previous litter.",
+  parentPhotos: "Previous litter parent photo pairs formatted as Name: /image/path.jpg separated by |. Optional href can be added as Name: /image/path.jpg: /parent/path.",
+  puppies: "Public puppy names from the previous litter separated by |.",
+  puppyPhotos: "Previous litter puppy photo pairs formatted as Name: /image/path.jpg separated by |.",
+  milestones: "Public photo milestone labels separated by |.",
   publicPage: "Website path generated from the slug.",
   internalNotes: "Working notes only. Do not publish private family, payment, phone, or email details.",
   publish_status: "Use Public for website-ready records and Private for working records.",
@@ -187,6 +249,28 @@ function list(value = []) {
 function links(value = []) {
   if (!Array.isArray(value)) return value || "";
   return value.map((link) => [link.label, link.url].filter(Boolean).join(": ")).join(" | ");
+}
+
+function nameImageList(value = []) {
+  if (!Array.isArray(value)) return value || "";
+  return value
+    .map((item) => [item.name, item.image, item.href].filter(Boolean).join(": "))
+    .filter(Boolean)
+    .join(" | ");
+}
+
+function fact(record = {}, labels = []) {
+  const normalizedLabels = labels.map((label) => label.toLowerCase());
+  const match = (record.facts || []).find(([label]) => normalizedLabels.includes(String(label).toLowerCase()));
+  return match?.[1] || "";
+}
+
+function splitParents(parents = "") {
+  const [mama = "", stud = ""] = String(parents)
+    .split("+")
+    .map((part) => part.replace(/,.*$/, "").trim());
+
+  return { mama, stud };
 }
 
 function breedGroup(breed = "") {

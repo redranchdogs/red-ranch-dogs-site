@@ -1,6 +1,381 @@
 {
   "redirects": [
     {
+      "source": "/available-puppies",
+      "destination": "/puppies/available",
+      "permanent": true
+    },
+    {
+      "source": "/current-litters",
+      "destination": "/puppies/current-litters",
+      "permanent": true
+    },
+    {
+      "source": "/upcoming-litters",
+      "destination": "/puppies/upcoming-litters",
+      "permanent": true
+    },
+    {
+      "source": "/join-our-waitlist",
+      "destination": "/process/application-and-waitlist",
+      "permanent": true
+    },
+    {
+      "source": "/application-process",
+      "destination": "/process/how-it-works",
+      "permanent": true
+    },
+    {
+      "source": "/waitlist",
+      "destination": "/process/waitlist",
+      "permanent": true
+    },
+    {
+      "source": "/puppy-application",
+      "destination": "/apply",
+      "permanent": true
+    },
+    {
+      "source": "/prices",
+      "destination": "/process/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/process/faq",
+      "permanent": true
+    },
+    {
+      "source": "/what-come-with-your-puppy",
+      "destination": "/puppies/what-comes-with-your-puppy",
+      "permanent": true
+    },
+    {
+      "source": "/coat-traits",
+      "destination": "/puppies/coat-traits",
+      "permanent": true
+    },
+    {
+      "source": "/dams",
+      "destination": "/parents/mamas",
+      "permanent": true
+    },
+    {
+      "source": "/studs",
+      "destination": "/parents/studs",
+      "permanent": true
+    },
+    {
+      "source": "/goldendoodle-dams",
+      "destination": "/parents/goldendoodle-parents",
+      "permanent": true
+    },
+    {
+      "source": "/cavapoo-dams",
+      "destination": "/parents/cavapoo-parents",
+      "permanent": true
+    },
+    {
+      "source": "/bernedoodle-dams",
+      "destination": "/parents/bernedoodle-parents",
+      "permanent": true
+    },
+    {
+      "source": "/poodle-dams",
+      "destination": "/parents/mamas",
+      "permanent": true
+    },
+    {
+      "source": "/golden-retriever-dams",
+      "destination": "/parents/mamas",
+      "permanent": true
+    },
+    {
+      "source": "/our-studs",
+      "destination": "/stud-services/our-studs",
+      "permanent": true
+    },
+    {
+      "source": "/reproductive-education",
+      "destination": "/stud-services/reproductive-education",
+      "permanent": true
+    },
+    {
+      "source": "/stud-services/shipping-and-collection-info",
+      "destination": "/stud-services",
+      "permanent": true
+    },
+    {
+      "source": "/guardianprogram",
+      "destination": "/guardian-program",
+      "permanent": true
+    },
+    {
+      "source": "/guardian-application",
+      "destination": "/guardian-program/application",
+      "permanent": true
+    },
+    {
+      "source": "/our-family",
+      "destination": "/about/our-family",
+      "permanent": true
+    },
+    {
+      "source": "/meet-our-team",
+      "destination": "/about/meet-the-team",
+      "permanent": true
+    },
+    {
+      "source": "/reviews-1",
+      "destination": "/about/reviews",
+      "permanent": true
+    },
+    {
+      "source": "/contact-1",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/birdie-waylon-jennings-1",
+      "destination": "/litters/birdie-waylon-spring-2026",
+      "permanent": true
+    },
+    {
+      "source": "/penny-wyatt",
+      "destination": "/litters/penny-wyatt-spring-2026",
+      "permanent": true
+    },
+    {
+      "source": "/ginnybutch",
+      "destination": "/litters/ginny-butch-spring-2026",
+      "permanent": true
+    },
+    {
+      "source": "/winnie-wyatt",
+      "destination": "/litters/winnie-wyatt-spring-2026",
+      "permanent": true
+    },
+    {
+      "source": "/winnie-redford",
+      "destination": "/litters/winnie-wyatt-spring-2026",
+      "permanent": true
+    },
+    {
+      "source": "/kylie-ranger",
+      "destination": "/litters/kylie-ranger-late-summer-2026",
+      "permanent": true
+    },
+    {
+      "source": "/birdie",
+      "destination": "/parents/birdie",
+      "permanent": true
+    },
+    {
+      "source": "/honey",
+      "destination": "/parents/honey",
+      "permanent": true
+    },
+    {
+      "source": "/phoebe",
+      "destination": "/parents/phoebe",
+      "permanent": true
+    },
+    {
+      "source": "/daisy",
+      "destination": "/parents/daisy",
+      "permanent": true
+    },
+    {
+      "source": "/beatrix",
+      "destination": "/parents/beatrix",
+      "permanent": true
+    },
+    {
+      "source": "/june-2",
+      "destination": "/parents/june",
+      "permanent": true
+    },
+    {
+      "source": "/georgia",
+      "destination": "/parents/georgia",
+      "permanent": true
+    },
+    {
+      "source": "/evie-nicks",
+      "destination": "/parents/mamas",
+      "permanent": true
+    },
+    {
+      "source": "/ginny",
+      "destination": "/parents/ginny",
+      "permanent": true
+    },
+    {
+      "source": "/trudy",
+      "destination": "/parents/trudy",
+      "permanent": true
+    },
+    {
+      "source": "/faye",
+      "destination": "/parents/faye",
+      "permanent": true
+    },
+    {
+      "source": "/kylie",
+      "destination": "/parents/kylie",
+      "permanent": true
+    },
+    {
+      "source": "/tilly",
+      "destination": "/parents/tilly",
+      "permanent": true
+    },
+    {
+      "source": "/sylvee",
+      "destination": "/parents/sylvee",
+      "permanent": true
+    },
+    {
+      "source": "/penny-2",
+      "destination": "/parents/penny",
+      "permanent": true
+    },
+    {
+      "source": "/whitley",
+      "destination": "/parents/whitley",
+      "permanent": true
+    },
+    {
+      "source": "/winnie",
+      "destination": "/parents/winnie",
+      "permanent": true
+    },
+    {
+      "source": "/reece",
+      "destination": "/parents/reece",
+      "permanent": true
+    },
+    {
+      "source": "/garth-brooks",
+      "destination": "/parents/garth-brooks",
+      "permanent": true
+    },
+    {
+      "source": "/hank-williams",
+      "destination": "/parents/hank-williams",
+      "permanent": true
+    },
+    {
+      "source": "/beau",
+      "destination": "/parents/beau",
+      "permanent": true
+    },
+    {
+      "source": "/waylon-jennings",
+      "destination": "/parents/waylon-jennings",
+      "permanent": true
+    },
+    {
+      "source": "/sundance",
+      "destination": "/parents/sundance",
+      "permanent": true
+    },
+    {
+      "source": "/enzo",
+      "destination": "/parents/enzo",
+      "permanent": true
+    },
+    {
+      "source": "/butch-cassidy",
+      "destination": "/parents/butch-cassidy",
+      "permanent": true
+    },
+    {
+      "source": "/knox",
+      "destination": "/parents/knox",
+      "permanent": true
+    },
+    {
+      "source": "/robert-redford",
+      "destination": "/parents/robert-redford",
+      "permanent": true
+    },
+    {
+      "source": "/johnn-cash",
+      "destination": "/parents/johnny-cash",
+      "permanent": true
+    },
+    {
+      "source": "/johnny-cash",
+      "destination": "/parents/johnny-cash",
+      "permanent": true
+    },
+    {
+      "source": "/wyatt",
+      "destination": "/parents/wyatt-earp",
+      "permanent": true
+    },
+    {
+      "source": "/wyatt-earp",
+      "destination": "/parents/wyatt-earp",
+      "permanent": true
+    },
+    {
+      "source": "/bodhe",
+      "destination": "/parents/bodhe",
+      "permanent": true
+    },
+    {
+      "source": "/wayne",
+      "destination": "/parents/studs",
+      "permanent": true
+    },
+    {
+      "source": "/flora",
+      "destination": "/parents/mamas",
+      "permanent": true
+    },
+    {
+      "source": "/lady",
+      "destination": "/parents/mamas",
+      "permanent": true
+    },
+    {
+      "source": "/lady-redford",
+      "destination": "/puppies/previous-litters",
+      "permanent": true
+    },
+    {
+      "source": "/lady-enzo",
+      "destination": "/puppies/previous-litters",
+      "permanent": true
+    },
+    {
+      "source": "/lady-enzo-2",
+      "destination": "/puppies/previous-litters",
+      "permanent": true
+    },
+    {
+      "source": "/floraenzo",
+      "destination": "/puppies/previous-litters",
+      "permanent": true
+    },
+    {
+      "source": "/flora-enzo-2",
+      "destination": "/puppies/previous-litters",
+      "permanent": true
+    },
+    {
+      "source": "/ruby-bodhe",
+      "destination": "/puppies/previous-litters",
+      "permanent": true
+    },
+    {
+      "source": "/ruby-bodhe-2",
+      "destination": "/puppies/previous-litters",
+      "permanent": true
+    },
+    {
       "source": "/new-page-2",
       "destination": "/previous-litters-bernedoodles",
       "permanent": true
@@ -38,6 +413,36 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
     }

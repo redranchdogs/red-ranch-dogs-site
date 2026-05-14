@@ -1,94 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.redranchdogs.com/</loc></url>
-  <url><loc>https://www.redranchdogs.com/prices</loc></url>
-  <url><loc>https://www.redranchdogs.com/faq</loc></url>
-  <url><loc>https://www.redranchdogs.com/contact</loc></url>
-  <url><loc>https://www.redranchdogs.com/meet-our-team</loc></url>
-  <url><loc>https://www.redranchdogs.com/our-family</loc></url>
-  <url><loc>https://www.redranchdogs.com/reviews-1</loc></url>
-  <url><loc>https://www.redranchdogs.com/what-come-with-your-puppy</loc></url>
-  <url><loc>https://www.redranchdogs.com/available-puppies</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/available</loc></url>
   <url><loc>https://www.redranchdogs.com/puppies/current-litters</loc></url>
-  <url><loc>https://www.redranchdogs.com/current-litters</loc></url>
-  <url><loc>https://www.redranchdogs.com/honey-bram</loc></url>
-  <url><loc>https://www.redranchdogs.com/birdie-waylon-jennings-1</loc></url>
-  <url><loc>https://www.redranchdogs.com/upcoming-litters</loc></url>
-  <url><loc>https://www.redranchdogs.com/penny-wyatt</loc></url>
-  <url><loc>https://www.redranchdogs.com/winnie-redford</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/upcoming-litters</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/previous-litters</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/goldendoodle-puppies</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/cavapoo-puppies</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/bernedoodle-puppies</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/what-comes-with-your-puppy</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/coat-traits</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/ranger</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/axel</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/diesel</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/dakota</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/sedona</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/arizona</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/indie</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/striker</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/samba</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/goalie</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/ref</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/pitch</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/fifa</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/meadow</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/vista</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/camper</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/sage</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/ridge</loc></url>
+  <url><loc>https://www.redranchdogs.com/puppies/trek</loc></url>
+  <url><loc>https://www.redranchdogs.com/litters/birdie-waylon-spring-2026</loc></url>
+  <url><loc>https://www.redranchdogs.com/litters/penny-wyatt-spring-2026</loc></url>
+  <url><loc>https://www.redranchdogs.com/litters/ginny-butch-spring-2026</loc></url>
+  <url><loc>https://www.redranchdogs.com/litters/faye-sundance-may-2026</loc></url>
+  <url><loc>https://www.redranchdogs.com/litters/georgia-waylon-may-2026</loc></url>
+  <url><loc>https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026</loc></url>
+  <url><loc>https://www.redranchdogs.com/litters/reece-wyatt-summer-2026</loc></url>
+  <url><loc>https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/mamas</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/studs</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/goldendoodle-parents</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/cavapoo-parents</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/bernedoodle-parents</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/birdie</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/honey</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/phoebe</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/daisy</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/beatrix</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/june</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/georgia</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/ginny</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/trudy</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/faye</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/kylie</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/tilly</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/sylvee</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/penny</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/whitley</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/winnie</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/reece</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/garth-brooks</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/hank-williams</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/beau</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/waylon-jennings</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/sundance</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/enzo</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/butch-cassidy</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/knox</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/robert-redford</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/johnny-cash</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/wyatt-earp</loc></url>
+  <url><loc>https://www.redranchdogs.com/parents/bodhe</loc></url>
+  <url><loc>https://www.redranchdogs.com/process</loc></url>
+  <url><loc>https://www.redranchdogs.com/process/how-it-works</loc></url>
+  <url><loc>https://www.redranchdogs.com/process/pricing</loc></url>
+  <url><loc>https://www.redranchdogs.com/process/application-and-waitlist</loc></url>
+  <url><loc>https://www.redranchdogs.com/process/waitlist</loc></url>
+  <url><loc>https://www.redranchdogs.com/process/faq</loc></url>
+  <url><loc>https://www.redranchdogs.com/process/pickup-and-delivery</loc></url>
+  <url><loc>https://www.redranchdogs.com/stud-services</loc></url>
+  <url><loc>https://www.redranchdogs.com/stud-services/our-studs</loc></url>
+  <url><loc>https://www.redranchdogs.com/stud-services/reproductive-services</loc></url>
+  <url><loc>https://www.redranchdogs.com/stud-services/reproductive-education</loc></url>
+  <url><loc>https://www.redranchdogs.com/guardian-program</loc></url>
+  <url><loc>https://www.redranchdogs.com/guardian-program/application</loc></url>
+  <url><loc>https://www.redranchdogs.com/guardian-program/current-guardian-opportunities</loc></url>
+  <url><loc>https://www.redranchdogs.com/guardian-program/faq</loc></url>
+  <url><loc>https://www.redranchdogs.com/about</loc></url>
+  <url><loc>https://www.redranchdogs.com/about/our-family</loc></url>
+  <url><loc>https://www.redranchdogs.com/about/meet-the-team</loc></url>
+  <url><loc>https://www.redranchdogs.com/about/reviews</loc></url>
+  <url><loc>https://www.redranchdogs.com/contact</loc></url>
+  <url><loc>https://www.redranchdogs.com/apply</loc></url>
   <url><loc>https://www.redranchdogs.com/previous-litters</loc></url>
   <url><loc>https://www.redranchdogs.com/previous-litters-goldendoodles</loc></url>
+  <url><loc>https://www.redranchdogs.com/previous-litters-bernedoodles</loc></url>
+  <url><loc>https://www.redranchdogs.com/previous-litters-cavapoos</loc></url>
   <url><loc>https://www.redranchdogs.com/birdie-waylon-jennings</loc></url>
-  <url><loc>https://www.redranchdogs.com/lady-redford</loc></url>
+  <url><loc>https://www.redranchdogs.com/honey-bram</loc></url>
   <url><loc>https://www.redranchdogs.com/june-waylon</loc></url>
-  <url><loc>https://www.redranchdogs.com/floraenzo</loc></url>
-  <url><loc>https://www.redranchdogs.com/lady-enzo-2</loc></url>
   <url><loc>https://www.redranchdogs.com/phoebe-waylon</loc></url>
-  <url><loc>https://www.redranchdogs.com/lady-enzo</loc></url>
   <url><loc>https://www.redranchdogs.com/beatrix-knox</loc></url>
   <url><loc>https://www.redranchdogs.com/honey-waylon</loc></url>
-  <url><loc>https://www.redranchdogs.com/flora-enzo-2</loc></url>
   <url><loc>https://www.redranchdogs.com/birdie-leo</loc></url>
   <url><loc>https://www.redranchdogs.com/phoebe-fynn</loc></url>
   <url><loc>https://www.redranchdogs.com/phoebe-fynn-2</loc></url>
-  <url><loc>https://www.redranchdogs.com/previous-litters-bernedoodles</loc></url>
   <url><loc>https://www.redranchdogs.com/tilly-redford</loc></url>
-  <url><loc>https://www.redranchdogs.com/previous-litters-cavapoos</loc></url>
-  <url><loc>https://www.redranchdogs.com/ruby-bodhe</loc></url>
-  <url><loc>https://www.redranchdogs.com/ruby-bodhe-2</loc></url>
   <url><loc>https://www.redranchdogs.com/faye-bodhe</loc></url>
   <url><loc>https://www.redranchdogs.com/faye-bodhe-2</loc></url>
-  <url><loc>https://www.redranchdogs.com/previous-litters-poodles</loc></url>
-  <url><loc>https://www.redranchdogs.com/trudy-wayne</loc></url>
-  <url><loc>https://www.redranchdogs.com/trudy-wayne-2</loc></url>
-  <url><loc>https://www.redranchdogs.com/coat-traits</loc></url>
-  <url><loc>https://www.redranchdogs.com/dams</loc></url>
-  <url><loc>https://www.redranchdogs.com/goldendoodle-dams</loc></url>
-  <url><loc>https://www.redranchdogs.com/birdie</loc></url>
-  <url><loc>https://www.redranchdogs.com/honey</loc></url>
-  <url><loc>https://www.redranchdogs.com/phoebe</loc></url>
-  <url><loc>https://www.redranchdogs.com/daisy</loc></url>
-  <url><loc>https://www.redranchdogs.com/beatrix</loc></url>
-  <url><loc>https://www.redranchdogs.com/june-2</loc></url>
-  <url><loc>https://www.redranchdogs.com/georgia</loc></url>
-  <url><loc>https://www.redranchdogs.com/evie-nicks</loc></url>
-  <url><loc>https://www.redranchdogs.com/ginny</loc></url>
-  <url><loc>https://www.redranchdogs.com/whitley</loc></url>
-  <url><loc>https://www.redranchdogs.com/bernedoodle-dams</loc></url>
-  <url><loc>https://www.redranchdogs.com/kylie</loc></url>
-  <url><loc>https://www.redranchdogs.com/tilly</loc></url>
-  <url><loc>https://www.redranchdogs.com/sylvee</loc></url>
-  <url><loc>https://www.redranchdogs.com/poodle-dams</loc></url>
-  <url><loc>https://www.redranchdogs.com/trudy</loc></url>
-  <url><loc>https://www.redranchdogs.com/faye</loc></url>
-  <url><loc>https://www.redranchdogs.com/cavapoo-dams</loc></url>
-  <url><loc>https://www.redranchdogs.com/penny-2</loc></url>
-  <url><loc>https://www.redranchdogs.com/winnie</loc></url>
-  <url><loc>https://www.redranchdogs.com/reece</loc></url>
-  <url><loc>https://www.redranchdogs.com/golden-retriever-dams</loc></url>
-  <url><loc>https://www.redranchdogs.com/flora</loc></url>
-  <url><loc>https://www.redranchdogs.com/lady</loc></url>
-  <url><loc>https://www.redranchdogs.com/studs</loc></url>
-  <url><loc>https://www.redranchdogs.com/join-our-waitlist</loc></url>
-  <url><loc>https://www.redranchdogs.com/application-process</loc></url>
-  <url><loc>https://www.redranchdogs.com/waitlist</loc></url>
-  <url><loc>https://www.redranchdogs.com/our-studs</loc></url>
-  <url><loc>https://www.redranchdogs.com/garth-brooks</loc></url>
-  <url><loc>https://www.redranchdogs.com/hank-williams</loc></url>
-  <url><loc>https://www.redranchdogs.com/beau</loc></url>
-  <url><loc>https://www.redranchdogs.com/waylon-jennings</loc></url>
-  <url><loc>https://www.redranchdogs.com/sundance</loc></url>
-  <url><loc>https://www.redranchdogs.com/enzo</loc></url>
-  <url><loc>https://www.redranchdogs.com/butch-cassidy</loc></url>
-  <url><loc>https://www.redranchdogs.com/knox</loc></url>
-  <url><loc>https://www.redranchdogs.com/robert-redford</loc></url>
-  <url><loc>https://www.redranchdogs.com/wayne</loc></url>
-  <url><loc>https://www.redranchdogs.com/johnn-cash</loc></url>
-  <url><loc>https://www.redranchdogs.com/wyatt</loc></url>
-  <url><loc>https://www.redranchdogs.com/bodhe</loc></url>
-  <url><loc>https://www.redranchdogs.com/reproductive-education</loc></url>
-  <url><loc>https://www.redranchdogs.com/guardianprogram</loc></url>
-  <url><loc>https://www.redranchdogs.com/guardian-application</loc></url>
   <url><loc>https://www.redranchdogs.com/stop-the-marking</loc></url>
-  <url><loc>https://www.redranchdogs.com/puppy-application</loc></url>
 </urlset>

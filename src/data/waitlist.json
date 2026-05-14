@@ -5,7 +5,7 @@
     "tab": "Public Waitlist",
     "hub": "Website Hub"
   },
-  "updatedAt": "2026-04-28",
+  "updatedAt": "2026-05-13",
   "publicRows": [
     {
       "breed": "Goldendoodle",
@@ -31,77 +31,35 @@
     {
       "breed": "Goldendoodle",
       "position": 4,
-      "display_name": "Elise M.",
+      "display_name": "Sara N.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Goldendoodle",
       "position": 5,
-      "display_name": "Sara N.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 6,
-      "display_name": "Sara N.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 7,
-      "display_name": "Sofia F.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 8,
-      "display_name": "Meghan L.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 9,
-      "display_name": "Lauren T.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 10,
-      "display_name": "Sarvani R.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 11,
       "display_name": "Samantha E.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Goldendoodle",
-      "position": 12,
-      "display_name": "Larissa B.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 13,
-      "display_name": "Andrew F.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 14,
+      "position": 6,
       "display_name": "Annika P.",
+      "status": "Active",
+      "show_publicly": "Yes"
+    },
+    {
+      "breed": "Goldendoodle",
+      "position": 7,
+      "display_name": "Erin F.",
+      "status": "Active",
+      "show_publicly": "Yes"
+    },
+    {
+      "breed": "Goldendoodle",
+      "position": 8,
+      "display_name": "Katie A.",
       "status": "Active",
       "show_publicly": "Yes"
     },
@@ -158,6 +116,13 @@
       "breed": "Cavapoo",
       "position": 8,
       "display_name": "Michelle W.",
+      "status": "Active",
+      "show_publicly": "Yes"
+    },
+    {
+      "breed": "Cavapoo",
+      "position": 9,
+      "display_name": "Susan C.",
       "status": "Active",
       "show_publicly": "Yes"
     },

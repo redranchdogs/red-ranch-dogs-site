@@ -31,6 +31,7 @@ Migration notes:
 - `docs/FORM_SETUP.md` lists the Google Sheet headers, Apps Script setup, and form environment variables.
 - `docs/CONTENT_OPERATIONS.md` explains the Website Hub, weekly photo workflow, and puppy/litter/parent data patterns.
 - `docs/LAUNCH_CHECKLIST.md` tracks the final preview, forms, SEO, redirects, and DNS checklist.
+- `docs/LAUNCH_READINESS.md` is the short operational checklist for launch checks, weekly photo updates, sheet sync, and form testing.
 
 When new puppy photos arrive:
 
@@ -58,7 +59,15 @@ Form smoke test:
 npm run test:forms
 ```
 
-This uses `FORM_WEBHOOK_URL` from `.env.local`, writes a clearly marked fake row to the Google Sheet, and sends the Apps Script notification email.
+This checks the local form API handler without sending emails or writing external sheet rows.
+
+Live webhook test:
+
+```bash
+npm run test:forms:webhook -- --all
+```
+
+This uses `FORM_WEBHOOK_URL` from `.env.local`, writes clearly marked fake rows to the Google Sheet, verifies the lead routing columns, and may send Apps Script notification emails.
 
 ## Deployment
 

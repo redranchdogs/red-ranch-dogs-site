@@ -6,22 +6,51 @@
 // 5. Use the web app URL as FORM_WEBHOOK_URL in Vercel.
 //
 // Optional Script Properties can override the defaults below:
-// SHEET_ID, NOTIFY_EMAIL
+// SHEET_ID, SHEET_NAME, NOTIFY_EMAIL
 
 var DEFAULT_SHEET_ID = "1872yXbOwwtio73bK5wlZJKEaBez4czsGuU0bcYaxriE";
+var DEFAULT_SHEET_NAME = "Website Leads";
 var DEFAULT_NOTIFY_EMAIL = "adam@redranchdogs.com";
 var SUBMISSION_HEADERS = [
   "Submitted At",
+  "Submission ID",
   "Form Type",
+  "Form Title",
+  "Lead Type",
+  "Lead Label",
+  "Routing Bucket",
+  "Reply Priority",
+  "Recommended Next Step",
+  "Lead Summary",
   "Page",
+  "Current URL",
+  "Landing Page",
+  "Referrer",
+  "UTM Source",
+  "UTM Medium",
+  "UTM Campaign",
+  "UTM Content",
+  "UTM Term",
   "Name",
   "Email",
   "Phone",
   "Inquiry Type",
   "Preferred Breed",
+  "Program Name",
+  "Preferred Stud",
+  "Service Type",
+  "Cycle Timing",
+  "Female Dog Name",
+  "Female Dog Breed",
+  "Brucellosis Status",
+  "Stud Goals",
+  "Stud Policy Agreement",
+  "Guardian Type",
+  "Guardian Distance",
   "Location",
   "Housing",
   "Fenced Yard",
+  "Children In Home",
   "Other Pets",
   "Dog Experience",
   "Gender Preference",
@@ -34,21 +63,39 @@ var SUBMISSION_HEADERS = [
   "Process Agreement",
   "Hear About",
   "Guardian Reason",
+  "Phone Call Timing",
   "Guardian Agreement",
   "Signature",
   "Message",
-  "Source"
+  "Source",
+  "User Agent"
 ];
+
+function doGet() {
+  return ContentService.createTextOutput(
+    JSON.stringify({ ok: true, service: "red-ranch-dogs-forms", version: "forms-v2" })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
 
 function doPost(e) {
   var payload = JSON.parse(e.postData.contents || "{}");
+
+  if (payload.companyWebsite) {
+    return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(
+      ContentService.MimeType.JSON
+    );
+  }
+
   var sheetId = PropertiesService.getScriptProperties().getProperty("SHEET_ID") || DEFAULT_SHEET_ID;
+  var sheetName =
+    PropertiesService.getScriptProperties().getProperty("SHEET_NAME") || DEFAULT_SHEET_NAME;
   var notifyEmail =
     PropertiesService.getScriptProperties().getProperty("NOTIFY_EMAIL") || DEFAULT_NOTIFY_EMAIL;
-  var sheet = SpreadsheetApp.openById(sheetId).getSheetByName("Submissions");
+  var spreadsheet = SpreadsheetApp.openById(sheetId);
+  var sheet = spreadsheet.getSheetByName(sheetName);
 
   if (!sheet) {
-    sheet = SpreadsheetApp.openById(sheetId).insertSheet("Submissions");
+    sheet = spreadsheet.insertSheet(sheetName);
     sheet.appendRow(SUBMISSION_HEADERS);
   } else {
     sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), SUBMISSION_HEADERS.length)).clearContent();
@@ -57,16 +104,44 @@ function doPost(e) {
 
   sheet.appendRow([
     payload.submittedAt || new Date().toISOString(),
+    payload.submissionId || "",
     payload.formType || "",
+    payload.formTitle || "",
+    payload.leadType || "",
+    payload.leadLabel || "",
+    payload.routingBucket || "",
+    payload.replyPriority || "",
+    payload.recommendedNextStep || "",
+    payload.leadSummary || "",
     payload.page || "",
+    payload.currentUrl || "",
+    payload.landingPage || "",
+    payload.referrer || "",
+    payload.utmSource || "",
+    payload.utmMedium || "",
+    payload.utmCampaign || "",
+    payload.utmContent || "",
+    payload.utmTerm || "",
     payload.name || "",
     payload.email || "",
     payload.phone || "",
     payload.inquiryType || "",
     payload.preferredBreed || "",
+    payload.programName || "",
+    payload.preferredStud || "",
+    payload.serviceType || "",
+    payload.cycleTiming || "",
+    payload.femaleDogName || "",
+    payload.femaleDogBreed || "",
+    payload.brucellosisStatus || "",
+    payload.studGoals || "",
+    payload.studPolicyAgreement || "",
+    payload.guardianType || "",
+    payload.guardianDistance || "",
     payload.location || "",
     payload.housing || "",
     payload.fencedYard || "",
+    payload.childrenInHome || "",
     payload.otherPets || "",
     payload.dogExperience || "",
     payload.genderPreference || "",
@@ -79,10 +154,12 @@ function doPost(e) {
     payload.processAgreement || "",
     payload.hearAbout || "",
     payload.guardianReason || "",
+    payload.phoneCallTiming || "",
     payload.guardianAgreement || "",
     payload.signature || "",
     payload.message || "",
-    payload.source || ""
+    payload.source || "",
+    payload.userAgent || ""
   ]);
 
   if (notifyEmail) {

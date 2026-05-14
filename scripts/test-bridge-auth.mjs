@@ -1,0 +1,76 @@
+import fs from "node:fs";
+import path from "node:path";
+
+const root = process.cwd();
+const envPath = path.join(root, ".env.local");
+
+function loadLocalEnv() {
+  if (!fs.existsSync(envPath)) return;
+
+  fs.readFileSync(envPath, "utf8")
+    .split(/\r?\n/)
+    .forEach((line) => {
+      const trimmed = line.trim();
+
+      if (!trimmed || trimmed.startsWith("#") || !trimmed.includes("=")) return;
+
+      const [key, ...valueParts] = trimmed.split("=");
+
+      if (!process.env[key]) {
+        process.env[key] = valueParts.join("=").trim();
+      }
+    });
+}
+
+async function readJson(response) {
+  const text = await response.text();
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`Bridge returned non-JSON response: ${text.slice(0, 200)}`);
+  }
+}
+
+async function main() {
+  loadLocalEnv();
+
+  const bridgeUrl = process.env.RED_RANCH_BRIDGE_URL;
+  const bridgeSecret = process.env.RED_RANCH_BRIDGE_SECRET;
+
+  if (!bridgeUrl || !bridgeSecret) {
+    throw new Error("RED_RANCH_BRIDGE_URL and RED_RANCH_BRIDGE_SECRET are required.");
+  }
+
+  const healthResponse = await fetch(bridgeUrl);
+  const health = await readJson(healthResponse);
+
+  if (!health.ok) {
+    throw new Error(`Bridge health check failed: ${health.error || "unknown error"}`);
+  }
+
+  console.log(`Bridge reachable: ${health.version || "unknown version"}`);
+
+  const authResponse = await fetch(bridgeUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      secret: bridgeSecret,
+      action: "getSheetValues",
+      spreadsheetId: "1oChFvNCdwrtIAYWFQlsZKrTnz9tnu6Yr-Tc6WKMGSOI",
+      sheetName: "Public Waitlist",
+    }),
+  });
+  const auth = await readJson(authResponse);
+
+  if (!auth.ok) {
+    throw new Error(`Bridge authenticated read failed: ${auth.error || "unknown error"}`);
+  }
+
+  console.log(`Bridge authenticated read passed: ${auth.values?.length || 0} rows visible`);
+}
+
+main().catch((error) => {
+  console.error(error.message);
+  process.exit(1);
+});

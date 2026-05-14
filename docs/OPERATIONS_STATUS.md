@@ -1,0 +1,33 @@
+# Operations Status
+Generated: 5/14/2026, 2:39:56 PM Central
+Overall status: **PASS**
+## Bridge
+Status: **PASS**
+Version: 3.0.0
+Message: Bridge is reachable and Website Submissions tabs are readable.
+| Sheet tab | Status | Rows | Columns |
+| --- | --- | ---: | ---: |
+| Lead Dashboard | PASS | 18 | 4 |
+| Lead Queue | PASS | 15 | 18 |
+| Reply Templates | PASS | 8 | 6 |
+| Workflow Notes | PASS | 9 | 4 |
+| Closed Leads | PASS | 1 | 19 |
+| Website Leads | PASS | 15 | 57 |
+## Checks
+| Check | Status | Duration | Command |
+| --- | --- | ---: | --- |
+| Apps Script bridge syntax | PASS | 0.0s | `/Users/adamdietlein/.local/share/fnm/node-versions/v24.14.0/installation/bin/node --check scripts/website-bridge-apps-script.js` |
+| Lead workflow packet | PASS | 6.4s | `npm run leads:packet` |
+| Weekly workflow report | PASS | 0.1s | `npm run ops:workflow` |
+| Drive folder plan | PASS | 0.1s | `npm run drive:folders` |
+| Business accuracy review | PASS | 0.1s | `npm run review:business` |
+| Page review packet | PASS | 0.1s | `npm run review:pages` |
+| Image asset review | PASS | 0.1s | `npm run review:images` |
+| Public safety review | PASS | 0.1s | `npm run review:safety` |
+| Form API handler tests | PASS | 0.1s | `npm run test:forms` |
+| Route verification | PASS | 0.1s | `npm run verify:routes` |
+| Content validation | PASS | 0.1s | `npm run validate:content` |
+| Source-of-truth guardrails | PASS | 0.1s | `npm run check:source` |
+| Buyer-flow guardrails | PASS | 0.1s | `npm run check:buyer-flow` |
+| Lint | PASS | 0.9s | `npm run lint` |
+| Production build | PASS | 0.4s | `npm run build` |
