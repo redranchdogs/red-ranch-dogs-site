@@ -5,6 +5,11 @@ import { spawnSync } from "node:child_process";
 const root = process.cwd();
 const outputDir = path.join(root, "outputs", "content-sheet-exports");
 const dryRun = process.argv.includes("--dry-run");
+const onlyLabels = process.argv
+  .filter((arg) => arg.startsWith("--only="))
+  .flatMap((arg) => arg.replace("--only=", "").split(","))
+  .map((label) => label.trim().toLowerCase())
+  .filter(Boolean);
 const liveBackupDir = path.join(
   root,
   "outputs",
@@ -267,6 +272,14 @@ async function syncJob(job) {
 
 runExport();
 
-for (const job of JOBS) {
+const selectedJobs = onlyLabels.length
+  ? JOBS.filter((job) => onlyLabels.includes(job.label.toLowerCase()))
+  : JOBS;
+
+if (!selectedJobs.length) {
+  throw new Error(`No sync jobs matched --only=${onlyLabels.join(",")}`);
+}
+
+for (const job of selectedJobs) {
   await syncJob(job);
 }

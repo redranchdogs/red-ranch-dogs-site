@@ -1,6 +1,6 @@
 # Business Accuracy Review
 
-Generated: May 14, 2026
+Generated: May 15, 2026
 
 This is a human-review helper. It does not replace the automated launch checks; it points out business facts that may need Adam/Red Ranch Dogs confirmation before launch.
 

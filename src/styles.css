@@ -5287,6 +5287,15 @@ summary {
   align-items: center;
 }
 
+.premium-nav-item.has-menu::after {
+  position: absolute;
+  top: 100%;
+  right: -14px;
+  left: -14px;
+  height: 18px;
+  content: "";
+}
+
 .premium-nav-item.nav-cta > a {
   min-height: 42px;
   padding: 0 18px;

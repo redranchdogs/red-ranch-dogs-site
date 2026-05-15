@@ -254,19 +254,19 @@ export const litterDetails = {
   },
   "/winnie-wyatt": {
     name: "Winnie + Wyatt",
-    breed: "F1b Cavapoos",
+    breed: "F1B Petite Mini Cavapoos",
     image: "/images/dams/winnie-red-ranch-dogs.webp",
     facts: [
       ["Due", "Spring 2026"],
       ["Go Home", "Early Summer 2026"],
       ["Coloring", "Red Abstract"],
-      ["Size", "20-30 lbs"],
+      ["Size", "15-20 lbs"],
       ["Coat", "Wavy"],
       ["Price", "$3200"]
     ],
     parents: "Winnie + Wyatt",
     genetics: [],
-    copy: ["This planned F1b Cavapoo pairing is expected to produce red abstract puppies in a 20-30 pound size range."],
+    copy: ["This planned F1B Petite Mini Cavapoo pairing is expected to produce red abstract puppies in an estimated 15-20 pound size range."],
     puppies: [],
     milestones: []
   }
@@ -292,7 +292,7 @@ export const upcomingLitters = {
       breed: "Cavapoos",
       litters: [
         ["Penny + Wyatt", "F1b Micro Cavapoos", "Red Abstract, Parti | 10-18 lbs", "Expected Spring 2026", "/penny-wyatt"],
-        ["Winnie + Wyatt", "F1b Mini Cavapoos", "Red Abstract | 20-30 lbs", "Expected Spring 2026", "/winnie-wyatt"]
+        ["Winnie + Wyatt", "F1B Petite Mini Cavapoos", "Red Abstract | 15-20 lbs", "Expected Spring 2026", "/winnie-wyatt"]
       ]
     }
   ],
@@ -678,7 +678,7 @@ export const studCatalog = [
     dogs: [
       ["Robert Redford", "AKC Registered Moyen Poodle", "20 lbs", "ee kyky atat Bb Ssp +/+ FF, 9:1 Red Intensity", "/robert-redford"],
       ["Johnny Cash", "AKC Registered Toy Poodle", "6 lbs", "Ee kyky ayat Bb Ssp +/+ FF, 5:5 Red Intensity", "/johnn-cash"],
-      ["Wyatt Earp", "AKC Toy Poodle", "est. 6 lbs", "ee KBky atat BB SSp FF, 7:3 Red Intensity", "/wyatt"]
+      ["Wyatt Earp", "AKC Toy Poodle", "4 lbs", "ee KBky atat BB SSp FF, 7:3 Red Intensity", "/wyatt"]
     ]
   },
   {
@@ -824,7 +824,7 @@ export const studDetails = {
     name: "Wyatt Earp",
     group: "Poodles",
     type: "AKC Toy Poodle",
-    weight: "est. 6 lbs",
+    weight: "4 lbs",
     genetics: "ee KBky atat BB SSp FF, 7:3 Red Intensity",
     image: "/images/studs/wyatt-earp-red-ranch-dogs.webp",
     fee: "$1500",
@@ -847,7 +847,7 @@ export const studDetails = {
 };
 
 export const priceGroups = [
-  ["Goldendoodle Prices", ["Micro (15 lbs and under): $4,500", "Petite Mini (15-25 lbs): $3,200-$3,800", "Mini (25-40 lbs): $2,500"]],
+  ["Goldendoodle Prices", ["Micro (15 lbs and under): $4,500", "Petite Mini (15-25 lbs): $3,200-$3,800", "Mini (25-40 lbs): $2,800"]],
   ["Bernedoodle Prices", ["Micro (15-25 lbs): $4,500", "Mini (25-50 lbs): $3,500-$4,500"]],
   ["Cavapoo Prices", ["Micro (15 lbs and under): $4,500", "Petite Mini (15-20 lbs): $3,800", "Mini (20-40 lbs): $2,800"]],
   ["Poodle Prices", ["Toy Poodle (~5 lbs): $4,500"]]
@@ -855,7 +855,7 @@ export const priceGroups = [
 
 export const faqs = [
   ["Where are you located?", "We are located in Salado, Texas, conveniently between Austin and Waco."],
-  ["What are your prices?", "Our puppies are priced between $2,500 and $4,500, depending on breed, size, and individual traits."],
+  ["What are your prices?", "Our puppies are priced between $2,800 and $4,500, depending on breed, size, and individual traits."],
   ["What comes with my puppy?", "A 2-year genetic health guarantee, microchip, health records, current food sample, training treats, Puppy Pal toy, and transition support."],
   ["Which payment options do you accept?", "Zelle is the preferred payment method. No puppy is reserved without payment, and all puppy payments are considered non-refundable retainers."],
   ["How do I reserve a puppy?", "Start with the puppy application. Once submitted, we contact you to confirm placement and guide next steps."],

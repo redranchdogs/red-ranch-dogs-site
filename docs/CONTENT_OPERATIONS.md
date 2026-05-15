@@ -310,6 +310,22 @@ Run the actual smart sync:
 npm run sync:sheets
 ```
 
+For safer day-to-day updates, sync only the sheet you changed:
+
+```bash
+npm run sync:puppies
+npm run sync:litters
+npm run sync:previous-litters
+npm run sync:parents
+npm run sync:waitlist
+```
+
+Each targeted sync also has a dry-run version, for example:
+
+```bash
+npm run sync:litters:dry-run
+```
+
 Stable sync keys:
 
 - Puppy Tracker: `slug`
@@ -319,6 +335,18 @@ Stable sync keys:
 - Waitlist Sheet: `breed` + `position`
 
 The smart sync preserves extra live sheet columns and protects note-style fields such as `internal_notes`, `internalNotes`, and `matched_family_display` when those fields already have values in Google Sheets.
+
+Check bridge health before sheet formatting or live sync work:
+
+```bash
+npm run bridge:status
+```
+
+The Website Submissions compact workbook formatting requires the deployed Apps Script bridge to report `3.1.0`. If the bridge reports an older version, deploy the current `scripts/website-bridge-apps-script.js` file first, then rerun:
+
+```bash
+npm run bridge:setup-submissions
+```
 
 ## Puppy Record Pattern
 

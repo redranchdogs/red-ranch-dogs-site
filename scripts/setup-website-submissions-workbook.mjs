@@ -55,8 +55,8 @@ async function main() {
   console.log(`Bridge reachable: ${health.version || "unknown version"}`);
 
   if (health.version !== EXPECTED_BRIDGE_VERSION) {
-    console.warn(
-      `Bridge version ${health.version || "unknown"} is live. Redeploy scripts/website-bridge-apps-script.js for compact sheet formatting v${EXPECTED_BRIDGE_VERSION}.`
+    throw new Error(
+      `Bridge version ${health.version || "unknown"} is live. Redeploy scripts/website-bridge-apps-script.js for compact sheet formatting v${EXPECTED_BRIDGE_VERSION}, then rerun npm run bridge:setup-submissions.`
     );
   }
 

@@ -1,6 +1,6 @@
 # Photo Workflow Packet
 
-Generated: 5/13/2026, 10:29:40 PM Central
+Generated: 5/15/2026, 2:04:40 PM Central
 
 This is the working packet for weekly puppy photos, parent photo cleanup, and previous-litter photo backfill. It is intentionally internal: it describes Google Drive paths and photo matching rules so the public website can stay clean.
 
