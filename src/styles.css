@@ -2239,10 +2239,12 @@ main {
 
 h2 {
   margin: 0;
-  font-family: Georgia, Times New Roman, serif;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
   font-size: clamp(1.8rem, 3.4vw, 3rem);
   line-height: 1;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 h3 {
