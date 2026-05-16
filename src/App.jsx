@@ -5405,11 +5405,12 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
 
   async function onSubmit(event) {
     event.preventDefault();
+    const formElement = event.currentTarget;
     setBusy(true);
     updateStatus("", "");
-    const form = new FormData(event.currentTarget);
+    const form = new FormData(formElement);
     if (form.get("companyWebsite")?.trim()) {
-      event.currentTarget.reset();
+      formElement.reset();
       setBusy(false);
       updateStatus(formSuccessMessages[formType] || "Thank you. We received your submission.", "success");
       return;
@@ -5418,7 +5419,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     const payload = collectFormPayload(form);
     const validationError = validateLeadPayload(formType, payload);
     if (validationError) {
-      focusField(event.currentTarget, validationError.fieldName);
+      focusField(formElement, validationError.fieldName);
       setBusy(false);
       updateStatus(validationError.message, "error");
       return;
@@ -5443,7 +5444,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       if (!response.ok) {
         throw new Error(result.message || "Submission failed.");
       }
-      event.currentTarget.reset();
+      formElement.reset();
       const serverMessage = result.message || "";
       updateStatus(
         serverMessage && !serverMessage.startsWith("Thank you. We received")
