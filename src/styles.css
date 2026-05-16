@@ -3470,8 +3470,9 @@ textarea {
 
 .coat-card img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  object-position: center;
   background: #f7eadb;
 }
 
@@ -3504,8 +3505,10 @@ textarea {
 
 .coat-feature img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  object-position: center;
+  background: rgba(255, 250, 242, 0.1);
 }
 
 .coat-feature h2,
@@ -3523,8 +3526,9 @@ textarea {
 
 .marking-card img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  object-position: center;
   background: #f7eadb;
 }
 
