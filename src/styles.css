@@ -206,21 +206,22 @@ body.menu-locked {
 }
 
 .mobile-submenu {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 190ms var(--ease-premium);
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 190ms var(--ease-premium), opacity 150ms ease;
 }
 
 .mobile-submenu[data-open="true"] {
-  grid-template-rows: 1fr;
-}
-
-.mobile-submenu > * {
-  overflow: hidden;
+  max-height: 520px;
+  opacity: 1;
 }
 
 .mobile-submenu a {
   display: block;
+  flex: 0 0 auto;
   min-height: 44px;
   padding: 10px 0 10px 18px;
   color: var(--premium-muted);
@@ -4369,14 +4370,13 @@ summary {
 
 /* Final premium overrides kept at the end so the older migration styles stay harmless. */
 .mobile-submenu {
-  display: grid;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 190ms var(--ease-premium);
+  transition: max-height 190ms var(--ease-premium), opacity 150ms ease;
 }
 
 .mobile-submenu[data-open="true"] {
-  max-height: 320px;
+  max-height: 520px;
 }
 
 .button {
