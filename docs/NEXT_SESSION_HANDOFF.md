@@ -1,6 +1,6 @@
 # Next Session Handoff
 
-Last updated: 5/15/2026, 2:07:02 PM Central.
+Last updated: 5/16/2026, 10:25:02 AM Central.
 
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
 
@@ -13,9 +13,32 @@ Use this file when starting a fresh Codex session to reduce RAM pressure without
 Website:
 
 - Preview/live: https://red-ranch-dogs-site.vercel.app/
+- GitHub repo: https://github.com/redranchdogs/red-ranch-dogs-site
+- Working branch: `codex/launch-candidate`
 - Local dev command: `npm run dev -- --port 5181`
+- Production deploy command: `npx vercel deploy --prod --yes`
 - Latest operations status: **PASS**
 - Apps Script bridge version: 3.0.0
+
+## Start-of-Session Routine
+
+Run these first in a fresh Codex session:
+
+```bash
+cd "/Users/adamdietlein/Documents/New project/red-ranch-dogs-site"
+git status --short
+git branch --show-current
+git pull
+npm run ops:status
+```
+
+If the user has made iPhone/cloud Codex changes, `git pull` is mandatory before local coding. GitHub is the shared source of truth; the MacBook local checkout does not update automatically.
+
+## New Thread Starter Prompt
+
+Adam can paste this into a new Codex thread:
+
+> Continue the Red Ranch Dogs website work. Repo path: `/Users/adamdietlein/Documents/New project/red-ranch-dogs-site`. Branch: `codex/launch-candidate`. First read `docs/NEXT_SESSION_HANDOFF.md`, then run `git status --short`, `git branch --show-current`, `git pull`, and `npm run ops:status`. Use GitHub as source of truth, Vercel as the live website, and keep changes template-based rather than one-off. Do not switch DNS or retire Squarespace unless Adam explicitly asks.
 
 ## Current Website Snapshot
 
@@ -43,6 +66,43 @@ npm run leads:rebuild-queue
 ```
 
 Use `npm run ops:full` for the heavier pass: it rebuilds the lead queue, refreshes weekly workflow docs, runs the bridge check, refreshes review docs, validates routes/content/buyer flow, lints, and builds.
+
+## Google Sheets / Bridge Workflow
+
+- Website data is primarily stored in `src/data/*.json` and synced outward to Google Sheets when needed.
+- The Apps Script bridge is configured by env variable names `RED_RANCH_BRIDGE_URL` and `RED_RANCH_BRIDGE_SECRET`; never commit the secret value.
+- Website form submissions write to the Website Submissions workbook. `Website Leads` is the raw intake tab; `Lead Queue` is Adam's daily working tab; `Reply Templates` and `Workflow Notes` support follow-up.
+- Content sheets to keep aligned: Puppy Tracker, Litters, Parent Dogs, Public Waitlist, Previous Litters, and Website Submissions.
+- Use dry-run commands before sheet writes when the business change is non-trivial:
+  - `npm run sync:puppies:dry-run`
+  - `npm run sync:litters:dry-run`
+  - `npm run sync:parents:dry-run`
+  - `npm run sync:waitlist:dry-run`
+  - `npm run sync:previous-litters:dry-run`
+
+## Photo / Drive Workflow
+
+- Website Hub is the organizing concept in Google Drive.
+- Use clean folders for reusable assets: Website Photos / Parents / Mamas, Website Photos / Parents / Studs, Website Photos / Litters, and weekly puppy photo drops.
+- Current litter puppy photo folders generally follow `Mama number + Stud / Week N`.
+- Public pages should not show internal housekeeping notes like "photos loaded from Drive drop."
+- Previous litters should show the pairing and puppy photos, not old pricing.
+
+## Cloud / iPhone Codex Workflow
+
+- iPhone/cloud Codex works from GitHub, not from the MacBook's local files.
+- A cloud change should commit/push or open a PR; Vercel then deploys the pushed code.
+- When returning to the MacBook after a cloud change, run `git pull` before editing.
+- Small on-the-go updates are good candidates for cloud Codex: status changes, simple copy edits, pricing/size corrections, replacing one image, or adding a clear litter note.
+- Larger design/template work is safer from the MacBook so desktop and mobile can be visually checked.
+
+## Design Rules To Preserve
+
+- Keep the public site warm, trustworthy, premium, compact, and family-oriented.
+- Prefer reusable templates over one-off page fixes.
+- Mobile is often the priority, but desktop must not have clipped text, hidden dropdowns, unreadable overlays, or awkward oversized sections.
+- Puppy, parent, litter, previous-litter, and team cards should show clear photos with readable text on clean panels.
+- Do not expose private data: emails, phone numbers, deposit dates, full waitlist details, internal notes, bridge secrets, or worksheet-only process notes.
 
 ## Do Not Do Without Adam's Approval
 
