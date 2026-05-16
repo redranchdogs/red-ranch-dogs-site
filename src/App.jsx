@@ -53,17 +53,25 @@ function pathNow() {
   return window.location.pathname.replace(/\/$/, "") || "/";
 }
 
+function scrollToRouteTarget(hash, behavior = "auto") {
+  if (hash) {
+    document.getElementById(hash)?.scrollIntoView({ behavior, block: "start" });
+    return;
+  }
+  window.scrollTo({ top: 0, left: 0, behavior });
+}
+
+function scheduleRouteScroll(hash, behavior = "auto") {
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => scrollToRouteTarget(hash, behavior));
+  });
+}
+
 function goTo(href) {
   window.history.pushState({}, "", href);
   window.dispatchEvent(new PopStateEvent("popstate"));
   const hash = href.includes("#") ? href.split("#")[1] : "";
-  if (hash) {
-    window.requestAnimationFrame(() => {
-      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-    return;
-  }
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  scheduleRouteScroll(hash, hash ? "smooth" : "auto");
 }
 
 function Link({ href, children, className, onClick, ...props }) {
