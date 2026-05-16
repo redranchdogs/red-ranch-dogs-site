@@ -1,6 +1,6 @@
 # Next Session Handoff
 
-Last updated: 5/16/2026, 11:25:30 AM Central.
+Last updated: 5/16/2026, 11:34:37 AM Central.
 
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
 
@@ -18,7 +18,7 @@ Website:
 - Local dev command: `npm run dev -- --port 5181`
 - Production deploy command: `npx vercel deploy --prod --yes`
 - Latest operations status: **PASS**
-- Apps Script bridge version: 3.0.0
+- Apps Script bridge version: 3.2.0
 - Expected bridge version for compact lead sheets and notification emails: 3.2.0
 
 ## Start-of-Session Routine
