@@ -2729,6 +2729,29 @@ const pickupDeliveryCards = [
   ["Go-home preparation", "Families receive timing, records, supply notes, and transition guidance before pickup so go-home feels clear."]
 ];
 
+const goHomeDayGuidanceCards = [
+  {
+    title: "Ride home",
+    copy: "For local pickup, your puppy can usually just sit on your lap for the ride home. Bring a small carrier only if your travel plan or comfort level needs one.",
+    icon: HomeIcon
+  },
+  {
+    title: "Potty before leaving",
+    copy: "Puppies usually get a quick front yard potty break before leaving Red Ranch so the first drive starts as calmly as possible.",
+    icon: PawPrint
+  },
+  {
+    title: "Public-ground safety",
+    copy: "Until vaccine protection is complete, keep all four paws off the ground in public places during travel stops.",
+    icon: ShieldCheck
+  },
+  {
+    title: "Payment and records",
+    copy: "Final payment timing, records, pickup time, and any travel details are confirmed before go-home so each family knows what is due.",
+    icon: CheckCircle2
+  }
+];
+
 const studServiceStats = [
   { value: "$1,500", label: "most Red Ranch Dogs stud fees" },
   { value: "$2,000", label: "Garth Brooks stud fee" },
@@ -3132,6 +3155,16 @@ function LitterPage({ litter }) {
           </article>
         </section>
       )}
+      {isCurrentLitter(litter) && (
+        <section className="content-section litter-go-home-section">
+          <SectionHeader
+            eyebrow="Go-Home Ready"
+            title="Pickup basics for this litter"
+            copy={`${litter.name} families will get final timing and records directly, but these go-home basics stay the same for every current litter.`}
+          />
+          <CompactTextCardGrid columns="four" className="go-home-guidance-grid" items={goHomeDayGuidanceCards} />
+        </section>
+      )}
       <section className="card-list litter-puppy-list">
         <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
         {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
@@ -3339,6 +3372,10 @@ function PickupDeliveryPage() {
       stats={pickupDeliveryStats}
     >
       <CompactTextCardGrid items={pickupDeliveryCards} />
+      <section className="content-section pickup-day-basics-section">
+        <SectionHeader eyebrow="Pickup Day" title="Go-home basics" copy="The exact appointment details are confirmed by litter, but families can expect these same practical pickup reminders." />
+        <CompactTextCardGrid columns="four" className="go-home-guidance-grid" items={goHomeDayGuidanceCards} />
+      </section>
     </ProcessPageTemplate>
   );
 }

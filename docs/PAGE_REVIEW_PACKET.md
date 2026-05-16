@@ -1,6 +1,6 @@
 # Page Review Packet
 
-Generated: May 15, 2026
+Generated: May 16, 2026
 
 Use this when Adam has time for the human business-accuracy pass. It is intentionally practical: open each page, confirm the bullets, and move on.
 
@@ -55,7 +55,7 @@ Confirm:
 Notes:
 - Faye + Sundance: Expected delivery May 2026; Multigen Petite Goldendoodle.
 - Georgia + Waylon: Expected delivery May 2026; Multigen Mini Goldendoodle.
-- Winnie + Wyatt: Expected spring 2026; F1B Mini Cavapoo.
+- Winnie + Wyatt: Expected spring 2026; F1B Petite Mini Cavapoo.
 - Reece + Wyatt: Summer 2026 planning; F1B Micro Cavapoo.
 - Kylie + Ranger: Late summer 2026 planning; Multigen Micro Bernedoodle.
 ### Previous Litters

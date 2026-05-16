@@ -1,6 +1,6 @@
 # Business Accuracy Review
 
-Generated: May 15, 2026
+Generated: May 16, 2026
 
 This is a human-review helper. It does not replace the automated launch checks; it points out business facts that may need Adam/Red Ranch Dogs confirmation before launch.
 
@@ -65,7 +65,7 @@ This is a human-review helper. It does not replace the automated launch checks; 
 | --- | --- | --- | --- |
 | Faye + Sundance | Multigen Petite Goldendoodle | Expected delivery May 2026 | July 2026 |
 | Georgia + Waylon | Multigen Mini Goldendoodle | Expected delivery May 2026 | July 2026 |
-| Winnie + Wyatt | F1B Mini Cavapoo | Expected spring 2026 | To be announced |
+| Winnie + Wyatt | F1B Petite Mini Cavapoo | Expected spring 2026 | To be announced |
 | Reece + Wyatt | F1B Micro Cavapoo | Summer 2026 planning | To be announced |
 | Kylie + Ranger | Multigen Micro Bernedoodle | Late summer 2026 planning | To be announced |
 

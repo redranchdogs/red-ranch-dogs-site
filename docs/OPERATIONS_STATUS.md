@@ -1,5 +1,5 @@
 # Operations Status
-Generated: 5/15/2026, 2:05:09 PM Central
+Generated: 5/16/2026, 10:38:37 AM Central
 Overall status: **PASS**
 ## Bridge
 Status: **PASS**
@@ -8,16 +8,16 @@ Message: Bridge is reachable and Website Submissions tabs are readable.
 | Sheet tab | Status | Rows | Columns |
 | --- | --- | ---: | ---: |
 | Lead Dashboard | PASS | 18 | 4 |
-| Lead Queue | PASS | 15 | 18 |
+| Lead Queue | PASS | 17 | 18 |
 | Reply Templates | PASS | 8 | 6 |
 | Workflow Notes | PASS | 9 | 4 |
 | Closed Leads | PASS | 1 | 19 |
-| Website Leads | PASS | 15 | 57 |
+| Website Leads | PASS | 17 | 57 |
 ## Checks
 | Check | Status | Duration | Command |
 | --- | --- | ---: | --- |
 | Apps Script bridge syntax | PASS | 0.0s | `/Users/adamdietlein/.local/share/fnm/node-versions/v24.14.0/installation/bin/node --check scripts/website-bridge-apps-script.js` |
-| Lead workflow packet | PASS | 9.5s | `npm run leads:packet` |
+| Lead workflow packet | PASS | 5.3s | `npm run leads:packet` |
 | Weekly workflow report | PASS | 0.1s | `npm run ops:workflow` |
 | Drive folder plan | PASS | 0.1s | `npm run drive:folders` |
 | Business accuracy review | PASS | 0.1s | `npm run review:business` |
@@ -30,4 +30,4 @@ Message: Bridge is reachable and Website Submissions tabs are readable.
 | Source-of-truth guardrails | PASS | 0.1s | `npm run check:source` |
 | Buyer-flow guardrails | PASS | 0.1s | `npm run check:buyer-flow` |
 | Lint | PASS | 0.8s | `npm run lint` |
-| Production build | PASS | 0.7s | `npm run build` |
+| Production build | PASS | 0.5s | `npm run build` |
