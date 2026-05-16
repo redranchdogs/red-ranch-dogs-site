@@ -6857,6 +6857,32 @@ summary {
   background: var(--paper);
 }
 
+.parent-profile-hero.with-image {
+  grid-template-columns: minmax(0, 0.85fr) minmax(280px, 0.9fr);
+  align-items: start;
+}
+
+.parent-profile-hero .hero-image {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  max-height: none;
+  overflow: hidden;
+  background: var(--paper);
+  line-height: 0;
+}
+
+.parent-profile-hero .hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(760px, 82vh);
+  object-fit: contain;
+  object-position: center;
+}
+
 .animal-profile-hero .hero-image img {
   object-fit: contain;
   object-position: center;
@@ -6928,6 +6954,14 @@ summary {
   }
 
   .hero-image {
+    max-height: none;
+  }
+
+  .parent-profile-hero.with-image {
+    grid-template-columns: 1fr;
+  }
+
+  .parent-profile-hero .hero-image img {
     max-height: none;
   }
 

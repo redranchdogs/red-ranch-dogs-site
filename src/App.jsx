@@ -3201,6 +3201,7 @@ function ParentDetailPage({ parent }) {
         title={parent.name}
         copy={parent.description}
         image={parent.mainPhoto || images.doodles}
+        className="parent-profile-hero"
       />
       <section className="content-section parent-profile-template">
         <article className="group-panel parent-snapshot-panel">
