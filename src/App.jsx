@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -53,6 +53,10 @@ function pathNow() {
   return window.location.pathname.replace(/\/$/, "") || "/";
 }
 
+function hashNow() {
+  return window.location.hash.replace(/^#/, "");
+}
+
 function scrollToRouteTarget(hash, behavior = "auto") {
   if (hash) {
     document.getElementById(hash)?.scrollIntoView({ behavior, block: "start" });
@@ -68,9 +72,12 @@ function scheduleRouteScroll(hash, behavior = "auto") {
 }
 
 function goTo(href) {
+  const hash = href.includes("#") ? href.split("#")[1] : "";
+  if (!hash) {
+    scrollToRouteTarget("", "auto");
+  }
   window.history.pushState({}, "", href);
   window.dispatchEvent(new PopStateEvent("popstate"));
-  const hash = href.includes("#") ? href.split("#")[1] : "";
   scheduleRouteScroll(hash, hash ? "smooth" : "auto");
 }
 
@@ -5747,6 +5754,12 @@ export default function App() {
   const [path, setPath] = useState(pathNow());
 
   useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
+  useEffect(() => {
     const onRoute = () => setPath(pathNow());
     window.addEventListener("popstate", onRoute);
     return () => window.removeEventListener("popstate", onRoute);
@@ -5757,6 +5770,18 @@ export default function App() {
     if (!destination) return;
     window.history.replaceState({}, "", destination);
     setPath(pathNow());
+  }, [path]);
+
+  useLayoutEffect(() => {
+    if (clientRedirects[path]) return undefined;
+    const hash = hashNow();
+    scheduleRouteScroll(hash, hash ? "smooth" : "auto");
+    const routeScrollTimers = [150, 500].map((delay) =>
+      window.setTimeout(() => scrollToRouteTarget(hash, "auto"), delay)
+    );
+    return () => {
+      routeScrollTimers.forEach((timer) => window.clearTimeout(timer));
+    };
   }, [path]);
 
   useEffect(() => {
