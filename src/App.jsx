@@ -5642,7 +5642,6 @@ function Footer() {
         <div className="footer-brand">
           <img src={brand.logo} alt="Red Ranch Dogs" />
           <p>{brand.tagline}</p>
-          <span>{brand.location}</span>
         </div>
         <nav className="footer-links" aria-label="Footer navigation">
           <Link href="/puppies/available">Available Puppies</Link>
