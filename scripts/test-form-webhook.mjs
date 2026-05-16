@@ -129,6 +129,14 @@ if (process.argv.includes("--all")) {
     }),
     withRouting({
       ...shared,
+      formType: "waitlist",
+      formTitle: "Join the Waitlist",
+      preferredBreed: "Cavapoo",
+      timing: "Summer or fall",
+      message: `This is a fake waitlist test submission from npm run test:forms --all at ${submittedAt}.`
+    }),
+    withRouting({
+      ...shared,
       formType: "stud",
       formTitle: "Stud Inquiry",
       programName: "Codex Test Kennel",

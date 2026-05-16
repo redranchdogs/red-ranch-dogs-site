@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const DEFAULT_SUBMISSIONS_SHEET_ID = "1872yXbOwwtio73bK5wlZJKEaBez4czsGuU0bcYaxriE";
-const EXPECTED_BRIDGE_VERSION = "3.1.0";
+const EXPECTED_BRIDGE_VERSION = "3.2.0";
 const root = process.cwd();
 const envPath = path.join(root, ".env.local");
 
@@ -56,7 +56,7 @@ async function main() {
 
   if (health.version !== EXPECTED_BRIDGE_VERSION) {
     throw new Error(
-      `Bridge version ${health.version || "unknown"} is live. Redeploy scripts/website-bridge-apps-script.js for compact sheet formatting v${EXPECTED_BRIDGE_VERSION}, then rerun npm run bridge:setup-submissions.`
+      `Bridge version ${health.version || "unknown"} is live. Redeploy scripts/website-bridge-apps-script.js for compact sheet formatting and bridge-managed notification emails v${EXPECTED_BRIDGE_VERSION}, then rerun npm run bridge:setup-submissions.`
     );
   }
 

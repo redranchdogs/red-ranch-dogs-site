@@ -1,6 +1,6 @@
 # Lead UAT Scenarios
 
-Generated: 5/14/2026, 11:27:13 AM Central
+Generated: 5/16/2026, 11:20:13 AM Central
 
 Mode: **LIVE WRITE**
 
@@ -28,12 +28,12 @@ UAT means User Acceptance Testing. These are fake-but-realistic client journeys 
 
 | Scenario | Form | Submission ID | Acceptance Criteria | Result |
 | --- | --- | --- | --- | --- |
-| Happy path: puppy application | application | uat-20260514162613-application-goldendoodle | Routes as a high-priority puppy application with breed, size, timing, pickup, and agreement details. | 200 PASS - Thank you. We received your submission. |
-| Happy path: waitlist interest | waitlist | uat-20260514162613-waitlist-cavapoo | Routes as waitlist interest and keeps the request simple enough to move into the breed waitlist later. | 200 PASS - Thank you. We received your submission. |
-| Edge case: available puppy question when none are available | contact | uat-20260514162613-contact-availability | Routes as general contact and captures the question without pretending a puppy is available. | 200 PASS - Thank you. We received your submission. |
-| Happy path: stud inquiry | stud | uat-20260514162613-stud-inquiry | Routes as a high-priority stud inquiry with female dog and brucellosis fields visible. | 200 PASS - Thank you. We received your submission. |
-| Happy path: guardian application | guardian | uat-20260514162613-guardian-candidate | Routes as a guardian candidate and surfaces location, yard, housing, and phone-call fit. | 200 PASS - Thank you. We received your submission. |
-| Happy path: puppy alert signup | newsletter | uat-20260514162613-newsletter-signup | Routes as a low-priority puppy alert signup with only email required. | 200 PASS - Thank you. We received your submission. |
+| Happy path: puppy application | application | uat-20260516161913-application-goldendoodle | Routes as a high-priority puppy application with breed, size, timing, pickup, and agreement details. | 200 PASS - Thank you. We received your submission. |
+| Happy path: waitlist interest | waitlist | uat-20260516161913-waitlist-cavapoo | Routes as waitlist interest and keeps the request simple enough to move into the breed waitlist later. | 200 PASS - Thank you. We received your submission. |
+| Edge case: available puppy question when none are available | contact | uat-20260516161913-contact-availability | Routes as general contact and captures the question without pretending a puppy is available. | 200 PASS - Thank you. We received your submission. |
+| Happy path: stud inquiry | stud | uat-20260516161913-stud-inquiry | Routes as a high-priority stud inquiry with female dog and brucellosis fields visible. | 200 PASS - Thank you. We received your submission. |
+| Happy path: guardian application | guardian | uat-20260516161913-guardian-candidate | Routes as a guardian candidate and surfaces location, yard, housing, and phone-call fit. | 200 PASS - Thank you. We received your submission. |
+| Happy path: puppy alert signup | newsletter | uat-20260516161913-newsletter-signup | Routes as a low-priority puppy alert signup with only email required. | 200 PASS - Thank you. We received your submission. |
 
 ## Before Launch
 

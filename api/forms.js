@@ -588,14 +588,18 @@ async function appendSheet(payload) {
     bridgeError = error;
   }
 
+  if (!bridgeResult.skipped) {
+    return { skipped: false };
+  }
+
   try {
     const webhookResult = await appendSheetViaWebhook(payload);
 
-    if (!bridgeResult.skipped || !webhookResult.skipped) {
+    if (!webhookResult.skipped) {
       return { skipped: false };
     }
   } catch (error) {
-    if (bridgeResult.skipped && !bridgeError) {
+    if (!bridgeError) {
       throw error;
     }
   }

@@ -90,6 +90,7 @@ const app = read("src/App.jsx");
 const formsApi = read("api/forms.js");
 const formsWebhookScript = read("scripts/google-apps-script.js");
 const formsWebhookTest = read("scripts/test-form-webhook.mjs");
+const websiteBridgeScript = read("scripts/website-bridge-apps-script.js");
 const index = read("index.html");
 const robots = read("public/robots.txt");
 const sitemap = read("public/sitemap.xml");
@@ -223,6 +224,12 @@ if (!app.includes('meta[property="og:image:secure_url"]')) {
   }
 });
 
+["MailApp.sendEmail", "NOTIFY_EMAIL", "Website Leads"].forEach((marker) => {
+  if (!websiteBridgeScript.includes(marker)) {
+    blockers.push(`Website bridge is missing notification support marker: ${marker}.`);
+  }
+});
+
 ["leadRoutingByForm", "withRouting", "recommendedNextStep", "leadSummary"].forEach((marker) => {
   if (!formsWebhookTest.includes(marker)) {
     blockers.push(`Live form webhook smoke test is missing routing payload marker: ${marker}.`);
@@ -290,12 +297,12 @@ if (!robots.includes("https://www.redranchdogs.com/sitemap.xml")) {
   blockers.push("robots.txt does not reference the production sitemap URL.");
 }
 
-if (!formWebhook) {
-  blockers.push("FORM_WEBHOOK_URL is not configured. Live form submissions would not reach the sheet/email workflow.");
+if (!bridgeUrl || !bridgeSecret) {
+  blockers.push("RED_RANCH_BRIDGE_URL and RED_RANCH_BRIDGE_SECRET are not both configured. Live form submissions would not reach the sheet/email workflow.");
 }
 
-if (!bridgeUrl || !bridgeSecret) {
-  warnings.push("RED_RANCH_BRIDGE_URL and RED_RANCH_BRIDGE_SECRET are not both configured locally. Sheet sync will need them before writing to Google Sheets.");
+if (!formWebhook) {
+  warnings.push("FORM_WEBHOOK_URL is not configured. That is acceptable if the bridge is deployed with notification support, but it removes the legacy fallback.");
 }
 
 if (missingImages.length > 0) {
@@ -318,6 +325,7 @@ console.log(`- Dynamic parent routes checked: ${publicParents.length}`);
 console.log(`- Form webhook configured: ${formWebhook ? "yes" : "no"}`);
 console.log("- Form lead routing metadata: yes");
 console.log(`- Sheet bridge configured: ${bridgeUrl && bridgeSecret ? "yes" : "no"}`);
+console.log("- Bridge notification support: yes");
 
 if (warnings.length > 0) {
   console.log("");

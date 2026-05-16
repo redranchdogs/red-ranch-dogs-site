@@ -1,5 +1,5 @@
 # Operations Status
-Generated: 5/16/2026, 10:58:21 AM Central
+Generated: 5/16/2026, 11:24:35 AM Central
 Overall status: **PASS**
 ## Bridge
 Status: **PASS**
@@ -8,11 +8,11 @@ Message: Bridge is reachable and Website Submissions tabs are readable.
 | Sheet tab | Status | Rows | Columns |
 | --- | --- | ---: | ---: |
 | Lead Dashboard | PASS | 18 | 4 |
-| Lead Queue | PASS | 17 | 18 |
+| Lead Queue | PASS | 23 | 18 |
 | Reply Templates | PASS | 8 | 6 |
 | Workflow Notes | PASS | 9 | 4 |
 | Closed Leads | PASS | 1 | 19 |
-| Website Leads | PASS | 17 | 57 |
+| Website Leads | PASS | 23 | 57 |
 ## Checks
 | Check | Status | Duration | Command |
 | --- | --- | ---: | --- |
@@ -29,5 +29,5 @@ Message: Bridge is reachable and Website Submissions tabs are readable.
 | Content validation | PASS | 0.1s | `npm run validate:content` |
 | Source-of-truth guardrails | PASS | 0.1s | `npm run check:source` |
 | Buyer-flow guardrails | PASS | 0.1s | `npm run check:buyer-flow` |
-| Lint | PASS | 0.8s | `npm run lint` |
-| Production build | PASS | 0.7s | `npm run build` |
+| Lint | PASS | 0.6s | `npm run lint` |
+| Production build | PASS | 0.3s | `npm run build` |

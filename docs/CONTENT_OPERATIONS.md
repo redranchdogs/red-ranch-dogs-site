@@ -342,7 +342,7 @@ Check bridge health before sheet formatting or live sync work:
 npm run bridge:status
 ```
 
-The Website Submissions compact workbook formatting requires the deployed Apps Script bridge to report `3.1.0`. If the bridge reports an older version, deploy the current `scripts/website-bridge-apps-script.js` file first, then rerun:
+The Website Submissions compact workbook formatting and bridge-managed notification emails require the deployed Apps Script bridge to report `3.2.0`. If the bridge reports an older version, deploy the current `scripts/website-bridge-apps-script.js` file first, then rerun:
 
 ```bash
 npm run bridge:setup-submissions

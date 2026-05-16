@@ -42,16 +42,18 @@ When new puppy photos arrive:
 
 ## Forms
 
-The frontend submits puppy application, waitlist, contact, guardian application, and newsletter forms to `/api/forms`.
+The frontend submits puppy application, waitlist, contact, guardian application, stud inquiry, and newsletter forms to `/api/forms`.
 
 Production environment variables:
 
-- `FORM_WEBHOOK_URL`: Google Apps Script web app URL for spreadsheet logging.
+- `RED_RANCH_BRIDGE_URL`: Google Apps Script bridge web app URL for spreadsheet logging and notification emails.
+- `RED_RANCH_BRIDGE_SECRET`: shared secret for bridge requests.
+- `FORM_WEBHOOK_URL`: optional legacy Google Apps Script web app URL fallback.
 - `RESEND_API_KEY`: optional Resend API key for email delivery.
 - `FORM_TO_EMAIL`: destination email, for example `adam@redranchdogs.com`.
 - `FORM_FROM_EMAIL`: verified sender email for Resend.
 
-The included `scripts/google-apps-script.js` logs submissions to Google Sheets and can send a notification email through Google Apps Script. If Resend and Apps Script are both unset, local previews accept submissions with a preview message, but production returns a configuration error.
+The included `scripts/website-bridge-apps-script.js` logs submissions to Google Sheets and can send a notification email through Google Apps Script. If the bridge, Resend, and legacy Apps Script fallback are all unset, local previews accept submissions with a preview message, but production returns a configuration error.
 
 Form smoke test:
 
@@ -67,7 +69,7 @@ Live webhook test:
 npm run test:forms:webhook -- --all
 ```
 
-This uses `FORM_WEBHOOK_URL` from `.env.local`, writes clearly marked fake rows to the Google Sheet, verifies the lead routing columns, and may send Apps Script notification emails.
+This uses `FORM_WEBHOOK_URL` from `.env.local`, writes clearly marked fake rows to the Google Sheet, verifies the lead routing columns, and may send legacy Apps Script notification emails.
 
 ## Deployment
 

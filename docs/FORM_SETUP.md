@@ -43,17 +43,18 @@ The raw `Website Leads` tab is organized around these column groups:
 - Form-specific details: puppy application, stud inquiry, guardian application, waitlist, and newsletter fields.
 - Internal context: source and user agent.
 
-## Apps Script
+## Apps Script Bridge
 
-Use `scripts/google-apps-script.js`.
+Use `scripts/website-bridge-apps-script.js` for the main website bridge.
 
-The script already includes defaults for:
+The bridge writes form rows to Google Sheets, supports the compact lead workbook setup, and sends notification emails when a new row is appended to `Website Leads`.
 
-- `SHEET_ID`: `1872yXbOwwtio73bK5wlZJKEaBez4czsGuU0bcYaxriE`
-- `SHEET_NAME`: `Website Leads`
-- `NOTIFY_EMAIL`: `adam@redranchdogs.com`
+The website supplies the target spreadsheet through Vercel environment variables. The bridge needs these script properties:
 
-Optional script properties with those same names can override the defaults later.
+- `BRIDGE_SECRET`: set this as a script property, matching `RED_RANCH_BRIDGE_SECRET`
+- `NOTIFY_EMAIL`: optional, defaults to `adam@redranchdogs.com`
+
+The legacy fallback script in `scripts/google-apps-script.js` still includes `SHEET_ID`, `SHEET_NAME`, and `NOTIFY_EMAIL` defaults if you ever use `FORM_WEBHOOK_URL` directly.
 
 Deployment:
 
@@ -63,7 +64,9 @@ Deployment:
 
 After deployment, copy the web app URL into the Vercel environment variable:
 
-`FORM_WEBHOOK_URL`
+`RED_RANCH_BRIDGE_URL`
+
+Keep `FORM_WEBHOOK_URL` only if you want the older `scripts/google-apps-script.js` logger as a legacy fallback.
 
 ## Vercel Environment Variables
 
@@ -101,7 +104,7 @@ Run this command after future Apps Script bridge changes to confirm authenticate
 npm run test:bridge
 ```
 
-Run this command after deploying bridge v3.1 to format the `Website Submissions` workbook into the working lead-management layout:
+Run this command after deploying bridge v3.2 to format the `Website Submissions` workbook into the working lead-management layout:
 
 ```bash
 npm run bridge:setup-submissions

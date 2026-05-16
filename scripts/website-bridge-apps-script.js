@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars, no-undef */
-// Red Ranch Dogs Website Bridge v3.1.
+// Red Ranch Dogs Website Bridge v3.2.
 //
 // Purpose:
 // - Let Codex safely read and update Website Hub sheets through Apps Script.
@@ -7,20 +7,23 @@
 // - Create Drive folders by path for repeatable photo workflows.
 // - Delete temporary sheet tabs created during diagnostics or workflow changes.
 // - Format the Website Submissions workbook into a simple lead-management tool.
+// - Send a notification email when a new raw website lead is appended.
 //
 // Setup:
 // 1. Open the existing Red Ranch Dogs Website Bridge Apps Script project.
 // 2. Replace the code with this file.
 // 3. Project Settings > Script properties > add BRIDGE_SECRET.
-// 4. Deploy > Manage deployments > Edit > New version > Deploy.
+// 4. Optional: add NOTIFY_EMAIL, defaulting to adam@redranchdogs.com.
+// 5. Deploy > Manage deployments > Edit > New version > Deploy.
 
 var FALLBACK_SECRET_KEY = "CHANGE_ME";
+var DEFAULT_NOTIFY_EMAIL = "adam@redranchdogs.com";
 
 function doGet() {
   return json_({
     ok: true,
     message: "Red Ranch Dogs bridge is working.",
-    version: "3.1.0"
+    version: "3.2.0"
   });
 }
 
@@ -107,6 +110,7 @@ function replaceSheet_(body) {
 function appendRows_(body) {
   var sheet = getSheet_(body.spreadsheetId, body.sheetName);
   var values = normalizeValues_(body.values || []);
+  var notificationResult = { sent: 0 };
 
   if (!values.length || !values[0].length) {
     return { ok: true, sheetName: body.sheetName, rows: 0, columns: 0 };
@@ -116,12 +120,84 @@ function appendRows_(body) {
     .getRange(sheet.getLastRow() + 1, 1, values.length, values[0].length)
     .setValues(values);
 
+  if (body.sheetName === "Website Leads" && body.notifyEmail !== false) {
+    notificationResult = sendLeadNotifications_(values);
+  }
+
   return {
     ok: true,
     sheetName: body.sheetName,
     rows: values.length,
-    columns: values[0].length
+    columns: values[0].length,
+    notifications: notificationResult
   };
+}
+
+function sendLeadNotifications_(rows) {
+  var notifyEmail =
+    PropertiesService.getScriptProperties().getProperty("NOTIFY_EMAIL") || DEFAULT_NOTIFY_EMAIL;
+  var result = { sent: 0 };
+
+  if (!notifyEmail) {
+    return result;
+  }
+
+  rows.forEach(function (row) {
+    try {
+      MailApp.sendEmail({
+        to: notifyEmail,
+        subject: buildLeadNotificationSubject_(row),
+        body: buildLeadNotificationBody_(row)
+      });
+      result.sent += 1;
+    } catch (error) {
+      result.error = error && error.message ? error.message : String(error);
+    }
+  });
+
+  return result;
+}
+
+function buildLeadNotificationSubject_(row) {
+  return [
+    "Red Ranch Dogs",
+    cell_(row, 4) || cell_(row, 2) || "Website form",
+    cell_(row, 23) || cell_(row, 22) || cell_(row, 25)
+  ]
+    .filter(Boolean)
+    .join(" - ");
+}
+
+function buildLeadNotificationBody_(row) {
+  return [
+    "A new Red Ranch Dogs website form submission came in.",
+    "",
+    "Submitted: " + cell_(row, 0),
+    "Form: " + (cell_(row, 3) || cell_(row, 2)),
+    "Lead type: " + (cell_(row, 4) || cell_(row, 5)),
+    "Priority: " + cell_(row, 7),
+    "Next step: " + cell_(row, 8),
+    "",
+    "Name: " + cell_(row, 19),
+    "Email: " + cell_(row, 20),
+    "Phone: " + cell_(row, 21),
+    "Breed / interest: " + (cell_(row, 23) || cell_(row, 24) || cell_(row, 25) || cell_(row, 22)),
+    "Timing: " + (cell_(row, 43) || cell_(row, 27) || cell_(row, 51)),
+    "Location: " + cell_(row, 35),
+    "",
+    "Summary:",
+    cell_(row, 9),
+    "",
+    "Message:",
+    cell_(row, 54),
+    "",
+    "Submission ID: " + cell_(row, 1),
+    "Source page: " + (cell_(row, 11) || cell_(row, 10))
+  ].join("\n");
+}
+
+function cell_(row, index) {
+  return row[index] || "";
 }
 
 function deleteSheet_(body) {

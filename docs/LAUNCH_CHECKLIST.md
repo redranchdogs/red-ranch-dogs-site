@@ -16,13 +16,13 @@ Last updated: May 12, 2026.
 
 - Follow `docs/FORM_SETUP.md`.
 - Google Sheet created: `1872yXbOwwtio73bK5wlZJKEaBez4czsGuU0bcYaxriE`.
-- Apps Script bridge deployed as a web app and saved locally as `RED_RANCH_BRIDGE_URL` in `.env.local`.
-- Notification email confirmed with `adam@redranchdogs.com`.
+- Apps Script bridge v3.2 deployed as a web app and saved locally as `RED_RANCH_BRIDGE_URL` in `.env.local`.
+- Bridge notification email confirmed with `adam@redranchdogs.com`.
 - Add `RED_RANCH_BRIDGE_URL`, `RED_RANCH_BRIDGE_SECRET`, `FORM_SHEET_ID`, and `FORM_SHEET_NAME` to the Vercel project environment variables before production launch.
 - Optional: keep `FORM_WEBHOOK_URL` configured as a legacy fallback.
 - Optional: configure Resend with `RESEND_API_KEY`, `FORM_TO_EMAIL`, and `FORM_FROM_EMAIL`.
 - Run `npm run test:forms` after form changes. Run `npm run test:bridge` after any Apps Script redeploy to confirm authenticated bridge access.
-- Before launch, submit browser tests for puppy application, waitlist, contact, guardian application, and newsletter.
+- Before launch, submit browser tests for puppy application, waitlist, contact, guardian application, stud inquiry, and newsletter.
 
 ## URL And SEO Review
 

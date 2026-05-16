@@ -326,6 +326,45 @@ assert(queueAppendRequest.body.values[0][15].includes("Codex Form Test"), "lead 
 
 process.env.FORM_WEBHOOK_URL = "https://example.test/red-ranch-dogs-form-webhook";
 
+let bridgeOnlyWebhookCalls = 0;
+globalThis.fetch = async (url, options = {}) => {
+  const body = JSON.parse(options.body || "{}");
+
+  if (!String(url).includes("red-ranch-bridge")) {
+    bridgeOnlyWebhookCalls += 1;
+    return { ok: true };
+  }
+
+  if (body.action === "getSheetValues") {
+    return {
+      ok: true,
+      text: async () => JSON.stringify({ ok: true, values: [] })
+    };
+  }
+
+  if (body.action === "replaceSheet" || body.action === "appendRows") {
+    return {
+      ok: true,
+      text: async () => JSON.stringify({ ok: true })
+    };
+  }
+
+  return {
+    ok: false,
+    text: async () => JSON.stringify({ ok: false, error: `Unexpected bridge action: ${body.action}` })
+  };
+};
+
+const bridgePreferred = await post({
+  ...basePayload,
+  formType: "contact",
+  inquiryType: "Bridge preferred route test"
+});
+assert(bridgePreferred.statusCode === 200, "bridge should remain the primary route when webhook is also configured");
+assert(bridgeOnlyWebhookCalls === 0, "legacy webhook should not run after a successful bridge write");
+
+process.env.FORM_WEBHOOK_URL = "https://example.test/red-ranch-dogs-form-webhook";
+
 const fallbackRequests = [];
 globalThis.fetch = async (url, options = {}) => {
   const body = JSON.parse(options.body || "{}");

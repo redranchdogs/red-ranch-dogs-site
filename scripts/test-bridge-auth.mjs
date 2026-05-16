@@ -3,7 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const envPath = path.join(root, ".env.local");
-const EXPECTED_BRIDGE_VERSION = "3.1.0";
+const EXPECTED_BRIDGE_VERSION = "3.2.0";
 
 function loadLocalEnv() {
   if (!fs.existsSync(envPath)) return;
@@ -54,7 +54,7 @@ async function main() {
 
   if (health.version !== EXPECTED_BRIDGE_VERSION) {
     console.warn(
-      `Bridge version ${health.version || "unknown"} is live, but ${EXPECTED_BRIDGE_VERSION} is expected for compact submissions workbook formatting. Redeploy scripts/website-bridge-apps-script.js when you want that formatting action available.`
+      `Bridge version ${health.version || "unknown"} is live, but ${EXPECTED_BRIDGE_VERSION} is expected for compact submissions workbook formatting and bridge-managed notification emails. Redeploy scripts/website-bridge-apps-script.js when you want those actions available.`
     );
   }
 
