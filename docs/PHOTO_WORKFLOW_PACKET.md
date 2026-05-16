@@ -1,6 +1,6 @@
 # Photo Workflow Packet
 
-Generated: 5/15/2026, 2:04:40 PM Central
+Generated: 5/16/2026, 10:57:59 AM Central
 
 This is the working packet for weekly puppy photos, parent photo cleanup, and previous-litter photo backfill. It is intentionally internal: it describes Google Drive paths and photo matching rules so the public website can stay clean.
 
@@ -53,7 +53,7 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 | Georgia + Waylon | Website Hub / Photos / Litters / Georgia + Waylon | 2 | Use parent pairing images only until puppy photos are ready. |
 | Winnie + Wyatt | Website Hub / Photos / Litters / Winnie + Wyatt | 2 | Use parent pairing images only until puppy photos are ready. |
 | Reece + Wyatt | Website Hub / Photos / Litters / Reece + Wyatt | 2 | Use parent pairing images only until puppy photos are ready. |
-| Kylie + Ranger | Website Hub / Photos / Litters / Kylie + Ranger | 1 | Use parent pairing images only until puppy photos are ready. |
+| Kylie + Ranger | Website Hub / Photos / Litters / Kylie + Ranger | 2 | Use parent pairing images only until puppy photos are ready. |
 
 ## Parent Photo Cleanup
 

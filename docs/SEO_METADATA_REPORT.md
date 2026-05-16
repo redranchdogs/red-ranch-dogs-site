@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 5/15/2026, 2:06:51 PM Central
+Generated: 5/16/2026, 11:00:00 AM Central
 
 Status: **PASS**
 
@@ -56,7 +56,7 @@ Routes with warnings: 0
 | /litters/ginny-butch-spring-2026 | 200 | Ginny + Butch Cassidy | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 77 | Ginny + Butch Cassidy | 1 | https://www.redranchdogs.com/litters/ginny-butch-spring-2026 |
 | /litters/faye-sundance-may-2026 | 200 | Faye + Sundance | Multigen Petite Goldendoodle Litter | Red Ranch Dogs | 72 | Faye + Sundance | 1 | https://www.redranchdogs.com/litters/faye-sundance-may-2026 |
 | /litters/georgia-waylon-may-2026 | 200 | Georgia + Waylon | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 71 | Georgia + Waylon | 1 | https://www.redranchdogs.com/litters/georgia-waylon-may-2026 |
-| /litters/winnie-wyatt-spring-2026 | 200 | Winnie + Wyatt | F1B Mini Cavapoo Litter | Red Ranch Dogs | 60 | Winnie + Wyatt | 1 | https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026 |
+| /litters/winnie-wyatt-spring-2026 | 200 | Winnie + Wyatt | F1B Petite Mini Cavapoo Litter | Red Ranch Dogs | 67 | Winnie + Wyatt | 1 | https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026 |
 | /litters/reece-wyatt-summer-2026 | 200 | Reece + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 77 | Reece + Wyatt | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026 |
 | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 90 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
 | /parents | 200 | Parent Dogs | Red Ranch Dogs | 98 | Parent Dogs | 1 | https://www.redranchdogs.com/parents |
