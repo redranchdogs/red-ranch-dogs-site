@@ -4341,13 +4341,6 @@ function WaitlistPage() {
           </article>
         ))}
       </section>
-      <section className="content-section narrow waitlist-note-panel process-note-panel">
-        <article className="group-panel">
-          <h2>Public list privacy</h2>
-          <p>Each row represents one active waitlist spot using first name and last initial only. Families are contacted in order of deposit placed.</p>
-          <p className="small-note">The public page should never show emails, phone numbers, deposit dates, application notes, or full last names.</p>
-        </article>
-      </section>
     </ProcessPageTemplate>
   );
 }
