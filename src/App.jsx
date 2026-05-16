@@ -227,6 +227,10 @@ const architectureSeo = {
   "/apply": {
     title: "Apply | Red Ranch Dogs",
     description: "Submit a puppy application for Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle availability."
+  },
+  "/privacy": {
+    title: "Privacy Policy | Red Ranch Dogs",
+    description: "Review how Red Ranch Dogs collects, uses, and protects information submitted through website forms and everyday communication."
   }
 };
 
@@ -583,7 +587,8 @@ const breadcrumbLabels = {
   "meet-the-team": "Meet the Team",
   reviews: "Reviews",
   contact: "Contact",
-  apply: "Apply"
+  apply: "Apply",
+  privacy: "Privacy Policy"
 };
 
 function titleCaseSlug(slug) {
@@ -4042,6 +4047,73 @@ function ContactPage() {
   );
 }
 
+function PrivacyPage() {
+  const privacySections = [
+    {
+      title: "What we collect",
+      copy: "When you submit a puppy application, guardian application, stud inquiry, puppy alert signup, or contact form, we collect the details you choose to share, such as your name, email, phone number, location, household notes, puppy preferences, timing, and questions."
+    },
+    {
+      title: "How we use it",
+      copy: "We use this information to respond to your inquiry, understand fit and timing, manage puppy waitlist conversations, coordinate guardian or stud-service requests, and keep our internal lead workflow organized."
+    },
+    {
+      title: "Where it goes",
+      copy: "Website form submissions may be sent to Red Ranch Dogs email notifications and stored in internal Google Sheets used by the Red Ranch Dogs team for follow-up and recordkeeping."
+    },
+    {
+      title: "What we do not do",
+      copy: "We do not sell personal information. We do not publish private application details, phone numbers, email addresses, or internal waitlist notes on the public website."
+    }
+  ];
+
+  return (
+    <Layout>
+      <PageHero
+        eyebrow="Privacy"
+        title="Privacy Policy"
+        copy="This page explains how Red Ranch Dogs handles information submitted through our website forms and everyday communication."
+        className="compact-page-hero"
+      />
+      <section className="content-section narrow privacy-intro-panel">
+        <p>Last updated: May 16, 2026</p>
+        <p>
+          Red Ranch Dogs is a family-run puppy program in Salado, Texas. We collect only the information needed to respond thoughtfully,
+          manage our puppy and program workflows, and keep communication clear with families and approved breeder inquiries.
+        </p>
+      </section>
+      <section className="tile-grid two privacy-policy-grid">
+        {privacySections.map((section) => (
+          <article className="text-card compact-card" key={section.title}>
+            <h2>{section.title}</h2>
+            <p>{section.copy}</p>
+          </article>
+        ))}
+      </section>
+      <section className="content-section narrow privacy-detail-panel">
+        <h2>Website analytics</h2>
+        <p>
+          We use Vercel Web Analytics to understand general website traffic, such as page visits and device trends. This helps us see what
+          families are using most and improve the site over time.
+        </p>
+        <h2>Updates or deletion requests</h2>
+        <p>
+          If you want to update information you submitted, ask a question about this policy, or request that we remove your information from
+          our active follow-up workflow, contact us at <a href={`mailto:${brand.email}`}>{brand.email}</a>.
+        </p>
+      </section>
+      <CTASection
+        title="Questions about your information?"
+        copy="Send us a note and we will help update, correct, or clarify the information connected to your inquiry."
+        primaryHref="/contact"
+        primaryLabel="Contact Red Ranch Dogs"
+        secondaryHref="/apply"
+        secondaryLabel="Puppy Application"
+      />
+    </Layout>
+  );
+}
+
 function TeamPage() {
   const cards = teamProfiles.length ? teamProfiles : teamMembers;
 
@@ -5580,6 +5652,7 @@ function Footer() {
           <Link href="/process/pricing">Pricing</Link>
           <Link href="/process/faq">FAQ</Link>
           <Link href="/contact">Contact</Link>
+          <Link href="/privacy">Privacy</Link>
         </nav>
         <div className="footer-contact">
           <p className="footer-column-title">Connect</p>
@@ -5727,6 +5800,7 @@ export default function App() {
       "/prices": <PricingPage />,
       "/faq": <FaqPage />,
       "/contact": <ContactPage />,
+      "/privacy": <PrivacyPage />,
       "/contact-1": <ContactPage />,
       "/meet-our-team": <TeamPage />,
       "/our-family": <FamilyPage />,
