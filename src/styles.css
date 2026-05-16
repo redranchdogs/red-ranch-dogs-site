@@ -7614,20 +7614,25 @@ summary {
 
 .team-profile-card {
   overflow: hidden;
-  display: grid;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
   gap: 0;
   min-width: 0;
   padding: 0;
+  background: var(--paper);
 }
 
 .team-profile-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 2 / 3;
+  height: auto;
+  max-width: 100%;
+  aspect-ratio: 4 / 5;
+  margin: 0;
   object-fit: cover;
-  object-position: 50% 0%;
+  object-position: 50% 8%;
   background: var(--sand);
+  flex: 0 0 auto;
 }
 
 .team-profile-card span {
@@ -7646,10 +7651,12 @@ summary {
   font-size: clamp(2.4rem, 4vw, 3.25rem);
   font-weight: 400;
   line-height: 0.92;
+  color: var(--ink);
 }
 
 .team-profile-card p {
   margin: 12px 22px 24px;
+  color: var(--muted);
   font-size: 0.98rem;
   line-height: 1.44;
 }
