@@ -3176,16 +3176,6 @@ function LitterPage({ litter }) {
           </article>
         </section>
       )}
-      {isCurrentLitter(litter) && (
-        <section className="content-section litter-go-home-section">
-          <SectionHeader
-            eyebrow="Go-Home Ready"
-            title="Pickup basics for this litter"
-            copy={`${litter.name} families will get final timing and records directly, but these go-home basics stay the same for every current litter.`}
-          />
-          <CompactTextCardGrid columns="four" className="go-home-guidance-grid" items={goHomeDayGuidanceCards} />
-        </section>
-      )}
       <section className="card-list litter-puppy-list">
         <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
         {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
@@ -3198,6 +3188,20 @@ function LitterPage({ litter }) {
         <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
         <ImageGallery images={gallery} label={`${litter.name} weekly update`} />
       </section>
+      {isCurrentLitter(litter) && (
+        <section className="content-section narrow litter-go-home-note-section">
+          <article className="note-panel litter-go-home-note">
+            <CheckCircle2 size={24} />
+            <div>
+              <p className="eyebrow">Go-Home Ready</p>
+              <h2>Approved families receive full go-home guidance</h2>
+              <p>
+                Pickup timing, final records, ride-home tips, and puppy prep details are shared directly before go-home day.
+              </p>
+            </div>
+          </article>
+        </section>
+      )}
       <CTASection title={litterCta.title} copy={litterCta.copy} primaryLabel="Apply for a Puppy" secondaryHref="/contact" secondaryLabel="Ask a Question" />
     </Layout>
   );

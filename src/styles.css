@@ -3304,6 +3304,32 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
+.litter-go-home-note-section {
+  padding-top: 8px;
+  padding-bottom: 28px;
+}
+
+.litter-go-home-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.litter-go-home-note svg {
+  color: var(--brand-red);
+}
+
+.litter-go-home-note h2 {
+  max-width: 16ch;
+  margin: 4px 0 8px;
+  font-size: clamp(1.85rem, 3vw, 2.65rem);
+}
+
+.litter-go-home-note p {
+  margin: 0;
+}
+
 .litter-about-section {
   padding-top: 10px;
   padding-bottom: 32px;
