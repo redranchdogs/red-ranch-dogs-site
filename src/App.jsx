@@ -1363,6 +1363,7 @@ const homeHeroImage = {
 
 const aboutStoryImage = "/images/about/red-ranch-dogs-our-story-family.jpg";
 const contactPuppyImage = "/images/puppies/honey-bram-2026/bumble-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg";
+const guardianApplicationImage = "/images/guardian/red-ranch-dogs-guardian-application-family.jpg";
 const reviewHeroStats = [
   { value: "100+", label: "five-star reviews soon" },
   { value: "Family", label: "communication focused" },
@@ -4613,7 +4614,7 @@ function GuardianApplicationPage() {
         eyebrow="Guardian Program"
         title="Guardian Application"
         copy="Start here if you live near Salado and are interested in partnering with Red Ranch Dogs as a guardian family."
-        image={images.family}
+        image={guardianApplicationImage}
         className="guardian-application-hero"
       />
       <section className="content-section narrow">
