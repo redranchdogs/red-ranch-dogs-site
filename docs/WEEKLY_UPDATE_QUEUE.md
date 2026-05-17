@@ -1,6 +1,6 @@
 # Weekly Update Queue
 
-Generated: 5/17/2026, 1:04:16 PM Central
+Generated: 5/17/2026, 2:16:05 PM Central
 
 This report is generated from the website data files. Use it as the quick Tuesday photo/update checklist before touching individual pages.
 
@@ -11,14 +11,20 @@ This report is generated from the website data files. Use it as the quick Tuesda
 | Birdie + Waylon | May 23-25, 2026 (6 days away) | Week 5 | 7 | 7 Reserved |
 | Penny + Wyatt | June 14-16, 2026 (28 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
 | Ginny + Butch Cassidy | June 14-16, 2026 (28 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
+| Whitley + Waylon | June 24-26, 2026 (38 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
 
 ## Current Litter Issues
 
-- None flagged.
+- Whitley + Waylon: current litter has no weekly gallery images.
 
 ## Puppy Photo Matching Issues
 
-- None flagged.
+- Hook: missing main photo for Whitley + Waylon.
+- Minnow: missing main photo for Whitley + Waylon.
+- Tackle: missing main photo for Whitley + Waylon.
+- Bass: missing main photo for Whitley + Waylon.
+- Bobber: missing main photo for Whitley + Waylon.
+- Skipper: missing main photo for Whitley + Waylon.
 
 ## Upcoming Litter Queue
 
@@ -41,6 +47,7 @@ This report is generated from the website data files. Use it as the quick Tuesda
 | Mama | Winnie | F1 Cavapoo | Yes | Website Hub / Photos / Parents / Mamas / Winnie |
 | Mama | Beatrix | F1 Goldendoodle | Yes | Website Hub / Photos / Parents / Mamas / Beatrix |
 | Mama | Ginny | F1 Goldendoodle | Yes | Website Hub / Photos / Parents / Mamas / Ginny |
+| Mama | Whitley | F1 Goldendoodle | Yes | Website Hub / Photos / Parents / Mamas / Whitley |
 | Mama | Birdie | F1 Mini Goldendoodle | Yes | Website Hub / Photos / Parents / Mamas / Birdie |
 | Mama | Daisy | F1 Mini Goldendoodle | Yes | Website Hub / Photos / Parents / Mamas / Daisy |
 | Mama | Georgia | F1 Mini Goldendoodle | Yes | Website Hub / Photos / Parents / Mamas / Georgia |
@@ -48,7 +55,6 @@ This report is generated from the website data files. Use it as the quick Tuesda
 | Mama | Sylvee | F1b Bernedoodle | Yes | Website Hub / Photos / Parents / Mamas / Sylvee |
 | Mama | Phoebe | Multigen Goldendoodle | Yes | Website Hub / Photos / Parents / Mamas / Phoebe |
 | Mama | Honey | Multigen Micro Goldendoodle | Yes | Website Hub / Photos / Parents / Mamas / Honey |
-| Mama | Whitley | Multigen Mini Goldendoodle | Yes | Website Hub / Photos / Parents / Mamas / Whitley |
 | Mama | Kylie | Ultra Bernedoodle | Yes | Website Hub / Photos / Parents / Mamas / Kylie |
 | Mama | Tilly | Ultra Bernedoodle | Yes | Website Hub / Photos / Parents / Mamas / Tilly |
 | Stud | Bodhe | AKC Cavalier King Charles Spaniel | Yes | Website Hub / Photos / Parents / Studs / Bodhe |

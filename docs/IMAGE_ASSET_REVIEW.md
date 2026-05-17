@@ -9,7 +9,7 @@ This review checks public image references, data records that should have photos
 - Referenced website images: 146
 - Files in `public/images`: 168
 - Missing referenced files: 0
-- Public records needing image attention: 0
+- Public records needing image attention: 7
 - Large images over 2.5 MB: 0
 - Unused image review candidates: 22
 
@@ -19,7 +19,13 @@ This review checks public image references, data records that should have photos
 
 ## Public Records Needing Image Attention
 
-- None found.
+- Puppy hook is public but has no mainPhoto.
+- Puppy minnow is public but has no mainPhoto.
+- Puppy tackle is public but has no mainPhoto.
+- Puppy bass is public but has no mainPhoto.
+- Puppy bobber is public but has no mainPhoto.
+- Puppy skipper is public but has no mainPhoto.
+- Current litter whitley-waylon-april-2026 has no weeklyUpdateGallery images.
 
 ## Large Images To Review
 

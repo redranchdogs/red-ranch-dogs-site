@@ -39,6 +39,7 @@ Confirm:
 
 Notes:
 - Birdie + Waylon: May 23-25, 2026; 7 Reserved.
+- Whitley + Waylon: June 24-26, 2026; 6 Waitlist Matching.
 - Penny + Wyatt: June 14-16, 2026; 6 Waitlist Matching.
 - Ginny + Butch Cassidy: June 14-16, 2026; 6 Waitlist Matching.
 ### Upcoming Litters
@@ -109,6 +110,16 @@ Confirm:
 
 Route: `/litters/birdie-waylon-spring-2026`
 Links: [local](http://127.0.0.1:5181/litters/birdie-waylon-spring-2026) | [production path](https://www.redranchdogs.com/litters/birdie-waylon-spring-2026)
+Priority: High
+
+Confirm:
+- [ ] Hero shows the correct parent pairing.
+- [ ] About-this-litter copy is accurate and not too long.
+- [ ] Puppy statuses and photos match the latest weekly update.
+### Litter Detail: Whitley + Waylon
+
+Route: `/litters/whitley-waylon-april-2026`
+Links: [local](http://127.0.0.1:5181/litters/whitley-waylon-april-2026) | [production path](https://www.redranchdogs.com/litters/whitley-waylon-april-2026)
 Priority: High
 
 Confirm:
