@@ -3026,6 +3026,8 @@ function LitterPage({ litter }) {
   const pastLitterHrefs = pastLitterHrefsFor(litter);
   const pastLitterHref = pastLitterHrefs[0] || "";
   const pastLitterLabel = pastLitterHrefs.length > 1 ? "View Past Litters" : "View Past Litter";
+  const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
+  const waitlistName = breedProgram?.name || "breed";
   const availabilityCallout = availablePuppies.length
     ? {
         count: availablePuppies.length,
@@ -3034,7 +3036,7 @@ function LitterPage({ litter }) {
     : waitlistMatchingPuppies.length
       ? {
           count: waitlistMatchingPuppies.length,
-          copy: "being offered to the breed waitlist"
+          copy: `${waitlistMatchingPuppies.length === 1 ? "puppy is" : "puppies are"} currently being offered to the ${waitlistName} waitlist`
         }
       : puppies.length && reservedPuppies.length === puppies.length
         ? {
@@ -3057,8 +3059,8 @@ function LitterPage({ litter }) {
       }
     : waitlistMatchingPuppies.length
       ? {
-          title: "Want to join this breed waitlist?",
-          copy: "Puppies from this litter are being offered to waitlist families first. Apply now to get in line for this breed."
+          title: `Want to join the ${waitlistName} waitlist?`,
+          copy: `Puppies from this litter are being offered to ${waitlistName} waitlist families first. Apply now to get in line for this breed.`
         }
       : {
           title: "Want updates on future litters?",
@@ -3072,7 +3074,7 @@ function LitterPage({ litter }) {
     : waitlistMatchingPuppies.length
       ? {
           title: "Best next step",
-          copy: "This litter is being worked through the breed waitlist first. Apply if you want to join the line for this breed."
+          copy: `This litter is being worked through the ${waitlistName} waitlist first. If a puppy becomes available after waitlist families have been contacted, this page will be updated. Apply if you want to join the ${waitlistName} waitlist.`
         }
       : {
           title: "Best next step",
