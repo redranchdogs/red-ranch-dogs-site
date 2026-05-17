@@ -4169,24 +4169,10 @@ function TeamPage() {
   return (
     <Layout>
       <PageHero
-        eyebrow="Our Team"
         title="Meet the Team"
         copy="Meet the people helping keep puppy care, parent dog care, communication, and weekly updates moving at Red Ranch Dogs."
         className="team-page-hero"
       />
-      <section className="team-collage-section" aria-label="Red Ranch Dogs team photos">
-        <div className="team-collage">
-          {cards.map((member) => (
-            <figure className="team-collage-frame" key={`collage-${member.name}`}>
-              <img src={member.photo || member.image} alt={`${member.name} with Red Ranch Dogs`} />
-              <figcaption>{member.name}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-      <section className="content-section narrow team-intro-panel">
-        <p>Behind every puppy update, clean pen, vet check, bath, photo day, and family conversation is a hands-on team working through the details together.</p>
-      </section>
       <section className="tile-grid three team-card-grid">
         {cards.map((member) => (
           <article className="text-card person-card team-profile-card" key={member.name}>
@@ -4197,9 +4183,12 @@ function TeamPage() {
           </article>
         ))}
       </section>
-      <section className="content-section narrow">
-        <h2>Care is in the daily details</h2>
-        <p>From cleaning and feeding to monitoring weights, enrichment, potty training, bathing, grooming, and family communication, the team handles the daily work that helps each puppy thrive.</p>
+      <section className="content-section team-details-section">
+        <article className="team-details-card">
+          <p className="eyebrow">Daily care</p>
+          <h2>Care is in the daily details</h2>
+          <p>From cleaning and feeding to monitoring weights, enrichment, potty training, bathing, grooming, and family communication, the team handles the daily work that helps each puppy thrive.</p>
+        </article>
       </section>
     </Layout>
   );
