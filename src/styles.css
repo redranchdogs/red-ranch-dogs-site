@@ -3077,6 +3077,37 @@ textarea {
   font-size: 0.78rem;
 }
 
+.puppy-weekly-photo-section {
+  width: min(980px, calc(100% - 36px));
+  padding-top: 0;
+}
+
+.puppy-weekly-photo-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+  gap: 16px;
+}
+
+.puppy-weekly-photo-group {
+  display: grid;
+  gap: 16px;
+  width: min(100%, 400px);
+  padding: 18px;
+}
+
+.puppy-weekly-photo-heading {
+  display: grid;
+  gap: 4px;
+}
+
+.puppy-weekly-photo-heading h2 {
+  font-size: clamp(1.9rem, 3vw, 2.7rem);
+}
+
+.puppy-weekly-photo-group .image-gallery {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 320px));
+}
+
 .animal-card > img {
   aspect-ratio: 4 / 3;
 }
@@ -6134,6 +6165,24 @@ summary {
 
   .detail-puppy-card .puppy-card-actions {
     grid-template-columns: 1fr 0.72fr;
+  }
+
+  .puppy-weekly-photo-section {
+    width: min(720px, calc(100% - 30px));
+    padding-top: 0;
+  }
+
+  .puppy-weekly-photo-list {
+    gap: 12px;
+  }
+
+  .puppy-weekly-photo-group {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .puppy-weekly-photo-group .image-gallery {
+    grid-template-columns: 1fr;
   }
 
   .pairing-photo-grid figcaption {

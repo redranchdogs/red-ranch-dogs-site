@@ -2989,16 +2989,38 @@ function BreedPageTemplate({ breed }) {
 }
 
 function PuppyDetailPage({ puppy }) {
-  const extraPhotos = (puppy.photos || []).filter((photo) => photo !== puppy.mainPhoto);
+  const weeklyPhotoGroups = puppy.weeklyPhotos || [];
+  const weeklyPhotoSet = new Set(weeklyPhotoGroups.flatMap((group) => group.photos || []));
+  const extraPhotos = (puppy.photos || []).filter((photo) => photo && !weeklyPhotoSet.has(photo));
 
   return (
     <Layout>
       <section className="card-list puppy-detail-section">
         <PuppyCard puppy={puppy} variant="detail" />
       </section>
+      {weeklyPhotoGroups.length > 0 && (
+        <section className="content-section puppy-weekly-photo-section">
+          <SectionHeader
+            eyebrow="Photo Updates"
+            title={`${puppy.name}'s weekly photos`}
+            copy="Follow this puppy's growth with the newest photos first, then scroll back through earlier updates."
+          />
+          <div className="puppy-weekly-photo-list">
+            {weeklyPhotoGroups.map((group) => (
+              <article className="group-panel puppy-weekly-photo-group" key={group.week}>
+                <div className="puppy-weekly-photo-heading">
+                  <p className="eyebrow">{group.week}</p>
+                  <h2>{group.week} photos</h2>
+                </div>
+                <ImageGallery images={group.photos || []} label={`${puppy.name} ${group.week} puppy photo`} />
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
       {extraPhotos.length > 0 && (
         <section className="content-section litter-gallery-section puppy-detail-gallery">
-          <SectionHeader eyebrow="Photos" title={`${puppy.name} photo updates`} copy="Additional puppy photos can be added here as this profile grows." />
+          <SectionHeader eyebrow="More Photos" title={`${puppy.name} additional photos`} copy="Additional puppy photos can be added here as this profile grows." />
           <ImageGallery images={extraPhotos} label={`${puppy.name} puppy photo`} />
         </section>
       )}
