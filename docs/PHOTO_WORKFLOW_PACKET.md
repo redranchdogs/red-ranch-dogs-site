@@ -1,6 +1,6 @@
 # Photo Workflow Packet
 
-Generated: 5/16/2026, 10:57:59 AM Central
+Generated: 5/17/2026, 2:29:00 PM Central
 
 This is the working packet for weekly puppy photos, parent photo cleanup, and previous-litter photo backfill. It is intentionally internal: it describes Google Drive paths and photo matching rules so the public website can stay clean.
 
@@ -18,6 +18,7 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 | Litter | Latest website photos | Next upload folder | Puppies | Website statuses |
 | --- | --- | --- | --- | --- |
 | Birdie + Waylon | Week 5 | Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 6 | 7 | 7 Reserved |
+| Whitley + Waylon | Newborn Photos | Website Hub / Weekly Photo Drops / Whitley 1 + Waylon / Week 1 | 6 | 6 Waitlist Matching |
 | Penny + Wyatt | Newborn Photos | Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Week 1 | 6 | 6 Waitlist Matching |
 | Ginny + Butch Cassidy | Newborn Photos | Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Week 1 | 6 | 6 Waitlist Matching |
 
@@ -32,6 +33,12 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 | Birdie + Waylon | Sedona | Yellow | Reserved | `sedona-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
 | Birdie + Waylon | Arizona | Pink | Reserved | `arizona-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
 | Birdie + Waylon | Indie | Purple | Reserved | `indie-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Hook | Blue | Waitlist Matching | `hook-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Minnow | Pink | Waitlist Matching | `minnow-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Tackle | Orange | Waitlist Matching | `tackle-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Bass | Grey | Waitlist Matching | `bass-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Bobber | Maroon | Waitlist Matching | `bobber-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Skipper | Black | Waitlist Matching | `skipper-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
 | Penny + Wyatt | Striker | Orange | Waitlist Matching | `striker-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
 | Penny + Wyatt | Samba | Dark Blue | Waitlist Matching | `samba-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
 | Penny + Wyatt | Goalie | Dark Gray | Waitlist Matching | `goalie-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
@@ -66,6 +73,7 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 | Mama | Winnie | F1 Cavapoo | Has website photo | Website Hub / Photos / Parents / Mamas / Winnie |
 | Mama | Beatrix | F1 Goldendoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Beatrix |
 | Mama | Ginny | F1 Goldendoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Ginny |
+| Mama | Whitley | F1 Goldendoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Whitley |
 | Mama | Birdie | F1 Mini Goldendoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Birdie |
 | Mama | Daisy | F1 Mini Goldendoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Daisy |
 | Mama | Georgia | F1 Mini Goldendoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Georgia |
@@ -73,7 +81,6 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 | Mama | Sylvee | F1b Bernedoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Sylvee |
 | Mama | Phoebe | Multigen Goldendoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Phoebe |
 | Mama | Honey | Multigen Micro Goldendoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Honey |
-| Mama | Whitley | Multigen Mini Goldendoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Whitley |
 | Mama | Kylie | Ultra Bernedoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Kylie |
 | Mama | Tilly | Ultra Bernedoodle | Has website photo | Website Hub / Photos / Parents / Mamas / Tilly |
 | Stud | Bodhe | AKC Cavalier King Charles Spaniel | Has website photo | Website Hub / Photos / Parents / Studs / Bodhe |
