@@ -1815,7 +1815,14 @@ function PuppyCard({ puppy, variant = "default" }) {
   const price = puppy.price;
   const isLitterVariant = variant === "litter";
   const isAvailableVariant = variant === "available";
-  const cardClasses = ["puppy-card", "animal-card", isLitterVariant ? "litter-puppy-card" : "", isAvailableVariant ? "available-puppy-card" : ""].filter(Boolean).join(" ");
+  const isDetailVariant = variant === "detail";
+  const cardClasses = [
+    "puppy-card",
+    "animal-card",
+    isLitterVariant ? "litter-puppy-card" : "",
+    isAvailableVariant ? "available-puppy-card" : "",
+    isDetailVariant ? "detail-puppy-card" : ""
+  ].filter(Boolean).join(" ");
   const puppyFacts = isLitterVariant
     ? [
         ["Gender", gender],
@@ -1829,6 +1836,16 @@ function PuppyCard({ puppy, variant = "default" }) {
           ["Breed", breed],
           ["Litter", litterName],
           ["Gender", gender],
+          ["Go Home", goHome],
+          ["Adult Weight", weight],
+          price && ["Price", price]
+        ].filter(Boolean)
+    : isDetailVariant
+      ? [
+          ["Litter", litterName],
+          ["Gender", gender],
+          puppy.collarColor && ["Collar", puppy.collarColor],
+          birthDate && ["Birth Date", birthDate],
           ["Go Home", goHome],
           ["Adult Weight", weight],
           price && ["Price", price]
@@ -1866,9 +1883,9 @@ function PuppyCard({ puppy, variant = "default" }) {
           ))}
         </dl>
         {puppy.availabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
-        {isAvailableVariant ? (
+        {isAvailableVariant || isDetailVariant ? (
           <div className="puppy-card-actions">
-            <Link href="/apply" className="button small">Ask About {puppy.name}</Link>
+            <Link href="/apply" className="button small">{isDetailVariant ? "Apply" : `Ask About ${puppy.name}`}</Link>
             {litterRoute && <Link href={litterRoute} className="button small secondary">View Litter</Link>}
           </div>
         ) : route && (
@@ -2972,34 +2989,19 @@ function BreedPageTemplate({ breed }) {
 }
 
 function PuppyDetailPage({ puppy }) {
-  const litter = publicLitterProfiles.find((item) => item.slug === puppy.litterSlug);
+  const extraPhotos = (puppy.photos || []).filter((photo) => photo !== puppy.mainPhoto);
 
   return (
     <Layout>
-      <PageHero eyebrow={puppy.breed} title={puppy.name} copy={puppy.description} image={puppy.mainPhoto || images.hero} />
-      <section className="content-section stud-profile">
-        <article className="group-panel">
-          <h2>Puppy Details</h2>
-          <dl className="details facts-wide">
-            <div><dt>Breed</dt><dd>{puppy.breed}</dd></div>
-            <div><dt>Litter</dt><dd>{puppy.litter}</dd></div>
-            <div><dt>Gender</dt><dd>{puppy.gender}</dd></div>
-            <div><dt>Status</dt><dd>{puppy.status}</dd></div>
-            {puppy.birthDate && <div><dt>Birth date</dt><dd>{puppy.birthDate}</dd></div>}
-            <div><dt>Estimated adult weight</dt><dd>{puppy.estimatedAdultWeight}</dd></div>
-            <div><dt>Go-home date</dt><dd>{puppy.goHomeDate}</dd></div>
-            {puppy.price && <div><dt>Price</dt><dd>{puppy.price}</dd></div>}
-          </dl>
-          <div className="actions">
-            <Link href="/apply" className="button primary">Apply</Link>
-            {litter && <Link href={`/litters/${litter.slug}`} className="button secondary">View Litter</Link>}
-          </div>
-        </article>
-        <article className="group-panel">
-          <h2>Photos</h2>
-          <ImageGallery images={puppy.photos} label={`${puppy.name} puppy photo`} />
-        </article>
+      <section className="card-list puppy-detail-section">
+        <PuppyCard puppy={puppy} variant="detail" />
       </section>
+      {extraPhotos.length > 0 && (
+        <section className="content-section litter-gallery-section puppy-detail-gallery">
+          <SectionHeader eyebrow="Photos" title={`${puppy.name} photo updates`} copy="Additional puppy photos can be added here as this profile grows." />
+          <ImageGallery images={extraPhotos} label={`${puppy.name} puppy photo`} />
+        </section>
+      )}
     </Layout>
   );
 }
