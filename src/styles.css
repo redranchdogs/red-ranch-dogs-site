@@ -7830,7 +7830,28 @@ summary {
 }
 
 .family-story-section {
-  padding-top: 20px;
+  padding-top: 18px;
+}
+
+.family-story-photo-section {
+  width: min(860px, calc(100% - 36px));
+  padding-top: 0;
+  padding-bottom: 10px;
+}
+
+.family-story-photo-card {
+  margin: 0;
+  padding: clamp(10px, 1.5vw, 14px);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 34px rgba(67, 42, 24, 0.08);
+}
+
+.family-story-photo-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
 .story-panel {

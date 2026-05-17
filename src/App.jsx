@@ -4212,9 +4212,13 @@ function FamilyPage() {
         eyebrow="Our Story"
         title="Callie & Adam"
         copy="Our family, our mentors, and our love of dogs shaped Red Ranch Dogs into a responsible breeding program focused on health, temperament, and a smooth transition into family life."
-        image={aboutStoryImage}
         className="family-page-hero"
       />
+      <section className="content-section family-story-photo-section">
+        <figure className="family-story-photo-card">
+          <img src={aboutStoryImage} alt="Callie and Adam with their family at Red Ranch Dogs" />
+        </figure>
+      </section>
       <section className="content-section family-story-section">
         <article className="story-panel">
           <div>
