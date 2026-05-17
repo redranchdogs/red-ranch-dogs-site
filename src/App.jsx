@@ -4499,9 +4499,14 @@ function JoinWaitlistPage() {
           <p>When a litter is born, families receive updates and puppy picks happen in waitlist order using photos, videos, personality notes, and video calls.</p>
         </article>
       </section>
-      <section className="form-shell process-form-shell">
-        <LeadForm formType="waitlist" title="Join Our Waitlist" />
-      </section>
+      <CTASection
+        title="Ready to join a waitlist?"
+        copy="Joining a Red Ranch Dogs waitlist starts with the puppy application. We will use it to understand breed fit, timing, current availability, and the best next step for your family."
+        primaryHref="/apply"
+        primaryLabel="Start Puppy Application"
+        secondaryHref="/process/waitlist"
+        secondaryLabel="View Current Waitlist"
+      />
       <section className="content-section narrow process-faq-preview">
         <SectionHeader eyebrow="FAQ Preview" title="Common questions" copy="These answers keep the process understandable before a family reaches out." />
         <FAQSection items={(faqProfiles.length ? faqProfiles : faqs).filter((item) => Array.isArray(item) || item.category === "Getting on the waitlist" || item.category === "Puppy selection")} />
