@@ -98,7 +98,8 @@ const requiredBuyerRoutes = [
   "/contact"
 ];
 const disallowedPublicRoutes = ["/stud-services/shipping-and-collection-info"];
-const expectedFormTypes = ["application", "contact", "guardian", "newsletter", "stud", "waitlist"];
+const expectedApiFormTypes = ["application", "contact", "guardian", "newsletter", "stud", "waitlist"];
+const expectedRenderedFormTypes = ["application", "contact", "guardian", "newsletter", "stud"];
 const requiredSeoMarkers = [
   'name="author"',
   'name="creator"',
@@ -205,15 +206,21 @@ hiddenPuppySlugs.forEach((slug) => {
   }
 });
 
-expectedFormTypes.forEach((formType) => {
+expectedApiFormTypes.forEach((formType) => {
   if (!formsApi.includes(`${formType}:`) && !formsApi.includes(`"${formType}"`)) {
     blockers.push(`Form API is missing routing/validation support for ${formType}.`);
   }
+});
 
+expectedRenderedFormTypes.forEach((formType) => {
   if (!app.includes(`formType="${formType}"`)) {
     blockers.push(`App is missing a rendered LeadForm for ${formType}.`);
   }
 });
+
+if (!app.includes('primaryHref="/apply"') || !app.includes('primaryLabel="Start Puppy Application"')) {
+  blockers.push("Public waitlist CTA should route families to the puppy application instead of the old mini waitlist form.");
+}
 
 ["leadType", "routingBucket", "replyPriority", "recommendedNextStep", "leadSummary"].forEach((marker) => {
   if (!formsApi.includes(marker)) {
@@ -262,7 +269,8 @@ console.log(`- Buyer routes checked: ${requiredBuyerRoutes.length}`);
 console.log(`- Public available puppies: ${availablePuppies.length}`);
 console.log(`- Current litter order: ${listLabels(currentLitters)}`);
 console.log(`- Public parent profiles: ${publicParents.length}`);
-console.log(`- Lead form types checked: ${expectedFormTypes.join(", ")}`);
+console.log(`- Lead API form types checked: ${expectedApiFormTypes.join(", ")}`);
+console.log(`- Rendered LeadForm types checked: ${expectedRenderedFormTypes.join(", ")}`);
 console.log("- SEO authority markers checked: yes");
 console.log("- Sheet sync scripts checked: yes");
 

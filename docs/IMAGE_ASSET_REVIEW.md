@@ -1,13 +1,13 @@
 # Image Asset Review
 
-Last updated: May 16, 2026.
+Last updated: May 17, 2026.
 
 This review checks public image references, data records that should have photos, oversized assets, and unused files in `public/images`. It is meant to support launch QA and the weekly puppy photo workflow.
 
 ## Summary
 
-- Referenced website images: 145
-- Files in `public/images`: 167
+- Referenced website images: 146
+- Files in `public/images`: 168
 - Missing referenced files: 0
 - Public records needing image attention: 0
 - Large images over 2.5 MB: 0
