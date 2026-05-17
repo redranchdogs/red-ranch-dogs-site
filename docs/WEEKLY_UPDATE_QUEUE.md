@@ -1,6 +1,6 @@
 # Weekly Update Queue
 
-Generated: 5/17/2026, 2:16:05 PM Central
+Generated: 5/17/2026, 2:56:52 PM Central
 
 This report is generated from the website data files. Use it as the quick Tuesday photo/update checklist before touching individual pages.
 
@@ -86,7 +86,6 @@ This report is generated from the website data files. Use it as the quick Tuesda
 - Beatrix + Knox: previous litter needs puppy gallery photos.
 - Honey + Waylon: previous litter needs separate parent photos.
 - Honey + Waylon: previous litter needs puppy gallery photos.
-- Birdie + Leo: previous litter needs separate parent photos.
 - Birdie + Leo: previous litter needs puppy gallery photos.
 - Phoebe + Fynn: previous litter needs separate parent photos.
 - Phoebe + Fynn: previous litter needs puppy gallery photos.

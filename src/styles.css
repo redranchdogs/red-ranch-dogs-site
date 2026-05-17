@@ -6586,6 +6586,80 @@ summary {
   gap: 18px;
 }
 
+.previous-litters-hero,
+.previous-litter-breed-groups,
+.previous-litter-archive-list {
+  width: min(1040px, calc(100% - 36px));
+}
+
+.previous-litters-hero.text-only .hero-copy {
+  max-width: 700px;
+}
+
+.previous-litters-hero .hero-copy h1 {
+  max-width: min(11ch, 100%);
+}
+
+.previous-litter-breed-groups {
+  display: grid;
+  gap: 54px;
+  margin: 0 auto;
+}
+
+.previous-litter-group {
+  gap: 22px;
+}
+
+.previous-litter-group:not(:first-child) {
+  padding-top: 28px;
+  border-top: 2px solid rgba(161, 31, 24, 0.16);
+}
+
+.previous-litter-group .compact-section-heading {
+  position: relative;
+  max-width: none;
+  padding: 18px 22px 18px 26px;
+  background: rgba(255, 250, 242, 0.72);
+  border: 1px solid var(--line);
+}
+
+.previous-litter-group .compact-section-heading::before {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  width: 5px;
+  background: var(--brand-red);
+  content: "";
+}
+
+.previous-litter-group .compact-section-heading h2 {
+  font-size: clamp(2.55rem, 3.5vw, 3.7rem);
+}
+
+.previous-litter-card {
+  width: 100%;
+  max-width: 980px;
+  justify-self: center;
+  grid-template-columns: minmax(235px, 0.66fr) minmax(0, 1.34fr);
+}
+
+.previous-litter-card .pairing-photo-grid {
+  min-height: 230px;
+}
+
+.previous-litter-card .pairing-photo-grid div,
+.previous-litter-card .pairing-photo-grid img {
+  min-height: 230px;
+}
+
+@media (max-width: 760px) {
+  .previous-litter-card {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+}
+
 .breed-first-section {
   padding-top: 18px;
 }

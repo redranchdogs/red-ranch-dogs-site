@@ -3729,6 +3729,7 @@ function PreviousLittersPage() {
         eyebrow="Previous Litters"
         title="Past puppy pairings"
         copy="Browse previous Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle litters by breed and pairing. These pages are here to show the parents and the puppies they produced."
+        className="previous-litters-hero"
       />
       <section className="previous-litter-breed-groups listing-content-section">
         {publicArchives.map((archive) => {
@@ -3776,6 +3777,7 @@ function PreviousLitterArchivePage({ archive }) {
         eyebrow="Previous Litters"
         title={`${pairingBreed} pairings`}
         copy={archive.copy}
+        className="previous-litters-hero"
       />
       <section className="card-list listing-content-section previous-litter-archive-list">
         <SectionHeader

@@ -6,8 +6,8 @@ This review checks public image references, data records that should have photos
 
 ## Summary
 
-- Referenced website images: 146
-- Files in `public/images`: 168
+- Referenced website images: 147
+- Files in `public/images`: 169
 - Missing referenced files: 0
 - Public records needing image attention: 7
 - Large images over 2.5 MB: 0

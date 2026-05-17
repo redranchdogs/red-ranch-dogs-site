@@ -338,6 +338,17 @@
       ]
     ],
     "parents": "Birdie + Leo, outside stud",
+    "parentPhotos": [
+      {
+        "name": "Birdie",
+        "image": "/images/dams/birdie-red-ranch-dogs.webp",
+        "href": "/parents/birdie"
+      },
+      {
+        "name": "Leo",
+        "image": "/images/studs/leo-red-ranch-dogs.webp"
+      }
+    ],
     "theme": "Birdie's Christmas Litter",
     "puppies": [
       "Snowflake",
