@@ -39,9 +39,10 @@ body.menu-locked {
 }
 
 .premium-header {
+  --mobile-header-height: 84px;
   position: sticky;
   top: 0;
-  z-index: 60;
+  z-index: 100;
   display: grid;
   grid-template-columns: 48px 1fr 48px;
   align-items: center;
@@ -53,6 +54,7 @@ body.menu-locked {
 }
 
 .premium-header.scrolled {
+  --mobile-header-height: 68px;
   min-height: 68px;
   background: rgba(255, 250, 242, 0.82);
   border-color: var(--premium-line);
@@ -90,6 +92,7 @@ body.menu-locked {
   border: 1px solid rgba(148, 31, 23, 0.32);
   border-radius: var(--radius-sm);
   text-decoration: none;
+  touch-action: manipulation;
 }
 
 .premium-icon-link {
@@ -98,6 +101,7 @@ body.menu-locked {
 
 .premium-menu-button {
   position: relative;
+  z-index: 2;
   justify-self: start;
   cursor: pointer;
 }
@@ -132,10 +136,14 @@ body.menu-locked {
 
 .premium-mobile-menu {
   position: fixed;
-  inset: 68px 10px auto 10px;
+  top: calc(var(--mobile-header-height) + 8px);
+  right: 10px;
+  left: 10px;
+  bottom: auto;
+  z-index: 99;
   display: grid;
   gap: 18px;
-  max-height: calc(100dvh - 84px);
+  max-height: calc(100dvh - var(--mobile-header-height) - 16px);
   overflow: auto;
   padding: 18px;
   pointer-events: none;
@@ -1274,10 +1282,6 @@ body.menu-locked {
     min-height: 76px;
   }
 
-  .premium-header.hide-on-mobile {
-    transform: none;
-  }
-
   .premium-logo-link {
     justify-self: start;
   }
@@ -1353,6 +1357,7 @@ body.menu-locked {
 
 @media (max-width: 640px) {
   .premium-header {
+    --mobile-header-height: 88px;
     min-height: 88px;
     grid-template-columns: 48px 1fr 48px;
     padding: 6px 20px 8px;
@@ -1360,6 +1365,7 @@ body.menu-locked {
   }
 
   .premium-header.scrolled {
+    --mobile-header-height: 68px;
     min-height: 68px;
   }
 
@@ -1378,12 +1384,11 @@ body.menu-locked {
   }
 
   .premium-mobile-menu {
-    inset: 76px 10px auto 10px;
-    max-height: calc(100dvh - 88px);
-  }
-
-  .premium-header.hide-on-mobile {
-    transform: translateY(-100%);
+    top: calc(var(--mobile-header-height) + 8px);
+    right: 10px;
+    left: 10px;
+    bottom: auto;
+    max-height: calc(100dvh - var(--mobile-header-height) - 16px);
   }
 
   .premium-hero,

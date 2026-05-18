@@ -1257,22 +1257,17 @@ function AccordionNav({ item, currentPath, onNavigate, index }) {
 function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const currentPath = pathNow();
 
   useEffect(() => {
-    let lastY = window.scrollY;
     const onScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 18);
-      setHidden(!open && currentY > 180 && currentY > lastY);
-      lastY = currentY;
+      setScrolled(window.scrollY > 18);
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [open]);
+  }, []);
 
   useEffect(() => {
     document.body.classList.toggle("menu-locked", open);
@@ -1283,12 +1278,13 @@ function Header() {
   const isActive = (item) => currentPath === item.href || (item.href !== "/" && currentPath.startsWith(`${item.href}/`));
 
   return (
-    <header className={`premium-header ${scrolled ? "scrolled" : ""} ${hidden ? "hide-on-mobile" : ""}`}>
+    <header className={`premium-header ${scrolled ? "scrolled" : ""}`}>
       <button
         className={`premium-menu-button ${open ? "open" : ""}`}
         type="button"
         onClick={() => setOpen((value) => !value)}
-        aria-label="Toggle menu"
+        aria-controls="mobile-primary-menu"
+        aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
       >
         <span />
@@ -1321,7 +1317,7 @@ function Header() {
       <a className="premium-icon-link" href={brand.instagram} aria-label="Instagram" target="_blank" rel="noreferrer">
         <Instagram size={18} />
       </a>
-      <div className={`premium-mobile-menu ${open ? "open" : ""}`} aria-hidden={!open} inert={open ? undefined : ""}>
+      <div id="mobile-primary-menu" className={`premium-mobile-menu ${open ? "open" : ""}`} aria-hidden={!open} inert={open ? undefined : ""}>
         <nav aria-label="Mobile navigation">
           {primaryNav.map((item, index) => (
             <AccordionNav item={item} currentPath={currentPath} key={item.label} index={index} onNavigate={closeMenu} />
