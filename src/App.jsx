@@ -5889,25 +5889,27 @@ function Footer() {
       <div className="footer-main">
         <div className="footer-brand">
           <img src={brand.logo} alt="Red Ranch Dogs" />
-          <p>{brand.tagline}</p>
         </div>
         <nav className="footer-links" aria-label="Footer navigation">
-          <Link href="/puppies/available">Available Puppies</Link>
-          <Link href="/puppies/current-litters">Current Litters</Link>
-          <Link href="/puppies/upcoming-litters">Upcoming Litters</Link>
-          <Link href="/apply">Apply</Link>
-          <Link href="/process/pricing">Pricing</Link>
-          <Link href="/process/faq">FAQ</Link>
-          <Link href="/contact">Contact</Link>
-          <Link href="/privacy">Privacy</Link>
+          <div className="footer-link-row">
+            <Link href="/puppies/available">Available Puppies</Link>
+            <Link href="/puppies/current-litters">Current Litters</Link>
+            <Link href="/puppies/upcoming-litters">Upcoming Litters</Link>
+          </div>
+          <div className="footer-link-row">
+            <Link href="/apply">Apply</Link>
+            <Link href="/process/pricing">Pricing</Link>
+            <Link href="/process/faq">FAQ</Link>
+            <Link href="/contact">Contact</Link>
+            <Link href="/privacy">Privacy</Link>
+          </div>
+          <div className="footer-link-row">
+            <a href={brand.sms}>Text Us</a>
+            <a href={`mailto:${brand.email}`}>Email</a>
+            <a href={brand.instagram} target="_blank" rel="noreferrer">Instagram</a>
+            <a href={brand.googleReviews} target="_blank" rel="noreferrer">Google Reviews</a>
+          </div>
         </nav>
-        <div className="footer-contact">
-          <p className="footer-column-title">Connect</p>
-          <a href={brand.sms}>Text Us</a>
-          <a href={`mailto:${brand.email}`}>Email</a>
-          <a href={brand.instagram} target="_blank" rel="noreferrer">Instagram</a>
-          <a href={brand.googleReviews} target="_blank" rel="noreferrer">Google Reviews</a>
-        </div>
       </div>
       <div className="footer-bottom">
         <span>© {year} Red Ranch Dogs.</span>
