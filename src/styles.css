@@ -50,7 +50,7 @@ body.menu-locked {
   padding: 10px 18px;
   background: rgba(255, 250, 242, 0.92);
   border-bottom: 1px solid transparent;
-  transition: min-height 220ms var(--ease-premium), transform 220ms var(--ease-premium), background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  transition: min-height 220ms var(--ease-premium), padding 220ms var(--ease-premium), transform 220ms var(--ease-premium), background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .premium-header.scrolled {
@@ -93,6 +93,7 @@ body.menu-locked {
   border-radius: var(--radius-sm);
   text-decoration: none;
   touch-action: manipulation;
+  transition: width 220ms var(--ease-premium), height 220ms var(--ease-premium), background 220ms ease, border-color 220ms ease;
 }
 
 .premium-icon-link {
@@ -1365,8 +1366,14 @@ body.menu-locked {
   }
 
   .premium-header.scrolled {
-    --mobile-header-height: 68px;
-    min-height: 68px;
+    --mobile-header-height: 56px;
+    min-height: 56px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background: rgba(255, 250, 242, 0.74);
+    border-color: rgba(95, 69, 45, 0.18);
+    box-shadow: 0 8px 28px rgba(33, 29, 23, 0.08);
+    backdrop-filter: blur(18px);
   }
 
   .premium-logo-link img {
@@ -1374,13 +1381,21 @@ body.menu-locked {
   }
 
   .premium-header.scrolled .premium-logo-link img {
-    width: min(30vw, 110px);
+    width: min(25vw, 88px);
   }
 
   .premium-menu-button,
   .premium-icon-link {
     width: 46px;
     height: 46px;
+  }
+
+  .premium-header.scrolled .premium-menu-button,
+  .premium-header.scrolled .premium-icon-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 250, 242, 0.62);
+    border-color: rgba(148, 31, 23, 0.24);
   }
 
   .premium-mobile-menu {
