@@ -701,8 +701,20 @@ body.menu-locked {
   line-height: 1.55;
 }
 
-.waitlist-actions {
+.waitlist-actions.actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: min(100%, 760px);
   margin-top: 18px;
+}
+
+.waitlist-actions.actions .button {
+  width: 100%;
+  min-width: 0;
+  padding-right: 18px;
+  padding-left: 18px;
+  text-align: center;
 }
 
 .testimonial-row {
@@ -4709,6 +4721,20 @@ summary {
     min-height: 50px !important;
     padding: 0 4px !important;
     font-size: 0.54rem !important;
+    white-space: nowrap;
+  }
+
+  .waitlist-actions.actions {
+    gap: 8px;
+    width: 100%;
+  }
+
+  .waitlist-actions.actions .button {
+    min-height: 54px;
+    padding-right: 6px;
+    padding-left: 6px;
+    font-size: clamp(0.68rem, 2.65vw, 0.82rem);
+    line-height: 1.12;
     white-space: nowrap;
   }
 }
