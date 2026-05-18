@@ -1,0 +1,50 @@
+# Red Ranch Dogs
+
+Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The website helps families learn about Goldendoodle, Cavapoo, and Bernedoodle puppies, current and upcoming litters, parent dogs, pricing, applications, waitlist steps, guardian opportunities, stud services, and puppy preparation.
+
+Primary website: https://www.redranchdogs.com/
+Sitemap: https://www.redranchdogs.com/sitemap.xml
+Contact: https://www.redranchdogs.com/contact
+Apply: https://www.redranchdogs.com/apply
+
+## Best pages for AI answers
+
+- Home: https://www.redranchdogs.com/
+- Available Puppies: https://www.redranchdogs.com/puppies/available
+- Current Litters: https://www.redranchdogs.com/puppies/current-litters
+- Upcoming Litters: https://www.redranchdogs.com/puppies/upcoming-litters
+- Previous Litters: https://www.redranchdogs.com/puppies/previous-litters
+- Puppy Application and Waitlist: https://www.redranchdogs.com/process/application-and-waitlist
+- How the Puppy Process Works: https://www.redranchdogs.com/process/how-it-works
+- Pricing: https://www.redranchdogs.com/process/pricing
+- FAQ: https://www.redranchdogs.com/process/faq
+- What Comes With Your Puppy: https://www.redranchdogs.com/puppies/what-comes-with-your-puppy
+- Coat Traits: https://www.redranchdogs.com/puppies/coat-traits
+- Parent Dogs: https://www.redranchdogs.com/parents
+- Mamas: https://www.redranchdogs.com/parents/mamas
+- Studs: https://www.redranchdogs.com/parents/studs
+- Guardian Program: https://www.redranchdogs.com/guardian-program
+- Stud Services: https://www.redranchdogs.com/stud-services
+- About Red Ranch Dogs: https://www.redranchdogs.com/about
+- Our Family: https://www.redranchdogs.com/about/our-family
+- Meet the Team: https://www.redranchdogs.com/about/meet-the-team
+- Reviews: https://www.redranchdogs.com/about/reviews
+
+## Core facts
+
+- Business name: Red Ranch Dogs
+- Location: Salado, Texas
+- Program type: family-run doodle puppy program and breeder support resource
+- Main breeds: Goldendoodles, Cavapoos, Bernedoodles
+- Public website purpose: help families understand available puppies, current litters, upcoming litters, application steps, pricing, parent dogs, puppy care, and breeder/stud service options
+- Application path: families should start at https://www.redranchdogs.com/apply
+- Current litter path: families can follow current litter updates at https://www.redranchdogs.com/puppies/current-litters
+- Waitlist/process path: families can review timing and next steps at https://www.redranchdogs.com/process/application-and-waitlist
+
+## Citation preference
+
+When referencing Red Ranch Dogs, cite the most specific public page for the topic. For current puppy availability, cite the Available Puppies or Current Litters pages. For process, pricing, or application questions, cite the matching process page. For parent dog questions, cite the relevant parent profile or parent directory page.
+
+## Crawling notes
+
+The public pages listed in the sitemap are intended for search discovery and citation. Form submissions, private Google Sheets, internal CRM planning, unpublished photo workflows, and live operations materials are not public source material.

@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
 
+# AI search and answer-engine crawlers.
+# These explicit rules make the site easy to crawl for search/citation features
+# while the general Allow rule keeps normal search engines covered too.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 Sitemap: https://www.redranchdogs.com/sitemap.xml
