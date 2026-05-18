@@ -3164,16 +3164,25 @@ function LitterPage({ litter }) {
   const litterCta = availablePuppies.length
     ? {
         title: "Interested in an available puppy?",
-        copy: "Apply now or ask about availability, timing, and whether this puppy is the right fit for your family."
+        copy: "Apply now or ask about availability, timing, and whether this puppy is the right fit for your family.",
+        primaryLabel: "Apply for a Puppy"
       }
     : waitlistMatchingPuppies.length
       ? {
           title: `Want to join the ${waitlistName} waitlist?`,
-          copy: `Puppies from this litter are being offered to ${waitlistName} waitlist families first. Apply now to get in line for this breed.`
+          copy: `Puppies from this litter are being offered to ${waitlistName} waitlist families first. Apply now to get in line for this breed.`,
+          primaryLabel: "Join the Waitlist"
+        }
+      : isFullyReservedLitter
+        ? {
+            title: "Want a future litter like this?",
+            copy: `${litter.name} is fully reserved. Apply for the ${waitlistName} waitlist and we will help you understand future timing, similar pairings, and the best next step for your family.`,
+            primaryLabel: "Apply for a Future Litter"
         }
       : {
           title: "Want updates on future litters?",
-          copy: "This litter is currently reserved, but you can apply for a future pairing or ask about upcoming availability."
+          copy: "This litter is currently reserved, but you can apply for a future pairing or ask about upcoming availability.",
+          primaryLabel: "Apply for a Puppy"
         };
   const litterNextStep = availablePuppies.length
     ? {
@@ -3185,6 +3194,11 @@ function LitterPage({ litter }) {
           title: "Best next step",
           copy: `This litter is being worked through the ${waitlistName} waitlist first. If a puppy becomes available after waitlist families have been contacted, this page will be updated. Apply if you want to join the ${waitlistName} waitlist.`
         }
+      : isFullyReservedLitter
+        ? {
+            title: "Best next step",
+            copy: `This litter is fully reserved. Matched families receive go-home details directly, and new families should apply for the ${waitlistName} waitlist or ask about future timing.`
+          }
       : {
           title: "Best next step",
           copy: "Use this page to follow the litter photos and details. Apply when you want help with a future pairing or breed waitlist."
@@ -3333,7 +3347,7 @@ function LitterPage({ litter }) {
           </article>
         </section>
       )}
-      <CTASection title={litterCta.title} copy={litterCta.copy} primaryLabel="Apply for a Puppy" secondaryHref="/contact" secondaryLabel="Ask a Question" />
+      <CTASection title={litterCta.title} copy={litterCta.copy} primaryLabel={litterCta.primaryLabel} secondaryHref="/contact" secondaryLabel="Ask a Question" />
     </Layout>
   );
 }
