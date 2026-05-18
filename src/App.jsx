@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { track } from "@vercel/analytics";
 import {
   ArrowRight,
+  CalendarDays,
   CheckCircle2,
   ChevronDown,
   Heart,
@@ -4570,20 +4571,60 @@ function ApplicationProcessPage() {
   );
 }
 
+const applicationPathCards = [
+  {
+    title: "Watching a current litter",
+    copy: "Mention the litter or puppy by name. We will reply with the current status, whether that litter is still matching, and what the realistic next step is.",
+    icon: PawPrint
+  },
+  {
+    title: "Planning for a future puppy",
+    copy: "Share your breed, size, and timing preferences. We will help you understand which waitlist or future pairing makes the most sense.",
+    icon: CalendarDays
+  },
+  {
+    title: "Not sure yet",
+    copy: "That is completely fine. Use the application to start the conversation and we can help narrow breed fit, size, timing, and next steps.",
+    icon: MessageCircle
+  }
+];
+
+const applicationAfterApplySteps = [
+  ["Review", "We read through your family details, breed interest, timing, and any puppy or litter you mentioned."],
+  ["Reply", "We follow up with current availability, waitlist guidance, and questions that help us understand fit."],
+  ["Decide", "A deposit only comes after the fit and timing make sense, whether that is a current litter or a future waitlist spot."]
+];
+
 function ApplicationPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Application & Waitlist" title="Puppy Application" copy="Tell us about your family, puppy preferences, timing, and any questions so we can help you understand the best next step." />
+      <PageHero eyebrow="Application & Waitlist" title="Puppy Application" copy="Start here even if you are not sure which litter, breed, or timeline is the right fit yet." />
+      <ListingStatusStrip
+        className="application-status-strip"
+        items={[
+          { value: "Start", label: "with one application" },
+          { value: "Fit", label: "breed, timing, and litter reviewed" },
+          { value: "Then", label: "deposit only if the path makes sense" }
+        ]}
+      />
       <BuyerGuidancePanel
         eyebrow="Before You Apply"
         title="A simple first step"
-        copy="The application starts the conversation. We will help you understand breed fit, timing, current litters, and whether a waitlist spot makes sense."
-        steps={["Share your breed, size, timing, and any puppy or litter you are watching.", "We follow up with availability, waitlist guidance, and next-step details.", "A deposit only comes after the fit and timing make sense."]}
+        copy="The application starts the conversation. It does not lock you into a puppy, litter, or deposit before we talk through fit."
+        steps={["Share your breed, size, timing, and any puppy or litter you are watching.", "We follow up with availability, waitlist guidance, and next-step details.", "If timing lines up, we explain the deposit and waitlist path clearly before anyone moves forward."]}
         primaryHref="/process/faq"
         primaryLabel="Read FAQ"
         secondaryHref="/process/waitlist"
         secondaryLabel="View Waitlist"
       />
+      <section className="content-section application-path-section">
+        <SectionHeader eyebrow="Choose Your Path" title="Use the application for any starting point" copy="The same application can support current litter interest, future waitlist planning, or early breed-fit questions." />
+        <CompactTextCardGrid items={applicationPathCards} className="application-path-grid" />
+      </section>
+      <section className="content-section narrow application-after-apply-section">
+        <SectionHeader eyebrow="After You Apply" title="What happens next" copy="Your submission goes into the website lead workflow now, and it is structured so the future CRM can continue from the same information later." />
+        <ProcessStepCards steps={applicationAfterApplySteps} className="application-after-apply-cards" />
+      </section>
       <section className="form-shell">
         <LeadForm formType="application" title="Application details" />
       </section>
