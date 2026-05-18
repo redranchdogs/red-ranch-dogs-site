@@ -2727,6 +2727,28 @@ textarea {
   color: var(--ink);
 }
 
+.previous-litter-card-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 2px 0 0;
+}
+
+.previous-litter-card-summary span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 6px 10px 5px;
+  border: 1px solid rgba(156, 31, 22, 0.16);
+  border-radius: 999px;
+  background: rgba(156, 31, 22, 0.06);
+  color: var(--brand-red);
+  font-size: 0.74rem;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .litter-card-actions {
   display: flex;
   gap: 10px;
@@ -6654,10 +6676,51 @@ summary {
     grid-template-columns: 1fr;
     max-width: 100%;
   }
+
+  .previous-litter-card-summary span {
+    flex: 1 1 auto;
+    justify-content: center;
+    text-align: center;
+  }
+
 }
 
 .breed-first-section {
   padding-top: 18px;
+}
+
+.breed-decision-section {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding-top: 4px;
+  padding-bottom: 24px;
+}
+
+.breed-decision-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.breed-decision-card h2 {
+  margin: 0;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.35rem, 4.2vw, 3.45rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
+.breed-decision-card .check-list {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .breed-decision-section {
+    grid-template-columns: 1fr;
+    padding-bottom: 18px;
+  }
 }
 
 .compact-filter-strip {

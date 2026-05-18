@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { track } from "@vercel/analytics";
 import {
   ArrowRight,
   CheckCircle2,
@@ -71,6 +72,52 @@ function scheduleRouteScroll(hash, behavior = "auto") {
   });
 }
 
+function compactPath(path = "") {
+  if (!path) return "/";
+  return path.replace(/\/$/, "") || "/";
+}
+
+function cleanAnalyticsTarget(value = "") {
+  return String(value || "")
+    .replace(siteOrigin, "")
+    .replace(/^https?:\/\/(www\.)?redranchdogs\.com/i, "")
+    .slice(0, 96) || "/";
+}
+
+function trackSiteEvent(name, data = {}) {
+  try {
+    track(name, data);
+  } catch {
+    // Analytics should never interfere with puppy families using the site.
+  }
+}
+
+function analyticsEventForHref(href = "") {
+  if (!href) return null;
+  if (href.startsWith("sms:")) return "cta_text_click";
+  if (href.startsWith("mailto:")) return "cta_email_click";
+  if (href.startsWith("tel:")) return "cta_call_click";
+  if (href.includes("instagram.com")) return "social_instagram_click";
+  if (href.includes("google.com") || href.includes("g.page")) return "social_google_reviews_click";
+  if (href === "/apply" || href === "/puppy-application") return "cta_apply_click";
+  if (href.includes("/litters/")) return "view_litter_click";
+  if (href.includes("/puppies/") && !href.includes("/puppies/current-litters") && !href.includes("/puppies/available")) return "view_puppy_or_breed_click";
+  if (href.includes("/parents/")) return "view_parent_click";
+  if (href.includes("/process/pricing")) return "view_pricing_click";
+  if (href.includes("/puppies/current-litters")) return "view_current_litters_click";
+  if (href.includes("/puppies/upcoming-litters")) return "view_upcoming_litters_click";
+  return null;
+}
+
+function trackNavigationIntent(href) {
+  const eventName = analyticsEventForHref(href);
+  if (!eventName || typeof window === "undefined") return;
+  trackSiteEvent(eventName, {
+    from: compactPath(window.location.pathname),
+    target: cleanAnalyticsTarget(href)
+  });
+}
+
 function goTo(href) {
   const hash = href.includes("#") ? href.split("#")[1] : "";
   if (!hash) {
@@ -87,6 +134,7 @@ function Link({ href, children, className, onClick, ...props }) {
       return;
     }
     event.preventDefault();
+    trackNavigationIntent(href);
     onClick?.();
     goTo(href);
   };
@@ -2192,6 +2240,10 @@ function PreviousLitterPairingMedia({ litter, large = false }) {
 }
 
 function PreviousLitterCard({ litter, href }) {
+  const puppyCount = litter.puppyPhotos?.length || litter.puppies?.length || 0;
+  const photoLabel = litter.puppyPhotos?.length ? "Puppy photos" : "Names listed";
+  const date = previousLitterDate(litter);
+
   return (
     <article className="litter-card animal-card previous-litter-card">
       <PreviousLitterPairingMedia litter={litter} />
@@ -2205,8 +2257,13 @@ function PreviousLitterCard({ litter, href }) {
           <h3>{litter.breed}</h3>
           {litter.theme && <p>{litter.theme}</p>}
         </div>
+        <div className="previous-litter-card-summary" aria-label={`${litter.name} archive summary`}>
+          <span>{date}</span>
+          {puppyCount > 0 && <span>{puppyCount} puppies</span>}
+          <span>{photoLabel}</span>
+        </div>
         <dl className="details compact-details litter-card-facts">
-          <div><dt>Date</dt><dd>{previousLitterDate(litter)}</dd></div>
+          <div><dt>Date</dt><dd>{date}</dd></div>
           <div><dt>Size</dt><dd>{previousLitterFact(litter, ["Size"])}</dd></div>
           <div><dt>Coat</dt><dd>{previousLitterFact(litter, ["Coat"])}</dd></div>
           <div><dt>Parents</dt><dd>{litter.parents}</dd></div>
@@ -2930,6 +2987,16 @@ function BreedPageTemplate({ breed }) {
     ["Temperament", breed.temperament, Sparkles],
     ["Coat and Shedding", `${breed.coatExpectations} ${breed.sheddingAllergyNotes}`, ShieldCheck]
   ];
+  const fitSignals = [
+    breed.bestFit || breed.idealFamilyFit,
+    breed.temperament,
+    breed.expectedSizeRange
+  ].filter(Boolean);
+  const decisionQuestions = [
+    `How much size flexibility is comfortable for your family? ${breed.expectedSizeRange}`,
+    `How important is lower shedding? ${breed.sheddingAllergyNotes}`,
+    `What coat look do you like most? ${breed.coatExpectations}`
+  ].filter(Boolean);
 
   return (
     <BuyerPageTemplate
@@ -2974,6 +3041,22 @@ function BreedPageTemplate({ breed }) {
             <p>{copy}</p>
           </article>
         ))}
+      </section>
+      <section className="content-section breed-decision-section">
+        <article className="group-panel breed-decision-card">
+          <p className="eyebrow">Breed Fit</p>
+          <h2>Who tends to love {breed.shortName || breed.pluralName}</h2>
+          <ul className="check-list">
+            {fitSignals.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </article>
+        <article className="group-panel breed-decision-card">
+          <p className="eyebrow">Good Questions</p>
+          <h2>Questions to ask before choosing this breed</h2>
+          <ul className="check-list">
+            {decisionQuestions.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </article>
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Available Puppies" title={`Available ${breed.name} puppies`} copy="Only puppies truly open for an approved family appear here. Reserved puppies stay on their litter pages." />
@@ -5569,6 +5652,10 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     const payload = collectFormPayload(form);
     const validationError = validateLeadPayload(formType, payload);
     if (validationError) {
+      trackSiteEvent("form_validation_error", {
+        formType,
+        path: compactPath(window.location.pathname)
+      });
       focusField(formElement, validationError.fieldName);
       setBusy(false);
       updateStatus(validationError.message, "error");
@@ -5594,6 +5681,10 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       if (!response.ok) {
         throw new Error(result.message || "Submission failed.");
       }
+      trackSiteEvent("form_submit_success", {
+        formType,
+        path: compactPath(window.location.pathname)
+      });
       formElement.reset();
       const serverMessage = result.message || "";
       updateStatus(
@@ -5603,6 +5694,10 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
         "success"
       );
     } catch (error) {
+      trackSiteEvent("form_submit_error", {
+        formType,
+        path: compactPath(window.location.pathname)
+      });
       updateStatus(error.message || "Unable to submit right now. Please call or text us.", "error");
     } finally {
       setBusy(false);
@@ -5789,6 +5884,26 @@ export default function App() {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
+  }, []);
+
+  useEffect(() => {
+    const onTrackedClick = (event) => {
+      const anchor = event.target?.closest?.("a[href]");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") || "";
+      const isExternalAction =
+        href.startsWith("sms:") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        href.startsWith("http");
+
+      if (isExternalAction) {
+        trackNavigationIntent(href);
+      }
+    };
+
+    document.addEventListener("click", onTrackedClick, true);
+    return () => document.removeEventListener("click", onTrackedClick, true);
   }, []);
 
   useEffect(() => {
