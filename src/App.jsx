@@ -3120,6 +3120,7 @@ function LitterPage({ litter }) {
   const availablePuppies = puppies.filter(isAvailablePuppy);
   const reservedPuppies = puppies.filter(isReservedPuppy);
   const waitlistMatchingPuppies = puppies.filter(isWaitlistMatchingPuppy);
+  const isFullyReservedLitter = puppies.length > 0 && reservedPuppies.length === puppies.length;
   const gallery = litter.weeklyUpdateGallery || [];
   const fallbackLitterImage = litter.parentPairingImage || litter.image || gallery[0];
   const hasParentPairing = mama?.mainPhoto && stud?.mainPhoto;
@@ -3188,6 +3189,23 @@ function LitterPage({ litter }) {
           title: "Best next step",
           copy: "Use this page to follow the litter photos and details. Apply when you want help with a future pairing or breed waitlist."
         };
+  const goHomeNote = isFullyReservedLitter
+    ? {
+        eyebrow: "Reserved Litter",
+        title: "Go-home week is handled directly",
+        copy: "Matched families receive exact pickup timing, final payment confirmation, records, and ride-home reminders directly before go-home day.",
+        items: [
+          "Watch for direct pickup timing and final balance notes.",
+          "Health records and transition notes are shared before pickup.",
+          "Apply for a future litter if you are not already matched with this one."
+        ]
+      }
+    : {
+        eyebrow: "Go-Home Ready",
+        title: "Approved families receive full go-home guidance",
+        copy: "Pickup timing, final records, ride-home tips, and puppy prep details are shared directly before go-home day.",
+        items: []
+      };
 
   return (
     <Layout>
@@ -3300,14 +3318,17 @@ function LitterPage({ litter }) {
       </section>
       {isCurrentLitter(litter) && (
         <section className="content-section narrow litter-go-home-note-section">
-          <article className="note-panel litter-go-home-note">
+          <article className={`note-panel litter-go-home-note${isFullyReservedLitter ? " reserved-litter-go-home-note" : ""}`}>
             <CheckCircle2 size={24} />
             <div>
-              <p className="eyebrow">Go-Home Ready</p>
-              <h2>Approved families receive full go-home guidance</h2>
-              <p>
-                Pickup timing, final records, ride-home tips, and puppy prep details are shared directly before go-home day.
-              </p>
+              <p className="eyebrow">{goHomeNote.eyebrow}</p>
+              <h2>{goHomeNote.title}</h2>
+              <p>{goHomeNote.copy}</p>
+              {goHomeNote.items.length > 0 && (
+                <ul className="check-list compact-check-list">
+                  {goHomeNote.items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              )}
             </div>
           </article>
         </section>

@@ -3429,6 +3429,11 @@ textarea {
   align-items: start;
 }
 
+.reserved-litter-go-home-note {
+  border-color: rgba(156, 31, 22, 0.22);
+  background: linear-gradient(180deg, rgba(255, 252, 245, 0.98), rgba(255, 247, 238, 0.92));
+}
+
 .litter-go-home-note svg {
   color: var(--brand-red);
 }
@@ -3441,6 +3446,16 @@ textarea {
 
 .litter-go-home-note p {
   margin: 0;
+}
+
+.litter-go-home-note .compact-check-list {
+  margin: 12px 0 0;
+  gap: 7px;
+}
+
+.litter-go-home-note .compact-check-list li {
+  font-size: 0.92rem;
+  line-height: 1.35;
 }
 
 .litter-about-section {
