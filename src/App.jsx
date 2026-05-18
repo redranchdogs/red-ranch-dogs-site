@@ -1631,8 +1631,6 @@ function SectionIntro({ eyebrow, title, copy }) {
 }
 
 function BreedCard({ breed }) {
-  const breedCardClass = `breed-card-${breed.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
-
   return (
     <ImageCard
       title={breed.name}
@@ -1642,7 +1640,6 @@ function BreedCard({ breed }) {
       imagePosition={breed.imagePosition}
       href={breed.route || "/puppies/available"}
       ctaLabel={`Explore ${breed.name}`}
-      className={breedCardClass}
       variant="compact"
     />
   );
