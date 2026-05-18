@@ -1816,6 +1816,7 @@ function PuppyCard({ puppy, variant = "default" }) {
   const isLitterVariant = variant === "litter";
   const isAvailableVariant = variant === "available";
   const isDetailVariant = variant === "detail";
+  const HeadingTag = isDetailVariant ? "h1" : "h2";
   const cardClasses = [
     "puppy-card",
     "animal-card",
@@ -1875,7 +1876,7 @@ function PuppyCard({ puppy, variant = "default" }) {
           <p className="eyebrow">{breed}</p>
           <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{status}</span>
         </div>
-        <h2>{puppy.name}</h2>
+        <HeadingTag>{puppy.name}</HeadingTag>
         <p className="puppy-card-note">{puppy.personalityNote || puppy.description || "Personality notes are updated as puppies grow and we learn more about their temperament."}</p>
         <dl className="details compact-details">
           {puppyFacts.map(([label, value]) => (

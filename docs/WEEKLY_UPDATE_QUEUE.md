@@ -1,6 +1,6 @@
 # Weekly Update Queue
 
-Generated: 5/17/2026, 4:15:23 PM Central
+Generated: 5/18/2026, 10:49:18 AM Central
 
 This report is generated from the website data files. Use it as the quick Tuesday photo/update checklist before touching individual pages.
 
@@ -8,10 +8,10 @@ This report is generated from the website data files. Use it as the quick Tuesda
 
 | Litter | Go-home timing | Latest website week | Puppies | Website statuses |
 | --- | --- | --- | ---: | --- |
-| Birdie + Waylon | May 23-25, 2026 (6 days away) | Week 5 | 7 | 7 Reserved |
-| Penny + Wyatt | June 14-16, 2026 (28 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
-| Ginny + Butch Cassidy | June 14-16, 2026 (28 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
-| Whitley + Waylon | June 24-26, 2026 (38 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
+| Birdie + Waylon | May 23-25, 2026 (5 days away) | Week 5 | 7 | 7 Reserved |
+| Penny + Wyatt | June 14-16, 2026 (27 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
+| Ginny + Butch Cassidy | June 14-16, 2026 (27 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
+| Whitley + Waylon | June 24-26, 2026 (37 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
 
 ## Current Litter Issues
 

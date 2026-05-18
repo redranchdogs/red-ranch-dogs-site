@@ -2912,6 +2912,7 @@ textarea {
   min-width: 0;
 }
 
+.puppy-card-body h1,
 .puppy-card-body h2 {
   margin: 0;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
@@ -3041,7 +3042,7 @@ textarea {
   gap: 9px;
 }
 
-.detail-puppy-card .puppy-card-body h2 {
+.detail-puppy-card .puppy-card-body h1 {
   font-size: clamp(2.45rem, 4.2vw, 3.6rem);
 }
 
@@ -6140,7 +6141,7 @@ summary {
     padding: 2px 2px 4px;
   }
 
-  .detail-puppy-card .puppy-card-body h2 {
+  .detail-puppy-card .puppy-card-body h1 {
     font-size: clamp(2.15rem, 9vw, 2.85rem);
   }
 

@@ -1,6 +1,6 @@
 # Image Asset Review
 
-Last updated: May 17, 2026.
+Last updated: May 18, 2026.
 
 This review checks public image references, data records that should have photos, oversized assets, and unused files in `public/images`. It is meant to support launch QA and the weekly puppy photo workflow.
 

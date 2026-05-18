@@ -1,10 +1,10 @@
 # SEO Metadata Report
 
-Generated: 5/16/2026, 11:00:00 AM Central
+Generated: 5/18/2026, 10:48:57 AM Central
 
 Status: **PASS**
 
-Sitemap routes checked: 111
+Sitemap routes checked: 112
 Routes with blockers: 0
 Routes with warnings: 0
 
@@ -79,7 +79,7 @@ Routes with warnings: 0
 | /parents/tilly | 200 | Tilly | Parent Dog | Red Ranch Dogs | 77 | Tilly | 1 | https://www.redranchdogs.com/parents/tilly |
 | /parents/sylvee | 200 | Sylvee | Parent Dog | Red Ranch Dogs | 64 | Sylvee | 1 | https://www.redranchdogs.com/parents/sylvee |
 | /parents/penny | 200 | Penny | Parent Dog | Red Ranch Dogs | 80 | Penny | 1 | https://www.redranchdogs.com/parents/penny |
-| /parents/whitley | 200 | Whitley | Parent Dog | Red Ranch Dogs | 88 | Whitley | 1 | https://www.redranchdogs.com/parents/whitley |
+| /parents/whitley | 200 | Whitley | Parent Dog | Red Ranch Dogs | 67 | Whitley | 1 | https://www.redranchdogs.com/parents/whitley |
 | /parents/winnie | 200 | Winnie | Parent Dog | Red Ranch Dogs | 57 | Winnie | 1 | https://www.redranchdogs.com/parents/winnie |
 | /parents/reece | 200 | Reece | Parent Dog | Red Ranch Dogs | 66 | Reece | 1 | https://www.redranchdogs.com/parents/reece |
 | /parents/garth-brooks | 200 | Garth Brooks | Parent Dog | Red Ranch Dogs | 89 | Garth Brooks | 1 | https://www.redranchdogs.com/parents/garth-brooks |
@@ -114,6 +114,7 @@ Routes with warnings: 0
 | /about/meet-the-team | 200 | Meet the Team | Red Ranch Dogs | 78 | Meet the Team | 1 | https://www.redranchdogs.com/about/meet-the-team |
 | /about/reviews | 200 | Reviews | Red Ranch Dogs | 69 | Kind Words from Puppy Families | 1 | https://www.redranchdogs.com/about/reviews |
 | /contact | 200 | Contact Red Ranch Dogs | Salado, Texas | 78 | Contact Us | 1 | https://www.redranchdogs.com/contact |
+| /privacy | 200 | Privacy Policy | Red Ranch Dogs | 126 | Privacy Policy | 1 | https://www.redranchdogs.com/privacy |
 | /apply | 200 | Apply | Red Ranch Dogs | 98 | Puppy Application | 1 | https://www.redranchdogs.com/apply |
 | /previous-litters | 200 | Previous Litters | Red Ranch Dogs | 86 | Past puppy pairings | 1 | https://www.redranchdogs.com/previous-litters |
 | /previous-litters-goldendoodles | 200 | Previous Litters Goldendoodles | Red Ranch Dogs | 57 | Goldendoodle pairings | 1 | https://www.redranchdogs.com/previous-litters-goldendoodles |
