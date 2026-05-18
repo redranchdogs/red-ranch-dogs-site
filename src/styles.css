@@ -5065,6 +5065,13 @@ summary {
   background: #eadccb;
 }
 
+@media (max-width: 719px) {
+  .home-doodles-section .breed-card-cavapoos .image-card-media {
+    padding: 5px;
+    object-fit: contain;
+  }
+}
+
 .image-card-body {
   position: relative;
   z-index: 1;
