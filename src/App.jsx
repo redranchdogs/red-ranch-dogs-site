@@ -1850,6 +1850,7 @@ function PuppyCard({ puppy, variant = "default" }) {
   const breed = puppy.breed || "Breed to be announced";
   const gender = puppy.gender || puppy.sex || "To be announced";
   const status = puppy.status || "Status to be announced";
+  const displayStatus = puppyDisplayStatus(status);
   const route = puppy.slug ? `/puppies/${puppy.slug}` : puppy.litterHref;
   const litterRoute = puppy.litterSlug ? `/litters/${puppy.litterSlug}` : puppy.litterHref;
   const photo = puppy.mainPhoto || puppy.image;
@@ -1919,7 +1920,7 @@ function PuppyCard({ puppy, variant = "default" }) {
       <div className="puppy-card-body">
         <div className="card-kicker-row">
           <p className="eyebrow">{breed}</p>
-          <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{status}</span>
+          <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{displayStatus}</span>
         </div>
         <HeadingTag>{puppy.name}</HeadingTag>
         <p className="puppy-card-note">{puppy.personalityNote || puppy.description || "Personality notes are updated as puppies grow and we learn more about their temperament."}</p>
@@ -2065,6 +2066,7 @@ function LitterCard({ litter }) {
   const puppyCountLabel = litterAvailabilityLabel(litter, litterPuppies);
   const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
   const waitlistName = breedProgram?.name || "breed";
+  const publicAvailabilityNote = litterWaitlistPuppies.length ? waitlistFirstNote(waitlistName) : litter.availabilityNote;
   const actionLabel = isCurrentLitter(litter) && isFullyReservedLitter ? "View Updates" : isCurrentLitter(litter) ? "View Litter" : "View Pairing";
   const currentLitterGuidance = !isCurrentLitter(litter)
     ? null
@@ -2075,8 +2077,8 @@ function LitterCard({ litter }) {
         }
       : litterWaitlistPuppies.length
         ? {
-            title: "Waitlist matching",
-            copy: `Puppies are being offered to ${waitlistName} waitlist families first. Apply if you want to join this breed's waitlist.`
+            title: "Availability note",
+            copy: `${waitlistFirstUpdateCopy()} Apply if you want to join this breed's waitlist.`
           }
         : isFullyReservedLitter
           ? {
@@ -2130,7 +2132,7 @@ function LitterCard({ litter }) {
             {(litter.expectedCoatTraits || litter.coat) && <p><strong>Coat:</strong> {litter.expectedCoatTraits || litter.coat}</p>}
           </div>
         )}
-        {litter.availabilityNote && <p className="small-note">{litter.availabilityNote}</p>}
+        {publicAvailabilityNote && <p className="small-note">{publicAvailabilityNote}</p>}
         {currentLitterGuidance && (
           <div className="litter-card-guidance">
             <p className="eyebrow">{currentLitterGuidance.title}</p>
@@ -2789,13 +2791,17 @@ const isAvailablePuppy = (puppy) => statusMatches(puppy, "available");
 const isReservedPuppy = (puppy) => ["reserved", "matched"].includes(normalizedStatus(puppy?.status));
 const isWaitlistMatchingPuppy = (puppy) => statusMatches(puppy, "waitlist matching");
 const availablePuppiesForLitter = (litter) => puppiesForLitter(litter).filter(isAvailablePuppy);
+const WAITLIST_FIRST_LABEL = "Waitlist Picks First";
+const puppyDisplayStatus = (status = "") => normalizedStatus(status) === "waitlist matching" ? WAITLIST_FIRST_LABEL : status;
+const waitlistFirstNote = (waitlistName) => `${waitlistName} waitlist families pick first for this litter.`;
+const waitlistFirstUpdateCopy = () => "If puppies remain after those picks, availability will be posted here.";
 const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter)) => {
   const availableCount = litterPuppies.filter(isAvailablePuppy).length;
   const waitlistCount = litterPuppies.filter(isWaitlistMatchingPuppy).length;
   const reservedCount = litterPuppies.filter(isReservedPuppy).length;
 
   if (availableCount) return `${availableCount} available`;
-  if (waitlistCount) return "Waitlist matching";
+  if (waitlistCount) return WAITLIST_FIRST_LABEL;
   if (litterPuppies.length && reservedCount === litterPuppies.length) return "Reserved";
   if (!isCurrentLitter(litter)) return "Planning";
   if (litterPuppies.length) return `${litterPuppies.length} puppy profiles`;
@@ -3167,6 +3173,7 @@ function LitterPage({ litter }) {
   const pastLitterLabel = pastLitterHrefs.length > 1 ? "View Past Litters" : "View Past Litter";
   const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
   const waitlistName = breedProgram?.name || "breed";
+  const publicAvailabilityNote = waitlistMatchingPuppies.length ? waitlistFirstNote(waitlistName) : litter.availabilityNote;
   const availabilityCallout = availablePuppies.length
     ? {
         count: availablePuppies.length,
@@ -3175,7 +3182,7 @@ function LitterPage({ litter }) {
     : waitlistMatchingPuppies.length
       ? {
           count: waitlistMatchingPuppies.length,
-          copy: `${waitlistMatchingPuppies.length === 1 ? "puppy is" : "puppies are"} currently being offered to the ${waitlistName} waitlist`
+          copy: `${waitlistMatchingPuppies.length === 1 ? "puppy" : "puppies"} offered to the ${waitlistName} waitlist first`
         }
       : puppies.length && reservedPuppies.length === puppies.length
         ? {
@@ -3200,7 +3207,7 @@ function LitterPage({ litter }) {
     : waitlistMatchingPuppies.length
       ? {
           title: `Want to join the ${waitlistName} waitlist?`,
-          copy: `Puppies from this litter are being offered to ${waitlistName} waitlist families first. Apply now to get in line for this breed.`,
+          copy: `${waitlistFirstNote(waitlistName)} Apply now to get in line for this breed.`,
           primaryLabel: "Join the Waitlist"
         }
       : isFullyReservedLitter
@@ -3222,7 +3229,7 @@ function LitterPage({ litter }) {
     : waitlistMatchingPuppies.length
       ? {
           title: "Best next step",
-          copy: `This litter is being worked through the ${waitlistName} waitlist first. If a puppy becomes available after waitlist families have been contacted, this page will be updated. Apply if you want to join the ${waitlistName} waitlist.`
+          copy: `${waitlistFirstUpdateCopy()} Apply if you want to join the ${waitlistName} waitlist.`
         }
       : isFullyReservedLitter
         ? {
@@ -3283,7 +3290,7 @@ function LitterPage({ litter }) {
             <span className="status-badge">{statusLabel}</span>
           </div>
           <h2>{litter.name} at a glance</h2>
-          <p>{litter.availabilityNote || "Approved families are contacted in waitlist order as availability is confirmed."}</p>
+          <p>{publicAvailabilityNote || "Approved families are contacted in waitlist order as availability is confirmed."}</p>
           <dl className="details litter-facts">
             <div><dt>Mama</dt><dd>{litter.mama}</dd></div>
             <div><dt>Stud</dt><dd>{litter.stud}</dd></div>
@@ -3733,7 +3740,7 @@ function CurrentLittersPage() {
   const availabilityLabel = currentAvailablePuppies.length
     ? "puppies open now"
     : currentWaitlistMatchingPuppies.length
-      ? "matching in progress"
+      ? "picks first"
       : "future waitlist best";
 
   return (
