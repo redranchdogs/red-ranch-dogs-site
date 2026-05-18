@@ -2061,8 +2061,35 @@ function LitterCard({ litter }) {
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
   const litterPuppies = puppiesForLitter(litter);
+  const litterAvailablePuppies = litterPuppies.filter(isAvailablePuppy);
+  const litterWaitlistPuppies = litterPuppies.filter(isWaitlistMatchingPuppy);
+  const litterReservedPuppies = litterPuppies.filter(isReservedPuppy);
+  const isFullyReservedLitter = litterPuppies.length > 0 && litterReservedPuppies.length === litterPuppies.length;
   const puppyCountLabel = litterAvailabilityLabel(litter, litterPuppies);
-  const actionLabel = isCurrentLitter(litter) ? "View Litter" : "View Pairing";
+  const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
+  const waitlistName = breedProgram?.name || "breed";
+  const actionLabel = isCurrentLitter(litter) && isFullyReservedLitter ? "View Updates" : isCurrentLitter(litter) ? "View Litter" : "View Pairing";
+  const currentLitterGuidance = !isCurrentLitter(litter)
+    ? null
+    : litterAvailablePuppies.length
+      ? {
+          title: "Open now",
+          copy: "A puppy may be open for an approved family. Apply and mention this litter or puppy by name."
+        }
+      : litterWaitlistPuppies.length
+        ? {
+            title: "Waitlist matching",
+            copy: `Puppies are being offered to ${waitlistName} waitlist families first. Apply if you want to join this breed's waitlist.`
+          }
+        : isFullyReservedLitter
+          ? {
+              title: "Reserved",
+              copy: "Matched families receive go-home details directly. New families can use this litter as a reference for future timing."
+            }
+          : {
+              title: "Follow updates",
+              copy: "Openings and next steps will be updated as this litter grows."
+            };
 
   return (
     <article className="litter-card animal-card">
@@ -2107,6 +2134,12 @@ function LitterCard({ litter }) {
           </div>
         )}
         {litter.availabilityNote && <p className="small-note">{litter.availabilityNote}</p>}
+        {currentLitterGuidance && (
+          <div className="litter-card-guidance">
+            <p className="eyebrow">{currentLitterGuidance.title}</p>
+            <p>{currentLitterGuidance.copy}</p>
+          </div>
+        )}
         {(route || pastLitterHref) && (
           <div className="litter-card-actions">
             {route && <Link href={route} className="button small">{actionLabel}</Link>}
