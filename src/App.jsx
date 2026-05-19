@@ -2939,6 +2939,46 @@ const waitlistPolicies = [
 
 const waitlistBreedOrder = ["Goldendoodle", "Cavapoo", "Bernedoodle"];
 
+function normalizedWaitlistData(data) {
+  const publicRows = Array.isArray(data?.publicRows) ? data.publicRows : [];
+
+  return {
+    ...waitlistData,
+    ...data,
+    publicRows
+  };
+}
+
+function usePublicWaitlistData(initialData) {
+  const [liveWaitlistData, setLiveWaitlistData] = useState(() => normalizedWaitlistData(initialData));
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch("/api/waitlist", { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Public waitlist feed unavailable.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!controller.signal.aborted) {
+          setLiveWaitlistData(normalizedWaitlistData(data));
+        }
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) {
+          setLiveWaitlistData(normalizedWaitlistData(initialData));
+        }
+      });
+
+    return () => controller.abort();
+  }, [initialData]);
+
+  return liveWaitlistData;
+}
+
 function isPublicWaitlistRow(row) {
   return (
     row?.display_name &&
@@ -4636,8 +4676,9 @@ function ApplicationPage() {
 }
 
 function WaitlistPage() {
-  const publicWaitlists = groupPublicWaitlistRows(waitlistData.publicRows);
-  const lastUpdated = formatWaitlistDate(waitlistData.updatedAt);
+  const liveWaitlistData = usePublicWaitlistData(waitlistData);
+  const publicWaitlists = groupPublicWaitlistRows(liveWaitlistData.publicRows);
+  const lastUpdated = formatWaitlistDate(liveWaitlistData.updatedAt);
   const waitlistStats = waitlistBreedOrder.map((breed) => {
     const list = publicWaitlists.find((item) => item.breed === breed);
     return { value: list?.rows.length || 0, label: `${breed} active spots` };
