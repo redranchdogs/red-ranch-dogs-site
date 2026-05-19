@@ -87,6 +87,18 @@ docs/PUBLIC_SAFETY_REVIEW.md
 
 That report checks for public-facing internal workflow notes, raw Google Drive/Sheets/Apps Script links, private contact details, and old-pricing artifacts in structured public data.
 
+## Ecosystem Alignment
+
+Use this packet when the website needs to stay aligned with the CRM, Breeding Ops, Vercel Analytics, Google Sheets, and future portal work:
+
+```text
+docs/WEBSITE_ECOSYSTEM_ALIGNMENT.md
+```
+
+The key ownership rule is simple: the website is the public front door, the CRM owns lead and family workflow, and Breeding Ops owns dogs, litters, puppies, weights, and barn operations. Do not make the public website responsible for internal status, payment, pickup, or portal-only details unless Adam explicitly asks for that public-facing change.
+
+Vercel Web Analytics is enabled for the live project. Treat the first enabled day as a setup day because analytics does not backfill earlier traffic. Use form submissions in `Website Leads`, `Lead Queue`, and the CRM as the conversion source while the site stays on Vercel Hobby analytics.
+
 For a browser-based mobile/desktop smoke test, run:
 
 ```bash

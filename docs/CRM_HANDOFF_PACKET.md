@@ -1,6 +1,6 @@
 # Red Ranch CRM Build Handoff Packet
 
-Generated: May 16, 2026 Central
+Generated: May 19, 2026 Central
 
 Purpose: give the new Red Ranch CRM Build project a safe, current map of the live website form system without editing, redeploying, or breaking the live Red Ranch Dogs website.
 
@@ -258,7 +258,7 @@ Current verified operations status:
 - Apps Script bridge status: PASS
 - Live bridge version: `3.2.0`
 - Authenticated bridge read: PASS
-- Current redacted queue count: 23 raw website submissions and 23 lead queue rows
+- Current redacted queue count: 29 raw website submissions and 29 lead queue rows
 - Current notable queue cleanup item: 12 UAT/test rows exist and should be marked `Test/delete` or archived when Adam is done reviewing them.
 
 ## Raw Website Leads Columns
@@ -394,19 +394,19 @@ Current `Outcome` dropdown values:
 
 Current redacted queue counts from the refreshed lead packet:
 
-- Raw website submission rows: 23
-- Lead queue rows: 23
-- Open/non-closed rows: 23
+- Raw website submission rows: 29
+- Lead queue rows: 29
+- Open/non-closed rows: 29
 - UAT/test scenario rows: 12
-- Blank status rows: 21
+- Blank status rows: 27
 - Needs reply rows: 1
 - Follow up rows: 0
 - Overdue follow-up rows: 0
 
 Current lead type counts:
 
-- `Website Contact`: 6
-- `Puppy Application`: 5
+- `Puppy Application`: 10
+- `Website Contact`: 7
 - `Guardian Application`: 3
 - `Puppy Alert Signup`: 3
 - `Stud Inquiry`: 3
@@ -459,6 +459,7 @@ Website/Vercel env var names:
 - `FORM_TO_EMAIL`: optional direct email recipient, usually `adam@redranchdogs.com`.
 - `FORM_FROM_EMAIL`: optional direct email sender.
 - `VERCEL_ENV`: Vercel-provided environment marker; production handler fails loudly if no delivery path is configured.
+- Vercel Web Analytics is enabled for the live project. The website includes `@vercel/analytics` and `<Analytics />`; Vercel Hobby analytics should be used for page/device trends, while `Website Leads` and `Lead Queue` remain the conversion source.
 
 Apps Script property names:
 
@@ -469,6 +470,7 @@ Apps Script property names:
 ## Known Form Or Submission Issues
 
 - No current blocker is known for live form submission delivery. Bridge health is passing and reports version `3.2.0`.
+- Direct Resend email notification is configured through Vercel env vars, and the Apps Script bridge notification path remains available. If an email appears missing, check Resend Activity and Gmail Spam/Inbox placement before changing website code.
 - There are UAT/test rows in the lead queue. They are useful evidence from launch testing but should not become real CRM contacts.
 - Many lead queue rows currently have blank manual status. The CRM should import those as `Unworked` or map blank to `New`, not drop them.
 - The frontend `contact` form collects `preferredContactMethod`, but the current backend raw column contract does not store it as a dedicated column. It may appear only if explicitly added later. Do not assume it is available in `Website Leads`.

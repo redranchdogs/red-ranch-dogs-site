@@ -17,6 +17,7 @@ export default [
         fetch: "readonly",
         console: "readonly",
         process: "readonly",
+        AbortController: "readonly",
         FormData: "readonly",
         PopStateEvent: "readonly"
       },

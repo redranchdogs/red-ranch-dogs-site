@@ -1,6 +1,6 @@
 # Lead Workflow Packet
 
-Generated: 5/18/2026, 1:34:28 PM Central
+Generated: 5/19/2026, 2:18:30 PM Central
 
 Spreadsheet: https://docs.google.com/spreadsheets/d/1872yXbOwwtio73bK5wlZJKEaBez4czsGuU0bcYaxriE/edit
 
@@ -16,12 +16,12 @@ This packet is intentionally CRM-friendly without copying personal contact detai
 
 ## Current Queue
 
-- Raw website submission rows: 23
-- Lead queue rows: 23
-- Open/non-closed rows: 23
+- Raw website submission rows: 29
+- Lead queue rows: 29
+- Open/non-closed rows: 29
 - UAT/test scenario rows: 12
 - UAT rows not marked Test/delete: 12
-- Blank status rows: 21
+- Blank status rows: 27
 - Needs reply rows: 1
 - Follow up rows: 0
 - Overdue follow-up rows: 0
@@ -30,7 +30,7 @@ This packet is intentionally CRM-friendly without copying personal contact detai
 
 | Value | Count |
 | --- | ---: |
-| (blank) | 21 |
+| (blank) | 27 |
 | Deposit info sent | 1 |
 | Needs reply | 1 |
 
@@ -38,8 +38,8 @@ This packet is intentionally CRM-friendly without copying personal contact detai
 
 | Value | Count |
 | --- | ---: |
-| Website Contact | 6 |
-| Puppy Application | 5 |
+| Puppy Application | 10 |
+| Website Contact | 7 |
 | Guardian Application | 3 |
 | Puppy Alert Signup | 3 |
 | Stud Inquiry | 3 |

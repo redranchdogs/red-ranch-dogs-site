@@ -1,6 +1,6 @@
 # Business Accuracy Review
 
-Generated: May 18, 2026
+Generated: May 19, 2026
 
 This is a human-review helper. It does not replace the automated launch checks; it points out business facts that may need Adam/Red Ranch Dogs confirmation before launch.
 
@@ -49,7 +49,7 @@ This is a human-review helper. It does not replace the automated launch checks; 
 ## Data Workflow Notes
 
 - Available Puppies currently has zero true Available records. This is okay if intentional, and the page should route families to waitlist/current litters.
-- Public waitlist rows currently loaded: 22. Confirm this matches the public waitlist sheet before launch.
+- Public waitlist rows currently loaded: 23. Confirm this matches the public waitlist sheet before launch.
 
 ## Public Puppy Status Snapshot
 

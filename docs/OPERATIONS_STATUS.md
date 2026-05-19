@@ -1,5 +1,5 @@
 # Operations Status
-Generated: 5/18/2026, 1:34:59 PM Central
+Generated: 5/19/2026, 2:18:50 PM Central
 Overall status: **PASS**
 ## Bridge
 Status: **PASS**
@@ -8,16 +8,16 @@ Message: Bridge is reachable and Website Submissions tabs are readable.
 | Sheet tab | Status | Rows | Columns |
 | --- | --- | ---: | ---: |
 | Lead Dashboard | PASS | 18 | 4 |
-| Lead Queue | PASS | 24 | 18 |
+| Lead Queue | PASS | 30 | 18 |
 | Reply Templates | PASS | 8 | 6 |
 | Workflow Notes | PASS | 9 | 4 |
 | Closed Leads | PASS | 1 | 19 |
-| Website Leads | PASS | 24 | 57 |
+| Website Leads | PASS | 30 | 57 |
 ## Checks
 | Check | Status | Duration | Command |
 | --- | --- | ---: | --- |
 | Apps Script bridge syntax | PASS | 0.0s | `/Users/adamdietlein/.local/share/fnm/node-versions/v24.14.0/installation/bin/node --check scripts/website-bridge-apps-script.js` |
-| Lead workflow packet | PASS | 5.5s | `npm run leads:packet` |
+| Lead workflow packet | PASS | 20.8s | `npm run leads:packet` |
 | Weekly workflow report | PASS | 0.1s | `npm run ops:workflow` |
 | Drive folder plan | PASS | 0.1s | `npm run drive:folders` |
 | Business accuracy review | PASS | 0.1s | `npm run review:business` |

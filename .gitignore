@@ -8,3 +8,4 @@ outputs
 output
 .playwright-cli
 npm-debug.log*
+.DS_Store
