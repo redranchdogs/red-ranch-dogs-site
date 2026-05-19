@@ -5,7 +5,7 @@
     "tab": "Public Waitlist",
     "hub": "Website Hub"
   },
-  "updatedAt": "2026-05-13",
+  "updatedAt": "2026-05-19",
   "publicRows": [
     {
       "breed": "Goldendoodle",
@@ -125,6 +125,14 @@
       "display_name": "Susan C.",
       "status": "Active",
       "show_publicly": "Yes"
+    },
+    {
+      "breed": "Cavapoo",
+      "position": 10,
+      "display_name": "David R.",
+      "status": "Active",
+      "show_publicly": "Yes",
+      "public_notes": "Penny + Wyatt interest"
     },
     {
       "breed": "Bernedoodle",
