@@ -1,19 +1,19 @@
 # Photo Day Rehearsal
 
-Generated: 5/20/2026, 7:58:12 AM Central
+Generated: 5/20/2026, 11:51:10 AM Central
 
 Status: **READY**
 
-This is the pre-photo-day rehearsal for current litters. It does not move files, edit Google Drive, write Sheets, or publish website changes. It tells us what the next photo import should do.
+This is the pre-media-day rehearsal for current litters. It does not move files, edit Google Drive, write Sheets, or publish website changes. It tells us what the next photo or video import should do.
 
 ## Current Litter Readiness
 
-| Litter | Latest website photos | Next folder | Puppies | Main-photo needs | Weekly-group needs |
+| Litter | Latest website photos | Next photo folder | Puppies | Main-photo needs | Weekly-group needs |
 | --- | --- | --- | --- | --- | --- |
-| Birdie + Waylon | Week 5 | Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 6 | 7 | 0 | 0 |
-| Whitley + Waylon | Newborn Photos | Website Hub / Weekly Photo Drops / Whitley 1 + Waylon / Week 1 | 6 | 6 | 6 |
-| Penny + Wyatt | Newborn Photos | Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Week 1 | 6 | 0 | 0 |
-| Ginny + Butch Cassidy | Newborn Photos | Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Week 1 | 6 | 0 | 0 |
+| Birdie + Waylon | Week 5 | Website Hub / Weekly Media Drops / Current Litters / Birdie 3 + Waylon / Week 6 / Photos | 7 | 0 | 0 |
+| Whitley + Waylon | Newborn Photos | Website Hub / Weekly Media Drops / Current Litters / Whitley 1 + Waylon / Week 1 / Photos | 6 | 6 | 6 |
+| Penny + Wyatt | Newborn Photos | Website Hub / Weekly Media Drops / Current Litters / Penny 1 + Wyatt / Week 1 / Photos | 6 | 0 | 0 |
+| Ginny + Butch Cassidy | Newborn Photos | Website Hub / Weekly Media Drops / Current Litters / Ginny 1 + Butch Cassidy / Week 1 / Photos | 6 | 0 | 0 |
 
 ## Puppy-Level Import Actions
 
@@ -51,7 +51,7 @@ This is the pre-photo-day rehearsal for current litters. It does not move files,
 - NOTE: Whitley + Waylon: 6 puppies need main photos.
 - NOTE: Whitley + Waylon: 6 puppies need first weekly groups.
 
-## After Photo Day
+## After Media Day
 
 ```bash
 npm run photos:packet

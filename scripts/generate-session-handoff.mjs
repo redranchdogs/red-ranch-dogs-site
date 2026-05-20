@@ -175,8 +175,9 @@ Use \`npm run ops:full\` for the heavier pass: it rebuilds the lead queue, refre
 ## Photo / Drive Workflow
 
 - Website Hub is the organizing concept in Google Drive.
-- Use clean folders for reusable assets: Website Photos / Parents / Mamas, Website Photos / Parents / Studs, Website Photos / Litters, and weekly puppy photo drops.
-- Current litter puppy photo folders generally follow \`Mama number + Stud / Week N\`.
+- Use clean folders for reusable assets: Website Photos / Parents / Mamas, Website Photos / Parents / Studs, Website Photos / Litters, and weekly puppy media drops.
+- Current litter puppy media folders generally follow \`Weekly Media Drops / Current Litters / Mama number + Stud / Week N / Photos\` and \`Videos\`.
+- Previous litter media folders generally live under \`Weekly Media Drops / Previous Litters\`.
 - Public pages should not show internal housekeeping notes like "photos loaded from Drive drop."
 - Previous litters should show the pairing and puppy photos, not old pricing.
 

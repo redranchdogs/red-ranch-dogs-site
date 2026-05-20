@@ -134,6 +134,7 @@ clientRedirectMap.forEach((destination, source) => {
 const leakedCopyPatterns = [
   [/Week\s+\d+\s+photos\s+loaded/i, "weekly photo load note"],
   [/Drive\s+photo\s+drop/i, "Drive photo drop note"],
+  [/Drive\s+media\s+drop/i, "Drive media drop note"],
   [/loaded\s+from\s+the\s+.*Drive/i, "Drive source note"],
   [/\bhousekeeping\b/i, "housekeeping note"]
 ];

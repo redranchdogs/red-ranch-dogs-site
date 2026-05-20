@@ -1,6 +1,6 @@
 # Weekly Update Queue
 
-Generated: 5/20/2026, 7:58:11 AM Central
+Generated: 5/20/2026, 11:51:09 AM Central
 
 This report is generated from the website data files. Use it as the quick Tuesday photo/update checklist before touching individual pages.
 
@@ -100,17 +100,17 @@ This report is generated from the website data files. Use it as the quick Tuesda
 
 ## Spreadsheet-Friendly Roster
 
-The current puppy photo roster was exported to:
+The current puppy media roster was exported to:
 
 ```text
 outputs/weekly-photo-roster.tsv
 ```
 
-Use that TSV when you want a quick copy/paste checklist for the weekly photo drop. It includes the litter, Drive folder hint, latest week, puppy name, collar, status, and current main photo path.
+Use that TSV when you want a quick copy/paste checklist for the weekly media drop. It includes the litter, Drive folder hint, latest week, puppy name, collar, status, and current main photo path.
 
 ## Suggested Weekly Routine
 
-1. Upload new photos into the litter folder using a simple week folder such as `Week 6`.
+1. Upload new photos into the week's `Photos` folder and videos into the matching `Videos` folder.
 2. Keep a visible collar-color shot or clear sequence so each puppy can be matched without making individual folders.
 3. Run the photo/update import or update the website data.
 4. Run `npm run ops:workflow` to refresh this queue.

@@ -1,16 +1,16 @@
 # Photo Workflow Packet
 
-Generated: 5/19/2026, 8:02:57 PM Central
+Generated: 5/20/2026, 11:51:03 AM Central
 
-This is the working packet for weekly puppy photos, parent photo cleanup, and previous-litter photo backfill. It is intentionally internal: it describes Google Drive paths and photo matching rules so the public website can stay clean.
+This is the working packet for weekly puppy media, parent photo cleanup, and previous-litter media backfill. It is intentionally internal: it describes Google Drive paths and matching rules so the public website can stay clean.
 
-## Photo Day Rules
+## Media Day Rules
 
-1. Upload each litter's weekly photo dump into the litter folder, using a simple week folder such as `Week 6`.
+1. Upload each litter's weekly media into the right week folder, with photos in `Photos` and videos in `Videos`.
 2. Do not create individual puppy folders unless the photo set is confusing. A full dump is fine when every puppy has a clear collar-color identifier.
 3. Make the first usable shot for each puppy a clear collar-identification shot. The matching key is puppy name plus collar color.
 4. Keep public file names website-friendly: lowercase, hyphenated, puppy name, breed, litter, week, and `red-ranch-dogs`.
-5. Public pages should never show internal upload notes such as Drive folders, photo drops, or import reminders.
+5. Public pages should never show internal upload notes such as Drive folders, media drops, or import reminders.
 6. After a data/photo update, run `npm run ops:full` and check `docs/PRELAUNCH_SIGNOFF.md`.
 
 ## Photo Import Decision Rules
@@ -21,14 +21,14 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 4. For current litters with no photo day yet, keep the public placeholder calm: puppy profiles can be live while photos are marked as coming soon.
 5. After changing puppy, litter, parent, or previous-litter data, run the matching sheet sync command shown in the TSV before publishing.
 
-## Current Litter Photo Queue
+## Current Litter Media Queue
 
-| Litter | Latest website photos | Next upload folder | Puppies | Website statuses |
+| Litter | Latest website photos | Next photo upload folder | Puppies | Website statuses |
 | --- | --- | --- | --- | --- |
-| Birdie + Waylon | Week 5 | Website Hub / Weekly Photo Drops / Birdie 3 + Waylon / Week 6 | 7 | 7 Reserved |
-| Whitley + Waylon | Newborn Photos | Website Hub / Weekly Photo Drops / Whitley 1 + Waylon / Week 1 | 6 | 6 Waitlist Matching |
-| Penny + Wyatt | Newborn Photos | Website Hub / Weekly Photo Drops / Penny 1 + Wyatt / Week 1 | 6 | 6 Waitlist Matching |
-| Ginny + Butch Cassidy | Newborn Photos | Website Hub / Weekly Photo Drops / Ginny 1 + Butch Cassidy / Week 1 | 6 | 6 Waitlist Matching |
+| Birdie + Waylon | Week 5 | Website Hub / Weekly Media Drops / Current Litters / Birdie 3 + Waylon / Week 6 / Photos | 7 | 7 Reserved |
+| Whitley + Waylon | Newborn Photos | Website Hub / Weekly Media Drops / Current Litters / Whitley 1 + Waylon / Week 1 / Photos | 6 | 6 Waitlist Matching |
+| Penny + Wyatt | Newborn Photos | Website Hub / Weekly Media Drops / Current Litters / Penny 1 + Wyatt / Week 1 / Photos | 6 | 6 Waitlist Matching |
+| Ginny + Butch Cassidy | Newborn Photos | Website Hub / Weekly Media Drops / Current Litters / Ginny 1 + Butch Cassidy / Week 1 / Photos | 6 | 6 Waitlist Matching |
 
 ## Puppy Matching Checklist
 
@@ -128,7 +128,7 @@ The full task list was exported to:
 outputs/photo-intake-checklist.tsv
 ```
 
-Use that TSV when a weekly photo day has a lot of puppies and you want a copy/paste checklist beside the Drive folder.
+Use that TSV when a weekly media day has a lot of puppies and you want a copy/paste checklist beside the Drive folder.
 
 ## After Photo Import Publishing Steps
 

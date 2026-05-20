@@ -70,7 +70,7 @@ When a litter moves from upcoming to current, the repeatable workflow is:
 
 1. Confirm the birth date, mama, stud, breed, expected adult size, go-home window, puppy count, puppy names, collar colors, and genders from the source sheet or Breeding Ops.
 2. Update website structured data files, especially `src/data/litters.json` and `src/data/puppies.json`.
-3. Create or confirm the Drive folder under `Website Hub / Weekly Photo Drops / Mama litter number + Stud`.
+3. Create or confirm the Drive folder under `Website Hub / Weekly Media Drops / Current Litters / Mama litter number + Stud / Week N / Photos`.
 4. Add newborn placeholders if photos are not ready yet.
 5. Keep public copy compact: status, waitlist matching, puppy count, parent notes, and where availability will be posted.
 6. Run `npm run photos:plan`.

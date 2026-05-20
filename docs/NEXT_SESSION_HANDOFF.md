@@ -1,6 +1,6 @@
 # Next Session Handoff
 
-Last updated: 5/16/2026, 11:34:37 AM Central.
+Last updated: 5/20/2026, 11:38:04 AM Central.
 
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
 
@@ -44,8 +44,8 @@ Adam can paste this into a new Codex thread:
 ## Current Website Snapshot
 
 - True available puppies: 0
-- Public puppy status snapshot: 7 Reserved, 12 Waitlist Matching
-- Current litters: 3
+- Public puppy status snapshot: 7 Reserved, 18 Waitlist Matching
+- Current litters: 4
 - Upcoming/planned litters: 5
 - Previous litter archive records: 12
 - Public parent profiles: 29 (17 Mama, 12 Stud)
@@ -53,6 +53,7 @@ Adam can paste this into a new Codex thread:
 ## Current Litters
 
 - Birdie + Waylon: May 23-25, 2026; 7 Reserved
+- Whitley + Waylon: June 24-26, 2026; 6 Waitlist Matching
 - Penny + Wyatt: June 14-16, 2026; 6 Waitlist Matching
 - Ginny + Butch Cassidy: June 14-16, 2026; 6 Waitlist Matching
 
@@ -85,8 +86,9 @@ Use `npm run ops:full` for the heavier pass: it rebuilds the lead queue, refresh
 ## Photo / Drive Workflow
 
 - Website Hub is the organizing concept in Google Drive.
-- Use clean folders for reusable assets: Website Photos / Parents / Mamas, Website Photos / Parents / Studs, Website Photos / Litters, and weekly puppy photo drops.
-- Current litter puppy photo folders generally follow `Mama number + Stud / Week N`.
+- Use clean folders for reusable assets: Website Photos / Parents / Mamas, Website Photos / Parents / Studs, Website Photos / Litters, and weekly puppy media drops.
+- Current litter puppy media folders generally follow `Weekly Media Drops / Current Litters / Mama number + Stud / Week N / Photos` and `Videos`.
+- Previous litter media folders generally live under `Weekly Media Drops / Previous Litters`.
 - Public pages should not show internal housekeeping notes like "photos loaded from Drive drop."
 - Previous litters should show the pairing and puppy photos, not old pricing.
 

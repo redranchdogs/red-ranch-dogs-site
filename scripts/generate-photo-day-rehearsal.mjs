@@ -50,17 +50,21 @@ function nextWeekLabel(latest) {
   return `Week ${parsed + 1}`;
 }
 
-function folderForWeek(baseFolderHint, weekLabel) {
+function folderForWeek(baseFolderHint, weekLabel, childFolder = "Photos") {
   if (!baseFolderHint) return "";
   const normalizedWeek = normalize(weekLabel);
   const parts = String(baseFolderHint)
     .split("/")
     .map((part) => part.trim())
     .filter(Boolean);
+  const last = normalize(parts.at(-1));
+
+  if (last === "photos" || last === "videos") parts.pop();
+
   const alreadyIncludesWeek = parts.some((part) => normalize(part) === normalizedWeek);
-  if (alreadyIncludesWeek) return parts.join(" / ");
-  const baseParts = normalizedWeek !== "newborn photos" && normalize(parts.at(-1)) === "newborn photos" ? parts.slice(0, -1) : parts;
-  return [...baseParts, weekLabel].join(" / ");
+  const weekParts = alreadyIncludesWeek ? parts : [...(normalizedWeek !== "newborn photos" && normalize(parts.at(-1)) === "newborn photos" ? parts.slice(0, -1) : parts), weekLabel];
+
+  return [...weekParts, childFolder].join(" / ");
 }
 
 function puppyAction(puppy, nextWeek) {
@@ -134,13 +138,13 @@ Generated: ${generatedAt} Central
 
 Status: **${blockers.length ? "FAIL" : "READY"}**
 
-This is the pre-photo-day rehearsal for current litters. It does not move files, edit Google Drive, write Sheets, or publish website changes. It tells us what the next photo import should do.
+This is the pre-media-day rehearsal for current litters. It does not move files, edit Google Drive, write Sheets, or publish website changes. It tells us what the next photo or video import should do.
 
 ## Current Litter Readiness
 
 ${table(
   litterRows,
-  ["Litter", "Latest website photos", "Next folder", "Puppies", "Main-photo needs", "Weekly-group needs"],
+  ["Litter", "Latest website photos", "Next photo folder", "Puppies", "Main-photo needs", "Weekly-group needs"],
   (row) =>
     `| ${row.litter.name} | ${row.latest} | ${row.nextFolder || "_Missing folder hint_"} | ${row.litterPuppies.length} | ${row.missingMainPhotos.length} | ${row.missingWeeklyGroups.length} |`,
 )}
@@ -158,7 +162,7 @@ ${table(
 ${blockers.length ? blockers.map((item) => `- BLOCKER: ${item}`).join("\n") : "- No folder blockers flagged."}
 ${warnings.length ? warnings.map((item) => `- NOTE: ${item}`).join("\n") : "- No photo readiness notes flagged."}
 
-## After Photo Day
+## After Media Day
 
 \`\`\`bash
 npm run photos:packet

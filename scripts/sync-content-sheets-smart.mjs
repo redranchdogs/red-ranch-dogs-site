@@ -59,6 +59,7 @@ const JOBS = [
     generatedFile: "litters.tsv",
     keyColumns: ["slug"],
     preserveIfExisting: ["internalNotes"],
+    forceTextColumns: ["birthDate"],
     keepUnmatchedExisting: false,
   },
   {
@@ -148,7 +149,7 @@ function makeKey(rowMap, keyColumns) {
 function mergeValues(
   existingValues,
   generatedValues,
-  { keyColumns, preserveIfExisting, dropExistingHeaders = [], keepUnmatchedExisting = false }
+  { keyColumns, preserveIfExisting, dropExistingHeaders = [], forceTextColumns = [], keepUnmatchedExisting = false }
 ) {
   const generatedHeaders = generatedValues[0] || [];
   const existingHeaders = existingValues[0] || [];
@@ -158,6 +159,7 @@ function mergeValues(
   );
   const headers = [...generatedHeaders, ...extraExistingHeaders];
   const preserveColumns = new Set(preserveIfExisting || []);
+  const textColumns = new Set(forceTextColumns || []);
   const existingByKey = new Map();
   const seenKeys = new Set();
 
@@ -187,6 +189,10 @@ function mergeValues(
 
       if (!generatedHeaders.includes(header) && !generatedValue && existingValue) {
         return existingValue;
+      }
+
+      if (generatedValue && textColumns.has(header)) {
+        return `'${generatedValue}`;
       }
 
       return generatedValue;

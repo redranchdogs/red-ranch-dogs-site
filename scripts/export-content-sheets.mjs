@@ -232,7 +232,7 @@ const FIELD_NOTES = {
   gallery_folder: "Google Drive folder where this puppy's working photo set lives.",
   personality_note: "Short public personality or fit note.",
   availability_note: "Short public availability status note.",
-  weekly_update_folder: "Exact Google Drive folder for the current weekly photo drop.",
+  weekly_update_folder: "Exact Google Drive folder for the current weekly media drop.",
   last_photo_update: "Latest weekly photo update label.",
   public_page: "Website path generated from the slug.",
   internal_notes: "Working notes only. Do not publish private family, payment, phone, or email details.",

@@ -40,6 +40,7 @@ const skipKeyPatterns = [
 const internalCopyPatterns = [
   [/loaded\s+from/i, "loaded-from workflow note"],
   [/drive\s+photo\s+drop/i, "Drive photo drop note"],
+  [/drive\s+media\s+drop/i, "Drive media drop note"],
   [/website\s+hub/i, "Website Hub folder note"],
   [/google\s+drive/i, "Google Drive note"],
   [/\bplaceholder\b/i, "placeholder copy"],

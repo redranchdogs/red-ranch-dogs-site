@@ -72,7 +72,9 @@
     "launch:decision": "node scripts/generate-launch-decision.mjs",
     "launch:signoff": "node scripts/generate-prelaunch-signoff.mjs",
     "launch:check": "node scripts/launch-readiness-check.mjs",
-    "verify:routes": "node scripts/verify-routes.mjs"
+    "verify:routes": "node scripts/verify-routes.mjs",
+    "drive:media-folders": "node scripts/plan-drive-folders.mjs --media-only",
+    "drive:media-folders:write": "node scripts/plan-drive-folders.mjs --media-only --write"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

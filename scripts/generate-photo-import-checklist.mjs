@@ -9,21 +9,22 @@ const rehearsalNote = fs.existsSync(rehearsalPath)
   ? "The latest rehearsal packet is available at `docs/PHOTO_DAY_REHEARSAL.md`."
   : "Run `npm run photos:rehearsal` before starting the import.";
 
-const report = `# Photo Import Checklist
+const report = `# Weekly Media Import Checklist
 
 Generated: ${generatedAt} Central
 
-Use this after a current-litter photo drop is uploaded. This is intentionally operational: it keeps the website, Website Hub sheets, and publishing flow in the same order every time.
+Use this after a current-litter media drop is uploaded. This is intentionally operational: it keeps the website, Website Hub sheets, and publishing flow in the same order every time.
 
 ${rehearsalNote}
 
 ## Before Editing Website Data
 
 1. Confirm the Google Drive folder name matches the litter pattern: \`Mama LitterNumber + Stud\`.
-2. Confirm the week folder exists under \`Website Hub / Weekly Photo Drops\`.
-3. Match every puppy by name and collar color before choosing public photos.
-4. Choose one clean main photo for any puppy that does not already have one.
-5. Keep older weekly photo groups; add a new group instead of replacing history.
+2. Confirm the week folder exists under \`Website Hub / Weekly Media Drops / Current Litters\` or \`Website Hub / Weekly Media Drops / Previous Litters\`.
+3. Confirm the week folder has \`Photos\` and \`Videos\` subfolders.
+4. Match every puppy by name and collar color before choosing public photos.
+5. Choose one clean main photo for any puppy that does not already have one.
+6. Keep older weekly photo groups; add a new group instead of replacing history.
 
 ## Website Data Update Order
 

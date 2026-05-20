@@ -81,23 +81,24 @@ function nextWeekLabel(latest) {
   return `Week ${parsed + 1}`;
 }
 
-function folderForWeek(baseFolderHint, weekLabel) {
+function folderForWeek(baseFolderHint, weekLabel, childFolder = "Photos") {
   if (!baseFolderHint) return "";
   const normalizedWeek = normalize(weekLabel);
   const parts = String(baseFolderHint)
     .split("/")
     .map((part) => part.trim())
     .filter(Boolean);
+  const last = normalize(parts.at(-1));
+
+  if (last === "photos" || last === "videos") parts.pop();
+
   const alreadyIncludesWeek = parts.some((part) => normalize(part) === normalizedWeek);
 
-  if (alreadyIncludesWeek) return parts.join(" / ");
+  if (alreadyIncludesWeek) return [...parts, childFolder].join(" / ");
 
-  const baseParts =
-    normalizedWeek !== "newborn photos" && normalize(parts.at(-1)) === "newborn photos"
-      ? parts.slice(0, -1)
-      : parts;
+  const baseParts = normalizedWeek !== "newborn photos" && normalize(parts.at(-1)) === "newborn photos" ? parts.slice(0, -1) : parts;
 
-  return [...baseParts, weekLabel].join(" / ");
+  return [...baseParts, weekLabel, childFolder].join(" / ");
 }
 
 function imageFolder(publicPath = "") {
@@ -354,15 +355,15 @@ const report = `# Photo Workflow Packet
 
 Generated: ${generated} Central
 
-This is the working packet for weekly puppy photos, parent photo cleanup, and previous-litter photo backfill. It is intentionally internal: it describes Google Drive paths and photo matching rules so the public website can stay clean.
+This is the working packet for weekly puppy media, parent photo cleanup, and previous-litter media backfill. It is intentionally internal: it describes Google Drive paths and matching rules so the public website can stay clean.
 
-## Photo Day Rules
+## Media Day Rules
 
-1. Upload each litter's weekly photo dump into the litter folder, using a simple week folder such as \`Week 6\`.
+1. Upload each litter's weekly media into the right week folder, with photos in \`Photos\` and videos in \`Videos\`.
 2. Do not create individual puppy folders unless the photo set is confusing. A full dump is fine when every puppy has a clear collar-color identifier.
 3. Make the first usable shot for each puppy a clear collar-identification shot. The matching key is puppy name plus collar color.
 4. Keep public file names website-friendly: lowercase, hyphenated, puppy name, breed, litter, week, and \`red-ranch-dogs\`.
-5. Public pages should never show internal upload notes such as Drive folders, photo drops, or import reminders.
+5. Public pages should never show internal upload notes such as Drive folders, media drops, or import reminders.
 6. After a data/photo update, run \`npm run ops:full\` and check \`docs/PRELAUNCH_SIGNOFF.md\`.
 
 ## Photo Import Decision Rules
@@ -373,11 +374,11 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 4. For current litters with no photo day yet, keep the public placeholder calm: puppy profiles can be live while photos are marked as coming soon.
 5. After changing puppy, litter, parent, or previous-litter data, run the matching sheet sync command shown in the TSV before publishing.
 
-## Current Litter Photo Queue
+## Current Litter Media Queue
 
 ${table(
   currentLitterRows,
-  ["Litter", "Latest website photos", "Next upload folder", "Puppies", "Website statuses"],
+  ["Litter", "Latest website photos", "Next photo upload folder", "Puppies", "Website statuses"],
   (item) =>
     `| ${item.litter.name} | ${item.latest} | ${item.nextFolder || "_No folder hint_"} | ${item.puppyCount} | ${item.statuses} |`,
 )}
@@ -424,7 +425,7 @@ The full task list was exported to:
 outputs/photo-intake-checklist.tsv
 \`\`\`
 
-Use that TSV when a weekly photo day has a lot of puppies and you want a copy/paste checklist beside the Drive folder.
+Use that TSV when a weekly media day has a lot of puppies and you want a copy/paste checklist beside the Drive folder.
 
 ## After Photo Import Publishing Steps
 
