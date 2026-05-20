@@ -1,6 +1,6 @@
 # Weekly Update Queue
 
-Generated: 5/20/2026, 12:56:01 PM Central
+Generated: 5/20/2026, 2:58:59 PM Central
 
 This report is generated from the website data files. Use it as the quick Tuesday photo/update checklist before touching individual pages.
 
@@ -10,7 +10,7 @@ This report is generated from the website data files. Use it as the quick Tuesda
 | --- | --- | --- | ---: | --- |
 | Birdie + Waylon | May 23-25, 2026 (3 days away) | Week 5 | 7 | 7 Reserved |
 | Penny + Wyatt | June 14-16, 2026 (25 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
-| Ginny + Butch Cassidy | June 14-16, 2026 (25 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
+| Ginny + Butch Cassidy | June 14-16, 2026 (25 days away) | Week 4 | 6 | 6 Waitlist Matching |
 | Whitley + Waylon | June 24-26, 2026 (35 days away) | No weekly photos listed | 6 | 6 Waitlist Matching |
 
 ## Current Litter Issues

@@ -6,12 +6,12 @@ This review checks public image references, data records that should have photos
 
 ## Summary
 
-- Referenced website images: 147
-- Files in `public/images`: 169
+- Referenced website images: 153
+- Files in `public/images`: 176
 - Missing referenced files: 0
 - Public records needing image attention: 7
 - Large images over 2.5 MB: 0
-- Unused image review candidates: 22
+- Unused image review candidates: 23
 
 ## Missing Referenced Images
 
@@ -44,6 +44,7 @@ These are not automatically bad. Some may be kept for upcoming pages, backups, o
 - /images/previous-litters/lady-redford.webp
 - /images/previous-litters/ruby-bodhe-2.webp
 - /images/previous-litters/ruby-bodhe.webp
+- /images/puppies/ginny-butch-2026/trek-mini-goldendoodle-puppy-ginny-butch-week-4-red-ranch-dogs.jpg
 - /images/seed/logo.webp
 - /images/seed/red-ranch-dogs-app-icon-192.png
 - /images/seed/red-ranch-dogs-app-icon-512.png
