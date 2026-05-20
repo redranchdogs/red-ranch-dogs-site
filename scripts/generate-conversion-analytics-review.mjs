@@ -28,6 +28,7 @@ const allEvents = unique([...navigationEvents, ...directEvents]);
 
 const criticalEvents = [
   "cta_apply_click",
+  "cta_text_click",
   "form_start",
   "form_submit_attempt",
   "form_submit_success",
@@ -38,12 +39,24 @@ const criticalEvents = [
 ];
 
 const missingCriticalEvents = criticalEvents.filter((eventName) => !allEvents.includes(eventName));
+const actionPaths = [
+  { action: "Apply CTA", expectedEvent: "cta_apply_click", path: "/apply", sourceOfTruth: "Lead Queue when the form submits" },
+  { action: "Text Us tap", expectedEvent: "cta_text_click", path: "sms link", sourceOfTruth: "Phone/message history" },
+  { action: "Available Puppies view", expectedEvent: "view_available_puppies_click", path: "/puppies/available", sourceOfTruth: "Vercel page view + CTA event" },
+  { action: "Current Litters view", expectedEvent: "view_current_litters_click", path: "/puppies/current-litters", sourceOfTruth: "Vercel page view + CTA event" },
+  { action: "Litter detail view", expectedEvent: "view_litter_click", path: "/litters/*", sourceOfTruth: "Vercel page view + CTA event" },
+  { action: "Successful form", expectedEvent: "form_submit_success", path: "/api/forms", sourceOfTruth: "Website Leads + Lead Queue + submissionId" },
+];
 
 const eventRows = allEvents.map((eventName) => {
   const source = navigationEvents.includes(eventName) ? "Navigation click" : "Form lifecycle";
   const crmSignal = eventName === "form_submit_success" ? "Match to Lead Queue by submissionId" : "Behavior signal only";
   return `| \`${eventName}\` | ${source} | ${crmSignal} |`;
 });
+
+const actionRows = actionPaths.map((item) => (
+  `| ${item.action} | \`${item.expectedEvent}\` | ${allEvents.includes(item.expectedEvent) ? "Tracked" : "Missing"} | ${item.path} | ${item.sourceOfTruth} |`
+));
 
 const report = `# Conversion Analytics Review
 
@@ -54,6 +67,22 @@ This is the lightweight analytics contract for the public Red Ranch Dogs website
 | Event | Source | How to read it |
 | --- | --- | --- |
 ${eventRows.join("\n")}
+
+## Action Tracking Review
+
+| Buyer action | Expected event | Status | Path | Source of truth |
+| --- | --- | --- | --- | --- |
+${actionRows.join("\n")}
+
+## First Live Readout
+
+Use this as the first live analytics pass after the site has had a few real traffic days:
+
+1. In Vercel Analytics, compare mobile, desktop, and tablet traffic for Home, Available Puppies, Current Litters, Apply, Contact, and litter detail pages.
+2. Check whether Apply, Text Us, Current Litters, Available Puppies, and litter-detail clicks are visible as tracked events on the current Vercel plan.
+3. Compare \`form_submit_success\` counts with rows added to Lead Queue for the same period.
+4. If page views are high but form starts are low, review that page for CTA placement and clarity.
+5. If form starts are high but successful submissions are low, review form validation, field burden, and error messaging before changing the CRM.
 
 ## Conversion Questions To Review Weekly
 

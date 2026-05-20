@@ -1,5 +1,5 @@
 # Operations Status
-Generated: 5/19/2026, 8:05:33 PM Central
+Generated: 5/19/2026, 8:28:57 PM Central
 Overall status: **PASS**
 ## Bridge
 Status: **PASS**
@@ -17,7 +17,7 @@ Message: Bridge is reachable and Website Submissions tabs are readable.
 | Check | Status | Duration | Command |
 | --- | --- | ---: | --- |
 | Apps Script bridge syntax | PASS | 0.0s | `/Users/adamdietlein/.local/share/fnm/node-versions/v24.14.0/installation/bin/node --check scripts/website-bridge-apps-script.js` |
-| Lead workflow packet | PASS | 5.7s | `npm run leads:packet` |
+| Lead workflow packet | PASS | 6.7s | `npm run leads:packet` |
 | Weekly workflow report | PASS | 0.1s | `npm run ops:workflow` |
 | Drive folder plan | PASS | 0.1s | `npm run drive:folders` |
 | Business accuracy review | PASS | 0.1s | `npm run review:business` |
@@ -26,12 +26,14 @@ Message: Bridge is reachable and Website Submissions tabs are readable.
 | Public safety review | PASS | 0.1s | `npm run review:safety` |
 | Conversion analytics review | PASS | 0.1s | `npm run review:analytics` |
 | CRM intake alignment review | PASS | 0.1s | `npm run review:crm-intake` |
-| Sheet sync review | PASS | 8.6s | `npm run review:sheets` |
+| Current litter clarity review | PASS | 0.1s | `npm run review:litter-clarity` |
+| Photo day rehearsal | PASS | 0.1s | `npm run photos:rehearsal` |
+| Sheet sync review | PASS | 8.4s | `npm run review:sheets` |
 | Content publish readiness | PASS | 0.1s | `npm run check:publish-ready` |
 | Form API handler tests | PASS | 0.1s | `npm run test:forms` |
 | Route verification | PASS | 0.1s | `npm run verify:routes` |
 | Content validation | PASS | 0.1s | `npm run validate:content` |
 | Source-of-truth guardrails | PASS | 0.1s | `npm run check:source` |
 | Buyer-flow guardrails | PASS | 0.1s | `npm run check:buyer-flow` |
-| Lint | PASS | 0.8s | `npm run lint` |
-| Production build | PASS | 0.7s | `npm run build` |
+| Lint | PASS | 0.7s | `npm run lint` |
+| Production build | PASS | 0.3s | `npm run build` |

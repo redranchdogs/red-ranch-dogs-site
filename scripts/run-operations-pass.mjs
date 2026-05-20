@@ -209,6 +209,8 @@ const checks = [
   runCommand("Public safety review", "npm", ["run", "review:safety"]),
   runCommand("Conversion analytics review", "npm", ["run", "review:analytics"]),
   runCommand("CRM intake alignment review", "npm", ["run", "review:crm-intake"]),
+  runCommand("Current litter clarity review", "npm", ["run", "review:litter-clarity"]),
+  runCommand("Photo day rehearsal", "npm", ["run", "photos:rehearsal"]),
   runCommand("Sheet sync review", "npm", ["run", "review:sheets"]),
   runCommand("Content publish readiness", "npm", ["run", "check:publish-ready"]),
   runCommand("Form API handler tests", "npm", ["run", "test:forms"]),

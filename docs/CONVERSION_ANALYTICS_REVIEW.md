@@ -31,6 +31,27 @@ This is the lightweight analytics contract for the public Red Ranch Dogs website
 | `view_stud_services_click` | Navigation click | Behavior signal only |
 | `view_upcoming_litters_click` | Navigation click | Behavior signal only |
 
+## Action Tracking Review
+
+| Buyer action | Expected event | Status | Path | Source of truth |
+| --- | --- | --- | --- | --- |
+| Apply CTA | `cta_apply_click` | Tracked | /apply | Lead Queue when the form submits |
+| Text Us tap | `cta_text_click` | Tracked | sms link | Phone/message history |
+| Available Puppies view | `view_available_puppies_click` | Tracked | /puppies/available | Vercel page view + CTA event |
+| Current Litters view | `view_current_litters_click` | Tracked | /puppies/current-litters | Vercel page view + CTA event |
+| Litter detail view | `view_litter_click` | Tracked | /litters/* | Vercel page view + CTA event |
+| Successful form | `form_submit_success` | Tracked | /api/forms | Website Leads + Lead Queue + submissionId |
+
+## First Live Readout
+
+Use this as the first live analytics pass after the site has had a few real traffic days:
+
+1. In Vercel Analytics, compare mobile, desktop, and tablet traffic for Home, Available Puppies, Current Litters, Apply, Contact, and litter detail pages.
+2. Check whether Apply, Text Us, Current Litters, Available Puppies, and litter-detail clicks are visible as tracked events on the current Vercel plan.
+3. Compare `form_submit_success` counts with rows added to Lead Queue for the same period.
+4. If page views are high but form starts are low, review that page for CTA placement and clarity.
+5. If form starts are high but successful submissions are low, review form validation, field burden, and error messaging before changing the CRM.
+
 ## Conversion Questions To Review Weekly
 
 1. How many visitors reached Available Puppies, Current Litters, Apply, Contact, Guardian Application, and Stud Services?
