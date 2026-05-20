@@ -1,6 +1,6 @@
 # Photo Workflow Packet
 
-Generated: 5/19/2026, 7:21:34 PM Central
+Generated: 5/19/2026, 8:02:57 PM Central
 
 This is the working packet for weekly puppy photos, parent photo cleanup, and previous-litter photo backfill. It is intentionally internal: it describes Google Drive paths and photo matching rules so the public website can stay clean.
 
@@ -13,6 +13,14 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 5. Public pages should never show internal upload notes such as Drive folders, photo drops, or import reminders.
 6. After a data/photo update, run `npm run ops:full` and check `docs/PRELAUNCH_SIGNOFF.md`.
 
+## Photo Import Decision Rules
+
+1. If a puppy has no live main photo, choose the best clear face/body shot first and use it for the puppy card.
+2. If the puppy already has a main photo but no weekly groups, add the first weekly group below the puppy profile so families can follow growth over time.
+3. If weekly groups already exist, add the next week as a new grouped gallery instead of replacing older weeks.
+4. For current litters with no photo day yet, keep the public placeholder calm: puppy profiles can be live while photos are marked as coming soon.
+5. After changing puppy, litter, parent, or previous-litter data, run the matching sheet sync command shown in the TSV before publishing.
+
 ## Current Litter Photo Queue
 
 | Litter | Latest website photos | Next upload folder | Puppies | Website statuses |
@@ -24,33 +32,33 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 
 ## Puppy Matching Checklist
 
-| Litter | Puppy | Collar | Status | Next file name |
-| --- | --- | --- | --- | --- |
-| Birdie + Waylon | Ranger | Brown | Reserved | `ranger-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Axel | Orange | Reserved | `axel-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Diesel | Blue | Reserved | `diesel-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Dakota | Red | Reserved | `dakota-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Sedona | Yellow | Reserved | `sedona-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Arizona | Pink | Reserved | `arizona-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Indie | Purple | Reserved | `indie-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
-| Whitley + Waylon | Hook | Blue | Waitlist Matching | `hook-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
-| Whitley + Waylon | Minnow | Pink | Waitlist Matching | `minnow-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
-| Whitley + Waylon | Tackle | Orange | Waitlist Matching | `tackle-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
-| Whitley + Waylon | Bass | Grey | Waitlist Matching | `bass-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
-| Whitley + Waylon | Bobber | Maroon | Waitlist Matching | `bobber-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
-| Whitley + Waylon | Skipper | Black | Waitlist Matching | `skipper-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
-| Penny + Wyatt | Striker | Orange | Waitlist Matching | `striker-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
-| Penny + Wyatt | Samba | Dark Blue | Waitlist Matching | `samba-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
-| Penny + Wyatt | Goalie | Dark Gray | Waitlist Matching | `goalie-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
-| Penny + Wyatt | Ref | Black | Waitlist Matching | `ref-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
-| Penny + Wyatt | Pitch | Red | Waitlist Matching | `pitch-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
-| Penny + Wyatt | FIFA | Light Gray | Waitlist Matching | `fifa-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
-| Ginny + Butch Cassidy | Meadow | Red | Waitlist Matching | `meadow-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
-| Ginny + Butch Cassidy | Vista | Maroon | Waitlist Matching | `vista-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
-| Ginny + Butch Cassidy | Camper | Gray | Waitlist Matching | `camper-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
-| Ginny + Butch Cassidy | Sage | Pink | Waitlist Matching | `sage-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
-| Ginny + Butch Cassidy | Ridge | Orange | Waitlist Matching | `ridge-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
-| Ginny + Butch Cassidy | Trek | Black | Waitlist Matching | `trek-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
+| Litter | Puppy | Collar | Status | Recommended action | Next file name |
+| --- | --- | --- | --- | --- | --- |
+| Birdie + Waylon | Ranger | Brown | Reserved | Add Week 6 weekly group | `ranger-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Axel | Orange | Reserved | Add Week 6 weekly group | `axel-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Diesel | Blue | Reserved | Add Week 6 weekly group | `diesel-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Dakota | Red | Reserved | Add Week 6 weekly group | `dakota-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Sedona | Yellow | Reserved | Add Week 6 weekly group | `sedona-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Arizona | Pink | Reserved | Add Week 6 weekly group | `arizona-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Indie | Purple | Reserved | Add Week 6 weekly group | `indie-mini-goldendoodle-puppy-birdie-waylon-week-6-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Hook | Blue | Waitlist Matching | Select main photo and first weekly group | `hook-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Minnow | Pink | Waitlist Matching | Select main photo and first weekly group | `minnow-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Tackle | Orange | Waitlist Matching | Select main photo and first weekly group | `tackle-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Bass | Grey | Waitlist Matching | Select main photo and first weekly group | `bass-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Bobber | Maroon | Waitlist Matching | Select main photo and first weekly group | `bobber-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Whitley + Waylon | Skipper | Black | Waitlist Matching | Select main photo and first weekly group | `skipper-multigen-mini-goldendoodle-puppy-whitley-waylon-week-1-red-ranch-dogs.jpg` |
+| Penny + Wyatt | Striker | Orange | Waitlist Matching | Add Week 1 weekly group | `striker-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
+| Penny + Wyatt | Samba | Dark Blue | Waitlist Matching | Add Week 1 weekly group | `samba-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
+| Penny + Wyatt | Goalie | Dark Gray | Waitlist Matching | Add Week 1 weekly group | `goalie-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
+| Penny + Wyatt | Ref | Black | Waitlist Matching | Add Week 1 weekly group | `ref-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
+| Penny + Wyatt | Pitch | Red | Waitlist Matching | Add Week 1 weekly group | `pitch-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
+| Penny + Wyatt | FIFA | Light Gray | Waitlist Matching | Add Week 1 weekly group | `fifa-f1b-micro-cavapoo-puppy-penny-wyatt-week-1-red-ranch-dogs.jpg` |
+| Ginny + Butch Cassidy | Meadow | Red | Waitlist Matching | Add Week 1 weekly group | `meadow-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
+| Ginny + Butch Cassidy | Vista | Maroon | Waitlist Matching | Add Week 1 weekly group | `vista-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
+| Ginny + Butch Cassidy | Camper | Gray | Waitlist Matching | Add Week 1 weekly group | `camper-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
+| Ginny + Butch Cassidy | Sage | Pink | Waitlist Matching | Add Week 1 weekly group | `sage-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
+| Ginny + Butch Cassidy | Ridge | Orange | Waitlist Matching | Add Week 1 weekly group | `ridge-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
+| Ginny + Butch Cassidy | Trek | Black | Waitlist Matching | Add Week 1 weekly group | `trek-multigen-mini-goldendoodle-puppy-ginny-butch-cassidy-week-1-red-ranch-dogs.jpg` |
 
 ## Upcoming Litter Pairing Photos
 

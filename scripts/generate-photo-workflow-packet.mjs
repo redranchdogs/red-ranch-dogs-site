@@ -180,19 +180,38 @@ const puppyChecklist = currentLitters.flatMap((litter) => {
   const next = nextWeekLabel(latest);
   const nextFolder = folderForWeek(litter.photoFolderHint, next);
 
-  return litterPuppies.map((puppy) => ({
-    taskType: "current-puppy-photo",
-    litter,
-    puppy,
-    weekLabel: next,
-    driveFolder: nextFolder,
-    currentPhoto: puppy.mainPhoto || "",
-    currentPublicFolder: imageFolder(puppy.mainPhoto || ""),
-    suggestedFileName: suggestedPhotoName({ puppy, litter, weekLabel: next }),
-    notes: puppy.collarColor
-      ? `Match by ${puppy.collarColor} collar.`
-      : "Needs a collar-color note before photo matching.",
-  }));
+  return litterPuppies.map((puppy) => {
+    const hasMainPhoto = Boolean(puppy.mainPhoto && publicPathExists(puppy.mainPhoto));
+    const hasWeeklyPhotos = Boolean(puppy.weeklyPhotos?.length);
+    const recommendedAction = hasMainPhoto
+      ? hasWeeklyPhotos
+        ? `Add ${next} weekly group`
+        : "Add first weekly group"
+      : "Select main photo and first weekly group";
+    const notes = [
+      puppy.collarColor
+        ? `Match by ${puppy.collarColor} collar.`
+        : "Needs a collar-color note before photo matching.",
+      hasMainPhoto ? "Main photo is live." : "Needs main website photo.",
+      hasWeeklyPhotos ? "Weekly photos already started." : "No weekly photo groups yet.",
+    ].join(" ");
+
+    return {
+      taskType: "current-puppy-photo",
+      litter,
+      puppy,
+      weekLabel: next,
+      driveFolder: nextFolder,
+      currentPhoto: puppy.mainPhoto || "",
+      currentPublicFolder: imageFolder(puppy.mainPhoto || ""),
+      suggestedFileName: suggestedPhotoName({ puppy, litter, weekLabel: next }),
+      hasMainPhoto,
+      hasWeeklyPhotos,
+      recommendedAction,
+      sheetSyncCommand: "npm run sync:puppies && npm run sync:litters && npm run review:sheets",
+      notes,
+    };
+  });
 });
 
 const upcomingChecklist = upcomingLitters.map((litter) => ({
@@ -240,6 +259,10 @@ const checklistRows = [
     "drive_folder",
     "current_public_photo",
     "suggested_file_name",
+    "import_action",
+    "has_main_photo",
+    "has_weekly_photos",
+    "sheet_sync_command",
     "notes",
   ],
 ];
@@ -256,6 +279,10 @@ puppyChecklist.forEach((item) => {
     item.driveFolder,
     item.currentPhoto,
     item.suggestedFileName,
+    item.recommendedAction,
+    item.hasMainPhoto ? "yes" : "no",
+    item.hasWeeklyPhotos ? "yes" : "no",
+    item.sheetSyncCommand,
     item.notes,
   ]);
 });
@@ -272,6 +299,10 @@ upcomingChecklist.forEach((item) => {
     item.driveFolder,
     "",
     "",
+    "Hold until puppy photos are ready",
+    "",
+    "",
+    "npm run sync:litters && npm run review:sheets",
     item.notes,
   ]);
 });
@@ -288,6 +319,10 @@ parentChecklist.forEach((item) => {
     item.driveFolder,
     item.currentPhoto,
     "",
+    item.photoStatus === "Has website photo" ? "Review only" : "Select website photo",
+    item.photoStatus === "Has website photo" ? "yes" : "no",
+    "",
+    "npm run sync:parents && npm run review:sheets",
     titleCase(item.parent.role || ""),
   ]);
 });
@@ -304,6 +339,10 @@ previousBackfill.forEach((item) => {
     item.driveFolder,
     item.litter.image || "",
     "",
+    "Backfill archive photos",
+    "",
+    "",
+    "npm run sync:previous-litters && npm run review:sheets",
     "Backfill only when Adam wants this previous pairing expanded.",
   ]);
 });
@@ -326,6 +365,14 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 5. Public pages should never show internal upload notes such as Drive folders, photo drops, or import reminders.
 6. After a data/photo update, run \`npm run ops:full\` and check \`docs/PRELAUNCH_SIGNOFF.md\`.
 
+## Photo Import Decision Rules
+
+1. If a puppy has no live main photo, choose the best clear face/body shot first and use it for the puppy card.
+2. If the puppy already has a main photo but no weekly groups, add the first weekly group below the puppy profile so families can follow growth over time.
+3. If weekly groups already exist, add the next week as a new grouped gallery instead of replacing older weeks.
+4. For current litters with no photo day yet, keep the public placeholder calm: puppy profiles can be live while photos are marked as coming soon.
+5. After changing puppy, litter, parent, or previous-litter data, run the matching sheet sync command shown in the TSV before publishing.
+
 ## Current Litter Photo Queue
 
 ${table(
@@ -339,9 +386,9 @@ ${table(
 
 ${table(
   puppyChecklist,
-  ["Litter", "Puppy", "Collar", "Status", "Next file name"],
+  ["Litter", "Puppy", "Collar", "Status", "Recommended action", "Next file name"],
   (item) =>
-    `| ${item.litter.name} | ${item.puppy.name} | ${item.puppy.collarColor || "_Missing_"} | ${item.puppy.status || ""} | \`${item.suggestedFileName}\` |`,
+    `| ${item.litter.name} | ${item.puppy.name} | ${item.puppy.collarColor || "_Missing_"} | ${item.puppy.status || ""} | ${item.recommendedAction} | \`${item.suggestedFileName}\` |`,
 )}
 
 ## Upcoming Litter Pairing Photos

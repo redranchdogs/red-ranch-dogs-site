@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { track } from "@vercel/analytics";
 import {
   ArrowRight,
+  Camera,
   CalendarDays,
   CheckCircle2,
   ChevronDown,
@@ -1853,6 +1854,25 @@ function ImageGallery({ images: gallery = [], label = "Gallery image" }) {
   );
 }
 
+function LitterGalleryStatus({ hasGallery, puppyCount }) {
+  if (hasGallery) return null;
+
+  return (
+    <article className="note-panel litter-gallery-status">
+      <Camera size={22} aria-hidden="true" />
+      <div>
+        <p className="eyebrow">Photos Coming Soon</p>
+        <h2>Weekly photos will appear here after photo day.</h2>
+        <p>
+          {puppyCount
+            ? "Puppy profiles are live now, and the photo gallery will fill in as newborn and weekly photos are added."
+            : "This litter page is ready for puppy profiles and weekly photos as soon as they are ready to share."}
+        </p>
+      </div>
+    </article>
+  );
+}
+
 function PuppyCard({ puppy, variant = "default" }) {
   const breed = puppy.breed || "Breed to be announced";
   const gender = puppy.gender || puppy.sex || "To be announced";
@@ -3412,7 +3432,8 @@ function LitterPage({ litter }) {
       </section>
       <section className="content-section litter-gallery-section">
         <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
-        <ImageGallery images={gallery} label={`${litter.name} weekly update`} />
+        <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />
+        {gallery.length > 0 && <ImageGallery images={gallery} label={`${litter.name} weekly update`} />}
       </section>
       {isCurrentLitter(litter) && (
         <section className="content-section narrow litter-go-home-note-section">
@@ -3715,7 +3736,7 @@ function AvailablePuppiesPage() {
     <BuyerPageTemplate
       eyebrow="Puppies"
       title="Available Puppies"
-      copy={availableNow.length ? "Meet the puppies currently available from Red Ranch Dogs, then apply or ask about the fit when one catches your eye." : "When a puppy is truly open for a new family, it will appear here. In the meantime, the breed waitlists and current litter pages are the best next steps."}
+      copy={availableNow.length ? "Meet the puppies currently available from Red Ranch Dogs, then apply or ask about the fit when one catches your eye." : "When a puppy is open beyond the waitlist, it will appear here. Current litters may still be growing and matching families first."}
     >
       {availableNow.length > 0 ? (
         <>
@@ -3752,18 +3773,18 @@ function AvailablePuppiesPage() {
           <ListingStatusStrip
             items={[
               { value: "0", label: "available puppies now" },
-              { value: "Waitlist", label: "priority picking for deposit families" },
-              { value: "Soon", label: "new openings post here" }
+              { value: "First", label: "waitlist families pick first" },
+              { value: "Here", label: "public openings post here" }
             ]}
           />
           <SmartEmptyState
             eyebrow="Availability Update"
-            title="No puppies available right now"
-            copy="We are currently working through breed-specific waitlists. Families with deposits receive priority picking first, and if a puppy opens for a new family, this page is where it will appear."
+            title="No public puppies open right now"
+            copy="Some current litters may still have puppies being matched, but waitlist families get first pick. After that process, any puppy open for a new family will be posted here."
             steps={[
               "Apply for the breed waitlist that fits your family.",
-              "Follow current litters for photos, timing, and availability notes.",
-              "Check back here when new openings are posted."
+              "Follow current litters for photos, timing, and waitlist-matching notes.",
+              "Check this page for public openings after waitlist picks are complete."
             ]}
             primaryLabel="Apply for a Puppy"
             secondaryHref="/puppies/current-litters"

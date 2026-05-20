@@ -3442,6 +3442,29 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
+.litter-gallery-status {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.litter-gallery-status svg {
+  color: var(--brand-red);
+}
+
+.litter-gallery-status h2 {
+  max-width: 18ch;
+  margin: 4px 0 8px;
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+}
+
+.litter-gallery-status p {
+  margin: 0;
+}
+
 .litter-go-home-note-section {
   padding-top: 8px;
   padding-bottom: 28px;
