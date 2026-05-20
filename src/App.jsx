@@ -3873,13 +3873,11 @@ function CurrentLittersPage() {
           { value: currentAvailablePuppies.length ? nextAvailableGoHome : nextCurrentGoHome, label: currentAvailablePuppies.length ? "next available go-home" : "next current go-home" }
         ]}
       />
-      <LatestUpdates className="current-litter-updates-section" />
       {currentLitterProfiles.length ? (
         <>
           <section className="card-list listing-content-section current-litter-list">
             <SectionHeader
-              eyebrow="Growing Now"
-              title="Current litters"
+              title="Growing now"
               copy="Litters are ordered by go-home timing. Each card opens the full litter page with parent details, puppy photos, compact status notes, and availability."
             />
             {currentLitterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
