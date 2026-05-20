@@ -1,6 +1,6 @@
 # Next Session Handoff
 
-Last updated: 5/20/2026, 11:38:04 AM Central.
+Last updated: 5/20/2026, 1:31:58 PM Central.
 
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
 
@@ -119,6 +119,8 @@ Use `npm run ops:full` for the heavier pass: it rebuilds the lead queue, refresh
 ## Human Review Priorities
 
 - Birdie + Waylon: go-home window begins May 23, 2026. Confirm pickup/payment/status copy is current.
+- Faye + Sundance: expected timing "Expected delivery May 2026" may be stale. Confirm whether it is now current, born, hidden, or still planned.
+- Georgia + Waylon: expected timing "Expected delivery May 2026" may be stale. Confirm whether it is now current, born, hidden, or still planned.
 
 ## Previous Litter Archive Backfill
 

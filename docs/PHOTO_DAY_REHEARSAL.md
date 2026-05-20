@@ -1,6 +1,6 @@
 # Photo Day Rehearsal
 
-Generated: 5/20/2026, 11:51:10 AM Central
+Generated: 5/20/2026, 1:16:19 PM Central
 
 Status: **READY**
 
@@ -13,7 +13,7 @@ This is the pre-media-day rehearsal for current litters. It does not move files,
 | Birdie + Waylon | Week 5 | Website Hub / Weekly Media Drops / Current Litters / Birdie 3 + Waylon / Week 6 / Photos | 7 | 0 | 0 |
 | Whitley + Waylon | Newborn Photos | Website Hub / Weekly Media Drops / Current Litters / Whitley 1 + Waylon / Week 1 / Photos | 6 | 6 | 6 |
 | Penny + Wyatt | Newborn Photos | Website Hub / Weekly Media Drops / Current Litters / Penny 1 + Wyatt / Week 1 / Photos | 6 | 0 | 0 |
-| Ginny + Butch Cassidy | Newborn Photos | Website Hub / Weekly Media Drops / Current Litters / Ginny 1 + Butch Cassidy / Week 1 / Photos | 6 | 0 | 0 |
+| Ginny + Butch Cassidy | Week 4 | Website Hub / Weekly Media Drops / Current Litters / Ginny 1 + Butch Cassidy / Week 5 / Photos | 6 | 0 | 0 |
 
 ## Puppy-Level Import Actions
 
@@ -38,12 +38,12 @@ This is the pre-media-day rehearsal for current litters. It does not move files,
 | Penny + Wyatt | Ref | Black | Waitlist Matching | Add Week 1 group |
 | Penny + Wyatt | Pitch | Red | Waitlist Matching | Add Week 1 group |
 | Penny + Wyatt | FIFA | Light Gray | Waitlist Matching | Add Week 1 group |
-| Ginny + Butch Cassidy | Meadow | Red | Waitlist Matching | Add Week 1 group |
-| Ginny + Butch Cassidy | Vista | Maroon | Waitlist Matching | Add Week 1 group |
-| Ginny + Butch Cassidy | Camper | Gray | Waitlist Matching | Add Week 1 group |
-| Ginny + Butch Cassidy | Sage | Pink | Waitlist Matching | Add Week 1 group |
-| Ginny + Butch Cassidy | Ridge | Orange | Waitlist Matching | Add Week 1 group |
-| Ginny + Butch Cassidy | Trek | Black | Waitlist Matching | Add Week 1 group |
+| Ginny + Butch Cassidy | Meadow | Red | Waitlist Matching | Add Week 5 group |
+| Ginny + Butch Cassidy | Vista | Maroon | Waitlist Matching | Add Week 5 group |
+| Ginny + Butch Cassidy | Camper | Gray | Waitlist Matching | Add Week 5 group |
+| Ginny + Butch Cassidy | Sage | Pink | Waitlist Matching | Add Week 5 group |
+| Ginny + Butch Cassidy | Ridge | Orange | Waitlist Matching | Add Week 5 group |
+| Ginny + Butch Cassidy | Trek | Black | Waitlist Matching | Add Week 5 group |
 
 ## Rehearsal Notes
 

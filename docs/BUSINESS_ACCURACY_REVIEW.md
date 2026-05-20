@@ -7,6 +7,8 @@ This is a human-review helper. It does not replace the automated launch checks; 
 ## Review Now
 
 - Birdie + Waylon: go-home window begins May 23, 2026. Confirm pickup/payment/status copy is current.
+- Faye + Sundance: expected timing "Expected delivery May 2026" may be stale. Confirm whether it is now current, born, hidden, or still planned.
+- Georgia + Waylon: expected timing "Expected delivery May 2026" may be stale. Confirm whether it is now current, born, hidden, or still planned.
 
 ## Review Soon
 
