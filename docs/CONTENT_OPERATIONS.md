@@ -87,6 +87,29 @@ docs/PUBLIC_SAFETY_REVIEW.md
 
 That report checks for public-facing internal workflow notes, raw Google Drive/Sheets/Apps Script links, private contact details, and old-pricing artifacts in structured public data.
 
+## Content Publish Checklist
+
+Use the publish checklist whenever puppy, litter, parent, previous-litter, waitlist, or photo content changes:
+
+```text
+docs/CONTENT_PUBLISH_CHECKLIST.md
+```
+
+The short version is:
+
+```bash
+npm run seo:crawler
+npm run sync:puppies      # if puppy records changed
+npm run sync:litters      # if litter records changed
+npm run sync:parents      # if parent records changed
+npm run sync:previous-litters
+npm run sync:waitlist
+npm run review:sheets
+npm run publish:check
+```
+
+The publish gate intentionally fails when structured website data is newer than the latest passing sheet review. That keeps the website, Website Hub sheets, CRM handoff, and future Breeding Ops/portal workflows pointed at the same data.
+
 ## Ecosystem Alignment
 
 Use this packet when the website needs to stay aligned with the CRM, Breeding Ops, Vercel Analytics, Google Sheets, and future portal work:
@@ -126,6 +149,22 @@ docs/SEO_METADATA_REPORT.md
 ```
 
 It checks titles, meta descriptions, canonical URLs, Open Graph/Twitter metadata, H1s, and JSON-LD presence.
+
+Public crawler files are generated from structured website data:
+
+```bash
+npm run seo:crawler
+```
+
+This refreshes:
+
+```text
+public/sitemap.xml
+public/llms.txt
+public/llms-full.txt
+```
+
+Run it after adding or hiding puppies, litters, parent profiles, previous litters, or breed pages so Google and AI search tools see the current public site structure.
 
 For final deploy-package safety, run:
 

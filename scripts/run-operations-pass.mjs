@@ -207,6 +207,8 @@ const checks = [
   runCommand("Page review packet", "npm", ["run", "review:pages"]),
   runCommand("Image asset review", "npm", ["run", "review:images"]),
   runCommand("Public safety review", "npm", ["run", "review:safety"]),
+  runCommand("Sheet sync review", "npm", ["run", "review:sheets"]),
+  runCommand("Content publish readiness", "npm", ["run", "check:publish-ready"]),
   runCommand("Form API handler tests", "npm", ["run", "test:forms"]),
   runCommand("Route verification", "npm", ["run", "verify:routes"]),
   runCommand("Content validation", "npm", ["run", "validate:content"]),

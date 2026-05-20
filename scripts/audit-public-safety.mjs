@@ -157,7 +157,7 @@ function reviewWaitlistPrivacy(waitlist) {
 }
 
 function reviewStaticFiles() {
-  ["index.html", "public/robots.txt", "public/sitemap.xml"].forEach((filePath) => {
+  ["index.html", "public/robots.txt", "public/sitemap.xml", "public/llms.txt", "public/llms-full.txt"].forEach((filePath) => {
     const absolute = path.join(root, filePath);
     if (!fs.existsSync(absolute)) return;
 
@@ -193,7 +193,7 @@ reviewWaitlistPrivacy(loadedData.get("src/data/waitlist.json") || {});
 reviewStaticFiles();
 
 if (!blockers.length) {
-  notes.push("No public blockers found in structured data, static HTML, robots, or sitemap files.");
+  notes.push("No public blockers found in structured data, static HTML, robots, sitemap, or AI-search summary files.");
 }
 
 if (!warnings.length) {

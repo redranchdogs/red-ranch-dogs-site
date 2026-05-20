@@ -101,12 +101,19 @@ function analyticsEventForHref(href = "") {
   if (href.includes("instagram.com")) return "social_instagram_click";
   if (href.includes("google.com") || href.includes("g.page")) return "social_google_reviews_click";
   if (href === "/apply" || href === "/puppy-application") return "cta_apply_click";
+  if (href.includes("/process/application-and-waitlist")) return "view_application_waitlist_click";
+  if (href.includes("/process/how-it-works")) return "view_process_click";
+  if (href.includes("/process/pickup-and-delivery")) return "view_pickup_delivery_click";
   if (href.includes("/litters/")) return "view_litter_click";
+  if (href.includes("/puppies/available")) return "view_available_puppies_click";
+  if (href.includes("/puppies/current-litters")) return "view_current_litters_click";
+  if (href.includes("/puppies/upcoming-litters")) return "view_upcoming_litters_click";
+  if (href.includes("/puppies/goldendoodle-puppies") || href.includes("/puppies/cavapoo-puppies") || href.includes("/puppies/bernedoodle-puppies")) return "view_breed_page_click";
   if (href.includes("/puppies/") && !href.includes("/puppies/current-litters") && !href.includes("/puppies/available")) return "view_puppy_or_breed_click";
   if (href.includes("/parents/")) return "view_parent_click";
   if (href.includes("/process/pricing")) return "view_pricing_click";
-  if (href.includes("/puppies/current-litters")) return "view_current_litters_click";
-  if (href.includes("/puppies/upcoming-litters")) return "view_upcoming_litters_click";
+  if (href.includes("/guardian-program")) return "view_guardian_program_click";
+  if (href.includes("/stud-services")) return "view_stud_services_click";
   return null;
 }
 
@@ -5770,6 +5777,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState("");
   const [busy, setBusy] = useState(false);
+  const [started, setStarted] = useState(false);
   const applicationFields = formType === "application" && !newsletterOnly;
   const contactFields = formType === "contact" && !newsletterOnly;
   const guardianApplicationFields = formType === "guardian" && guardianFields && !newsletterOnly;
@@ -5789,6 +5797,15 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     target?.focus?.();
   }
 
+  function onFormFocusCapture() {
+    if (started) return;
+    setStarted(true);
+    trackSiteEvent("form_start", {
+      formType,
+      path: compactPath(window.location.pathname)
+    });
+  }
+
   async function onSubmit(event) {
     event.preventDefault();
     const formElement = event.currentTarget;
@@ -5803,6 +5820,10 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     }
 
     const payload = collectFormPayload(form);
+    trackSiteEvent("form_submit_attempt", {
+      formType,
+      path: compactPath(window.location.pathname)
+    });
     const validationError = validateLeadPayload(formType, payload);
     if (validationError) {
       trackSiteEvent("form_validation_error", {
@@ -5836,7 +5857,8 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       }
       trackSiteEvent("form_submit_success", {
         formType,
-        path: compactPath(window.location.pathname)
+        path: compactPath(window.location.pathname),
+        submissionId: result.submissionId || ""
       });
       formElement.reset();
       const serverMessage = result.message || "";
@@ -5862,6 +5884,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       className={`lead-form ${compact ? "compact" : ""}`}
       data-form-type={formType}
       aria-busy={busy}
+      onFocusCapture={onFormFocusCapture}
       onSubmit={onSubmit}
     >
       <h2>{title}</h2>

@@ -1,6 +1,6 @@
 # Deploy Package Review
 
-Generated: 5/18/2026, 1:30:23 PM Central
+Generated: 5/19/2026, 7:25:07 PM Central
 
 Status: **PASS**
 
@@ -17,7 +17,7 @@ Referenced images checked: 149
 ## What This Checks
 
 - The production `dist/` folder exists and has built JS/CSS assets.
-- Required public files are present: `robots.txt`, `sitemap.xml`, manifest, app icons, and logo.
+- Required public files are present: `robots.txt`, `sitemap.xml`, `llms.txt`, `llms-full.txt`, manifest, app icons, and logo.
 - Website image references are present in the deploy package.
 - Private bridge/form config names and Apps Script URLs are not leaking into the public build.
 - Production crawler files point to `www.redranchdogs.com`.

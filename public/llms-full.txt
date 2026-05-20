@@ -1,0 +1,201 @@
+# Red Ranch Dogs Full AI-Search Summary
+
+Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The public website is the source for current puppy availability, current litters, upcoming litters, parent dog profiles, puppy application steps, pricing, FAQ guidance, guardian-family information, stud services, reviews, and contact details.
+
+## Public Pages
+
+- https://www.redranchdogs.com/
+- https://www.redranchdogs.com/puppies
+- https://www.redranchdogs.com/puppies/available
+- https://www.redranchdogs.com/puppies/current-litters
+- https://www.redranchdogs.com/puppies/upcoming-litters
+- https://www.redranchdogs.com/puppies/previous-litters
+- https://www.redranchdogs.com/puppies/what-comes-with-your-puppy
+- https://www.redranchdogs.com/puppies/coat-traits
+- https://www.redranchdogs.com/parents
+- https://www.redranchdogs.com/parents/mamas
+- https://www.redranchdogs.com/parents/studs
+- https://www.redranchdogs.com/parents/goldendoodle-parents
+- https://www.redranchdogs.com/parents/cavapoo-parents
+- https://www.redranchdogs.com/parents/bernedoodle-parents
+- https://www.redranchdogs.com/process
+- https://www.redranchdogs.com/process/how-it-works
+- https://www.redranchdogs.com/process/pricing
+- https://www.redranchdogs.com/process/application-and-waitlist
+- https://www.redranchdogs.com/process/waitlist
+- https://www.redranchdogs.com/process/faq
+- https://www.redranchdogs.com/process/pickup-and-delivery
+- https://www.redranchdogs.com/stud-services
+- https://www.redranchdogs.com/stud-services/our-studs
+- https://www.redranchdogs.com/stud-services/reproductive-services
+- https://www.redranchdogs.com/stud-services/reproductive-education
+- https://www.redranchdogs.com/guardian-program
+- https://www.redranchdogs.com/guardian-program/application
+- https://www.redranchdogs.com/guardian-program/current-guardian-opportunities
+- https://www.redranchdogs.com/guardian-program/faq
+- https://www.redranchdogs.com/about
+- https://www.redranchdogs.com/about/our-family
+- https://www.redranchdogs.com/about/meet-the-team
+- https://www.redranchdogs.com/about/reviews
+- https://www.redranchdogs.com/contact
+- https://www.redranchdogs.com/privacy
+- https://www.redranchdogs.com/apply
+- https://www.redranchdogs.com/previous-litters
+- https://www.redranchdogs.com/previous-litters-goldendoodles
+- https://www.redranchdogs.com/previous-litters-bernedoodles
+- https://www.redranchdogs.com/previous-litters-cavapoos
+- https://www.redranchdogs.com/stop-the-marking
+- https://www.redranchdogs.com/puppies/goldendoodle-puppies
+- https://www.redranchdogs.com/puppies/cavapoo-puppies
+- https://www.redranchdogs.com/puppies/bernedoodle-puppies
+- https://www.redranchdogs.com/puppies/ranger
+- https://www.redranchdogs.com/puppies/axel
+- https://www.redranchdogs.com/puppies/diesel
+- https://www.redranchdogs.com/puppies/dakota
+- https://www.redranchdogs.com/puppies/sedona
+- https://www.redranchdogs.com/puppies/arizona
+- https://www.redranchdogs.com/puppies/indie
+- https://www.redranchdogs.com/puppies/striker
+- https://www.redranchdogs.com/puppies/samba
+- https://www.redranchdogs.com/puppies/goalie
+- https://www.redranchdogs.com/puppies/ref
+- https://www.redranchdogs.com/puppies/pitch
+- https://www.redranchdogs.com/puppies/fifa
+- https://www.redranchdogs.com/puppies/meadow
+- https://www.redranchdogs.com/puppies/vista
+- https://www.redranchdogs.com/puppies/camper
+- https://www.redranchdogs.com/puppies/sage
+- https://www.redranchdogs.com/puppies/ridge
+- https://www.redranchdogs.com/puppies/trek
+- https://www.redranchdogs.com/puppies/hook
+- https://www.redranchdogs.com/puppies/minnow
+- https://www.redranchdogs.com/puppies/tackle
+- https://www.redranchdogs.com/puppies/bass
+- https://www.redranchdogs.com/puppies/bobber
+- https://www.redranchdogs.com/puppies/skipper
+- https://www.redranchdogs.com/litters/birdie-waylon-spring-2026
+- https://www.redranchdogs.com/litters/whitley-waylon-april-2026
+- https://www.redranchdogs.com/litters/faye-sundance-may-2026
+- https://www.redranchdogs.com/litters/georgia-waylon-may-2026
+- https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026
+- https://www.redranchdogs.com/litters/reece-wyatt-summer-2026
+- https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026
+- https://www.redranchdogs.com/litters/penny-wyatt-spring-2026
+- https://www.redranchdogs.com/litters/ginny-butch-spring-2026
+- https://www.redranchdogs.com/parents/birdie
+- https://www.redranchdogs.com/parents/honey
+- https://www.redranchdogs.com/parents/phoebe
+- https://www.redranchdogs.com/parents/daisy
+- https://www.redranchdogs.com/parents/beatrix
+- https://www.redranchdogs.com/parents/june
+- https://www.redranchdogs.com/parents/georgia
+- https://www.redranchdogs.com/parents/ginny
+- https://www.redranchdogs.com/parents/trudy
+- https://www.redranchdogs.com/parents/faye
+- https://www.redranchdogs.com/parents/kylie
+- https://www.redranchdogs.com/parents/tilly
+- https://www.redranchdogs.com/parents/sylvee
+- https://www.redranchdogs.com/parents/penny
+- https://www.redranchdogs.com/parents/whitley
+- https://www.redranchdogs.com/parents/winnie
+- https://www.redranchdogs.com/parents/reece
+- https://www.redranchdogs.com/parents/garth-brooks
+- https://www.redranchdogs.com/parents/hank-williams
+- https://www.redranchdogs.com/parents/beau
+- https://www.redranchdogs.com/parents/waylon-jennings
+- https://www.redranchdogs.com/parents/sundance
+- https://www.redranchdogs.com/parents/enzo
+- https://www.redranchdogs.com/parents/butch-cassidy
+- https://www.redranchdogs.com/parents/knox
+- https://www.redranchdogs.com/parents/robert-redford
+- https://www.redranchdogs.com/parents/johnny-cash
+- https://www.redranchdogs.com/parents/wyatt-earp
+- https://www.redranchdogs.com/parents/bodhe
+- https://www.redranchdogs.com/honey-bram
+- https://www.redranchdogs.com/birdie-waylon-jennings
+- https://www.redranchdogs.com/june-waylon
+- https://www.redranchdogs.com/phoebe-waylon
+- https://www.redranchdogs.com/beatrix-knox
+- https://www.redranchdogs.com/honey-waylon
+- https://www.redranchdogs.com/birdie-leo
+- https://www.redranchdogs.com/phoebe-fynn
+- https://www.redranchdogs.com/phoebe-fynn-2
+- https://www.redranchdogs.com/tilly-redford
+- https://www.redranchdogs.com/faye-bodhe
+- https://www.redranchdogs.com/faye-bodhe-2
+
+## Breed Pages
+
+- Goldendoodle Puppies: https://www.redranchdogs.com/puppies/goldendoodle-puppies. Friendly, intelligent doodles known for teddy-bear looks, family-focused temperaments, and beautiful low-shedding coat possibilities.
+- Cavapoo Puppies: https://www.redranchdogs.com/puppies/cavapoo-puppies. Sweet, people-loving companion puppies with Cavalier warmth and Poodle intelligence.
+- Bernedoodle Puppies: https://www.redranchdogs.com/puppies/bernedoodle-puppies. Loyal, affectionate doodles with Bernese sweetness and Poodle intelligence.
+
+## Current Litters
+
+- Birdie + Waylon: https://www.redranchdogs.com/litters/birdie-waylon-spring-2026. Status: Current Litter. Breed: Goldendoodle. Birth: April 1, 2026. Go-home: May 23-25, 2026. This litter is currently reserved. Join the Goldendoodle waitlist for future availability.
+- Whitley + Waylon: https://www.redranchdogs.com/litters/whitley-waylon-april-2026. Status: Current Litter. Breed: Multigen Mini Goldendoodle. Birth: May 3, 2026. Go-home: June 24-26, 2026. Puppies from this litter are being matched through the Goldendoodle waitlist.
+- Penny + Wyatt: https://www.redranchdogs.com/litters/penny-wyatt-spring-2026. Status: Current Litter. Breed: F1B Micro Cavapoo. Birth: April 23, 2026. Go-home: June 14-16, 2026. Puppies from this litter are being matched through the Cavapoo waitlist.
+- Ginny + Butch Cassidy: https://www.redranchdogs.com/litters/ginny-butch-spring-2026. Status: Current Litter. Breed: Multigen Mini Goldendoodle. Birth: April 23, 2026. Go-home: June 14-16, 2026. Puppies are being offered to the Goldendoodle waitlist before public availability is updated.
+
+## Available Puppies
+
+- None currently listed.
+
+## Upcoming Litters
+
+- Faye + Sundance: https://www.redranchdogs.com/litters/faye-sundance-may-2026. Status: Planned Litter. Breed: Multigen Petite Goldendoodle. Timing: Expected delivery May 2026.
+- Georgia + Waylon: https://www.redranchdogs.com/litters/georgia-waylon-may-2026. Status: Planned Litter. Breed: Multigen Mini Goldendoodle. Timing: Expected delivery May 2026.
+- Winnie + Wyatt: https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026. Status: Planned Litter. Breed: F1B Petite Mini Cavapoo. Timing: Expected spring 2026.
+- Reece + Wyatt: https://www.redranchdogs.com/litters/reece-wyatt-summer-2026. Status: Planned Litter. Breed: F1B Micro Cavapoo. Timing: Summer 2026 planning.
+- Kylie + Ranger: https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026. Status: Planned Litter. Breed: Multigen Micro Bernedoodle. Timing: Late summer 2026 planning.
+
+## Parent Dogs
+
+- Birdie: https://www.redranchdogs.com/parents/birdie. mama; F1 Mini Goldendoodle; 28 lbs.
+- Honey: https://www.redranchdogs.com/parents/honey. mama; Multigen Micro Goldendoodle; 10-15 lbs.
+- Phoebe: https://www.redranchdogs.com/parents/phoebe. mama; Multigen Goldendoodle; 15 lbs.
+- Daisy: https://www.redranchdogs.com/parents/daisy. mama; F1 Mini Goldendoodle; 28 lbs.
+- Beatrix: https://www.redranchdogs.com/parents/beatrix. mama; F1 Goldendoodle; 50 lbs.
+- June: https://www.redranchdogs.com/parents/june. mama; F1 Mini Goldendoodle; 30 lbs.
+- Georgia: https://www.redranchdogs.com/parents/georgia. mama; F1 Mini Goldendoodle; 25 lbs.
+- Ginny: https://www.redranchdogs.com/parents/ginny. mama; F1 Goldendoodle; 30 lbs.
+- Trudy: https://www.redranchdogs.com/parents/trudy. mama; AKC Toy Poodle; 6 lbs.
+- Faye: https://www.redranchdogs.com/parents/faye. mama; AKC Standard Poodle; 40 lbs.
+- Kylie: https://www.redranchdogs.com/parents/kylie. mama; Ultra Bernedoodle; 30-35 lbs.
+- Tilly: https://www.redranchdogs.com/parents/tilly. mama; Ultra Bernedoodle; 40 lbs.
+- Sylvee: https://www.redranchdogs.com/parents/sylvee. mama; F1b Bernedoodle; 22 lbs.
+- Penny: https://www.redranchdogs.com/parents/penny. mama; F1 Cavapoo; 25 lbs.
+- Whitley: https://www.redranchdogs.com/parents/whitley. mama; F1 Goldendoodle; 34 lbs.
+- Winnie: https://www.redranchdogs.com/parents/winnie. mama; F1 Cavapoo; 34 lbs.
+- Reece: https://www.redranchdogs.com/parents/reece. mama; F1 Cavapoo; 15 lbs.
+- Garth Brooks: https://www.redranchdogs.com/parents/garth-brooks. stud; Multigen Mini Bernedoodle; 30 lbs.
+- Hank Williams: https://www.redranchdogs.com/parents/hank-williams. stud; F1 Mini Bernedoodle; 42 lbs.
+- Beau: https://www.redranchdogs.com/parents/beau. stud; F1 Mini Bernedoodle; 43 lbs.
+- Waylon Jennings: https://www.redranchdogs.com/parents/waylon-jennings. stud; Multigen Mini Goldendoodle; 19 lbs.
+- Sundance: https://www.redranchdogs.com/parents/sundance. stud; Micro Goldendoodle; 13 lbs.
+- Enzo: https://www.redranchdogs.com/parents/enzo. stud; Micro Goldendoodle; 13 lbs.
+- Butch Cassidy: https://www.redranchdogs.com/parents/butch-cassidy. stud; Micro Goldendoodle; 16 lbs.
+- Knox: https://www.redranchdogs.com/parents/knox. stud; F1b Mini Goldendoodle; 10 lbs.
+- Robert Redford: https://www.redranchdogs.com/parents/robert-redford. stud; AKC Moyen Poodle; 20 lbs.
+- Johnny Cash: https://www.redranchdogs.com/parents/johnny-cash. stud; AKC Toy Poodle; 6 lbs.
+- Wyatt Earp: https://www.redranchdogs.com/parents/wyatt-earp. stud; AKC Toy Poodle; 4 lbs.
+- Bodhe: https://www.redranchdogs.com/parents/bodhe. stud; AKC Cavalier King Charles Spaniel; 19 lbs.
+
+## Common FAQ Topics
+
+- How do I reserve a puppy?: Start with the application. We will follow up about breed fit, timing, current availability, and the right breed-specific waitlist.
+- How does the waitlist work?: A $500 non-refundable deposit secures your spot on the breed-specific waitlist you choose and applies toward your final puppy price. Families are contacted in order of deposit placed.
+- What does pick or pass mean?: When a litter is announced, families can choose to move forward with that litter or pass and remain on their breed waitlist for a future opportunity.
+- How do puppy picks happen?: Puppy picks are handled with photos, videos, personality notes, and video calls so families can choose confidently while protecting young puppies before vaccinations.
+- When is final payment due?: Final payment timing is confirmed before go-home. The current process is designed so families know what is due before pickup.
+- Can you help with transportation?: Pickup and transportation details are coordinated by litter and family needs. If a flight nanny or delivery option is used, those costs are handled separately from puppy pricing.
+- What comes home with my puppy?: Each puppy comes home with health records, transition support, and the care items listed on the What Comes With Your Puppy page.
+- How do you help puppies transition home?: Red Ranch Dogs focuses on early handling, family communication, and clear go-home guidance so each puppy has a smoother transition.
+- Do Goldendoodles shed?: Shedding varies by generation and coat genetics. F1b and multigen pairings are often lower shedding.
+- Are Goldendoodles good family dogs?: Goldendoodles are often affectionate, trainable, and social, making them a strong fit for families who want an active but people-focused companion.
+- Are Cavapoos good family dogs?: Many Cavapoos are affectionate and adaptable, but fit depends on the puppy, household, and training plan.
+- How large are Bernedoodles?: Size depends on the pairing. Red Ranch Dogs plans micro and mini ranges by litter.
+
+## Citation Guidance
+
+For current puppy or litter availability, cite the current page rather than this summary. This file is an index for answer engines, not a replacement for the live public pages.

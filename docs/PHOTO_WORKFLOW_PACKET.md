@@ -1,6 +1,6 @@
 # Photo Workflow Packet
 
-Generated: 5/17/2026, 2:29:00 PM Central
+Generated: 5/19/2026, 7:21:34 PM Central
 
 This is the working packet for weekly puppy photos, parent photo cleanup, and previous-litter photo backfill. It is intentionally internal: it describes Google Drive paths and photo matching rules so the public website can stay clean.
 
@@ -105,7 +105,7 @@ This is the working packet for weekly puppy photos, parent photo cleanup, and pr
 | Phoebe + Waylon | parentPhotos, puppyPhotos | _No folder hint_ |
 | Beatrix + Knox | parentPhotos, puppyPhotos | _No folder hint_ |
 | Honey + Waylon | parentPhotos, puppyPhotos | _No folder hint_ |
-| Birdie + Leo | parentPhotos, puppyPhotos | _No folder hint_ |
+| Birdie + Leo | puppyPhotos | _No folder hint_ |
 | Phoebe + Fynn | parentPhotos, puppyPhotos | _No folder hint_ |
 | Phoebe + Fynn 2 | parentPhotos, puppyPhotos | _No folder hint_ |
 | Tilly + Redford | parentPhotos, puppyPhotos | _No folder hint_ |
@@ -121,3 +121,21 @@ outputs/photo-intake-checklist.tsv
 ```
 
 Use that TSV when a weekly photo day has a lot of puppies and you want a copy/paste checklist beside the Drive folder.
+
+## After Photo Import Publishing Steps
+
+After weekly puppy photos or litter notes are added to website data, keep the Website Hub sheets aligned before pushing live:
+
+```bash
+npm run sync:puppies
+npm run sync:litters
+npm run review:sheets
+npm run publish:check
+```
+
+If parent photos or previous-litter archive images changed too, run the matching targeted sync before `review:sheets`:
+
+```bash
+npm run sync:parents
+npm run sync:previous-litters
+```

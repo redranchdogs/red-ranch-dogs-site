@@ -378,6 +378,24 @@ outputs/photo-intake-checklist.tsv
 \`\`\`
 
 Use that TSV when a weekly photo day has a lot of puppies and you want a copy/paste checklist beside the Drive folder.
+
+## After Photo Import Publishing Steps
+
+After weekly puppy photos or litter notes are added to website data, keep the Website Hub sheets aligned before pushing live:
+
+\`\`\`bash
+npm run sync:puppies
+npm run sync:litters
+npm run review:sheets
+npm run publish:check
+\`\`\`
+
+If parent photos or previous-litter archive images changed too, run the matching targeted sync before \`review:sheets\`:
+
+\`\`\`bash
+npm run sync:parents
+npm run sync:previous-litters
+\`\`\`
 `;
 
 fs.writeFileSync(reportPath, report);

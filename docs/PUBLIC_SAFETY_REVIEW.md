@@ -1,6 +1,6 @@
 # Public Safety Review
 
-Generated: 5/19/2026, 2:18:31 PM Central
+Generated: 5/19/2026, 7:26:22 PM Central
 
 This scanner looks for public-facing workflow notes, private contact details, raw Google workspace links, and old pricing artifacts in structured website data.
 
@@ -16,5 +16,5 @@ Status: **PASS**
 
 ## Notes
 
-- No public blockers found in structured data, static HTML, robots, or sitemap files.
+- No public blockers found in structured data, static HTML, robots, sitemap, or AI-search summary files.
 - No public safety warnings found.
