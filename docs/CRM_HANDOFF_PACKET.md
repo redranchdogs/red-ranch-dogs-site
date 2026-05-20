@@ -1,6 +1,6 @@
 # Red Ranch CRM Build Handoff Packet
 
-Generated: May 19, 2026 Central
+Generated: May 20, 2026 Central
 
 Purpose: give the new Red Ranch CRM Build project a safe, current map of the live website form system without editing, redeploying, or breaking the live Red Ranch Dogs website.
 
@@ -258,8 +258,8 @@ Current verified operations status:
 - Apps Script bridge status: PASS
 - Live bridge version: `3.2.0`
 - Authenticated bridge read: PASS
-- Current redacted queue count: 29 raw website submissions and 29 lead queue rows
-- Current notable queue cleanup item: 12 UAT/test rows exist and should be marked `Test/delete` or archived when Adam is done reviewing them.
+- Current redacted queue count: 33 raw website submissions and 34 lead queue rows
+- Current notable queue cleanup item: 12 UAT/test rows plus recent controlled Codex notification tests exist and should be marked `Test/delete` or archived when Adam is done reviewing them.
 
 ## Raw Website Leads Columns
 
@@ -394,11 +394,11 @@ Current `Outcome` dropdown values:
 
 Current redacted queue counts from the refreshed lead packet:
 
-- Raw website submission rows: 29
-- Lead queue rows: 29
-- Open/non-closed rows: 29
+- Raw website submission rows: 33
+- Lead queue rows: 34
+- Open/non-closed rows: 34
 - UAT/test scenario rows: 12
-- Blank status rows: 27
+- Blank status rows: 32
 - Needs reply rows: 1
 - Follow up rows: 0
 - Overdue follow-up rows: 0
@@ -406,7 +406,7 @@ Current redacted queue counts from the refreshed lead packet:
 Current lead type counts:
 
 - `Puppy Application`: 10
-- `Website Contact`: 7
+- `Website Contact`: 12
 - `Guardian Application`: 3
 - `Puppy Alert Signup`: 3
 - `Stud Inquiry`: 3
@@ -470,7 +470,7 @@ Apps Script property names:
 ## Known Form Or Submission Issues
 
 - No current blocker is known for live form submission delivery. Bridge health is passing and reports version `3.2.0`.
-- Direct Resend email notification is configured through Vercel env vars, and the Apps Script bridge notification path remains available. If an email appears missing, check Resend Activity and Gmail Spam/Inbox placement before changing website code.
+- Direct Resend email notification is configured through Vercel env vars, and the Apps Script bridge notification path remains available. A controlled live notification recheck on May 20, 2026 returned HTTP 200, wrote to `Website Leads`, wrote to `Lead Queue`, and was found in Gmail by submission ID. If an email appears missing later, check Resend Activity and Gmail Spam/Inbox placement before changing website code.
 - There are UAT/test rows in the lead queue. They are useful evidence from launch testing but should not become real CRM contacts.
 - Many lead queue rows currently have blank manual status. The CRM should import those as `Unworked` or map blank to `New`, not drop them.
 - The frontend `contact` form collects `preferredContactMethod`, but the current backend raw column contract does not store it as a dedicated column. It may appear only if explicitly added later. Do not assume it is available in `Website Leads`.

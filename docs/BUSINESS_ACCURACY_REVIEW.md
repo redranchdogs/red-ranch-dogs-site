@@ -29,18 +29,6 @@ This is a human-review helper. It does not replace the automated launch checks; 
 - Sedona: personality note is still generic and can be refreshed after the next temperament update.
 - Arizona: personality note is still generic and can be refreshed after the next temperament update.
 - Indie: personality note is still generic and can be refreshed after the next temperament update.
-- Striker: personality note is still generic and can be refreshed after the next temperament update.
-- Samba: personality note is still generic and can be refreshed after the next temperament update.
-- Goalie: personality note is still generic and can be refreshed after the next temperament update.
-- Ref: personality note is still generic and can be refreshed after the next temperament update.
-- Pitch: personality note is still generic and can be refreshed after the next temperament update.
-- FIFA: personality note is still generic and can be refreshed after the next temperament update.
-- Hook: personality note is still generic and can be refreshed after the next temperament update.
-- Minnow: personality note is still generic and can be refreshed after the next temperament update.
-- Tackle: personality note is still generic and can be refreshed after the next temperament update.
-- Bass: personality note is still generic and can be refreshed after the next temperament update.
-- Bobber: personality note is still generic and can be refreshed after the next temperament update.
-- Skipper: personality note is still generic and can be refreshed after the next temperament update.
 
 ## Data Workflow Notes
 

@@ -55,13 +55,6 @@ function findRow(values, submissionId) {
   return values.find((row) => row.some((cell) => String(cell || "").includes(submissionId)));
 }
 
-function rowPreview(row = []) {
-  return row
-    .slice(0, 18)
-    .map((cell) => String(cell || "").replace(/\s+/g, " ").replace(/\|/g, "/").slice(0, 80))
-    .join(" / ");
-}
-
 loadLocalEnv();
 
 const submissionId = `codex-live-notification-test-${Date.now()}`;
@@ -121,8 +114,8 @@ This test intentionally wrote one clearly marked \`TEST DELETE\` contact submiss
 | Check | Status | Detail |
 | --- | --- | --- |
 | Live API response | ${apiStatus} | HTTP ${response.status}; message: ${result.message || ""} |
-| Website Leads row | ${websiteLeadsStatus} | ${websiteLeadRow ? rowPreview(websiteLeadRow) : "Submission ID not found"} |
-| Lead Queue row | ${leadQueueStatus} | ${leadQueueRow ? rowPreview(leadQueueRow) : "Submission ID not found"} |
+| Website Leads row | ${websiteLeadsStatus} | ${websiteLeadRow ? "Found submission ID in `Website Leads`." : "Submission ID not found"} |
+| Lead Queue row | ${leadQueueStatus} | ${leadQueueRow ? "Found submission ID in `Lead Queue`." : "Submission ID not found"} |
 | Email notification | PENDING | Search Gmail/Resend for the submission ID before marking pass/fail. |
 
 ## Follow-Up

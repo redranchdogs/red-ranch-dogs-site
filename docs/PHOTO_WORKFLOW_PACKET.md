@@ -1,6 +1,6 @@
 # Photo Workflow Packet
 
-Generated: 5/20/2026, 3:19:49 PM Central
+Generated: 5/20/2026, 3:48:17 PM Central
 
 This is the working packet for weekly puppy media, parent photo cleanup, and previous-litter media backfill. It is intentionally internal: it describes Google Drive paths and matching rules so the public website can stay clean.
 
@@ -11,7 +11,19 @@ This is the working packet for weekly puppy media, parent photo cleanup, and pre
 3. Make the first usable shot for each puppy a clear collar-identification shot. The matching key is puppy name plus collar color.
 4. Keep public file names website-friendly: lowercase, hyphenated, puppy name, breed, litter, week, and `red-ranch-dogs`.
 5. Public pages should never show internal upload notes such as Drive folders, media drops, or import reminders.
-6. After a data/photo update, run `npm run ops:full` and check `docs/PRELAUNCH_SIGNOFF.md`.
+6. Keep videos in Drive for the future puppy portal unless Adam asks to publish a specific video on the website.
+7. After a data/photo update, run the sheet sync and publish checks before pushing.
+
+## Standard Weekly Media Runbook
+
+1. Confirm the Drive path: `Website Hub / Weekly Media Drops / Current Litters / Mama LitterNumber + Stud / Week N / Photos`.
+2. Confirm the sibling `Videos` folder exists, even when there are no public videos yet.
+3. Build or review a collar map from the photo set before selecting public images.
+4. Copy selected images into the matching `public/images/puppies/.../` folder with website-safe file names.
+5. Update `src/data/puppies.json` first, then `src/data/litters.json` for the litter gallery/status.
+6. Run `npm run validate:content`, targeted sheet dry-runs, targeted sheet syncs, `npm run review:sheets`, and `npm run publish:check`.
+7. Check one litter page and one puppy page on mobile before commit/push.
+8. Do not deploy production unless Adam has approved the deploy step for that session.
 
 ## Photo Import Decision Rules
 
@@ -135,6 +147,9 @@ Use that TSV when a weekly media day has a lot of puppies and you want a copy/pa
 After weekly puppy photos or litter notes are added to website data, keep the Website Hub sheets aligned before pushing live:
 
 ```bash
+npm run validate:content
+npm run sync:puppies:dry-run
+npm run sync:litters:dry-run
 npm run sync:puppies
 npm run sync:litters
 npm run review:sheets
