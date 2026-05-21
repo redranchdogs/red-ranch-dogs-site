@@ -2730,28 +2730,6 @@ textarea {
   color: var(--ink);
 }
 
-.litter-card-guidance {
-  display: grid;
-  gap: 4px;
-  margin-top: 2px;
-  padding: 10px;
-  background: rgba(255, 252, 245, 0.72);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-}
-
-.litter-card-guidance .eyebrow {
-  margin: 0;
-  font-size: 0.7rem;
-}
-
-.litter-card-guidance p:not(.eyebrow) {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-  line-height: 1.35;
-}
-
 .previous-litter-card-summary {
   display: flex;
   flex-wrap: wrap;
@@ -2775,13 +2753,59 @@ textarea {
 }
 
 .litter-card-actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
   gap: 10px;
   margin-top: 0;
 }
 
-.litter-card-actions .button {
+.litter-card-actions .button.small {
   min-height: 42px;
+  width: 100%;
+  padding-inline: 14px;
+  border-color: var(--brand-red);
+  color: #fff;
+  background: var(--brand-red);
+  box-shadow: 0 8px 18px rgba(148, 31, 23, 0.14);
+}
+
+.litter-card-actions .button.small.secondary {
+  color: var(--brand-red-dark);
+  background: rgba(156, 31, 22, 0.08);
+  border-color: rgba(156, 31, 22, 0.72);
+  box-shadow: none;
+}
+
+.current-litter-status-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: -6px 0 16px;
+  padding: 10px 12px;
+  border: 1px solid rgba(156, 31, 22, 0.16);
+  border-radius: 6px;
+  background: rgba(255, 250, 242, 0.72);
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.current-litter-status-note strong {
+  color: var(--brand-red);
+}
+
+.current-litter-status-note a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: var(--brand-red);
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .previous-puppy-grid {
@@ -4285,14 +4309,25 @@ summary {
 
   .litter-card-actions {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
     gap: 8px;
   }
 
-  .litter-card-actions .button {
+  .litter-card-actions .button.small {
     min-height: 44px;
-    padding-inline: 8px;
-    font-size: 0.76rem;
+    padding-inline: 6px;
+    font-size: 0.72rem;
+  }
+
+  .current-litter-status-note {
+    display: grid;
+    gap: 7px;
+    margin-bottom: 14px;
+    font-size: 0.86rem;
+  }
+
+  .current-litter-status-note a {
+    margin-left: 0;
   }
 
   .page-hero {

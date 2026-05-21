@@ -2086,7 +2086,6 @@ function LitterCard({ litter }) {
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
   const litterPuppies = puppiesForLitter(litter);
-  const litterAvailablePuppies = litterPuppies.filter(isAvailablePuppy);
   const litterWaitlistPuppies = litterPuppies.filter(isWaitlistMatchingPuppy);
   const litterReservedPuppies = litterPuppies.filter(isReservedPuppy);
   const isFullyReservedLitter = litterPuppies.length > 0 && litterReservedPuppies.length === litterPuppies.length;
@@ -2094,28 +2093,8 @@ function LitterCard({ litter }) {
   const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
   const waitlistName = breedProgram?.name || "breed";
   const publicAvailabilityNote = litterWaitlistPuppies.length ? waitlistFirstNote(waitlistName) : litter.availabilityNote;
+  const cardAvailabilityNote = isCurrentLitter(litter) ? "" : publicAvailabilityNote;
   const actionLabel = isCurrentLitter(litter) && isFullyReservedLitter ? "View Updates" : isCurrentLitter(litter) ? "View Litter" : "View Pairing";
-  const currentLitterGuidance = !isCurrentLitter(litter)
-    ? null
-    : litterAvailablePuppies.length
-      ? {
-          title: "Open now",
-          copy: "A puppy may be open for an approved family. Apply and mention this litter or puppy by name."
-        }
-      : litterWaitlistPuppies.length
-        ? {
-            title: "Availability note",
-            copy: `${waitlistFirstUpdateCopy()} Apply if you want to join this breed's waitlist.`
-          }
-        : isFullyReservedLitter
-          ? {
-              title: "Reserved",
-              copy: "Matched families receive go-home details directly. New families can use this litter as a reference for future timing."
-            }
-          : {
-              title: "Follow updates",
-              copy: "Openings and next steps will be updated as this litter grows."
-            };
 
   return (
     <article className="litter-card animal-card">
@@ -2159,13 +2138,7 @@ function LitterCard({ litter }) {
             {(litter.expectedCoatTraits || litter.coat) && <p><strong>Coat:</strong> {litter.expectedCoatTraits || litter.coat}</p>}
           </div>
         )}
-        {publicAvailabilityNote && <p className="small-note">{publicAvailabilityNote}</p>}
-        {currentLitterGuidance && (
-          <div className="litter-card-guidance">
-            <p className="eyebrow">{currentLitterGuidance.title}</p>
-            <p>{currentLitterGuidance.copy}</p>
-          </div>
-        )}
+        {cardAvailabilityNote && <p className="small-note">{cardAvailabilityNote}</p>}
         {(route || pastLitterHref) && (
           <div className="litter-card-actions">
             {route && <Link href={route} className="button small">{actionLabel}</Link>}
@@ -3829,8 +3802,13 @@ function CurrentLittersPage() {
           <section className="card-list listing-content-section current-litter-list">
             <SectionHeader
               title="Growing now"
-              copy="Litters are ordered by go-home timing. Each card opens the full litter page with parent details, puppy photos, compact status notes, and availability."
+              copy="Current litters are ordered by go-home timing, with availability kept simple on each card."
             />
+            <div className="current-litter-status-note">
+              <span><strong>Reserved</strong> means every puppy is matched.</span>
+              <span><strong>Waitlist picks first</strong> means we are working down the breed waitlist.</span>
+              <Link href="/puppies/available">Available puppies <ArrowRight size={15} /></Link>
+            </div>
             {currentLitterProfiles.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)}
           </section>
           <CTASection
