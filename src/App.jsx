@@ -3981,6 +3981,14 @@ function scrollLitterBreedGroupIntoView(slug, panelIdSuffix) {
   }, 80);
 }
 
+function idSafe(value = "section") {
+  return String(value)
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "") || "section";
+}
+
 function LitterBreedAccordionGroup({ countLabel, detailLabel, detailValue, group, isOpen, onToggle, panelIdSuffix, showAvailabilityNote = true }) {
   const panelId = `${group.slug}-${panelIdSuffix}-panel`;
   const headingId = `${group.slug}-${panelIdSuffix}-heading`;
@@ -4013,17 +4021,91 @@ function LitterBreedAccordionGroup({ countLabel, detailLabel, detailValue, group
   );
 }
 
+function previousLitterMamaName(litter) {
+  const sourceName = litter.parentPhotos?.[0]?.name || litter.parents || litter.name || "Mama";
+  return sourceName
+    .split("+")[0]
+    .split(",")[0]
+    .replace(/\s+\d+$/g, "")
+    .trim() || "Mama";
+}
+
+function groupPreviousLittersByMama(litters) {
+  return litters.reduce((groups, item) => {
+    const mamaName = previousLitterMamaName(item.litter);
+    const existingGroup = groups.find((group) => group.mamaName === mamaName);
+
+    if (existingGroup) {
+      existingGroup.litters.push(item);
+      return groups;
+    }
+
+    groups.push({
+      id: idSafe(mamaName),
+      mamaName,
+      litters: [item]
+    });
+
+    return groups;
+  }, []);
+}
+
+function PreviousLitterBreedAccordionGroup({ archive, isOpen, litters, onToggle }) {
+  const archiveBreed = archive.title.replace("Previous Litters ", "");
+  const panelId = `${idSafe(archiveBreed)}-previous-panel`;
+  const headingId = `${idSafe(archiveBreed)}-previous-heading`;
+  const mamaGroups = groupPreviousLittersByMama(litters);
+
+  return (
+    <section className={`upcoming-litter-group previous-litter-group${isOpen ? " is-open" : ""}`} aria-labelledby={headingId}>
+      <button
+        aria-controls={panelId}
+        aria-expanded={isOpen}
+        className="upcoming-breed-toggle"
+        onClick={onToggle}
+        type="button"
+      >
+        <span className="upcoming-breed-toggle-copy">
+          <strong id={headingId}>{archiveBreed}</strong>
+        </span>
+        <ChevronDown aria-hidden="true" className="upcoming-breed-toggle-icon" size={24} />
+      </button>
+      {isOpen && (
+        <div className="upcoming-litter-panel previous-litter-panel" id={panelId}>
+          <div className="previous-litter-mama-groups">
+            {mamaGroups.map((mamaGroup) => (
+              <section className="previous-litter-mama-group" key={`${archive.href}-${mamaGroup.id}`}>
+                <div className="previous-litter-mama-heading">
+                  <h2>{mamaGroup.mamaName}</h2>
+                </div>
+                <div className="upcoming-litter-card-list">
+                  {mamaGroup.litters.map(({ href, litter }) => <PreviousLitterCard litter={litter} href={href} key={href} />)}
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function PreviousLittersPage() {
+  const [openBreedSlug, setOpenBreedSlug] = useState("");
   const publicArchives = publicPreviousLitterArchivePaths
     .map((href) => ({ href, ...previousLitterArchiveGroups[href] }))
     .filter((archive) => archive.title);
+  const handlePreviousBreedToggle = (slug) => {
+    const nextOpenBreedSlug = openBreedSlug === slug ? "" : slug;
+    setOpenBreedSlug(nextOpenBreedSlug);
+    scrollLitterBreedGroupIntoView(nextOpenBreedSlug, "previous");
+  };
 
   return (
     <Layout>
       <PageHero
-        eyebrow="Previous Litters"
-        title="Past puppy pairings"
-        copy="Browse previous Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle litters by breed and pairing. These pages are here to show the parents and the puppies they produced."
+        title="Previous Litters"
+        copy="Browse previous Goldendoodle, Cavapoo, and Bernedoodle litters by breed and pairing."
         className="previous-litters-hero"
       />
       <section className="previous-litter-breed-groups listing-content-section">
@@ -4031,20 +4113,16 @@ function PreviousLittersPage() {
           const litters = archive.litters
             .map((href) => ({ href, litter: previousLitterDetails[href] }))
             .filter(({ litter }) => Boolean(litter));
-          const archiveBreed = archive.title.replace("Previous Litters ", "");
-          const pairingBreed = archiveBreed.replace(/s$/, "");
+          const slug = idSafe(archive.title.replace("Previous Litters ", ""));
 
           return (
-            <section className="upcoming-litter-group previous-litter-group" key={archive.href} id={`previous-${archiveBreed.toLowerCase()}`}>
-              <div className="compact-section-heading">
-                <p className="eyebrow">{archiveBreed}</p>
-                <h2>{pairingBreed} pairings</h2>
-                <p>{archive.copy}</p>
-              </div>
-              <div className="upcoming-litter-card-list">
-                {litters.map(({ href, litter }) => <PreviousLitterCard litter={litter} href={href} key={href} />)}
-              </div>
-            </section>
+            <PreviousLitterBreedAccordionGroup
+              archive={archive}
+              isOpen={openBreedSlug === slug}
+              key={archive.href}
+              litters={litters}
+              onToggle={() => handlePreviousBreedToggle(slug)}
+            />
           );
         })}
       </section>

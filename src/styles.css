@@ -6948,39 +6948,50 @@ summary {
 
 .previous-litter-breed-groups {
   display: grid;
-  gap: 54px;
+  gap: 14px;
   margin: 0 auto;
 }
 
-.previous-litter-group {
-  gap: 22px;
+.previous-litter-panel {
+  gap: 18px;
 }
 
-.previous-litter-group:not(:first-child) {
-  padding-top: 28px;
-  border-top: 2px solid rgba(161, 31, 24, 0.16);
+.previous-litter-mama-groups {
+  display: grid;
+  gap: 18px;
 }
 
-.previous-litter-group .compact-section-heading {
-  position: relative;
-  max-width: none;
-  padding: 18px 22px 18px 26px;
-  background: rgba(255, 250, 242, 0.72);
-  border: 1px solid var(--line);
+.previous-litter-mama-group {
+  display: grid;
+  gap: 12px;
+  padding-top: 2px;
 }
 
-.previous-litter-group .compact-section-heading::before {
-  position: absolute;
-  top: 18px;
-  bottom: 18px;
-  left: 0;
-  width: 5px;
-  background: var(--brand-red);
-  content: "";
+.previous-litter-mama-group + .previous-litter-mama-group {
+  padding-top: 18px;
+  border-top: 1px solid rgba(88, 71, 56, 0.15);
 }
 
-.previous-litter-group .compact-section-heading h2 {
-  font-size: clamp(2.55rem, 3.5vw, 3.7rem);
+.previous-litter-mama-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.previous-litter-mama-heading .eyebrow {
+  margin: 0;
+}
+
+.previous-litter-mama-heading h2 {
+  margin: 0;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.35rem, 4.2vw, 3.6rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .previous-litter-card {
