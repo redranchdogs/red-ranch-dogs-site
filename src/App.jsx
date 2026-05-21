@@ -1624,30 +1624,6 @@ const breedPlaceholders = {
   Bernedoodles: "Bernedoodle photo"
 };
 
-const latestSiteUpdates = [
-  {
-    label: "Current Litters",
-    title: "Whitley + Waylon profiles are live",
-    copy: "This new mini Goldendoodle litter is in waitlist matching now, with puppy photos coming after photo day.",
-    href: "/litters/whitley-waylon-april-2026",
-    cta: "View litter"
-  },
-  {
-    label: "Availability",
-    title: "Waitlist families pick first",
-    copy: "Any public openings after breed-list picks will be posted on the Available Puppies page.",
-    href: "/puppies/available",
-    cta: "Check availability"
-  },
-  {
-    label: "Photo Updates",
-    title: "Weekly photo drops are organized by puppy",
-    copy: "Current puppy pages keep weekly photos grouped so families can follow how each puppy grows.",
-    href: "/puppies/current-litters",
-    cta: "Follow current litters"
-  }
-];
-
 function SectionIntro({ eyebrow, title, copy }) {
   return (
     <div className="premium-section-intro">
@@ -1655,30 +1631,6 @@ function SectionIntro({ eyebrow, title, copy }) {
       <h2>{title}</h2>
       {copy && <p>{copy}</p>}
     </div>
-  );
-}
-
-function LatestUpdates({ className = "" }) {
-  return (
-    <PageSection className={`latest-updates-section ${className}`.trim()} variant="compact">
-      <ContentContainer>
-        <SectionHeader
-          eyebrow="Latest Updates"
-          title="What changed recently"
-          copy="A quick place for returning families to see current litter, availability, and photo-update notes."
-        />
-        <div className="latest-updates-grid">
-          {latestSiteUpdates.map((update) => (
-            <Link href={update.href} className="latest-update-card" key={update.title}>
-              <p className="eyebrow">{update.label}</p>
-              <h3>{update.title}</h3>
-              <p>{update.copy}</p>
-              <span>{update.cta} <ArrowRight size={16} /></span>
-            </Link>
-          ))}
-        </div>
-      </ContentContainer>
-    </PageSection>
   );
 }
 
@@ -1878,7 +1830,6 @@ function HomePage() {
     <Layout>
       <HomeHero />
       <SocialProofStrip className="hero-adjacent" />
-      <LatestUpdates />
       <HomeDoodles />
       <WhyRedRanch />
       <WaitlistSteps />
