@@ -1840,13 +1840,13 @@ function HomePage() {
   );
 }
 
-function ImageGallery({ images: gallery = [], label = "Gallery image" }) {
+function ImageGallery({ images: gallery = [], label = "Gallery image", className = "" }) {
   if (!gallery.length) {
     return <ImagePlaceholder label={label} tall />;
   }
 
   return (
-    <div className="image-gallery">
+    <div className={`image-gallery ${className}`.trim()}>
       {gallery.map((image, index) => (
         <img src={image} alt={`${label} ${index + 1}`} key={`${image}-${index}`} loading="lazy" />
       ))}
@@ -3212,7 +3212,10 @@ function LitterPage({ litter }) {
   const pastLitterLabel = pastLitterHrefs.length > 1 ? "View Past Litters" : "View Past Litter";
   const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
   const waitlistName = breedProgram?.name || "breed";
-  const publicAvailabilityNote = waitlistMatchingPuppies.length ? waitlistFirstNote(waitlistName) : litter.availabilityNote;
+  const isLongLitterName = litter.name.length > 18;
+  const publicAvailabilityNote = waitlistMatchingPuppies.length
+    ? `${waitlistFirstNote(waitlistName)} If puppies remain after those picks, availability will be posted here and on Available Puppies.`
+    : litter.availabilityNote;
   const litterCta = availablePuppies.length
     ? {
         title: "Interested in an available puppy?",
@@ -3260,7 +3263,7 @@ function LitterPage({ litter }) {
         eyebrow={litter.status || "Litter"}
         title={litter.name}
         copy={litter.availabilitySummary}
-        className="litter-page-hero"
+        className={`litter-page-hero ${isLongLitterName ? "litter-page-hero-long" : ""}`.trim()}
       />
       <section className="litter-detail-shell">
         <article className="litter-pairing-card group-panel">
@@ -3286,8 +3289,10 @@ function LitterPage({ litter }) {
             <p className="eyebrow">Litter Snapshot</p>
             <span className="status-badge">{statusLabel}</span>
           </div>
-          <h2>{litter.name} at a glance</h2>
-          <p>{publicAvailabilityNote || "Approved families are contacted in waitlist order as availability is confirmed."}</p>
+          <div className="litter-summary-intro">
+            <h2>{litter.name} at a glance</h2>
+            <p>{publicAvailabilityNote || "Approved families are contacted in waitlist order as availability is confirmed."}</p>
+          </div>
           <dl className="details litter-facts">
             <div><dt>Mama</dt><dd>{litter.mama}</dd></div>
             <div><dt>Stud</dt><dd>{litter.stud}</dd></div>
@@ -3356,14 +3361,14 @@ function LitterPage({ litter }) {
         <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
         {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
       </section>
-      <section className="tile-grid three litter-parent-grid">
-        <SectionHeader eyebrow="Parents" title={`${litter.mama} + ${litter.stud}`} copy="Meet the parent dogs behind this pairing." />
-        {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
-      </section>
       <section className="content-section litter-gallery-section">
         <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
         <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />
-        {gallery.length > 0 && <ImageGallery images={gallery} label={`${litter.name} weekly update`} />}
+        {gallery.length > 0 && <ImageGallery images={gallery} label={`${litter.name} weekly update`} className="litter-image-gallery" />}
+      </section>
+      <section className="tile-grid three litter-parent-grid">
+        <SectionHeader eyebrow="Parents" title={`${litter.mama} + ${litter.stud}`} copy="Meet the parent dogs behind this pairing." />
+        {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
       </section>
       {isCurrentLitter(litter) && (
         <section className="content-section narrow litter-go-home-note-section">

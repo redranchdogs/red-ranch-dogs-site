@@ -1989,6 +1989,10 @@ main {
   max-width: none;
 }
 
+.page-hero.litter-page-hero-long .hero-copy h1 {
+  font-size: clamp(3rem, 5.2vw, 5.5rem);
+}
+
 .hero-copy h1 {
   max-width: 14ch;
   margin: 0;
@@ -3336,18 +3340,25 @@ textarea {
   margin-bottom: 0;
 }
 
-.litter-summary-panel h2 {
-  max-width: 14ch;
+.litter-summary-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.litter-summary-intro h2 {
+  max-width: none;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.25rem, 4vw, 3.2rem);
+  font-size: clamp(2.1rem, 3.4vw, 3rem);
   line-height: 0.92;
 }
 
-.litter-summary-panel > p:not(.eyebrow) {
+.litter-summary-intro p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.45;
+  font-size: 0.88rem;
+  line-height: 1.35;
 }
 
 .litter-summary-panel .actions {
@@ -3418,6 +3429,26 @@ textarea {
 
 .litter-gallery-section .image-gallery {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.litter-gallery-section .section-header {
+  margin-bottom: 16px;
+}
+
+.litter-gallery-section .section-header h2 {
+  font-size: clamp(2.6rem, 5.6vw, 4.7rem);
+}
+
+.litter-gallery-section .litter-image-gallery {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.litter-gallery-section .litter-image-gallery img {
+  aspect-ratio: 4 / 5;
+  height: clamp(210px, 36vw, 360px);
+  max-height: 360px;
+  object-fit: cover;
 }
 
 .litter-gallery-status {
@@ -6155,9 +6186,18 @@ summary {
     min-height: 220px;
   }
 
-  .litter-summary-panel h2 {
-    max-width: 16ch;
-    font-size: clamp(1.95rem, 8vw, 2.55rem);
+  .litter-summary-intro {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .litter-summary-intro h2 {
+    font-size: clamp(1.7rem, 6.6vw, 2.2rem);
+  }
+
+  .litter-summary-intro p {
+    font-size: 0.78rem;
+    line-height: 1.32;
   }
 
   .litter-summary-panel {
@@ -6243,7 +6283,17 @@ summary {
   }
 
   .litter-gallery-section .image-gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .litter-gallery-section .section-header h2 {
+    font-size: clamp(2.25rem, 11vw, 3.3rem);
+  }
+
+  .litter-gallery-section .litter-image-gallery img {
+    height: clamp(170px, 58vw, 260px);
+    max-height: 260px;
   }
 
   .litter-puppy-card {
@@ -7848,8 +7898,8 @@ summary {
   }
 
   .page-hero .lead,
-  .litter-summary-panel h2,
-  .litter-summary-panel p,
+  .litter-summary-intro h2,
+  .litter-summary-intro p,
   .litter-facts dt,
   .litter-facts dd {
     overflow-wrap: break-word;
@@ -8486,7 +8536,8 @@ summary {
   .page-hero.with-image .hero-copy,
   .page-hero .lead,
   .litter-summary-panel,
-  .litter-summary-panel > p,
+  .litter-summary-intro,
+  .litter-summary-intro p,
   .litter-facts,
   .litter-facts div {
     width: 100%;
@@ -8495,7 +8546,7 @@ summary {
   }
 
   .page-hero .lead,
-  .litter-summary-panel > p,
+  .litter-summary-intro p,
   .litter-facts dd {
     white-space: normal;
     overflow-wrap: anywhere;
@@ -8519,6 +8570,10 @@ summary {
     max-width: 100%;
     font-size: clamp(3rem, 14vw, 4.6rem);
     white-space: nowrap;
+  }
+
+  .page-hero.litter-page-hero-long .hero-copy h1 {
+    font-size: clamp(2.05rem, 8.8vw, 3.5rem);
   }
 
   .litter-pairing-card,
