@@ -1889,6 +1889,10 @@ function PuppyCard({ puppy, variant = "default" }) {
   const isLitterVariant = variant === "litter";
   const isAvailableVariant = variant === "available";
   const isDetailVariant = variant === "detail";
+  const puppyNote = puppy.personalityNote || puppy.description || "";
+  const isPlaceholderPuppyNote = /personality notes (will|are)/i.test(puppyNote);
+  const showPuppyNote = puppyNote && !isPlaceholderPuppyNote && !isLitterVariant;
+  const showAvailabilityNote = puppy.availabilityNote && !isLitterVariant && !isWaitlistMatchingPuppy(puppy);
   const HeadingTag = isDetailVariant ? "h1" : "h2";
   const cardClasses = [
     "puppy-card",
@@ -1950,13 +1954,13 @@ function PuppyCard({ puppy, variant = "default" }) {
           <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{displayStatus}</span>
         </div>
         <HeadingTag>{puppy.name}</HeadingTag>
-        <p className="puppy-card-note">{puppy.personalityNote || puppy.description || "Personality notes are updated as puppies grow and we learn more about their temperament."}</p>
+        {showPuppyNote && <p className="puppy-card-note">{puppyNote}</p>}
         <dl className="details compact-details">
           {puppyFacts.map(([label, value]) => (
             <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
           ))}
         </dl>
-        {puppy.availabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
+        {showAvailabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
         {isAvailableVariant || isDetailVariant ? (
           <div className="puppy-card-actions">
             <Link href="/apply" className="button small">{isDetailVariant ? "Apply" : `Ask About ${puppy.name}`}</Link>
