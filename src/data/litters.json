@@ -185,47 +185,6 @@
     ]
   },
   {
-    "slug": "winnie-wyatt-spring-2026",
-    "name": "Winnie + Wyatt",
-    "visibility": "public",
-    "status": "Planned Litter",
-    "litterNumber": "",
-    "mamaSlug": "winnie",
-    "mama": "Winnie",
-    "studSlug": "wyatt-earp",
-    "stud": "Wyatt Earp",
-    "breedSlug": "cavapoo-puppies",
-    "breed": "F1B Petite Mini Cavapoo",
-    "birthDate": "Planned",
-    "goHomeDate": "To be announced",
-    "expectedSize": "15-20 lbs",
-    "expectedTiming": "Expected spring 2026",
-    "expectedColors": "Red abstract possibilities",
-    "expectedCoatTraits": "Soft wavy to curly Cavapoo coat possibilities",
-    "priceRange": "$3,200",
-    "availabilitySummary": "Winnie and Wyatt are planned for an F1B Petite Mini Cavapoo litter.",
-    "availabilityNote": "Join the Cavapoo waitlist to be notified as this pairing is confirmed.",
-    "aboutTitle": "A planned F1B Cavapoo pairing with sweet companion temperaments.",
-    "aboutThisLitter": [
-      "Winnie and Wyatt are planned for an F1B Petite Mini Cavapoo pairing with red abstract coat possibilities and sweet companion temperaments.",
-      "Winnie is 34 pounds and Wyatt Earp is 4 pounds, so this planned litter is expected to mature around 15-20 pounds full grown.",
-      "Timing and availability will be updated as the pairing is confirmed."
-    ],
-    "aboutHighlights": [
-      "F1B Petite Mini Cavapoos",
-      "Expected 15-20 lbs full grown",
-      "Red abstract possibilities",
-      "Cavapoo waitlist pairing"
-    ],
-    "puppySlugs": [],
-    "photoFolderHint": "Website Hub / Photos / Litters / Winnie + Wyatt",
-    "weeklyUpdateStatus": "Planned litter. Puppy photos will be added after birth.",
-    "weeklyUpdateGallery": [
-      "/images/dams/winnie-red-ranch-dogs.webp",
-      "/images/studs/wyatt-earp-red-ranch-dogs.webp"
-    ]
-  },
-  {
     "slug": "reece-wyatt-summer-2026",
     "name": "Reece + Wyatt",
     "visibility": "public",
@@ -268,6 +227,47 @@
     "weeklyUpdateStatus": "Breeding is in progress. Puppy photos will be added after birth.",
     "weeklyUpdateGallery": [
       "/images/dams/reece-red-ranch-dogs.webp",
+      "/images/studs/wyatt-earp-red-ranch-dogs.webp"
+    ]
+  },
+  {
+    "slug": "winnie-wyatt-spring-2026",
+    "name": "Winnie + Wyatt",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "litterNumber": "",
+    "mamaSlug": "winnie",
+    "mama": "Winnie",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Petite Mini Cavapoo",
+    "birthDate": "Planned",
+    "goHomeDate": "To be announced",
+    "expectedSize": "15-20 lbs",
+    "expectedTiming": "Expected late summer 2026",
+    "expectedColors": "Red abstract possibilities",
+    "expectedCoatTraits": "Soft wavy to curly Cavapoo coat possibilities",
+    "priceRange": "$3,200",
+    "availabilitySummary": "Winnie and Wyatt are planned for an F1B Petite Mini Cavapoo litter.",
+    "availabilityNote": "Join the Cavapoo waitlist to be notified as this pairing is confirmed.",
+    "aboutTitle": "A planned F1B Cavapoo pairing with sweet companion temperaments.",
+    "aboutThisLitter": [
+      "Winnie and Wyatt are planned for an F1B Petite Mini Cavapoo pairing with red abstract coat possibilities and sweet companion temperaments.",
+      "Winnie is 34 pounds and Wyatt Earp is 4 pounds, so this planned litter is expected to mature around 15-20 pounds full grown.",
+      "Winnie has not gone into heat yet, so timing and availability will be updated as the pairing is confirmed."
+    ],
+    "aboutHighlights": [
+      "F1B Petite Mini Cavapoos",
+      "Expected 15-20 lbs full grown",
+      "Red abstract possibilities",
+      "Cavapoo waitlist pairing"
+    ],
+    "puppySlugs": [],
+    "photoFolderHint": "Website Hub / Photos / Litters / Winnie + Wyatt",
+    "weeklyUpdateStatus": "Planned litter. Puppy photos will be added after birth.",
+    "weeklyUpdateGallery": [
+      "/images/dams/winnie-red-ranch-dogs.webp",
       "/images/studs/wyatt-earp-red-ranch-dogs.webp"
     ]
   },

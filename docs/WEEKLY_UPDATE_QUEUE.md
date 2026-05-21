@@ -1,6 +1,6 @@
 # Weekly Update Queue
 
-Generated: 5/21/2026, 12:59:39 PM Central
+Generated: 5/21/2026, 2:27:13 PM Central
 
 This report is generated from the website data files. Use it as the quick Tuesday photo/update checklist before touching individual pages.
 
@@ -26,7 +26,7 @@ This report is generated from the website data files. Use it as the quick Tuesda
 | Breed | Pairing | Timing | Availability note | Past litter link |
 | --- | --- | --- | --- | --- |
 | F1B Micro Cavapoo | Reece + Wyatt | Summer 2026 planning | Reece and Wyatt are being bred for a planned summer F1B Micro Cavapoo litter. | No |
-| F1B Petite Mini Cavapoo | Winnie + Wyatt | Expected spring 2026 | Winnie and Wyatt are planned for an F1B Petite Mini Cavapoo litter. | No |
+| F1B Petite Mini Cavapoo | Winnie + Wyatt | Expected late summer 2026 | Winnie and Wyatt are planned for an F1B Petite Mini Cavapoo litter. | No |
 | Multigen Micro Bernedoodle | Kylie + Ranger | Late summer 2026 planning | Kylie is planned for a repeat Multigen Micro Bernedoodle pairing with outside stud Ranger. | No |
 | Multigen Mini Goldendoodle | Georgia + Waylon | Expected delivery May 2026 | Georgia and Waylon are planned for a Multigen Mini Goldendoodle litter. | No |
 | Multigen Petite Goldendoodle | Faye + Sundance | Expected delivery May 2026 | Faye and Sundance are planned for a Multigen Petite Goldendoodle litter. | No |

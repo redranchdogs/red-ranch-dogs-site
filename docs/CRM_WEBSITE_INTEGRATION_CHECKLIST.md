@@ -1,6 +1,6 @@
 # CRM Website Integration Checklist
 
-Generated: 5/21/2026, 12:59:40 PM Central
+Generated: 5/21/2026, 2:27:14 PM Central
 
 This checklist protects the live website while the Red Ranch CRM, Breeding Ops, puppy portal, and guardian hub grow around it.
 

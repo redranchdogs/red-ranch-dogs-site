@@ -18,10 +18,10 @@ This is a human-review helper. It does not replace the automated launch checks; 
 - Ginny + Butch Cassidy: public puppy statuses are 6 Waitlist Matching. Confirm no puppy should appear on Available Puppies.
 - Faye + Sundance: no past-litter link is attached. Add one later if this pairing has a useful previous example.
 - Georgia + Waylon: no past-litter link is attached. Add one later if this pairing has a useful previous example.
-- Winnie + Wyatt: go-home date is still "To be announced." Fine for early planning, but confirm before launch.
-- Winnie + Wyatt: no past-litter link is attached. Add one later if this pairing has a useful previous example.
 - Reece + Wyatt: go-home date is still "To be announced." Fine for early planning, but confirm before launch.
 - Reece + Wyatt: no past-litter link is attached. Add one later if this pairing has a useful previous example.
+- Winnie + Wyatt: go-home date is still "To be announced." Fine for early planning, but confirm before launch.
+- Winnie + Wyatt: no past-litter link is attached. Add one later if this pairing has a useful previous example.
 - Kylie + Ranger: go-home date is still "To be announced." Fine for early planning, but confirm before launch.
 - Kylie + Ranger: no past-litter link is attached. Add one later if this pairing has a useful previous example.
 - Diesel: personality note is still generic and can be refreshed after the next temperament update.
@@ -57,8 +57,8 @@ This is a human-review helper. It does not replace the automated launch checks; 
 | --- | --- | --- | --- |
 | Faye + Sundance | Multigen Petite Goldendoodle | Expected delivery May 2026 | July 2026 |
 | Georgia + Waylon | Multigen Mini Goldendoodle | Expected delivery May 2026 | July 2026 |
-| Winnie + Wyatt | F1B Petite Mini Cavapoo | Expected spring 2026 | To be announced |
 | Reece + Wyatt | F1B Micro Cavapoo | Summer 2026 planning | To be announced |
+| Winnie + Wyatt | F1B Petite Mini Cavapoo | Expected late summer 2026 | To be announced |
 | Kylie + Ranger | Multigen Micro Bernedoodle | Late summer 2026 planning | To be announced |
 
 ## Suggested Manual Review Order

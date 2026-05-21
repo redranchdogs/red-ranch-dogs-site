@@ -257,8 +257,8 @@ export const litterDetails = {
     breed: "F1B Petite Mini Cavapoos",
     image: "/images/dams/winnie-red-ranch-dogs.webp",
     facts: [
-      ["Due", "Spring 2026"],
-      ["Go Home", "Early Summer 2026"],
+      ["Due", "Late Summer 2026"],
+      ["Go Home", "To be announced"],
       ["Coloring", "Red Abstract"],
       ["Size", "15-20 lbs"],
       ["Coat", "Wavy"],
@@ -266,7 +266,7 @@ export const litterDetails = {
     ],
     parents: "Winnie + Wyatt",
     genetics: [],
-    copy: ["This planned F1B Petite Mini Cavapoo pairing is expected to produce red abstract puppies in an estimated 15-20 pound size range."],
+    copy: ["This planned F1B Petite Mini Cavapoo pairing is expected later in summer once Winnie's timing is confirmed."],
     puppies: [],
     milestones: []
   }
@@ -291,8 +291,8 @@ export const upcomingLitters = {
     {
       breed: "Cavapoos",
       litters: [
-        ["Penny + Wyatt", "F1b Micro Cavapoos", "Red Abstract, Parti | 10-18 lbs", "Expected Spring 2026", "/penny-wyatt"],
-        ["Winnie + Wyatt", "F1B Petite Mini Cavapoos", "Red Abstract | 15-20 lbs", "Expected Spring 2026", "/winnie-wyatt"]
+        ["Reece + Wyatt", "F1B Micro Cavapoos", "Red Abstract, Apricot, Parti | 8-12 lbs", "Summer 2026 Planning", "/litters/reece-wyatt-summer-2026"],
+        ["Winnie + Wyatt", "F1B Petite Mini Cavapoos", "Red Abstract | 15-20 lbs", "Expected Late Summer 2026", "/winnie-wyatt"]
       ]
     }
   ],

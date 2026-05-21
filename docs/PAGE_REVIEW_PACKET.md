@@ -56,8 +56,8 @@ Confirm:
 Notes:
 - Faye + Sundance: Expected delivery May 2026; Multigen Petite Goldendoodle.
 - Georgia + Waylon: Expected delivery May 2026; Multigen Mini Goldendoodle.
-- Winnie + Wyatt: Expected spring 2026; F1B Petite Mini Cavapoo.
 - Reece + Wyatt: Summer 2026 planning; F1B Micro Cavapoo.
+- Winnie + Wyatt: Expected late summer 2026; F1B Petite Mini Cavapoo.
 - Kylie + Ranger: Late summer 2026 planning; Multigen Micro Bernedoodle.
 ### Previous Litters
 
