@@ -2855,12 +2855,6 @@ const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter
   return "Updates soon";
 };
 
-const puppyNextSteps = [
-  ["Apply or Ask", "Start with a quick application or ask about a specific puppy so we understand your family, timing, and preferences."],
-  ["Talk Through Fit", "We confirm availability, personality notes, size expectations, and whether this puppy or a future litter is the best path."],
-  ["Reserve With Deposit", "When everything lines up, a $500 deposit reserves your puppy or your place on the breed waitlist and applies toward the final price."]
-];
-
 const waitlistProcessSteps = [
   ["Apply", "Tell us your preferred breed, size range, timeline, and any questions so we can understand fit."],
   ["Deposit", "A $500 non-refundable deposit reserves your place on that breed's waitlist and applies toward your puppy."],
@@ -3704,79 +3698,59 @@ function AboutOverviewPage() {
 }
 
 function AvailablePuppiesPage() {
-  const [breedFilter, setBreedFilter] = useState("All");
+  const [openBreedSlug, setOpenBreedSlug] = useState("");
   const availableNow = puppyData.filter(isAvailablePuppy);
-  const breedOptions = ["All", ...new Set(availableNow.map((puppy) => puppy.breed).filter(Boolean))];
-  const nextGoHomeDates = [...new Set(availableNow.map((puppy) => puppy.goHomeDate || puppy.goHome).filter(Boolean))];
-  const filteredPuppies = availableNow
-    .map((puppy, index) => ({ puppy, index }))
-    .filter(({ puppy }) => {
-      const breedMatch = breedFilter === "All" || puppy.breed === breedFilter;
-      return breedMatch;
-    })
-    .sort((first, second) => first.index - second.index)
-    .map(({ puppy }) => puppy);
+  const availableBreedGroups = breedProfiles.map((breed) => ({
+    ...breed,
+    puppies: availableNow.filter((puppy) => puppy.breedSlug === breed.slug)
+  }));
+  const visibleAvailableBreedGroups = availableBreedGroups.filter((group) => group.puppies.length);
+  const availabilityStats = availableBreedGroups.map((group) => ({
+    value: group.puppies.length,
+    label: `${group.name} ${group.puppies.length === 1 ? "puppy" : "puppies"} available`
+  }));
+  const handleAvailableBreedToggle = (slug) => {
+    const nextOpenBreedSlug = openBreedSlug === slug ? "" : slug;
+    setOpenBreedSlug(nextOpenBreedSlug);
+    scrollLitterBreedGroupIntoView(nextOpenBreedSlug, "available");
+  };
 
   return (
     <BuyerPageTemplate
-      eyebrow="Puppies"
       title="Available Puppies"
-      copy={availableNow.length ? "Meet the puppies currently available from Red Ranch Dogs, then apply or ask about the fit when one catches your eye." : "When a puppy is open beyond the waitlist, it will appear here. Current litters may still be growing and matching families first."}
+      copy="These puppies are available to reserve right now with a deposit. Current litters may still be growing and matching with waitlist families first before becoming publicly available."
     >
-      {availableNow.length > 0 ? (
-        <>
-          <ListingStatusStrip
-            items={[
-              { value: availableNow.length, label: `available ${availableNow.length === 1 ? "puppy" : "puppies"} now` },
-              { value: nextGoHomeDates[0] || "Ask", label: "next go-home timing" },
-              { value: "First", label: "waitlist families receive priority picking" }
-            ]}
-          />
-          {breedOptions.length > 2 && (
-            <section className="content-section puppy-filter-panel compact-panel compact-filter-strip">
-              <div className="filter-group" aria-label="Filter puppies by breed">
-                {breedOptions.map((breed) => (
-                  <button className={breedFilter === breed ? "filter-pill active" : "filter-pill"} type="button" key={breed} onClick={() => setBreedFilter(breed)}>
-                    {breed}
-                  </button>
-                ))}
-              </div>
-            </section>
-          )}
-          <section className="card-list available-puppy-list listing-content-section">
-            <SectionHeader eyebrow="Current Availability" title="Available now" copy="This page only shows puppies that are truly open for an approved family. Reserved puppies and waitlist-matching litters stay on their litter pages." />
-            {filteredPuppies.length ? filteredPuppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />) : <p className="small-note">No puppies match those filters yet.</p>}
-          </section>
-          <section className="content-section">
-            <SectionHeader eyebrow="Next Steps" title="How families move forward" copy="The process is meant to be clear and personal, not a guessing game." />
-            <ProcessStepCards steps={puppyNextSteps} className="buyer-next-step-cards" />
-          </section>
-          <CTASection title="Ready to ask about a puppy?" copy="Apply now and we will help you understand availability, timing, and whether a current puppy or future litter is the right fit." primaryLabel="Apply for a Puppy" secondaryHref="/puppies/current-litters" secondaryLabel="View Current Litters" />
-        </>
-      ) : (
-        <>
-          <ListingStatusStrip
-            items={[
-              { value: "0", label: "available puppies now" },
-              { value: "First", label: "waitlist families pick first" },
-              { value: "Here", label: "public openings post here" }
-            ]}
-          />
-          <SmartEmptyState
-            eyebrow="Availability Update"
-            title="No public puppies open right now"
-            copy="Some current litters may still have puppies being matched, but waitlist families get first pick. After that process, any puppy open for a new family will be posted here."
-            steps={[
-              "Apply for the breed waitlist that fits your family.",
-              "Follow current litters for photos, timing, and waitlist-matching notes.",
-              "Check this page for public openings after waitlist picks are complete."
-            ]}
-            primaryLabel="Apply for a Puppy"
-            secondaryHref="/puppies/current-litters"
-            secondaryLabel="View Current Litters"
-          />
-        </>
+      <ListingStatusStrip items={availabilityStats} className="available-puppy-tracker" />
+      {availableNow.length === 0 && (
+        <section className="content-section narrow available-puppy-empty-note">
+          <article className="group-panel">
+            <h2>No public puppies are available right now.</h2>
+            <p>Please check back soon as we regularly update this page!</p>
+          </article>
+        </section>
       )}
+      {visibleAvailableBreedGroups.length > 0 && (
+        <section className="upcoming-litter-groups listing-content-section available-puppy-groups">
+          {visibleAvailableBreedGroups.map((group) => (
+            <AvailablePuppyBreedAccordionGroup
+              group={group}
+              isOpen={openBreedSlug === group.slug}
+              key={group.slug}
+              onToggle={() => handleAvailableBreedToggle(group.slug)}
+            />
+          ))}
+        </section>
+      )}
+      <CTASection
+        title={availableNow.length ? "Ready to ask about a puppy?" : "Want help choosing the right path?"}
+        copy={availableNow.length
+          ? "Apply now and we will help you understand availability, timing, and whether a current puppy or future litter is the right fit."
+          : "Apply now and we will help you understand current litters, upcoming timing, and the breed waitlist that fits your family."}
+        primaryLabel="Apply for a Puppy"
+        secondaryHref="/puppies/current-litters"
+        secondaryLabel="View Current Litters"
+        className={availableNow.length ? "available-puppy-path-cta" : "available-puppy-empty-cta"}
+      />
     </BuyerPageTemplate>
   );
 }
@@ -4014,6 +3988,36 @@ function LitterBreedAccordionGroup({ countLabel, detailLabel, detailValue, group
           {group.copy && <p>{group.copy}</p>}
           <div className="upcoming-litter-card-list">
             {group.litters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} showAvailabilityNote={showAvailabilityNote} />)}
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function AvailablePuppyBreedAccordionGroup({ group, isOpen, onToggle }) {
+  const panelId = `${group.slug}-available-panel`;
+  const headingId = `${group.slug}-available-heading`;
+
+  return (
+    <section className={`upcoming-litter-group available-puppy-breed-group${isOpen ? " is-open" : ""}`} aria-labelledby={headingId}>
+      <button
+        aria-controls={panelId}
+        aria-expanded={isOpen}
+        className="upcoming-breed-toggle"
+        onClick={onToggle}
+        type="button"
+      >
+        <span className="upcoming-breed-toggle-copy">
+          <strong id={headingId}>{group.pluralName}</strong>
+          <span>Available to reserve right now</span>
+        </span>
+        <ChevronDown aria-hidden="true" className="upcoming-breed-toggle-icon" size={24} />
+      </button>
+      {isOpen && (
+        <div className="upcoming-litter-panel available-puppy-panel" id={panelId}>
+          <div className="available-puppy-card-list">
+            {group.puppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />)}
           </div>
         </div>
       )}

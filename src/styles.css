@@ -7170,6 +7170,53 @@ summary {
   margin-inline: auto;
 }
 
+.available-puppy-tracker {
+  padding-bottom: 14px;
+}
+
+.available-puppy-groups.listing-content-section {
+  padding-top: 8px;
+  padding-bottom: 24px;
+}
+
+.available-puppy-card-list {
+  display: grid;
+  gap: 18px;
+}
+
+.content-section.available-puppy-empty-note {
+  padding-top: 0;
+  padding-bottom: 18px;
+}
+
+.available-puppy-empty-note .group-panel {
+  padding: 20px;
+}
+
+.available-puppy-empty-note h2 {
+  max-width: 18ch;
+  margin: 0;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.5rem, 4.6vw, 3.8rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.available-puppy-empty-note p {
+  max-width: 54ch;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.45;
+}
+
+.content-section.available-puppy-path-cta,
+.content-section.available-puppy-empty-cta {
+  padding-top: 0;
+}
+
 .availability-empty-panel {
   display: grid;
   gap: 16px;
