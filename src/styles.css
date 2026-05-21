@@ -1981,6 +1981,14 @@ main {
   max-width: 820px;
 }
 
+.page-hero.litter-page-hero .hero-copy {
+  max-width: 980px;
+}
+
+.page-hero.litter-page-hero .hero-copy h1 {
+  max-width: none;
+}
+
 .hero-copy h1 {
   max-width: 14ch;
   margin: 0;
@@ -3379,60 +3387,6 @@ textarea {
   line-height: 1.25;
 }
 
-.litter-availability-callout {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 10px;
-  align-items: center;
-  margin-top: 2px;
-  padding: 10px;
-  background: rgba(156, 31, 22, 0.07);
-  border: 1px solid rgba(156, 31, 22, 0.18);
-  border-radius: 6px;
-}
-
-.litter-availability-callout span {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  color: var(--paper);
-  background: var(--brand-red);
-  border-radius: 999px;
-  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: 1.7rem;
-  line-height: 1;
-}
-
-.litter-availability-callout p {
-  margin: 0;
-  color: var(--ink);
-  font-weight: 850;
-  line-height: 1.35;
-}
-
-.litter-next-step-note {
-  display: grid;
-  gap: 4px;
-  margin-top: 2px;
-  padding: 10px;
-  background: rgba(255, 252, 245, 0.72);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-}
-
-.litter-next-step-note .eyebrow {
-  margin: 0;
-  font-size: 0.72rem;
-}
-
-.litter-next-step-note p:not(.eyebrow) {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.35;
-}
-
 .litter-update-note {
   display: flex;
   gap: 8px;
@@ -3535,11 +3489,70 @@ textarea {
   padding-bottom: 32px;
 }
 
+.litter-about-disclosure {
+  padding: 0;
+  overflow: hidden;
+}
+
+.litter-about-disclosure > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.litter-about-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.litter-about-disclosure > summary .eyebrow {
+  display: block;
+  margin: 0 0 4px;
+}
+
+.litter-about-disclosure > summary strong {
+  display: block;
+  max-width: 20ch;
+  color: var(--ink);
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 500;
+  line-height: 0.96;
+}
+
+.litter-about-disclosure[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.litter-about-toggle-label {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  color: var(--brand-red);
+  border: 1px solid rgba(156, 31, 22, 0.32);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.litter-about-disclosure[open] .litter-about-toggle-label {
+  color: var(--clay-dark);
+  background: rgba(156, 31, 22, 0.08);
+}
+
 .litter-about-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.48fr) minmax(250px, 0.78fr);
   gap: clamp(18px, 3vw, 34px);
   align-items: start;
+  padding: 18px;
 }
 
 .litter-about-copy {
@@ -6161,16 +6174,6 @@ summary {
     padding-top: 6px;
   }
 
-  .litter-availability-callout {
-    padding: 9px;
-  }
-
-  .litter-availability-callout span {
-    width: 34px;
-    height: 34px;
-    font-size: 1.45rem;
-  }
-
   .litter-update-note {
     padding: 8px 9px;
     font-size: 0.8rem;
@@ -6196,6 +6199,22 @@ summary {
     grid-template-columns: 1fr;
     gap: 14px;
     padding: 16px;
+  }
+
+  .litter-about-disclosure > summary {
+    align-items: flex-start;
+    padding: 14px 16px;
+  }
+
+  .litter-about-disclosure > summary strong {
+    max-width: 16ch;
+    font-size: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  .litter-about-toggle-label {
+    min-height: 32px;
+    padding-inline: 10px;
+    font-size: 0.68rem;
   }
 
   .litter-about-copy {
@@ -8494,6 +8513,12 @@ summary {
     justify-self: start;
     max-width: 100%;
     white-space: normal;
+  }
+
+  .page-hero.litter-page-hero .hero-copy h1 {
+    max-width: 100%;
+    font-size: clamp(3rem, 14vw, 4.6rem);
+    white-space: nowrap;
   }
 
   .litter-pairing-card,

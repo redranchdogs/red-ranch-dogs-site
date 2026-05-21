@@ -2794,7 +2794,6 @@ const availablePuppiesForLitter = (litter) => puppiesForLitter(litter).filter(is
 const WAITLIST_FIRST_LABEL = "Waitlist Picks First";
 const puppyDisplayStatus = (status = "") => normalizedStatus(status) === "waitlist matching" ? WAITLIST_FIRST_LABEL : status;
 const waitlistFirstNote = (waitlistName) => `${waitlistName} waitlist families pick first for this litter.`;
-const waitlistFirstUpdateCopy = () => "If puppies remain after those picks, availability will be posted here.";
 const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter)) => {
   const availableCount = litterPuppies.filter(isAvailablePuppy).length;
   const waitlistCount = litterPuppies.filter(isWaitlistMatchingPuppy).length;
@@ -3214,30 +3213,6 @@ function LitterPage({ litter }) {
   const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
   const waitlistName = breedProgram?.name || "breed";
   const publicAvailabilityNote = waitlistMatchingPuppies.length ? waitlistFirstNote(waitlistName) : litter.availabilityNote;
-  const availabilityCallout = availablePuppies.length
-    ? {
-        count: availablePuppies.length,
-        copy: `${availablePuppies.length === 1 ? "available puppy" : "available puppies"} from this litter`
-      }
-    : waitlistMatchingPuppies.length
-      ? {
-          count: waitlistMatchingPuppies.length,
-          copy: `${waitlistMatchingPuppies.length === 1 ? "puppy" : "puppies"} offered to the ${waitlistName} waitlist first`
-        }
-      : puppies.length && reservedPuppies.length === puppies.length
-        ? {
-            count: puppies.length,
-            copy: `${puppies.length === 1 ? "reserved puppy" : "reserved puppies"} in this litter`
-          }
-        : puppies.length
-          ? {
-              count: puppies.length,
-              copy: `${puppies.length === 1 ? "puppy profile" : "puppy profiles"} listed from this litter`
-            }
-          : {
-              count: 0,
-              copy: "puppy updates will be shared when ready"
-            };
   const litterCta = availablePuppies.length
     ? {
         title: "Interested in an available puppy?",
@@ -3260,25 +3235,6 @@ function LitterPage({ litter }) {
           title: "Want updates on future litters?",
           copy: "This litter is currently reserved, but you can apply for a future pairing or ask about upcoming availability.",
           primaryLabel: "Apply for a Puppy"
-        };
-  const litterNextStep = availablePuppies.length
-    ? {
-        title: "Best next step",
-        copy: "If a puppy here feels like a fit, apply and mention the puppy name so we can follow up clearly."
-      }
-    : waitlistMatchingPuppies.length
-      ? {
-          title: "Best next step",
-          copy: `${waitlistFirstUpdateCopy()} Apply if you want to join the ${waitlistName} waitlist.`
-        }
-      : isFullyReservedLitter
-        ? {
-            title: "Best next step",
-            copy: `This litter is fully reserved. Matched families receive go-home details directly, and new families should apply for the ${waitlistName} waitlist or ask about future timing.`
-          }
-      : {
-          title: "Best next step",
-          copy: "Use this page to follow the litter photos and details. Apply when you want help with a future pairing or breed waitlist."
         };
   const goHomeNote = isFullyReservedLitter
     ? {
@@ -3304,6 +3260,7 @@ function LitterPage({ litter }) {
         eyebrow={litter.status || "Litter"}
         title={litter.name}
         copy={litter.availabilitySummary}
+        className="litter-page-hero"
       />
       <section className="litter-detail-shell">
         <article className="litter-pairing-card group-panel">
@@ -3339,14 +3296,6 @@ function LitterPage({ litter }) {
             <div><dt>Expected size</dt><dd>{litter.expectedSize}</dd></div>
             <div><dt>Price</dt><dd>{litter.priceRange}</dd></div>
           </dl>
-          <div className="litter-availability-callout">
-            <span>{availabilityCallout.count}</span>
-            <p>{availabilityCallout.copy}</p>
-          </div>
-          <div className="litter-next-step-note">
-            <p className="eyebrow">{litterNextStep.title}</p>
-            <p>{litterNextStep.copy}</p>
-          </div>
           {pastLitterHref && (
             <div className="actions litter-summary-actions">
               <Link href={pastLitterHref} className="button secondary">{pastLitterLabel}</Link>
@@ -3356,43 +3305,51 @@ function LitterPage({ litter }) {
       </section>
       {hasAboutSection && (
         <section className="content-section litter-about-section">
-          <article className="group-panel litter-about-panel">
-            <div className="litter-about-copy">
-              <p className="eyebrow">About This Litter</p>
-              <h2>{litter.aboutTitle || `${litter.name} details`}</h2>
-              {visibleAboutParagraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-              {extraAboutParagraphs.length > 0 && (
-                <details className="litter-more-details">
-                  <summary>More about this pairing</summary>
-                  {extraAboutParagraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </details>
+          <details className="group-panel litter-about-disclosure">
+            <summary>
+              <span>
+                <span className="eyebrow">About This Litter</span>
+                <strong>Pairing Details</strong>
+              </span>
+              <span className="litter-about-toggle-label">View Details</span>
+            </summary>
+            <div className="litter-about-panel">
+              <div className="litter-about-copy">
+                <h2>{litter.aboutTitle || `${litter.name} details`}</h2>
+                {visibleAboutParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+                {extraAboutParagraphs.length > 0 && (
+                  <details className="litter-more-details">
+                    <summary>More about this pairing</summary>
+                    {extraAboutParagraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </details>
+                )}
+              </div>
+              {(litter.geneticMakeup?.length || litter.aboutHighlights?.length) && (
+                <aside className="litter-about-aside">
+                  {litter.geneticMakeup?.length && (
+                    <div>
+                      <h3>Genetic makeup</h3>
+                      <ul className="clean-list">
+                        {litter.geneticMakeup.map((item) => <li key={item}>{item}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                  {litter.aboutHighlights?.length && (
+                    <div>
+                      <h3>What to expect</h3>
+                      <ul className="clean-list">
+                        {litter.aboutHighlights.map((item) => <li key={item}>{item}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                </aside>
               )}
             </div>
-            {(litter.geneticMakeup?.length || litter.aboutHighlights?.length) && (
-              <aside className="litter-about-aside">
-                {litter.geneticMakeup?.length && (
-                  <div>
-                    <h3>Genetic makeup</h3>
-                    <ul className="clean-list">
-                      {litter.geneticMakeup.map((item) => <li key={item}>{item}</li>)}
-                    </ul>
-                  </div>
-                )}
-                {litter.aboutHighlights?.length && (
-                  <div>
-                    <h3>What to expect</h3>
-                    <ul className="clean-list">
-                      {litter.aboutHighlights.map((item) => <li key={item}>{item}</li>)}
-                    </ul>
-                  </div>
-                )}
-              </aside>
-            )}
-          </article>
+          </details>
         </section>
       )}
       <section className="card-list litter-puppy-list">
