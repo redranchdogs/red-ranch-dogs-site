@@ -40,7 +40,8 @@
       "/images/puppies/birdie-waylon-2026/sedona-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
       "/images/puppies/birdie-waylon-2026/arizona-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
       "/images/puppies/birdie-waylon-2026/indie-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg"
-    ]
+    ],
+    "theme": "Route 66 Road Trip"
   },
   {
     "slug": "whitley-waylon-april-2026",
@@ -98,7 +99,8 @@
       "/images/puppies/whitley-waylon-2026/bass-multigen-mini-goldendoodle-puppy-whitley-waylon-week-2-red-ranch-dogs.jpg",
       "/images/puppies/whitley-waylon-2026/bobber-multigen-mini-goldendoodle-puppy-whitley-waylon-week-2-red-ranch-dogs.jpg",
       "/images/puppies/whitley-waylon-2026/skipper-multigen-mini-goldendoodle-puppy-whitley-waylon-week-2-red-ranch-dogs.jpg"
-    ]
+    ],
+    "theme": "Gone Fishin"
   },
   {
     "slug": "faye-sundance-may-2026",
@@ -387,7 +389,7 @@
     "stud": "Wyatt Earp",
     "breedSlug": "cavapoo-puppies",
     "breed": "F1B Micro Cavapoo",
-    "theme": "Penny's FIFA World Cup Litter",
+    "theme": "World Cup",
     "birthDate": "April 23, 2026",
     "goHomeDate": "June 14-16, 2026",
     "expectedSize": "10-18 lbs",
@@ -448,7 +450,7 @@
     "stud": "Butch Cassidy",
     "breedSlug": "goldendoodle-puppies",
     "breed": "Multigen Mini Goldendoodle",
-    "theme": "Ginny's Van Life Litter",
+    "theme": "Van Life",
     "birthDate": "April 23, 2026",
     "goHomeDate": "June 14-16, 2026",
     "expectedSize": "15-20 lbs",

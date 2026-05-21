@@ -2798,6 +2798,13 @@ const availablePuppiesForLitter = (litter) => puppiesForLitter(litter).filter(is
 const WAITLIST_FIRST_LABEL = "Waitlist Picks First";
 const puppyDisplayStatus = (status = "") => normalizedStatus(status) === "waitlist matching" ? WAITLIST_FIRST_LABEL : status;
 const waitlistFirstNote = (waitlistName) => `${waitlistName} waitlist families pick first for this litter.`;
+const pluralizeLitterBreed = (breed = "puppies") => {
+  if (!breed || /s$/i.test(breed)) return breed || "puppies";
+  if (/poo$/i.test(breed)) return `${breed}s`;
+  if (/doodle$/i.test(breed)) return `${breed}s`;
+  if (/poodle$/i.test(breed)) return `${breed}s`;
+  return `${breed} puppies`;
+};
 const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter)) => {
   const availableCount = litterPuppies.filter(isAvailablePuppy).length;
   const waitlistCount = litterPuppies.filter(isWaitlistMatchingPuppy).length;
@@ -3217,8 +3224,16 @@ function LitterPage({ litter }) {
   const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
   const waitlistName = breedProgram?.name || "breed";
   const isLongLitterName = litter.name.length > 18;
+  const litterHeroCopy = litter.theme
+    ? `Our "${litter.theme}" Litter of ${pluralizeLitterBreed(litter.breed)}.`
+    : litter.availabilitySummary;
   const publicAvailabilityNote = waitlistMatchingPuppies.length
-    ? `${waitlistFirstNote(waitlistName)} If puppies remain after those picks, availability will be posted here and on Available Puppies.`
+    ? (
+        <>
+          {waitlistFirstNote(waitlistName)} If puppies remain after those picks, availability will be posted here and on{" "}
+          <Link href="/puppies/available">Available Puppies</Link>.
+        </>
+      )
     : litter.availabilityNote;
   const litterCta = availablePuppies.length
     ? {
@@ -3266,7 +3281,7 @@ function LitterPage({ litter }) {
       <PageHero
         eyebrow={litter.status || "Litter"}
         title={litter.name}
-        copy={litter.availabilitySummary}
+        copy={litterHeroCopy}
         className={`litter-page-hero ${isLongLitterName ? "litter-page-hero-long" : ""}`.trim()}
       />
       <section className="litter-detail-shell">
@@ -3294,7 +3309,10 @@ function LitterPage({ litter }) {
             <span className="status-badge">{statusLabel}</span>
           </div>
           <div className="litter-summary-intro">
-            <h2>{litter.name} at a glance</h2>
+            <h2>
+              <span>{litter.name}</span>
+              <span>at a glance</span>
+            </h2>
             <p>{publicAvailabilityNote || "Approved families are contacted in waitlist order as availability is confirmed."}</p>
           </div>
           <dl className="details litter-facts">

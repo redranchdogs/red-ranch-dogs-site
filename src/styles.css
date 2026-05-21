@@ -3330,9 +3330,9 @@ textarea {
 
 .litter-summary-heading {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px 10px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
@@ -3348,6 +3348,8 @@ textarea {
 }
 
 .litter-summary-intro h2 {
+  display: grid;
+  gap: 1px;
   max-width: none;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
   font-size: clamp(2.1rem, 3.4vw, 3rem);
@@ -3359,6 +3361,13 @@ textarea {
   color: var(--muted);
   font-size: 0.88rem;
   line-height: 1.35;
+}
+
+.litter-summary-intro a {
+  color: var(--brand-red);
+  font-weight: 850;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
 }
 
 .litter-summary-panel .actions {
@@ -8554,15 +8563,16 @@ summary {
   }
 
   .litter-summary-heading {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: start;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
     gap: 8px;
   }
 
   .litter-summary-heading .status-badge {
-    justify-self: start;
-    max-width: 100%;
+    flex: 0 1 auto;
+    max-width: 58%;
     white-space: normal;
   }
 
