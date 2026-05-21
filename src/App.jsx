@@ -1854,6 +1854,44 @@ function ImageGallery({ images: gallery = [], label = "Gallery image", className
   );
 }
 
+function puppyNameForGalleryImage(image = "", puppies = []) {
+  const fileName = image.split("/").pop()?.toLowerCase() || "";
+
+  const matchedPuppy = puppies.find((puppy) => {
+    const slug = puppy.slug?.toLowerCase();
+
+    if (!slug) return false;
+    if (fileName.startsWith(`${slug}-`) || fileName === `${slug}.jpg`) return true;
+    if (puppy.mainPhoto === image || puppy.image === image) return true;
+    if (puppy.photos?.includes(image)) return true;
+
+    return puppy.weeklyPhotos?.some((update) => update.images?.includes(image));
+  });
+
+  return matchedPuppy?.name || "";
+}
+
+function LitterImageGallery({ images: gallery = [], puppies = [], label = "Litter photo" }) {
+  if (!gallery.length) {
+    return <ImagePlaceholder label={label} tall />;
+  }
+
+  return (
+    <div className="image-gallery litter-image-gallery">
+      {gallery.map((image, index) => {
+        const puppyName = puppyNameForGalleryImage(image, puppies);
+
+        return (
+          <figure className="litter-gallery-photo" key={`${image}-${index}`}>
+            <img src={image} alt={puppyName ? `${puppyName} - ${label}` : `${label} ${index + 1}`} loading="lazy" />
+            {puppyName && <figcaption>{puppyName}</figcaption>}
+          </figure>
+        );
+      })}
+    </div>
+  );
+}
+
 function LitterGalleryStatus({ hasGallery, puppyCount }) {
   if (hasGallery) return null;
 
@@ -3386,7 +3424,7 @@ function LitterPage({ litter }) {
       <section className="content-section litter-gallery-section">
         <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
         <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />
-        {gallery.length > 0 && <ImageGallery images={gallery} label={`${litter.name} weekly update`} className="litter-image-gallery" />}
+        {gallery.length > 0 && <LitterImageGallery images={gallery} puppies={puppies} label={`${litter.name} weekly update`} />}
       </section>
       <section className="tile-grid three litter-parent-grid">
         <SectionHeader eyebrow="Parents" title={`${litter.mama} + ${litter.stud}`} copy="Meet the parent dogs behind this pairing." />

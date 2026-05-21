@@ -3453,11 +3453,40 @@ textarea {
   gap: 10px;
 }
 
+.litter-gallery-photo {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
 .litter-gallery-section .litter-image-gallery img {
+  display: block;
+  width: 100%;
   aspect-ratio: 4 / 5;
   height: clamp(210px, 36vw, 360px);
   max-height: 360px;
   object-fit: cover;
+}
+
+.litter-gallery-photo figcaption {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: calc(100% - 20px);
+  min-height: 30px;
+  padding: 0 11px;
+  color: var(--paper);
+  background: rgba(36, 31, 28, 0.78);
+  border: 1px solid rgba(255, 250, 242, 0.34);
+  border-radius: 999px;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: 1.08rem;
+  line-height: 1;
 }
 
 .litter-gallery-status {
