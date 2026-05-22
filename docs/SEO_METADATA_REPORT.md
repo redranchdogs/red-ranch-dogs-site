@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 5/22/2026, 8:36:49 AM Central
+Generated: 5/22/2026, 9:30:36 AM Central
 
 Status: **PASS**
 
@@ -23,9 +23,9 @@ Routes with warnings: 0
 | --- | ---: | --- | ---: | --- | ---: | --- |
 | / | 200 | Red Ranch Dogs | Goldendoodle, Cavapoo & Bernedoodle Puppies in Texas | 99 | Goldendoodle, Cavapoo& Bernedoodle Puppies | 1 | https://www.redranchdogs.com/ |
 | /puppies | 200 | Puppies | Red Ranch Dogs | 98 | Puppies | 1 | https://www.redranchdogs.com/puppies |
-| /puppies/available | 200 | Available Puppies | Red Ranch Dogs | 87 | Available Puppies | 1 | https://www.redranchdogs.com/puppies/available |
-| /puppies/current-litters | 200 | Current Litters | Red Ranch Dogs | 98 | Current Litters | 1 | https://www.redranchdogs.com/puppies/current-litters |
-| /puppies/upcoming-litters | 200 | Upcoming Litters | Red Ranch Dogs | 79 | Upcoming Litters | 1 | https://www.redranchdogs.com/puppies/upcoming-litters |
+| /puppies/available | 200 | Available Puppies in Texas | Red Ranch Dogs | 133 | Available Puppies | 1 | https://www.redranchdogs.com/puppies/available |
+| /puppies/current-litters | 200 | Current Doodle Litters in Texas | Red Ranch Dogs | 131 | Current Litters | 1 | https://www.redranchdogs.com/puppies/current-litters |
+| /puppies/upcoming-litters | 200 | Upcoming Doodle Litters in Texas | Red Ranch Dogs | 117 | Upcoming Litters | 1 | https://www.redranchdogs.com/puppies/upcoming-litters |
 | /puppies/previous-litters | 200 | Previous Litters | Red Ranch Dogs | 97 | Previous Litters | 1 | https://www.redranchdogs.com/puppies/previous-litters |
 | /puppies/what-comes-with-your-puppy | 200 | What Comes With Your Puppy | Red Ranch Dogs | 114 | What Comes With Your Puppy? | 1 | https://www.redranchdogs.com/puppies/what-comes-with-your-puppy |
 | /puppies/coat-traits | 200 | Coat Traits | Red Ranch Dogs | 101 | Understanding Coat Traits | 1 | https://www.redranchdogs.com/puppies/coat-traits |
@@ -37,8 +37,8 @@ Routes with warnings: 0
 | /parents/bernedoodle-parents | 200 | Bernedoodle Parents | Red Ranch Dogs | 115 | Bernedoodle Parents | 1 | https://www.redranchdogs.com/parents/bernedoodle-parents |
 | /process | 200 | Process | Red Ranch Dogs | 99 | How the Red Ranch Dogs process fits together | 1 | https://www.redranchdogs.com/process |
 | /process/how-it-works | 200 | How It Works | Red Ranch Dogs | 103 | Puppy Application Process | 1 | https://www.redranchdogs.com/process/how-it-works |
-| /process/pricing | 200 | Pricing | Red Ranch Dogs | 102 | Puppy Prices & Deposits | 1 | https://www.redranchdogs.com/process/pricing |
-| /process/application-and-waitlist | 200 | Application & Waitlist | Red Ranch Dogs | 104 | Application and Waitlist | 1 | https://www.redranchdogs.com/process/application-and-waitlist |
+| /process/pricing | 200 | Puppy Pricing in Texas | Red Ranch Dogs | 117 | Puppy Prices & Deposits | 1 | https://www.redranchdogs.com/process/pricing |
+| /process/application-and-waitlist | 200 | Puppy Application & Waitlist | Red Ranch Dogs | 119 | Application and Waitlist | 1 | https://www.redranchdogs.com/process/application-and-waitlist |
 | /process/waitlist | 200 | Current Waitlist | Red Ranch Dogs | 100 | Public Waitlist | 1 | https://www.redranchdogs.com/process/waitlist |
 | /process/faq | 200 | FAQ | Red Ranch Dogs | 92 | Puppy FAQ | 1 | https://www.redranchdogs.com/process/faq |
 | /process/pickup-and-delivery | 200 | Puppy Pickup & Delivery | Red Ranch Dogs | 85 | Puppy Pickup and Delivery | 1 | https://www.redranchdogs.com/process/pickup-and-delivery |
@@ -53,18 +53,18 @@ Routes with warnings: 0
 | /about | 200 | About | Red Ranch Dogs | 78 | About Red Ranch Dogs | 1 | https://www.redranchdogs.com/about |
 | /about/our-family | 200 | Our Family | Red Ranch Dogs | 61 | Callie & Adam | 1 | https://www.redranchdogs.com/about/our-family |
 | /about/meet-the-team | 200 | Meet the Team | Red Ranch Dogs | 78 | Meet the Team | 1 | https://www.redranchdogs.com/about/meet-the-team |
-| /about/reviews | 200 | Reviews | Red Ranch Dogs | 69 | Kind Words from Puppy Families | 1 | https://www.redranchdogs.com/about/reviews |
+| /about/reviews | 200 | Red Ranch Dogs Reviews | Texas Doodle Families | 111 | Kind Words from Puppy Families | 1 | https://www.redranchdogs.com/about/reviews |
 | /contact | 200 | Contact Red Ranch Dogs | Salado, Texas | 78 | Contact Us | 1 | https://www.redranchdogs.com/contact |
 | /privacy | 200 | Privacy Policy | Red Ranch Dogs | 126 | Privacy Policy | 1 | https://www.redranchdogs.com/privacy |
-| /apply | 200 | Apply | Red Ranch Dogs | 98 | Puppy Application | 1 | https://www.redranchdogs.com/apply |
+| /apply | 200 | Apply for a Puppy | Red Ranch Dogs | 107 | Puppy Application | 1 | https://www.redranchdogs.com/apply |
 | /previous-litters | 200 | Previous Litters | Red Ranch Dogs | 86 | Previous Litters | 1 | https://www.redranchdogs.com/previous-litters |
 | /previous-litters-goldendoodles | 200 | Previous Litters Goldendoodles | Red Ranch Dogs | 57 | Goldendoodle pairings | 1 | https://www.redranchdogs.com/previous-litters-goldendoodles |
 | /previous-litters-bernedoodles | 200 | Previous Litters Bernedoodles | Red Ranch Dogs | 121 | Bernedoodle pairings | 1 | https://www.redranchdogs.com/previous-litters-bernedoodles |
 | /previous-litters-cavapoos | 200 | Previous Litters Cavapoos | Red Ranch Dogs | 117 | Cavapoo pairings | 1 | https://www.redranchdogs.com/previous-litters-cavapoos |
 | /stop-the-marking | 200 | Stop Indoor Marking Guide | Red Ranch Dogs | 115 | Stop Indoor Marking | 1 | https://www.redranchdogs.com/stop-the-marking |
-| /puppies/goldendoodle-puppies | 200 | Goldendoodle Puppies | Red Ranch Dogs | 133 | Goldendoodle Puppies | 1 | https://www.redranchdogs.com/puppies/goldendoodle-puppies |
-| /puppies/cavapoo-puppies | 200 | Cavapoo Puppies | Red Ranch Dogs | 84 | Cavapoo Puppies | 1 | https://www.redranchdogs.com/puppies/cavapoo-puppies |
-| /puppies/bernedoodle-puppies | 200 | Bernedoodle Puppies | Red Ranch Dogs | 75 | Bernedoodle Puppies | 1 | https://www.redranchdogs.com/puppies/bernedoodle-puppies |
+| /puppies/goldendoodle-puppies | 200 | Goldendoodle Puppies in Texas | Red Ranch Dogs | 143 | Goldendoodle Puppies | 1 | https://www.redranchdogs.com/puppies/goldendoodle-puppies |
+| /puppies/cavapoo-puppies | 200 | Cavapoo Puppies in Texas | Red Ranch Dogs | 121 | Cavapoo Puppies | 1 | https://www.redranchdogs.com/puppies/cavapoo-puppies |
+| /puppies/bernedoodle-puppies | 200 | Bernedoodle Puppies in Texas | Red Ranch Dogs | 128 | Bernedoodle Puppies | 1 | https://www.redranchdogs.com/puppies/bernedoodle-puppies |
 | /puppies/ranger | 200 | Ranger | Mini Goldendoodle Puppy | Red Ranch Dogs | 73 | Ranger | 1 | https://www.redranchdogs.com/puppies/ranger |
 | /puppies/axel | 200 | Axel | Mini Goldendoodle Puppy | Red Ranch Dogs | 71 | Axel | 1 | https://www.redranchdogs.com/puppies/axel |
 | /puppies/diesel | 200 | Diesel | Mini Goldendoodle Puppy | Red Ranch Dogs | 73 | Diesel | 1 | https://www.redranchdogs.com/puppies/diesel |

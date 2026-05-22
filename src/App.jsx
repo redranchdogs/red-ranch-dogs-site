@@ -156,6 +156,18 @@ function Link({ href, children, className, onClick, ...props }) {
 }
 
 const siteOrigin = "https://www.redranchdogs.com";
+const primaryServiceAreas = [
+  "Salado",
+  "Austin",
+  "Waco",
+  "Temple",
+  "Belton",
+  "Georgetown",
+  "Round Rock",
+  "Killeen",
+  "Central Texas",
+  "Texas"
+];
 const notFoundSeo = {
   title: "Page Moved | Red Ranch Dogs",
   description: "Find the right Red Ranch Dogs page for current litters, upcoming litters, puppy applications, process details, and contact information."
@@ -173,16 +185,16 @@ const architectureSeo = {
     description: "Browse Red Ranch Dogs puppy availability, upcoming litters, breed pages, and puppy care resources."
   },
   "/puppies/available": {
-    title: "Available Puppies | Red Ranch Dogs",
-    description: "View current Red Ranch Dogs puppy cards with status, litter, breed, and go-home timing."
+    title: "Available Puppies in Texas | Red Ranch Dogs",
+    description: "See Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle puppies available in Texas, with current status, breed, and go-home timing."
   },
   "/puppies/current-litters": {
-    title: "Current Litters | Red Ranch Dogs",
-    description: "Follow current Red Ranch Dogs litters, weekly puppy photos, go-home dates, and availability notes."
+    title: "Current Doodle Litters in Texas | Red Ranch Dogs",
+    description: "Follow current Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle litters in Central Texas with puppy photos and go-home timing."
   },
   "/puppies/upcoming-litters": {
-    title: "Upcoming Litters | Red Ranch Dogs",
-    description: "See planned Goldendoodle, Cavapoo, and Bernedoodle litters from Red Ranch Dogs."
+    title: "Upcoming Doodle Litters in Texas | Red Ranch Dogs",
+    description: "See planned Goldendoodle, Cavapoo, and Bernedoodle litters from Red Ranch Dogs near Salado, Austin, Waco, and Temple."
   },
   "/puppies/previous-litters": {
     title: "Previous Litters | Red Ranch Dogs",
@@ -229,12 +241,12 @@ const architectureSeo = {
     description: "Review the Red Ranch Dogs process from application and deposit through puppy selection and go-home day."
   },
   "/process/pricing": {
-    title: "Pricing | Red Ranch Dogs",
-    description: "Review Red Ranch Dogs pricing guidance by breed, size, deposits, and what is included with each puppy."
+    title: "Puppy Pricing in Texas | Red Ranch Dogs",
+    description: "Review Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle pricing, deposits, and what is included with each puppy."
   },
   "/process/application-and-waitlist": {
-    title: "Application & Waitlist | Red Ranch Dogs",
-    description: "Start the Red Ranch Dogs application and waitlist process for Goldendoodles, Cavapoos, and Bernedoodles."
+    title: "Puppy Application & Waitlist | Red Ranch Dogs",
+    description: "Start the Red Ranch Dogs puppy application and waitlist process for Goldendoodles, Cavapoos, and Bernedoodles in Texas."
   },
   "/process/waitlist": {
     title: "Current Waitlist | Red Ranch Dogs",
@@ -293,12 +305,12 @@ const architectureSeo = {
     description: "Meet the Red Ranch Dogs team behind daily puppy care and family communication."
   },
   "/about/reviews": {
-    title: "Reviews | Red Ranch Dogs",
-    description: "Read Red Ranch Dogs family testimonials and Google review highlights."
+    title: "Red Ranch Dogs Reviews | Texas Doodle Families",
+    description: "Read Red Ranch Dogs reviews and family testimonials from Goldendoodle, Cavapoo, and Bernedoodle puppy families."
   },
   "/apply": {
-    title: "Apply | Red Ranch Dogs",
-    description: "Submit a puppy application for Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle availability."
+    title: "Apply for a Puppy | Red Ranch Dogs",
+    description: "Submit a Red Ranch Dogs puppy application for Goldendoodle, Cavapoo, and Bernedoodle availability in Texas."
   },
   "/privacy": {
     title: "Privacy Policy | Red Ranch Dogs",
@@ -518,8 +530,8 @@ function seoFor(path) {
   const breed = breedProfiles.find((item) => item.route === path);
   if (breed) {
     return {
-      title: `${breed.pluralName} | Red Ranch Dogs`,
-      description: breed.intro
+      title: `${breed.pluralName} in Texas | Red Ranch Dogs`,
+      description: breedSeoDescription(breed)
     };
   }
   if (path.startsWith("/puppies/")) {
@@ -600,6 +612,16 @@ function seoFor(path) {
     };
   }
   return notFoundSeo;
+}
+
+function breedSeoDescription(breed) {
+  const descriptions = {
+    "goldendoodle-puppies": "Goldendoodle puppies raised by Red Ranch Dogs near Salado, Austin, Waco, and Temple, Texas, with family-focused temperaments and coat planning.",
+    "cavapoo-puppies": "Cavapoo puppies raised by Red Ranch Dogs near Salado, Austin, Waco, and Temple, Texas, with sweet companion temperaments.",
+    "bernedoodle-puppies": "Bernedoodle puppies raised by Red Ranch Dogs near Salado, Austin, Waco, and Temple, Texas, with loyal family-ready temperaments."
+  };
+
+  return descriptions[breed.slug] || `${breed.pluralName} raised by Red Ranch Dogs in Central Texas.`;
 }
 
 function upsertMeta(selector, createTag, attributes) {
@@ -1014,7 +1036,14 @@ function structuredDataFor(path) {
         addressRegion: "TX",
         addressCountry: "US"
       },
-      areaServed: ["Texas", "United States"],
+      areaServed: primaryServiceAreas.map((area) => ({
+        "@type": "Place",
+        name: area
+      })),
+      serviceArea: primaryServiceAreas.map((area) => ({
+        "@type": "Place",
+        name: area
+      })),
       knowsAbout: ["Goldendoodles", "Cavapoos", "Bernedoodles", "Poodle genetics", "Doodle puppy waitlists", "Doodle coat traits"],
       contactPoint: [
         {
