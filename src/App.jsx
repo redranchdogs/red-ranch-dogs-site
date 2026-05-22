@@ -159,6 +159,11 @@ const siteOrigin = "https://www.redranchdogs.com";
 const primaryServiceAreas = [
   "Salado",
   "Austin",
+  "San Antonio",
+  "Dallas",
+  "Fort Worth",
+  "Houston",
+  "Dallas-Fort Worth",
   "Waco",
   "Temple",
   "Belton",
@@ -194,7 +199,7 @@ const architectureSeo = {
   },
   "/puppies/upcoming-litters": {
     title: "Upcoming Doodle Litters in Texas | Red Ranch Dogs",
-    description: "See planned Goldendoodle, Cavapoo, and Bernedoodle litters from Red Ranch Dogs near Salado, Austin, Waco, and Temple."
+    description: "See planned Goldendoodle, Cavapoo, and Bernedoodle litters from Red Ranch Dogs for families across Austin and major Texas metros."
   },
   "/puppies/previous-litters": {
     title: "Previous Litters | Red Ranch Dogs",
@@ -616,9 +621,9 @@ function seoFor(path) {
 
 function breedSeoDescription(breed) {
   const descriptions = {
-    "goldendoodle-puppies": "Goldendoodle puppies raised by Red Ranch Dogs near Salado, Austin, Waco, and Temple, Texas, with family-focused temperaments and coat planning.",
-    "cavapoo-puppies": "Cavapoo puppies raised by Red Ranch Dogs near Salado, Austin, Waco, and Temple, Texas, with sweet companion temperaments.",
-    "bernedoodle-puppies": "Bernedoodle puppies raised by Red Ranch Dogs near Salado, Austin, Waco, and Temple, Texas, with loyal family-ready temperaments."
+    "goldendoodle-puppies": "Goldendoodle puppies raised by Red Ranch Dogs for families in Austin, San Antonio, Dallas-Fort Worth, Houston, and Central Texas.",
+    "cavapoo-puppies": "Cavapoo puppies raised by Red Ranch Dogs for families in Austin, San Antonio, Dallas-Fort Worth, Houston, and Central Texas.",
+    "bernedoodle-puppies": "Bernedoodle puppies raised by Red Ranch Dogs for families in Austin, San Antonio, Dallas-Fort Worth, Houston, and Central Texas."
   };
 
   return descriptions[breed.slug] || `${breed.pluralName} raised by Red Ranch Dogs in Central Texas.`;

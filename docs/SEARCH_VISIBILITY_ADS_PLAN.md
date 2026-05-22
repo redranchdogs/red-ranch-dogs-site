@@ -43,7 +43,7 @@ Source: Google Search Console, Web search, last 3 months.
 ## Website SEO Moves Made
 
 - Canonical cleanup was deployed so apex and route variants point toward the `www.redranchdogs.com` canonical site.
-- Key public page metadata now emphasizes Texas, Central Texas, Salado, Austin, Waco, and Temple where it naturally fits.
+- Key public page metadata now emphasizes Texas, Central Texas, Austin, San Antonio, Dallas-Fort Worth, Houston, Salado, Waco, and Temple where it naturally fits.
 - Breed page metadata now aligns with actual search demand for Goldendoodle, Cavapoo, and Bernedoodle puppy searches in Texas.
 - LocalBusiness structured data now lists the main service areas as structured places.
 
@@ -93,9 +93,11 @@ Starting budget:
 
 Location targeting:
 
-- Start with Central Texas.
-- Include Salado, Austin, Waco, Temple, Belton, Georgetown, Round Rock, and Killeen.
-- Avoid national targeting until the local campaign proves lead quality.
+- Start with Austin as the primary market.
+- Include the Central Texas base: Salado, Waco, Temple, Belton, Georgetown, Round Rock, and Killeen.
+- Expand intentionally into major Texas metros where families already come from: San Antonio, Dallas-Fort Worth, and Houston.
+- Avoid national targeting until the Texas campaign proves lead quality.
+- Keep metro performance segmented so budget can shift toward the cities producing real applications, texts, calls, and quality conversations.
 
 Landing pages:
 
@@ -118,6 +120,10 @@ Candidate keywords:
 - cavapoo puppies for sale
 - cavapoo breeder texas
 - cavapoo puppies austin
+- cavapoo puppies san antonio
+- cavapoo puppies dallas
+- cavapoo puppies fort worth
+- cavapoo puppies houston
 - cavapoo puppies waco
 
 ### Goldendoodle Puppies Texas
@@ -129,6 +135,10 @@ Candidate keywords:
 - goldendoodle puppies near me
 - goldendoodle breeder texas
 - goldendoodle puppies austin
+- goldendoodle puppies san antonio
+- goldendoodle puppies dallas
+- goldendoodle puppies fort worth
+- goldendoodle puppies houston
 - goldendoodle puppies waco
 
 ### Bernedoodle Puppies Texas
@@ -139,6 +149,11 @@ Candidate keywords:
 - mini bernedoodle puppies texas
 - bernedoodle puppies near me
 - bernedoodle breeder texas
+- bernedoodle puppies austin
+- bernedoodle puppies san antonio
+- bernedoodle puppies dallas
+- bernedoodle puppies fort worth
+- bernedoodle puppies houston
 
 ### Brand Protection
 
@@ -204,7 +219,7 @@ Do not activate paid campaigns until these are confirmed:
 
 - Account payment is fixed.
 - Campaign budget is approved.
-- Location targeting is Texas/Central Texas only.
+- Location targeting is Texas-only, with Austin primary and San Antonio, Dallas-Fort Worth, Houston, and Central Texas monitored separately.
 - Ads point to the correct public website pages.
 - Lead Queue is monitored during the first 48 hours.
 - Adam explicitly approves turning the campaign on.
