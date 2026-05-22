@@ -65,8 +65,12 @@ const knownRoutes = new Set([
   ...dynamicRoutes
 ]);
 const redirects = vercel.redirects ?? [];
-const redirectSources = new Set(redirects.map((redirect) => normalizePath(redirect.source)).filter(Boolean));
-const redirectDestinations = new Set(redirects.map((redirect) => normalizePath(redirect.destination)).filter(Boolean));
+const isHostCanonicalRedirect = (redirect = {}) => {
+  return (redirect.has || []).some((condition) => condition.type === "host");
+};
+const routeRedirects = redirects.filter((redirect) => !isHostCanonicalRedirect(redirect));
+const redirectSources = new Set(routeRedirects.map((redirect) => normalizePath(redirect.source)).filter(Boolean));
+const redirectDestinations = new Set(routeRedirects.map((redirect) => normalizePath(redirect.destination)).filter(Boolean));
 const internalHrefs = [
   ...[...siteData.matchAll(hrefPattern)].map((match) => match[1]),
   ...[...siteData.matchAll(jsxHrefPattern)].map((match) => match[1])

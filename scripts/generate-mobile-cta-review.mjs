@@ -16,7 +16,7 @@ const routeGoals = [
     route: "/puppies/available",
     primary: "Apply for a Puppy",
     secondary: "View Current Litters",
-    evidence: ["No public puppies open right now", "View Current Litters"],
+    evidence: ["No public puppies are available right now", "View Current Litters"],
   },
   {
     route: "/puppies/current-litters",

@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 5/21/2026, 1:01:49 PM Central
+Generated: 5/22/2026, 8:36:49 AM Central
 
 Status: **PASS**
 
@@ -26,7 +26,7 @@ Routes with warnings: 0
 | /puppies/available | 200 | Available Puppies | Red Ranch Dogs | 87 | Available Puppies | 1 | https://www.redranchdogs.com/puppies/available |
 | /puppies/current-litters | 200 | Current Litters | Red Ranch Dogs | 98 | Current Litters | 1 | https://www.redranchdogs.com/puppies/current-litters |
 | /puppies/upcoming-litters | 200 | Upcoming Litters | Red Ranch Dogs | 79 | Upcoming Litters | 1 | https://www.redranchdogs.com/puppies/upcoming-litters |
-| /puppies/previous-litters | 200 | Previous Litters | Red Ranch Dogs | 97 | Past puppy pairings | 1 | https://www.redranchdogs.com/puppies/previous-litters |
+| /puppies/previous-litters | 200 | Previous Litters | Red Ranch Dogs | 97 | Previous Litters | 1 | https://www.redranchdogs.com/puppies/previous-litters |
 | /puppies/what-comes-with-your-puppy | 200 | What Comes With Your Puppy | Red Ranch Dogs | 114 | What Comes With Your Puppy? | 1 | https://www.redranchdogs.com/puppies/what-comes-with-your-puppy |
 | /puppies/coat-traits | 200 | Coat Traits | Red Ranch Dogs | 101 | Understanding Coat Traits | 1 | https://www.redranchdogs.com/puppies/coat-traits |
 | /parents | 200 | Parent Dogs | Red Ranch Dogs | 98 | Parent Dogs | 1 | https://www.redranchdogs.com/parents |
@@ -57,7 +57,7 @@ Routes with warnings: 0
 | /contact | 200 | Contact Red Ranch Dogs | Salado, Texas | 78 | Contact Us | 1 | https://www.redranchdogs.com/contact |
 | /privacy | 200 | Privacy Policy | Red Ranch Dogs | 126 | Privacy Policy | 1 | https://www.redranchdogs.com/privacy |
 | /apply | 200 | Apply | Red Ranch Dogs | 98 | Puppy Application | 1 | https://www.redranchdogs.com/apply |
-| /previous-litters | 200 | Previous Litters | Red Ranch Dogs | 86 | Past puppy pairings | 1 | https://www.redranchdogs.com/previous-litters |
+| /previous-litters | 200 | Previous Litters | Red Ranch Dogs | 86 | Previous Litters | 1 | https://www.redranchdogs.com/previous-litters |
 | /previous-litters-goldendoodles | 200 | Previous Litters Goldendoodles | Red Ranch Dogs | 57 | Goldendoodle pairings | 1 | https://www.redranchdogs.com/previous-litters-goldendoodles |
 | /previous-litters-bernedoodles | 200 | Previous Litters Bernedoodles | Red Ranch Dogs | 121 | Bernedoodle pairings | 1 | https://www.redranchdogs.com/previous-litters-bernedoodles |
 | /previous-litters-cavapoos | 200 | Previous Litters Cavapoos | Red Ranch Dogs | 117 | Cavapoo pairings | 1 | https://www.redranchdogs.com/previous-litters-cavapoos |

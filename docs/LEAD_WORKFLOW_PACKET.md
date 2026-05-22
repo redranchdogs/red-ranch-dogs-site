@@ -1,6 +1,6 @@
 # Lead Workflow Packet
 
-Generated: 5/21/2026, 2:27:12 PM Central
+Generated: 5/22/2026, 8:41:34 AM Central
 
 Spreadsheet: https://docs.google.com/spreadsheets/d/1872yXbOwwtio73bK5wlZJKEaBez4czsGuU0bcYaxriE/edit
 

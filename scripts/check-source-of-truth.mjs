@@ -110,7 +110,14 @@ function extractClientRedirects(source) {
 }
 
 const clientRedirectMap = extractClientRedirects(app);
-const vercelRedirectMap = new Map((vercel.redirects || []).map((redirect) => [redirect.source, redirect.destination]));
+const isHostCanonicalRedirect = (redirect = {}) => {
+  return (redirect.has || []).some((condition) => condition.type === "host");
+};
+const vercelRedirectMap = new Map(
+  (vercel.redirects || [])
+    .filter((redirect) => !isHostCanonicalRedirect(redirect))
+    .map((redirect) => [redirect.source, redirect.destination])
+);
 
 vercelRedirectMap.forEach((destination, source) => {
   const clientDestination = clientRedirectMap.get(source);

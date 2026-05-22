@@ -1,6 +1,17 @@
 {
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "redranchdogs.com"
+        }
+      ],
+      "destination": "https://www.redranchdogs.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/available-puppies",
       "destination": "/puppies/available",
       "permanent": true

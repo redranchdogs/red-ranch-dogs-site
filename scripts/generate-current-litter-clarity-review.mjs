@@ -81,7 +81,9 @@ const blockers = [];
 
 if (!appSource.includes("Waitlist Picks First")) blockers.push("Waitlist badge copy is missing from the current litter template.");
 if (!appSource.includes("availability will be posted here")) blockers.push("Waitlist-first next-step copy does not tell families where availability will appear.");
-if (!appSource.includes("No public puppies open right now")) blockers.push("Available Puppies empty state does not clarify public availability.");
+if (!appSource.includes("No public puppies are available right now")) {
+  blockers.push("Available Puppies empty state does not clarify public availability.");
+}
 if (!appSource.includes("Photos Coming Soon")) blockers.push("Current litter empty photo-gallery state is missing.");
 
 rows.forEach((row) => {
