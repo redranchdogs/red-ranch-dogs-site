@@ -14,7 +14,7 @@ This is a human-review helper. It does not replace the automated launch checks; 
 
 - Birdie + Waylon: public puppy statuses are 7 Reserved. Confirm no puppy should appear on Available Puppies.
 - Whitley + Waylon: public puppy statuses are 6 Waitlist Matching. Confirm no puppy should appear on Available Puppies.
-- Penny + Wyatt: public puppy statuses are 1 Reserved, 5 Waitlist Matching. Confirm no puppy should appear on Available Puppies.
+- Penny + Wyatt: public puppy statuses are 2 Reserved, 4 Waitlist Matching. Confirm no puppy should appear on Available Puppies.
 - Ginny + Butch Cassidy: public puppy statuses are 6 Waitlist Matching. Confirm no puppy should appear on Available Puppies.
 - Faye + Sundance: no past-litter link is attached. Add one later if this pairing has a useful previous example.
 - Georgia + Waylon: no past-litter link is attached. Add one later if this pairing has a useful previous example.
@@ -33,14 +33,14 @@ This is a human-review helper. It does not replace the automated launch checks; 
 ## Data Workflow Notes
 
 - Available Puppies currently has zero true Available records. This is okay if intentional, and the page should route families to waitlist/current litters.
-- Public waitlist rows currently loaded: 22. Confirm this matches the public waitlist sheet before launch.
+- Public waitlist rows currently loaded: 21. Confirm this matches the public waitlist sheet before launch.
 
 ## Public Puppy Status Snapshot
 
 | Status | Count | Puppies |
 | --- | ---: | --- |
-| Reserved | 8 | Ranger, Axel, Diesel, Dakota, Sedona, Arizona, Indie, Striker |
-| Waitlist Matching | 17 | Samba, Goalie, Ref, Pitch, FIFA, Meadow, Vista, Camper, Sage, Ridge, Trek, Hook, Minnow, Tackle, Bass, Bobber, Skipper |
+| Reserved | 9 | Ranger, Axel, Diesel, Dakota, Sedona, Arizona, Indie, Striker, Samba |
+| Waitlist Matching | 16 | Goalie, Ref, Pitch, FIFA, Meadow, Vista, Camper, Sage, Ridge, Trek, Hook, Minnow, Tackle, Bass, Bobber, Skipper |
 
 ## Current Litter Snapshot
 
@@ -48,7 +48,7 @@ This is a human-review helper. It does not replace the automated launch checks; 
 | --- | --- | --- |
 | Birdie + Waylon | May 23-25, 2026 | 7 Reserved |
 | Whitley + Waylon | June 24-26, 2026 | 6 Waitlist Matching |
-| Penny + Wyatt | June 14-16, 2026 | 1 Reserved, 5 Waitlist Matching |
+| Penny + Wyatt | June 14-16, 2026 | 2 Reserved, 4 Waitlist Matching |
 | Ginny + Butch Cassidy | June 14-16, 2026 | 6 Waitlist Matching |
 
 ## Planned Litter Snapshot

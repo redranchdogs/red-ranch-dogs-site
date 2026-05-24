@@ -1,6 +1,6 @@
 # Photo Day Rehearsal
 
-Generated: 5/24/2026, 1:20:53 PM Central
+Generated: 5/24/2026, 2:16:19 PM Central
 
 Status: **READY**
 
@@ -33,7 +33,7 @@ This is the pre-media-day rehearsal for current litters. It does not move files,
 | Whitley + Waylon | Bobber | Maroon | Waitlist Matching | Add Week 3 group |
 | Whitley + Waylon | Skipper | Black | Waitlist Matching | Add Week 3 group |
 | Penny + Wyatt | Striker | Orange | Reserved | Add Week 5 group |
-| Penny + Wyatt | Samba | Dark Blue | Waitlist Matching | Add Week 5 group |
+| Penny + Wyatt | Samba | Dark Blue | Reserved | Add Week 5 group |
 | Penny + Wyatt | Goalie | Dark Gray | Waitlist Matching | Add Week 5 group |
 | Penny + Wyatt | Ref | Black | Waitlist Matching | Add Week 5 group |
 | Penny + Wyatt | Pitch | Red | Waitlist Matching | Add Week 5 group |

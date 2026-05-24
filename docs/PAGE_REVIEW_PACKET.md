@@ -40,7 +40,7 @@ Confirm:
 Notes:
 - Birdie + Waylon: May 23-25, 2026; 7 Reserved.
 - Whitley + Waylon: June 24-26, 2026; 6 Waitlist Matching.
-- Penny + Wyatt: June 14-16, 2026; 1 Reserved, 5 Waitlist Matching.
+- Penny + Wyatt: June 14-16, 2026; 2 Reserved, 4 Waitlist Matching.
 - Ginny + Butch Cassidy: June 14-16, 2026; 6 Waitlist Matching.
 ### Upcoming Litters
 

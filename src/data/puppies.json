@@ -585,7 +585,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Dark Blue",
-    "status": "Waitlist Matching",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",
@@ -618,8 +618,8 @@
         ]
       }
     ],
-    "description": "Samba is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
-    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "description": "Samba is a reserved F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Reserved for a family from the waitlist.",
     "personalityNote": "Week 4 photos are live. Personality notes will continue to be updated as this puppy grows."
   },
   {
