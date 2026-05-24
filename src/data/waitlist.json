@@ -5,7 +5,7 @@
     "tab": "Public Waitlist",
     "hub": "Website Hub"
   },
-  "updatedAt": "2026-05-19",
+  "updatedAt": "2026-05-24",
   "publicRows": [
     {
       "breed": "Goldendoodle",
@@ -87,48 +87,41 @@
     {
       "breed": "Cavapoo",
       "position": 4,
-      "display_name": "Divya B.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Cavapoo",
-      "position": 5,
       "display_name": "Claire F.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 6,
+      "position": 5,
       "display_name": "Fatima G.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 7,
+      "position": 6,
       "display_name": "Annika P.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 8,
+      "position": 7,
       "display_name": "Michelle W.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 9,
+      "position": 8,
       "display_name": "Susan C.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 10,
+      "position": 9,
       "display_name": "David R.",
       "status": "Active",
       "show_publicly": "Yes",

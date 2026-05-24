@@ -530,12 +530,13 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Orange",
-    "status": "Waitlist Matching",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",
     "goHomeDate": "June 14-16, 2026",
     "price": "$4,500",
+    "matchedFamilyDisplay": "Divya B.",
     "color": "Red abstract and parti possibilities",
     "coat": "Soft, silky, wavy Cavapoo coat",
     "mainPhoto": "/images/puppies/penny-wyatt-2026/striker-f1b-micro-cavapoo-puppy-penny-wyatt-week-4-red-ranch-dogs.jpg",
@@ -567,8 +568,8 @@
         ]
       }
     ],
-    "description": "Striker is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
-    "availabilityNote": "Being matched through the Cavapoo waitlist.",
+    "description": "Striker is a reserved F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Reserved for a family from the waitlist.",
     "personalityNote": "Week 4 photos are live. Personality notes will continue to be updated as this puppy grows."
   },
   {

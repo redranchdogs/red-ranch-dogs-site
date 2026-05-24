@@ -53,7 +53,7 @@ const SHEETS = {
       availability_status: puppy.status,
       display_on_available_puppies: normalizedStatus(puppy.status) === "available" ? "Yes" : "No",
       display_on_homepage: "No",
-      matched_family_display: "",
+      matched_family_display: puppy.matchedFamilyDisplay || "",
       main_photo_file: fileName(puppy.mainPhoto),
       gallery_folder: photoFolder(puppy.weeklyPhotos),
       personality_note: puppy.personalityNote,

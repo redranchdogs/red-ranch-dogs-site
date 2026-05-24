@@ -1,6 +1,6 @@
 # Page Review Packet
 
-Generated: May 22, 2026
+Generated: May 24, 2026
 
 Use this when Adam has time for the human business-accuracy pass. It is intentionally practical: open each page, confirm the bullets, and move on.
 
@@ -40,7 +40,7 @@ Confirm:
 Notes:
 - Birdie + Waylon: May 23-25, 2026; 7 Reserved.
 - Whitley + Waylon: June 24-26, 2026; 6 Waitlist Matching.
-- Penny + Wyatt: June 14-16, 2026; 6 Waitlist Matching.
+- Penny + Wyatt: June 14-16, 2026; 1 Reserved, 5 Waitlist Matching.
 - Ginny + Butch Cassidy: June 14-16, 2026; 6 Waitlist Matching.
 ### Upcoming Litters
 

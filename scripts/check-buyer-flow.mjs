@@ -193,12 +193,6 @@ if (currentLitters[0]?.slug !== "birdie-waylon-spring-2026") {
   blockers.push(`Current litters should sort by earliest go-home date first. Current computed order: ${listLabels(currentLitters)}`);
 }
 
-const pennyWyattPuppies = publicPuppies.filter((puppy) => puppy.litterSlug === "penny-wyatt-spring-2026");
-const badPennyWyattStatuses = pennyWyattPuppies.filter((puppy) => normalize(puppy.status) === "reserved");
-if (badPennyWyattStatuses.length) {
-  blockers.push(`Penny + Wyatt should be waitlist matching, not reserved: ${badPennyWyattStatuses.map((puppy) => puppy.name).join(", ")}`);
-}
-
 const hiddenPuppySlugs = ["messi", "ronaldo"];
 hiddenPuppySlugs.forEach((slug) => {
   if (routes.includes(`/puppies/${slug}`)) {
