@@ -43,6 +43,7 @@
     "review:crm-integration": "node scripts/generate-crm-website-integration-checklist.mjs",
     "review:mobile-templates": "node scripts/audit-mobile-template-stack.mjs",
     "review:ai-search": "node scripts/generate-ai-search-review.mjs",
+    "agent:website-qa": "node scripts/generate-website-qa-agent-report.mjs",
     "review:launch": "npm run review:business && npm run review:pages && npm run review:images && npm run review:safety",
     "publish:check": "npm run seo:crawler && npm run review:ai-search && npm run validate:content && npm run check:source && npm run check:buyer-flow && npm run review:safety && npm run review:analytics && npm run review:crm-intake && npm run test:forms && npm run lint && npm run review:sheets && npm run check:publish-ready && npm run build && npm run review:seo && npm run review:deploy",
     "publish:sync-all": "npm run sync:sheets && npm run review:sheets && npm run check:publish-ready",
