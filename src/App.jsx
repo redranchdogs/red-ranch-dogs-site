@@ -3109,24 +3109,6 @@ function formatWaitlistDate(dateString) {
   });
 }
 
-function SectionIndexPage({ eyebrow, title, copy, links, children }) {
-  return (
-    <Layout>
-      <PageHero eyebrow={eyebrow} title={title} copy={copy} />
-      <section className="tile-grid architecture-grid page-directory-grid">
-        {links.map((link) => (
-          <article className="text-card" key={link.href}>
-            <h2>{link.label}</h2>
-            {link.copy && <p>{link.copy}</p>}
-            <Link href={link.href} className="inline-link">View page</Link>
-          </article>
-        ))}
-      </section>
-      {children}
-    </Layout>
-  );
-}
-
 function BreedPageTemplate({ breed }) {
   const puppies = puppyData.filter((puppy) => puppy.breedSlug === breed.slug);
   const availableBreedPuppies = puppies.filter(isAvailablePuppy);
@@ -3613,17 +3595,7 @@ function PuppiesOverviewPage() {
           title="Where do you want to look?"
           copy="Use these quick paths when you already know whether you want puppies available now, litters growing now, future timing, or breed details."
         />
-        <div className="puppy-hub-path-grid">
-          {puppyPathLinks.map((link) => (
-            <Link href={link.href} className="puppy-hub-path-card" key={link.href}>
-              <span>
-                <strong>{link.label}</strong>
-                <small>{link.copy}</small>
-              </span>
-              <ArrowRight aria-hidden="true" size={22} />
-            </Link>
-          ))}
-        </div>
+        <OverviewPathGrid links={puppyPathLinks} />
       </section>
       <section className="content-section narrow puppy-overview-availability-section">
         <article className="group-panel puppy-overview-availability-card">
@@ -3686,6 +3658,22 @@ function PuppiesOverviewPage() {
   );
 }
 
+function OverviewPathGrid({ links }) {
+  return (
+    <div className="page-hub-path-grid">
+      {links.map((link) => (
+        <Link href={link.href} className="page-hub-path-card" key={link.href}>
+          <span>
+            <strong>{link.label}</strong>
+            {link.copy && <small>{link.copy}</small>}
+          </span>
+          <ArrowRight aria-hidden="true" size={22} />
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 function ParentsDirectoryPage({ role }) {
   const filteredParents = publicParentProfiles.filter((parent) => {
     const roleMatch = role ? parent.role === role : true;
@@ -3726,6 +3714,23 @@ function BreedParentDirectoryPage({ breedSlug }) {
 
 function ProcessOverviewPage() {
   const processLinks = primaryNav.find((item) => item.label === "Process").links;
+  const processPathLinks = processLinks.map((link) => {
+    const copyByHref = {
+      "/process/how-it-works": "Application, deposit, updates, picks, and go-home timing.",
+      "/process/pricing": "Deposits, puppy pricing, payment timing, and what is included.",
+      "/process/application-and-waitlist": "Start here when you are ready to talk through fit and timing.",
+      "/process/waitlist": "See the public waitlist view and how breed order works.",
+      "/puppies/what-comes-with-your-puppy": "A clear look at starter guidance, records, and go-home support.",
+      "/puppies/coat-traits": "Blazes, color, markings, coat texture, and puppy trait basics.",
+      "/process/faq": "Quick answers for pricing, waitlists, pickup, coats, and timing.",
+      "/process/pickup-and-delivery": "Pickup day, ride-home guidance, and travel coordination."
+    };
+
+    return {
+      ...link,
+      copy: copyByHref[link.href] || "Open this process guide."
+    };
+  });
 
   return (
     <ProcessPageTemplate
@@ -3733,15 +3738,23 @@ function ProcessOverviewPage() {
       copy="Pricing, applications, waitlist details, FAQs, pickup, and delivery guidance are organized in one clear place."
       stats={processOverviewStats}
     >
-      <section className="tile-grid three process-card-grid process-link-grid">
-        {processLinks.map((link) => (
-          <article className="text-card compact-card" key={link.href}>
-            <h2>{link.label}</h2>
-            {link.copy && <p>{link.copy}</p>}
-            <Link href={link.href} className="inline-link">View page</Link>
-          </article>
-        ))}
+      <section className="content-section page-hub-path-section process-overview-path-section">
+        <SectionHeader
+          eyebrow="Choose Your Step"
+          title="What do you want to understand?"
+          copy="Use these quick paths to jump into the part of the process you are looking for."
+        />
+        <OverviewPathGrid links={processPathLinks} />
       </section>
+      <CTASection
+        title="Ready to take the next step?"
+        copy="Apply now and we will help you understand the right breed waitlist, current timing, and whether a current or future litter fits your family."
+        primaryHref="/apply"
+        primaryLabel="Apply for a Puppy"
+        secondaryHref="/puppies/current-litters"
+        secondaryLabel="View Current Litters"
+        className="process-overview-cta"
+      />
     </ProcessPageTemplate>
   );
 }
@@ -3814,13 +3827,57 @@ function GuardianFaqPage() {
 }
 
 function AboutOverviewPage() {
+  const aboutLinks = [
+    {
+      label: "Our Family",
+      href: "/about/our-family",
+      copy: "Meet Cal, Adam, and the family story behind Red Ranch Dogs."
+    },
+    {
+      label: "Meet the Team",
+      href: "/about/meet-the-team",
+      copy: "The people helping with puppy care, photos, updates, and daily details."
+    },
+    {
+      label: "Reviews",
+      href: "/about/reviews",
+      copy: "Read what Red Ranch families have shared after bringing puppies home."
+    },
+    {
+      label: "Contact",
+      href: "/contact",
+      copy: "Ask about puppies, timing, applications, or which path fits your family."
+    }
+  ];
+
   return (
-    <SectionIndexPage
-      eyebrow="About"
-      title="About Red Ranch Dogs"
-      copy="Learn more about the family, team, reviews, and ways to contact Red Ranch Dogs."
-      links={primaryNav.find((item) => item.label === "About").links}
-    />
+    <Layout>
+      <PageHero
+        eyebrow="About"
+        title="About Red Ranch Dogs"
+        copy="Learn more about our family, team, reviews, and the people behind each puppy update."
+        className="compact-page-hero about-overview-hero"
+      />
+      <section className="content-section page-hub-path-section about-overview-path-section">
+        <SectionHeader
+          eyebrow="Start Here"
+          title="Get to know Red Ranch"
+          copy="Choose the part of the story you want to see first."
+        />
+        <OverviewPathGrid links={aboutLinks} />
+      </section>
+      <section className="content-section narrow about-overview-note-section">
+        <article className="group-panel about-overview-note">
+          <p className="eyebrow">Family-Run in Salado</p>
+          <h2>Hands-on care, clear updates, and real people behind the process.</h2>
+          <p>Red Ranch Dogs is built around family-raised puppy care, thoughtful matching, and practical communication before and after go-home day.</p>
+          <div className="actions">
+            <Link href="/about/reviews" className="button secondary">Read Reviews</Link>
+            <Link href="/contact" className="button primary">Contact Us</Link>
+          </div>
+        </article>
+      </section>
+    </Layout>
   );
 }
 
