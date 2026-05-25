@@ -177,7 +177,7 @@ legacyPublicRoutes.forEach((route) => {
   }
 });
 
-if (availablePuppies.length === 0 && !app.includes("No puppies available right now")) {
+if (availablePuppies.length === 0 && !/No (public )?puppies are available right now/.test(app)) {
   blockers.push("Available Puppies needs the zero-availability empty state when no puppies are Available.");
 }
 

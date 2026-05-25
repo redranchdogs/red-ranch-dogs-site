@@ -1,6 +1,6 @@
 # Page Review Packet
 
-Generated: May 24, 2026
+Generated: May 25, 2026
 
 Use this when Adam has time for the human business-accuracy pass. It is intentionally practical: open each page, confirm the bullets, and move on.
 

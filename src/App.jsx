@@ -3540,56 +3540,149 @@ function ParentDetailPage({ parent }) {
 }
 
 function PuppiesOverviewPage() {
+  const [openBreedSlug, setOpenBreedSlug] = useState("");
   const availableNow = puppyData.filter(isAvailablePuppy);
-  const nextGoHomeDates = [...new Set(availableNow.map((puppy) => puppy.goHomeDate || puppy.goHome).filter(Boolean))];
-  const previewCurrentLitters = currentLitterProfiles.slice(0, 3);
+  const currentBreedGroups = plannedLitterBreedGroups
+    .map((group) => ({
+      ...group,
+      copy: "",
+      litters: currentLitterProfiles.filter((litter) => litter.breedSlug === group.slug)
+    }))
+    .filter((group) => group.litters.length);
+  const ungroupedCurrentLitters = currentLitterProfiles.filter((litter) => !plannedLitterBreedGroups.some((group) => group.slug === litter.breedSlug));
+  const puppyPathLinks = [
+    {
+      label: "Available Puppies",
+      href: "/puppies/available",
+      copy: "Puppies open to reserve right now."
+    },
+    {
+      label: "Current Litters",
+      href: "/puppies/current-litters",
+      copy: "Litters growing now, grouped by breed."
+    },
+    {
+      label: "Upcoming Litters",
+      href: "/puppies/upcoming-litters",
+      copy: "Planned pairings and expected timing."
+    },
+    {
+      label: "Previous Litters",
+      href: "/puppies/previous-litters",
+      copy: "Past puppy pairings by breed and mama."
+    },
+    {
+      label: "Goldendoodle Puppies",
+      href: "/puppies/goldendoodle-puppies",
+      copy: "Mini and petite family doodles."
+    },
+    {
+      label: "Cavapoo Puppies",
+      href: "/puppies/cavapoo-puppies",
+      copy: "Small companion-focused puppies."
+    },
+    {
+      label: "Bernedoodle Puppies",
+      href: "/puppies/bernedoodle-puppies",
+      copy: "Steady, people-focused family puppies."
+    }
+  ];
+  const handleCurrentBreedToggle = (slug) => {
+    const nextOpenBreedSlug = openBreedSlug === slug ? "" : slug;
+    setOpenBreedSlug(nextOpenBreedSlug);
+    scrollLitterBreedGroupIntoView(nextOpenBreedSlug, "puppies-overview");
+  };
 
   return (
-    <SectionIndexPage
-      eyebrow="Puppies"
-      title="Puppies"
-      copy="Browse current availability, upcoming litters, breed information, and what comes home with each puppy."
-      links={primaryNav.find((item) => item.label === "Puppies").links}
-    >
+    <Layout>
+      <PageHero
+        eyebrow="Puppies"
+        title="Puppies"
+        copy="Start with available puppies, current litters, upcoming pairings, previous litters, or the breed page that fits your family."
+      />
       <ListingStatusStrip
         items={[
-              { value: availableNow.length, label: `${availableNow.length === 1 ? "puppy" : "puppies"} available now` },
-              { value: previewCurrentLitters.length, label: `${previewCurrentLitters.length === 1 ? "current litter" : "current litters"} growing now` },
-              { value: nextGoHomeDates[0] || "Waitlist", label: availableNow.length ? "next go-home timing" : "families contacted first" }
+          { value: availableNow.length, label: `${availableNow.length === 1 ? "puppy" : "puppies"} available now` },
+          { value: currentLitterProfiles.length, label: `${currentLitterProfiles.length === 1 ? "current litter" : "current litters"} growing now` },
+          { value: "Waitlist", label: "families contacted first" }
         ]}
       />
-      <section className="card-list listing-content-section">
+      <section className="content-section puppy-hub-path-section">
         <SectionHeader
-          eyebrow="Current Availability"
-          title={availableNow.length ? "Available puppies" : "No puppies available right now"}
-          copy={availableNow.length ? "Only puppies truly open for an approved family appear here." : "Most picks happen through our breed-specific waitlists first. When a puppy opens for a new family, it will appear on the Available Puppies page."}
+          eyebrow="Choose Your Path"
+          title="Where do you want to look?"
+          copy="Use these quick paths when you already know whether you want puppies available now, litters growing now, future timing, or breed details."
         />
-        {availableNow.length ? (
-          availableNow.slice(0, 2).map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />)
-        ) : (
-          <article className="note-panel puppy-overview-note">
-            <h2>Want priority when a puppy opens?</h2>
-            <p>Join the waitlist for the breed you are interested in, or follow our current litters to see which puppies are growing now.</p>
-            <div className="actions">
-              <Link href="/apply" className="button primary">Apply for a Puppy</Link>
-              <Link href="/puppies/current-litters" className="button secondary">View Current Litters</Link>
-            </div>
-          </article>
-        )}
+        <div className="puppy-hub-path-grid">
+          {puppyPathLinks.map((link) => (
+            <Link href={link.href} className="puppy-hub-path-card" key={link.href}>
+              <span>
+                <strong>{link.label}</strong>
+                <small>{link.copy}</small>
+              </span>
+              <ArrowRight aria-hidden="true" size={22} />
+            </Link>
+          ))}
+        </div>
       </section>
-      <section className="card-list listing-content-section">
-        <SectionHeader
-          eyebrow="Current Litters"
-          title="Litters growing now"
-          copy="Current litter cards show parent pairings, go-home timing, weekly puppy photos, and availability notes without crowding the Available Puppies page."
+      <section className="content-section narrow puppy-overview-availability-section">
+        <article className="group-panel puppy-overview-availability-card">
+          <p className="eyebrow">Current Availability</p>
+          <h2>{availableNow.length ? "Puppies are available now" : "No public puppies are available right now"}</h2>
+          <p>
+            {availableNow.length
+              ? "Only puppies ready for a new approved family appear on the Available Puppies page."
+              : "Waitlist families pick first. If puppies remain after those picks, public openings will be posted on the Available Puppies page."}
+          </p>
+          <div className="actions">
+            <Link href="/puppies/available" className="button secondary">Check Availability</Link>
+            <Link href="/apply" className="button primary">Apply for a Puppy</Link>
+          </div>
+        </article>
+      </section>
+      {currentLitterProfiles.length ? (
+        <section className="upcoming-litter-groups listing-content-section puppy-overview-current-groups">
+          <SectionHeader eyebrow="Growing Now" title="Current litters by breed" />
+          {currentBreedGroups.map((group) => (
+            <LitterBreedAccordionGroup
+              countLabel={`${group.litters.length} ${group.litters.length === 1 ? "current litter" : "current litters"}`}
+              detailLabel="Next go-home"
+              detailValue={group.litters[0]?.goHomeDate || group.litters[0]?.goHome || "By litter"}
+              group={group}
+              isOpen={openBreedSlug === group.slug}
+              key={group.slug}
+              onToggle={() => handleCurrentBreedToggle(group.slug)}
+              panelIdSuffix="puppies-overview"
+            />
+          ))}
+          {ungroupedCurrentLitters.length > 0 && (
+            <LitterBreedAccordionGroup
+              countLabel={`${ungroupedCurrentLitters.length} ${ungroupedCurrentLitters.length === 1 ? "current litter" : "current litters"}`}
+              detailLabel="Next go-home"
+              detailValue={ungroupedCurrentLitters[0]?.goHomeDate || ungroupedCurrentLitters[0]?.goHome || "By litter"}
+              group={{
+                slug: "additional-puppies-overview-litters",
+                eyebrow: "More Litters",
+                copy: "",
+                litters: ungroupedCurrentLitters
+              }}
+              isOpen={openBreedSlug === "additional-puppies-overview-litters"}
+              onToggle={() => handleCurrentBreedToggle("additional-puppies-overview-litters")}
+              panelIdSuffix="puppies-overview"
+            />
+          )}
+        </section>
+      ) : (
+        <SmartEmptyState
+          eyebrow="Current Litter Update"
+          title="No current litters posted"
+          copy="When puppies are growing now, this page will point families toward the right current litter page."
+          primaryLabel="Apply for a Puppy"
+          secondaryHref="/puppies/upcoming-litters"
+          secondaryLabel="View Upcoming Litters"
         />
-        {previewCurrentLitters.length ? (
-          previewCurrentLitters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} />)
-        ) : (
-          <p className="small-note">Current litters will appear here as soon as they are ready to share.</p>
-        )}
-      </section>
-    </SectionIndexPage>
+      )}
+    </Layout>
   );
 }
 

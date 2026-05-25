@@ -6709,6 +6709,104 @@ summary {
   padding-bottom: 54px;
 }
 
+.puppy-hub-path-section {
+  padding-top: 18px;
+  padding-bottom: 26px;
+}
+
+.puppy-hub-path-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.puppy-hub-path-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  min-height: 126px;
+  min-width: 0;
+  padding: 20px 22px;
+  color: var(--ink);
+  text-decoration: none;
+  background: rgba(255, 250, 242, 0.78);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(67, 42, 24, 0.06);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.puppy-hub-path-card:hover,
+.puppy-hub-path-card:focus-visible {
+  border-color: rgba(156, 31, 22, 0.42);
+  box-shadow: 0 18px 34px rgba(67, 42, 24, 0.1);
+  transform: translateY(-1px);
+}
+
+.puppy-hub-path-card:focus-visible {
+  outline: 3px solid rgba(156, 31, 22, 0.28);
+  outline-offset: 3px;
+}
+
+.puppy-hub-path-card span {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.puppy-hub-path-card strong {
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2rem, 3.3vw, 2.8rem);
+  font-weight: 400;
+  line-height: 0.92;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.puppy-hub-path-card small {
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.puppy-hub-path-card svg {
+  color: var(--brand-red);
+}
+
+.puppy-overview-availability-section {
+  padding-top: 2px;
+  padding-bottom: 20px;
+}
+
+.puppy-overview-availability-card {
+  display: grid;
+  gap: 12px;
+}
+
+.puppy-overview-availability-card h2 {
+  max-width: 16ch;
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+}
+
+.puppy-overview-availability-card p:not(.eyebrow) {
+  max-width: 64ch;
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.45;
+}
+
+.puppy-overview-availability-card .actions {
+  margin-top: 4px;
+}
+
+.puppy-overview-current-groups.listing-content-section {
+  padding-top: 10px;
+  padding-bottom: 48px;
+}
+
 .buyer-guidance-panel {
   display: grid;
   grid-template-columns: minmax(260px, 0.72fr) minmax(520px, 1.2fr) minmax(200px, auto);
@@ -7368,6 +7466,38 @@ summary {
 
   .listing-status-strip p {
     font-size: 0.62rem;
+  }
+
+  .puppy-hub-path-section {
+    padding-top: 14px;
+    padding-bottom: 18px;
+  }
+
+  .puppy-hub-path-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .puppy-hub-path-card {
+    min-height: 96px;
+    padding: 16px;
+  }
+
+  .puppy-hub-path-card strong {
+    font-size: clamp(1.9rem, 10vw, 2.7rem);
+  }
+
+  .puppy-overview-availability-section {
+    padding-bottom: 14px;
+  }
+
+  .puppy-overview-availability-card {
+    padding: 18px;
+  }
+
+  .puppy-overview-availability-card .actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .availability-empty-panel {
