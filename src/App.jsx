@@ -177,7 +177,7 @@ const notFoundSeo = {
   title: "Page Moved | Red Ranch Dogs",
   description: "Find the right Red Ranch Dogs page for current litters, upcoming litters, puppy applications, process details, and contact information."
 };
-const defaultSocialImage = `${siteOrigin}/images/home/red-ranch-dogs-goldendoodle-puppy-hero-900.jpeg`;
+const defaultSocialImage = `${siteOrigin}/images/seed/red-ranch-dogs-2026-logo-wide.png`;
 const socialProfiles = [brand.instagram, brand.googleReviews].filter(Boolean);
 const localGeo = {
   region: "US-TX",
