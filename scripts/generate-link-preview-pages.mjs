@@ -5,7 +5,7 @@ const root = process.cwd();
 const distRoot = path.join(root, "dist");
 const siteOrigin = "https://www.redranchdogs.com";
 const logoImage = `${siteOrigin}/images/seed/red-ranch-dogs-link-preview.png`;
-const logoAlt = "Red Ranch Dogs logo on a white background with a red footer band";
+const logoAlt = "Red Ranch Dogs logo on a clean white background";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(path.join(root, filePath), "utf8"));
