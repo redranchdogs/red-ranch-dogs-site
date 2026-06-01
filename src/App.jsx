@@ -2769,12 +2769,18 @@ function BreedParentsCTA({ breed, parents = [] }) {
 }
 
 function ParentTestingPanel({ title, links = [], emptyCopy }) {
+  const actionLabel = title.toLowerCase().includes("health") ? "View health testing" : `View ${title.toLowerCase()}`;
+
   return (
     <article className="text-card parent-testing-card">
       <h3>{title}</h3>
       {links.length ? (
         <ul className="clean-list">
-          {links.map((href) => <li key={href}><a href={href}>{title}</a></li>)}
+          {links.map((href) => (
+            <li key={href}>
+              <a href={href} target="_blank" rel="noreferrer">{actionLabel}</a>
+            </li>
+          ))}
         </ul>
       ) : (
         <p>{emptyCopy}</p>
