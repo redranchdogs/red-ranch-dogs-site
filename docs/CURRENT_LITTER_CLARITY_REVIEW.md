@@ -1,6 +1,6 @@
 # Current Litter Clarity Review
 
-Generated: 5/25/2026, 1:05:18 PM Central
+Generated: 6/2/2026, 4:18:54 PM Central
 
 Status: **PASS**
 
@@ -19,8 +19,8 @@ This review reads the current litter data and the public template language so th
 | --- | --- | --- | --- | --- | --- | --- |
 | Birdie + Waylon | 7 | 0 | 0 | 7 | 7 | Fully reserved; future-litter CTA should stay prominent. |
 | Whitley + Waylon | 6 | 0 | 6 | 0 | 6 | Waitlist-first language should explain that public openings post after picks. |
-| Penny + Wyatt | 6 | 0 | 4 | 2 | 6 | Waitlist-first language should explain that public openings post after picks. |
-| Ginny + Butch Cassidy | 6 | 0 | 6 | 0 | 6 | Waitlist-first language should explain that public openings post after picks. |
+| Penny + Wyatt | 6 | 3 | 0 | 3 | 6 | Available puppies are public; keep Apply CTA prominent. |
+| Ginny + Butch Cassidy | 6 | 4 | 0 | 2 | 6 | Available puppies are public; keep Apply CTA prominent. |
 
 ## Template Checks
 

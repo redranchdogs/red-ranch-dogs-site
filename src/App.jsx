@@ -3292,6 +3292,12 @@ function LitterPage({ litter }) {
           copy: "Apply now to get in line for this breed.",
           primaryLabel: "Join the Waitlist"
         }
+      : isCurrentLitter(litter) && puppies.length === 0
+        ? {
+            title: "Want updates on this litter?",
+            copy: "Puppy profiles are being prepared. Apply for the waitlist or ask about current timing and future availability.",
+            primaryLabel: "Join the Waitlist"
+        }
       : isFullyReservedLitter
         ? {
             title: "Want a future litter like this?",

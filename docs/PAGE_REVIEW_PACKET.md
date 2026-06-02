@@ -1,6 +1,6 @@
 # Page Review Packet
 
-Generated: May 25, 2026
+Generated: June 2, 2026
 
 Use this when Adam has time for the human business-accuracy pass. It is intentionally practical: open each page, confirm the bullets, and move on.
 
@@ -23,7 +23,7 @@ Links: [local](http://127.0.0.1:5181/puppies/available) | [production path](http
 Priority: Critical
 
 Confirm:
-- [ ] True available puppy count is correct (0 currently in data).
+- [ ] True available puppy count is correct (7 currently in data).
 - [ ] If there are no available puppies, empty-state copy routes families to waitlist/current litters without sounding broken.
 - [ ] Only truly available puppies appear here.
 ### Current Litters
@@ -40,8 +40,8 @@ Confirm:
 Notes:
 - Birdie + Waylon: May 23-25, 2026; 7 Reserved.
 - Whitley + Waylon: June 24-26, 2026; 6 Waitlist Matching.
-- Penny + Wyatt: June 14-16, 2026; 2 Reserved, 4 Waitlist Matching.
-- Ginny + Butch Cassidy: June 14-16, 2026; 6 Waitlist Matching.
+- Penny + Wyatt: June 14-16, 2026; 3 Reserved, 3 Available.
+- Ginny + Butch Cassidy: June 14-16, 2026; 4 Available, 2 Reserved.
 ### Upcoming Litters
 
 Route: `/puppies/upcoming-litters`
