@@ -280,7 +280,7 @@ export const upcomingLitters = {
       litters: [
         ["Ginny + Butch", "Mini Petite Goldendoodles", "Red Abstract | 20-25 lbs", "Due April 2026", "Go Home June 2026"],
         ["Whitley + Waylon", "Mini Goldendoodles", "Red Abstract | 25-30 lbs", "Due April 2026", "Go Home June 2026"],
-        ["Faye + Sundance", "Mini Goldendoodles", "Red Abstract | 25-30 lbs", "Due May 2026", "Go Home July 2026"],
+        ["Faye + Sundance", "Multigen Petite Goldendoodles", "Chocolate + merle possibilities | 25-35 lbs", "Born May 23, 2026", "Go Home July 2026"],
         ["Georgia + Waylon", "Mini Goldendoodles", "Red Abstract | 20-25 lbs", "Due May 2026", "Go Home July 2026"]
       ]
     },
@@ -550,10 +550,10 @@ export const damProfiles = [
     href: "/faye",
     group: "Poodle Dams",
     type: "AKC Standard Poodle",
-    weight: "40 lbs",
+    weight: "50 lbs",
     image: "/images/dams/faye.webp",
     genetics: "",
-    copy: "Faye is an AKC standard poodle momma with a happy, well-tempered personality.",
+    copy: "Faye is an AKC standard poodle mama with standout intelligence, a sweet steady temperament, and a strong history of healthy, happy puppies.",
     testing: ["Embark Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips good"],
     previousLitters: ["Faye Litter 1", "Faye Litter 2", "Faye + Bodhe Litter 1"]
   },
@@ -667,7 +667,7 @@ export const studCatalog = [
     breed: "Goldendoodles",
     dogs: [
       ["Waylon Jennings", "Multigen Mini Goldendoodle", "19 lbs", "ee KBky atat Bb SS -/- FF, 10:0 Red Intensity, 32% Retriever", "/waylon-jennings"],
-      ["Sundance", "Micro Goldendoodle", "13 lbs", "ee KBky atat bb spsp FF -/- Curl TT Shedding, 22% Retriever", "/sundance"],
+      ["Sundance", "Micro Goldendoodle", "11 lbs", "ee KBky atat bb spsp FF -/- Curl TT Shedding, 22.4% Golden Retriever", "/sundance"],
       ["Enzo", "Micro Goldendoodle", "13 lbs", "ee KBky aya BB Ssp +/- FF, 10:0 Red Intensity, 94% Retriever", "/enzo"],
       ["Butch Cassidy", "Micro Goldendoodle", "16 lbs", "ee KBky ata Bb Ssp FF -/- Curl TT Shedding, 16% Retriever", "/butch-cassidy"],
       ["Knox", "F1b Mini Goldendoodle", "10 lbs", "ee KBKB ata BB SS +/- FF, 9:1 Red Intensity, 33% Retriever", "/knox"]
@@ -740,8 +740,8 @@ export const studDetails = {
     name: "Sundance",
     group: "Goldendoodles",
     type: "Micro Goldendoodle",
-    weight: "13 lbs",
-    genetics: "ee KBky atat bb spsp FF -/- Curl TT Shedding, 22% Retriever",
+    weight: "11 lbs",
+    genetics: "ee KBky atat bb spsp FF -/- Curl TT Shedding, 22.4% Golden Retriever",
     image: "/images/studs/sundance-red-ranch-dogs.webp",
     fee: "$1500",
     testing: ["Embark Testing", "UC Davis Results"],

@@ -223,7 +223,7 @@
     "role": "mama",
     "breedSlug": "goldendoodle-puppies",
     "breed": "AKC Standard Poodle",
-    "weight": "40 lbs",
+    "weight": "50 lbs",
     "color": "Apricot",
     "coat": "Curly",
     "status": "Active",
@@ -239,7 +239,7 @@
       "faye-sundance-may-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Faye",
-    "description": "AKC Standard Poodle mama with classic Poodle intelligence and structure."
+    "description": "AKC Standard Poodle mama with standout intelligence, a sweet steady temperament, and a strong history of healthy, happy puppies."
   },
   {
     "slug": "kylie",
@@ -524,9 +524,9 @@
     "role": "stud",
     "breedSlug": "goldendoodle-puppies",
     "breed": "Micro Goldendoodle",
-    "weight": "13 lbs",
+    "weight": "11 lbs",
     "color": "Red",
-    "coat": "Wavy",
+    "coat": "Silky straight",
     "status": "Active",
     "mainPhoto": "/images/studs/sundance-red-ranch-dogs.webp",
     "photos": [
@@ -540,8 +540,8 @@
       "faye-sundance-may-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Sundance",
-    "description": "Micro Goldendoodle stud used for compact, people-focused Goldendoodle pairings.",
-    "genetics": "ee KBky atat bb spsp; FF -/- Curl TT Shedding; 22% Retriever"
+    "description": "Tiny Goldendoodle stud with a silky-soft straighter coat, sweet temperament, compact size, and chocolate color genetics.",
+    "genetics": "ee KBky atat bb spsp; FF -/- Curl TT Shedding; 22.4% Golden Retriever"
   },
   {
     "slug": "enzo",
