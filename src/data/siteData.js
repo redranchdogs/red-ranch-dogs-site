@@ -281,7 +281,7 @@ export const upcomingLitters = {
         ["Ginny + Butch", "Mini Petite Goldendoodles", "Red Abstract | 20-25 lbs", "Due April 2026", "Go Home June 2026"],
         ["Whitley + Waylon", "Mini Goldendoodles", "Red Abstract | 25-30 lbs", "Due April 2026", "Go Home June 2026"],
         ["Faye + Sundance", "Multigen Petite Goldendoodles", "Chocolate + merle possibilities | 25-35 lbs", "Born May 23, 2026", "Go Home July 2026"],
-        ["Georgia + Waylon", "Mini Goldendoodles", "Red Abstract | 20-25 lbs", "Due May 2026", "Go Home July 2026"]
+        ["Georgia + Waylon", "Mini Goldendoodles", "Red Abstract | 20-25 lbs", "Born May 2026", "Go Home July 2026"]
       ]
     },
     {
