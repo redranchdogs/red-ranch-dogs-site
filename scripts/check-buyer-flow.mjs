@@ -74,6 +74,7 @@ const routes = sitemapRoutes(sitemap);
 const publicPuppies = puppies.filter(isPublicRecord);
 const availablePuppies = publicPuppies.filter((puppy) => normalize(puppy.status) === "available");
 const publicLitters = litters.filter(isPublicRecord);
+const unsortedCurrentLitters = publicLitters.filter((litter) => normalize(litter.status).includes("current"));
 const currentLitters = publicLitters
   .filter((litter) => normalize(litter.status).includes("current"))
   .sort((first, second) => firstDateValue(first.goHomeDate || first.goHome) - firstDateValue(second.goHomeDate || second.goHome));
@@ -189,7 +190,10 @@ if (!app.includes("currentLitterProfiles") || !app.includes("sortableLitterDate"
   blockers.push("Current litters page should use sorted currentLitterProfiles instead of raw litter order.");
 }
 
-if (currentLitters[0]?.slug !== "birdie-waylon-spring-2026") {
+const expectedCurrentOrder = [...unsortedCurrentLitters]
+  .sort((first, second) => firstDateValue(first.goHomeDate || first.goHome) - firstDateValue(second.goHomeDate || second.goHome));
+
+if (listLabels(currentLitters) !== listLabels(expectedCurrentOrder)) {
   blockers.push(`Current litters should sort by earliest go-home date first. Current computed order: ${listLabels(currentLitters)}`);
 }
 

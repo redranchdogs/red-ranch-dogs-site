@@ -2917,6 +2917,61 @@ textarea {
   line-height: 1.35;
 }
 
+.previous-weekly-photo-list {
+  display: grid;
+  gap: 20px;
+  margin-top: 22px;
+}
+
+.previous-weekly-photo-group {
+  padding: clamp(16px, 3vw, 24px);
+}
+
+.previous-weekly-photo-heading {
+  margin-bottom: 14px;
+}
+
+.previous-weekly-photo-heading h3 {
+  margin: 0;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.35rem, 5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.previous-weekly-photo-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0;
+}
+
+.previous-weekly-photo-card {
+  position: relative;
+}
+
+.previous-weekly-photo-card figure {
+  position: relative;
+  margin: 0;
+}
+
+.previous-weekly-photo-card figcaption {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 8px 14px 7px;
+  color: var(--cream);
+  background: rgba(41, 36, 30, 0.82);
+  border: 1px solid rgba(255, 252, 245, 0.42);
+  border-radius: 999px;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(1.35rem, 4vw, 2rem);
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  box-shadow: 0 8px 18px rgba(41, 26, 18, 0.18);
+}
+
 .previous-litter-detail-shell {
   display: grid;
   grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);

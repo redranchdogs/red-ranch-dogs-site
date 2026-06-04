@@ -12,7 +12,7 @@ const routes = [
   "/",
   "/puppies/current-litters",
   "/puppies/available",
-  "/litters/birdie-waylon-spring-2026",
+  "/birdie-waylon-spring-2026",
   "/litters/whitley-waylon-april-2026",
   "/apply",
   "/contact",

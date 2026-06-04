@@ -458,7 +458,7 @@ const clientRedirects = Object.fromEntries([
   ["/meet-our-team", "/about/meet-the-team"],
   ["/reviews-1", "/about/reviews"],
   ["/contact-1", "/contact"],
-  ["/birdie-waylon-jennings-1", "/litters/birdie-waylon-spring-2026"],
+  ["/birdie-waylon-jennings-1", "/birdie-waylon-spring-2026"],
   ["/penny-wyatt", "/litters/penny-wyatt-spring-2026"],
   ["/ginnybutch", "/litters/ginny-butch-spring-2026"],
   ["/winnie-wyatt", "/litters/winnie-wyatt-spring-2026"],
@@ -2348,8 +2348,10 @@ function PreviousLitterPairingMedia({ litter, large = false }) {
 }
 
 function PreviousLitterCard({ litter, href }) {
+  const weeklyPhotoCount = (litter.weeklyPuppyPhotos || [])
+    .reduce((total, group) => total + (group.photos?.length || 0), 0);
   const puppyCount = litter.puppyPhotos?.length || litter.puppies?.length || 0;
-  const photoLabel = litter.puppyPhotos?.length ? "Puppy photos" : "Names listed";
+  const photoLabel = weeklyPhotoCount ? `${weeklyPhotoCount} photos` : litter.puppyPhotos?.length ? "Puppy photos" : "Names listed";
   const date = previousLitterDate(litter);
 
   return (
@@ -4375,7 +4377,9 @@ function PreviousLitterDetailPage({ litter, href }) {
   const currentLitterHref = currentLitterHrefForPastLitter(href);
   const archiveHref = archiveHrefForPreviousLitter(href);
   const puppyPhotos = litter.puppyPhotos || [];
+  const weeklyPuppyPhotos = litter.weeklyPuppyPhotos || [];
   const hasPuppyPhotos = puppyPhotos.length > 0;
+  const hasWeeklyPuppyPhotos = weeklyPuppyPhotos.some((group) => group.photos?.length);
 
   return (
     <Layout>
@@ -4414,12 +4418,35 @@ function PreviousLitterDetailPage({ litter, href }) {
           eyebrow="Puppies"
           title={litter.theme || "Puppies from this litter"}
           copy={
-            hasPuppyPhotos
-              ? "These photos show the puppies from this previous litter so families can see the look and style this pairing produced."
+            hasWeeklyPuppyPhotos
+              ? "These galleries show the puppies from this previous litter as they grew."
+              : hasPuppyPhotos
+                ? "These photos show the puppies from this previous litter so families can see the look and style this pairing produced."
               : "These names show the puppy theme from this pairing so families can understand the look and style of previous Red Ranch Dogs litters."
           }
         />
-        {hasPuppyPhotos ? (
+        {hasWeeklyPuppyPhotos ? (
+          <div className="previous-weekly-photo-list">
+            {weeklyPuppyPhotos.map((group) => (
+              <article className="previous-weekly-photo-group group-panel" key={group.week}>
+                <div className="previous-weekly-photo-heading">
+                  <p className="eyebrow">{group.week}</p>
+                  <h3>{group.week} gallery</h3>
+                </div>
+                <div className="previous-puppy-photo-grid previous-weekly-photo-grid">
+                  {(group.photos || []).map((puppy, index) => (
+                    <article className="previous-puppy-photo-card previous-weekly-photo-card" key={`${group.week}-${puppy.name}-${puppy.image}-${index}`}>
+                      <figure>
+                        <img src={puppy.image} alt={`${puppy.name} from ${litter.name} ${group.week}`} loading="lazy" />
+                        <figcaption>{puppy.name}</figcaption>
+                      </figure>
+                    </article>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : hasPuppyPhotos ? (
           <div className="previous-puppy-photo-grid">
             {puppyPhotos.map((puppy) => (
               <article className="previous-puppy-photo-card" key={puppy.name}>

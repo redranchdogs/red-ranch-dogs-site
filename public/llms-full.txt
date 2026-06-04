@@ -84,7 +84,6 @@ Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The public
 - https://www.redranchdogs.com/puppies/glory
 - https://www.redranchdogs.com/puppies/rocket
 - https://www.redranchdogs.com/puppies/jubilee
-- https://www.redranchdogs.com/litters/birdie-waylon-spring-2026
 - https://www.redranchdogs.com/litters/whitley-waylon-april-2026
 - https://www.redranchdogs.com/litters/faye-sundance-may-2026
 - https://www.redranchdogs.com/litters/georgia-waylon-may-2026
@@ -123,6 +122,7 @@ Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The public
 - https://www.redranchdogs.com/parents/wyatt-earp
 - https://www.redranchdogs.com/parents/bodhe
 - https://www.redranchdogs.com/honey-bram
+- https://www.redranchdogs.com/birdie-waylon-spring-2026
 - https://www.redranchdogs.com/birdie-waylon-jennings
 - https://www.redranchdogs.com/june-waylon
 - https://www.redranchdogs.com/phoebe-waylon
@@ -143,7 +143,6 @@ Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The public
 
 ## Current Litters
 
-- Birdie + Waylon: https://www.redranchdogs.com/litters/birdie-waylon-spring-2026. Status: Current Litter. Breed: Goldendoodle. Birth: April 1, 2026. Go-home: May 23-25, 2026. This litter is currently reserved. Join the Goldendoodle waitlist for future availability.
 - Whitley + Waylon: https://www.redranchdogs.com/litters/whitley-waylon-april-2026. Status: Current Litter. Breed: Multigen Mini Goldendoodle. Birth: May 3, 2026. Go-home: June 24-26, 2026. Puppies from this litter are being matched through the Goldendoodle waitlist.
 - Faye + Sundance: https://www.redranchdogs.com/litters/faye-sundance-may-2026. Status: Current Litter. Breed: Multigen Petite Goldendoodle. Birth: May 23, 2026. Go-home: July 14-16, 2026. Puppies from this litter are being matched through the Goldendoodle waitlist.
 - Georgia + Waylon: https://www.redranchdogs.com/litters/georgia-waylon-may-2026. Status: Current Litter. Breed: Multigen Mini Goldendoodle. Birth: May 23, 2026. Go-home: July 14-16, 2026. Puppies from this litter are being matched through the Goldendoodle waitlist.
@@ -177,7 +176,7 @@ Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The public
 - Georgia: https://www.redranchdogs.com/parents/georgia. mama; F1 Mini Goldendoodle; 25 lbs.
 - Ginny: https://www.redranchdogs.com/parents/ginny. mama; F1 Goldendoodle; 30 lbs.
 - Trudy: https://www.redranchdogs.com/parents/trudy. mama; AKC Toy Poodle; 6 lbs.
-- Faye: https://www.redranchdogs.com/parents/faye. mama; AKC Standard Poodle; 40 lbs.
+- Faye: https://www.redranchdogs.com/parents/faye. mama; AKC Standard Poodle; 50 lbs.
 - Kylie: https://www.redranchdogs.com/parents/kylie. mama; Ultra Bernedoodle; 30-35 lbs.
 - Tilly: https://www.redranchdogs.com/parents/tilly. mama; Ultra Bernedoodle; 40 lbs.
 - Sylvee: https://www.redranchdogs.com/parents/sylvee. mama; F1b Bernedoodle; 22 lbs.
@@ -189,7 +188,7 @@ Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The public
 - Hank Williams: https://www.redranchdogs.com/parents/hank-williams. stud; F1 Mini Bernedoodle; 42 lbs.
 - Beau: https://www.redranchdogs.com/parents/beau. stud; F1 Mini Bernedoodle; 43 lbs.
 - Waylon Jennings: https://www.redranchdogs.com/parents/waylon-jennings. stud; Multigen Mini Goldendoodle; 19 lbs.
-- Sundance: https://www.redranchdogs.com/parents/sundance. stud; Micro Goldendoodle; 13 lbs.
+- Sundance: https://www.redranchdogs.com/parents/sundance. stud; Micro Goldendoodle; 11 lbs.
 - Enzo: https://www.redranchdogs.com/parents/enzo. stud; Micro Goldendoodle; 13 lbs.
 - Butch Cassidy: https://www.redranchdogs.com/parents/butch-cassidy. stud; Micro Goldendoodle; 16 lbs.
 - Knox: https://www.redranchdogs.com/parents/knox. stud; F1b Mini Goldendoodle; 10 lbs.

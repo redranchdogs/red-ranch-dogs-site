@@ -2,8 +2,8 @@
   {
     "slug": "birdie-waylon-spring-2026",
     "name": "Birdie + Waylon",
-    "visibility": "public",
-    "status": "Current Litter",
+    "visibility": "private",
+    "status": "Previous Litter",
     "litterNumber": "Birdie 3",
     "mamaSlug": "birdie",
     "mama": "Birdie",
@@ -18,9 +18,9 @@
     "expectedColors": "Red abstract and rich red coats possible",
     "expectedCoatTraits": "Silky-soft, wavy to curly lower-shedding coat possibilities",
     "priceRange": "$3,200",
-    "availabilitySummary": "Birdie and Waylon's Mini Goldendoodle litter is currently reserved.",
-    "availabilityNote": "This litter is currently reserved. Join the Goldendoodle waitlist for future availability.",
-    "previousLitterHref": "/birdie-waylon-jennings",
+    "availabilitySummary": "Birdie and Waylon puppies are home with their families.",
+    "availabilityNote": "This litter has gone home and now lives in the previous litter archive.",
+    "previousLitterHref": "/birdie-waylon-spring-2026",
     "puppySlugs": [
       "ranger",
       "axel",
@@ -30,8 +30,8 @@
       "arizona",
       "indie"
     ],
-    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Birdie 3 + Waylon",
-    "weeklyUpdateStatus": "Week 5 photos are live.",
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Previous Litters / Birdie 3 + Waylon",
+    "weeklyUpdateStatus": "Moved to previous litters.",
     "weeklyUpdateGallery": [
       "/images/puppies/birdie-waylon-2026/ranger-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
       "/images/puppies/birdie-waylon-2026/axel-mini-goldendoodle-puppy-birdie-waylon-week-5-red-ranch-dogs.jpg",
