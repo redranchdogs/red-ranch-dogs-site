@@ -5,7 +5,7 @@
     "tab": "Public Waitlist",
     "hub": "Website Hub"
   },
-  "updatedAt": "2026-05-24",
+  "updatedAt": "2026-06-04",
   "publicRows": [
     {
       "breed": "Goldendoodle",
@@ -17,48 +17,34 @@
     {
       "breed": "Goldendoodle",
       "position": 2,
-      "display_name": "Ben L.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 3,
       "display_name": "Elise M.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Goldendoodle",
-      "position": 4,
+      "position": 3,
       "display_name": "Sara N.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Goldendoodle",
-      "position": 5,
+      "position": 4,
       "display_name": "Samantha E.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Goldendoodle",
-      "position": 6,
-      "display_name": "Annika P.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Goldendoodle",
-      "position": 7,
+      "position": 5,
       "display_name": "Erin F.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Goldendoodle",
-      "position": 8,
+      "position": 6,
       "display_name": "Katie A.",
       "status": "Active",
       "show_publicly": "Yes"
@@ -94,27 +80,20 @@
     {
       "breed": "Cavapoo",
       "position": 5,
-      "display_name": "Annika P.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Cavapoo",
-      "position": 6,
       "display_name": "Michelle W.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 7,
+      "position": 6,
       "display_name": "Susan C.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 8,
+      "position": 7,
       "display_name": "David R.",
       "status": "Active",
       "show_publicly": "Yes",
