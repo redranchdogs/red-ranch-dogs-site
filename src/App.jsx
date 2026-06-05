@@ -1895,11 +1895,11 @@ function puppyNameForGalleryImage(image = "", puppies = []) {
     const slug = puppy.slug?.toLowerCase();
 
     if (!slug) return false;
-    if (fileName.startsWith(`${slug}-`) || fileName === `${slug}.jpg`) return true;
     if (puppy.mainPhoto === image || puppy.image === image) return true;
     if (puppy.photos?.includes(image)) return true;
+    if (puppy.weeklyPhotos?.some((update) => update.photos?.includes(image) || update.images?.includes(image))) return true;
 
-    return puppy.weeklyPhotos?.some((update) => update.images?.includes(image));
+    return fileName.startsWith(`${slug}-`) || fileName === `${slug}.jpg`;
   });
 
   return matchedPuppy?.name || "";
