@@ -746,7 +746,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Black",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",
@@ -799,8 +799,8 @@
         ]
       }
     ],
-    "description": "Ref is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
-    "availabilityNote": "Ref is available to reserve now.",
+    "description": "Ref is a reserved F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
+    "availabilityNote": "Ref has found his home and is reserved.",
     "personalityNote": "Week 4 photos are live. Personality notes will continue to be updated as this puppy grows."
   },
   {
