@@ -508,20 +508,26 @@ async function sendEmail(payload) {
     return { skipped: true };
   }
 
+  const emailPayload = {
+    from: process.env.FORM_FROM_EMAIL,
+    to: process.env.FORM_TO_EMAIL,
+    subject: ["Red Ranch Dogs", payload.leadType || payload.formType, payload.preferredBreed || payload.inquiryType]
+      .filter(Boolean)
+      .join(" - "),
+    text: submissionText(payload)
+  };
+
+  if (isValidEmail(payload.email)) {
+    emailPayload.reply_to = payload.email;
+  }
+
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      from: process.env.FORM_FROM_EMAIL,
-      to: process.env.FORM_TO_EMAIL,
-      subject: ["Red Ranch Dogs", payload.leadType || payload.formType, payload.preferredBreed || payload.inquiryType]
-        .filter(Boolean)
-        .join(" - "),
-      text: submissionText(payload)
-    })
+    body: JSON.stringify(emailPayload)
   });
 
   if (!response.ok) {
