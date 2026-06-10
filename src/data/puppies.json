@@ -2320,7 +2320,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Reserved",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2355,7 +2355,7 @@
       }
     ],
     "description": "Glory is a female Multigen Mini Goldendoodle puppy from Georgia + Waylon.",
-    "availabilityNote": "Glory is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Glory has found her home and is reserved.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/georgia-waylon-2026/glory-multigen-mini-goldendoodle-puppy-georgia-waylon-week-2-red-ranch-dogs.jpg"
   },
