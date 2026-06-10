@@ -1168,7 +1168,7 @@
     "stud": "Butch Cassidy",
     "gender": "Male",
     "collarColor": "Gray",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "15-20 lbs",
     "birthDate": "April 23, 2026",
@@ -1231,7 +1231,7 @@
       }
     ],
     "description": "Camper is a male Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
-    "availabilityNote": "Camper is available to reserve now.",
+    "availabilityNote": "Camper has found his home and is reserved.",
     "personalityNote": "Week 7 photos are live. Personality notes will continue to be updated as this puppy grows."
   },
   {
@@ -1479,7 +1479,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Blue",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-30 lbs",
     "birthDate": "May 3, 2026",
@@ -1488,7 +1488,7 @@
     "color": "Red abstract possibilities",
     "coat": "Straight to wavy, lower-shedding Goldendoodle coat",
     "description": "Hook is a male Multigen Mini Goldendoodle puppy from Whitley and Waylon's litter.",
-    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "availabilityNote": "Hook is available to reserve now.",
     "personalityNote": "Week 5 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/whitley-waylon-2026/hook-multigen-mini-goldendoodle-puppy-whitley-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
@@ -1547,7 +1547,7 @@
     "stud": "Waylon Jennings",
     "gender": "Female",
     "collarColor": "Pink",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-30 lbs",
     "birthDate": "May 3, 2026",
@@ -1556,7 +1556,7 @@
     "color": "Red abstract possibilities",
     "coat": "Straight to wavy, lower-shedding Goldendoodle coat",
     "description": "Minnow is a female Multigen Mini Goldendoodle puppy from Whitley and Waylon's litter.",
-    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "availabilityNote": "Minnow is available to reserve now.",
     "personalityNote": "Week 5 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/whitley-waylon-2026/minnow-multigen-mini-goldendoodle-puppy-whitley-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
@@ -1615,7 +1615,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Orange",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-30 lbs",
     "birthDate": "May 3, 2026",
@@ -1624,7 +1624,7 @@
     "color": "Red abstract possibilities",
     "coat": "Straight to wavy, lower-shedding Goldendoodle coat",
     "description": "Tackle is a male Multigen Mini Goldendoodle puppy from Whitley and Waylon's litter.",
-    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "availabilityNote": "Tackle is available to reserve now.",
     "personalityNote": "Week 5 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/whitley-waylon-2026/tackle-multigen-mini-goldendoodle-puppy-whitley-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
@@ -1687,7 +1687,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Grey",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-30 lbs",
     "birthDate": "May 3, 2026",
@@ -1696,7 +1696,7 @@
     "color": "Red abstract possibilities",
     "coat": "Straight to wavy, lower-shedding Goldendoodle coat",
     "description": "Bass is a male Multigen Mini Goldendoodle puppy from Whitley and Waylon's litter.",
-    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "availabilityNote": "Bass is available to reserve now.",
     "personalityNote": "Week 5 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/whitley-waylon-2026/bass-multigen-mini-goldendoodle-puppy-whitley-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
@@ -1754,7 +1754,7 @@
     "stud": "Waylon Jennings",
     "gender": "Female",
     "collarColor": "Maroon",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-30 lbs",
     "birthDate": "May 3, 2026",
@@ -1763,7 +1763,7 @@
     "color": "Red abstract possibilities",
     "coat": "Straight to wavy, lower-shedding Goldendoodle coat",
     "description": "Bobber is a female Multigen Mini Goldendoodle puppy from Whitley and Waylon's litter.",
-    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "availabilityNote": "Bobber is available to reserve now.",
     "personalityNote": "Week 5 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/whitley-waylon-2026/bobber-multigen-mini-goldendoodle-puppy-whitley-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
@@ -1825,7 +1825,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Black",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-30 lbs",
     "birthDate": "May 3, 2026",
@@ -1834,7 +1834,7 @@
     "color": "Red abstract possibilities",
     "coat": "Straight to wavy, lower-shedding Goldendoodle coat",
     "description": "Skipper is a male Multigen Mini Goldendoodle puppy from Whitley and Waylon's litter.",
-    "availabilityNote": "Being offered to the Goldendoodle waitlist before public availability is updated.",
+    "availabilityNote": "Skipper is available to reserve now.",
     "personalityNote": "Week 5 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/whitley-waylon-2026/skipper-multigen-mini-goldendoodle-puppy-whitley-waylon-week-5-red-ranch-dogs.jpg",
     "photos": [
@@ -1898,7 +1898,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -1931,7 +1931,7 @@
       }
     ],
     "description": "Marine is a male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Marine is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Marine is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/marine-multigen-petite-goldendoodle-puppy-faye-sundance-week-2-red-ranch-dogs.jpg"
   },
@@ -1952,7 +1952,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -1983,7 +1983,7 @@
       }
     ],
     "description": "Major is a male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Major is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Major is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/major-multigen-petite-goldendoodle-puppy-faye-sundance-week-2-red-ranch-dogs.jpg"
   },
@@ -2004,7 +2004,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2039,7 +2039,7 @@
       }
     ],
     "description": "Navy is a female Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Navy is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Navy is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/navy-multigen-petite-goldendoodle-puppy-faye-sundance-week-2-red-ranch-dogs.jpg"
   },
@@ -2060,7 +2060,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2089,7 +2089,7 @@
       }
     ],
     "description": "Trooper is a male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Trooper is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Trooper is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/trooper-multigen-petite-goldendoodle-puppy-faye-sundance-week-2-red-ranch-dogs.jpg"
   },
@@ -2110,7 +2110,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2145,7 +2145,7 @@
       }
     ],
     "description": "Pilot is a male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Pilot is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Pilot is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/pilot-multigen-petite-goldendoodle-puppy-faye-sundance-week-2-red-ranch-dogs.jpg"
   },
@@ -2166,7 +2166,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2195,7 +2195,7 @@
       }
     ],
     "description": "Victory is a female Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Victory is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Victory is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/victory-multigen-petite-goldendoodle-puppy-faye-sundance-week-2-red-ranch-dogs.jpg"
   },
@@ -2216,7 +2216,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2248,7 +2248,7 @@
       }
     ],
     "description": "Firecracker is a male Multigen Mini Goldendoodle puppy from Georgia + Waylon.",
-    "availabilityNote": "Firecracker is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Firecracker is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/georgia-waylon-2026/firecracker-multigen-mini-goldendoodle-puppy-georgia-waylon-week-2-red-ranch-dogs.jpg"
   },
@@ -2269,7 +2269,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2299,7 +2299,7 @@
       }
     ],
     "description": "Valor is a male Multigen Mini Goldendoodle puppy from Georgia + Waylon.",
-    "availabilityNote": "Valor is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Valor is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/georgia-waylon-2026/valor-multigen-mini-goldendoodle-puppy-georgia-waylon-week-2-red-ranch-dogs.jpg"
   },
@@ -2376,7 +2376,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2407,7 +2407,7 @@
       }
     ],
     "description": "Rocket is a male Multigen Mini Goldendoodle puppy from Georgia + Waylon.",
-    "availabilityNote": "Rocket is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Rocket is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/georgia-waylon-2026/rocket-multigen-mini-goldendoodle-puppy-georgia-waylon-week-2-red-ranch-dogs.jpg"
   },
@@ -2428,7 +2428,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2460,7 +2460,7 @@
       }
     ],
     "description": "Jubilee is a female Multigen Mini Goldendoodle puppy from Georgia + Waylon.",
-    "availabilityNote": "Jubilee is being matched through the Goldendoodle waitlist.",
+    "availabilityNote": "Jubilee is available to reserve now.",
     "personalityNote": "Week 2 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/georgia-waylon-2026/jubilee-multigen-mini-goldendoodle-puppy-georgia-waylon-week-2-red-ranch-dogs.jpg"
   }
