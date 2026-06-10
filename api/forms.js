@@ -60,7 +60,30 @@ const submissionHeaders = [
   "Signature",
   "Message",
   "Source",
-  "User Agent"
+  "User Agent",
+  "Google Click ID",
+  "GBRAID",
+  "WBRAID",
+  "First Landing Page",
+  "First Referrer",
+  "First UTM Source",
+  "First UTM Medium",
+  "First UTM Campaign",
+  "First UTM Content",
+  "First UTM Term",
+  "First Google Click ID",
+  "First GBRAID",
+  "First WBRAID",
+  "Last Landing Page",
+  "Last Referrer",
+  "Last UTM Source",
+  "Last UTM Medium",
+  "Last UTM Campaign",
+  "Last UTM Content",
+  "Last UTM Term",
+  "Last Google Click ID",
+  "Last GBRAID",
+  "Last WBRAID"
 ];
 
 const submissionHeaderKeys = [
@@ -120,7 +143,30 @@ const submissionHeaderKeys = [
   "signature",
   "message",
   "source",
-  "userAgent"
+  "userAgent",
+  "gclid",
+  "gbraid",
+  "wbraid",
+  "firstLandingPage",
+  "firstReferrer",
+  "firstUtmSource",
+  "firstUtmMedium",
+  "firstUtmCampaign",
+  "firstUtmContent",
+  "firstUtmTerm",
+  "firstGclid",
+  "firstGbraid",
+  "firstWbraid",
+  "lastLandingPage",
+  "lastReferrer",
+  "lastUtmSource",
+  "lastUtmMedium",
+  "lastUtmCampaign",
+  "lastUtmContent",
+  "lastUtmTerm",
+  "lastGclid",
+  "lastGbraid",
+  "lastWbraid"
 ];
 
 const leadQueueHeaders = [
@@ -314,14 +360,27 @@ async function ensureSheetHeaders(spreadsheetId, sheetName, headers) {
     spreadsheetId,
     sheetName
   });
+  const values = currentSheet.values || [];
 
-  if (!headersMatch(currentSheet.values || [], headers)) {
+  if (!values.length) {
     await postBridge({
       action: "replaceSheet",
       spreadsheetId,
       sheetName,
       values: [headers]
     });
+    return;
+  }
+
+  if (!headersMatch(values, headers)) {
+    console.error("Refusing to replace non-empty sheet headers.", {
+      expectedColumns: headers.length,
+      existingColumns: values[0]?.length || 0,
+      sheetName
+    });
+    throw new Error(
+      `Sheet header mismatch for ${sheetName}. Existing rows were preserved; append the new columns manually.`
+    );
   }
 }
 
@@ -514,7 +573,7 @@ async function sendEmail(payload) {
     subject: ["Red Ranch Dogs", payload.leadType || payload.formType, payload.preferredBreed || payload.inquiryType]
       .filter(Boolean)
       .join(" - "),
-    text: submissionText(payload)
+    text: submissionText({ ...payload, message: expandedMessage(payload) })
   };
 
   if (isValidEmail(payload.email)) {
@@ -661,6 +720,29 @@ export default async function handler(request, response) {
     utmCampaign: clean(body.utmCampaign),
     utmContent: clean(body.utmContent),
     utmTerm: clean(body.utmTerm),
+    gclid: clean(body.gclid),
+    gbraid: clean(body.gbraid),
+    wbraid: clean(body.wbraid),
+    firstLandingPage: clean(body.firstLandingPage),
+    firstReferrer: clean(body.firstReferrer),
+    firstUtmSource: clean(body.firstUtmSource),
+    firstUtmMedium: clean(body.firstUtmMedium),
+    firstUtmCampaign: clean(body.firstUtmCampaign),
+    firstUtmContent: clean(body.firstUtmContent),
+    firstUtmTerm: clean(body.firstUtmTerm),
+    firstGclid: clean(body.firstGclid),
+    firstGbraid: clean(body.firstGbraid),
+    firstWbraid: clean(body.firstWbraid),
+    lastLandingPage: clean(body.lastLandingPage),
+    lastReferrer: clean(body.lastReferrer),
+    lastUtmSource: clean(body.lastUtmSource),
+    lastUtmMedium: clean(body.lastUtmMedium),
+    lastUtmCampaign: clean(body.lastUtmCampaign),
+    lastUtmContent: clean(body.lastUtmContent),
+    lastUtmTerm: clean(body.lastUtmTerm),
+    lastGclid: clean(body.lastGclid),
+    lastGbraid: clean(body.lastGbraid),
+    lastWbraid: clean(body.lastWbraid),
     userAgent: clean(body.userAgent),
     source: clean(body.source),
     name: clean(body.name),
@@ -701,16 +783,51 @@ export default async function handler(request, response) {
     message: clean(body.message)
   };
 
-  payload.leadSummary = compactLeadSummary(payload);
-  payload.message = expandedMessage(payload);
-
   const validationMessage = validatePayload(payload);
   if (validationMessage) {
     return response.status(400).json({ message: validationMessage });
   }
 
+  payload.leadSummary = compactLeadSummary(payload);
+
   try {
-    const [emailResult, sheetResult] = await Promise.all([sendEmail(payload), appendSheet(payload)]);
+    const [emailDelivery, sheetDelivery] = await Promise.allSettled([sendEmail(payload), appendSheet(payload)]);
+    const emailResult = emailDelivery.status === "fulfilled" ? emailDelivery.value : { skipped: true };
+    const sheetResult = sheetDelivery.status === "fulfilled" ? sheetDelivery.value : { skipped: true };
+    const emailDelivered = emailDelivery.status === "fulfilled" && !emailResult.skipped;
+    const sheetDelivered = sheetDelivery.status === "fulfilled" && !sheetResult.skipped;
+
+    if (emailDelivery.status === "rejected") {
+      console.error("Form email delivery failed.", {
+        error: emailDelivery.reason?.message || String(emailDelivery.reason),
+        formType: payload.formType,
+        submissionId: payload.submissionId
+      });
+    }
+
+    if (sheetDelivery.status === "rejected") {
+      console.error("Form sheet delivery failed.", {
+        error: sheetDelivery.reason?.message || String(sheetDelivery.reason),
+        formType: payload.formType,
+        submissionId: payload.submissionId
+      });
+    }
+
+    if (emailDelivered || sheetDelivered) {
+      return response.status(200).json({
+        message: "Thank you. We received your submission.",
+        formType: payload.formType,
+        leadType: payload.leadType,
+        routingBucket: payload.routingBucket,
+        submissionId: payload.submissionId
+      });
+    }
+
+    if (emailDelivery.status === "rejected" || sheetDelivery.status === "rejected") {
+      return response.status(502).json({
+        message: "Unable to submit right now. Please call or text us, and we can help."
+      });
+    }
 
     if (emailResult.skipped && sheetResult.skipped && process.env.VERCEL_ENV === "production") {
       return response.status(500).json({ message: "Form delivery is not configured yet." });
@@ -720,9 +837,20 @@ export default async function handler(request, response) {
       message:
         emailResult.skipped && sheetResult.skipped
           ? "Preview submission received. Configure production form credentials before launch."
-          : "Thank you. We received your submission."
+          : "Thank you. We received your submission.",
+      formType: payload.formType,
+      leadType: payload.leadType,
+      routingBucket: payload.routingBucket,
+      submissionId: payload.submissionId
     });
   } catch (error) {
-    return response.status(502).json({ message: error.message || "Unable to submit right now." });
+    console.error("Unexpected form delivery failure.", {
+      error: error?.message || String(error),
+      formType: payload.formType,
+      submissionId: payload.submissionId
+    });
+    return response.status(502).json({
+      message: "Unable to submit right now. Please call or text us, and we can help."
+    });
   }
 }

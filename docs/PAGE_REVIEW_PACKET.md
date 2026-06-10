@@ -1,6 +1,6 @@
 # Page Review Packet
 
-Generated: June 2, 2026
+Generated: June 10, 2026
 
 Use this when Adam has time for the human business-accuracy pass. It is intentionally practical: open each page, confirm the bullets, and move on.
 
@@ -23,7 +23,7 @@ Links: [local](http://127.0.0.1:5181/puppies/available) | [production path](http
 Priority: Critical
 
 Confirm:
-- [ ] True available puppy count is correct (7 currently in data).
+- [ ] True available puppy count is correct (19 currently in data).
 - [ ] If there are no available puppies, empty-state copy routes families to waitlist/current litters without sounding broken.
 - [ ] Only truly available puppies appear here.
 ### Current Litters
@@ -38,10 +38,11 @@ Confirm:
 - [ ] Past litter links appear only where a helpful previous pairing exists.
 
 Notes:
-- Birdie + Waylon: May 23-25, 2026; 7 Reserved.
-- Whitley + Waylon: June 24-26, 2026; 6 Waitlist Matching.
-- Penny + Wyatt: June 14-16, 2026; 3 Reserved, 3 Available.
-- Ginny + Butch Cassidy: June 14-16, 2026; 4 Available, 2 Reserved.
+- Whitley + Waylon: June 24-26, 2026; 2 Reserved, 4 Available.
+- Faye + Sundance: July 14-16, 2026; 6 Available.
+- Georgia + Waylon: July 14-16, 2026; 4 Available, 1 Reserved.
+- Penny + Wyatt: June 14-16, 2026; 4 Reserved, 2 Available.
+- Ginny + Butch Cassidy: June 14-16, 2026; 3 Available, 3 Reserved.
 ### Upcoming Litters
 
 Route: `/puppies/upcoming-litters`
@@ -54,8 +55,6 @@ Confirm:
 - [ ] Anything not confirmed yet is worded as planned, expected, or tentative.
 
 Notes:
-- Faye + Sundance: Expected delivery May 2026; Multigen Petite Goldendoodle.
-- Georgia + Waylon: Expected delivery May 2026; Multigen Mini Goldendoodle.
 - Reece + Wyatt: Summer 2026 planning; F1B Micro Cavapoo.
 - Winnie + Wyatt: Expected late summer 2026; F1B Petite Mini Cavapoo.
 - Kylie + Ranger: Late summer 2026 planning; Multigen Micro Bernedoodle.
@@ -71,7 +70,7 @@ Confirm:
 - [ ] Pairing photos and parent cards are attractive enough for families asking what past puppies looked like.
 
 Notes:
-- Public previous litter pages in data: 12.
+- Public previous litter pages in data: 13.
 ### Pricing
 
 Route: `/process/pricing`
@@ -106,20 +105,30 @@ Confirm:
 
 ## Current Litter Detail Pages
 
-### Litter Detail: Birdie + Waylon
+### Litter Detail: Whitley + Waylon
 
-Route: `/litters/birdie-waylon-spring-2026`
-Links: [local](http://127.0.0.1:5181/litters/birdie-waylon-spring-2026) | [production path](https://www.redranchdogs.com/litters/birdie-waylon-spring-2026)
+Route: `/litters/whitley-waylon-april-2026`
+Links: [local](http://127.0.0.1:5181/litters/whitley-waylon-april-2026) | [production path](https://www.redranchdogs.com/litters/whitley-waylon-april-2026)
 Priority: High
 
 Confirm:
 - [ ] Hero shows the correct parent pairing.
 - [ ] About-this-litter copy is accurate and not too long.
 - [ ] Puppy statuses and photos match the latest weekly update.
-### Litter Detail: Whitley + Waylon
+### Litter Detail: Faye + Sundance
 
-Route: `/litters/whitley-waylon-april-2026`
-Links: [local](http://127.0.0.1:5181/litters/whitley-waylon-april-2026) | [production path](https://www.redranchdogs.com/litters/whitley-waylon-april-2026)
+Route: `/litters/faye-sundance-may-2026`
+Links: [local](http://127.0.0.1:5181/litters/faye-sundance-may-2026) | [production path](https://www.redranchdogs.com/litters/faye-sundance-may-2026)
+Priority: High
+
+Confirm:
+- [ ] Hero shows the correct parent pairing.
+- [ ] About-this-litter copy is accurate and not too long.
+- [ ] Puppy statuses and photos match the latest weekly update.
+### Litter Detail: Georgia + Waylon
+
+Route: `/litters/georgia-waylon-may-2026`
+Links: [local](http://127.0.0.1:5181/litters/georgia-waylon-may-2026) | [production path](https://www.redranchdogs.com/litters/georgia-waylon-may-2026)
 Priority: High
 
 Confirm:

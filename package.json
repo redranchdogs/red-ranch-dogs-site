@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "node scripts/clean-dist.mjs && vite build && node scripts/generate-link-preview-pages.mjs",
+    "build": "npm run seo:crawler && node scripts/clean-dist.mjs && vite build && node scripts/generate-link-preview-pages.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "lint": "eslint .",
     "check:source": "node scripts/check-source-of-truth.mjs",

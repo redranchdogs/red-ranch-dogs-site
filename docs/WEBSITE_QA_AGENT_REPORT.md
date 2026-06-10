@@ -1,6 +1,6 @@
 # Website QA Agent Report
 
-Generated: 5/25/2026, 3:10:49 PM Central
+Generated: 6/9/2026, 12:17:29 PM Central
 
 Owner app: **Website**
 Agent: **Website QA Agent**
@@ -26,8 +26,8 @@ Status: **PASS**
 
 | Area | Result |
 | --- | ---: |
-| Sitemap routes | 119 |
-| Known static/dynamic routes | 168 |
+| Sitemap routes | 130 |
+| Known static/dynamic routes | 179 |
 | Internal links | 64 |
 | Redirects | 81 |
 | Host canonical redirects | 2 |
@@ -38,14 +38,14 @@ Status: **PASS**
 
 | Public display category | Count |
 | --- | ---: |
-| Available puppies | 0 |
-| Waitlist matching puppies | 16 |
-| Reserved puppies | 14 |
-| Current litters | 4 |
-| Planned litters | 5 |
-| Previous litter records | 12 |
+| Available puppies | 6 |
+| Waitlist matching puppies | 17 |
+| Reserved puppies | 18 |
+| Current litters | 5 |
+| Planned litters | 3 |
+| Previous litter records | 13 |
 | Public parent profiles | 29 |
-| Public waitlist rows | 21 |
+| Public waitlist rows | 19 |
 
 ## Forms And Attribution
 
@@ -53,7 +53,7 @@ Allowed form types: `application`, `contact`, `guardian`, `newsletter`, `stud`, 
 
 Rendered public LeadForm types: `application`, `contact`, `guardian`, `newsletter`, `stud`
 
-Tracking fields present in frontend and API: `landingPage`, `referrer`, `utmSource`, `utmMedium`, `utmCampaign`, `utmContent`, `utmTerm`, `source`
+Tracking fields present in frontend and API: `landingPage`, `referrer`, `utmSource`, `utmMedium`, `utmCampaign`, `utmContent`, `utmTerm`, `gclid`, `gbraid`, `wbraid`, `firstLandingPage`, `firstReferrer`, `firstUtmSource`, `firstUtmMedium`, `firstUtmCampaign`, `firstUtmContent`, `firstUtmTerm`, `firstGclid`, `firstGbraid`, `firstWbraid`, `lastLandingPage`, `lastReferrer`, `lastUtmSource`, `lastUtmMedium`, `lastUtmCampaign`, `lastUtmContent`, `lastUtmTerm`, `lastGclid`, `lastGbraid`, `lastWbraid`, `source`
 
 Important boundary: form submissions and analytics events are website intake/behavior signals. CRM remains the source of truth for lead outcomes, waitlist decisions, deposits, and puppy-family matching.
 

@@ -58,7 +58,24 @@ function assert(condition, message) {
 const basePayload = {
   currentUrl: "https://red-ranch-dogs-site.vercel.app/codex-form-handler-test",
   email: "test@example.com",
+  firstGclid: "first-test-gclid",
+  firstLandingPage: "https://red-ranch-dogs-site.vercel.app/?utm_source=google&utm_medium=cpc&utm_campaign=tx_doodle_search&gclid=first-test-gclid",
+  firstReferrer: "https://www.google.com/",
+  firstUtmCampaign: "tx_doodle_search",
+  firstUtmContent: "search_ad_a",
+  firstUtmMedium: "cpc",
+  firstUtmSource: "google",
+  firstUtmTerm: "doodle puppies texas",
+  gclid: "last-test-gclid",
   landingPage: "https://red-ranch-dogs-site.vercel.app/?utm_source=codex&utm_medium=handler&utm_campaign=forms",
+  lastGclid: "last-test-gclid",
+  lastLandingPage: "https://red-ranch-dogs-site.vercel.app/apply?utm_source=google&utm_medium=cpc&utm_campaign=tx_doodle_search&gclid=last-test-gclid",
+  lastReferrer: "https://www.redranchdogs.com/puppies/current-litters",
+  lastUtmCampaign: "tx_doodle_search",
+  lastUtmContent: "search_ad_b",
+  lastUtmMedium: "cpc",
+  lastUtmSource: "google",
+  lastUtmTerm: "cavapoo puppies texas",
   message: "Codex local handler smoke test.",
   name: "Codex Form Test",
   page: "/codex-form-handler-test",
@@ -122,6 +139,9 @@ const validPayloads = [
 for (const payload of validPayloads) {
   const result = await post(payload);
   assert(result.statusCode === 200, `${payload.formType} should pass validation, received ${result.statusCode}`);
+  assert(result.body.submissionId === payload.submissionId, `${payload.formType} response should return submission ID`);
+  assert(result.body.formType === payload.formType, `${payload.formType} response should return form type`);
+  assert(result.body.leadType, `${payload.formType} response should return lead type`);
 }
 
 process.env.VERCEL_ENV = "production";
@@ -144,6 +164,10 @@ assert(missingEmail.body.message.includes("email"), "missing email response shou
 const invalidEmail = await post({ ...basePayload, email: "not-an-email", formType: "newsletter" });
 assert(invalidEmail.statusCode === 400, "newsletter form with invalid email should fail");
 assert(invalidEmail.body.message.includes("valid email"), "invalid email response should mention a valid email");
+
+const missingContactMessage = await post({ ...basePayload, formType: "contact", message: "" });
+assert(missingContactMessage.statusCode === 400, "contact form without a message should fail");
+assert(missingContactMessage.body.message.includes("message"), "missing contact message response should mention message");
 
 const missingApplicationAgreement = await post({
   ...basePayload,
@@ -232,22 +256,64 @@ assert(
   webhookRequests[0].body.leadSummary.includes("Heard: Instagram"),
   "sheet webhook payload should include source attribution in the compact lead summary"
 );
+assert(webhookRequests[0].body.gclid === "last-test-gclid", "sheet webhook payload should preserve Google click ID");
+assert(
+  webhookRequests[0].body.firstLandingPage.includes("utm_source=google"),
+  "sheet webhook payload should preserve first landing page"
+);
+assert(
+  webhookRequests[0].body.firstUtmSource === "google",
+  "sheet webhook payload should preserve first-touch source"
+);
+assert(
+  webhookRequests[0].body.lastUtmTerm === "cavapoo puppies texas",
+  "sheet webhook payload should preserve last-touch keyword"
+);
 assert(
   webhookRequests[0].body.preferredBreed === "Goldendoodle, Cavapoo",
   "sheet webhook payload should preserve multi-value breed interest"
 );
 assert(
-  webhookRequests[0].body.message.includes("Lead Routing"),
-  "sheet webhook message should include the lead routing summary"
+  webhookRequests[0].body.message === "Codex local handler smoke test.",
+  "sheet webhook message should keep the raw family-entered message"
 );
+
+delete process.env.FORM_WEBHOOK_URL;
+process.env.RESEND_API_KEY = "test-resend-key";
+process.env.FORM_TO_EMAIL = "team@example.test";
+process.env.FORM_FROM_EMAIL = "Red Ranch Dogs <forms@example.test>";
+const emailRequests = [];
+globalThis.fetch = async (url, options = {}) => {
+  emailRequests.push({
+    body: JSON.parse(options.body || "{}"),
+    headers: options.headers,
+    method: options.method,
+    url
+  });
+
+  return { ok: true };
+};
+
+const emailOnlyApplication = await post({
+  ...basePayload,
+  formType: "application",
+  formTitle: "Application details",
+  hearAbout: "Instagram",
+  preferredBreed: "Goldendoodle, Cavapoo",
+  processAgreement: "Understands process, pricing, deposit policy, and spay/neuter agreement",
+  signature: "Codex Form Test"
+});
+assert(emailOnlyApplication.statusCode === 200, "email-only configured application should submit successfully");
+assert(emailRequests.length === 1, "email-only path should send one email request");
+assert(emailRequests[0].body.text.includes("Lead Routing"), "notification email should include routing details");
+assert(emailRequests[0].body.text.includes("Application Details"), "notification email should include expanded application details");
 assert(
-  webhookRequests[0].body.message.includes("Application Details"),
-  "sheet webhook message should include the expanded application summary"
+  emailRequests[0].body.text.includes("How they heard about us: Instagram"),
+  "notification email should include expanded detail fields"
 );
-assert(
-  webhookRequests[0].body.message.includes("How they heard about us: Instagram"),
-  "sheet webhook message should include application detail fields"
-);
+delete process.env.RESEND_API_KEY;
+delete process.env.FORM_TO_EMAIL;
+delete process.env.FORM_FROM_EMAIL;
 
 delete process.env.FORM_WEBHOOK_URL;
 process.env.RED_RANCH_BRIDGE_URL = "https://example.test/red-ranch-bridge";
@@ -312,6 +378,14 @@ const queueAppendRequest = bridgeRequests.find(
 );
 
 assert(replaceRequest.body.values[0].includes("Lead Type"), "bridge header row should include lead routing columns");
+assert(replaceRequest.body.values[0].includes("Google Click ID"), "bridge header row should include Google click ID");
+assert(replaceRequest.body.values[0].includes("First Landing Page"), "bridge header row should include first-touch attribution");
+assert(replaceRequest.body.values[0].includes("Last UTM Source"), "bridge header row should include last-touch attribution");
+assert(
+  replaceRequest.body.values[0].indexOf("Google Click ID") >
+    replaceRequest.body.values[0].indexOf("User Agent"),
+  "new attribution columns should be appended after historical form columns"
+);
 assert(appendRequest.body.spreadsheetId === "test-form-sheet", "bridge append should use configured sheet ID");
 assert(appendRequest.body.sheetName === "Website Leads", "bridge append should use configured sheet name");
 assert(appendRequest.body.values[0][4] === "Puppy Alert Signup", "bridge row should include lead type");
@@ -319,10 +393,57 @@ assert(
   appendRequest.body.values[0][9].includes("Codex Form Test"),
   "bridge row should include the compact lead summary"
 );
+assert(appendRequest.body.values[0][19] === "Codex Form Test", "bridge row should preserve contact columns before appended attribution fields");
+assert(appendRequest.body.values[0][57] === "last-test-gclid", "bridge row should include Google click ID");
+assert(appendRequest.body.values[0][60].includes("utm_source=google"), "bridge row should include first landing page");
 assert(queueReplaceRequest.body.values[0].includes("Next Action"), "lead queue header row should include workflow columns");
 assert(queueAppendRequest.body.spreadsheetId === "test-form-sheet", "lead queue append should use configured sheet ID");
 assert(queueAppendRequest.body.values[0][9] === "Puppy Alert Signup", "lead queue row should include lead type");
 assert(queueAppendRequest.body.values[0][15].includes("Codex Form Test"), "lead queue row should include lead summary");
+
+delete process.env.FORM_WEBHOOK_URL;
+const mismatchBridgeActions = [];
+globalThis.fetch = async (url, options = {}) => {
+  const body = JSON.parse(options.body || "{}");
+  mismatchBridgeActions.push(body.action);
+
+  if (body.action === "getSheetValues") {
+    return {
+      ok: true,
+      text: async () =>
+        JSON.stringify({
+          ok: true,
+          values: [
+            ["Submitted At", "Old Header"],
+            ["2026-06-10T00:00:00.000Z", "Existing lead row"]
+          ]
+        })
+    };
+  }
+
+  if (body.action === "replaceSheet") {
+    return {
+      ok: false,
+      text: async () => JSON.stringify({ ok: false, error: "replaceSheet should not run on non-empty sheets" })
+    };
+  }
+
+  return {
+    ok: true,
+    text: async () => JSON.stringify({ ok: true })
+  };
+};
+
+const headerMismatch = await post({
+  ...basePayload,
+  formType: "newsletter",
+  formTitle: "Puppy Alert Email"
+});
+assert(headerMismatch.statusCode === 502, "header mismatch on an existing sheet should fail closed");
+assert(
+  !mismatchBridgeActions.includes("replaceSheet"),
+  "header mismatch with existing rows must not trigger destructive replaceSheet"
+);
 
 process.env.FORM_WEBHOOK_URL = "https://example.test/red-ranch-dogs-form-webhook";
 
@@ -411,8 +532,51 @@ const failedSheetDelivery = await post({
 });
 assert(failedSheetDelivery.statusCode === 502, "failed sheet logging should return a delivery error");
 assert(
-  failedSheetDelivery.body.message.includes("Spreadsheet logging failed"),
-  "failed sheet logging should explain the spreadsheet failure"
+  failedSheetDelivery.body.message === "Unable to submit right now. Please call or text us, and we can help.",
+  "failed sheet logging should return a generic friendly delivery message"
+);
+
+process.env.RESEND_API_KEY = "test-resend-key";
+process.env.FORM_TO_EMAIL = "team@example.test";
+process.env.FORM_FROM_EMAIL = "Red Ranch Dogs <forms@example.test>";
+process.env.FORM_WEBHOOK_URL = "https://example.test/red-ranch-dogs-form-webhook";
+
+globalThis.fetch = async (url) => {
+  if (String(url).includes("api.resend.com")) {
+    return { ok: false };
+  }
+
+  return { ok: true };
+};
+
+const emailFailureSheetSuccess = await post({
+  ...basePayload,
+  formType: "contact",
+  inquiryType: "Partial delivery test",
+  message: "The sheet can still receive this submission."
+});
+assert(
+  emailFailureSheetSuccess.statusCode === 200,
+  "sheet delivery should prevent duplicate-resubmission error when email delivery fails"
+);
+
+globalThis.fetch = async (url) => {
+  if (String(url).includes("api.resend.com")) {
+    return { ok: true };
+  }
+
+  return { ok: false };
+};
+
+const sheetFailureEmailSuccess = await post({
+  ...basePayload,
+  formType: "contact",
+  inquiryType: "Partial delivery test",
+  message: "Email can still receive this submission."
+});
+assert(
+  sheetFailureEmailSuccess.statusCode === 200,
+  "email delivery should prevent duplicate-resubmission error when sheet delivery fails"
 );
 
 globalThis.fetch = originalFetch;

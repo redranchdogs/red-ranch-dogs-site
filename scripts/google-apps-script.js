@@ -68,7 +68,30 @@ var SUBMISSION_HEADERS = [
   "Signature",
   "Message",
   "Source",
-  "User Agent"
+  "User Agent",
+  "Google Click ID",
+  "GBRAID",
+  "WBRAID",
+  "First Landing Page",
+  "First Referrer",
+  "First UTM Source",
+  "First UTM Medium",
+  "First UTM Campaign",
+  "First UTM Content",
+  "First UTM Term",
+  "First Google Click ID",
+  "First GBRAID",
+  "First WBRAID",
+  "Last Landing Page",
+  "Last Referrer",
+  "Last UTM Source",
+  "Last UTM Medium",
+  "Last UTM Campaign",
+  "Last UTM Content",
+  "Last UTM Term",
+  "Last Google Click ID",
+  "Last GBRAID",
+  "Last WBRAID"
 ];
 
 function doGet() {
@@ -97,8 +120,7 @@ function doPost(e) {
   if (!sheet) {
     sheet = spreadsheet.insertSheet(sheetName);
     sheet.appendRow(SUBMISSION_HEADERS);
-  } else {
-    sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), SUBMISSION_HEADERS.length)).clearContent();
+  } else if (sheet.getLastRow() === 0) {
     sheet.getRange(1, 1, 1, SUBMISSION_HEADERS.length).setValues([SUBMISSION_HEADERS]);
   }
 
@@ -159,7 +181,30 @@ function doPost(e) {
     payload.signature || "",
     payload.message || "",
     payload.source || "",
-    payload.userAgent || ""
+    payload.userAgent || "",
+    payload.gclid || "",
+    payload.gbraid || "",
+    payload.wbraid || "",
+    payload.firstLandingPage || "",
+    payload.firstReferrer || "",
+    payload.firstUtmSource || "",
+    payload.firstUtmMedium || "",
+    payload.firstUtmCampaign || "",
+    payload.firstUtmContent || "",
+    payload.firstUtmTerm || "",
+    payload.firstGclid || "",
+    payload.firstGbraid || "",
+    payload.firstWbraid || "",
+    payload.lastLandingPage || "",
+    payload.lastReferrer || "",
+    payload.lastUtmSource || "",
+    payload.lastUtmMedium || "",
+    payload.lastUtmCampaign || "",
+    payload.lastUtmContent || "",
+    payload.lastUtmTerm || "",
+    payload.lastGclid || "",
+    payload.lastGbraid || "",
+    payload.lastWbraid || ""
   ]);
 
   if (notifyEmail) {

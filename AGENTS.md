@@ -10,7 +10,16 @@ Use the shared Red Ranch ecosystem and agent operating model:
 - `/Users/adamdietlein/Documents/New project/red-ranch-ecosystem-architect/AUTOMATION_APPROVAL_MATRIX.md`
 - `/Users/adamdietlein/Documents/New project/red-ranch-ecosystem-architect/WEEKLY_ECOSYSTEM_BRIEF_SPEC.md`
 - `/Users/adamdietlein/Documents/New project/red-ranch-ecosystem-architect/INFRASTRUCTURE_AND_OPERATIONS_BASELINE.md`
+- `/Users/adamdietlein/Documents/New project/red-ranch-ecosystem-architect/BROWSER_TOOLING_POLICY.md`
 - `/Users/adamdietlein/.codex/skills/red-ranch-ecosystem/SKILL.md`
+
+## Approval Friction
+
+Do not ask for repeated approval during normal local website development once Adam has asked for the task. Safe local file reads, code edits, local tests/builds, and preview checks can proceed to a natural checkpoint.
+
+Still ask for explicit approval before production deploys, DNS or GoDaddy changes, Vercel settings, env vars/secrets, source sheet mutations, Google Drive changes, payment/email/ad settings, destructive actions, or changes that affect live website behavior outside the requested scope.
+
+Browser tooling: use the Codex in-app browser for local/public website QA. Use Chrome with the Codex Chrome extension for logged-in Vercel, GoDaddy, Google, Meta, Amazon, or other account dashboards.
 
 ## Ownership
 

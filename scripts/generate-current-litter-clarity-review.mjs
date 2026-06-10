@@ -79,8 +79,16 @@ const rows = litters.map((litter) => {
 
 const blockers = [];
 
+const hasWaitlistRows = rows.some((row) => row.waitlist > 0);
+const hasAvailabilityDestinationCopy =
+  appSource.includes("Puppies ready to reserve are also listed on") ||
+  appSource.includes("availability will be posted here");
+const hasWaitlistFirstCopy = appSource.includes("waitlist families first");
+
 if (!appSource.includes("Waitlist Picks First")) blockers.push("Waitlist badge copy is missing from the current litter template.");
-if (!appSource.includes("availability will be posted here")) blockers.push("Waitlist-first next-step copy does not tell families where availability will appear.");
+if (hasWaitlistRows && (!hasWaitlistFirstCopy || !hasAvailabilityDestinationCopy)) {
+  blockers.push("Waitlist-first next-step copy does not tell families where availability will appear.");
+}
 if (!appSource.includes("No public puppies are available right now")) {
   blockers.push("Available Puppies empty state does not clarify public availability.");
 }

@@ -111,7 +111,39 @@ function formReview({ app, forms }) {
     ?.match(/"([^"]+)"/g)
     ?.map((value) => value.replace(/"/g, "")) || [];
   const renderedForms = [...app.matchAll(/<LeadForm\s+formType="([^"]+)"/g)].map((match) => match[1]);
-  const trackingFields = ["landingPage", "referrer", "utmSource", "utmMedium", "utmCampaign", "utmContent", "utmTerm", "source"];
+  const trackingFields = [
+    "landingPage",
+    "referrer",
+    "utmSource",
+    "utmMedium",
+    "utmCampaign",
+    "utmContent",
+    "utmTerm",
+    "gclid",
+    "gbraid",
+    "wbraid",
+    "firstLandingPage",
+    "firstReferrer",
+    "firstUtmSource",
+    "firstUtmMedium",
+    "firstUtmCampaign",
+    "firstUtmContent",
+    "firstUtmTerm",
+    "firstGclid",
+    "firstGbraid",
+    "firstWbraid",
+    "lastLandingPage",
+    "lastReferrer",
+    "lastUtmSource",
+    "lastUtmMedium",
+    "lastUtmCampaign",
+    "lastUtmContent",
+    "lastUtmTerm",
+    "lastGclid",
+    "lastGbraid",
+    "lastWbraid",
+    "source"
+  ];
 
   return {
     allowedForms,

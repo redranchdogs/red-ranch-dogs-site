@@ -93,6 +93,10 @@ function replaceSheet_(body) {
   var sheet = getSheet_(body.spreadsheetId, body.sheetName);
   var values = normalizeValues_(body.values || []);
 
+  if (sheet.getLastRow() > 0) {
+    throw new Error("replaceSheet refused because " + body.sheetName + " already contains rows.");
+  }
+
   sheet.clearContents();
 
   if (values.length && values[0].length) {

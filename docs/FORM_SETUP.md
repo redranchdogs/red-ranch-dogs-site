@@ -38,7 +38,7 @@ The raw `Website Leads` tab is organized around these column groups:
 
 - Submission basics: submitted time, submission ID, form type, form title, page, current URL, landing page, and referrer.
 - Lead routing: lead type, lead label, routing bucket, reply priority, recommended next step, and lead summary.
-- Tracking: UTM source, medium, campaign, content, and term.
+- Tracking: UTM source, medium, campaign, content, term, Google click IDs, and first-touch / last-touch attribution fields.
 - Contact details: name, email, phone, location, inquiry type, and message.
 - Form-specific details: puppy application, stud inquiry, guardian application, waitlist, and newsletter fields.
 - Internal context: source and user agent.
@@ -55,6 +55,18 @@ The website supplies the target spreadsheet through Vercel environment variables
 - `NOTIFY_EMAIL`: optional, defaults to `adam@redranchdogs.com`
 
 The legacy fallback script in `scripts/google-apps-script.js` still includes `SHEET_ID`, `SHEET_NAME`, and `NOTIFY_EMAIL` defaults if you ever use `FORM_WEBHOOK_URL` directly.
+
+## Paid Attribution Fields
+
+The website now preserves first-touch and last-touch attribution for form submissions. This is the minimum contract needed before scaling Google Ads.
+
+The raw `Website Leads` row includes:
+
+- `Google Click ID`, `GBRAID`, and `WBRAID`.
+- First-touch fields: landing page, referrer, UTM source, UTM medium, UTM campaign, UTM content, UTM term, Google click ID, GBRAID, and WBRAID.
+- Last-touch fields: landing page, referrer, UTM source, UTM medium, UTM campaign, UTM content, UTM term, Google click ID, GBRAID, and WBRAID.
+
+The API response also returns `submissionId`, `formType`, `leadType`, and `routingBucket` so frontend analytics can match `form_submit_success` back to `Website Leads` and `Lead Queue`.
 
 Deployment:
 

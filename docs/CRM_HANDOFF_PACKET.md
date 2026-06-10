@@ -50,8 +50,11 @@ Every form may include these shared fields:
 - `submittedAt`: client timestamp, but the API replaces this with a server timestamp.
 - `source`: hidden field, currently `red-ranch-dogs-site`.
 - `companyWebsite`: honeypot spam field. If filled, the API returns a soft success and does not process as a real lead.
-- `landingPage`: first page stored in session storage for the visit.
-- `utmSource`, `utmMedium`, `utmCampaign`, `utmContent`, `utmTerm`: collected from URL query params when present.
+- `landingPage`: first captured landing page for the visit.
+- `utmSource`, `utmMedium`, `utmCampaign`, `utmContent`, `utmTerm`: current or most recent captured UTM values when present.
+- `gclid`, `gbraid`, `wbraid`: current or most recent captured Google click identifiers when present.
+- `firstLandingPage`, `firstReferrer`, `firstUtmSource`, `firstUtmMedium`, `firstUtmCampaign`, `firstUtmContent`, `firstUtmTerm`, `firstGclid`, `firstGbraid`, `firstWbraid`: first-touch attribution captured in first-party browser storage.
+- `lastLandingPage`, `lastReferrer`, `lastUtmSource`, `lastUtmMedium`, `lastUtmCampaign`, `lastUtmContent`, `lastUtmTerm`, `lastGclid`, `lastGbraid`, `lastWbraid`: last-touch attribution updated when a new campaign/click identifier is present.
 
 ### Server-Enriched Fields
 
@@ -66,6 +69,7 @@ Every form may include these shared fields:
 - `recommendedNextStep`
 - `leadSummary`: compact, CRM-friendly summary string.
 - `message`: expanded message including routing details and form-specific details.
+- API success responses return `submissionId`, `formType`, `leadType`, and `routingBucket` so frontend analytics can join `form_submit_success` to Lead Queue rows.
 
 ## Form: Puppy Application
 
@@ -264,6 +268,8 @@ Current verified operations status:
 ## Raw Website Leads Columns
 
 The `Website Leads` tab is the raw archive. Current header contract:
+
+Note: paid attribution columns now sit after `UTM Term` and before `Name`. The authoritative header order is maintained in `api/forms.js`.
 
 1. `Submitted At`
 2. `Submission ID`

@@ -1,6 +1,6 @@
 # Weekly Update Queue
 
-Generated: 6/2/2026, 4:18:54 PM Central
+Generated: 6/10/2026, 4:04:20 PM Central
 
 This report is generated from the website data files. Use it as the quick Tuesday photo/update checklist before touching individual pages.
 
@@ -8,14 +8,15 @@ This report is generated from the website data files. Use it as the quick Tuesda
 
 | Litter | Go-home timing | Latest website week | Puppies | Website statuses |
 | --- | --- | --- | ---: | --- |
-| Birdie + Waylon | May 23-25, 2026 (10 days past) | Week 5 | 7 | 7 Reserved |
-| Penny + Wyatt | June 14-16, 2026 (12 days away) | Week 5 | 6 | 3 Available, 3 Reserved |
-| Ginny + Butch Cassidy | June 14-16, 2026 (12 days away) | Week 5 | 6 | 4 Available, 2 Reserved |
-| Whitley + Waylon | June 24-26, 2026 (22 days away) | Week 3 | 6 | 6 Waitlist Matching |
+| Penny + Wyatt | June 14-16, 2026 (4 days away) | Week 7 | 6 | 2 Available, 4 Reserved |
+| Ginny + Butch Cassidy | June 14-16, 2026 (4 days away) | Week 7 | 6 | 3 Available, 3 Reserved |
+| Whitley + Waylon | June 24-26, 2026 (14 days away) | Week 5 | 6 | 4 Available, 2 Reserved |
+| Faye + Sundance | July 14-16, 2026 (34 days away) | Week 2 | 6 | 6 Available |
+| Georgia + Waylon | July 14-16, 2026 (34 days away) | Week 2 | 5 | 4 Available, 1 Reserved |
 
 ## Current Litter Issues
 
-- Birdie + Waylon: go-home window appears past (May 23-25, 2026). Confirm whether this should move to previous litters.
+- None flagged.
 
 ## Puppy Photo Matching Issues
 
@@ -28,8 +29,6 @@ This report is generated from the website data files. Use it as the quick Tuesda
 | F1B Micro Cavapoo | Reece + Wyatt | Summer 2026 planning | Reece and Wyatt are being bred for a planned summer F1B Micro Cavapoo litter. | No |
 | F1B Petite Mini Cavapoo | Winnie + Wyatt | Expected late summer 2026 | Winnie and Wyatt are planned for an F1B Petite Mini Cavapoo litter. | No |
 | Multigen Micro Bernedoodle | Kylie + Ranger | Late summer 2026 planning | Kylie is planned for a repeat Multigen Micro Bernedoodle pairing with outside stud Ranger. | No |
-| Multigen Mini Goldendoodle | Georgia + Waylon | Expected delivery May 2026 | Georgia and Waylon are planned for a Multigen Mini Goldendoodle litter. | No |
-| Multigen Petite Goldendoodle | Faye + Sundance | Expected delivery May 2026 | Faye and Sundance are planned for a Multigen Petite Goldendoodle litter. | No |
 
 ## Active Parent Photo Queue
 

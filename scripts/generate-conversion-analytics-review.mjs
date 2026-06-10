@@ -58,6 +58,39 @@ const actionRows = actionPaths.map((item) => (
   `| ${item.action} | \`${item.expectedEvent}\` | ${allEvents.includes(item.expectedEvent) ? "Tracked" : "Missing"} | ${item.path} | ${item.sourceOfTruth} |`
 ));
 
+const attributionFields = [
+  "landingPage",
+  "referrer",
+  "utmSource",
+  "utmMedium",
+  "utmCampaign",
+  "utmContent",
+  "utmTerm",
+  "gclid",
+  "gbraid",
+  "wbraid",
+  "firstLandingPage",
+  "firstReferrer",
+  "firstUtmSource",
+  "firstUtmMedium",
+  "firstUtmCampaign",
+  "firstUtmContent",
+  "firstUtmTerm",
+  "firstGclid",
+  "firstGbraid",
+  "firstWbraid",
+  "lastLandingPage",
+  "lastReferrer",
+  "lastUtmSource",
+  "lastUtmMedium",
+  "lastUtmCampaign",
+  "lastUtmContent",
+  "lastUtmTerm",
+  "lastGclid",
+  "lastGbraid",
+  "lastWbraid"
+];
+
 const report = `# Conversion Analytics Review
 
 This is the lightweight analytics contract for the public Red Ranch Dogs website. Vercel Web Analytics shows traffic and device trends, while the Google Sheets / CRM intake path remains the source of truth for actual leads.
@@ -73,6 +106,16 @@ ${eventRows.join("\n")}
 | Buyer action | Expected event | Status | Path | Source of truth |
 | --- | --- | --- | --- | --- |
 ${actionRows.join("\n")}
+
+## Attribution Contract
+
+The website preserves first-touch and last-touch marketing attribution in first-party browser storage, then submits the captured fields with successful lead forms.
+
+Tracked attribution fields:
+
+${attributionFields.map((field) => `- \`${field}\``).join("\n")}
+
+Google click IDs are stored as metadata only. Do not expose names, emails, phone numbers, message text, or private lead details through analytics events.
 
 ## First Live Readout
 

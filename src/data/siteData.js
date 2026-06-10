@@ -197,6 +197,7 @@ export const litterDetails = {
     ],
     milestones: ["4 Weeks Old", "3 Weeks Old", "2 Weeks Old", "1 Week Old"]
   },
+  // Legacy detail entry retained for archive data; public traffic redirects to /litters/birdie-waylon-spring-2026.
   "/birdie-waylon-jennings-1": {
     name: "Birdie + Waylon",
     breed: "Multigen Goldendoodles",
@@ -229,6 +230,7 @@ export const litterDetails = {
     ],
     milestones: ["3 Weeks Old", "2 Weeks Old", "Newborn Photos"]
   },
+  // Legacy detail entry retained for archive data; public traffic redirects to /litters/penny-wyatt-spring-2026.
   "/penny-wyatt": {
     name: "Penny + Wyatt",
     breed: "F1b Micro Cavapoos",
@@ -252,6 +254,7 @@ export const litterDetails = {
     puppies: [],
     milestones: []
   },
+  // Legacy detail entry retained for archive data; public traffic redirects to /litters/winnie-wyatt-spring-2026.
   "/winnie-wyatt": {
     name: "Winnie + Wyatt",
     breed: "F1B Petite Mini Cavapoos",
@@ -688,6 +691,7 @@ export const studCatalog = [
 ];
 
 export const studDetails = {
+  // Legacy path-keyed record retained for historical stud data; public traffic redirects to /parents/garth-brooks.
   "/garth-brooks": {
     name: "Garth Brooks",
     group: "Bernedoodles",
@@ -796,6 +800,7 @@ export const studDetails = {
     semenEvals: [],
     notes: []
   },
+  // Legacy path-keyed record retained for historical stud data; public traffic redirects to /parents/studs.
   "/wayne": {
     name: "John Wayne",
     group: "Poodles",

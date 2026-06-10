@@ -42,6 +42,45 @@ This is the lightweight analytics contract for the public Red Ranch Dogs website
 | Litter detail view | `view_litter_click` | Tracked | /litters/* | Vercel page view + CTA event |
 | Successful form | `form_submit_success` | Tracked | /api/forms | Website Leads + Lead Queue + submissionId |
 
+## Attribution Contract
+
+The website preserves first-touch and last-touch marketing attribution in first-party browser storage, then submits the captured fields with successful lead forms.
+
+Tracked attribution fields:
+
+- `landingPage`
+- `referrer`
+- `utmSource`
+- `utmMedium`
+- `utmCampaign`
+- `utmContent`
+- `utmTerm`
+- `gclid`
+- `gbraid`
+- `wbraid`
+- `firstLandingPage`
+- `firstReferrer`
+- `firstUtmSource`
+- `firstUtmMedium`
+- `firstUtmCampaign`
+- `firstUtmContent`
+- `firstUtmTerm`
+- `firstGclid`
+- `firstGbraid`
+- `firstWbraid`
+- `lastLandingPage`
+- `lastReferrer`
+- `lastUtmSource`
+- `lastUtmMedium`
+- `lastUtmCampaign`
+- `lastUtmContent`
+- `lastUtmTerm`
+- `lastGclid`
+- `lastGbraid`
+- `lastWbraid`
+
+Google click IDs are stored as metadata only. Do not expose names, emails, phone numbers, message text, or private lead details through analytics events.
+
 ## First Live Readout
 
 Use this as the first live analytics pass after the site has had a few real traffic days:

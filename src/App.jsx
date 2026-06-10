@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import {
   ArrowRight,
@@ -60,12 +60,28 @@ function hashNow() {
   return window.location.hash.replace(/^#/, "");
 }
 
+function prefersReducedMotion() {
+  if (typeof window === "undefined" || !window.matchMedia) return false;
+
+  try {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  } catch {
+    return false;
+  }
+}
+
+function scrollBehaviorForPreference(behavior = "auto") {
+  return behavior === "smooth" && prefersReducedMotion() ? "auto" : behavior;
+}
+
 function scrollToRouteTarget(hash, behavior = "auto") {
+  const scrollBehavior = scrollBehaviorForPreference(behavior);
+
   if (hash) {
-    document.getElementById(hash)?.scrollIntoView({ behavior, block: "start" });
+    document.getElementById(hash)?.scrollIntoView({ behavior: scrollBehavior, block: "start" });
     return;
   }
-  window.scrollTo({ top: 0, left: 0, behavior });
+  window.scrollTo({ top: 0, left: 0, behavior: scrollBehavior });
 }
 
 function scheduleRouteScroll(hash, behavior = "auto") {
@@ -139,7 +155,18 @@ function goTo(href) {
 
 function Link({ href, children, className, onClick, ...props }) {
   const handleClick = (event) => {
-    if (href?.startsWith("http") || href?.startsWith("sms:") || href?.startsWith("mailto:")) {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey ||
+      href?.startsWith("http") ||
+      href?.startsWith("sms:") ||
+      href?.startsWith("mailto:") ||
+      href?.startsWith("tel:")
+    ) {
       return;
     }
     event.preventDefault();
@@ -1299,6 +1326,9 @@ function AccordionNav({ item, currentPath, onNavigate, index }) {
 function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const wasOpenRef = useRef(false);
   const currentPath = pathNow();
 
   useEffect(() => {
@@ -1316,12 +1346,36 @@ function Header() {
     return () => document.body.classList.remove("menu-locked");
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const focusTarget = mobileMenuRef.current?.querySelector("a[href], button:not([disabled])");
+    window.requestAnimationFrame(() => focusTarget?.focus());
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open && wasOpenRef.current) {
+      menuButtonRef.current?.focus();
+    }
+    wasOpenRef.current = open;
+  }, [open]);
+
   const closeMenu = () => setOpen(false);
   const isActive = (item) => currentPath === item.href || (item.href !== "/" && currentPath.startsWith(`${item.href}/`));
 
   return (
     <header className={`premium-header ${scrolled ? "scrolled" : ""}`}>
       <button
+        ref={menuButtonRef}
         className={`premium-menu-button ${open ? "open" : ""}`}
         type="button"
         onClick={() => setOpen((value) => !value)}
@@ -1359,7 +1413,13 @@ function Header() {
       <a className="premium-icon-link" href={brand.instagram} aria-label="Instagram" target="_blank" rel="noreferrer">
         <Instagram size={18} />
       </a>
-      <div id="mobile-primary-menu" className={`premium-mobile-menu ${open ? "open" : ""}`} aria-hidden={!open} inert={open ? undefined : ""}>
+      <div
+        id="mobile-primary-menu"
+        ref={mobileMenuRef}
+        className={`premium-mobile-menu ${open ? "open" : ""}`}
+        aria-hidden={!open}
+        inert={open ? undefined : ""}
+      >
         <nav aria-label="Mobile navigation">
           {primaryNav.map((item, index) => (
             <AccordionNav item={item} currentPath={currentPath} key={item.label} index={index} onNavigate={closeMenu} />
@@ -1378,8 +1438,9 @@ function Header() {
 function Layout({ children }) {
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <Header />
-      <main className="site-main">{children}</main>
+      <main className="site-main" id="main-content" tabIndex="-1">{children}</main>
       <Footer />
     </>
   );
@@ -1945,6 +2006,10 @@ function LitterGalleryStatus({ hasGallery, puppyCount }) {
   );
 }
 
+function puppyApplyHref(puppy) {
+  return puppy?.slug ? `/apply?interest=${encodeURIComponent(puppy.slug)}` : "/apply";
+}
+
 function PuppyCard({ puppy, variant = "default" }) {
   const breed = puppy.breed || "Breed to be announced";
   const gender = puppy.gender || puppy.sex || "To be announced";
@@ -2035,7 +2100,7 @@ function PuppyCard({ puppy, variant = "default" }) {
         {showAvailabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
         {isAvailableVariant || isDetailVariant ? (
           <div className="puppy-card-actions">
-            <Link href="/apply" className="button small">{isDetailVariant ? "Apply" : `Ask About ${puppy.name}`}</Link>
+            <Link href={puppyApplyHref(puppy)} className="button small">{isDetailVariant ? "Apply" : `Ask About ${puppy.name}`}</Link>
             {litterRoute && <Link href={litterRoute} className="button small secondary">View Litter</Link>}
           </div>
         ) : route && (
@@ -3958,7 +4023,8 @@ function CurrentLitterWaitlistNote() {
     <section className="content-section narrow current-litter-guidance-section">
       <article className="group-panel current-litter-guidance-card">
         <p>
-          Waitlist families pick first for current litters. If puppies remain after those picks, availability will be posted here and on{" "}
+          Current litter cards show the latest status, whether puppies are available now or still matching with
+          waitlist families first. Puppies ready to reserve are also listed on{" "}
           <Link href="/puppies/available">Available Puppies</Link>.
         </p>
       </article>
@@ -4149,7 +4215,7 @@ function scrollLitterBreedGroupIntoView(slug, panelIdSuffix) {
   window.setTimeout(() => {
     document.getElementById(`${slug}-${panelIdSuffix}-heading`)
       ?.closest(".upcoming-litter-group")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      ?.scrollIntoView({ behavior: scrollBehaviorForPreference("smooth"), block: "start" });
   }, 80);
 }
 
@@ -5633,33 +5699,165 @@ const trackingParamKeys = {
   utm_medium: "utmMedium",
   utm_campaign: "utmCampaign",
   utm_content: "utmContent",
-  utm_term: "utmTerm"
+  utm_term: "utmTerm",
+  gclid: "gclid",
+  gbraid: "gbraid",
+  wbraid: "wbraid"
 };
+
+const attributionStorageKey = "rrdAttribution";
+const attributionMaxLength = 512;
+const trackingPayloadKeys = Object.values(trackingParamKeys);
+
+function cleanTrackingValue(value = "") {
+  return String(value || "").trim().slice(0, attributionMaxLength);
+}
+
+function readStoredAttribution() {
+  if (typeof window === "undefined") return {};
+
+  const stores = [];
+  try {
+    if (window.localStorage) stores.push(window.localStorage);
+  } catch {
+    // Storage access can throw before reads in restricted browsing modes.
+  }
+  try {
+    if (window.sessionStorage) stores.push(window.sessionStorage);
+  } catch {
+    // Storage access can throw before reads in restricted browsing modes.
+  }
+
+  for (const store of stores) {
+    try {
+      const parsed = JSON.parse(store.getItem(attributionStorageKey) || "{}");
+      if (parsed && typeof parsed === "object") return parsed;
+    } catch {
+      // Attribution should never block the public form flow.
+    }
+  }
+
+  return {};
+}
+
+function writeStoredAttribution(attribution) {
+  if (typeof window === "undefined") return;
+
+  const stores = [];
+  try {
+    if (window.localStorage) stores.push(window.localStorage);
+  } catch {
+    // Storage handles can throw before writes in restricted browsing modes.
+  }
+  try {
+    if (window.sessionStorage) stores.push(window.sessionStorage);
+  } catch {
+    // Storage handles can throw before writes in restricted browsing modes.
+  }
+
+  stores.forEach((store) => {
+    try {
+      store?.setItem(attributionStorageKey, JSON.stringify(attribution));
+    } catch {
+      // Storage can fail in private or restricted browsing modes.
+    }
+  });
+}
+
+function currentTrackingParams() {
+  if (typeof window === "undefined") return {};
+
+  const search = new window.URLSearchParams(window.location.search);
+  const tracking = {};
+
+  Object.entries(trackingParamKeys).forEach(([queryKey, payloadKey]) => {
+    const value = cleanTrackingValue(search.get(queryKey));
+    if (value) tracking[payloadKey] = value;
+  });
+
+  return tracking;
+}
+
+function hasTrackingParams(tracking) {
+  return Object.values(tracking).some(Boolean);
+}
+
+function captureCurrentAttribution() {
+  if (typeof window === "undefined") return {};
+
+  const existing = readStoredAttribution();
+  const params = currentTrackingParams();
+  const now = new Date().toISOString();
+  const currentUrl = cleanTrackingValue(window.location.href);
+  const referrer = cleanTrackingValue(document.referrer);
+  const nextAttribution = { ...existing };
+
+  if (!nextAttribution.firstLandingPage) {
+    nextAttribution.firstCapturedAt = now;
+    nextAttribution.firstLandingPage = currentUrl;
+    nextAttribution.firstReferrer = referrer;
+
+    Object.entries(params).forEach(([key, value]) => {
+      nextAttribution[`first${key[0].toUpperCase()}${key.slice(1)}`] = value;
+    });
+  }
+
+  if (hasTrackingParams(params) || !nextAttribution.lastLandingPage) {
+    nextAttribution.lastCapturedAt = now;
+    nextAttribution.lastLandingPage = currentUrl;
+    nextAttribution.lastReferrer = referrer;
+
+    trackingPayloadKeys.forEach((key) => {
+      delete nextAttribution[`last${key[0].toUpperCase()}${key.slice(1)}`];
+    });
+
+    Object.entries(params).forEach(([key, value]) => {
+      nextAttribution[`last${key[0].toUpperCase()}${key.slice(1)}`] = value;
+    });
+  }
+
+  writeStoredAttribution(nextAttribution);
+  return nextAttribution;
+}
 
 function collectTrackingPayload() {
   if (typeof window === "undefined") return {};
 
-  const search = new window.URLSearchParams(window.location.search);
-  let landingPage = window.location.href;
+  const currentParams = currentTrackingParams();
+  const attribution = captureCurrentAttribution();
 
-  try {
-    landingPage = window.sessionStorage.getItem("rrdLandingPage") || window.location.href;
-
-    if (!window.sessionStorage.getItem("rrdLandingPage")) {
-      window.sessionStorage.setItem("rrdLandingPage", window.location.href);
-    }
-  } catch {
-    landingPage = window.location.href;
-  }
-
-  const tracking = { landingPage };
-
-  Object.entries(trackingParamKeys).forEach(([queryKey, payloadKey]) => {
-    const value = search.get(queryKey);
-    if (value) tracking[payloadKey] = value.trim();
-  });
-
-  return tracking;
+  return {
+    landingPage: cleanTrackingValue(window.location.href),
+    referrer: cleanTrackingValue(document.referrer),
+    utmSource: currentParams.utmSource || attribution.lastUtmSource || attribution.firstUtmSource || "",
+    utmMedium: currentParams.utmMedium || attribution.lastUtmMedium || attribution.firstUtmMedium || "",
+    utmCampaign: currentParams.utmCampaign || attribution.lastUtmCampaign || attribution.firstUtmCampaign || "",
+    utmContent: currentParams.utmContent || attribution.lastUtmContent || attribution.firstUtmContent || "",
+    utmTerm: currentParams.utmTerm || attribution.lastUtmTerm || attribution.firstUtmTerm || "",
+    gclid: currentParams.gclid || attribution.lastGclid || attribution.firstGclid || "",
+    gbraid: currentParams.gbraid || attribution.lastGbraid || attribution.firstGbraid || "",
+    wbraid: currentParams.wbraid || attribution.lastWbraid || attribution.firstWbraid || "",
+    firstLandingPage: attribution.firstLandingPage || "",
+    firstReferrer: attribution.firstReferrer || "",
+    firstUtmSource: attribution.firstUtmSource || "",
+    firstUtmMedium: attribution.firstUtmMedium || "",
+    firstUtmCampaign: attribution.firstUtmCampaign || "",
+    firstUtmContent: attribution.firstUtmContent || "",
+    firstUtmTerm: attribution.firstUtmTerm || "",
+    firstGclid: attribution.firstGclid || "",
+    firstGbraid: attribution.firstGbraid || "",
+    firstWbraid: attribution.firstWbraid || "",
+    lastLandingPage: attribution.lastLandingPage || "",
+    lastReferrer: attribution.lastReferrer || "",
+    lastUtmSource: attribution.lastUtmSource || "",
+    lastUtmMedium: attribution.lastUtmMedium || "",
+    lastUtmCampaign: attribution.lastUtmCampaign || "",
+    lastUtmContent: attribution.lastUtmContent || "",
+    lastUtmTerm: attribution.lastUtmTerm || "",
+    lastGclid: attribution.lastGclid || "",
+    lastGbraid: attribution.lastGbraid || "",
+    lastWbraid: attribution.lastWbraid || ""
+  };
 }
 
 const studInquiryOptions = Array.from(
@@ -5685,7 +5883,23 @@ function ChoiceGroup({ legend, name, options, required = false }) {
   );
 }
 
+function applicationInterestFromUrl() {
+  if (typeof window === "undefined") return "";
+
+  const interest = cleanTrackingValue(new window.URLSearchParams(window.location.search).get("interest"));
+  if (!interest) return "";
+
+  const puppy = publicPuppyProfiles.find((item) => item.slug === interest);
+  if (puppy) {
+    return [puppy.name, puppy.breed, puppy.litter].filter(Boolean).join(" - ");
+  }
+
+  return titleCaseSlug(interest);
+}
+
 function ApplicationFields() {
+  const specificInterestDefault = applicationInterestFromUrl();
+
   return (
     <div className="application-form-sections">
       <div className="application-form-note">
@@ -5763,7 +5977,11 @@ function ApplicationFields() {
           </label>
           <label className="full">
             Specific puppy, litter, or parent pairing
-            <input name="specificInterest" placeholder="Example: Ranger, Birdie + Waylon, Honey + Bram, or not sure yet" />
+            <input
+              name="specificInterest"
+              defaultValue={specificInterestDefault}
+              placeholder="Example: Ranger, Birdie + Waylon, Honey + Bram, or not sure yet"
+            />
           </label>
         </div>
       </section>
@@ -6240,7 +6458,11 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     payload.referrer = document.referrer;
     payload.userAgent = window.navigator.userAgent;
     payload.submittedAt = new Date().toISOString();
-    Object.assign(payload, collectTrackingPayload());
+    try {
+      Object.assign(payload, collectTrackingPayload());
+    } catch {
+      // Tracking should never block a family from sending a form.
+    }
 
     try {
       const response = await fetch("/api/forms", {
@@ -6460,6 +6682,10 @@ export default function App() {
       window.history.scrollRestoration = "manual";
     }
   }, []);
+
+  useEffect(() => {
+    captureCurrentAttribution();
+  }, [path]);
 
   useEffect(() => {
     const onTrackedClick = (event) => {
