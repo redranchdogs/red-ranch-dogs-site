@@ -2100,7 +2100,7 @@ function PuppyCard({ puppy, variant = "default" }) {
         {showAvailabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
         {isAvailableVariant || isDetailVariant ? (
           <div className="puppy-card-actions">
-            <Link href={puppyApplyHref(puppy)} className="button small">{isDetailVariant ? "Apply" : `Ask About ${puppy.name}`}</Link>
+            <Link href={puppyApplyHref(puppy)} className="button small">{`Reserve ${puppy.name}`}</Link>
             {litterRoute && <Link href={litterRoute} className="button small secondary">View Litter</Link>}
           </div>
         ) : route && (
@@ -5904,6 +5904,11 @@ function ApplicationFields() {
     <div className="application-form-sections">
       <div className="application-form-note">
         <p>Before applying, you can review our pricing, waitlist process, and FAQs.</p>
+        {specificInterestDefault && (
+          <p className="application-interest-confirmation">
+            Reserving: <strong>{specificInterestDefault}</strong>
+          </p>
+        )}
         <div className="application-form-links" aria-label="Helpful application links">
           <Link href="/process/pricing">Pricing</Link>
           <Link href="/process/how-it-works">How it works</Link>
