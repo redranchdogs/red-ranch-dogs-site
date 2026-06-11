@@ -4137,21 +4137,34 @@ function AboutOverviewPage() {
 }
 
 function AvailablePuppiesPage() {
-  const [openBreedSlug, setOpenBreedSlug] = useState("");
   const availableNow = puppyData.filter(isAvailablePuppy);
   const availableBreedGroups = breedProfiles.map((breed) => ({
     ...breed,
     puppies: availableNow.filter((puppy) => puppy.breedSlug === breed.slug)
   }));
   const visibleAvailableBreedGroups = availableBreedGroups.filter((group) => group.puppies.length);
+  const defaultOpenAvailableBreedSlugs = useMemo(
+    () => {
+      if (availableNow.length <= 8) return visibleAvailableBreedGroups.map((group) => group.slug);
+      return visibleAvailableBreedGroups[0]?.slug ? [visibleAvailableBreedGroups[0].slug] : [];
+    },
+    [availableNow.length, visibleAvailableBreedGroups]
+  );
+  const [openBreedSlugs, setOpenBreedSlugs] = useState(() => defaultOpenAvailableBreedSlugs);
   const availabilityStats = availableBreedGroups.map((group) => ({
     value: group.puppies.length,
     label: `${group.name} ${group.puppies.length === 1 ? "puppy" : "puppies"} available`
   }));
   const handleAvailableBreedToggle = (slug) => {
-    const nextOpenBreedSlug = openBreedSlug === slug ? "" : slug;
-    setOpenBreedSlug(nextOpenBreedSlug);
-    scrollLitterBreedGroupIntoView(nextOpenBreedSlug, "available");
+    setOpenBreedSlugs((currentSlugs) => {
+      return currentSlugs.includes(slug)
+        ? currentSlugs.filter((currentSlug) => currentSlug !== slug)
+        : [...currentSlugs, slug];
+    });
+
+    if (!openBreedSlugs.includes(slug)) {
+      scrollLitterBreedGroupIntoView(slug, "available");
+    }
   };
 
   return (
@@ -4173,7 +4186,7 @@ function AvailablePuppiesPage() {
           {visibleAvailableBreedGroups.map((group) => (
             <AvailablePuppyBreedAccordionGroup
               group={group}
-              isOpen={openBreedSlug === group.slug}
+              isOpen={openBreedSlugs.includes(group.slug)}
               key={group.slug}
               onToggle={() => handleAvailableBreedToggle(group.slug)}
             />
@@ -4209,7 +4222,6 @@ function CurrentLitterWaitlistNote() {
 }
 
 function CurrentLittersPage() {
-  const [openBreedSlug, setOpenBreedSlug] = useState("");
   const groupedCurrentLitters = plannedLitterBreedGroups
     .map((group) => ({
       ...group,
@@ -4218,6 +4230,8 @@ function CurrentLittersPage() {
     }))
     .filter((group) => group.litters.length);
   const ungroupedCurrentLitters = currentLitterProfiles.filter((litter) => !plannedLitterBreedGroups.some((group) => group.slug === litter.breedSlug));
+  const defaultCurrentOpenBreedSlug = groupedCurrentLitters[0]?.slug || (ungroupedCurrentLitters.length ? "additional-current-litters" : "");
+  const [openBreedSlug, setOpenBreedSlug] = useState(defaultCurrentOpenBreedSlug);
   const handleCurrentBreedToggle = (slug) => {
     const nextOpenBreedSlug = openBreedSlug === slug ? "" : slug;
     setOpenBreedSlug(nextOpenBreedSlug);
