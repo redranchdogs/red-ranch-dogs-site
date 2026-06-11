@@ -9531,16 +9531,11 @@ summary {
 .waitlist-section .premium-section-intro h2,
 .testimonials-section .premium-section-intro h2,
 .final-cta-panel h2 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 700;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-weight: 400;
   letter-spacing: 0;
-  line-height: 1.04;
-  text-transform: none;
-}
-
-.home-ready-strip-header h2 {
-  font-family: "Libre Franklin", Avenir Next, Helvetica, Arial, sans-serif;
-  font-weight: 900;
+  line-height: 0.92;
+  text-transform: uppercase;
 }
 
 .home-ready-strip-section,
@@ -9578,8 +9573,10 @@ summary {
 }
 
 .home-ready-puppy-body h3 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 700;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .home-ready-puppy-meta {
@@ -9617,8 +9614,8 @@ summary {
     max-width: 13.5ch;
     margin-right: auto;
     margin-left: auto;
-    font-size: clamp(2rem, 8.5vw, 2.55rem);
-    line-height: 1.02;
+    font-size: clamp(3rem, 14vw, 4.2rem);
+    line-height: 0.88;
   }
 
   .home-ready-strip-header p:not(.premium-kicker) {
@@ -9730,7 +9727,8 @@ summary {
   .trust-section .premium-section-intro h2,
   .waitlist-section .premium-section-intro h2,
   .testimonials-section .premium-section-intro h2 {
-    font-size: clamp(1.78rem, 8vw, 2.35rem);
+    font-size: clamp(3rem, 13vw, 4rem);
+    line-height: 0.9;
   }
 
   .home-doodles-section .section-header p:not(.premium-kicker),
@@ -9760,10 +9758,12 @@ summary {
   }
 
   .home-doodles-section .image-card h3 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.05;
+    font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+    font-size: 2.15rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 0.95;
+    text-transform: uppercase;
   }
 
   .home-doodles-section .image-card p {
@@ -9883,7 +9883,8 @@ summary {
   }
 
   .final-cta-panel h2 {
-    font-size: clamp(1.8rem, 8vw, 2.3rem);
+    font-size: clamp(3rem, 13vw, 4rem);
+    line-height: 0.9;
   }
 }
 
