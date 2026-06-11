@@ -1281,9 +1281,30 @@ const primaryNav = [
   { label: "Apply", href: "/apply", cta: true }
 ];
 
-function AccordionNav({ item, currentPath, onNavigate, index }) {
-  const [expanded, setExpanded] = useState(false);
+function AccordionNav({ item, currentPath, onNavigate, index, openGroup, onToggle }) {
   const panelId = `mobile-nav-${item.label.toLowerCase().replace(/\W+/g, "-")}`;
+  const expanded = openGroup === item.label;
+  const panelRef = useRef(null);
+
+  useEffect(() => {
+    if (!expanded) return undefined;
+
+    const frame = window.requestAnimationFrame(() => {
+      const firstLink = panelRef.current?.querySelector("a");
+      const firstLinkRect = firstLink?.getBoundingClientRect();
+      const menuRect = panelRef.current?.closest(".premium-mobile-menu")?.getBoundingClientRect();
+      const fold = Math.min(window.innerHeight, menuRect?.bottom ?? window.innerHeight) - 20;
+
+      if (firstLinkRect && firstLinkRect.bottom > fold) {
+        firstLink.scrollIntoView({
+          block: "nearest",
+          behavior: scrollBehaviorForPreference("smooth")
+        });
+      }
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [expanded]);
 
   if (!item.links) {
     return (
@@ -1305,12 +1326,12 @@ function AccordionNav({ item, currentPath, onNavigate, index }) {
         className="mobile-menu-trigger"
         aria-expanded={expanded}
         aria-controls={panelId}
-        onClick={() => setExpanded((value) => !value)}
+        onClick={() => onToggle(item.label)}
       >
         {item.label}
         <ChevronDown size={18} />
       </button>
-      <div className="mobile-submenu" id={panelId} data-open={expanded}>
+      <div className="mobile-submenu" id={panelId} data-open={expanded} ref={panelRef}>
         {item.links.map((link) => (
           <Link
             href={link.href}
@@ -1328,6 +1349,7 @@ function AccordionNav({ item, currentPath, onNavigate, index }) {
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef(null);
   const mobileMenuRef = useRef(null);
@@ -1347,6 +1369,12 @@ function Header() {
   useEffect(() => {
     document.body.classList.toggle("menu-locked", open);
     return () => document.body.classList.remove("menu-locked");
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) {
+      setOpenGroup(null);
+    }
   }, [open]);
 
   useEffect(() => {
@@ -1373,6 +1401,9 @@ function Header() {
   }, [open]);
 
   const closeMenu = () => setOpen(false);
+  const toggleMenuGroup = (label) => {
+    setOpenGroup((value) => (value === label ? null : label));
+  };
   const isActive = (item) => currentPath === item.href || (item.href !== "/" && currentPath.startsWith(`${item.href}/`));
 
   return (
@@ -1425,7 +1456,15 @@ function Header() {
       >
         <nav aria-label="Mobile navigation">
           {primaryNav.map((item, index) => (
-            <AccordionNav item={item} currentPath={currentPath} key={item.label} index={index} onNavigate={closeMenu} />
+            <AccordionNav
+              item={item}
+              currentPath={currentPath}
+              key={item.label}
+              index={index}
+              onNavigate={closeMenu}
+              openGroup={openGroup}
+              onToggle={toggleMenuGroup}
+            />
           ))}
         </nav>
         <div className="mobile-menu-ctas">

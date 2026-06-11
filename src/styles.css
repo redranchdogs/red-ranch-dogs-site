@@ -168,7 +168,7 @@ body.menu-locked {
   overflow: auto;
   padding: 18px;
   pointer-events: none;
-  background: rgba(255, 250, 242, 0.94);
+  background: #fffaf2;
   border: 1px solid var(--premium-line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
@@ -176,6 +176,7 @@ body.menu-locked {
   transform: translateY(-8px);
   transition: opacity 180ms ease, transform 180ms var(--ease-premium);
   backdrop-filter: blur(20px);
+  isolation: isolate;
 }
 
 .premium-mobile-menu.open {
@@ -1110,6 +1111,13 @@ body.menu-locked {
   pointer-events: auto;
   opacity: 1;
   transform: translateY(0);
+}
+
+body.menu-locked .sticky-mobile-cta,
+body.menu-locked .sticky-mobile-cta.visible {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(18px);
 }
 
 .sticky-mobile-cta .button {
