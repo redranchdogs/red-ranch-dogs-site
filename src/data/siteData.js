@@ -152,6 +152,7 @@ export const currentLitters = [
     href: "/honey-bram",
     image: "/images/litters/honey-bram.webp"
   },
+  // Legacy starter data retained for archive compatibility; public traffic redirects to /litters/birdie-waylon-spring-2026.
   {
     name: "Birdie + Waylon",
     breed: "Micro Goldendoodles",
