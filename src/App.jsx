@@ -6,6 +6,8 @@ import {
   CalendarDays,
   CheckCircle2,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Heart,
   Home as HomeIcon,
   Instagram,
@@ -16,7 +18,8 @@ import {
   Send,
   ShieldCheck,
   Sparkles,
-  Star
+  Star,
+  X
 } from "lucide-react";
 import {
   brand,
@@ -1935,17 +1938,154 @@ function HomePage() {
   );
 }
 
+function PhotoLightbox({ items = [], activeIndex = 0, onClose, onIndexChange, title = "Photo gallery" }) {
+  const closeButtonRef = useRef(null);
+  const touchStartRef = useRef(null);
+  const activeItem = items[activeIndex];
+  const hasPrevious = activeIndex > 0;
+  const hasNext = activeIndex < items.length - 1;
+
+  useEffect(() => {
+    if (!activeItem) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose?.();
+      } else if (event.key === "ArrowLeft" && hasPrevious) {
+        onIndexChange(activeIndex - 1);
+      } else if (event.key === "ArrowRight" && hasNext) {
+        onIndexChange(activeIndex + 1);
+      }
+    };
+
+    closeButtonRef.current?.focus();
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [activeIndex, activeItem, hasNext, hasPrevious, onClose, onIndexChange]);
+
+  useEffect(() => {
+    if (!activeItem || typeof window === "undefined") return undefined;
+
+    [items[activeIndex - 1], items[activeIndex + 1]].filter(Boolean).forEach((item) => {
+      const preload = new window.Image();
+      preload.src = item.src;
+    });
+
+    return undefined;
+  }, [activeIndex, activeItem, items]);
+
+  if (!activeItem) return null;
+
+  const goToPrevious = () => {
+    if (hasPrevious) onIndexChange(activeIndex - 1);
+  };
+
+  const goToNext = () => {
+    if (hasNext) onIndexChange(activeIndex + 1);
+  };
+
+  const onTouchStart = (event) => {
+    if (event.touches.length !== 1) {
+      touchStartRef.current = null;
+      return;
+    }
+
+    touchStartRef.current = {
+      x: event.touches[0].clientX,
+      y: event.touches[0].clientY
+    };
+  };
+
+  const onTouchEnd = (event) => {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start || event.changedTouches.length !== 1) return;
+
+    const end = event.changedTouches[0];
+    const deltaX = end.clientX - start.x;
+    const deltaY = end.clientY - start.y;
+    if (Math.abs(deltaX) < 44 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
+
+    if (deltaX > 0) {
+      goToPrevious();
+    } else {
+      goToNext();
+    }
+  };
+
+  return (
+    <div className="photo-lightbox" role="dialog" aria-modal="true" aria-label={title}>
+      <button className="photo-lightbox-backdrop" type="button" aria-label="Close photo gallery" onClick={onClose} />
+      <div className="photo-lightbox-panel">
+        <div className="photo-lightbox-toolbar">
+          <p>{activeItem.caption || title}</p>
+          <button className="icon-button photo-lightbox-close" type="button" aria-label="Close photo gallery" onClick={onClose} ref={closeButtonRef}>
+            <X size={22} aria-hidden="true" />
+          </button>
+        </div>
+        <div className="photo-lightbox-stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+          <button className="icon-button photo-lightbox-nav previous" type="button" aria-label="Previous photo" onClick={goToPrevious} disabled={!hasPrevious}>
+            <ChevronLeft size={26} aria-hidden="true" />
+          </button>
+          <img src={activeItem.src} alt={activeItem.alt || activeItem.caption || title} />
+          <button className="icon-button photo-lightbox-nav next" type="button" aria-label="Next photo" onClick={goToNext} disabled={!hasNext}>
+            <ChevronRight size={26} aria-hidden="true" />
+          </button>
+        </div>
+        <p className="photo-lightbox-count">{activeIndex + 1} / {items.length}</p>
+      </div>
+    </div>
+  );
+}
+
 function ImageGallery({ images: gallery = [], label = "Gallery image", className = "" }) {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const openerRef = useRef(null);
+  const items = useMemo(
+    () => gallery.map((image, index) => ({
+      src: image,
+      alt: `${label} ${index + 1}`,
+      caption: `${label} ${index + 1}`
+    })),
+    [gallery, label]
+  );
+
+  const closeLightbox = () => {
+    setActiveIndex(null);
+    window.requestAnimationFrame(() => openerRef.current?.focus());
+  };
+
   if (!gallery.length) {
     return <ImagePlaceholder label={label} tall />;
   }
 
   return (
-    <div className={`image-gallery ${className}`.trim()}>
-      {gallery.map((image, index) => (
-        <img src={image} alt={`${label} ${index + 1}`} key={`${image}-${index}`} loading="lazy" />
-      ))}
-    </div>
+    <>
+      <div className={`image-gallery ${className}`.trim()}>
+        {items.map((image, index) => (
+          <button
+            className="gallery-photo-button"
+            type="button"
+            key={`${image.src}-${index}`}
+            onClick={(event) => {
+              openerRef.current = event.currentTarget;
+              setActiveIndex(index);
+            }}
+          >
+            <img src={image.src} alt={image.alt} loading="lazy" />
+          </button>
+        ))}
+      </div>
+      {activeIndex !== null && (
+        <PhotoLightbox
+          items={items}
+          activeIndex={activeIndex}
+          onClose={closeLightbox}
+          onIndexChange={setActiveIndex}
+          title={label}
+        />
+      )}
+    </>
   );
 }
 
@@ -1967,23 +2107,59 @@ function puppyNameForGalleryImage(image = "", puppies = []) {
 }
 
 function LitterImageGallery({ images: gallery = [], puppies = [], label = "Litter photo" }) {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const openerRef = useRef(null);
+  const items = useMemo(
+    () => gallery.map((image, index) => {
+      const puppyName = puppyNameForGalleryImage(image, puppies);
+      return {
+        src: image,
+        alt: puppyName ? `${puppyName} - ${label}` : `${label} ${index + 1}`,
+        caption: puppyName || `${label} ${index + 1}`,
+        puppyName
+      };
+    }),
+    [gallery, label, puppies]
+  );
+
+  const closeLightbox = () => {
+    setActiveIndex(null);
+    window.requestAnimationFrame(() => openerRef.current?.focus());
+  };
+
   if (!gallery.length) {
     return <ImagePlaceholder label={label} tall />;
   }
 
   return (
-    <div className="image-gallery litter-image-gallery">
-      {gallery.map((image, index) => {
-        const puppyName = puppyNameForGalleryImage(image, puppies);
-
-        return (
-          <figure className="litter-gallery-photo" key={`${image}-${index}`}>
-            <img src={image} alt={puppyName ? `${puppyName} - ${label}` : `${label} ${index + 1}`} loading="lazy" />
-            {puppyName && <figcaption>{puppyName}</figcaption>}
+    <>
+      <div className="image-gallery litter-image-gallery">
+        {items.map((image, index) => (
+          <figure className="litter-gallery-photo" key={`${image.src}-${index}`}>
+            <button
+              className="gallery-photo-button"
+              type="button"
+              onClick={(event) => {
+                openerRef.current = event.currentTarget;
+                setActiveIndex(index);
+              }}
+            >
+              <img src={image.src} alt={image.alt} loading="lazy" />
+            </button>
+            {image.puppyName && <figcaption>{image.puppyName}</figcaption>}
           </figure>
-        );
-      })}
-    </div>
+        ))}
+      </div>
+      {activeIndex !== null && (
+        <PhotoLightbox
+          items={items}
+          activeIndex={activeIndex}
+          onClose={closeLightbox}
+          onIndexChange={setActiveIndex}
+          title={label}
+        />
+      )}
+    </>
   );
 }
 
