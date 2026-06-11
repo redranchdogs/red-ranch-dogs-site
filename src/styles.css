@@ -6929,6 +6929,31 @@ summary {
     grid-template-columns: 1fr;
   }
 
+  .puppy-weekly-photo-group .puppy-weekly-swipe-gallery {
+    display: grid;
+    grid-auto-columns: minmax(260px, 82%);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    gap: 10px;
+    margin-right: -14px;
+    margin-left: -14px;
+    padding: 0 14px 4px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: 14px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .puppy-weekly-photo-group .puppy-weekly-swipe-gallery::-webkit-scrollbar {
+    display: none;
+  }
+
+  .puppy-weekly-swipe-gallery .gallery-photo-button {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
   .pairing-photo-grid figcaption {
     right: 10px;
     bottom: 10px;

@@ -3628,7 +3628,11 @@ function PuppyDetailPage({ puppy }) {
                   <p className="eyebrow">{group.week}</p>
                   <h2>{group.week} photos</h2>
                 </div>
-                <ImageGallery images={group.photos || []} label={`${puppy.name} ${group.week} puppy photo`} />
+                <ImageGallery
+                  images={group.photos || []}
+                  label={`${puppy.name} ${group.week} puppy photo`}
+                  className="puppy-weekly-swipe-gallery"
+                />
               </article>
             ))}
           </div>
