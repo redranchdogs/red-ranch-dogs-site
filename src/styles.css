@@ -3690,6 +3690,23 @@ textarea {
   object-fit: cover;
 }
 
+@media (min-width: 768px) {
+  .litter-gallery-section .litter-image-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .litter-gallery-section .litter-image-gallery img {
+    height: auto;
+    max-height: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .litter-gallery-section .litter-image-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 .litter-gallery-photo figcaption {
   position: absolute;
   right: 10px;
