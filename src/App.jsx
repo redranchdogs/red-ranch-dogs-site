@@ -2050,6 +2050,76 @@ function PhotoLightbox({ items = [], activeIndex = 0, onClose, onIndexChange, ti
   );
 }
 
+function youtubeEmbedFromUrl(value = "") {
+  if (!value) return null;
+
+  try {
+    const url = new globalThis.URL(value);
+    const host = url.hostname.replace(/^www\./, "");
+    const list = url.searchParams.get("list");
+    let videoId = url.searchParams.get("v") || "";
+
+    if (host === "youtu.be") {
+      videoId = url.pathname.replace(/^\//, "").split("/")[0];
+    }
+
+    if (!videoId && /^\/shorts\//.test(url.pathname)) {
+      videoId = url.pathname.split("/")[2] || "";
+    }
+
+    if (!videoId && /^\/embed\//.test(url.pathname)) {
+      videoId = url.pathname.split("/")[2] || "";
+    }
+
+    if (videoId) {
+      return {
+        src: `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0`,
+        thumbnail: `https://img.youtube.com/vi/${encodeURIComponent(videoId)}/hqdefault.jpg`
+      };
+    }
+
+    if (list) {
+      return {
+        src: `https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(list)}&autoplay=1&rel=0`,
+        thumbnail: ""
+      };
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
+function YouTubeFacade({ title, url, image }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const embed = useMemo(() => youtubeEmbedFromUrl(url), [url]);
+
+  if (!embed) return null;
+
+  return (
+    <div className="video-facade">
+      {isPlaying ? (
+        <iframe
+          src={embed.src}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      ) : (
+        <button className="video-facade-button" type="button" onClick={() => setIsPlaying(true)}>
+          {(image || embed.thumbnail) ? (
+            <img src={image || embed.thumbnail} alt="" loading="lazy" />
+          ) : (
+            <ImagePlaceholder label="Video preview" />
+          )}
+          <span className="video-play-badge">Play Video</span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 function ImageGallery({ images: gallery = [], label = "Gallery image", className = "" }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const openerRef = useRef(null);
@@ -3476,6 +3546,12 @@ function PuppyDetailPage({ puppy }) {
       <section className="card-list puppy-detail-section">
         <PuppyCard puppy={puppy} variant="detail" />
       </section>
+      {puppy.videoUrl && (
+        <section className="content-section puppy-video-section">
+          <SectionHeader eyebrow="Video Update" title={`${puppy.name} video`} copy="Tap to play the latest video update for this puppy." />
+          <YouTubeFacade title={`${puppy.name} puppy video`} url={puppy.videoUrl} image={puppy.mainPhoto || puppy.image} />
+        </section>
+      )}
       {weeklyPhotoGroups.length > 0 && (
         <section className="content-section puppy-weekly-photo-section">
           <SectionHeader
@@ -3699,6 +3775,12 @@ function LitterPage({ litter }) {
         <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />
         {gallery.length > 0 && <LitterImageGallery images={gallery} puppies={puppies} label={`${litter.name} weekly update`} />}
       </section>
+      {litter.videoPlaylistUrl && (
+        <section className="content-section litter-video-section">
+          <SectionHeader eyebrow="Videos" title={`${litter.name} videos`} copy="Tap to play the video playlist for this litter." />
+          <YouTubeFacade title={`${litter.name} video playlist`} url={litter.videoPlaylistUrl} image={fallbackLitterImage} />
+        </section>
+      )}
       <section className="tile-grid three litter-parent-grid">
         <SectionHeader eyebrow="Parents" title={`${litter.mama} + ${litter.stud}`} copy="Meet the parent dogs behind this pairing." />
         {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}

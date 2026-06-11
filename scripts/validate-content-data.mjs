@@ -62,6 +62,21 @@ function checkImageList(images = [], context) {
   images.forEach((image) => pathExists(image, context));
 }
 
+function isYouTubeUrl(value = "") {
+  if (!value) return true;
+
+  try {
+    const url = new globalThis.URL(value);
+    const host = url.hostname.replace(/^www\./, "");
+    if (host === "youtu.be") return Boolean(url.pathname.replace(/\//g, ""));
+    if (!["youtube.com", "youtube-nocookie.com"].includes(host)) return false;
+    if (url.searchParams.get("v") || url.searchParams.get("list")) return true;
+    return /^\/(?:embed|shorts)\//.test(url.pathname);
+  } catch {
+    return false;
+  }
+}
+
 uniqueBy(puppies, "slug", "Puppy");
 uniqueBy(litters, "slug", "Litter");
 uniqueBy(previousLitters, "href", "Previous litter");
@@ -82,6 +97,10 @@ puppies.forEach((puppy) => {
   const status = normalizedStatus(puppy.status);
   if (status && !puppyStatuses.has(status)) {
     addWarning(`Puppy ${puppy.slug} has an unrecognized status: ${puppy.status}`);
+  }
+
+  if (puppy.videoUrl && !isYouTubeUrl(puppy.videoUrl)) {
+    addError(`Puppy ${puppy.slug} videoUrl must be a valid YouTube URL.`);
   }
 
   if (status === "available" && !isPublicRecord(puppy)) {
@@ -125,6 +144,10 @@ litters.forEach((litter) => {
   const status = normalizedStatus(litter.status);
   if (status && !publicLitterStatuses.has(status)) {
     addWarning(`Litter ${litter.slug} has an unrecognized status: ${litter.status}`);
+  }
+
+  if (litter.videoPlaylistUrl && !isYouTubeUrl(litter.videoPlaylistUrl)) {
+    addError(`Litter ${litter.slug} videoPlaylistUrl must be a valid YouTube URL.`);
   }
 
   if (litter.mamaSlug && !parentSlugs.has(litter.mamaSlug)) {
