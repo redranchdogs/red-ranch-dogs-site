@@ -1768,6 +1768,59 @@ function HomeDoodles() {
   );
 }
 
+function HomeReadySoonStrip() {
+  const readyPuppies = featuredAvailablePuppies();
+
+  if (!readyPuppies.length) return null;
+
+  return (
+    <FadeInSection className="home-ready-strip-section">
+      <ContentContainer>
+        <div className="home-ready-strip-header">
+          <p className="premium-kicker">Available Now</p>
+          <h2>Ready to go home soon</h2>
+        </div>
+        <div className="home-ready-puppy-row" aria-label="Puppies ready to go home soon">
+          {readyPuppies.map((puppy) => {
+            const photo = puppy.mainPhoto || puppy.image;
+            const gender = puppy.gender || puppy.sex || "Gender to be announced";
+
+            return (
+              <article className="home-ready-puppy-card" key={puppy.slug || puppy.name}>
+                <Link href={puppy.slug ? `/puppies/${puppy.slug}` : "/puppies/available"} className="home-ready-puppy-photo">
+                  {photo ? (
+                    <img src={photo} alt={`${puppy.name} - ${puppy.breed}`} loading="lazy" decoding="async" />
+                  ) : (
+                    <ImagePlaceholder label={`${puppy.name} photo`} />
+                  )}
+                </Link>
+                <div className="home-ready-puppy-body">
+                  <p className="eyebrow">{puppy.breed}</p>
+                  <h3>{puppy.name}</h3>
+                  <p>{gender}</p>
+                  <Link
+                    href={puppyApplyHref(puppy)}
+                    className="button small"
+                    onClick={() => {
+                      trackSiteEvent("cta_reserve_click", {
+                        source: "home_ready_strip",
+                        puppy: puppy.slug || puppy.name,
+                        from: "/"
+                      });
+                    }}
+                  >
+                    {`Reserve ${puppy.name}`}
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </ContentContainer>
+    </FadeInSection>
+  );
+}
+
 function TrustCard({ title, copy, Icon }) {
   return (
     <article className="premium-trust-card">
@@ -1940,6 +1993,7 @@ function HomePage() {
     <Layout>
       <HomeHero />
       <SocialProofStrip className="hero-adjacent" />
+      <HomeReadySoonStrip />
       <HomeDoodles />
       <WhyRedRanch />
       <WaitlistSteps />

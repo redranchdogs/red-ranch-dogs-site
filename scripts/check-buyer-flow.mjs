@@ -196,6 +196,19 @@ if (!app.includes("featuredAvailablePuppies()")) {
   blockers.push("Available Puppies page should use featuredAvailable litters as the merchandising filter.");
 }
 
+if (featuredAvailablePuppies.length > 0 && !app.includes("Ready to go home soon")) {
+  blockers.push("Homepage should feature the ready-to-go-home-soon strip when featured Available puppies exist.");
+}
+
+if (!app.includes('source: "home_ready_strip"') || !app.includes('trackSiteEvent("cta_reserve_click"')) {
+  blockers.push("Homepage ready strip Reserve buttons should track cta_reserve_click with source home_ready_strip.");
+}
+
+const homeReadyStripSource = app.match(/function HomeReadySoonStrip\(\) \{[\s\S]*?\n\}/)?.[0] || "";
+if (homeReadyStripSource && /\b(price|previousPrice|markdown|strikethrough)\b/i.test(homeReadyStripSource)) {
+  blockers.push("Homepage ready strip must not render prices, markdowns, or discount fields.");
+}
+
 if (app.includes("Current litters may still be growing and matching with waitlist families first")) {
   blockers.push("Available Puppies page still contains old waitlist-matching copy.");
 }
