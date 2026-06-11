@@ -46,6 +46,7 @@ The website should not own:
 1. Regenerated `docs/*.md` files always commit separately with message `Regenerate review docs`.
 2. Data-only `src/data/*.json` changes commit separately from logic changes.
 3. Every code commit message names the task or fix.
+4. Production deploys happen ONLY by merging `codex/launch-candidate` into `main` and pushing. Never deploy via CLI `--prod`. Day-to-day work continues on `codex/launch-candidate`; merging to `main` is the act of going live and requires Adam's approval.
 
 ## Agent Rules
 
