@@ -4413,8 +4413,7 @@ function CurrentLittersPage() {
     }))
     .filter((group) => group.litters.length);
   const ungroupedCurrentLitters = currentLitterProfiles.filter((litter) => !plannedLitterBreedGroups.some((group) => group.slug === litter.breedSlug));
-  const defaultCurrentOpenBreedSlug = groupedCurrentLitters[0]?.slug || (ungroupedCurrentLitters.length ? "additional-current-litters" : "");
-  const [openBreedSlug, setOpenBreedSlug] = useState(defaultCurrentOpenBreedSlug);
+  const [openBreedSlug, setOpenBreedSlug] = useState("");
   const handleCurrentBreedToggle = (slug) => {
     const nextOpenBreedSlug = openBreedSlug === slug ? "" : slug;
     setOpenBreedSlug(nextOpenBreedSlug);
