@@ -6860,10 +6860,17 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
         </div>
       )}
       {newsletterOnly && (
-        <label className="newsletter-email-field">
-          <span>Email Address</span>
-          <input name="email" type="email" required autoComplete="email" placeholder="Email Address" />
-        </label>
+        <>
+          <label className="newsletter-email-field">
+            <span>Email Address</span>
+            <input name="email" type="email" required autoComplete="email" placeholder="Email Address" />
+          </label>
+          <ChoiceGroup
+            legend="Breed alerts"
+            name="preferredBreed"
+            options={["Goldendoodle", "Cavapoo", "Bernedoodle"]}
+          />
+        </>
       )}
       {nextStepNote && (
         <p className="form-next-step">

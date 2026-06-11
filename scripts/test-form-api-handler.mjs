@@ -355,7 +355,8 @@ globalThis.fetch = async (url, options = {}) => {
 const bridgeNewsletter = await post({
   ...basePayload,
   formType: "newsletter",
-  formTitle: "Puppy Alert Email"
+  formTitle: "Puppy Alert Email",
+  preferredBreed: "Goldendoodle, Cavapoo"
 });
 assert(bridgeNewsletter.statusCode === 200, "bridge configured newsletter should submit successfully");
 assert(
@@ -394,6 +395,10 @@ assert(
   "bridge row should include the compact lead summary"
 );
 assert(appendRequest.body.values[0][19] === "Codex Form Test", "bridge row should preserve contact columns before appended attribution fields");
+assert(
+  appendRequest.body.values[0].includes("Goldendoodle, Cavapoo"),
+  "bridge newsletter row should preserve checked breed interests"
+);
 assert(appendRequest.body.values[0][57] === "last-test-gclid", "bridge row should include Google click ID");
 assert(appendRequest.body.values[0][60].includes("utm_source=google"), "bridge row should include first landing page");
 assert(queueReplaceRequest.body.values[0].includes("Next Action"), "lead queue header row should include workflow columns");

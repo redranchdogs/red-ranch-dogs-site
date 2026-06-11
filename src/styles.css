@@ -978,6 +978,27 @@ body.menu-locked {
   gap: 0;
 }
 
+.footer-alert .choice-group {
+  gap: 7px;
+  text-align: left;
+}
+
+.footer-alert .choice-group legend {
+  color: rgba(33, 31, 27, 0.78);
+  font-size: 0.76rem;
+}
+
+.footer-alert .option-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.footer-alert .checkbox-line {
+  gap: 5px;
+  font-size: 0.68rem;
+  line-height: 1.2;
+}
+
 .footer-alert .newsletter-email-field span {
   position: absolute;
   width: 1px;
