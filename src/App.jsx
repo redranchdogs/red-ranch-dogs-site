@@ -900,7 +900,7 @@ function itemListSchemaForPath(path) {
 
   if (path === "/puppies/available") {
     name = "Available Red Ranch Dogs puppies";
-    records = publicPuppyProfiles.filter((item) => item.status === "Available");
+    records = featuredAvailablePuppies();
     getUrl = (item) => `${siteOrigin}/puppies/${item.slug}`;
     getImage = (item) => item.mainPhoto;
   } else if (path === "/puppies/current-litters") {
@@ -2485,14 +2485,10 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
   const litterPuppies = puppiesForLitter(litter);
-  const litterWaitlistPuppies = litterPuppies.filter(isWaitlistMatchingPuppy);
   const litterReservedPuppies = litterPuppies.filter(isReservedPuppy);
   const isFullyReservedLitter = litterPuppies.length > 0 && litterReservedPuppies.length === litterPuppies.length;
   const puppyCountLabel = litterAvailabilityLabel(litter, litterPuppies);
-  const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
-  const waitlistName = breedProgram?.name || "breed";
-  const publicAvailabilityNote = litterWaitlistPuppies.length ? waitlistFirstNote(waitlistName) : litter.availabilityNote;
-  const cardAvailabilityNote = showAvailabilityNote && !isCurrentLitter(litter) ? publicAvailabilityNote : "";
+  const cardAvailabilityNote = showAvailabilityNote && !isCurrentLitter(litter) ? litter.availabilityNote : "";
   const actionLabel = isCurrentLitter(litter) && isFullyReservedLitter ? "View Updates" : isCurrentLitter(litter) ? "View Litter" : "View Pairing";
 
   return (
@@ -3124,6 +3120,7 @@ const publicPuppyProfiles = publicRecords(puppyProfiles);
 const publicLitterProfiles = publicRecords(litterProfiles);
 const publicParentProfiles = publicRecords(parentProfiles);
 const puppyData = publicPuppyProfiles;
+const litterProfileBySlug = new Map(publicLitterProfiles.map((litter) => [litter.slug, litter]));
 const isCurrentLitter = (litter) => normalizedStatus(litter?.status).includes("current");
 const isPlannedLitter = (litter) => {
   const status = normalizedStatus(litter?.status);
@@ -3197,9 +3194,23 @@ const statusMatches = (puppy, status) => normalizedStatus(puppy?.status) === nor
 const isAvailablePuppy = (puppy) => statusMatches(puppy, "available");
 const isReservedPuppy = (puppy) => ["reserved", "matched"].includes(normalizedStatus(puppy?.status));
 const isWaitlistMatchingPuppy = (puppy) => statusMatches(puppy, "waitlist matching");
-const WAITLIST_FIRST_LABEL = "Waitlist Picks First";
-const puppyDisplayStatus = (status = "") => normalizedStatus(status) === "waitlist matching" ? WAITLIST_FIRST_LABEL : status;
-const waitlistFirstNote = (waitlistName) => `${waitlistName} waitlist families pick first for this litter.`;
+const puppyDisplayStatus = (status = "") => ["pending", "waitlist matching"].includes(normalizedStatus(status)) ? "Reserved" : status;
+const litterDateSortValue = (litter) => sortableLitterDate(litter?.goHomeDate || litter?.goHome || litter?.birthDate || "");
+const featuredAvailablePuppies = () => puppyData
+  .filter((puppy) => {
+    const litter = litterProfileBySlug.get(puppy.litterSlug);
+    return isAvailablePuppy(puppy) && litter?.featuredAvailable === true;
+  })
+  .sort((first, second) => {
+    const firstLitter = litterProfileBySlug.get(first.litterSlug);
+    const secondLitter = litterProfileBySlug.get(second.litterSlug);
+    const litterDateDelta = litterDateSortValue(firstLitter) - litterDateSortValue(secondLitter);
+    if (litterDateDelta) return litterDateDelta;
+    const firstLitterIndex = currentLitterProfiles.findIndex((litter) => litter.slug === first.litterSlug);
+    const secondLitterIndex = currentLitterProfiles.findIndex((litter) => litter.slug === second.litterSlug);
+    if (firstLitterIndex !== secondLitterIndex) return firstLitterIndex - secondLitterIndex;
+    return (first.name || "").localeCompare(second.name || "");
+  });
 const pluralizeLitterBreed = (breed = "puppies") => {
   if (!breed || /s$/i.test(breed)) return breed || "puppies";
   if (/poo$/i.test(breed)) return `${breed}s`;
@@ -3213,8 +3224,7 @@ const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter
   const reservedCount = litterPuppies.filter(isReservedPuppy).length;
 
   if (availableCount) return `${availableCount} available`;
-  if (waitlistCount) return WAITLIST_FIRST_LABEL;
-  if (litterPuppies.length && reservedCount === litterPuppies.length) return "Reserved";
+  if (litterPuppies.length && reservedCount + waitlistCount === litterPuppies.length) return "Reserved";
   if (!isCurrentLitter(litter)) return "Planning";
   if (litterPuppies.length) return `${litterPuppies.length} puppy profiles`;
   return "Updates soon";
@@ -3625,9 +3635,9 @@ function LitterPage({ litter }) {
       }
     : waitlistMatchingPuppies.length
       ? {
-          title: `Want to join the ${waitlistName} waitlist?`,
-          copy: "Apply now to get in line for this breed.",
-          primaryLabel: "Join the Waitlist"
+          title: "Want a future litter like this?",
+          copy: "Puppies not marked Available are not open to reserve publicly. Apply and we will help you understand future timing for this breed.",
+          primaryLabel: "Apply for a Future Litter"
         }
       : isCurrentLitter(litter) && puppies.length === 0
         ? {
@@ -3884,7 +3894,7 @@ function ParentDetailPage({ parent }) {
 
 function PuppiesOverviewPage() {
   const [openBreedSlug, setOpenBreedSlug] = useState("");
-  const availableNow = puppyData.filter(isAvailablePuppy);
+  const availableNow = featuredAvailablePuppies();
   const currentBreedGroups = plannedLitterBreedGroups
     .map((group) => ({
       ...group,
@@ -3964,8 +3974,8 @@ function PuppiesOverviewPage() {
           <h2>{availableNow.length ? "Puppies are available now" : "No public puppies are available right now"}</h2>
           <p>
             {availableNow.length
-              ? "Only puppies ready for a new approved family appear on the Available Puppies page."
-              : "Waitlist families pick first. If puppies remain after those picks, public openings will be posted on the Available Puppies page."}
+              ? "Only the priority puppies looking for families soonest appear on the Available Puppies page."
+              : "When puppies are ready to reserve publicly, they will appear on the Available Puppies page."}
           </p>
           <div className="actions">
             <Link href="/puppies/available" className="button secondary">Check Availability</Link>
@@ -4243,11 +4253,21 @@ function AboutOverviewPage() {
 }
 
 function AvailablePuppiesPage() {
-  const availableNow = puppyData.filter(isAvailablePuppy);
-  const availableBreedGroups = breedProfiles.map((breed) => ({
-    ...breed,
-    puppies: availableNow.filter((puppy) => puppy.breedSlug === breed.slug)
-  }));
+  const availableNow = featuredAvailablePuppies();
+  const breedOrderBySlug = new Map(breedProfiles.map((breed, index) => [breed.slug, index]));
+  const availableBreedGroups = breedProfiles
+    .map((breed) => ({
+      ...breed,
+      puppies: availableNow.filter((puppy) => puppy.breedSlug === breed.slug)
+    }))
+    .sort((first, second) => {
+      const firstPuppy = first.puppies[0];
+      const secondPuppy = second.puppies[0];
+      const firstDate = firstPuppy ? litterDateSortValue(litterProfileBySlug.get(firstPuppy.litterSlug)) : Number.POSITIVE_INFINITY;
+      const secondDate = secondPuppy ? litterDateSortValue(litterProfileBySlug.get(secondPuppy.litterSlug)) : Number.POSITIVE_INFINITY;
+      if (firstDate !== secondDate) return firstDate - secondDate;
+      return (breedOrderBySlug.get(first.slug) ?? 999) - (breedOrderBySlug.get(second.slug) ?? 999);
+    });
   const visibleAvailableBreedGroups = availableBreedGroups.filter((group) => group.puppies.length);
   const defaultOpenAvailableBreedSlugs = useMemo(
     () => {
@@ -4276,7 +4296,7 @@ function AvailablePuppiesPage() {
   return (
     <BuyerPageTemplate
       title="Available Puppies"
-      copy="These puppies are available to reserve right now with a deposit. Current litters may still be growing and matching with waitlist families first before becoming publicly available."
+      copy="These puppies are looking for their families now and are available to reserve with a deposit."
     >
       <ListingStatusStrip items={availabilityStats} className="available-puppy-tracker" />
       {availableNow.length === 0 && (
@@ -4302,18 +4322,18 @@ function AvailablePuppiesPage() {
       <CTASection
         title={availableNow.length ? "Ready to ask about a puppy?" : "Want help choosing the right path?"}
         copy={availableNow.length
-          ? "Apply now and we will help you understand availability, timing, and whether a current puppy or future litter is the right fit."
-          : "Apply now and we will help you understand current litters, upcoming timing, and the breed waitlist that fits your family."}
+          ? "Apply now and tell us which puppy caught your eye. We will help you understand availability, timing, and fit."
+          : "Apply now or text us if you want help choosing the breed and timing that fit your family."}
         primaryLabel="Apply for a Puppy"
-        secondaryHref="/puppies/current-litters"
-        secondaryLabel="View Current Litters"
+        secondaryHref={brand.sms}
+        secondaryLabel="Text Us"
         className={availableNow.length ? "available-puppy-path-cta" : "available-puppy-empty-cta"}
       />
       <StickyMobileCta
         primaryHref="/apply"
         primaryLabel={availableNow.length ? "Apply" : "Join Waitlist"}
-        secondaryHref="/puppies/current-litters"
-        secondaryLabel="Current Litters"
+        secondaryHref={brand.sms}
+        secondaryLabel="Text Us"
       />
     </BuyerPageTemplate>
   );
@@ -4324,9 +4344,8 @@ function CurrentLitterWaitlistNote() {
     <section className="content-section narrow current-litter-guidance-section">
       <article className="group-panel current-litter-guidance-card">
         <p>
-          Current litter cards show the latest status, whether puppies are available now or still matching with
-          waitlist families first. Puppies ready to reserve are also listed on{" "}
-          <Link href="/puppies/available">Available Puppies</Link>.
+          Puppies marked Available can be reserved now with a deposit. Puppies already matched with a family show
+          as Reserved.
         </p>
       </article>
     </section>

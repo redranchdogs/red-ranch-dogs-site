@@ -113,6 +113,10 @@ puppies.forEach((puppy) => {
         addWarning(`Available puppy ${puppy.slug} is missing ${field}.`);
       }
     });
+
+    if (/\b(waitlist|pending|matching|pick first)\b/i.test(puppy.availabilityNote || "")) {
+      addError(`Available puppy ${puppy.slug} availabilityNote should not use waitlist or pending language.`);
+    }
   }
 
   if (puppy.litterSlug && !litterSlugs.has(puppy.litterSlug)) {
@@ -144,6 +148,14 @@ litters.forEach((litter) => {
   const status = normalizedStatus(litter.status);
   if (status && !publicLitterStatuses.has(status)) {
     addWarning(`Litter ${litter.slug} has an unrecognized status: ${litter.status}`);
+  }
+
+  if ("featuredAvailable" in litter && typeof litter.featuredAvailable !== "boolean") {
+    addError(`Litter ${litter.slug} featuredAvailable must be a boolean when present.`);
+  }
+
+  if (status === "current litter" && typeof litter.featuredAvailable !== "boolean") {
+    addError(`Current litter ${litter.slug} must declare featuredAvailable as true or false.`);
   }
 
   if (litter.videoPlaylistUrl && !isYouTubeUrl(litter.videoPlaylistUrl)) {

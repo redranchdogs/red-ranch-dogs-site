@@ -74,6 +74,8 @@ const routes = sitemapRoutes(sitemap);
 const publicPuppies = puppies.filter(isPublicRecord);
 const availablePuppies = publicPuppies.filter((puppy) => normalize(puppy.status) === "available");
 const publicLitters = litters.filter(isPublicRecord);
+const publicLitterBySlug = new Map(publicLitters.map((litter) => [litter.slug, litter]));
+const featuredAvailablePuppies = availablePuppies.filter((puppy) => publicLitterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
 const unsortedCurrentLitters = publicLitters.filter((litter) => normalize(litter.status).includes("current"));
 const currentLitters = publicLitters
   .filter((litter) => normalize(litter.status).includes("current"))
@@ -178,12 +180,24 @@ legacyPublicRoutes.forEach((route) => {
   }
 });
 
-if (availablePuppies.length === 0 && !/No (public )?puppies are available right now/.test(app)) {
-  blockers.push("Available Puppies needs the zero-availability empty state when no puppies are Available.");
+if (availablePuppies.some((puppy) => /\b(waitlist|pending|matching|pick first)\b/i.test(puppy.availabilityNote || ""))) {
+  blockers.push("Available puppies must not carry waitlist or pending language in availabilityNote.");
 }
 
-if (availablePuppies.length > 0 && !app.includes("truly open for an approved family")) {
-  warnings.push("Available Puppies has available records, but the page copy may not emphasize true public availability.");
+if (featuredAvailablePuppies.length === 0 && !/No (public )?puppies are available right now/.test(app)) {
+  blockers.push("Available Puppies needs the zero-availability empty state when no featured puppies are Available.");
+}
+
+if (featuredAvailablePuppies.length > 0 && !app.includes("These puppies are looking for their families now")) {
+  blockers.push("Available Puppies copy should use the new featured-litter front-window language.");
+}
+
+if (!app.includes("featuredAvailablePuppies()")) {
+  blockers.push("Available Puppies page should use featuredAvailable litters as the merchandising filter.");
+}
+
+if (app.includes("Current litters may still be growing and matching with waitlist families first")) {
+  blockers.push("Available Puppies page still contains old waitlist-matching copy.");
 }
 
 if (!app.includes("currentLitterProfiles") || !app.includes("sortableLitterDate")) {
