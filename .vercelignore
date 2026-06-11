@@ -4,8 +4,11 @@ dist
 .vercel
 .env
 .env.local
-outputs
-output
+.env.*
+output/
+outputs/
+docs/
+scripts/
 .playwright-cli
 npm-debug.log*
 .DS_Store

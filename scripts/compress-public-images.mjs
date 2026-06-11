@@ -4,7 +4,7 @@ import sharp from "sharp";
 
 const root = process.cwd();
 const publicImagesRoot = path.join(root, "public", "images");
-const backupRoot = path.join(root, "image-originals");
+const backupRoot = path.join(root, "..", "..", "red-ranch-image-originals");
 const skipBytes = 150 * 1024;
 const supportedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
 
