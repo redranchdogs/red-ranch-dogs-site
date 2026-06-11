@@ -41,6 +41,12 @@ The website should not own:
 - puppy-family matching
 - Breeding Ops barn records
 
+## Commit Hygiene
+
+1. Regenerated `docs/*.md` files always commit separately with message `Regenerate review docs`.
+2. Data-only `src/data/*.json` changes commit separately from logic changes.
+3. Every code commit message names the task or fix.
+
 ## Agent Rules
 
 Website agents should start read-only.
@@ -68,3 +74,7 @@ Analytics boundary:
 - Marketing Engine owns analytics interpretation and campaign reporting.
 - CRM owns lead outcomes and lead-quality attribution.
 - Do not treat Vercel Analytics events as lead records.
+
+## Planned Integrations
+
+Phase 3: the Drive-to-YouTube pipeline project should write a handoff file mapping litter slug -> playlist URL; the website build reads it so new litters get video sections automatically with no manual pasting. Cross-project handoff requires Adam's approval.
