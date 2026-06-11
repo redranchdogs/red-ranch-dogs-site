@@ -1898,16 +1898,28 @@ function FinalCta() {
   );
 }
 
-function StickyMobileCta() {
+function StickyMobileCtaLink({ href, className, children }) {
+  if (href?.startsWith("/")) {
+    return <Link href={href} className={className}>{children}</Link>;
+  }
+
+  return <a href={href} className={className}>{children}</a>;
+}
+
+function StickyMobileCta({
+  primaryHref = "/apply",
+  primaryLabel = "Join Waitlist",
+  secondaryHref = brand.sms,
+  secondaryLabel = "Text Us"
+}) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      const hero = document.getElementById("home-hero");
       const footer = document.querySelector(".premium-footer");
-      const pastHero = hero ? window.scrollY > hero.offsetTop + hero.offsetHeight * 0.7 : window.scrollY > 420;
+      const pastIntro = window.scrollY > 420;
       const nearFooter = footer ? footer.getBoundingClientRect().top < window.innerHeight + 80 : false;
-      setVisible(pastHero && !nearFooter);
+      setVisible(pastIntro && !nearFooter);
     };
 
     onScroll();
@@ -1917,8 +1929,8 @@ function StickyMobileCta() {
 
   return (
     <div className={`sticky-mobile-cta ${visible ? "visible" : ""}`}>
-      <Link href="/apply" className="button primary">Join Waitlist</Link>
-      <a href={brand.sms} className="button secondary">Text Us</a>
+      <StickyMobileCtaLink href={primaryHref} className="button primary">{primaryLabel}</StickyMobileCtaLink>
+      <StickyMobileCtaLink href={secondaryHref} className="button secondary">{secondaryLabel}</StickyMobileCtaLink>
     </div>
   );
 }
@@ -3490,6 +3502,12 @@ function PuppyDetailPage({ puppy }) {
           <ImageGallery images={extraPhotos} label={`${puppy.name} puppy photo`} />
         </section>
       )}
+      <StickyMobileCta
+        primaryHref={puppyApplyHref(puppy)}
+        primaryLabel={isAvailablePuppy(puppy) ? "Reserve Puppy" : "Apply"}
+        secondaryHref={puppy.litterSlug ? `/litters/${puppy.litterSlug}` : "/puppies/current-litters"}
+        secondaryLabel="View Litter"
+      />
     </Layout>
   );
 }
@@ -3703,6 +3721,12 @@ function LitterPage({ litter }) {
         </section>
       )}
       <CTASection title={litterCta.title} copy={litterCta.copy} primaryLabel={litterCta.primaryLabel} secondaryHref="/contact" secondaryLabel="Ask a Question" />
+      <StickyMobileCta
+        primaryHref="/apply"
+        primaryLabel={availablePuppies.length ? "Apply" : "Join Waitlist"}
+        secondaryHref={availablePuppies.length ? "/puppies/available" : brand.sms}
+        secondaryLabel={availablePuppies.length ? "Available" : "Text Us"}
+      />
     </Layout>
   );
 }
@@ -4203,6 +4227,12 @@ function AvailablePuppiesPage() {
         secondaryLabel="View Current Litters"
         className={availableNow.length ? "available-puppy-path-cta" : "available-puppy-empty-cta"}
       />
+      <StickyMobileCta
+        primaryHref="/apply"
+        primaryLabel={availableNow.length ? "Apply" : "Join Waitlist"}
+        secondaryHref="/puppies/current-litters"
+        secondaryLabel="Current Litters"
+      />
     </BuyerPageTemplate>
   );
 }
@@ -4301,6 +4331,12 @@ function CurrentLittersPage() {
           secondaryLabel="View Upcoming Litters"
         />
       )}
+      <StickyMobileCta
+        primaryHref="/apply"
+        primaryLabel="Apply"
+        secondaryHref="/puppies/available"
+        secondaryLabel="Available"
+      />
     </BuyerPageTemplate>
   );
 }
