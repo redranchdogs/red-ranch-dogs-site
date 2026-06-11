@@ -9511,9 +9511,11 @@ summary {
 
 /* Homepage mobile polish: 390px-first merchandising rhythm. */
 .home-ready-strip-header {
+  width: min(100%, calc(100% - 28px));
   max-width: 36rem;
   margin-right: auto;
   margin-left: auto;
+  text-align: center;
 }
 
 .home-ready-strip-header p:not(.premium-kicker) {
@@ -9534,6 +9536,11 @@ summary {
   letter-spacing: 0;
   line-height: 1.04;
   text-transform: none;
+}
+
+.home-ready-strip-header h2 {
+  font-family: "Libre Franklin", Avenir Next, Helvetica, Arial, sans-serif;
+  font-weight: 900;
 }
 
 .home-ready-strip-section,
@@ -9575,6 +9582,11 @@ summary {
   font-weight: 700;
 }
 
+.home-ready-puppy-meta {
+  color: var(--premium-ink);
+  font-weight: 800;
+}
+
 .home-ready-puppy-body .button {
   justify-content: center;
 }
@@ -9591,11 +9603,10 @@ summary {
   .home-ready-strip-header {
     gap: 5px;
     margin-bottom: 14px;
-    text-align: left;
   }
 
   .home-ready-strip-header .premium-kicker {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .home-ready-strip-header .premium-kicker::after {
@@ -9603,11 +9614,17 @@ summary {
   }
 
   .home-ready-strip-header h2 {
-    font-size: clamp(2rem, 9vw, 2.65rem);
+    max-width: 13.5ch;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: clamp(2rem, 8.5vw, 2.55rem);
+    line-height: 1.02;
   }
 
   .home-ready-strip-header p:not(.premium-kicker) {
-    max-width: 18rem;
+    max-width: 20rem;
+    margin-right: auto;
+    margin-left: auto;
     font-size: 0.95rem;
   }
 
@@ -9643,7 +9660,7 @@ summary {
   }
 
   .home-ready-puppy-body {
-    gap: 7px;
+    gap: 6px;
     padding: 14px;
   }
 
@@ -9653,8 +9670,12 @@ summary {
   }
 
   .home-ready-puppy-body p:not(.eyebrow) {
-    font-size: 0.86rem;
-    line-height: 1.3;
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+
+  .home-ready-puppy-body .home-ready-puppy-meta {
+    font-size: 0.84rem;
   }
 
   .home-ready-puppy-body .button {
@@ -9848,13 +9869,17 @@ summary {
     -webkit-line-clamp: 3;
   }
 
-  .final-cta-image {
-    display: none;
+  .final-cta-panel {
+    gap: 14px;
+    padding: 18px;
   }
 
-  .final-cta-panel {
-    gap: 0;
-    padding: 18px;
+  .final-cta-image {
+    display: block;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-position: 50% 44%;
   }
 
   .final-cta-panel h2 {

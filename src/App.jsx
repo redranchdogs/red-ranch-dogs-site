@@ -1785,6 +1785,9 @@ function HomeReadySoonStrip() {
           {readyPuppies.map((puppy) => {
             const photo = puppy.mainPhoto || puppy.image;
             const gender = puppy.gender || puppy.sex || "Gender to be announced";
+            const sizeDetails = [puppy.sizeCategory, puppy.estimatedAdultWeight || puppy.size]
+              .filter(Boolean)
+              .join(", ");
 
             return (
               <article className="home-ready-puppy-card" key={puppy.slug || puppy.name}>
@@ -1798,7 +1801,8 @@ function HomeReadySoonStrip() {
                 <div className="home-ready-puppy-body">
                   <p className="eyebrow">{puppy.breed}</p>
                   <h3>{puppy.name}</h3>
-                  <p>{gender}</p>
+                  <p className="home-ready-puppy-meta">{puppy.breed}</p>
+                  <p>{[sizeDetails, gender].filter(Boolean).join(" • ")}</p>
                   <Link
                     href={puppyApplyHref(puppy)}
                     className="button small"
@@ -1928,7 +1932,8 @@ function FinalCta() {
           className="final-cta-image"
           src="/images/home/red-ranch-dogs-home-lifestyle-puppies.jpg"
           alt="Red Ranch Dogs puppies being held"
-          loading="lazy"
+          loading="eager"
+          decoding="async"
         />
         <div>
           <p className="premium-kicker">Ready when you are</p>
@@ -6926,17 +6931,10 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
         </div>
       )}
       {newsletterOnly && (
-        <>
-          <label className="newsletter-email-field">
-            <span>Email Address</span>
-            <input name="email" type="email" required autoComplete="email" placeholder="Email Address" />
-          </label>
-          <ChoiceGroup
-            legend="Breed alerts"
-            name="preferredBreed"
-            options={["Goldendoodle", "Cavapoo", "Bernedoodle"]}
-          />
-        </>
+        <label className="newsletter-email-field">
+          <span>Email Address</span>
+          <input name="email" type="email" required autoComplete="email" placeholder="Email Address" />
+        </label>
       )}
       {nextStepNote && (
         <p className="form-next-step">
