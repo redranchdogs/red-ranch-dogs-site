@@ -3692,7 +3692,8 @@ textarea {
 
 @media (min-width: 768px) {
   .litter-gallery-section .litter-image-gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 260px));
+    justify-content: center;
   }
 
   .litter-gallery-section .litter-image-gallery img {
@@ -3703,7 +3704,7 @@ textarea {
 
 @media (min-width: 1280px) {
   .litter-gallery-section .litter-image-gallery {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 270px));
   }
 }
 
