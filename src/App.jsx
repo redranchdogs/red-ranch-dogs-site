@@ -1779,7 +1779,7 @@ function HomeReadySoonStrip() {
         <div className="home-ready-strip-header">
           <p className="premium-kicker">Available Now</p>
           <h2>Ready to go home soon</h2>
-          <p>These puppies are looking for their families now.</p>
+          <p>These puppies are looking for their fur families now.</p>
         </div>
         <div className="home-ready-puppy-row" aria-label="Puppies ready to go home soon">
           {readyPuppies.map((puppy) => {
