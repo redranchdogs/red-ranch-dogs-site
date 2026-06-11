@@ -1779,6 +1779,7 @@ function HomeReadySoonStrip() {
         <div className="home-ready-strip-header">
           <p className="premium-kicker">Available Now</p>
           <h2>Ready to go home soon</h2>
+          <p>These puppies are looking for their families now.</p>
         </div>
         <div className="home-ready-puppy-row" aria-label="Puppies ready to go home soon">
           {readyPuppies.map((puppy) => {
@@ -1890,14 +1891,6 @@ function HomeTestimonials() {
   return (
     <FadeInSection className="premium-section testimonials-section">
       <div className="testimonial-feature">
-        <figure className="testimonial-media-card">
-          <img
-            src="/images/home/red-ranch-dogs-mobile-testimony-banner.jpg"
-            alt="Red Ranch Dogs puppy with a family member"
-            loading="lazy"
-          />
-          <figcaption>Red Ranch puppy raised with hands-on family care.</figcaption>
-        </figure>
         <div className="testimonial-content">
           <SectionIntro
             eyebrow="Google Reviews"
