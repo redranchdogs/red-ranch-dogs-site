@@ -3,8 +3,9 @@ import path from "node:path";
 
 const root = process.cwd();
 const publicRoot = path.join(root, "public");
-const maxReferencedImageBytes = 3 * 1024 * 1024;
-const warningImageBytes = 1024 * 1024;
+const maxReferencedImageBytes = 400 * 1024;
+const maxTotalReferencedImageBytes = 80 * 1024 * 1024;
+const warningImageBytes = 250 * 1024;
 const referencedImages = new Set();
 
 const sourceFiles = [
@@ -119,6 +120,13 @@ if (missing.length || tooLarge.length) {
   if (missing.length) sections.push(`Missing referenced images:\n${missing.map((item) => `- ${item}`).join("\n")}`);
   if (tooLarge.length) sections.push(`Referenced images over ${formatBytes(maxReferencedImageBytes)}:\n${tooLarge.map((item) => `- ${item}`).join("\n")}`);
   console.error(sections.join("\n\n"));
+  process.exit(1);
+}
+
+if (totalBytes > maxTotalReferencedImageBytes) {
+  console.error(
+    `Referenced image budget total is ${formatBytes(totalBytes)}, which is over the ${formatBytes(maxTotalReferencedImageBytes)} limit.`
+  );
   process.exit(1);
 }
 
