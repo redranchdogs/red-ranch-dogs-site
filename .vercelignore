@@ -7,8 +7,8 @@ dist
 .env.*
 output/
 outputs/
+image-originals/
 docs/
-scripts/
 .playwright-cli
 npm-debug.log*
 .DS_Store
