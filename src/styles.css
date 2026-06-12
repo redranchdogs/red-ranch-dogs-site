@@ -9124,6 +9124,11 @@ summary {
   background: color-mix(in srgb, var(--paper) 72%, var(--tan));
 }
 
+.contact-page-hero .hero-image {
+  aspect-ratio: 4 / 4.2;
+  max-height: 520px;
+}
+
 .family-page-hero .hero-image img {
   object-fit: contain;
   object-position: center;
@@ -9134,7 +9139,7 @@ summary {
 }
 
 .contact-page-hero .hero-image img {
-  object-position: 50% 44%;
+  object-position: 50% 48%;
 }
 
 .family-story-section {
@@ -9490,6 +9495,10 @@ summary {
   .reviews-page-hero .hero-image,
   .contact-page-hero .hero-image {
     aspect-ratio: 4 / 3.1;
+  }
+
+  .contact-page-hero .hero-image {
+    aspect-ratio: 4 / 4.2;
   }
 
   .reviews-intro-panel .group-panel {
