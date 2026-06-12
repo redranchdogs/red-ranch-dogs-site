@@ -952,10 +952,21 @@ export const guardianProgram = {
   ],
   faqs: [
     ["How close do guardian families need to live?", "Female guardians are usually best within about 30 to 60 minutes of Salado. Stud guardians need to live in Salado or very close by because timing can be more immediate."],
+    ["What kind of family makes a good guardian home?", "The best fit is a stable local family that wants the dog to be a loved indoor pet, communicates quickly, keeps a secure home setup, and understands that timing matters during breeding seasons."],
     ["Can guardian families have children or other pets?", "Yes. Children are welcome, and other pets can be fine as long as they are safely managed and spayed or neutered."],
+    ["Do guardian families pay to purchase the dog?", "No upfront puppy purchase is required for an approved guardian placement. Red Ranch Dogs retains breeding rights during the breeding career, and the guardian family provides the everyday home, care, and love."],
+    ["Is the guardian dog our family dog?", "Yes. The dog lives with you as your family pet. The guardian agreement simply outlines Red Ranch Dogs' breeding rights, communication expectations, and what happens during breeding-related seasons."],
     ["What happens when a female goes into heat?", "Guardians notify us right away so we can coordinate timing, testing, and breeding-related appointments."],
+    ["How often would a female guardian have puppies?", "It depends on the dog, her health, timing, and what is best for her. We do not place a litter ahead of the mama's wellbeing, and we talk through timing with the guardian family as each season approaches."],
     ["Where does a mama go for whelping?", "When it is time for puppies, the mama comes back to Red Ranch Dogs for whelping and puppy care, then returns home after that season is complete."],
-    ["Who covers veterinary costs?", "Guardian families handle routine and non-breeding veterinary care. Red Ranch Dogs covers breeding-related expenses and appointments."],
+    ["How long is a dog in the guardian program?", "The length depends on the dog and her breeding career. Once the breeding career is complete, ownership transfers fully to the guardian family."],
+    ["Who covers veterinary costs?", "Guardian families handle routine and non-breeding veterinary care, just like they would for their own family dog. Red Ranch Dogs covers breeding-related expenses and appointments, and guardian families are compensated for eligible litters according to the guardian agreement."],
+    ["What routine care is expected?", "Guardians handle everyday care such as approved food, grooming, exercise, basic training, normal vet care, and keeping the dog safe as an indoor family pet."],
+    ["Do guardian families need a fenced yard?", "Yes. A secure physical fenced yard is required so the dog can be safely managed at home."],
+    ["Can guardian families travel?", "Yes, but travel needs to be communicated early, especially around heat cycles, breeding timing, pregnancy, or any planned appointments."],
+    ["What happens if we move?", "Tell us as early as possible. Local availability is a core part of the program, so a move may affect whether the guardian arrangement can continue as planned."],
+    ["What if the program is not the right fit anymore?", "We want the arrangement to work well for the dog, the guardian family, and Red Ranch Dogs. If something changes, we talk through the situation directly and follow the guardian agreement."],
+    ["Do you always have guardian openings?", "No. Guardian openings are shared when we are looking for the right local home for a specific future mama or stud."],
     ["Is the relationship personal or businesslike?", "It can be both. Some guardian families become close friends, while others prefer a more structured relationship. Either is great as long as care and communication are excellent."]
   ]
 };
