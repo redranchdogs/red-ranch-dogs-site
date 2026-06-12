@@ -1736,10 +1736,6 @@ body.menu-locked .sticky-mobile-cta.visible {
   text-align: center;
 }
 
-.team-profile-card img {
-  object-position: 50% 10%;
-}
-
 @container (max-width: 335px) {
   .parent-card-facts {
     grid-template-columns: 1fr;
@@ -1796,9 +1792,6 @@ body.menu-locked .sticky-mobile-cta.visible {
     -webkit-line-clamp: 3;
   }
 
-  .team-profile-card img {
-    object-position: 50% 8%;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -9210,104 +9203,106 @@ summary {
 }
 
 .team-page-hero {
-  padding-bottom: clamp(14px, 2.4vw, 24px);
+  padding-bottom: clamp(8px, 1.5vw, 16px);
 }
 
-.tile-grid.three.team-card-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  padding-top: clamp(4px, 1.2vw, 12px);
-  padding-bottom: clamp(20px, 3vw, 34px);
+.team-closing-cta {
+  padding-top: clamp(2px, 0.8vw, 10px);
 }
 
-.team-profile-card {
+.team-compact-section {
+  padding-top: 0;
+  padding-bottom: clamp(18px, 3vw, 32px);
+}
+
+.team-compact-panel {
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  min-width: 0;
-  padding: 0;
+  border: 1px solid var(--line);
   background: var(--paper);
+  box-shadow: 0 14px 36px rgba(67, 42, 24, 0.08);
 }
 
-.team-profile-card img {
+.team-collage-banner {
   display: block;
   width: 100%;
-  height: auto;
-  max-width: 100%;
-  aspect-ratio: 4 / 5;
-  margin: 0;
+  aspect-ratio: 57 / 25;
   object-fit: cover;
-  object-position: 50% 8%;
+  object-position: center;
   background: var(--sand);
-  flex: 0 0 auto;
 }
 
-.team-profile-card span {
+.team-collage-labels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 247, 237, 0.72);
+}
+
+.team-collage-label {
+  min-width: 0;
+  padding: clamp(12px, 2vw, 16px);
+  border-right: 1px solid var(--line);
+}
+
+.team-collage-label:last-child {
+  border-right: 0;
+}
+
+.team-collage-label strong,
+.team-support-row strong {
   display: block;
-  margin: 18px 22px 0;
+  color: var(--ink);
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(1.65rem, 3vw, 2.2rem);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.team-collage-label span,
+.team-support-row span {
+  display: block;
+  margin-top: 4px;
   color: var(--brand-red);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 900;
-  line-height: 1.1;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 
-.team-profile-card h2 {
-  margin: 7px 22px 0;
-  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.4rem, 4vw, 3.25rem);
-  font-weight: 400;
-  line-height: 0.92;
-  color: var(--ink);
+.team-collective-copy {
+  max-width: 76ch;
+  margin: 0;
+  padding: clamp(18px, 2.6vw, 28px);
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.48;
 }
 
-.team-profile-card p {
-  margin: 12px 22px 24px;
+.team-support-rows {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.team-support-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.34fr) minmax(0, 1fr);
+  gap: 12px clamp(16px, 3vw, 28px);
+  align-items: center;
+  padding: clamp(14px, 2.2vw, 20px) clamp(18px, 2.6vw, 28px);
+  border-bottom: 1px solid var(--line);
+}
+
+.team-support-row:last-child {
+  border-bottom: 0;
+}
+
+.team-support-row p {
+  margin: 0;
   color: var(--muted);
   font-size: 0.98rem;
-  line-height: 1.44;
-}
-
-.team-details-section {
-  padding-top: 0;
-  padding-bottom: clamp(54px, 7vw, 82px);
-}
-
-.team-details-card {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1fr);
-  gap: 8px clamp(24px, 4vw, 56px);
-  align-items: center;
-  padding: clamp(22px, 3vw, 34px);
-  border: 1px solid var(--line);
-  background:
-    linear-gradient(180deg, rgba(255, 252, 245, 0.74), rgba(255, 247, 237, 0.94)),
-    var(--paper);
-  box-shadow: 0 10px 34px rgba(67, 42, 24, 0.08);
-}
-
-.team-details-card .eyebrow {
-  grid-column: 1;
-  margin: 0 0 4px;
-}
-
-.team-details-card h2 {
-  grid-column: 1;
-  margin: 0;
-  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.6rem, 4.8vw, 4rem);
-  font-weight: 400;
-  line-height: 0.95;
-  color: var(--ink);
-}
-
-.team-details-card p:not(.eyebrow) {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  margin: 0;
-  color: var(--muted);
-  font-size: clamp(1rem, 1.5vw, 1.18rem);
-  line-height: 1.48;
+  line-height: 1.36;
 }
 
 .reviews-status-strip {
@@ -9517,62 +9512,52 @@ summary {
     padding: 16px;
   }
 
-  .tile-grid.three.team-card-grid {
+  .team-compact-section {
+    padding-bottom: 16px;
+  }
+
+  .team-collage-labels {
     grid-template-columns: 1fr;
-    padding-bottom: 48px;
   }
 
-  .team-profile-card {
-    grid-template-columns: 1fr;
-    gap: 0;
-    padding: 0;
-  }
-
-  .team-profile-card img {
-    grid-row: auto;
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 2 / 3;
-    object-fit: cover;
-    object-position: 50% 0%;
-  }
-
-  .team-profile-card span,
-  .team-profile-card h2,
-  .team-profile-card p {
-    grid-column: 1;
-    margin-right: 18px;
-    margin-left: 18px;
-  }
-
-  .team-profile-card span {
-    margin-top: 18px;
-  }
-
-  .team-profile-card h2 {
-    font-size: clamp(2.3rem, 12vw, 3rem);
-  }
-
-  .team-profile-card p {
-    margin-bottom: 18px;
-  }
-
-  .team-details-card {
-    grid-template-columns: 1fr;
+  .team-collage-label {
+    display: grid;
+    grid-template-columns: minmax(72px, 0.35fr) minmax(0, 1fr);
     gap: 10px;
-    padding: 20px 18px;
+    align-items: baseline;
+    padding: 11px 14px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
   }
 
-  .team-details-card .eyebrow,
-  .team-details-card h2,
-  .team-details-card p:not(.eyebrow) {
-    grid-column: 1;
-    grid-row: auto;
+  .team-collage-label:last-child {
+    border-bottom: 0;
   }
 
-  .team-details-card h2 {
-    font-size: clamp(2.35rem, 11vw, 3rem);
+  .team-collage-label strong,
+  .team-support-row strong {
+    font-size: clamp(1.55rem, 7.2vw, 2rem);
+  }
+
+  .team-collage-label span,
+  .team-support-row span {
+    margin-top: 0;
+  }
+
+  .team-collective-copy {
+    padding: 16px 15px;
+    font-size: 0.98rem;
+    line-height: 1.43;
+  }
+
+  .team-support-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 13px 15px;
+  }
+
+  .team-support-row p {
+    font-size: 0.94rem;
   }
 }
 

@@ -1,20 +1,27 @@
 [
   {
     "name": "Callie",
-    "role": "Founder, breeder, and puppy care lead",
-    "photo": "/images/team/callie-red-ranch-dogs-team.webp",
+    "role": "Founder & puppy care lead",
     "bio": "Callie leads the hands-on puppy raising program, from mama care and daily enrichment to the gentle socialization routines that help puppies transition into family life."
   },
   {
     "name": "Nicole",
-    "role": "Puppy care and daily operations",
-    "photo": "/images/team/nicole-red-ranch-dogs-team.webp",
+    "role": "Puppy care & daily operations",
     "bio": "Nicole helps keep the daily puppy rhythm moving, including feeding, cleaning, baths, grooming, photo days, and the steady details that make each update possible."
   },
   {
     "name": "Adam",
-    "role": "Operations and family communication",
-    "photo": "/images/team/adam-red-ranch-dogs-team.webp",
+    "role": "Operations & family communication",
     "bio": "Adam supports applications, website updates, family communication, and the systems that help families understand availability, timing, and next steps."
+  },
+  {
+    "name": "Rylee Young",
+    "role": "Assistant Barn Manager",
+    "bio": "Supports the barn care rhythm and helps daily puppy care stay organized."
+  },
+  {
+    "name": "The Barn Team",
+    "role": "Trained puppy-care shift team",
+    "bio": "Trained shift team members are with the puppies morning, afternoon, and evening."
   }
 ]

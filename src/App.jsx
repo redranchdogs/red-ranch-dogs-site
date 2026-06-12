@@ -5223,6 +5223,11 @@ function PrivacyPage() {
 
 function TeamPage() {
   const cards = teamProfiles.length ? teamProfiles : teamMembers;
+  const featuredTeam = ["Callie", "Nicole", "Adam"]
+    .map((name) => cards.find((member) => member.name === name))
+    .filter(Boolean);
+  const supportTeam = cards.filter((member) => ["Rylee Young", "The Barn Team"].includes(member.name));
+  const teamSummary = "Red Ranch Dogs is family-run in Salado, Texas, with Callie leading the hands-on puppy raising program, Nicole helping the daily puppy rhythm stay steady, and Adam keeping applications, website updates, family communication, availability, timing, and next steps clear. Rylee Young supports the barn care rhythm as Assistant Barn Manager. Trained barn team members are with the puppies morning, afternoon, and evening so feeding, cleaning, comfort checks, and simple routines stay consistent.";
 
   return (
     <Layout>
@@ -5231,23 +5236,44 @@ function TeamPage() {
         copy="Meet the people helping keep puppy care, parent dog care, communication, and weekly updates moving at Red Ranch Dogs."
         className="team-page-hero"
       />
-      <section className="tile-grid three team-card-grid">
-        {cards.map((member) => (
-          <article className="text-card person-card team-profile-card" key={member.name}>
-            <img src={member.photo || member.image} alt={member.name} />
-            <span>{member.role || "Red Ranch Dogs team"}</span>
-            <h2>{member.name}</h2>
-            {member.bio && <p>{member.bio}</p>}
-          </article>
-        ))}
-      </section>
-      <section className="content-section team-details-section">
-        <article className="team-details-card">
-          <p className="eyebrow">Daily care</p>
-          <h2>Care is in the daily details</h2>
-          <p>From cleaning and feeding to monitoring weights, enrichment, potty training, bathing, grooming, and family communication, the team handles the daily work that helps each puppy thrive.</p>
+      <section className="content-section team-compact-section">
+        <article className="team-compact-panel">
+          <img
+            src="/images/team/red-ranch-dogs-team-collage-banner.jpg"
+            alt="Callie, Nicole, and Adam from the Red Ranch Dogs team"
+            className="team-collage-banner"
+          />
+          <div className="team-collage-labels" aria-label="Team members shown in the banner">
+            {featuredTeam.map((member) => (
+              <div className="team-collage-label" key={member.name}>
+                <strong>{member.name}</strong>
+                <span>{member.role}</span>
+              </div>
+            ))}
+          </div>
+          <p className="team-collective-copy">{teamSummary}</p>
+          <div className="team-support-rows" aria-label="Additional puppy care support">
+            {supportTeam.map((member) => (
+              <div className="team-support-row" key={member.name}>
+                <div>
+                  <strong>{member.name}</strong>
+                  <span>{member.role}</span>
+                </div>
+                <p>{member.bio}</p>
+              </div>
+            ))}
+          </div>
         </article>
       </section>
+      <CTASection
+        title="Come meet the puppies they raise"
+        copy="See who is looking for a family now, or text us if you want help choosing the right path."
+        primaryHref="/puppies/available"
+        primaryLabel="Available Puppies"
+        secondaryHref={brand.sms}
+        secondaryLabel="Text us"
+        className="team-closing-cta"
+      />
     </Layout>
   );
 }
