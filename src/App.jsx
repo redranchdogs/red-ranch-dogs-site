@@ -3,7 +3,6 @@ import { track } from "@vercel/analytics";
 import {
   ArrowRight,
   Camera,
-  CalendarDays,
   CheckCircle2,
   ChevronDown,
   ChevronLeft,
@@ -2930,34 +2929,6 @@ function ListingStatusStrip({ items = [], className = "" }) {
   );
 }
 
-function BuyerGuidancePanel({ eyebrow, title, copy, steps = [], primaryHref = "/apply", primaryLabel = "Apply for a Puppy", secondaryHref, secondaryLabel, showActions = true }) {
-  return (
-    <section className={`buyer-guidance-panel group-panel${showActions ? "" : " no-actions"}`}>
-      <div>
-        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <h2>{title}</h2>
-        {copy && <p>{copy}</p>}
-      </div>
-      {steps.length > 0 && (
-        <div className="buyer-guidance-steps">
-          {steps.map((step, index) => (
-            <article key={step}>
-              <span>{index + 1}</span>
-              <p>{step}</p>
-            </article>
-          ))}
-        </div>
-      )}
-      {showActions && (
-        <div className="actions">
-          {primaryHref && primaryLabel && <Link href={primaryHref} className="button primary">{primaryLabel}</Link>}
-          {secondaryHref && secondaryLabel && <Link href={secondaryHref} className="button secondary">{secondaryLabel}</Link>}
-        </div>
-      )}
-    </section>
-  );
-}
-
 function SmartEmptyState({ eyebrow = "Update", title, copy, steps = [], primaryHref = "/apply", primaryLabel = "Apply for a Puppy", secondaryHref, secondaryLabel }) {
   const hasPrimaryAction = Boolean(primaryHref && primaryLabel);
   const hasSecondaryAction = Boolean(secondaryHref && secondaryLabel);
@@ -5505,62 +5476,71 @@ function ApplicationProcessPage() {
   );
 }
 
-const applicationPathCards = [
-  {
-    title: "Watching a current litter",
-    copy: "Mention the litter or puppy by name. We will reply with the current status, whether that litter is still matching, and what the realistic next step is.",
-    icon: PawPrint
-  },
-  {
-    title: "Planning for a future puppy",
-    copy: "Share your breed, size, and timing preferences. We will help you understand which waitlist or future pairing makes the most sense.",
-    icon: CalendarDays
-  },
-  {
-    title: "Not sure yet",
-    copy: "That is completely fine. Use the application to start the conversation and we can help narrow breed fit, size, timing, and next steps.",
-    icon: MessageCircle
-  }
+const applicationStatusItems = [
+  { value: "Start", label: "with one application" },
+  { value: "Fit", label: "breed, timing, and litter reviewed" },
+  { value: "Then", label: "deposit only if the path makes sense" }
 ];
 
-const applicationAfterApplySteps = [
-  ["Review", "We read through your family details, breed interest, timing, and any puppy or litter you mentioned."],
-  ["Reply", "We follow up with current availability, waitlist guidance, and questions that help us understand fit."],
-  ["Decide", "A deposit only comes after the fit and timing make sense, whether that is a current litter or a future waitlist spot."]
-];
+function applicationPuppyFromUrl() {
+  if (typeof window === "undefined") return null;
+
+  const interest = cleanTrackingValue(new window.URLSearchParams(window.location.search).get("interest"));
+  if (!interest) return null;
+
+  return publicPuppyProfiles.find((item) => item.slug === interest) || null;
+}
+
+function ApplicationReserveHero({ puppy }) {
+  const photo = puppy?.mainPhoto || puppy?.image;
+  const litterLine = [puppy?.breed, puppy?.litter].filter(Boolean).join(" - ");
+
+  return (
+    <section className="application-reserve-hero" aria-labelledby="application-reserve-title">
+      {photo && <img src={photo} alt={`${puppy.name} from Red Ranch Dogs`} loading="eager" />}
+      <div>
+        <p className="eyebrow">Ready to reserve</p>
+        <h1 id="application-reserve-title">Reserve {puppy.name}</h1>
+        {litterLine && <p>{litterLine}</p>}
+        <Link href="/process/how-it-works" className="application-inline-link">New to our process? How it works <ArrowRight size={16} /></Link>
+      </div>
+    </section>
+  );
+}
+
+function ApplicationIntroPanel() {
+  return (
+    <section className="application-intro-panel">
+      <ListingStatusStrip className="application-status-strip" items={applicationStatusItems} />
+      <div className="application-intro-copy">
+        <p className="eyebrow">Before You Apply</p>
+        <h2>A simple first step</h2>
+        <p>The application starts the conversation - no commitment to a puppy, litter, or deposit.</p>
+        <div className="application-form-links" aria-label="Helpful application links">
+          <Link href="/process/how-it-works">How it works</Link>
+          <Link href="/process/faq">FAQ</Link>
+          <Link href="/process/pricing">Pricing</Link>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function ApplicationPage() {
+  const reservePuppy = applicationPuppyFromUrl();
+
   return (
     <Layout>
-      <PageHero eyebrow="Application & Waitlist" title="Puppy Application" copy="Start here even if you are not sure which litter, breed, or timeline is the right fit yet." />
-      <ListingStatusStrip
-        className="application-status-strip"
-        items={[
-          { value: "Start", label: "with one application" },
-          { value: "Fit", label: "breed, timing, and litter reviewed" },
-          { value: "Then", label: "deposit only if the path makes sense" }
-        ]}
-      />
-      <BuyerGuidancePanel
-        eyebrow="Before You Apply"
-        title="A simple first step"
-        copy="The application starts the conversation. It does not lock you into a puppy, litter, or deposit before we talk through fit."
-        steps={["Share your breed, size, timing, and any puppy or litter you are watching.", "We follow up with availability, waitlist guidance, and next-step details.", "If timing lines up, we explain the deposit and waitlist path clearly before anyone moves forward."]}
-        primaryHref="/process/faq"
-        primaryLabel="Read FAQ"
-        secondaryHref="/process/waitlist"
-        secondaryLabel="View Waitlist"
-      />
-      <section className="content-section application-path-section">
-        <SectionHeader eyebrow="Choose Your Path" title="Use the application for any starting point" copy="The same application can support current litter interest, future waitlist planning, or early breed-fit questions." />
-        <CompactTextCardGrid items={applicationPathCards} className="application-path-grid" />
-      </section>
-      <section className="content-section narrow application-after-apply-section">
-        <SectionHeader eyebrow="After You Apply" title="What happens next" copy="Your submission goes into the website lead workflow now, and it is structured so the future CRM can continue from the same information later." />
-        <ProcessStepCards steps={applicationAfterApplySteps} className="application-after-apply-cards" />
-      </section>
+      {reservePuppy ? (
+        <ApplicationReserveHero puppy={reservePuppy} />
+      ) : (
+        <>
+          <PageHero eyebrow="Application & Waitlist" title="Puppy Application" copy="Start here even if you are not sure which litter, breed, or timeline is the right fit yet." />
+          <ApplicationIntroPanel />
+        </>
+      )}
       <section className="form-shell">
-        <LeadForm formType="application" title="Application details" />
+        <LeadForm formType="application" title="Application details" reservePuppy={reservePuppy} />
       </section>
     </Layout>
   );
@@ -6285,7 +6265,9 @@ const studInquiryOptions = Array.from(
   new Set(Object.values(studDetails).map((stud) => stud.name).filter(Boolean))
 );
 
-function ChoiceGroup({ legend, name, options, required = false }) {
+function ChoiceGroup({ legend, name, options, required = false, defaultValues = [] }) {
+  const selectedValues = new Set(defaultValues.filter(Boolean));
+
   return (
     <fieldset className="choice-group" aria-required={required ? "true" : undefined}>
       <legend>
@@ -6295,7 +6277,7 @@ function ChoiceGroup({ legend, name, options, required = false }) {
       <div className="option-grid">
         {options.map((option) => (
           <label className="checkbox-line" key={option}>
-            <input name={name} type="checkbox" value={option} />
+            <input name={name} type="checkbox" value={option} defaultChecked={selectedValues.has(option)} />
             <span>{option}</span>
           </label>
         ))}
@@ -6305,36 +6287,41 @@ function ChoiceGroup({ legend, name, options, required = false }) {
 }
 
 function applicationInterestFromUrl() {
-  if (typeof window === "undefined") return "";
-
-  const interest = cleanTrackingValue(new window.URLSearchParams(window.location.search).get("interest"));
-  if (!interest) return "";
-
-  const puppy = publicPuppyProfiles.find((item) => item.slug === interest);
-  if (puppy) {
-    return [puppy.name, puppy.breed, puppy.litter].filter(Boolean).join(" - ");
-  }
-
-  return titleCaseSlug(interest);
+  const puppy = applicationPuppyFromUrl();
+  return puppy ? [puppy.name, puppy.breed, puppy.litter].filter(Boolean).join(" - ") : "";
 }
 
-function ApplicationFields() {
-  const specificInterestDefault = applicationInterestFromUrl();
+function applicationBreedInterestForPuppy(puppy) {
+  const text = `${puppy?.breedSlug || ""} ${puppy?.breed || ""}`.toLowerCase();
+  if (text.includes("goldendoodle")) return "Goldendoodle";
+  if (text.includes("cavapoo")) return "Cavapoo";
+  if (text.includes("bernedoodle")) return "Bernedoodle";
+  return "";
+}
+
+function ApplicationFields({ reservePuppy = null }) {
+  const specificInterestDefault = reservePuppy
+    ? [reservePuppy.name, reservePuppy.breed, reservePuppy.litter].filter(Boolean).join(" - ")
+    : applicationInterestFromUrl();
+  const breedInterestDefault = [applicationBreedInterestForPuppy(reservePuppy)].filter(Boolean);
 
   return (
     <div className="application-form-sections">
       <div className="application-form-note">
-        <p>Before applying, you can review our pricing, waitlist process, and FAQs.</p>
-        {specificInterestDefault && (
+        {reservePuppy ? (
           <p className="application-interest-confirmation">
-            Reserving: <strong>{specificInterestDefault}</strong>
+            You are applying for: <strong>{specificInterestDefault}</strong>
           </p>
+        ) : (
+          <>
+            <p>Before applying, you can review our pricing, waitlist process, and FAQs.</p>
+            <div className="application-form-links" aria-label="Helpful application links">
+              <Link href="/process/pricing">Pricing</Link>
+              <Link href="/process/how-it-works">How it works</Link>
+              <Link href="/process/faq">FAQ</Link>
+            </div>
+          </>
         )}
-        <div className="application-form-links" aria-label="Helpful application links">
-          <Link href="/process/pricing">Pricing</Link>
-          <Link href="/process/how-it-works">How it works</Link>
-          <Link href="/process/faq">FAQ</Link>
-        </div>
       </div>
 
       <section className="form-section">
@@ -6375,6 +6362,7 @@ function ApplicationFields() {
             name="preferredBreed"
             options={["Goldendoodle", "Cavapoo", "Bernedoodle", "Not sure yet"]}
             required
+            defaultValues={breedInterestDefault}
           />
           <label>
             Gender preference
@@ -6814,7 +6802,7 @@ function GuardianFields() {
   );
 }
 
-function LeadForm({ formType, title, compact = false, newsletterOnly = false, guardianFields = false }) {
+function LeadForm({ formType, title, compact = false, newsletterOnly = false, guardianFields = false, reservePuppy = null }) {
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState("");
   const [busy, setBusy] = useState(false);
@@ -6938,7 +6926,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
         Company website
         <input name="companyWebsite" tabIndex="-1" autoComplete="off" />
       </label>
-      {!newsletterOnly && applicationFields && <ApplicationFields />}
+      {!newsletterOnly && applicationFields && <ApplicationFields reservePuppy={reservePuppy} />}
       {!newsletterOnly && contactFields && <ContactFields />}
       {!newsletterOnly && studInquiryFields && <StudInquiryFields />}
       {!newsletterOnly && guardianApplicationFields && <GuardianFields />}
