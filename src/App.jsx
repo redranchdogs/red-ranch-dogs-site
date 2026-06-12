@@ -5720,33 +5720,73 @@ function GuardianProgramPage() {
         eyebrow="Guardian Program"
         title="Guardian Family Program"
         copy="A local partnership for families near Salado who want to love and care for an exceptional Red Ranch dog while supporting our responsible breeding program."
+        image={guardianApplicationImage}
+        imageAlt="Red Ranch Dogs guardian family with a puppy"
+        actions={(
+          <>
+            <Link href="/guardian-program/application" className="button primary">Guardian Application</Link>
+            <Link href="/guardian-program/faq" className="button secondary">Guardian FAQ</Link>
+          </>
+        )}
+        className="guardian-program-hero"
       />
-      <section className="tile-grid compact-grid guardian-fit-strip">
+      <section className="guardian-fit-strip" aria-label="Guardian family fit snapshot">
         {guardianProgram.fitHighlights.map(([title, copy]) => (
-          <article className="text-card compact-card" key={title}>
+          <article className="guardian-fit-item" key={title}>
             <CheckCircle2 size={22} />
-            <h2>{title}</h2>
-            <p>{copy}</p>
+            <div>
+              <h2>{title}</h2>
+              <p>{copy}</p>
+            </div>
           </article>
         ))}
       </section>
-      <CompactTextCardGrid items={guardianProgram.benefits} />
-      <section className="content-section process-compact-section">
+      <section className="content-section guardian-program-primer">
+        <article className="group-panel guardian-primer-card">
+          <p className="eyebrow">Best Fit</p>
+          <h2>Local families who want the dog to be family first.</h2>
+          <p>Guardian dogs live as indoor family pets while Red Ranch Dogs stays involved for breeding-related timing, support, and care guidance.</p>
+          <div className="guardian-primer-list">
+            {guardianProgram.expectations.slice(0, 4).map(([title, copy]) => (
+              <div key={title}>
+                <strong>{title}</strong>
+                <span>{copy}</span>
+              </div>
+            ))}
+          </div>
+        </article>
+        <article className="group-panel guardian-process-card">
+          <p className="eyebrow">How It Starts</p>
+          <h2>The fit conversation</h2>
+          <ProcessStepCards steps={guardianProgram.process} className="guardian-process-steps" />
+        </article>
+      </section>
+      <section className="content-section guardian-benefits-section">
+        <SectionHeader
+          eyebrow="Why Families Like It"
+          title="A Red Ranch dog with ongoing support."
+          copy="The guardian program is personal, practical, and only moves forward when the timing, dog, family, and location all make sense."
+        />
+      </section>
+      <CompactTextCardGrid items={guardianProgram.benefits} className="guardian-benefit-grid" />
+      <section className="content-section guardian-expectations-section">
         <SectionHeader
           eyebrow="Guardian Fit"
           title="What's expected of guardian families?"
           copy="A practical snapshot of the home setup, distance, communication, and daily care we look for before a phone conversation."
         />
       </section>
-      <CompactTextCardGrid items={guardianProgram.expectations} />
-      <section className="content-section">
-        <article className="group-panel">
-          <p className="eyebrow">How It Starts</p>
-          <h2>The Fit Conversation</h2>
-          <ProcessStepCards steps={guardianProgram.process} />
-        </article>
-      </section>
-      <section className="faq-list">
+      <CompactTextCardGrid items={guardianProgram.expectations} className="guardian-expectation-grid" />
+      <CTASection
+        title="Think this could be a fit?"
+        copy="Start with the guardian application and we will talk through location, home setup, timing, and whether the program feels right."
+        primaryHref="/guardian-program/application"
+        primaryLabel="Guardian Application"
+        secondaryHref={brand.sms}
+        secondaryLabel="Text Us"
+        className="guardian-mid-cta"
+      />
+      <section className="faq-list guardian-faq-list">
         {guardianProgram.faqs.map(([question, answer]) => (
           <details key={question}>
             <summary>{question}</summary>

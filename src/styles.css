@@ -8452,6 +8452,192 @@ summary {
   object-position: 53% 42%;
 }
 
+.guardian-program-hero {
+  padding-bottom: 18px;
+}
+
+.guardian-program-hero .hero-copy h1 {
+  max-width: 11ch;
+}
+
+.guardian-program-hero .hero-image {
+  aspect-ratio: 4 / 3.15;
+  max-height: 430px;
+}
+
+.guardian-program-hero .hero-image img {
+  object-position: 50% 42%;
+}
+
+.guardian-fit-strip {
+  display: grid;
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: 4px 0 28px;
+}
+
+.guardian-fit-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(67, 42, 24, 0.06);
+}
+
+.guardian-fit-item svg {
+  color: var(--brand-red);
+}
+
+.guardian-fit-item h2 {
+  margin: 0 0 4px;
+  color: var(--clay-dark);
+  font-size: 0.86rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.guardian-fit-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.42;
+}
+
+.guardian-program-primer {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 18px;
+  align-items: stretch;
+  padding-top: 18px;
+  padding-bottom: 28px;
+}
+
+.guardian-primer-card,
+.guardian-process-card {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.guardian-primer-card h2,
+.guardian-process-card h2,
+.guardian-benefits-section .section-header h2,
+.guardian-expectations-section .section-header h2 {
+  margin: 0;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  line-height: 1.05;
+  text-transform: none;
+}
+
+.guardian-primer-card > p:not(.eyebrow),
+.guardian-benefits-section .section-header p,
+.guardian-expectations-section .section-header p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.guardian-primer-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.guardian-primer-list div {
+  display: grid;
+  gap: 3px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.guardian-primer-list strong {
+  color: var(--clay-dark);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.guardian-primer-list span {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.guardian-process-steps {
+  gap: 10px;
+}
+
+.guardian-process-steps .process-step-card {
+  align-items: start;
+  padding: 14px;
+}
+
+.guardian-process-steps .process-step-card h2 {
+  font-size: 1rem;
+}
+
+.guardian-benefits-section,
+.guardian-expectations-section {
+  padding-top: 24px;
+  padding-bottom: 8px;
+}
+
+.guardian-benefit-grid,
+.guardian-expectation-grid {
+  padding-top: 12px;
+  padding-bottom: 24px;
+}
+
+.guardian-benefit-grid .compact-card,
+.guardian-expectation-grid .compact-card {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.guardian-benefit-grid .compact-card h2,
+.guardian-expectation-grid .compact-card h2 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.guardian-mid-cta {
+  padding-top: 10px;
+  padding-bottom: 22px;
+}
+
+.guardian-mid-cta .group-panel {
+  background: var(--charcoal);
+  color: var(--paper);
+}
+
+.guardian-mid-cta .group-panel h2 {
+  color: var(--paper);
+}
+
+.guardian-mid-cta .group-panel p {
+  color: rgba(255, 250, 240, 0.82);
+}
+
+.guardian-mid-cta .button.secondary {
+  color: var(--paper);
+  background: transparent;
+  border-color: rgba(255, 250, 240, 0.56);
+}
+
+.guardian-faq-list {
+  padding-top: 10px;
+  padding-bottom: 40px;
+}
+
+.guardian-faq-list details {
+  border-radius: 8px;
+}
+
 .page-hero + .content-section,
 .page-hero + .card-list,
 .page-hero + .tile-grid,
@@ -8515,6 +8701,99 @@ summary {
 
   .hero-image {
     max-height: none;
+  }
+
+  .guardian-program-hero {
+    padding-top: 24px;
+    padding-bottom: 12px;
+  }
+
+  .guardian-program-hero .hero-copy h1 {
+    max-width: 10.5ch;
+  }
+
+  .guardian-program-hero .hero-image {
+    order: -1;
+    aspect-ratio: 4 / 3.45;
+  }
+
+  .guardian-fit-strip {
+    grid-template-columns: 1fr 1fr;
+    width: min(720px, calc(100% - 30px));
+    gap: 10px;
+    padding-bottom: 16px;
+  }
+
+  .guardian-fit-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 13px;
+  }
+
+  .guardian-program-primer {
+    grid-template-columns: 1fr;
+    width: min(720px, calc(100% - 30px));
+    gap: 14px;
+    padding-top: 12px;
+    padding-bottom: 18px;
+  }
+
+  .guardian-primer-card,
+  .guardian-process-card {
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .guardian-primer-card h2,
+  .guardian-process-card h2,
+  .guardian-benefits-section .section-header h2,
+  .guardian-expectations-section .section-header h2 {
+    font-size: clamp(1.75rem, 9vw, 2.35rem);
+  }
+
+  .guardian-primer-list {
+    gap: 8px;
+  }
+
+  .guardian-benefits-section,
+  .guardian-expectations-section {
+    width: min(720px, calc(100% - 30px));
+    padding-top: 18px;
+    padding-bottom: 0;
+  }
+
+  .guardian-benefit-grid,
+  .guardian-expectation-grid {
+    width: min(720px, calc(100% - 30px));
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 16px;
+  }
+
+  .guardian-benefit-grid .compact-card,
+  .guardian-expectation-grid .compact-card {
+    padding: 14px;
+  }
+
+  .guardian-benefit-grid .compact-card h2,
+  .guardian-expectation-grid .compact-card h2 {
+    font-size: 1.45rem;
+  }
+
+  .guardian-mid-cta,
+  .guardian-faq-list {
+    width: min(720px, calc(100% - 30px));
+  }
+
+  .guardian-mid-cta {
+    padding-top: 6px;
+    padding-bottom: 16px;
+  }
+
+  .guardian-faq-list {
+    gap: 10px;
+    padding-top: 8px;
+    padding-bottom: 28px;
   }
 
   .parent-profile-hero.with-image {
