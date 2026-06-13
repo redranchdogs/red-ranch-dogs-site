@@ -3387,9 +3387,11 @@ const guardianOpportunityStats = [
   { value: "Fit", label: "conversation before placement" }
 ];
 
+const currentGuardianOpportunitySlugs = ["bobber"];
+
 const guardianOpportunityCards = [
-  ["No openings right now", "Guardian openings are shared when we are looking for the right local family fit."],
-  ["Apply early", "You can still submit a guardian application so we know your location, home setup, and interest."],
+  ["Local guardian fit", "Guardian homes should be close enough to Salado for breeding-related visits and clear communication."],
+  ["Apply early", "Submit the guardian application so we know your location, home setup, and interest."],
   ["Fit comes first", "We look for great care, clear communication, a fenced yard, and reasonable distance from Salado."]
 ];
 
@@ -4213,10 +4215,59 @@ function PickupDeliveryPage() {
 }
 
 function GuardianOpportunitiesPage() {
+  const currentGuardianOpportunities = currentGuardianOpportunitySlugs
+    .map((slug) => puppyProfiles.find((puppy) => puppy.slug === slug))
+    .filter(Boolean);
+
   return (
     <Layout>
       <PageHero eyebrow="Guardian Program" title="Current Guardian Opportunities" copy="Openings are shared when Red Ranch Dogs is looking for the right local guardian family fit." />
       <ListingStatusStrip items={guardianOpportunityStats} className="process-status-strip" />
+      {currentGuardianOpportunities.length > 0 && (
+        <section className="guardian-opportunity-list" aria-label="Current guardian opportunities">
+          {currentGuardianOpportunities.map((puppy) => {
+            const details = [
+              ["Litter", puppy.litter],
+              ["Breed", puppy.breed],
+              ["Gender", puppy.gender],
+              ["Expected Size", puppy.estimatedAdultWeight]
+            ].filter(([, value]) => Boolean(value));
+
+            return (
+              <article className="guardian-opportunity-card" key={puppy.slug}>
+                <figure className="guardian-opportunity-photo">
+                  {puppy.mainPhoto ? (
+                    <img src={puppy.mainPhoto} alt={`${puppy.name} from ${puppy.litter}`} loading="lazy" />
+                  ) : (
+                    <ImagePlaceholder label={`${puppy.name} photo`} />
+                  )}
+                  <figcaption>{puppy.name}</figcaption>
+                </figure>
+                <div className="guardian-opportunity-body">
+                  <div className="card-kicker-row">
+                    <p className="eyebrow">Guardian Opportunity</p>
+                    <span className="status-badge status-guardian-candidate">Local Fit</span>
+                  </div>
+                  <h2>{puppy.name}</h2>
+                  <p>
+                    {puppy.name} is a female from the {puppy.litter} litter being considered for a local guardian family.
+                  </p>
+                  <dl className="details compact-details">
+                    {details.map(([label, value]) => (
+                      <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
+                    ))}
+                  </dl>
+                  <p className="small-note">Best fit: a loving home near Salado with a fenced yard, clear communication, and comfort staying connected with Red Ranch Dogs.</p>
+                  <div className="puppy-card-actions">
+                    <Link href="/guardian-program/application" className="button primary">Guardian Application</Link>
+                    <Link href={`/puppies/${puppy.slug}`} className="button secondary">Meet {puppy.name}</Link>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </section>
+      )}
       <CompactTextCardGrid items={guardianOpportunityCards} />
       <CTASection
         title="Interested in future guardian opportunities?"
