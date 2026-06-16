@@ -2363,6 +2363,7 @@ function PuppyCard({ puppy, variant = "default" }) {
   const gender = puppy.gender || puppy.sex || "To be announced";
   const status = puppy.status || "Status to be announced";
   const displayStatus = puppyDisplayStatus(status);
+  const isAvailable = isAvailablePuppy(puppy);
   const route = puppy.slug ? `/puppies/${puppy.slug}` : puppy.litterHref;
   const litterRoute = puppy.litterSlug ? `/litters/${puppy.litterSlug}` : puppy.litterHref;
   const photo = puppy.mainPhoto || puppy.image;
@@ -2448,7 +2449,9 @@ function PuppyCard({ puppy, variant = "default" }) {
         {showAvailabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
         {isAvailableVariant || isDetailVariant ? (
           <div className="puppy-card-actions">
-            <Link href={puppyApplyHref(puppy)} className="button small">{`Reserve ${puppy.name}`}</Link>
+            <Link href={isAvailable ? puppyApplyHref(puppy) : "/apply"} className="button small">
+              {isAvailable ? `Reserve ${puppy.name}` : "Apply for Future Timing"}
+            </Link>
             {litterRoute && <Link href={litterRoute} className="button small secondary">View Litter</Link>}
           </div>
         ) : route && (
@@ -5565,7 +5568,7 @@ function applicationPuppyFromUrl() {
   const interest = cleanTrackingValue(new window.URLSearchParams(window.location.search).get("interest"));
   if (!interest) return null;
 
-  return publicPuppyProfiles.find((item) => item.slug === interest) || null;
+  return publicPuppyProfiles.find((item) => item.slug === interest && isAvailablePuppy(item)) || null;
 }
 
 function ApplicationReserveHero({ puppy }) {
