@@ -1,14 +1,14 @@
 # Business Accuracy Review
 
-Generated: June 10, 2026
+Generated: June 15, 2026
 
 This is a human-review helper. It does not replace the automated launch checks; it points out business facts that may need Adam/Red Ranch Dogs confirmation before launch.
 
 ## Review Now
 
 - Whitley + Waylon: go-home window begins June 24, 2026. Confirm pickup/payment/status copy is current.
-- Penny + Wyatt: go-home window begins June 14, 2026. Confirm pickup/payment/status copy is current.
-- Ginny + Butch Cassidy: go-home window begins June 14, 2026. Confirm pickup/payment/status copy is current.
+- Penny + Wyatt: go-home window begins June 14, 2026, which is already past. Confirm this should still be a Current Litter.
+- Ginny + Butch Cassidy: go-home window begins June 14, 2026, which is already past. Confirm this should still be a Current Litter.
 
 ## Review Soon
 
@@ -26,15 +26,15 @@ This is a human-review helper. It does not replace the automated launch checks; 
 
 ## Data Workflow Notes
 
-- Available Puppies has 19 true Available record(s): Goalie, FIFA, Meadow, Vista, Ridge, Minnow, Tackle, Bass, Skipper, Marine, Major, Navy, Trooper, Pilot, Victory, Firecracker, Valor, Rocket, Jubilee.
+- Available Puppies has 18 true Available record(s): Goalie, FIFA, Meadow, Ridge, Minnow, Tackle, Bass, Skipper, Marine, Major, Navy, Trooper, Pilot, Victory, Firecracker, Valor, Rocket, Jubilee.
 - Public waitlist rows currently loaded: 18. Confirm this matches the public waitlist sheet before launch.
 
 ## Public Puppy Status Snapshot
 
 | Status | Count | Puppies |
 | --- | ---: | --- |
-| Available | 19 | Goalie, FIFA, Meadow, Vista, Ridge, Minnow, Tackle, Bass, Skipper, Marine, Major, Navy, Trooper, Pilot, Victory, Firecracker, Valor, Rocket, Jubilee |
-| Reserved | 17 | Ranger, Axel, Diesel, Dakota, Sedona, Arizona, Indie, Striker, Samba, Ref, Pitch, Camper, Sage, Trek, Hook, Bobber, Glory |
+| Available | 18 | Goalie, FIFA, Meadow, Ridge, Minnow, Tackle, Bass, Skipper, Marine, Major, Navy, Trooper, Pilot, Victory, Firecracker, Valor, Rocket, Jubilee |
+| Reserved | 18 | Ranger, Axel, Diesel, Dakota, Sedona, Arizona, Indie, Striker, Samba, Ref, Pitch, Vista, Camper, Sage, Trek, Hook, Bobber, Glory |
 
 ## Current Litter Snapshot
 
@@ -44,7 +44,7 @@ This is a human-review helper. It does not replace the automated launch checks; 
 | Faye + Sundance | July 14-16, 2026 | 6 Available |
 | Georgia + Waylon | July 14-16, 2026 | 4 Available, 1 Reserved |
 | Penny + Wyatt | June 14-16, 2026 | 4 Reserved, 2 Available |
-| Ginny + Butch Cassidy | June 14-16, 2026 | 3 Available, 3 Reserved |
+| Ginny + Butch Cassidy | June 14-16, 2026 | 2 Available, 4 Reserved |
 
 ## Planned Litter Snapshot
 
