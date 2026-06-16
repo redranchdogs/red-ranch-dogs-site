@@ -1093,7 +1093,7 @@
     "stud": "Butch Cassidy",
     "gender": "Female",
     "collarColor": "Maroon",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "15-20 lbs",
     "birthDate": "April 23, 2026",
@@ -1150,8 +1150,8 @@
         ]
       }
     ],
-    "description": "Vista is a female Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
-    "availabilityNote": "Vista is available to reserve now.",
+    "description": "Vista is a reserved female Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
+    "availabilityNote": "Vista has found her home and is reserved.",
     "personalityNote": "Week 7 photos are live. Personality notes will continue to be updated as this puppy grows."
   },
   {
