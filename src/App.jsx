@@ -2450,7 +2450,7 @@ function PuppyCard({ puppy, variant = "default" }) {
         {isAvailableVariant || isDetailVariant ? (
           <div className="puppy-card-actions">
             <Link href={isAvailable ? puppyApplyHref(puppy) : "/apply"} className="button small">
-              {isAvailable ? `Reserve ${puppy.name}` : "Apply for Future Timing"}
+              {isAvailable ? `Reserve ${puppy.name}` : "Join Waitlist"}
             </Link>
             {litterRoute && <Link href={litterRoute} className="button small secondary">View Litter</Link>}
           </div>
@@ -3660,8 +3660,8 @@ function PuppyDetailPage({ puppy }) {
         </section>
       )}
       <StickyMobileCta
-        primaryHref={puppyApplyHref(puppy)}
-        primaryLabel={isAvailablePuppy(puppy) ? "Reserve Puppy" : "Apply"}
+        primaryHref={isAvailablePuppy(puppy) ? puppyApplyHref(puppy) : "/apply"}
+        primaryLabel={isAvailablePuppy(puppy) ? "Reserve Puppy" : "Join Waitlist"}
         secondaryHref={puppy.litterSlug ? `/litters/${puppy.litterSlug}` : "/puppies/current-litters"}
         secondaryLabel="View Litter"
       />
