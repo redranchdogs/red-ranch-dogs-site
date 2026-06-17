@@ -2587,7 +2587,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Available",
+    "status": "Reserved",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2629,8 +2629,8 @@
         ]
       }
     ],
-    "description": "Rocket is a male Multigen Mini Goldendoodle puppy from Georgia + Waylon.",
-    "availabilityNote": "Rocket is available to reserve now.",
+    "description": "Rocket is a reserved male Multigen Mini Goldendoodle puppy from Georgia + Waylon.",
+    "availabilityNote": "Rocket has found his home and is reserved.",
     "personalityNote": "Week 3 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/georgia-waylon-2026/rocket-multigen-mini-goldendoodle-puppy-georgia-waylon-week-3-red-ranch-dogs.jpg"
   },
