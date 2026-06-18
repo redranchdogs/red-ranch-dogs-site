@@ -9,6 +9,7 @@ This is the lightweight analytics contract for the public Red Ranch Dogs website
 | `cta_apply_click` | Navigation click | Behavior signal only |
 | `cta_call_click` | Navigation click | Behavior signal only |
 | `cta_email_click` | Navigation click | Behavior signal only |
+| `cta_reserve_click` | Form lifecycle | Behavior signal only |
 | `cta_text_click` | Navigation click | Behavior signal only |
 | `form_start` | Form lifecycle | Behavior signal only |
 | `form_submit_attempt` | Form lifecycle | Behavior signal only |
