@@ -66,34 +66,27 @@
     {
       "breed": "Cavapoo",
       "position": 3,
-      "display_name": "Kaila J.",
-      "status": "Active",
-      "show_publicly": "Yes"
-    },
-    {
-      "breed": "Cavapoo",
-      "position": 4,
       "display_name": "Claire F.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 5,
+      "position": 4,
       "display_name": "Michelle W.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 6,
+      "position": 5,
       "display_name": "Susan C.",
       "status": "Active",
       "show_publicly": "Yes"
     },
     {
       "breed": "Cavapoo",
-      "position": 7,
+      "position": 6,
       "display_name": "Tamara S.",
       "status": "Active",
       "show_publicly": "Yes"
