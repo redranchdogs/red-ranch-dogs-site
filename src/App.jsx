@@ -1554,7 +1554,7 @@ const aboutStoryImage = "/images/about/red-ranch-dogs-our-story-family.jpg";
 const contactPuppyImage = "/images/puppies/honey-bram-2026/bumble-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg";
 const guardianApplicationImage = "/images/guardian/red-ranch-dogs-guardian-application-family.jpg";
 const reviewHeroStats = [
-  { value: "100+", label: "five-star reviews soon" },
+  { value: "100", label: "Google reviews" },
   { value: "Family", label: "communication focused" },
   { value: "Texas", label: "raised in Salado" }
 ];
@@ -1578,7 +1578,7 @@ const reviewThemes = [
 ];
 
 const socialProofItems = [
-  ["Nearly 100 five-star Google reviews", Star],
+  ["100 Google reviews", Star],
   ["Nearly 10,000 Instagram followers", Instagram],
   ["Health-tested parent dogs", PawPrint],
   ["Texas-based, family-owned program", HomeIcon]
@@ -5378,9 +5378,9 @@ function ReviewsPage() {
       <ListingStatusStrip items={reviewHeroStats} className="reviews-status-strip" />
       <section className="content-section reviews-intro-panel">
         <article className="group-panel">
-          <p className="eyebrow">Five-star feedback</p>
+          <p className="eyebrow">Google feedback</p>
           <h2>Trusted by puppy families</h2>
-          <p>We are grateful to be nearing 100 five-star Google reviews from puppy families who trusted Red Ranch Dogs with one of the sweetest decisions they will make.</p>
+          <p>We are grateful to have 100 Google reviews from puppy families who trusted Red Ranch Dogs with one of the sweetest decisions they will make.</p>
           <div className="actions">
             <a className="button primary" href={brand.googleReviews} target="_blank" rel="noreferrer">Read Google Reviews</a>
             <Link className="button secondary" href="/apply">Apply for a Puppy</Link>
