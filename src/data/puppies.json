@@ -1280,7 +1280,7 @@
     "stud": "Butch Cassidy",
     "gender": "Female",
     "collarColor": "Pink",
-    "status": "Reserved",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "15-20 lbs",
     "birthDate": "April 23, 2026",
@@ -1341,7 +1341,7 @@
       }
     ],
     "description": "Sage is a female Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
-    "availabilityNote": "Sage has found her home and is reserved.",
+    "availabilityNote": "Sage is available to reserve now.",
     "personalityNote": "Week 7 photos are live. Personality notes will continue to be updated as this puppy grows."
   },
   {
