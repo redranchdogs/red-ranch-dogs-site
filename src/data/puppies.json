@@ -945,7 +945,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Light Gray",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-18 lbs",
     "birthDate": "April 23, 2026",
@@ -1021,7 +1021,7 @@
       }
     ],
     "description": "FIFA is a male F1B Micro Cavapoo puppy from Penny and Wyatt's FIFA World Cup litter.",
-    "availabilityNote": "FIFA is available to reserve now.",
+    "availabilityNote": "FIFA is reserved for his family.",
     "personalityNote": "Week 8 photos are live. Personality notes will continue to be updated as this puppy grows."
   },
   {
