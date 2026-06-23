@@ -2697,6 +2697,45 @@ function previousLitterParentProfile(name) {
   });
 }
 
+function previousLitterMatchesParent(parent, litter) {
+  const parentHref = `/parents/${parent.slug}`;
+  const normalizedParentName = normalizedParentLookupName(parent.name);
+  const normalizedParentSlug = normalizedParentLookupName(parent.slug);
+  const linkedParentMatch = (litter.parentPhotos || []).some((photo) => photo.href === parentHref);
+  const namedParentMatch = previousLitterParentNames(litter).some((name) => {
+    const normalizedName = normalizedParentLookupName(name);
+
+    return (
+      normalizedName === normalizedParentName ||
+      normalizedName === normalizedParentSlug ||
+      normalizedParentName.startsWith(normalizedName) ||
+      normalizedName.startsWith(normalizedParentName)
+    );
+  });
+
+  return linkedParentMatch || namedParentMatch;
+}
+
+function relatedLittersForParent(parent) {
+  const manualRelatedSlugs = new Set(parent.relatedLitters || []);
+  const currentLitters = publicLitterProfiles.filter((litter) => (
+    litter.mamaSlug === parent.slug ||
+    litter.studSlug === parent.slug ||
+    manualRelatedSlugs.has(litter.slug)
+  ));
+  const seenPreviousHrefs = new Set();
+  const previousLitters = Object.entries(previousLitterDetails)
+    .filter(([, litter]) => previousLitterMatchesParent(parent, litter))
+    .map(([href, litter]) => ({ href, litter }))
+    .filter(({ href }) => {
+      if (seenPreviousHrefs.has(href)) return false;
+      seenPreviousHrefs.add(href);
+      return true;
+    });
+
+  return { currentLitters, previousLitters };
+}
+
 function previousLitterParentPhoto(litter, name) {
   const normalizedName = normalizedParentLookupName(name);
 
@@ -3907,7 +3946,8 @@ function LitterPage({ litter }) {
 }
 
 function ParentDetailPage({ parent }) {
-  const relatedLitters = publicLitterProfiles.filter((litter) => parent.relatedLitters.includes(litter.slug));
+  const { currentLitters: relatedCurrentLitters, previousLitters: relatedPreviousLitters } = relatedLittersForParent(parent);
+  const hasRelatedLitters = relatedCurrentLitters.length || relatedPreviousLitters.length;
   const breed = breedProfiles.find((item) => item.slug === parent.breedSlug);
   const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
   const familyRole = parent.role === "stud" ? "stud" : "mama";
@@ -3958,7 +3998,16 @@ function ParentDetailPage({ parent }) {
       </section>
       <section className="card-list parent-related-list">
         <SectionHeader eyebrow="Related Litters" title={`${parent.name}'s related litters`} />
-        {relatedLitters.length ? relatedLitters.map((litter) => <LitterCard litter={litter} key={litter.slug} />) : <p className="small-note">Ask us about current or planned pairings connected to this parent dog.</p>}
+        {hasRelatedLitters ? (
+          <>
+            {relatedCurrentLitters.map((litter) => <LitterCard litter={litter} key={litter.slug} />)}
+            {relatedPreviousLitters.map(({ href, litter }) => (
+              <PreviousLitterCard litter={litter} href={href} key={href} />
+            ))}
+          </>
+        ) : (
+          <p className="small-note">Ask us about current, planned, or previous pairings connected to this parent dog.</p>
+        )}
       </section>
       <CTASection
         title={`Interested in ${parent.name}'s puppies?`}
