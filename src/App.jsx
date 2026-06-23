@@ -3018,7 +3018,7 @@ function ParentCard({ parent }) {
           {parent.relatedLitters?.length ? <span>{parent.relatedLitters.length} related litter{parent.relatedLitters.length === 1 ? "" : "s"}</span> : null}
         </div>
         {hasPublicProfile ? (
-          <Link href={`/parents/${parent.slug}`} className="inline-link">View profile</Link>
+          <Link href={`/parents/${parent.slug}`} className="button small secondary parent-profile-link">View profile</Link>
         ) : (
           <p className="small-note">Profile details are shared for this pairing only.</p>
         )}
@@ -3052,7 +3052,7 @@ function StudCard({ stud }) {
           {facts.map((fact, index) => <span key={`${fact}-${index}`}>{fact}</span>)}
         </div>
         {stud.genetics && <p className="stud-card-genetics">{stud.genetics}</p>}
-        <Link href={stud.href} className="inline-link">View profile</Link>
+        <Link href={stud.href} className="button small secondary parent-profile-link">View profile</Link>
       </div>
     </article>
   );
@@ -5437,7 +5437,7 @@ function ParentsPage({ type = "all" }) {
             <img src={dog.image} alt={dog.name} />
             <h2>{dog.name}</h2>
             <p>{dog.type}</p>
-            <Link href={dog.href} className="inline-link">View profile</Link>
+            <Link href={dog.href} className="button small secondary parent-profile-link">View profile</Link>
           </article>
         ))}
       </section>
@@ -5458,7 +5458,7 @@ function DamGroupPage({ group }) {
             <h2>{profile.name}</h2>
             <p>{profile.type}</p>
             <p>{profile.weight}</p>
-            <Link href={profile.href} className="inline-link">View profile</Link>
+            <Link href={profile.href} className="button small secondary parent-profile-link">View profile</Link>
           </article>
         ))}
       </section>

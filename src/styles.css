@@ -6590,8 +6590,17 @@ summary {
   white-space: nowrap;
 }
 
-.parent-profile-card .inline-link {
-  margin-top: 2px;
+.parent-profile-link {
+  justify-self: start;
+  min-width: 148px;
+  margin-top: 4px;
+  padding-right: 18px;
+  padding-left: 18px;
+  letter-spacing: 0;
+}
+
+.parent-profile-link:hover {
+  background: rgba(156, 31, 22, 0.08);
 }
 
 .stud-catalog-section {
