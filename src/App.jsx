@@ -3154,22 +3154,34 @@ function BreedParentsCTA({ breed, parents = [] }) {
   );
 }
 
-function ParentTestingPanel({ title, links = [], emptyCopy }) {
-  const actionLabel = title.toLowerCase().includes("health") ? "View health testing" : `View ${title.toLowerCase()}`;
+function ParentRecordsCard({ parent }) {
+  const recordLinks = Array.from(new Set([
+    ...(parent.healthTestingLinks || []),
+    ...(parent.geneticTestingLinks || [])
+  ].filter(Boolean)));
+  const primaryRecordLink = recordLinks[0];
 
   return (
-    <article className="text-card parent-testing-card">
-      <h3>{title}</h3>
-      {links.length ? (
-        <ul className="clean-list">
-          {links.map((href) => (
-            <li key={href}>
-              <a href={href} target="_blank" rel="noreferrer">{actionLabel}</a>
-            </li>
-          ))}
-        </ul>
+    <article className="text-card parent-records-card">
+      <p className="eyebrow">Health, genetics & coat traits</p>
+      <h3>{parent.name}&rsquo;s records</h3>
+      {primaryRecordLink ? (
+        <>
+          <p>
+            Embark keeps {parent.name}&rsquo;s genetic health screening, breed makeup, and coat trait results together in one profile.
+          </p>
+          <a className="button primary parent-records-button" href={primaryRecordLink} target="_blank" rel="noreferrer">
+            View Embark Records
+          </a>
+          <p className="parent-records-note">Includes health screening, genetic makeup, and coat traits.</p>
+        </>
       ) : (
-        <p>{emptyCopy}</p>
+        <>
+          <p>
+            We keep {parent.name}&rsquo;s health, genetic, and coat-trait records organized together and can share the latest details by request.
+          </p>
+          <p className="parent-records-note">Ask us for the latest health, genetics, and coat-trait notes for this parent dog.</p>
+        </>
       )}
     </article>
   );
@@ -3938,11 +3950,7 @@ function ParentDetailPage({ parent }) {
         </article>
       </section>
       <section className="content-section parent-testing-section">
-        <SectionHeader eyebrow="Health & Testing" title={`${parent.name}'s records`} copy="Health and genetic records help families understand the care behind each Red Ranch Dogs pairing." />
-        <div className="parent-testing-grid">
-          <ParentTestingPanel title="Health testing" links={parent.healthTestingLinks} emptyCopy="Ask us for the latest health testing notes for this parent dog." />
-          <ParentTestingPanel title="Genetic testing" links={parent.geneticTestingLinks} emptyCopy="Ask us for the latest genetic testing notes for this parent dog." />
-        </div>
+        <ParentRecordsCard parent={parent} />
       </section>
       <section className="content-section parent-gallery-section">
         <SectionHeader eyebrow="Photos" title={`${parent.name} photos`} copy={`A closer look at ${parent.name} from the Red Ranch Dogs program.`} />
