@@ -3344,6 +3344,12 @@ textarea {
   margin-top: 2px;
 }
 
+.puppy-card-actions .puppy-video-link {
+  border-color: rgba(156, 31, 22, 0.42);
+  color: var(--brand-red-dark);
+  background: rgba(156, 31, 22, 0.05);
+}
+
 .available-puppy-list {
   width: min(1040px, calc(100% - 36px));
   gap: 20px;
@@ -3408,6 +3414,11 @@ textarea {
   min-height: 44px;
   padding-inline: 10px;
   font-size: 0.78rem;
+}
+
+.available-puppy-card .puppy-card-actions .puppy-video-link,
+.detail-puppy-card .puppy-card-actions .puppy-video-link {
+  grid-column: 1 / -1;
 }
 
 .litter-puppy-list {

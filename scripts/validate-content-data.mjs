@@ -77,6 +77,18 @@ function isYouTubeUrl(value = "") {
   }
 }
 
+function puppyVideoFields(puppy = {}) {
+  return [
+    ["videoUrl", puppy.videoUrl],
+    ["youtube_video_url", puppy.youtube_video_url],
+    ["youtubeVideoUrl", puppy.youtubeVideoUrl],
+    ["youtube_short_url", puppy.youtube_short_url],
+    ["youtubeShortUrl", puppy.youtubeShortUrl],
+    ["youtube_playlist_url", puppy.youtube_playlist_url],
+    ["youtubePlaylistUrl", puppy.youtubePlaylistUrl]
+  ].filter(([, value]) => value);
+}
+
 uniqueBy(puppies, "slug", "Puppy");
 uniqueBy(litters, "slug", "Litter");
 uniqueBy(previousLitters, "href", "Previous litter");
@@ -99,9 +111,11 @@ puppies.forEach((puppy) => {
     addWarning(`Puppy ${puppy.slug} has an unrecognized status: ${puppy.status}`);
   }
 
-  if (puppy.videoUrl && !isYouTubeUrl(puppy.videoUrl)) {
-    addError(`Puppy ${puppy.slug} videoUrl must be a valid YouTube URL.`);
-  }
+  puppyVideoFields(puppy).forEach(([field, value]) => {
+    if (!isYouTubeUrl(value)) {
+      addError(`Puppy ${puppy.slug} ${field} must be a valid YouTube URL.`);
+    }
+  });
 
   if (status === "available" && !isPublicRecord(puppy)) {
     addError(`Puppy ${puppy.slug} is marked Available but not public on the site.`);

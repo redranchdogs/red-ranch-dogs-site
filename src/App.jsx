@@ -2358,6 +2358,32 @@ function puppyApplyHref(puppy) {
   return puppy?.slug ? `/apply?interest=${encodeURIComponent(puppy.slug)}` : "/apply";
 }
 
+function puppyVideoUrl(puppy = {}) {
+  const value = [
+    puppy.youtube_video_url,
+    puppy.youtubeVideoUrl,
+    puppy.videoUrl,
+    puppy.youtube_short_url,
+    puppy.youtubeShortUrl,
+    puppy.youtube_playlist_url,
+    puppy.youtubePlaylistUrl
+  ].find(Boolean);
+
+  if (!value) return "";
+
+  try {
+    const url = new globalThis.URL(value);
+    const host = url.hostname.replace(/^www\./, "");
+    return ["youtube.com", "youtube-nocookie.com", "youtu.be"].includes(host) ? url.href : "";
+  } catch {
+    return "";
+  }
+}
+
+function puppyVideoLabel(puppy = {}) {
+  return puppy.featured_video_label || puppy.featuredVideoLabel || "Watch Video";
+}
+
 function PuppyCard({ puppy, variant = "default" }) {
   const breed = puppy.breed || "Breed to be announced";
   const gender = puppy.gender || puppy.sex || "To be announced";
@@ -2379,6 +2405,8 @@ function PuppyCard({ puppy, variant = "default" }) {
   const isPlaceholderPuppyNote = /personality notes (will|are)/i.test(puppyNote);
   const showPuppyNote = puppyNote && !isPlaceholderPuppyNote && !isLitterVariant;
   const showAvailabilityNote = puppy.availabilityNote && !isLitterVariant && !isWaitlistMatchingPuppy(puppy);
+  const videoHref = puppyVideoUrl(puppy);
+  const videoLabel = puppyVideoLabel(puppy);
   const HeadingTag = isDetailVariant ? "h1" : "h2";
   const cardClasses = [
     "puppy-card",
@@ -2453,10 +2481,12 @@ function PuppyCard({ puppy, variant = "default" }) {
               {isAvailable ? `Reserve ${puppy.name}` : "Join Waitlist"}
             </Link>
             {litterRoute && <Link href={litterRoute} className="button small secondary">View Litter</Link>}
+            {videoHref && <a href={videoHref} className="button small secondary puppy-video-link" target="_blank" rel="noreferrer">{videoLabel}</a>}
           </div>
         ) : route && (
           <div className="puppy-card-actions">
             <Link href={route} className="button small">View Puppy</Link>
+            {videoHref && <a href={videoHref} className="button small secondary puppy-video-link" target="_blank" rel="noreferrer">{videoLabel}</a>}
           </div>
         )}
       </div>
@@ -3668,16 +3698,21 @@ function PuppyDetailPage({ puppy }) {
   const weeklyPhotoGroups = puppy.weeklyPhotos || [];
   const weeklyPhotoSet = new Set(weeklyPhotoGroups.flatMap((group) => group.photos || []));
   const extraPhotos = (puppy.photos || []).filter((photo) => photo && !weeklyPhotoSet.has(photo));
+  const videoHref = puppyVideoUrl(puppy);
+  const videoLabel = puppyVideoLabel(puppy);
+  const videoCopy = videoLabel === "Watch Video"
+    ? "Tap to play the latest video update for this puppy."
+    : `Tap to play ${videoLabel} for this puppy.`;
 
   return (
     <Layout>
       <section className="card-list puppy-detail-section">
         <PuppyCard puppy={puppy} variant="detail" />
       </section>
-      {puppy.videoUrl && (
+      {videoHref && (
         <section className="content-section puppy-video-section">
-          <SectionHeader eyebrow="Video Update" title={`${puppy.name} video`} copy="Tap to play the latest video update for this puppy." />
-          <YouTubeFacade title={`${puppy.name} puppy video`} url={puppy.videoUrl} image={puppy.mainPhoto || puppy.image} />
+          <SectionHeader eyebrow="Video Update" title={`${puppy.name} video`} copy={videoCopy} />
+          <YouTubeFacade title={`${puppy.name} puppy video`} url={videoHref} image={puppy.mainPhoto || puppy.image} />
         </section>
       )}
       {weeklyPhotoGroups.length > 0 && (
