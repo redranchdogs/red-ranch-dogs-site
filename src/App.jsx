@@ -3653,6 +3653,20 @@ function breedProgramSizeGuideFor(breed) {
   return breed.slug === "bernedoodle-puppies" ? bernedoodleSizeGuide : standardDoodleSizeGuide;
 }
 
+function breedProgramSizeGuideImageFor(breed) {
+  if (breed.slug === "bernedoodle-puppies") {
+    return {
+      src: "/images/breed-guides/red-ranch-dogs-bernedoodle-size-guide.webp",
+      alt: "Size comparison chart showing a 6 ft adult beside Micro Bernedoodle and Mini Bernedoodle size ranges for Red Ranch Dogs."
+    };
+  }
+
+  return {
+    src: "/images/breed-guides/red-ranch-dogs-doodle-size-guide-standard.webp",
+    alt: "Size comparison chart showing a 6 ft adult beside Micro, Petite Mini, and Mini doodle size ranges for Red Ranch Dogs."
+  };
+}
+
 function BreedPageTemplate({ breed }) {
   const puppies = puppyData.filter((puppy) => puppy.breedSlug === breed.slug);
   const availableBreedPuppies = puppies.filter(isAvailablePuppy);
@@ -3661,6 +3675,7 @@ function BreedPageTemplate({ breed }) {
   const breedImage = breedProgramImageFor(breed);
   const traitChips = breedProgramTraits[breed.slug] || ["Family-ready", "Thoughtfully paired", "Raised with care"];
   const sizeGuide = breedProgramSizeGuideFor(breed);
+  const sizeGuideImage = breedProgramSizeGuideImageFor(breed);
   const fitSignals = [
     breed.bestFit || breed.idealFamilyFit,
     breed.temperament,
@@ -3732,45 +3747,53 @@ function BreedPageTemplate({ breed }) {
           <h2>How big will they get?</h2>
           <p>Families ask this all the time, so we keep our public size ranges simple and pairing-based.</p>
         </div>
-        <article className={`breed-size-visual-card size-count-${sizeGuide.length}`}>
-          <div className="breed-size-visual-stage" aria-hidden="true">
-            <div className="breed-size-person">
-              <span className="person-head" />
-              <span className="person-body" />
-              <span className="person-leg person-leg-left" />
-              <span className="person-leg person-leg-right" />
-              <span className="person-label">6 ft adult</span>
-            </div>
-            <div className="breed-size-dog-lineup">
-              {sizeGuide.map((item) => (
-                <div className="breed-size-dog-wrap" key={`visual-${item.label}`}>
-                  <div className="breed-size-dog" style={{ "--dog-scale": item.scale }}>
-                    <span className="dog-tail" />
-                    <span className="dog-body" />
-                    <span className="dog-head" />
-                    <span className="dog-ear" />
-                    <span className="dog-leg dog-leg-front" />
-                    <span className="dog-leg dog-leg-back" />
-                  </div>
-                  <span>{item.label}</span>
+        <article className={`breed-size-visual-card size-count-${sizeGuide.length}${sizeGuideImage ? " has-size-guide-image" : ""}`}>
+          {sizeGuideImage ? (
+            <figure className="breed-size-guide-asset">
+              <img src={sizeGuideImage.src} alt={sizeGuideImage.alt} width="1536" height="1024" loading="lazy" />
+            </figure>
+          ) : (
+            <>
+              <div className="breed-size-visual-stage" aria-hidden="true">
+                <div className="breed-size-person">
+                  <span className="person-head" />
+                  <span className="person-body" />
+                  <span className="person-leg person-leg-left" />
+                  <span className="person-leg person-leg-right" />
+                  <span className="person-label">6 ft adult</span>
                 </div>
-              ))}
-            </div>
-          </div>
-          <div className="breed-size-guide" aria-label={`Red Ranch Dogs ${breed.name} size ranges`}>
-            {sizeGuide.map((item) => (
-              <article className="breed-size-card" key={item.label}>
-                <div>
-                  <h3>{item.label}</h3>
-                  <p className="breed-size-range">{item.range}</p>
-                  <p>{item.note}</p>
+                <div className="breed-size-dog-lineup">
+                  {sizeGuide.map((item) => (
+                    <div className="breed-size-dog-wrap" key={`visual-${item.label}`}>
+                      <div className="breed-size-dog" style={{ "--dog-scale": item.scale }}>
+                        <span className="dog-tail" />
+                        <span className="dog-body" />
+                        <span className="dog-head" />
+                        <span className="dog-ear" />
+                        <span className="dog-leg dog-leg-front" />
+                        <span className="dog-leg dog-leg-back" />
+                      </div>
+                      <span>{item.label}</span>
+                    </div>
+                  ))}
                 </div>
-              </article>
-            ))}
-          </div>
-          <p className="breed-size-note">
-            Size varies by pairing and individual puppy. We use parent size, past litters, and growth patterns to guide expectations.
-          </p>
+              </div>
+              <div className="breed-size-guide" aria-label={`Red Ranch Dogs ${breed.name} size ranges`}>
+                {sizeGuide.map((item) => (
+                  <article className="breed-size-card" key={item.label}>
+                    <div>
+                      <h3>{item.label}</h3>
+                      <p className="breed-size-range">{item.range}</p>
+                      <p>{item.note}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <p className="breed-size-note">
+                Size varies by pairing and individual puppy. We use parent size, past litters, and growth patterns to guide expectations.
+              </p>
+            </>
+          )}
         </article>
       </section>
       <section className="content-section breed-decision-section">

@@ -6359,6 +6359,30 @@ summary {
   overflow: hidden;
 }
 
+.breed-size-visual-card.has-size-guide-image {
+  align-content: center;
+  padding: 10px;
+  background: rgba(255, 250, 242, 0.4);
+}
+
+.breed-size-guide-asset {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(95, 69, 45, 0.14);
+  border-radius: var(--radius-sm);
+  background: #fff7ea;
+}
+
+.breed-size-guide-asset picture,
+.breed-size-guide-asset img {
+  display: block;
+}
+
+.breed-size-guide-asset img {
+  width: 100%;
+  height: auto;
+}
+
 .breed-size-visual-stage {
   position: relative;
   display: grid;
