@@ -3598,17 +3598,69 @@ function formatWaitlistDate(dateString) {
   });
 }
 
+const standardDoodleSizeGuide = [
+  {
+    label: "Micro",
+    range: "10-15 lbs",
+    scale: 0.64,
+    note: "Our smallest Goldendoodle and Cavapoo range."
+  },
+  {
+    label: "Petite Mini",
+    range: "15-20 lbs",
+    scale: 0.78,
+    note: "Small, sturdy, and easy for families to manage."
+  },
+  {
+    label: "Mini",
+    range: "20-40 lbs",
+    scale: 0.96,
+    note: "The classic Red Ranch family mini range."
+  }
+];
+
+const bernedoodleSizeGuide = [
+  {
+    label: "Micro",
+    range: "15-25 lbs",
+    scale: 0.78,
+    note: "Our smaller Bernedoodle range, planned by pairing."
+  },
+  {
+    label: "Mini",
+    range: "25-40 lbs",
+    scale: 0.98,
+    note: "A sturdy mini Bernedoodle range for family life."
+  }
+];
+
+const breedProgramTraits = {
+  "goldendoodle-puppies": ["Friendly", "Low-shedding options", "Family-focused"],
+  "cavapoo-puppies": ["Cuddly", "Smaller companion", "People-loving"],
+  "bernedoodle-puppies": ["Loyal", "Steady", "Affectionate"]
+};
+
+function breedProgramImageFor(breed) {
+  const homeBreed = homepageBreeds.find((item) => {
+    const singularName = item.name.replace(/s$/, "");
+    return singularName === breed.name || item.route === breed.route;
+  });
+
+  return homeBreed || {};
+}
+
+function breedProgramSizeGuideFor(breed) {
+  return breed.slug === "bernedoodle-puppies" ? bernedoodleSizeGuide : standardDoodleSizeGuide;
+}
+
 function BreedPageTemplate({ breed }) {
   const puppies = puppyData.filter((puppy) => puppy.breedSlug === breed.slug);
   const availableBreedPuppies = puppies.filter(isAvailablePuppy);
   const litters = publicLitterProfiles.filter((litter) => litter.breedSlug === breed.slug);
   const parents = publicParentProfiles.filter((parent) => parent.breedSlug === breed.slug);
-  const breedHighlights = [
-    ["Best Fit", breed.bestFit || breed.idealFamilyFit, Heart],
-    ["Size Expectations", breed.expectedSizeRange, PawPrint],
-    ["Temperament", breed.temperament, Sparkles],
-    ["Coat and Shedding", `${breed.coatExpectations} ${breed.sheddingAllergyNotes}`, ShieldCheck]
-  ];
+  const breedImage = breedProgramImageFor(breed);
+  const traitChips = breedProgramTraits[breed.slug] || ["Family-ready", "Thoughtfully paired", "Raised with care"];
+  const sizeGuide = breedProgramSizeGuideFor(breed);
   const fitSignals = [
     breed.bestFit || breed.idealFamilyFit,
     breed.temperament,
@@ -3633,36 +3685,93 @@ function BreedPageTemplate({ breed }) {
         secondaryLabel: "View Current Litters"
       }}
     >
-      <ListingStatusStrip
-        className="breed-status-strip"
-        items={[
-          { value: "Fit", label: breed.bestFit || breed.idealFamilyFit },
-          { value: "Size", label: breed.expectedSizeRange },
-          { value: "Coat", label: breed.coatExpectations }
-        ]}
-      />
-      <section className="content-section breed-template-grid breed-first-section">
-        <article className="group-panel">
-          <p className="eyebrow">Breed Snapshot</p>
-          <h2>What to know about {breed.name}</h2>
-          <p>{breed.positioning || breed.intro}</p>
-          <dl className="details facts-wide">
-            <div><dt>Ideal family fit</dt><dd>{breed.idealFamilyFit}</dd></div>
-            <div><dt>Expected size range</dt><dd>{breed.expectedSizeRange}</dd></div>
-            <div><dt>Temperament</dt><dd>{breed.temperament}</dd></div>
-            <div><dt>Coat expectations</dt><dd>{breed.coatExpectations}</dd></div>
-            <div><dt>Shedding and allergies</dt><dd>{breed.sheddingAllergyNotes}</dd></div>
-          </dl>
+      <section className="breed-program-snapshot">
+        <article className="breed-program-card">
+          <figure className="breed-program-media">
+            {breedImage.image ? (
+              <img
+                src={breedImage.image}
+                alt={breedImage.imageAlt || `${breed.name} puppy from Red Ranch Dogs`}
+                loading="eager"
+                style={breedImage.imagePosition ? { objectPosition: breedImage.imagePosition } : undefined}
+              />
+            ) : (
+              <ImagePlaceholder label={`${breed.name} puppy photo`} />
+            )}
+          </figure>
+          <div className="breed-program-body">
+            <p className="eyebrow">Breed Snapshot</p>
+            <h2>{breed.name} puppies at a glance</h2>
+            <p>{breed.positioning || breed.intro}</p>
+            <div className="breed-trait-chips" aria-label={`${breed.name} traits`}>
+              {traitChips.map((trait) => <span key={trait}>{trait}</span>)}
+            </div>
+            <dl className="breed-quick-facts">
+              <div>
+                <dt>Best fit</dt>
+                <dd>{breed.idealFamilyFit}</dd>
+              </div>
+              <div>
+                <dt>Coat</dt>
+                <dd>{breed.coatExpectations}</dd>
+              </div>
+              <div>
+                <dt>Shedding</dt>
+                <dd>{breed.sheddingAllergyNotes}</dd>
+              </div>
+            </dl>
+            <Link href="/puppies/coat-traits" className="button secondary breed-coat-traits-link">
+              View coat traits <ArrowRight size={18} />
+            </Link>
+          </div>
         </article>
       </section>
-      <section className="tile-grid four priority-grid">
-        {breedHighlights.map(([title, copy, Icon]) => (
-          <article className="text-card icon-card" key={title}>
-            <Icon size={24} />
-            <h2>{title}</h2>
-            <p>{copy}</p>
-          </article>
-        ))}
+      <section className="breed-size-guide-section">
+        <div className="breed-size-guide-intro">
+          <p className="eyebrow">Size Guide</p>
+          <h2>How big will they get?</h2>
+          <p>Families ask this all the time, so we keep our public size ranges simple and pairing-based.</p>
+        </div>
+        <article className={`breed-size-visual-card size-count-${sizeGuide.length}`}>
+          <div className="breed-size-visual-stage" aria-hidden="true">
+            <div className="breed-size-person">
+              <span className="person-head" />
+              <span className="person-body" />
+              <span className="person-leg person-leg-left" />
+              <span className="person-leg person-leg-right" />
+              <span className="person-label">6 ft adult</span>
+            </div>
+            <div className="breed-size-dog-lineup">
+              {sizeGuide.map((item) => (
+                <div className="breed-size-dog-wrap" key={`visual-${item.label}`}>
+                  <div className="breed-size-dog" style={{ "--dog-scale": item.scale }}>
+                    <span className="dog-tail" />
+                    <span className="dog-body" />
+                    <span className="dog-head" />
+                    <span className="dog-ear" />
+                    <span className="dog-leg dog-leg-front" />
+                    <span className="dog-leg dog-leg-back" />
+                  </div>
+                  <span>{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="breed-size-guide" aria-label={`Red Ranch Dogs ${breed.name} size ranges`}>
+            {sizeGuide.map((item) => (
+              <article className="breed-size-card" key={item.label}>
+                <div>
+                  <h3>{item.label}</h3>
+                  <p className="breed-size-range">{item.range}</p>
+                  <p>{item.note}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="breed-size-note">
+            Size varies by pairing and individual puppy. We use parent size, past litters, and growth patterns to guide expectations.
+          </p>
+        </article>
       </section>
       <section className="content-section breed-decision-section">
         <article className="group-panel breed-decision-card">

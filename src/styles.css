@@ -6203,6 +6203,418 @@ summary {
   padding: 42px 0;
 }
 
+.breed-program-snapshot,
+.breed-size-guide-section {
+  width: min(1040px, calc(100% - 36px));
+  margin-inline: auto;
+}
+
+.breed-program-snapshot {
+  padding: 18px 0 20px;
+}
+
+.breed-program-card {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1.14fr);
+  overflow: hidden;
+  background: rgba(255, 250, 242, 0.9);
+  border: 1px solid var(--premium-line);
+  border-radius: var(--radius-md);
+  box-shadow: 0 18px 46px rgba(54, 36, 20, 0.1);
+}
+
+.breed-program-media {
+  min-height: 100%;
+  margin: 0;
+  background: var(--soft-tan);
+}
+
+.breed-program-media img,
+.breed-program-media .image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  object-fit: cover;
+}
+
+.breed-program-body {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  padding: clamp(26px, 4.2vw, 52px);
+}
+
+.breed-program-body h2 {
+  max-width: 620px;
+  font-size: clamp(3rem, 7vw, 5.4rem);
+  line-height: 0.88;
+}
+
+.breed-program-body > p:not(.eyebrow) {
+  max-width: 650px;
+  margin: 0;
+  color: var(--premium-muted);
+  font-size: clamp(1.02rem, 1.6vw, 1.18rem);
+  line-height: 1.48;
+}
+
+.breed-trait-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.breed-trait-chips span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 13px;
+  color: var(--brand-red-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: rgba(148, 31, 23, 0.07);
+  border: 1px solid rgba(148, 31, 23, 0.16);
+  border-radius: 999px;
+}
+
+.breed-quick-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--premium-line);
+  border-bottom: 1px solid var(--premium-line);
+}
+
+.breed-quick-facts div {
+  min-width: 0;
+  padding: 15px 14px;
+}
+
+.breed-quick-facts div + div {
+  border-left: 1px solid var(--premium-line);
+}
+
+.breed-quick-facts dt {
+  margin-bottom: 6px;
+  color: var(--premium-muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.breed-quick-facts dd {
+  margin: 0;
+  color: var(--premium-ink);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.breed-coat-traits-link {
+  justify-self: start;
+  gap: 10px;
+}
+
+.breed-size-guide-section {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+  gap: 18px;
+  align-items: stretch;
+  padding: 12px 0 30px;
+}
+
+.breed-size-guide-intro,
+.breed-size-visual-card,
+.breed-size-card {
+  background: rgba(255, 250, 242, 0.72);
+  border: 1px solid var(--premium-line);
+  border-radius: var(--radius-md);
+}
+
+.breed-size-guide-intro {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  padding: 24px;
+}
+
+.breed-size-guide-intro h2 {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+}
+
+.breed-size-guide-intro p:not(.eyebrow) {
+  margin: 0;
+  color: var(--premium-muted);
+  line-height: 1.48;
+}
+
+.breed-size-visual-card {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.breed-size-visual-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: end;
+  gap: 18px;
+  min-height: 218px;
+  padding: 20px 22px 28px;
+  background:
+    linear-gradient(to top, rgba(148, 31, 23, 0.08), transparent 50%),
+    linear-gradient(90deg, rgba(222, 208, 189, 0.24) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(222, 208, 189, 0.18) 1px, transparent 1px),
+    rgba(255, 250, 242, 0.68);
+  background-size: auto, 44px 44px, 44px 44px, auto;
+  border: 1px solid rgba(95, 69, 45, 0.12);
+  border-radius: var(--radius-sm);
+}
+
+.breed-size-visual-stage::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: 26px;
+  left: 18px;
+  height: 2px;
+  background: rgba(95, 69, 45, 0.16);
+}
+
+.breed-size-person {
+  position: relative;
+  z-index: 1;
+  width: 82px;
+  height: 172px;
+  justify-self: center;
+}
+
+.person-head,
+.person-body,
+.person-leg {
+  position: absolute;
+  display: block;
+  background: var(--premium-ink);
+}
+
+.person-head {
+  top: 0;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.person-body {
+  top: 38px;
+  left: 50%;
+  width: 46px;
+  height: 84px;
+  border-radius: 26px 26px 18px 18px;
+  transform: translateX(-50%);
+}
+
+.person-body::before,
+.person-body::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 12px;
+  height: 68px;
+  background: var(--premium-ink);
+  border-radius: 999px;
+}
+
+.person-body::before {
+  left: -13px;
+  transform: rotate(7deg);
+}
+
+.person-body::after {
+  right: -13px;
+  transform: rotate(-7deg);
+}
+
+.person-leg {
+  bottom: 0;
+  width: 15px;
+  height: 54px;
+  border-radius: 999px;
+}
+
+.person-leg-left {
+  left: 26px;
+}
+
+.person-leg-right {
+  right: 26px;
+}
+
+.person-label {
+  position: absolute;
+  right: 50%;
+  bottom: -24px;
+  width: max-content;
+  color: var(--premium-muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transform: translateX(50%);
+}
+
+.breed-size-dog-lineup {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 12px;
+}
+
+.size-count-2 .breed-size-dog-lineup {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 360px;
+}
+
+.breed-size-dog-wrap {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.breed-size-dog-wrap > span {
+  color: var(--brand-red-dark);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.breed-size-dog {
+  position: relative;
+  width: calc(112px * var(--dog-scale));
+  height: calc(88px * var(--dog-scale));
+  min-width: 58px;
+}
+
+.dog-body,
+.dog-head,
+.dog-ear,
+.dog-tail,
+.dog-leg {
+  position: absolute;
+  display: block;
+  background: var(--brand-red);
+}
+
+.dog-body {
+  right: calc(18px * var(--dog-scale));
+  bottom: calc(14px * var(--dog-scale));
+  width: calc(72px * var(--dog-scale));
+  height: calc(42px * var(--dog-scale));
+  border-radius: 48% 52% 44% 44%;
+}
+
+.dog-head {
+  right: 0;
+  bottom: calc(32px * var(--dog-scale));
+  width: calc(38px * var(--dog-scale));
+  height: calc(36px * var(--dog-scale));
+  border-radius: 48% 52% 46% 54%;
+}
+
+.dog-ear {
+  right: calc(20px * var(--dog-scale));
+  bottom: calc(38px * var(--dog-scale));
+  width: calc(18px * var(--dog-scale));
+  height: calc(28px * var(--dog-scale));
+  background: var(--brand-red-dark);
+  border-radius: 50%;
+  transform: rotate(12deg);
+}
+
+.dog-tail {
+  left: calc(6px * var(--dog-scale));
+  bottom: calc(48px * var(--dog-scale));
+  width: calc(34px * var(--dog-scale));
+  height: calc(11px * var(--dog-scale));
+  border-radius: 999px;
+  transform: rotate(-24deg);
+  transform-origin: right center;
+}
+
+.dog-leg {
+  bottom: 0;
+  width: calc(12px * var(--dog-scale));
+  height: calc(27px * var(--dog-scale));
+  border-radius: 999px;
+}
+
+.dog-leg-front {
+  right: calc(24px * var(--dog-scale));
+}
+
+.dog-leg-back {
+  right: calc(68px * var(--dog-scale));
+}
+
+.breed-size-guide {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.size-count-2 .breed-size-guide {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.breed-size-card {
+  display: grid;
+  align-content: start;
+  min-width: 0;
+  padding: 16px;
+}
+
+.breed-size-card h3 {
+  margin: 0;
+  color: var(--premium-ink);
+  font-size: 1.05rem;
+  line-height: 1.05;
+}
+
+.breed-size-card p {
+  margin: 0;
+  color: var(--premium-muted);
+  font-size: 0.9rem;
+  line-height: 1.36;
+}
+
+.breed-size-card .breed-size-range {
+  margin: 4px 0 8px;
+  color: var(--brand-red);
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: 1.9rem;
+  line-height: 0.9;
+}
+
+.breed-size-note {
+  max-width: 760px;
+  margin: 0;
+  color: var(--premium-muted);
+  font-size: 0.86rem;
+  line-height: 1.42;
+}
+
 .puppy-photo-frame {
   position: relative;
   min-height: 280px;
@@ -6801,6 +7213,167 @@ summary {
   .architecture-grid,
   .breed-template-grid {
     width: min(720px, calc(100% - 30px));
+  }
+
+  .breed-program-snapshot,
+  .breed-size-guide-section {
+    width: min(720px, calc(100% - 30px));
+  }
+
+  .breed-program-card,
+  .breed-size-guide-section,
+  .breed-size-visual-card,
+  .breed-size-guide {
+    grid-template-columns: 1fr;
+  }
+
+  .breed-program-media img,
+  .breed-program-media .image-placeholder {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .breed-quick-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .breed-quick-facts div + div {
+    border-top: 1px solid var(--premium-line);
+    border-left: 0;
+  }
+
+  .breed-program-snapshot {
+    padding-top: 10px;
+  }
+
+  .breed-program-body {
+    gap: 14px;
+    padding: 24px 20px;
+  }
+
+  .breed-program-body h2 {
+    font-size: clamp(2.95rem, 14vw, 4.05rem);
+  }
+
+  .breed-quick-facts div {
+    padding: 13px 0;
+  }
+
+  .breed-size-guide-section {
+    gap: 12px;
+    padding-bottom: 22px;
+  }
+
+  .breed-size-guide-intro {
+    gap: 8px;
+    padding: 20px;
+  }
+
+  .breed-size-guide-intro h2 {
+    font-size: clamp(2.35rem, 11vw, 3.25rem);
+  }
+
+  .breed-size-visual-card {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .breed-size-visual-stage {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 8px;
+    min-height: 150px;
+    padding: 14px 10px 24px;
+    background-size: auto, 32px 32px, 32px 32px, auto;
+  }
+
+  .breed-size-visual-stage::after {
+    right: 10px;
+    bottom: 22px;
+    left: 10px;
+  }
+
+  .breed-size-person {
+    width: 44px;
+    height: 122px;
+  }
+
+  .person-head {
+    width: 21px;
+    height: 21px;
+  }
+
+  .person-body {
+    top: 27px;
+    width: 28px;
+    height: 59px;
+  }
+
+  .person-body::before,
+  .person-body::after {
+    width: 8px;
+    height: 48px;
+  }
+
+  .person-body::before {
+    left: -9px;
+  }
+
+  .person-body::after {
+    right: -9px;
+  }
+
+  .person-leg {
+    width: 9px;
+    height: 39px;
+  }
+
+  .person-leg-left {
+    left: 13px;
+  }
+
+  .person-leg-right {
+    right: 13px;
+  }
+
+  .person-label {
+    bottom: -19px;
+    font-size: 0.55rem;
+  }
+
+  .breed-size-dog-lineup {
+    gap: 2px;
+  }
+
+  .size-count-2 .breed-size-dog-lineup {
+    max-width: none;
+  }
+
+  .breed-size-dog {
+    width: calc(82px * var(--dog-scale));
+    height: calc(66px * var(--dog-scale));
+    min-width: 42px;
+  }
+
+  .breed-size-dog-wrap {
+    gap: 8px;
+  }
+
+  .breed-size-dog-wrap > span {
+    font-size: 0.56rem;
+  }
+
+  .breed-size-card {
+    padding: 13px;
+  }
+
+  .breed-size-card .breed-size-range {
+    margin-bottom: 5px;
+    font-size: 1.65rem;
+  }
+
+  .breed-size-note {
+    font-size: 0.8rem;
   }
 
   .architecture-grid,
