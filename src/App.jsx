@@ -3656,7 +3656,7 @@ function breedProgramSizeGuideFor(breed) {
 function breedProgramSizeGuideImageFor(breed) {
   if (breed.slug === "bernedoodle-puppies") {
     return {
-      src: "/images/breed-guides/red-ranch-dogs-bernedoodle-size-guide.webp",
+      src: "/images/breed-guides/red-ranch-dogs-bernedoodle-size-guide-v2.webp",
       alt: "Size comparison chart showing a 6 ft adult beside Micro Bernedoodle and Mini Bernedoodle size ranges for Red Ranch Dogs."
     };
   }
