@@ -3471,13 +3471,22 @@ const guardianOpportunityStats = [
   { value: "Fit", label: "conversation before placement" }
 ];
 
-const currentGuardianOpportunitySlugs = ["bobber"];
-
 const guardianOpportunityCards = [
   ["Local guardian fit", "Guardian homes should be close enough to Salado for breeding-related visits and clear communication."],
   ["Apply early", "Submit the guardian application so we know your location, home setup, and interest."],
   ["Fit comes first", "We look for great care, clear communication, a fenced yard, and reasonable distance from Salado."]
 ];
+
+function isOpenGuardianOpportunity(puppy) {
+  return normalizedStatus(puppy?.guardianOpportunity?.status) === "open";
+}
+
+function sortGuardianOpportunities(first, second) {
+  const firstOrder = Number(first.guardianOpportunity?.sortOrder) || 999;
+  const secondOrder = Number(second.guardianOpportunity?.sortOrder) || 999;
+
+  return firstOrder - secondOrder || first.name.localeCompare(second.name);
+}
 
 const pricingFactors = [
   ["Breed and pairing", "Each pairing has different size, coat, color, and generation considerations."],
@@ -4442,9 +4451,9 @@ function PickupDeliveryPage() {
 }
 
 function GuardianOpportunitiesPage() {
-  const currentGuardianOpportunities = currentGuardianOpportunitySlugs
-    .map((slug) => puppyProfiles.find((puppy) => puppy.slug === slug))
-    .filter(Boolean);
+  const currentGuardianOpportunities = publicPuppyProfiles
+    .filter(isOpenGuardianOpportunity)
+    .sort(sortGuardianOpportunities);
 
   return (
     <Layout>
@@ -4453,11 +4462,14 @@ function GuardianOpportunitiesPage() {
       {currentGuardianOpportunities.length > 0 && (
         <section className="guardian-opportunity-list" aria-label="Current guardian opportunities">
           {currentGuardianOpportunities.map((puppy) => {
+            const opportunity = puppy.guardianOpportunity || {};
             const details = [
               ["Litter", puppy.litter],
               ["Breed", puppy.breed],
               ["Gender", puppy.gender],
-              ["Expected Size", puppy.estimatedAdultWeight]
+              ["Expected Size", puppy.estimatedAdultWeight],
+              ["Program Role", opportunity.programRole],
+              ["Placement", opportunity.placementStatus]
             ].filter(([, value]) => Boolean(value));
 
             return (
@@ -4473,18 +4485,18 @@ function GuardianOpportunitiesPage() {
                 <div className="guardian-opportunity-body">
                   <div className="card-kicker-row">
                     <p className="eyebrow">Guardian Opportunity</p>
-                    <span className="status-badge status-guardian-candidate">Local Fit</span>
+                    <span className="status-badge status-guardian-candidate">{opportunity.badge || "Local Fit"}</span>
                   </div>
                   <h2>{puppy.name}</h2>
                   <p>
-                    {puppy.name} is a female from the {puppy.litter} litter being considered for a local guardian family.
+                    {opportunity.summary || `${puppy.name} is a female from the ${puppy.litter} litter being considered for a local guardian family.`}
                   </p>
                   <dl className="details compact-details">
                     {details.map(([label, value]) => (
                       <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
                     ))}
                   </dl>
-                  <p className="small-note">Best fit: a loving home near Salado with a fenced yard, clear communication, and comfort staying connected with Red Ranch Dogs.</p>
+                  <p className="small-note">{opportunity.bestFit || "Best fit: a loving home near Salado with a fenced yard, clear communication, and comfort staying connected with Red Ranch Dogs."}</p>
                   <div className="puppy-card-actions">
                     <Link href="/guardian-program/application" className="button primary">Guardian Application</Link>
                     <Link href={`/puppies/${puppy.slug}`} className="button secondary">Meet {puppy.name}</Link>
