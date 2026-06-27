@@ -54,6 +54,9 @@ const attributionFields = [
   "source",
   "userAgent"
 ];
+const leadCaptureFields = [
+  "preferredContactMethod"
+];
 
 const blockerMessages = [];
 
@@ -153,10 +156,34 @@ attributionFields.forEach((field) => {
   );
 });
 
+leadCaptureFields.forEach((field) => {
+  addBlocker(
+    appSource.includes(`name="${field}"`),
+    `src/App.jsx collects ${field}, but the frontend marker was not found.`
+  );
+  addBlocker(
+    apiSubmissionKeys.includes(field),
+    `api/forms.js submissionHeaderKeys is missing ${field}.`
+  );
+  addBlocker(
+    apiSource.includes(`${field}: clean(body.${field})`),
+    `api/forms.js payload is missing body.${field}.`
+  );
+  addBlocker(
+    appsScriptSource.includes(`payload.${field}`),
+    `scripts/google-apps-script.js append row is missing payload.${field}.`
+  );
+  addBlocker(
+    testSource.includes(field),
+    `scripts/test-form-api-handler.mjs fixture/assertions do not mention ${field}.`
+  );
+});
+
 [
   "Google Click ID",
   "GBRAID",
   "WBRAID",
+  "Preferred Contact Method",
   "First Landing Page",
   "First UTM Source",
   "Last UTM Source"

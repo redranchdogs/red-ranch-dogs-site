@@ -26,6 +26,7 @@ const submissionHeaders = [
   "Name",
   "Email",
   "Phone",
+  "Preferred Contact Method",
   "Inquiry Type",
   "Preferred Breed",
   "Program Name",
@@ -109,6 +110,7 @@ const submissionHeaderKeys = [
   "name",
   "email",
   "phone",
+  "preferredContactMethod",
   "inquiryType",
   "preferredBreed",
   "programName",
@@ -455,6 +457,7 @@ function compactLeadSummary(payload) {
     summaryItem("", payload.name),
     summaryItem("Email", payload.email),
     summaryItem("Phone", payload.phone),
+    summaryItem("Reply", payload.preferredContactMethod),
     summaryItem("Breed", payload.preferredBreed),
     summaryItem("Size", payload.sizePreference),
     summaryItem("Timing", payload.timing),
@@ -496,6 +499,7 @@ const detailFieldsByForm = {
     ["Signature", "signature"]
   ],
   contact: [
+    ["Preferred contact method", "preferredContactMethod"],
     ["Inquiry type", "inquiryType"],
     ["Preferred breed", "preferredBreed"],
     ["Location", "location"]
@@ -748,6 +752,7 @@ export default async function handler(request, response) {
     name: clean(body.name),
     email: clean(body.email),
     phone: clean(body.phone),
+    preferredContactMethod: clean(body.preferredContactMethod),
     inquiryType: clean(body.inquiryType),
     programName: clean(body.programName),
     preferredStud: clean(body.preferredStud),
