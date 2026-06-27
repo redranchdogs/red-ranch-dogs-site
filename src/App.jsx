@@ -242,6 +242,10 @@ const architectureSeo = {
     title: "Coat Traits | Red Ranch Dogs",
     description: "Learn about Red Ranch Dogs doodle coat colors, markings, textures, and lower-shedding trait planning."
   },
+  "/puppies/doodle-generations": {
+    title: "Doodle Generations Explained | Red Ranch Dogs",
+    description: "Understand F1, F1B, F1BB, and multigen doodles, and how Red Ranch Dogs plans for coat, health, temperament, and family fit."
+  },
   "/parents": {
     title: "Parent Dogs | Red Ranch Dogs",
     description: "Meet Red Ranch Dogs mamas and studs with structured profiles, photos, traits, and related litters."
@@ -471,6 +475,7 @@ const clientRedirects = Object.fromEntries([
   ["/faq", "/process/faq"],
   ["/what-come-with-your-puppy", "/puppies/what-comes-with-your-puppy"],
   ["/coat-traits", "/puppies/coat-traits"],
+  ["/doodle-generations", "/puppies/doodle-generations"],
   ["/dams", "/parents/mamas"],
   ["/studs", "/parents/studs"],
   ["/goldendoodle-dams", "/parents/goldendoodle-parents"],
@@ -689,6 +694,7 @@ const breadcrumbLabels = {
   "bernedoodle-puppies": "Bernedoodle Puppies",
   "what-comes-with-your-puppy": "What Comes With Your Puppy",
   "coat-traits": "Coat Traits",
+  "doodle-generations": "Doodle Generations",
   litters: "Litters",
   parents: "Parents",
   mamas: "Mamas",
@@ -1078,7 +1084,7 @@ function structuredDataFor(path) {
         "@type": "Place",
         name: area
       })),
-      knowsAbout: ["Goldendoodles", "Cavapoos", "Bernedoodles", "Poodle genetics", "Doodle puppy waitlists", "Doodle coat traits"],
+      knowsAbout: ["Goldendoodles", "Cavapoos", "Bernedoodles", "Poodle genetics", "Doodle generations", "Doodle puppy waitlists", "Doodle coat traits"],
       contactPoint: [
         {
           "@type": "ContactPoint",
@@ -1244,6 +1250,7 @@ const primaryNav = [
       { label: "Current Waitlist", href: "/process/waitlist" },
       { label: "What Comes With Your Puppy", href: "/puppies/what-comes-with-your-puppy" },
       { label: "Coat Traits", href: "/puppies/coat-traits" },
+      { label: "Doodle Generations", href: "/puppies/doodle-generations" },
       { label: "FAQ", href: "/process/faq" },
       { label: "Puppy Pickup and Delivery", href: "/process/pickup-and-delivery" }
     ]
@@ -3750,6 +3757,7 @@ function BreedPageTemplate({ breed }) {
           </div>
         </article>
       </section>
+      {breed.slug === "goldendoodle-puppies" && <DoodleGenerationBreedCallout />}
       <section className="breed-size-guide-section">
         <div className="breed-size-guide-intro">
           <p className="eyebrow">Size Guide</p>
@@ -4397,6 +4405,7 @@ function ProcessOverviewPage() {
       "/process/waitlist": "See the public waitlist view and how breed order works.",
       "/puppies/what-comes-with-your-puppy": "A clear look at starter guidance, records, and go-home support.",
       "/puppies/coat-traits": "Blazes, color, markings, coat texture, and puppy trait basics.",
+      "/puppies/doodle-generations": "F1, F1B, F1BB, multigen, and why pairing choices matter.",
       "/process/faq": "Quick answers for pricing, waitlists, pickup, coats, and timing.",
       "/process/pickup-and-delivery": "Pickup day, ride-home guidance, and travel coordination."
     };
@@ -6238,6 +6247,44 @@ const coatMarkings = [
   { name: "Tuxedo", image: "/images/coat-traits/tuxedo-marking.jpg", alt: "Tuxedo white chest marking on doodle puppy" }
 ];
 
+const doodleGenerationCards = [
+  {
+    label: "F1",
+    title: "First generation",
+    formula: "Retriever or companion breed + Poodle",
+    copy: "An F1 doodle has one purebred non-Poodle parent and one Poodle parent. These puppies can have wonderful personalities, but coats may vary more from puppy to puppy.",
+    signals: ["Most genetic variety", "More coat variation", "Often a classic doodle starting point"]
+  },
+  {
+    label: "F1B",
+    title: "Backcross generation",
+    formula: "F1 doodle + Poodle",
+    copy: "F1B pairings add more Poodle influence and are often chosen when a family is prioritizing lower shedding. They can also trend curlier depending on the parents.",
+    signals: ["Often lower-shedding", "More Poodle influence", "Can be curlier"]
+  },
+  {
+    label: "F1BB",
+    title: "Second backcross",
+    formula: "F1B doodle + Poodle",
+    copy: "F1BB pairings add even more Poodle influence. They may be helpful for some coat goals, but generation alone still does not guarantee a perfect allergy or shedding outcome.",
+    signals: ["Strong Poodle influence", "Often very low-shed focused", "May feel less retriever-like"]
+  },
+  {
+    label: "Multigen",
+    title: "Planned beyond early generations",
+    formula: "Doodle + Doodle, selected over time",
+    copy: "Multigen pairings let a breeder select from known traits over multiple generations, which can support more intentional coat, size, temperament, and health planning.",
+    signals: ["Our primary Goldendoodle focus", "Selected traits over time", "More intentional program consistency"]
+  }
+];
+
+const doodleGenerationQuestions = [
+  "What are the parent dogs' coat traits and shedding genetics?",
+  "What size range has this pairing produced or been planned for?",
+  "Which temperament, health, structure, and family traits are being preserved?",
+  "How consistent have related litters or program lines been over time?"
+];
+
 function CoatTraitCard({ trait }) {
   return (
     <article className="coat-card">
@@ -6250,6 +6297,141 @@ function CoatTraitCard({ trait }) {
   );
 }
 
+function DoodleGenerationsPreview() {
+  return (
+    <section className="content-section doodle-generations-preview">
+      <article className="doodle-generation-preview-card">
+        <div>
+          <p className="eyebrow">Doodle Generations</p>
+          <h2>F1, F1B, F1BB, and multigen explained without the noise</h2>
+          <p>Generation labels are useful, but they are not the whole story. The better question is how the pairing is planned: coat genetics, parent dogs, size, health, temperament, and the traits a program keeps back over time.</p>
+        </div>
+        <Link href="/puppies/doodle-generations" className="button primary">
+          Understand generations <ArrowRight size={18} />
+        </Link>
+      </article>
+    </section>
+  );
+}
+
+function DoodleGenerationBreedCallout() {
+  return (
+    <section className="content-section goldendoodle-generation-callout">
+      <article className="group-panel generation-callout-panel">
+        <div>
+          <p className="eyebrow">Goldendoodle Generations</p>
+          <h2>Why our Goldendoodle program leans multigen</h2>
+          <p>Families often ask if F1B is automatically the best choice. It can be a helpful label, but Red Ranch primarily works with multigen Goldendoodles because it allows us to keep selecting for the coat, temperament, size, health, and family traits we want to preserve.</p>
+        </div>
+        <Link href="/puppies/doodle-generations" className="button secondary">
+          Doodle generations explained <ArrowRight size={18} />
+        </Link>
+      </article>
+    </section>
+  );
+}
+
+function DoodleGenerationsPage() {
+  return (
+    <Layout>
+      <PageHero
+        eyebrow="Doodle Education"
+        title="Doodle Generations Explained"
+        copy="F1, F1B, F1BB, and multigen labels can be helpful, but they are only one part of choosing the right puppy. The pairing, parent dogs, coat genetics, temperament, health, and long-term program choices matter too."
+      />
+      <section className="content-section doodle-generation-hero">
+        <article className="doodle-generation-principle">
+          <p className="eyebrow">The Red Ranch View</p>
+          <h2>Generation is a starting clue, not a guarantee.</h2>
+          <p>Families sometimes hear that one generation is always better than another. In real life, a good breeder looks deeper. A generation label tells you the type of pairing, but it does not promise a specific coat, allergy result, temperament, or adult size.</p>
+          <p>Red Ranch Dogs primarily works with multigenerational Goldendoodles because multigen planning lets us keep back dogs with desirable coat traits, desirable health traits, steady family temperaments, and size ranges that fit our program.</p>
+          <div className="doodle-generation-actions">
+            <Link href="/puppies/goldendoodle-puppies" className="button primary">Goldendoodle Puppies</Link>
+            <Link href="/puppies/coat-traits" className="button secondary">Coat Traits</Link>
+          </div>
+        </article>
+        <article className="doodle-generation-map" aria-label="Doodle generation planning path">
+          {doodleGenerationCards.map((generation, index) => (
+            <div className={`generation-map-step ${generation.label === "Multigen" ? "featured" : ""}`} key={generation.label}>
+              <span className="generation-map-number">{index + 1}</span>
+              <div>
+                <strong>{generation.label}</strong>
+                <p>{generation.title}</p>
+              </div>
+            </div>
+          ))}
+        </article>
+      </section>
+      <section className="content-section doodle-generation-grid-section">
+        <SectionHeader
+          eyebrow="Quick Comparison"
+          title="What the generation labels mean"
+          copy="These definitions are intentionally simple. The label matters, but parent selection and trait testing are what make the label useful."
+        />
+        <div className="doodle-generation-grid">
+          {doodleGenerationCards.map((generation) => (
+            <article className={`doodle-generation-card ${generation.label === "Multigen" ? "featured" : ""}`} key={generation.label}>
+              <div className="generation-card-topline">
+                <span>{generation.label}</span>
+                <p>{generation.title}</p>
+              </div>
+              <h3>{generation.formula}</h3>
+              <p>{generation.copy}</p>
+              <ul>
+                {generation.signals.map((signal) => <li key={signal}>{signal}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="content-section doodle-generation-ranch-section">
+        <article className="doodle-generation-ranch-card">
+          <div className="doodle-generation-ranch-copy">
+            <p className="eyebrow">Why Multigen Matters Here</p>
+            <h2>Red Ranch selection happens over time.</h2>
+            <p>Multigen breeding gives us room to make more intentional decisions instead of chasing a label. We can evaluate the dogs in front of us, keep back the traits we want to preserve, and continue refining for family life.</p>
+            <p>That does not mean every multigen puppy is identical. It means the pairing is planned with more information: parent dogs, coat genetics, health traits, structure, size, temperament, and what previous generations have shown us.</p>
+          </div>
+          <div className="doodle-generation-question-panel">
+            <h3>Better questions than &ldquo;what generation?&rdquo;</h3>
+            <ul className="check-list">
+              {doodleGenerationQuestions.map((question) => <li key={question}>{question}</li>)}
+            </ul>
+          </div>
+        </article>
+      </section>
+      <section className="content-section doodle-generation-faq">
+        <div className="section-heading">
+          <p className="eyebrow">Family Questions</p>
+          <h2>What this means when choosing a puppy</h2>
+        </div>
+        <div className="doodle-generation-faq-grid">
+          <article>
+            <h3>Is F1B always better?</h3>
+            <p>No. F1B can be a good fit for lower-shedding goals, but it is not automatically better for every family. Parent traits and the actual pairing matter.</p>
+          </article>
+          <article>
+            <h3>Are multigen doodles hypoallergenic?</h3>
+            <p>No dog is fully hypoallergenic. Multigen planning can support lower-shedding goals, but allergies are personal and results can vary by family and puppy.</p>
+          </article>
+          <article>
+            <h3>Why not only breed early generations?</h3>
+            <p>Early generations can be wonderful, but they can also carry more variation. Our multigen focus lets us preserve the traits we want Red Ranch families to experience.</p>
+          </article>
+        </div>
+      </section>
+      <CTASection
+        title="Want help choosing the right fit?"
+        copy="Tell us what matters most: size, coat, temperament, timing, and family rhythm. We will help point you toward the right Red Ranch path."
+        primaryHref="/apply"
+        primaryLabel="Apply for a Puppy"
+        secondaryHref="/puppies/current-litters"
+        secondaryLabel="View Current Litters"
+      />
+    </Layout>
+  );
+}
+
 function CoatTraitsPage() {
   return (
     <Layout>
@@ -6258,6 +6440,7 @@ function CoatTraitsPage() {
         <h2>Our Most Requested Coat Traits</h2>
         <p>Across Goldendoodles, Bernedoodles, and Cavapoos, families often ask for low shedding, soft texture, rich color, and standout markings. Some traits are common, while others take generations of planning and careful pairing.</p>
       </section>
+      <DoodleGenerationsPreview />
       <section className="content-section">
         <div className="section-heading">
           <p className="eyebrow">Color & Markings</p>
@@ -7521,6 +7704,7 @@ export default function App() {
       "/puppies/bernedoodle-puppies": <BreedPageTemplate breed={breedProfiles.find((breed) => breed.slug === "bernedoodle-puppies")} />,
       "/puppies/what-comes-with-your-puppy": <WhatsIncludedPage />,
       "/puppies/coat-traits": <CoatTraitsPage />,
+      "/puppies/doodle-generations": <DoodleGenerationsPage />,
       "/parents": <ParentsDirectoryPage />,
       "/parents/mamas": <ParentsDirectoryPage role="mama" />,
       "/parents/studs": <ParentsDirectoryPage role="stud" />,
@@ -7562,6 +7746,7 @@ export default function App() {
       "/upcoming-litters": <UpcomingLittersPage />,
       "/previous-litters": <PreviousLittersPage />,
       "/coat-traits": <CoatTraitsPage />,
+      "/doodle-generations": <DoodleGenerationsPage />,
       "/dams": <ParentsPage type="dams" />,
       "/evie-nicks": <ParentsPage type="dams" />,
       "/studs": <ParentsPage type="studs" />,

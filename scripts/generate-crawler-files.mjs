@@ -54,6 +54,7 @@ const staticRoutes = [
   "/puppies/previous-litters",
   "/puppies/what-comes-with-your-puppy",
   "/puppies/coat-traits",
+  "/puppies/doodle-generations",
   "/parents",
   "/parents/mamas",
   "/parents/studs",
@@ -136,6 +137,7 @@ Apply: ${siteOrigin}/apply
 - FAQ: ${siteOrigin}/process/faq
 - What Comes With Your Puppy: ${siteOrigin}/puppies/what-comes-with-your-puppy
 - Coat Traits: ${siteOrigin}/puppies/coat-traits
+- Doodle Generations Explained: ${siteOrigin}/puppies/doodle-generations
 - Parent Dogs: ${siteOrigin}/parents
 - Guardian Program: ${siteOrigin}/guardian-program
 - Stud Services: ${siteOrigin}/stud-services

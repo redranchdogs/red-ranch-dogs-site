@@ -72,6 +72,7 @@ const staticMeta = new Map([
   ["/puppies/previous-litters", ["Previous Litters | Red Ranch Dogs", "Browse previous Red Ranch Dogs litters by breed and pairing."]],
   ["/puppies/what-comes-with-your-puppy", ["What Comes With Your Puppy | Red Ranch Dogs", "Review what comes home with each Red Ranch Dogs puppy, including records, starter guidance, and go-home basics."]],
   ["/puppies/coat-traits", ["Coat Traits | Red Ranch Dogs", "Learn common doodle coat colors, patterns, markings, and traits used by Red Ranch Dogs families."]],
+  ["/puppies/doodle-generations", ["Doodle Generations Explained | Red Ranch Dogs", "Understand F1, F1B, F1BB, and multigen doodles, and why pairing choices matter at Red Ranch Dogs."]],
   ["/parents", ["Parent Dogs | Red Ranch Dogs", "Meet the Red Ranch Dogs mamas and studs behind current and future Goldendoodle, Cavapoo, and Bernedoodle litters."]],
   ["/parents/mamas", ["Mamas | Red Ranch Dogs", "Meet the Red Ranch Dogs mamas in the Goldendoodle, Cavapoo, and Bernedoodle programs."]],
   ["/parents/studs", ["Studs | Red Ranch Dogs", "Meet the Red Ranch Dogs studs and outside studs used in current and future pairings."]],
