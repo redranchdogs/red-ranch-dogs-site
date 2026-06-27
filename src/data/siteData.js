@@ -70,6 +70,7 @@ export const navGroups = [
       { label: "Public Waitlist", href: "/process/waitlist" },
       { label: "What Comes With Your Puppy", href: "/puppies/what-comes-with-your-puppy" },
       { label: "Coat Traits", href: "/puppies/coat-traits" },
+      { label: "Doodle Generations", href: "/puppies/doodle-generations" },
       { label: "FAQ", href: "/process/faq" },
       { label: "Puppy Pickup and Delivery", href: "/process/pickup-and-delivery" }
     ]
