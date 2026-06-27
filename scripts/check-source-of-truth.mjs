@@ -78,6 +78,32 @@ const puppies = readJson("src/data/puppies.json");
 const litters = readJson("src/data/litters.json");
 const vercel = readJson("vercel.json");
 
+const deployGuardrailFiles = [
+  "AGENTS.md",
+  "docs/NEXT_SESSION_HANDOFF.md",
+  "scripts/generate-session-handoff.mjs",
+  "package.json"
+];
+
+deployGuardrailFiles.forEach((filePath) => {
+  const contents = read(filePath);
+  const hasMergeRule =
+    /merg(?:e|ing)\s+`codex\/launch-candidate`\s+into\s+`main`/i.test(contents) ||
+    /merg(?:e|ing)\s+\\`codex\/launch-candidate\\`\s+into\s+\\`main\\`/i.test(contents);
+  const namesOldProdCommand = /Production deploy command:/i.test(contents);
+  const includesDirectProdCommand = /npx\s+vercel\s+deploy\s+--prod/i.test(contents);
+  const packageScriptUsesProdDeploy =
+    filePath === "package.json" && /vercel\s+deploy\s+--prod/i.test(contents);
+
+  if (namesOldProdCommand || includesDirectProdCommand || packageScriptUsesProdDeploy) {
+    blockers.push(`${filePath} contains a direct Vercel production deploy command. Use the merge-to-main deploy rule instead.`);
+  }
+
+  if (filePath !== "package.json" && !hasMergeRule) {
+    blockers.push(`${filePath} is missing the codex/launch-candidate to main production deploy rule.`);
+  }
+});
+
 if (/availablePuppies\s*,/.test(app) || /availablePuppies\s*}/.test(app)) {
   blockers.push("src/App.jsx is importing legacy availablePuppies from siteData.js.");
 }
