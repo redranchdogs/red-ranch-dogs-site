@@ -162,6 +162,10 @@ leadCaptureFields.forEach((field) => {
     `src/App.jsx collects ${field}, but the frontend marker was not found.`
   );
   addBlocker(
+    field !== "preferredContactMethod" || appSource.includes('name="preferredContactMethod" defaultValue="" aria-label="Preferred reply"'),
+    "src/App.jsx should keep preferredContactMethod targetable as Preferred reply for accessible form QA."
+  );
+  addBlocker(
     apiSubmissionKeys.includes(field),
     `api/forms.js submissionHeaderKeys is missing ${field}.`
   );

@@ -7116,7 +7116,7 @@ function ContactFields() {
           </label>
           <label>
             Preferred reply
-            <select name="preferredContactMethod" defaultValue="">
+            <select name="preferredContactMethod" defaultValue="" aria-label="Preferred reply">
               <option value="">Optional</option>
               <option>Text</option>
               <option>Call</option>
