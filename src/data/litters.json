@@ -49,7 +49,7 @@
     "name": "Whitley + Waylon",
     "visibility": "public",
     "status": "Current Litter",
-    "featuredAvailable": false,
+    "featuredAvailable": true,
     "litterNumber": "Whitley 1",
     "mamaSlug": "whitley",
     "mama": "Whitley",

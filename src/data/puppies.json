@@ -1942,6 +1942,11 @@
     "coat": "Straight to wavy, lower-shedding Goldendoodle coat",
     "description": "Bobber is a female Multigen Mini Goldendoodle puppy from Whitley and Waylon's litter.",
     "availabilityNote": "Bobber has found her home and is reserved.",
+    "guardianOpportunity": {
+      "status": "closed",
+      "placementStatus": "Guardian family selected",
+      "closedReason": "Reserved"
+    },
     "personalityNote": "Week 6 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/whitley-waylon-2026/bobber-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg",
     "photos": [
@@ -2331,6 +2336,15 @@
     ],
     "description": "Navy is a female Multigen Petite Goldendoodle puppy from Faye + Sundance.",
     "availabilityNote": "Navy is reserved for the Red Ranch Dogs program as a future mama. Her guardian family placement is pending.",
+    "guardianOpportunity": {
+      "status": "open",
+      "sortOrder": 10,
+      "badge": "Future Mama",
+      "programRole": "Future mama",
+      "placementStatus": "Guardian family placement pending",
+      "summary": "Navy is reserved for the Red Ranch Dogs program as a future mama from the Faye + Sundance litter, and we are looking for the right local guardian family fit.",
+      "bestFit": "Best fit: a loving local home near Salado with a fenced yard, clear communication, and comfort staying connected as Navy grows into her future mama role."
+    },
     "personalityNote": "Week 3 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/navy-multigen-petite-goldendoodle-puppy-faye-sundance-week-4-red-ranch-dogs.jpg",
     "youtube_short_url": "https://youtube.com/shorts/lG3Y0c_jhvs",
