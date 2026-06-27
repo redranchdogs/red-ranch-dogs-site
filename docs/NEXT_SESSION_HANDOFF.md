@@ -1,6 +1,6 @@
 # Next Session Handoff
 
-Last updated: 5/21/2026, 1:02:04 PM Central.
+Last updated: 6/27/2026, 6:05:34 PM Central.
 
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
 
@@ -16,7 +16,7 @@ Website:
 - GitHub repo: https://github.com/redranchdogs/red-ranch-dogs-site
 - Working branch: `codex/launch-candidate`
 - Local dev command: `npm run dev -- --port 5181`
-- Production deploy command: `npx vercel deploy --prod --yes`
+- Production deploy rule: merge `codex/launch-candidate` into `main` and push only after Adam explicitly approves deploy. Never use `vercel deploy --prod`.
 - Latest operations status: **PASS**
 - Apps Script bridge version: 3.2.0
 - Expected bridge version for compact lead sheets and notification emails: 3.2.0
@@ -40,22 +40,24 @@ If the user has made iPhone/cloud Codex changes, `git pull` is mandatory before 
 Adam can paste this into a new Codex thread:
 
 > Continue the Red Ranch Dogs website work. Repo path: `/Users/adamdietlein/Documents/New project/red-ranch-dogs-site`. Branch: `codex/launch-candidate`. First read `docs/NEXT_SESSION_HANDOFF.md`, then run `git status --short`, `git branch --show-current`, `git pull`, and `npm run ops:status`. Use GitHub as source of truth, Vercel as the live website, and keep changes template-based rather than one-off. Do not switch DNS or retire Squarespace unless Adam explicitly asks.
+> Production deploys happen only by merging `codex/launch-candidate` into `main` and pushing after explicit approval. Never deploy with `vercel deploy --prod`.
 
 ## Current Website Snapshot
 
-- True available puppies: 0
-- Public puppy status snapshot: 7 Reserved, 18 Waitlist Matching
-- Current litters: 4
-- Upcoming/planned litters: 5
-- Previous litter archive records: 12
+- True available puppies: 12 (Goalie, Ridge, Minnow, Tackle, Skipper, Marine, Major, Trooper, Pilot, Victory, Valor, Jubilee)
+- Public puppy status snapshot: 12 Available, 24 Reserved
+- Current litters: 5
+- Upcoming/planned litters: 3
+- Previous litter archive records: 13
 - Public parent profiles: 29 (17 Mama, 12 Stud)
 
 ## Current Litters
 
-- Birdie + Waylon: May 23-25, 2026; 7 Reserved
-- Whitley + Waylon: June 24-26, 2026; 6 Waitlist Matching
-- Penny + Wyatt: June 14-16, 2026; 6 Waitlist Matching
-- Ginny + Butch Cassidy: June 14-16, 2026; 6 Waitlist Matching
+- Whitley + Waylon: June 24-26, 2026; 3 Available, 3 Reserved
+- Faye + Sundance: July 14-16, 2026; 5 Available, 1 Reserved
+- Georgia + Waylon: July 14-16, 2026; 2 Available, 3 Reserved
+- Penny + Wyatt: June 14-16, 2026; 1 Available, 5 Reserved
+- Ginny + Butch Cassidy: June 14-16, 2026; 1 Available, 5 Reserved
 
 ## Automation Commands
 
@@ -118,9 +120,9 @@ Use `npm run ops:full` for the heavier pass: it rebuilds the lead queue, refresh
 
 ## Human Review Priorities
 
-- Birdie + Waylon: go-home window begins May 23, 2026. Confirm pickup/payment/status copy is current.
-- Faye + Sundance: expected timing "Expected delivery May 2026" may be stale. Confirm whether it is now current, born, hidden, or still planned.
-- Georgia + Waylon: expected timing "Expected delivery May 2026" may be stale. Confirm whether it is now current, born, hidden, or still planned.
+- Whitley + Waylon: go-home window begins June 24, 2026. Confirm pickup/payment/status copy is current.
+- Penny + Wyatt: go-home window begins June 14, 2026, which is already past. Confirm this should still be a Current Litter.
+- Ginny + Butch Cassidy: go-home window begins June 14, 2026, which is already past. Confirm this should still be a Current Litter.
 
 ## Previous Litter Archive Backfill
 

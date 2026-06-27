@@ -108,7 +108,7 @@ Website:
 - GitHub repo: https://github.com/redranchdogs/red-ranch-dogs-site
 - Working branch: \`codex/launch-candidate\`
 - Local dev command: \`npm run dev -- --port 5181\`
-- Production deploy command: \`npx vercel deploy --prod --yes\`
+- Production deploy rule: merge \`codex/launch-candidate\` into \`main\` and push only after Adam explicitly approves deploy. Never use \`vercel deploy --prod\`.
 - Latest operations status: **${extractOverallStatus(operationsStatus)}**
 - Apps Script bridge version: ${extractBridgeVersion(operationsStatus)}
 - Expected bridge version for compact lead sheets and notification emails: 3.2.0
@@ -132,6 +132,7 @@ If the user has made iPhone/cloud Codex changes, \`git pull\` is mandatory befor
 Adam can paste this into a new Codex thread:
 
 > Continue the Red Ranch Dogs website work. Repo path: \`/Users/adamdietlein/Documents/New project/red-ranch-dogs-site\`. Branch: \`codex/launch-candidate\`. First read \`docs/NEXT_SESSION_HANDOFF.md\`, then run \`git status --short\`, \`git branch --show-current\`, \`git pull\`, and \`npm run ops:status\`. Use GitHub as source of truth, Vercel as the live website, and keep changes template-based rather than one-off. Do not switch DNS or retire Squarespace unless Adam explicitly asks.
+> Production deploys happen only by merging \`codex/launch-candidate\` into \`main\` and pushing after explicit approval. Never deploy with \`vercel deploy --prod\`.
 
 ## Current Website Snapshot
 
