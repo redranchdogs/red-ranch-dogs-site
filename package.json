@@ -43,6 +43,8 @@
     "review:crm-integration": "node scripts/generate-crm-website-integration-checklist.mjs",
     "review:mobile-templates": "node scripts/audit-mobile-template-stack.mjs",
     "review:current-media": "node scripts/audit-current-litter-media.mjs",
+    "review:freshness": "node scripts/audit-content-freshness.mjs",
+    "review:freshness:write": "node scripts/audit-content-freshness.mjs --write",
     "review:image-budget": "node scripts/audit-image-budget.mjs",
     "images:compress": "node scripts/compress-public-images.mjs",
     "review:ai-search": "node scripts/generate-ai-search-review.mjs",
