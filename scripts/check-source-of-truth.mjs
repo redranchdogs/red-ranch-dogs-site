@@ -157,6 +157,7 @@ publicTextFiles().forEach((filePath) => {
 });
 
 const publicPuppies = puppies.filter(isPublicRecord);
+const publicGuardianOpportunities = publicPuppies.filter((puppy) => puppy.guardianOpportunity);
 const availableByLitter = publicPuppies.reduce((counts, puppy) => {
   if (normalize(puppy.status) !== "available") return counts;
 
@@ -200,6 +201,30 @@ litters.filter(isPublicRecord).forEach((litter) => {
   if (statusText.includes("planned") && textSuggestsDeliveredLitter(`${timingText} ${availabilityText}`)) {
     blockers.push(
       `${litter.litterName || litterSlug} is public as a planned litter, but its timing/copy suggests it has delivered. Make it current with puppy photos/details, or set visibility to hidden until ready.`
+    );
+  }
+});
+
+if (!/\.filter\(isOpenGuardianOpportunity\)/.test(app)) {
+  blockers.push("Guardian opportunities page should filter public puppy records through isOpenGuardianOpportunity.");
+}
+
+publicGuardianOpportunities.forEach((puppy) => {
+  const opportunity = puppy.guardianOpportunity || {};
+  const opportunityStatus = normalize(opportunity.status);
+  const placementStatus = normalize(opportunity.placementStatus);
+  const summary = `${opportunity.summary || ""} ${opportunity.bestFit || ""}`;
+  const selectedPlacement = /\b(selected|placed|reserved|closed)\b/.test(placementStatus);
+
+  if (opportunityStatus === "open" && selectedPlacement) {
+    blockers.push(
+      `${puppy.name} is marked as an open guardian opportunity, but placementStatus is "${opportunity.placementStatus}". Close the opportunity or update the placement status before publishing.`
+    );
+  }
+
+  if (opportunityStatus !== "open" && textIncludesAvailabilityClaim(summary)) {
+    blockers.push(
+      `${puppy.name} has a closed guardian opportunity, but the public guardian copy still reads like an active opening.`
     );
   }
 });

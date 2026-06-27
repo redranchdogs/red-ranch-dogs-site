@@ -475,7 +475,6 @@ const clientRedirects = Object.fromEntries([
   ["/faq", "/process/faq"],
   ["/what-come-with-your-puppy", "/puppies/what-comes-with-your-puppy"],
   ["/coat-traits", "/puppies/coat-traits"],
-  ["/doodle-generations", "/puppies/doodle-generations"],
   ["/dams", "/parents/mamas"],
   ["/studs", "/parents/studs"],
   ["/goldendoodle-dams", "/parents/goldendoodle-parents"],
@@ -3142,13 +3141,17 @@ function StudCatalogSection() {
         title="Available stud profiles"
         copy="Browse current Red Ranch Dogs studs by breed, size, fee, and profile details. Breeders can inquire about a specific stud or ask which fit makes sense for their program."
       />
+      <CompactTextCardGrid items={studFitGuideCards} className="stud-fit-guide-grid" />
       {studCatalog.map((group) => {
         const groupLabel = group.breed.endsWith("s") ? group.breed.slice(0, -1) : group.breed;
         return (
           <article className="stud-group-panel" key={group.breed}>
             <div className="stud-group-heading">
-              <h2>{groupLabel} Studs</h2>
-              <p>{group.breed === "Poodles" ? "Health-tested poodle studs used across select doodle pairings." : `Health-tested ${groupLabel.toLowerCase()} studs for approved breeding programs.`}</p>
+              <div>
+                <h2>{groupLabel} Studs</h2>
+                <p>{group.breed === "Poodles" ? "Health-tested poodle studs used across select doodle pairings." : `Health-tested ${groupLabel.toLowerCase()} studs for approved breeding programs.`}</p>
+              </div>
+              <span>{group.dogs.length} {group.dogs.length === 1 ? "stud" : "studs"}</span>
             </div>
             <div className="stud-card-grid">
               {group.dogs.map(([name, type, weight, genetics, href]) => {
@@ -3472,6 +3475,12 @@ const reproductiveServiceCards = [
   ["Breeder communication", "Once timing is close, we keep records, payment, collection, and delivery details clear.", MessageCircle]
 ];
 
+const studFitGuideCards = [
+  ["Coat goals", "Start with the coat traits you are trying to protect or improve, especially furnishing and shedding expectations.", Sparkles],
+  ["Size planning", "Compare the female, the stud, and past pairing history so the expected adult range stays honest for future families.", PawPrint],
+  ["Timing and records", "Negative brucellosis, cycle timing, payment, and AI or shipping plans are confirmed before service.", ShieldCheck]
+];
+
 const guardianOpportunityStats = [
   { value: "Local", label: "guardian homes near Salado" },
   { value: "Females", label: "most common placements" },
@@ -3683,6 +3692,18 @@ function breedProgramSizeGuideImageFor(breed) {
   };
 }
 
+function breedPriorityGuideFor(breed) {
+  const isGoldendoodle = breed.slug === "goldendoodle-puppies";
+
+  return [
+    ["Size range", `Use the size guide as a starting point, then ask about the specific parents behind each ${breed.shortName || breed.name} pairing.`],
+    ["Coat and shedding", isGoldendoodle
+      ? "Most Red Ranch Goldendoodles are multigen so we can keep selecting for the coat and health traits families ask about most."
+      : `Coat expectations still vary by pairing, so we talk through furnishings, texture, grooming, and realistic shedding notes for each ${breed.shortName || breed.name}.`],
+    ["Timing fit", "Current puppies, upcoming litters, and waitlist spots each serve a different family timeline. We help you choose the path that makes the most sense."]
+  ];
+}
+
 function BreedPageTemplate({ breed }) {
   const puppies = puppyData.filter((puppy) => puppy.breedSlug === breed.slug);
   const availableBreedPuppies = puppies.filter(isAvailablePuppy);
@@ -3812,6 +3833,14 @@ function BreedPageTemplate({ breed }) {
             </>
           )}
         </article>
+      </section>
+      <section className="content-section breed-priority-section">
+        <SectionHeader
+          eyebrow="Choosing Well"
+          title={`How to compare ${breed.name} puppies`}
+          copy="Families usually make the best decision when size, coat, and timing are considered together instead of as separate questions."
+        />
+        <CompactTextCardGrid items={breedPriorityGuideFor(breed)} className="breed-priority-grid" />
       </section>
       <section className="content-section breed-decision-section">
         <article className="group-panel breed-decision-card">
@@ -4516,6 +4545,22 @@ function GuardianOpportunitiesPage() {
           })}
         </section>
       )}
+      {currentGuardianOpportunities.length === 0 && (
+        <SmartEmptyState
+          eyebrow="Guardian Update"
+          title="No current guardian openings are posted."
+          copy="Guardian opportunities are only shown when a specific future mama or stud is actively looking for the right local family fit."
+          steps={[
+            "Read the guardian program expectations.",
+            "Apply early if you are local and interested.",
+            "We will follow up when timing, dog, distance, and family fit line up."
+          ]}
+          primaryHref="/guardian-program/application"
+          primaryLabel="Guardian Application"
+          secondaryHref="/guardian-program/faq"
+          secondaryLabel="Guardian FAQ"
+        />
+      )}
       <CompactTextCardGrid items={guardianOpportunityCards} />
       <CTASection
         title="Interested in future guardian opportunities?"
@@ -4617,6 +4662,12 @@ function AboutOverviewPage() {
   );
 }
 
+const availablePuppyNextSteps = [
+  ["Open the breed group", "Start with the breed and size range that feels closest, then compare the individual puppy cards."],
+  ["Ask about fit", "Use the application to tell us which puppy caught your eye, your home setup, and your timeline."],
+  ["Reserve after fit is clear", "A deposit reserves an available puppy after we confirm the puppy, timing, and family fit make sense."]
+];
+
 function AvailablePuppiesPage() {
   const availableNow = featuredAvailablePuppies();
   const breedOrderBySlug = new Map(breedProfiles.map((breed, index) => [breed.slug, index]));
@@ -4665,24 +4716,36 @@ function AvailablePuppiesPage() {
     >
       <ListingStatusStrip items={availabilityStats} className="available-puppy-tracker" />
       {availableNow.length === 0 && (
-        <section className="content-section narrow available-puppy-empty-note">
-          <article className="group-panel">
-            <h2>No public puppies are available right now.</h2>
-            <p>Please check back soon as we regularly update this page!</p>
-          </article>
-        </section>
+        <SmartEmptyState
+          eyebrow="Availability Update"
+          title="No public puppies are available right now."
+          copy="Current and upcoming litter pages are still the best place to watch timing, photos, and waitlist opportunities."
+          steps={[
+            "View current litters for puppies already growing.",
+            "Check upcoming litters for planned pairings.",
+            "Apply for the breed waitlist that best fits your family."
+          ]}
+          primaryLabel="Apply for a Puppy"
+          secondaryHref="/puppies/current-litters"
+          secondaryLabel="Current Litters"
+        />
       )}
       {visibleAvailableBreedGroups.length > 0 && (
-        <section className="upcoming-litter-groups listing-content-section available-puppy-groups">
-          {visibleAvailableBreedGroups.map((group) => (
-            <AvailablePuppyBreedAccordionGroup
-              group={group}
-              isOpen={openBreedSlugs.includes(group.slug)}
-              key={group.slug}
-              onToggle={() => handleAvailableBreedToggle(group.slug)}
-            />
-          ))}
-        </section>
+        <>
+          <section className="content-section available-puppy-next-steps">
+            <ProcessStepCards steps={availablePuppyNextSteps} />
+          </section>
+          <section className="upcoming-litter-groups listing-content-section available-puppy-groups">
+            {visibleAvailableBreedGroups.map((group) => (
+              <AvailablePuppyBreedAccordionGroup
+                group={group}
+                isOpen={openBreedSlugs.includes(group.slug)}
+                key={group.slug}
+                onToggle={() => handleAvailableBreedToggle(group.slug)}
+              />
+            ))}
+          </section>
+        </>
       )}
       <CTASection
         title={availableNow.length ? "Ready to ask about a puppy?" : "Want help choosing the right path?"}
@@ -4964,8 +5027,9 @@ function AvailablePuppyBreedAccordionGroup({ group, isOpen, onToggle }) {
         type="button"
       >
         <span className="upcoming-breed-toggle-copy">
+          <span className="eyebrow">{group.puppies.length} {group.puppies.length === 1 ? "puppy" : "puppies"} open</span>
           <strong id={headingId}>{group.pluralName}</strong>
-          <span>Available to reserve right now</span>
+          <span>Available to reserve right now with profiles, photos, and next-step details</span>
         </span>
         <ChevronDown aria-hidden="true" className="upcoming-breed-toggle-icon" size={24} />
       </button>
@@ -5807,6 +5871,12 @@ const applicationStatusItems = [
   { value: "Then", label: "deposit only if the path makes sense" }
 ];
 
+const applicationReassuranceCards = [
+  ["No obligation", "The puppy application starts a conversation. It does not lock you into a puppy, litter, or deposit.", CheckCircle2],
+  ["Guided choice", "If you are between breeds, sizes, or timelines, we help narrow the best path with you.", MessageCircle],
+  ["Clear next step", "We follow up with availability, waitlist timing, or a reserve path only when the fit is clear.", ShieldCheck]
+];
+
 function applicationPuppyFromUrl() {
   if (typeof window === "undefined") return null;
 
@@ -5847,6 +5917,7 @@ function ApplicationIntroPanel() {
           <Link href="/process/pricing">Pricing</Link>
         </div>
       </div>
+      <CompactTextCardGrid items={applicationReassuranceCards} className="application-reassurance-grid" />
     </section>
   );
 }
