@@ -146,19 +146,107 @@ async function pageHealth(page) {
     const documentElement = document.documentElement;
     const body = document.body;
     const viewportWidth = window.innerWidth;
+    const visibleElement = (node) => {
+      if (!node || node.closest("[hidden], [aria-hidden='true']")) return false;
+
+      const rect = node.getBoundingClientRect();
+      const style = window.getComputedStyle(node);
+      return rect.width > 1 && rect.height > 1 && style.visibility !== "hidden" && style.display !== "none";
+    };
+    const textForIdRefs = (idRefs = "") => {
+      return idRefs
+        .split(/\s+/)
+        .map((id) => document.getElementById(id)?.textContent || "")
+        .join(" ")
+        .trim();
+    };
+    const accessibleName = (node) => {
+      if (!node) return "";
+
+      const labelledBy = node.getAttribute("aria-labelledby");
+      const ariaName = node.getAttribute("aria-label") || "";
+      const labelText = Array.from(node.labels || [])
+        .map((label) => label.textContent || "")
+        .join(" ");
+      const closestLabelText = node.closest("label")?.textContent || "";
+      const textName = node.textContent || "";
+      const imageAltText = Array.from(node.querySelectorAll?.("img") || [])
+        .map((image) => image.getAttribute("alt") || "")
+        .join(" ");
+
+      return [
+        ariaName,
+        textForIdRefs(labelledBy || ""),
+        labelText,
+        closestLabelText,
+        node.getAttribute("title") || "",
+        node.getAttribute("placeholder") || "",
+        node.getAttribute("value") || "",
+        textName,
+        imageAltText
+      ]
+        .join(" ")
+        .replace(/\s+/g, " ")
+        .trim();
+    };
+    const describeElement = (node) => {
+      const tag = node.tagName.toLowerCase();
+      const name = node.getAttribute("name");
+      const type = node.getAttribute("type");
+      const href = node.getAttribute("href");
+      const label = accessibleName(node).slice(0, 48);
+
+      return [tag, name ? `[name="${name}"]` : "", type ? `[type="${type}"]` : "", href ? `[href="${href}"]` : "", label ? `"${label}"` : ""]
+        .filter(Boolean)
+        .join("");
+    };
     const horizontalOverflow = Math.max(documentElement.scrollWidth, body.scrollWidth) - viewportWidth;
     const visibleBrokenImages = Array.from(document.images)
       .filter((image) => {
-        const rect = image.getBoundingClientRect();
-        return rect.width > 20 && rect.height > 20 && image.complete && image.naturalWidth === 0;
+        return visibleElement(image) && image.getBoundingClientRect().width > 20 && image.getBoundingClientRect().height > 20 && image.complete && image.naturalWidth === 0;
       })
       .map((image) => image.currentSrc || image.src || image.alt || "unknown image")
       .slice(0, 8);
+    const missingImageAlt = Array.from(document.images)
+      .filter((image) => visibleElement(image) && !image.hasAttribute("alt"))
+      .map((image) => image.currentSrc || image.src || "visible image without alt")
+      .slice(0, 8);
+    const unnamedControls = Array.from(document.querySelectorAll("input, select, textarea"))
+      .filter((control) => {
+        const type = String(control.getAttribute("type") || "").trim().toLowerCase();
+        return !["hidden", "submit", "button", "reset"].includes(type) && visibleElement(control) && !accessibleName(control);
+      })
+      .map(describeElement)
+      .slice(0, 8);
+    const unnamedButtons = Array.from(document.querySelectorAll("button, input[type='button'], input[type='submit'], input[type='reset']"))
+      .filter((button) => visibleElement(button) && !accessibleName(button))
+      .map(describeElement)
+      .slice(0, 8);
+    const unnamedLinks = Array.from(document.querySelectorAll("a[href]"))
+      .filter((link) => visibleElement(link) && !accessibleName(link))
+      .map(describeElement)
+      .slice(0, 8);
+    const duplicateIds = Object.entries(
+      Array.from(document.querySelectorAll("[id]")).reduce((counts, node) => {
+        counts[node.id] = (counts[node.id] || 0) + 1;
+        return counts;
+      }, {})
+    )
+      .filter(([, count]) => count > 1)
+      .map(([id, count]) => `${id} (${count})`)
+      .slice(0, 8);
+    const h1Count = Array.from(document.querySelectorAll("h1")).filter(visibleElement).length;
     const bodyHeight = Math.max(body.scrollHeight, documentElement.scrollHeight);
 
     return {
       bodyHeight,
+      duplicateIds,
       horizontalOverflow,
+      h1Count,
+      missingImageAlt,
+      unnamedButtons,
+      unnamedControls,
+      unnamedLinks,
       visibleBrokenImages
     };
   });
@@ -195,8 +283,14 @@ async function auditRoute(context, config, viewportName) {
 
     const health = await pageHealth(page);
     if (health.bodyHeight < 500) failures.push(`Body height looks too small: ${health.bodyHeight}px`);
+    if (health.h1Count !== 1) failures.push(`Expected exactly one visible h1, found ${health.h1Count}`);
     if (health.horizontalOverflow > 6) failures.push(`Horizontal overflow: ${Math.round(health.horizontalOverflow)}px`);
     if (health.visibleBrokenImages.length) failures.push(`Broken visible images: ${health.visibleBrokenImages.join("; ")}`);
+    if (health.missingImageAlt.length) failures.push(`Visible images missing alt attributes: ${health.missingImageAlt.join("; ")}`);
+    if (health.unnamedControls.length) failures.push(`Visible form controls missing accessible names: ${health.unnamedControls.join("; ")}`);
+    if (health.unnamedButtons.length) failures.push(`Visible buttons missing accessible names: ${health.unnamedButtons.join("; ")}`);
+    if (health.unnamedLinks.length) failures.push(`Visible links missing accessible names: ${health.unnamedLinks.join("; ")}`);
+    if (health.duplicateIds.length) failures.push(`Duplicate element IDs: ${health.duplicateIds.join("; ")}`);
     if (pageErrors.length) failures.push(`Page errors: ${pageErrors.slice(0, 3).join("; ")}`);
     if (consoleErrors.length) failures.push(`Console errors: ${consoleErrors.slice(0, 3).join("; ")}`);
 
