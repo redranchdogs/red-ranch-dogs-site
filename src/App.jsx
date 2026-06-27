@@ -6976,7 +6976,7 @@ function ApplicationFields({ reservePuppy = null }) {
           />
           <label>
             Gender preference
-            <select name="genderPreference" defaultValue="">
+            <select name="genderPreference" defaultValue="" aria-label="Gender preference">
               <option value="" disabled>Select one</option>
               <option>Male</option>
               <option>Female</option>
@@ -6990,7 +6990,7 @@ function ApplicationFields({ reservePuppy = null }) {
           />
           <label>
             Timing
-            <select name="timing" defaultValue="">
+            <select name="timing" defaultValue="" aria-label="Timing">
               <option value="" disabled>Select one</option>
               <option>Ready now</option>
               <option>Within 1-3 months</option>
@@ -7019,7 +7019,7 @@ function ApplicationFields({ reservePuppy = null }) {
         <div className="field-grid">
           <label>
             What best describes your home?
-            <select name="homeDescription" defaultValue="">
+            <select name="homeDescription" defaultValue="" aria-label="What best describes your home?">
               <option value="" disabled>Select one</option>
               <option>Family with children</option>
               <option>Adult household</option>
@@ -7044,7 +7044,7 @@ function ApplicationFields({ reservePuppy = null }) {
         <div className="field-grid">
           <label>
             Pickup or delivery needs
-            <select name="pickupOrDelivery" defaultValue="">
+            <select name="pickupOrDelivery" defaultValue="" aria-label="Pickup or delivery needs">
               <option value="" disabled>Select one</option>
               <option>We can pick up in Salado, Texas</option>
               <option>We may need delivery help</option>
@@ -7071,7 +7071,7 @@ function ApplicationFields({ reservePuppy = null }) {
           </label>
           <label>
             How did you hear about Red Ranch Dogs?
-            <select name="hearAbout" defaultValue="">
+            <select name="hearAbout" defaultValue="" aria-label="How did you hear about Red Ranch Dogs?">
               <option value="">Optional</option>
               <option>Google search</option>
               <option>Instagram</option>
@@ -7126,7 +7126,7 @@ function ContactFields() {
           </label>
           <label>
             What can we help with?
-            <select name="inquiryType" defaultValue="">
+            <select name="inquiryType" defaultValue="" aria-label="What can we help with?">
               <option value="" disabled>Select one</option>
               <option>Available puppy</option>
               <option>Upcoming litter</option>
@@ -7138,7 +7138,7 @@ function ContactFields() {
           </label>
           <label>
             Preferred breed
-            <select name="preferredBreed" defaultValue="">
+            <select name="preferredBreed" defaultValue="" aria-label="Preferred breed">
               <option value="">Optional</option>
               <option>Goldendoodle</option>
               <option>Cavapoo</option>
@@ -7202,14 +7202,14 @@ function StudInquiryFields() {
         <div className="field-grid">
           <label>
             Preferred stud
-            <select name="preferredStud" defaultValue="">
+            <select name="preferredStud" defaultValue="" aria-label="Preferred stud">
               <option value="">Not sure yet</option>
               {studInquiryOptions.map((studName) => <option key={studName}>{studName}</option>)}
             </select>
           </label>
           <label>
             Service type
-            <select name="serviceType" defaultValue="">
+            <select name="serviceType" defaultValue="" aria-label="Service type">
               <option value="" disabled>Select one</option>
               <option>Artificial insemination at Red Ranch Dogs</option>
               <option>Shipped semen</option>
@@ -7218,7 +7218,7 @@ function StudInquiryFields() {
           </label>
           <label>
             Cycle timing
-            <select name="cycleTiming" defaultValue="">
+            <select name="cycleTiming" defaultValue="" aria-label="Cycle timing">
               <option value="" disabled>Select one</option>
               <option>Planning ahead</option>
               <option>Currently in heat</option>
@@ -7251,7 +7251,7 @@ function StudInquiryFields() {
           </label>
           <label className="full">
             Brucellosis status
-            <select name="brucellosisStatus" required defaultValue="">
+            <select name="brucellosisStatus" required defaultValue="" aria-label="Brucellosis status">
               <option value="" disabled>Select one</option>
               <option>Negative test completed</option>
               <option>Test is scheduled</option>
@@ -7311,7 +7311,7 @@ function GuardianFields() {
         <div className="field-grid">
           <label>
             Guardian interest
-            <select name="guardianType" defaultValue="" required>
+            <select name="guardianType" defaultValue="" required aria-label="Guardian interest">
               <option value="" disabled>Select one</option>
               <option>Female guardian</option>
               <option>Stud guardian</option>
@@ -7320,7 +7320,7 @@ function GuardianFields() {
           </label>
           <label>
             Distance from Salado
-            <select name="guardianDistance" defaultValue="" required>
+            <select name="guardianDistance" defaultValue="" required aria-label="Distance from Salado">
               <option value="" disabled>Select one</option>
               <option>In Salado or very close</option>
               <option>Within 30 minutes</option>
@@ -7330,7 +7330,7 @@ function GuardianFields() {
           </label>
           <label>
             Housing
-            <select name="housing" defaultValue="" required>
+            <select name="housing" defaultValue="" required aria-label="Housing">
               <option value="" disabled>Select one</option>
               <option>Own home</option>
               <option>Long-term renter</option>
@@ -7339,7 +7339,7 @@ function GuardianFields() {
           </label>
           <label>
             Secure fenced yard
-            <select name="fencedYard" defaultValue="" required>
+            <select name="fencedYard" defaultValue="" required aria-label="Secure fenced yard">
               <option value="" disabled>Select one</option>
               <option>Yes</option>
               <option>No</option>
@@ -7348,7 +7348,7 @@ function GuardianFields() {
           </label>
           <label>
             Children in the home
-            <select name="childrenInHome" defaultValue="">
+            <select name="childrenInHome" defaultValue="" aria-label="Children in the home">
               <option value="">Optional</option>
               <option>Yes</option>
               <option>No</option>
@@ -7356,7 +7356,7 @@ function GuardianFields() {
           </label>
           <label>
             Other pets
-            <select name="otherPets" defaultValue="">
+            <select name="otherPets" defaultValue="" aria-label="Other pets">
               <option value="">Optional</option>
               <option>No other pets</option>
               <option>Yes - all spayed/neutered</option>
@@ -7366,7 +7366,7 @@ function GuardianFields() {
           </label>
           <label>
             Preferred breed
-            <select name="preferredBreed" defaultValue="">
+            <select name="preferredBreed" defaultValue="" aria-label="Preferred breed">
               <option value="">Optional</option>
               <option>Goldendoodle</option>
               <option>Cavapoo</option>
@@ -7394,7 +7394,7 @@ function GuardianFields() {
           </label>
           <label>
             Best time for a phone call
-            <select name="phoneCallTiming" defaultValue="">
+            <select name="phoneCallTiming" defaultValue="" aria-label="Best time for a phone call">
               <option value="">Optional</option>
               <option>Weekdays</option>
               <option>Evenings</option>
@@ -7556,7 +7556,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
           </label>
           <label>
             Preferred breed
-            <select name="preferredBreed" defaultValue="" required>
+            <select name="preferredBreed" defaultValue="" required aria-label="Preferred breed">
               <option value="" disabled>Select one</option>
               <option>Goldendoodle</option>
               <option>Cavapoo</option>

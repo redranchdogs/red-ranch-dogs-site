@@ -100,6 +100,7 @@ const renderedFormTypes = extractLeadFormTypes();
 const allowedFormTypes = extractAllowedForms();
 const apiSubmissionKeys = extractQuotedArray(apiSource, "submissionHeaderKeys");
 const appsScriptHeaders = extractQuotedArray(appsScriptSource, "SUBMISSION_HEADERS");
+const selectTags = Array.from(appSource.matchAll(/<select\b[^>]*>/g), (match) => match[0]);
 
 addBlocker(
   sameMembers(renderedFormTypes, [...publicFormTypes].sort()),
@@ -138,6 +139,13 @@ const frontendTrackingMarkers = [
 
 frontendTrackingMarkers.forEach((marker) => {
   addBlocker(appSource.includes(marker), `src/App.jsx is missing frontend form marker: ${marker}`);
+});
+
+selectTags.forEach((selectTag) => {
+  addBlocker(
+    /\baria-label=/.test(selectTag),
+    `src/App.jsx has a form select without an explicit accessible label: ${selectTag}`
+  );
 });
 
 attributionFields.forEach((field) => {
