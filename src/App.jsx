@@ -3665,31 +3665,13 @@ const breedProgramTraits = {
   "bernedoodle-puppies": ["Loyal", "Steady", "Affectionate"]
 };
 
-const breedProgramImageOverrides = {
-  "goldendoodle-puppies": {
-    desktopImage: "/images/puppies/ginny-butch-2026/ridge-mini-goldendoodle-puppy-ginny-butch-week-9-red-ranch-dogs.jpg",
-    desktopImagePosition: "50% 48%"
-  },
-  "cavapoo-puppies": {
-    desktopImage: "/images/puppies/penny-wyatt-2026/goalie-f1b-micro-cavapoo-puppy-penny-wyatt-week-9-red-ranch-dogs.jpg",
-    desktopImagePosition: "50% 48%"
-  },
-  "bernedoodle-puppies": {
-    desktopImage: "/images/coat-traits/tricolor-merle-bernedoodle.jpg",
-    desktopImagePosition: "50% 50%"
-  }
-};
-
 function breedProgramImageFor(breed) {
   const homeBreed = homepageBreeds.find((item) => {
     const singularName = item.name.replace(/s$/, "");
     return singularName === breed.name || item.route === breed.route;
   });
 
-  return {
-    ...(homeBreed || {}),
-    ...(breedProgramImageOverrides[breed.slug] || {})
-  };
+  return homeBreed || {};
 }
 
 function breedProgramSizeGuideFor(breed) {
@@ -3759,18 +3741,12 @@ function BreedPageTemplate({ breed }) {
         <article className="breed-program-card">
           <figure className="breed-program-media">
             {breedImage.image ? (
-              <picture>
-                {breedImage.desktopImage && <source media="(min-width: 901px)" srcSet={breedImage.desktopImage} />}
-                <img
-                  src={breedImage.image}
-                  alt={breedImage.imageAlt || `${breed.name} puppy from Red Ranch Dogs`}
-                  loading="eager"
-                  style={{
-                    "--breed-image-position": breedImage.imagePosition || "center",
-                    "--breed-desktop-image-position": breedImage.desktopImagePosition || breedImage.imagePosition || "center"
-                  }}
-                />
-              </picture>
+              <img
+                src={breedImage.image}
+                alt={breedImage.imageAlt || `${breed.name} puppy from Red Ranch Dogs`}
+                loading="eager"
+                style={breedImage.imagePosition ? { objectPosition: breedImage.imagePosition } : undefined}
+              />
             ) : (
               <ImagePlaceholder label={`${breed.name} puppy photo`} />
             )}
