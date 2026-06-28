@@ -110,9 +110,24 @@ const routeExpectations = [
     requiredSelectors: [".stud-fit-guide-grid", ".stud-group-heading", ".stud-card-grid", ".stud-inquiry-shell"]
   },
   {
+    route: "/stud-services/our-studs",
+    requiredText: ["health-tested stud services", "stud inquiry", "preferred stud", "brucellosis status"],
+    requiredSelectors: [".stud-card-grid", ".stud-inquiry-shell", ".lead-form", "select[name='preferredStud']", "select[name='serviceType']"]
+  },
+  {
     route: "/apply",
     requiredText: ["puppy application", "no obligation", "guided choice", "clear next step"],
     requiredSelectors: [".application-intro-panel", ".application-reassurance-grid", ".lead-form"]
+  },
+  {
+    route: "/contact",
+    requiredText: ["contact us", "send us a note", "preferred reply", "what can we help with"],
+    requiredSelectors: [".contact-page-grid", ".lead-form", "select[name='preferredContactMethod']", "select[name='inquiryType']"]
+  },
+  {
+    route: "/guardian-program/application",
+    requiredText: ["guardian application", "guardian interest", "distance from salado", "secure fenced yard"],
+    requiredSelectors: [".guardian-before-apply", ".form-shell", ".lead-form", "select[name='guardianType']", "input[name='guardianAgreement']"]
   },
   {
     route: "/guardian-program/current-guardian-opportunities",
