@@ -59,9 +59,13 @@ const contractChecks = [
     detail: "Stable join key documented",
   },
   {
-    label: "Preferred contact method note preserved",
-    ok: handoffSource.includes("preferredContactMethod") && handoffSource.includes("not part of the raw `Website Leads` column contract"),
-    detail: "Known frontend/backend field gap stays explicit",
+    label: "Preferred contact method stored",
+    ok:
+      appSource.includes('name="preferredContactMethod"') &&
+      apiSource.includes('"preferredContactMethod"') &&
+      apiSource.includes('"Preferred Contact Method"') &&
+      handoffSource.includes("Preferred Contact Method"),
+    detail: "Contact-form reply preference is a first-class Website Leads column",
   },
 ];
 
@@ -91,7 +95,7 @@ const checkRows = contractChecks.map((check) => (
 
 const report = `# CRM Intake Alignment Review
 
-This review keeps the live website form system aligned with the future CRM without changing form fields, Sheets structure, or Apps Script bridge behavior.
+This review keeps the live website form system aligned with the future CRM without touching live Sheets, CRM data, or Apps Script deployments.
 
 ## Summary
 

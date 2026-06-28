@@ -78,6 +78,32 @@ const puppies = readJson("src/data/puppies.json");
 const litters = readJson("src/data/litters.json");
 const vercel = readJson("vercel.json");
 
+const deployGuardrailFiles = [
+  "AGENTS.md",
+  "docs/NEXT_SESSION_HANDOFF.md",
+  "scripts/generate-session-handoff.mjs",
+  "package.json"
+];
+
+deployGuardrailFiles.forEach((filePath) => {
+  const contents = read(filePath);
+  const hasMergeRule =
+    /merg(?:e|ing)\s+`codex\/launch-candidate`\s+into\s+`main`/i.test(contents) ||
+    /merg(?:e|ing)\s+\\`codex\/launch-candidate\\`\s+into\s+\\`main\\`/i.test(contents);
+  const namesOldProdCommand = /Production deploy command:/i.test(contents);
+  const includesDirectProdCommand = /npx\s+vercel\s+deploy\s+--prod/i.test(contents);
+  const packageScriptUsesProdDeploy =
+    filePath === "package.json" && /vercel\s+deploy\s+--prod/i.test(contents);
+
+  if (namesOldProdCommand || includesDirectProdCommand || packageScriptUsesProdDeploy) {
+    blockers.push(`${filePath} contains a direct Vercel production deploy command. Use the merge-to-main deploy rule instead.`);
+  }
+
+  if (filePath !== "package.json" && !hasMergeRule) {
+    blockers.push(`${filePath} is missing the codex/launch-candidate to main production deploy rule.`);
+  }
+});
+
 if (/availablePuppies\s*,/.test(app) || /availablePuppies\s*}/.test(app)) {
   blockers.push("src/App.jsx is importing legacy availablePuppies from siteData.js.");
 }
@@ -157,6 +183,7 @@ publicTextFiles().forEach((filePath) => {
 });
 
 const publicPuppies = puppies.filter(isPublicRecord);
+const publicGuardianOpportunities = publicPuppies.filter((puppy) => puppy.guardianOpportunity);
 const availableByLitter = publicPuppies.reduce((counts, puppy) => {
   if (normalize(puppy.status) !== "available") return counts;
 
@@ -200,6 +227,30 @@ litters.filter(isPublicRecord).forEach((litter) => {
   if (statusText.includes("planned") && textSuggestsDeliveredLitter(`${timingText} ${availabilityText}`)) {
     blockers.push(
       `${litter.litterName || litterSlug} is public as a planned litter, but its timing/copy suggests it has delivered. Make it current with puppy photos/details, or set visibility to hidden until ready.`
+    );
+  }
+});
+
+if (!/\.filter\(isOpenGuardianOpportunity\)/.test(app)) {
+  blockers.push("Guardian opportunities page should filter public puppy records through isOpenGuardianOpportunity.");
+}
+
+publicGuardianOpportunities.forEach((puppy) => {
+  const opportunity = puppy.guardianOpportunity || {};
+  const opportunityStatus = normalize(opportunity.status);
+  const placementStatus = normalize(opportunity.placementStatus);
+  const summary = `${opportunity.summary || ""} ${opportunity.bestFit || ""}`;
+  const selectedPlacement = /\b(selected|placed|reserved|closed)\b/.test(placementStatus);
+
+  if (opportunityStatus === "open" && selectedPlacement) {
+    blockers.push(
+      `${puppy.name} is marked as an open guardian opportunity, but placementStatus is "${opportunity.placementStatus}". Close the opportunity or update the placement status before publishing.`
+    );
+  }
+
+  if (opportunityStatus !== "open" && textIncludesAvailabilityClaim(summary)) {
+    blockers.push(
+      `${puppy.name} has a closed guardian opportunity, but the public guardian copy still reads like an active opening.`
     );
   }
 });

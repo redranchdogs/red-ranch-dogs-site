@@ -59,6 +59,7 @@ const basePayload = {
   currentUrl: "https://red-ranch-dogs-site.vercel.app/codex-form-handler-test",
   email: "test@example.com",
   firstGclid: "first-test-gclid",
+  firstGbraid: "first-test-gbraid",
   firstLandingPage: "https://red-ranch-dogs-site.vercel.app/?utm_source=google&utm_medium=cpc&utm_campaign=tx_doodle_search&gclid=first-test-gclid",
   firstReferrer: "https://www.google.com/",
   firstUtmCampaign: "tx_doodle_search",
@@ -66,9 +67,12 @@ const basePayload = {
   firstUtmMedium: "cpc",
   firstUtmSource: "google",
   firstUtmTerm: "doodle puppies texas",
+  firstWbraid: "first-test-wbraid",
   gclid: "last-test-gclid",
+  gbraid: "last-test-gbraid",
   landingPage: "https://red-ranch-dogs-site.vercel.app/?utm_source=codex&utm_medium=handler&utm_campaign=forms",
   lastGclid: "last-test-gclid",
+  lastGbraid: "last-test-gbraid",
   lastLandingPage: "https://red-ranch-dogs-site.vercel.app/apply?utm_source=google&utm_medium=cpc&utm_campaign=tx_doodle_search&gclid=last-test-gclid",
   lastReferrer: "https://www.redranchdogs.com/puppies/current-litters",
   lastUtmCampaign: "tx_doodle_search",
@@ -76,15 +80,23 @@ const basePayload = {
   lastUtmMedium: "cpc",
   lastUtmSource: "google",
   lastUtmTerm: "cavapoo puppies texas",
+  lastWbraid: "last-test-wbraid",
   message: "Codex local handler smoke test.",
   name: "Codex Form Test",
   page: "/codex-form-handler-test",
   phone: "555-0103",
+  preferredContactMethod: "Text",
   referrer: "Codex local smoke test",
   source: "local-handler-smoke-test",
   submittedAt: new Date().toISOString(),
   submissionId: `codex-handler-${Date.now()}`,
-  userAgent: "Codex local test"
+  utmCampaign: "forms",
+  utmContent: "handler_fixture",
+  utmMedium: "handler",
+  utmSource: "codex",
+  utmTerm: "form attribution test",
+  userAgent: "Codex local test",
+  wbraid: "last-test-wbraid"
 };
 
 const validPayloads = [
@@ -380,7 +392,14 @@ const queueAppendRequest = bridgeRequests.find(
 
 assert(replaceRequest.body.values[0].includes("Lead Type"), "bridge header row should include lead routing columns");
 assert(replaceRequest.body.values[0].includes("Google Click ID"), "bridge header row should include Google click ID");
+assert(replaceRequest.body.values[0].includes("GBRAID"), "bridge header row should include GBRAID");
+assert(replaceRequest.body.values[0].includes("WBRAID"), "bridge header row should include WBRAID");
+assert(
+  replaceRequest.body.values[0].includes("Preferred Contact Method"),
+  "bridge header row should include preferred contact method"
+);
 assert(replaceRequest.body.values[0].includes("First Landing Page"), "bridge header row should include first-touch attribution");
+assert(replaceRequest.body.values[0].includes("First UTM Source"), "bridge header row should include first-touch UTM source");
 assert(replaceRequest.body.values[0].includes("Last UTM Source"), "bridge header row should include last-touch attribution");
 assert(
   replaceRequest.body.values[0].indexOf("Google Click ID") >
@@ -389,18 +408,28 @@ assert(
 );
 assert(appendRequest.body.spreadsheetId === "test-form-sheet", "bridge append should use configured sheet ID");
 assert(appendRequest.body.sheetName === "Website Leads", "bridge append should use configured sheet name");
-assert(appendRequest.body.values[0][4] === "Puppy Alert Signup", "bridge row should include lead type");
+const websiteLeadHeaders = replaceRequest.body.values[0];
+const websiteLeadRow = appendRequest.body.values[0];
+function websiteLeadValue(header) {
+  const index = websiteLeadHeaders.indexOf(header);
+  assert(index !== -1, `Website Leads header should include ${header}`);
+  return websiteLeadRow[index];
+}
+assert(websiteLeadValue("Lead Type") === "Puppy Alert Signup", "bridge row should include lead type");
 assert(
-  appendRequest.body.values[0][9].includes("Codex Form Test"),
+  websiteLeadValue("Lead Summary").includes("Codex Form Test"),
   "bridge row should include the compact lead summary"
 );
-assert(appendRequest.body.values[0][19] === "Codex Form Test", "bridge row should preserve contact columns before appended attribution fields");
+assert(websiteLeadValue("Name") === "Codex Form Test", "bridge row should preserve the contact name");
+assert(websiteLeadValue("Preferred Contact Method") === "Text", "bridge row should include preferred contact method");
 assert(
-  appendRequest.body.values[0].includes("Goldendoodle, Cavapoo"),
+  websiteLeadRow.includes("Goldendoodle, Cavapoo"),
   "bridge newsletter row should preserve checked breed interests"
 );
-assert(appendRequest.body.values[0][57] === "last-test-gclid", "bridge row should include Google click ID");
-assert(appendRequest.body.values[0][60].includes("utm_source=google"), "bridge row should include first landing page");
+assert(websiteLeadValue("Google Click ID") === "last-test-gclid", "bridge row should include Google click ID");
+assert(websiteLeadValue("GBRAID") === "last-test-gbraid", "bridge row should include GBRAID");
+assert(websiteLeadValue("WBRAID") === "last-test-wbraid", "bridge row should include WBRAID");
+assert(websiteLeadValue("First Landing Page").includes("utm_source=google"), "bridge row should include first landing page");
 assert(queueReplaceRequest.body.values[0].includes("Next Action"), "lead queue header row should include workflow columns");
 assert(queueAppendRequest.body.spreadsheetId === "test-form-sheet", "lead queue append should use configured sheet ID");
 assert(queueAppendRequest.body.values[0][9] === "Puppy Alert Signup", "lead queue row should include lead type");

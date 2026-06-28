@@ -13,6 +13,8 @@
   --gold: #c89b52;
   --charcoal: #20201c;
   --shadow: 0 18px 50px rgba(55, 35, 20, 0.14);
+  --font-display: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  --font-body: "Libre Franklin", Avenir Next, Helvetica, Arial, sans-serif;
 }
 
 /* Premium restrained shell */
@@ -2699,6 +2701,15 @@ h3 {
   background: var(--warm-paper);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
+}
+
+.application-reassurance-grid.tile-grid {
+  width: 100%;
+  padding: 0;
+}
+
+.application-reassurance-grid .compact-card {
+  min-height: 100%;
 }
 
 .application-intro-copy h2 {
@@ -6525,12 +6536,26 @@ summary {
   background: var(--soft-tan);
 }
 
+.breed-program-media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+}
+
 .breed-program-media img,
 .breed-program-media .image-placeholder {
   width: 100%;
   height: 100%;
   min-height: 460px;
   object-fit: cover;
+  object-position: var(--breed-image-position, center);
+}
+
+@media (min-width: 901px) {
+  .breed-program-media img {
+    object-position: var(--breed-desktop-image-position, var(--breed-image-position, center));
+  }
 }
 
 .breed-program-body {
@@ -6677,6 +6702,17 @@ summary {
 .breed-size-guide-asset img {
   width: 100%;
   height: auto;
+}
+
+.breed-priority-section {
+  padding-top: 8px;
+  padding-bottom: 20px;
+}
+
+.breed-priority-grid.tile-grid {
+  width: min(1040px, 100%);
+  padding-top: 6px;
+  padding-bottom: 0;
 }
 
 .breed-size-visual-stage {
@@ -7368,9 +7404,13 @@ summary {
 }
 
 .stud-group-heading {
-  display: grid;
-  gap: 4px;
-  max-width: 760px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px 18px;
+  max-width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--premium-line);
 }
 
 .stud-group-heading h2 {
@@ -7379,6 +7419,7 @@ summary {
   font-size: clamp(2.4rem, 4vw, 3.75rem);
   font-weight: 400;
   line-height: 0.92;
+  letter-spacing: 0;
 }
 
 .stud-group-heading p {
@@ -7387,6 +7428,27 @@ summary {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.42;
+}
+
+.stud-group-heading > span {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  color: var(--brand-red-dark);
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  border: 1px solid rgba(148, 31, 23, 0.2);
+  border-radius: 999px;
+  background: rgba(148, 31, 23, 0.06);
+}
+
+.stud-fit-guide-grid.tile-grid {
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 2px;
 }
 
 .stud-card-grid {
@@ -7552,6 +7614,11 @@ summary {
     height: auto;
     min-height: 0;
     aspect-ratio: 4 / 3;
+  }
+
+  .breed-program-media picture {
+    height: auto;
+    min-height: 0;
   }
 
   .breed-quick-facts {
@@ -9080,6 +9147,15 @@ summary {
   padding-bottom: 14px;
 }
 
+.available-puppy-next-steps {
+  padding-top: 0;
+  padding-bottom: 16px;
+}
+
+.available-puppy-next-steps .process-step-cards {
+  width: min(1040px, 100%);
+}
+
 .available-puppy-groups.listing-content-section {
   padding-top: 8px;
   padding-bottom: 24px;
@@ -10384,6 +10460,11 @@ summary {
   .stud-catalog-section {
     gap: 26px;
     padding-top: 12px;
+  }
+
+  .stud-group-heading {
+    align-items: start;
+    flex-direction: column;
   }
 
   .stud-card-grid {

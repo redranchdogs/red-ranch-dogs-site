@@ -18,6 +18,7 @@ Normal puppy availability status is separate. A puppy can have `status: "Reserve
 - Use `guardianOpportunity.status: "open"` only when the puppy should appear on the public Guardian Opportunities page.
 - Use `guardianOpportunity.status: "closed"` when a guardian family has been selected, the opportunity is reserved, or the opening should no longer be public.
 - If a puppy is no longer a guardian candidate at all, remove the `guardianOpportunity` object or keep it closed with a short `closedReason`.
+- Puppy `status` and guardian-opportunity `status` are intentionally separate. For example, a future mama can be `Reserved` as a puppy but still have an `open` guardian opportunity until her guardian family is selected.
 
 ## Update Process
 
@@ -32,10 +33,14 @@ Normal puppy availability status is separate. A puppy can have `status: "Reserve
    - `bestFit`
    - optional `sortOrder`
 4. For a reserved or selected guardian opportunity, set `guardianOpportunity.status` to `"closed"` and add `placementStatus` or `closedReason` when useful.
-5. Run `npm run validate:content`, `npm run check:buyer-flow`, `npm run lint`, and `npm run build`.
-6. Browser-check `/guardian-program/current-guardian-opportunities` on desktop and mobile before deploying.
+5. Run `npm run review:freshness` to confirm the public guardian list and availability merchandising match the intended website display.
+6. Run `npm run validate:content`, `npm run check:source`, `npm run check:buyer-flow`, `npm run lint`, and `npm run build`.
+7. Browser-check `/guardian-program/current-guardian-opportunities` on desktop and mobile before deploying.
+
+## Current Guardrail
+
+`npm run check:source` fails if a guardian opportunity is still marked `open` while its `placementStatus` says selected, placed, reserved, or closed. That is the safety net for cases like Bobber: once a guardian family is selected, the website data should close the opportunity before publish review.
 
 ## Ownership Boundary
 
 The website owns the public display. CRM should own guardian-family applications, follow-up, agreements, and communication history. Breeding Ops should own dog-care and breeding logistics after an actual guardian dog handoff exists.
-

@@ -1,6 +1,6 @@
 # CRM Intake Alignment Review
 
-This review keeps the live website form system aligned with the future CRM without changing form fields, Sheets structure, or Apps Script bridge behavior.
+This review keeps the live website form system aligned with the future CRM without touching live Sheets, CRM data, or Apps Script deployments.
 
 ## Summary
 
@@ -30,7 +30,7 @@ This review keeps the live website form system aligned with the future CRM witho
 | Lead Queue documented | PASS | Working CRM intake queue |
 | Submission ID in raw archive headers | PASS | Stable join key |
 | Submission ID in handoff docs | PASS | Stable join key documented |
-| Preferred contact method note preserved | PASS | Known frontend/backend field gap stays explicit |
+| Preferred contact method stored | PASS | Contact-form reply preference is a first-class Website Leads column |
 
 ## CRM Boundary
 

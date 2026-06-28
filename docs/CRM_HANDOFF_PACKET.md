@@ -117,12 +117,12 @@ Fields:
 - `name` - required
 - `email` - required, email validation
 - `phone`
-- `preferredContactMethod`; possible current values: `Text`, `Call`, `Email`, `No preference`
+- `preferredContactMethod` - stored in `Website Leads` as `Preferred Contact Method`; possible current values: `Text`, `Call`, `Email`, `No preference`
 - `inquiryType`; possible current values: `Available puppy`, `Upcoming litter`, `Application or waitlist`, `Guardian program`, `Stud services`, `General question`
 - `preferredBreed`; possible current values: `Goldendoodle`, `Cavapoo`, `Bernedoodle`, `Not sure yet`
 - `message` - required
 
-Note: `preferredContactMethod` is currently collected by the frontend but is not part of the raw `Website Leads` column contract in `api/forms.js`. It should be added deliberately later if the CRM needs it as a first-class field.
+Note: `preferredContactMethod` is now part of the raw `Website Leads` column contract so the reply preference is visible in the website-owned lead archive and can be mapped into the CRM later.
 
 ## Form: Guardian Application
 
@@ -479,7 +479,7 @@ Apps Script property names:
 - Direct Resend email notification is configured through Vercel env vars, and the Apps Script bridge notification path remains available. A controlled live notification recheck on May 20, 2026 returned HTTP 200, wrote to `Website Leads`, wrote to `Lead Queue`, and was found in Gmail by submission ID. If an email appears missing later, check Resend Activity and Gmail Spam/Inbox placement before changing website code.
 - There are UAT/test rows in the lead queue. They are useful evidence from launch testing but should not become real CRM contacts.
 - Many lead queue rows currently have blank manual status. The CRM should import those as `Unworked` or map blank to `New`, not drop them.
-- The frontend `contact` form collects `preferredContactMethod`, but the current backend raw column contract does not store it as a dedicated column. It may appear only if explicitly added later. Do not assume it is available in `Website Leads`.
+- The frontend `contact` form collects `preferredContactMethod`, and the website backend stores it as `Preferred Contact Method` in `Website Leads`. CRM imports can map it directly when the CRM owns the lead backend.
 - The direct Resend email path is optional. The bridge-managed Apps Script notification email is the current first-class notification path.
 - `Website Leads` is intentionally compact/clipped in Google Sheets. Long detail should be read from `Lead Summary`, `Message`, and the raw field columns, not by changing row wrapping.
 
