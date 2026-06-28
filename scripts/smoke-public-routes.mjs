@@ -328,6 +328,109 @@ async function auditRoute(context, config, viewportName) {
   }
 }
 
+async function auditMobileMenu(context) {
+  const page = await context.newPage();
+  const consoleErrors = [];
+  const pageErrors = [];
+
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text());
+  });
+  page.on("pageerror", (error) => pageErrors.push(error.message));
+
+  const failures = [];
+
+  try {
+    const response = await page.goto(`${baseUrl}/puppies/available`, { waitUntil: "networkidle", timeout: 20000 });
+    const status = response?.status() || 0;
+    if (status >= 400 || status === 0) failures.push(`HTTP status ${status || "unknown"}`);
+
+    await page.evaluate(() => window.scrollTo(0, Math.min(1200, document.body.scrollHeight / 3)));
+
+    const menuButton = page.getByRole("button", { name: "Open menu" });
+    const menuButtonCount = await menuButton.count();
+    if (menuButtonCount !== 1) {
+      failures.push(`Expected one Open menu button, found ${menuButtonCount}`);
+    } else {
+      const buttonBox = await menuButton.boundingBox();
+      if (!buttonBox || buttonBox.y < -1 || buttonBox.y > 120) {
+        failures.push("Open menu button is not reachable near the top of the mobile viewport after scrolling.");
+      }
+
+      await menuButton.click();
+
+      const menu = page.locator("#mobile-primary-menu");
+      const menuOpen = page.locator("#mobile-primary-menu.open");
+      const expanded = await page.locator(".premium-menu-button").getAttribute("aria-expanded");
+      const ariaHidden = await menu.getAttribute("aria-hidden");
+      const inert = await menu.getAttribute("inert");
+      const menuVisible = await menuOpen.isVisible();
+
+      if (expanded !== "true") failures.push(`Mobile menu aria-expanded should be true after opening, got ${expanded}`);
+      if (ariaHidden !== "false") failures.push(`Mobile menu aria-hidden should be false after opening, got ${ariaHidden}`);
+      if (inert !== null) failures.push("Mobile menu should not keep inert after opening.");
+      if (!menuVisible) failures.push("Mobile menu did not become visible after tap.");
+
+      const menuText = normalize(await menu.innerText());
+      for (const phrase of ["home", "puppies", "available puppies", "apply", "text us now"]) {
+        if (!includesText(menuText, phrase)) failures.push(`Mobile menu missing text: ${phrase}`);
+      }
+
+      const puppiesTrigger = page.locator(".mobile-menu-trigger", { hasText: "Puppies" });
+      if ((await puppiesTrigger.count()) !== 1) {
+        failures.push("Expected one mobile Puppies submenu trigger.");
+      } else {
+        await puppiesTrigger.click();
+        const puppiesSubmenu = page.locator("#mobile-nav-puppies");
+        const submenuText = normalize(await puppiesSubmenu.innerText());
+        const currentLittersLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Current Litters" }).isVisible();
+        const availableLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Available Puppies" }).isVisible();
+
+        if (!currentLittersLinkVisible) failures.push("Puppies submenu did not expose Current Litters.");
+        if (!availableLinkVisible || !includesText(submenuText, "available puppies")) {
+          failures.push("Puppies submenu did not expose Available Puppies.");
+        }
+      }
+
+      const closeButton = page.getByRole("button", { name: "Close menu" });
+      if ((await closeButton.count()) !== 1) {
+        failures.push("Expected one Close menu button after opening.");
+      } else {
+        await closeButton.click();
+        const collapsed = await page.locator(".premium-menu-button").getAttribute("aria-expanded");
+        const closedAriaHidden = await menu.getAttribute("aria-hidden");
+        const closedInert = await menu.getAttribute("inert");
+
+        if (collapsed !== "false") failures.push(`Mobile menu aria-expanded should be false after closing, got ${collapsed}`);
+        if (closedAriaHidden !== "true") failures.push(`Mobile menu aria-hidden should be true after closing, got ${closedAriaHidden}`);
+        if (closedInert === null) failures.push("Mobile menu should restore inert after closing.");
+      }
+    }
+
+    const health = await pageHealth(page);
+    if (health.horizontalOverflow > 6) failures.push(`Horizontal overflow after menu interaction: ${Math.round(health.horizontalOverflow)}px`);
+    if (pageErrors.length) failures.push(`Page errors: ${pageErrors.slice(0, 3).join("; ")}`);
+    if (consoleErrors.length) failures.push(`Console errors: ${consoleErrors.slice(0, 3).join("; ")}`);
+
+    return {
+      failures,
+      route: "/puppies/available mobile menu",
+      title: await page.title(),
+      viewportName: "mobile"
+    };
+  } catch (error) {
+    failures.push(`Mobile menu check failed: ${error.message}`);
+    return {
+      failures,
+      route: "/puppies/available mobile menu",
+      title: "",
+      viewportName: "mobile"
+    };
+  } finally {
+    await page.close();
+  }
+}
+
 const server = startDevServer();
 let serverOutput = "";
 
@@ -358,6 +461,10 @@ try {
       results.push(await auditRoute(context, route, viewport.name));
     }
 
+    if (viewport.isMobile) {
+      results.push(await auditMobileMenu(context));
+    }
+
     await context.close();
   }
 } finally {
@@ -367,7 +474,7 @@ try {
 
 const failed = results.filter((result) => result.failures.length);
 
-console.log(`Public route smoke checked ${routeExpectations.length} routes across ${viewports.length} viewports.`);
+console.log(`Public route smoke checked ${routeExpectations.length} routes across ${viewports.length} viewports plus mobile menu interaction.`);
 console.log(`Featured available puppies: ${featuredAvailablePuppies.map((puppy) => puppy.name).join(", ") || "none"}`);
 console.log(`Hidden public Available puppies: ${hiddenAvailablePuppies.map((puppy) => puppy.name).join(", ") || "none"}`);
 console.log(`Open guardian opportunities: ${openGuardianNames.join(", ") || "none"}`);
