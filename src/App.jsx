@@ -4679,14 +4679,7 @@ function AvailablePuppiesPage() {
       return (breedOrderBySlug.get(first.slug) ?? 999) - (breedOrderBySlug.get(second.slug) ?? 999);
     });
   const visibleAvailableBreedGroups = availableBreedGroups.filter((group) => group.puppies.length);
-  const defaultOpenAvailableBreedSlugs = useMemo(
-    () => {
-      if (availableNow.length <= 8) return visibleAvailableBreedGroups.map((group) => group.slug);
-      return visibleAvailableBreedGroups[0]?.slug ? [visibleAvailableBreedGroups[0].slug] : [];
-    },
-    [availableNow.length, visibleAvailableBreedGroups]
-  );
-  const [openBreedSlugs, setOpenBreedSlugs] = useState(() => defaultOpenAvailableBreedSlugs);
+  const [openBreedSlugs, setOpenBreedSlugs] = useState([]);
   const availabilityStats = availableBreedGroups.map((group) => ({
     value: group.puppies.length,
     label: `${group.name} ${group.puppies.length === 1 ? "puppy" : "puppies"} available`

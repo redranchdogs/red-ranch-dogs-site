@@ -82,9 +82,9 @@ const routeExpectations = [
   {
     route: "/puppies/available",
     requiredText: [
-      "available puppies",
-      ...featuredAvailablePuppies.map((puppy) => puppy.name)
+      "available puppies"
     ],
+    availableAccordionCheck: true,
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
     requiredSelectors: [".available-puppy-tracker", ".available-puppy-breed-group"]
   },
@@ -293,6 +293,37 @@ async function auditRoute(context, config, viewportName) {
     for (const selector of config.requiredSelectors || []) {
       const count = await visibleCount(page, selector);
       if (count < 1) failures.push(`Missing visible selector: ${selector}`);
+    }
+
+    if (config.availableAccordionCheck && featuredAvailablePuppies.length) {
+      const initiallyOpenPanels = await visibleCount(page, ".available-puppy-panel");
+      const initiallyVisibleCards = await visibleCount(page, ".available-puppy-card");
+      const initiallyVisiblePuppies = featuredAvailablePuppies
+        .map((puppy) => puppy.name)
+        .filter((name) => includesText(pageText, name));
+      const toggles = page.locator(".available-puppy-breed-group .upcoming-breed-toggle");
+      const toggleCount = await toggles.count();
+
+      if (initiallyOpenPanels !== 0) failures.push(`Available puppy accordions should start closed, found ${initiallyOpenPanels} open panels.`);
+      if (initiallyVisibleCards !== 0) failures.push(`Available puppy cards should be hidden until a breed group opens, found ${initiallyVisibleCards} visible cards.`);
+      if (initiallyVisiblePuppies.length) failures.push(`Available puppy names should be hidden before opening a breed group: ${initiallyVisiblePuppies.join(", ")}`);
+      if (toggleCount < 1) {
+        failures.push("Available puppy breed toggles were not found.");
+      } else {
+        const firstToggle = toggles.first();
+        const initialExpanded = await firstToggle.getAttribute("aria-expanded");
+        if (initialExpanded !== "false") failures.push(`First available puppy breed toggle should start aria-expanded=false, got ${initialExpanded}`);
+
+        await firstToggle.click();
+
+        const openedExpanded = await firstToggle.getAttribute("aria-expanded");
+        const openedPanels = await visibleCount(page, ".available-puppy-panel");
+        const openedCards = await visibleCount(page, ".available-puppy-card");
+
+        if (openedExpanded !== "true") failures.push(`First available puppy breed toggle should be aria-expanded=true after click, got ${openedExpanded}`);
+        if (openedPanels < 1) failures.push("Opening an available puppy breed group did not reveal a panel.");
+        if (openedCards < 1) failures.push("Opening an available puppy breed group did not reveal puppy cards.");
+      }
     }
 
     const health = await pageHealth(page);
