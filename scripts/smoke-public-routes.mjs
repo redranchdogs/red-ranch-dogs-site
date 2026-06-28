@@ -83,7 +83,6 @@ const routeExpectations = [
     route: "/puppies/available",
     requiredText: [
       "available puppies",
-      "open the breed group",
       ...featuredAvailablePuppies.map((puppy) => puppy.name)
     ],
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),

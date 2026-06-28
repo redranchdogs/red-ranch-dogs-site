@@ -49,7 +49,20 @@ The repo already has strong health-check scripts. Use these as the first layer b
 | CRM intake handoff contract | `npm run review:crm-intake` | `docs/CRM_INTAKE_ALIGNMENT_REVIEW.md` |
 | Public safety scan | `npm run review:safety` | `docs/PUBLIC_SAFETY_REVIEW.md` |
 | Broken routes and redirects | `node scripts/verify-routes.mjs` | terminal result |
+| Real browser public route smoke | `npm run check:public-routes` | terminal result |
+| Daily Light Check wrapper | `npm run health:daily` | `docs/WEBSITE_HEALTH_LIGHT_REPORT.md` |
 | Full publish gate | `npm run publish:check` | multiple review docs and build checks |
+
+## Open-Source Tool Fit
+
+Use the repo's existing checks first. Add more tooling only when it catches a real class of issue the current scripts miss.
+
+| Tool | Current decision | Why |
+| --- | --- | --- |
+| Playwright | **Use now** | Already installed and used by `check:public-routes`, `review:visual`, `review:seo`, `review:mobile-nav`, and `review:mobile-templates`. Best first layer for browser smoke testing. |
+| Lychee | **Defer** | Useful for broad external broken-link checks, but the repo already checks internal routes/redirects. Add later if external-link drift becomes a recurring issue. |
+| Lighthouse CI / Lighthouse | **Defer** | Useful for performance/SEO/accessibility budgets, but likely noisy until a baseline and thresholds are chosen. Start with weekly/manual lighthouse before making it blocking. |
+| axe-core / Playwright accessibility | **Defer as next QA slice** | Useful for forms and key public pages. Add after the Daily Light Check is stable so accessibility failures can be triaged without turning daily checks noisy. |
 
 ## Daily Light Check
 
@@ -60,18 +73,19 @@ Run daily or when Adam asks, especially during active puppy availability windows
 Recommended command set:
 
 ```bash
+npm run health:daily
+```
+
+The daily wrapper runs:
+
+```bash
 npm run agent:website-qa
 npm run check:buyer-flow
 npm run test:forms
+npm run check:public-routes
 ```
 
-Optional live public route sanity check:
-
-```bash
-curl -I https://www.redranchdogs.com/
-curl -I https://www.redranchdogs.com/puppies/available
-curl -I https://www.redranchdogs.com/apply
-```
+It also pings the live public homepage, available puppies page, current litters page, and apply page.
 
 Daily report should stay short:
 
@@ -117,7 +131,7 @@ node scripts/verify-routes.mjs
 Use `npm run publish:check` when the weekly pass should also prove the production build/package path:
 
 ```bash
-npm run publish:check
+npm run health:weekly
 ```
 
 Weekly report format:
@@ -189,6 +203,17 @@ Use the smallest relevant check set first:
 | Mobile/template UX | `npm run review:visual`, `npm run review:mobile-nav`, `npm run review:mobile-templates`, `npm run lint` |
 | Pre-deploy confidence | `npm run publish:check` |
 
+Convenience commands:
+
+```bash
+npm run health:change:puppies
+npm run health:change:litters
+npm run health:change:forms
+npm run health:change:seo
+npm run health:change:mobile
+npm run health:change:predeploy
+```
+
 If a website content change touches source-of-truth sheets, run the appropriate sync/review process before calling it done:
 
 ```bash
@@ -253,28 +278,27 @@ Optional Improvement:
 - expanded reporting
 - better automation after the workflow is proven
 
-## First Practical Implementation Step
+## Implemented Practical Slice
 
-Create one small wrapper script for the **Daily Light Check** before adding any scheduling:
+The first practical slice is intentionally small:
 
 ```text
 scripts/run-website-health-light.mjs
 ```
 
-Recommended behavior:
+Behavior:
 
 1. Fetch `https://www.redranchdogs.com/`, `/puppies/available`, `/puppies/current-litters`, and `/apply`.
 2. Confirm each returns a successful response.
-3. Run `npm run agent:website-qa`, `npm run check:buyer-flow`, and `npm run test:forms`.
+3. Run `npm run agent:website-qa`, `npm run check:buyer-flow`, `npm run test:forms`, and `npm run check:public-routes`.
 4. Write a short report to `docs/WEBSITE_HEALTH_LIGHT_REPORT.md`.
 5. Exit non-zero only for urgent failures.
 
-After that is stable, add:
+Package commands:
 
-```json
-"health:daily": "node scripts/run-website-health-light.mjs",
-"health:weekly": "npm run publish:check && npm run agent:website-qa && npm run review:visual"
+```bash
+npm run health:daily
+npm run health:weekly
 ```
 
 Do not schedule the daily or weekly runs until Adam explicitly approves the automation schedule and destination for reports.
-

@@ -4662,12 +4662,6 @@ function AboutOverviewPage() {
   );
 }
 
-const availablePuppyNextSteps = [
-  ["Open the breed group", "Start with the breed and size range that feels closest, then compare the individual puppy cards."],
-  ["Ask about fit", "Use the application to tell us which puppy caught your eye, your home setup, and your timeline."],
-  ["Reserve after fit is clear", "A deposit reserves an available puppy after we confirm the puppy, timing, and family fit make sense."]
-];
-
 function AvailablePuppiesPage() {
   const availableNow = featuredAvailablePuppies();
   const breedOrderBySlug = new Map(breedProfiles.map((breed, index) => [breed.slug, index]));
@@ -4731,21 +4725,16 @@ function AvailablePuppiesPage() {
         />
       )}
       {visibleAvailableBreedGroups.length > 0 && (
-        <>
-          <section className="content-section available-puppy-next-steps">
-            <ProcessStepCards steps={availablePuppyNextSteps} />
-          </section>
-          <section className="upcoming-litter-groups listing-content-section available-puppy-groups">
-            {visibleAvailableBreedGroups.map((group) => (
-              <AvailablePuppyBreedAccordionGroup
-                group={group}
-                isOpen={openBreedSlugs.includes(group.slug)}
-                key={group.slug}
-                onToggle={() => handleAvailableBreedToggle(group.slug)}
-              />
-            ))}
-          </section>
-        </>
+        <section className="upcoming-litter-groups listing-content-section available-puppy-groups">
+          {visibleAvailableBreedGroups.map((group) => (
+            <AvailablePuppyBreedAccordionGroup
+              group={group}
+              isOpen={openBreedSlugs.includes(group.slug)}
+              key={group.slug}
+              onToggle={() => handleAvailableBreedToggle(group.slug)}
+            />
+          ))}
+        </section>
       )}
       <CTASection
         title={availableNow.length ? "Ready to ask about a puppy?" : "Want help choosing the right path?"}

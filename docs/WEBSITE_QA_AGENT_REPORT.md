@@ -1,6 +1,6 @@
 # Website QA Agent Report
 
-Generated: 6/9/2026, 12:17:29 PM Central
+Generated: 6/28/2026, 2:54:34 PM Central
 
 Owner app: **Website**
 Agent: **Website QA Agent**
@@ -26,9 +26,9 @@ Status: **PASS**
 
 | Area | Result |
 | --- | ---: |
-| Sitemap routes | 130 |
-| Known static/dynamic routes | 179 |
-| Internal links | 64 |
+| Sitemap routes | 131 |
+| Known static/dynamic routes | 181 |
+| Internal links | 65 |
 | Redirects | 81 |
 | Host canonical redirects | 2 |
 | Missing sitemap routes | 0 |
@@ -38,14 +38,14 @@ Status: **PASS**
 
 | Public display category | Count |
 | --- | ---: |
-| Available puppies | 6 |
-| Waitlist matching puppies | 17 |
-| Reserved puppies | 18 |
+| Available puppies | 12 |
+| Waitlist matching puppies | 0 |
+| Reserved puppies | 29 |
 | Current litters | 5 |
 | Planned litters | 3 |
 | Previous litter records | 13 |
 | Public parent profiles | 29 |
-| Public waitlist rows | 19 |
+| Public waitlist rows | 17 |
 
 ## Forms And Attribution
 
