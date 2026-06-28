@@ -6535,7 +6535,6 @@ function CoatTraitsPage() {
         <h2>Our Most Requested Coat Traits</h2>
         <p>Across Goldendoodles, Bernedoodles, and Cavapoos, families often ask for low shedding, soft texture, rich color, and standout markings. Some traits are common, while others take generations of planning and careful pairing.</p>
       </section>
-      <DoodleGenerationsPreview />
       <section className="content-section">
         <div className="section-heading">
           <p className="eyebrow">Color & Markings</p>
@@ -6583,6 +6582,7 @@ function CoatTraitsPage() {
           <p>Some combinations are harder to achieve. TT shedding status, straight coats with minimal shedding, chocolate, red chocolate, red abstract, red parti, tricolor, and tricolor merle can require generations of planning and careful pairing. When several of these traits come together, demand is naturally higher and those puppies can command a higher price.</p>
         </article>
       </section>
+      <DoodleGenerationsPreview />
     </Layout>
   );
 }
