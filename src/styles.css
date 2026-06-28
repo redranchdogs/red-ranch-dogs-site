@@ -9128,15 +9128,6 @@ summary {
   padding-bottom: 14px;
 }
 
-.available-puppy-next-steps {
-  padding-top: 0;
-  padding-bottom: 16px;
-}
-
-.available-puppy-next-steps .process-step-cards {
-  width: min(1040px, 100%);
-}
-
 .available-puppy-groups.listing-content-section {
   padding-top: 8px;
   padding-bottom: 24px;
