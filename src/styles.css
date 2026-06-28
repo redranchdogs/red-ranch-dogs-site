@@ -6536,12 +6536,26 @@ summary {
   background: var(--soft-tan);
 }
 
+.breed-program-media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+}
+
 .breed-program-media img,
 .breed-program-media .image-placeholder {
   width: 100%;
   height: 100%;
   min-height: 460px;
   object-fit: cover;
+  object-position: var(--breed-image-position, center);
+}
+
+@media (min-width: 901px) {
+  .breed-program-media img {
+    object-position: var(--breed-desktop-image-position, var(--breed-image-position, center));
+  }
 }
 
 .breed-program-body {
@@ -7600,6 +7614,11 @@ summary {
     height: auto;
     min-height: 0;
     aspect-ratio: 4 / 3;
+  }
+
+  .breed-program-media picture {
+    height: auto;
+    min-height: 0;
   }
 
   .breed-quick-facts {
