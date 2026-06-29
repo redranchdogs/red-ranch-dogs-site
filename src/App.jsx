@@ -1583,6 +1583,13 @@ const reviewThemes = [
   }
 ];
 
+const homeReviewProofStats = [
+  ["100", "Google reviews"],
+  ["4.9", "star family rating"],
+  ["Salado", "Texas raised"],
+  ["Ongoing", "puppy family support"]
+];
+
 const socialProofItems = [
   ["100 Google reviews", Star],
   ["Nearly 10,000 Instagram followers", Instagram],
@@ -1959,9 +1966,35 @@ function HomeTestimonials() {
               </article>
             ))}
           </div>
-          <a className="button secondary testimonial-review-link" href={brand.googleReviews} target="_blank" rel="noreferrer">
-            Read Our Google Reviews
-          </a>
+          <div className="testimonial-proof-panel" aria-label="Red Ranch Dogs review highlights">
+            <div className="testimonial-proof-stats">
+              {homeReviewProofStats.map(([value, label]) => (
+                <div key={label}>
+                  <strong>{value}</strong>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+            <div className="testimonial-proof-themes">
+              {reviewThemes.map(({ title, copy, icon: Icon }) => (
+                <article key={title}>
+                  <Icon size={18} aria-hidden="true" />
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{copy}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="testimonial-proof-actions">
+              <a className="button secondary testimonial-review-link" href={brand.googleReviews} target="_blank" rel="noreferrer">
+                Read Our Google Reviews
+              </a>
+              <Link className="button primary" href="/about/reviews">
+                Family Stories
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </FadeInSection>
@@ -6612,6 +6645,12 @@ const formNextStepNotes = {
   waitlist: "We will reply with breed-specific waitlist guidance, deposit details, and current litter timing."
 };
 
+const applicationSuccessSteps = [
+  ["Watch for our reply", "We will review breed fit, timing, current availability, and any puppy or litter you mentioned."],
+  ["Keep browsing litters", "Current litter pages stay available if you want to compare timing, size, coat, or parent pairings."],
+  ["Text if timing is urgent", "If you are hoping to move quickly on an available puppy, a text is the fastest way to flag that."]
+];
+
 const requiredFieldsByForm = {
   application: [
     ["name", "full name"],
@@ -6679,6 +6718,34 @@ function validateLeadPayload(formType, payload) {
   }
 
   return null;
+}
+
+function FormSuccessPanel({ formType }) {
+  if (formType !== "application") return null;
+
+  return (
+    <div className="form-success-panel">
+      <div className="form-success-heading">
+        <p className="eyebrow">What happens next</p>
+        <h3>Your application is in the right place.</h3>
+      </div>
+      <div className="form-success-steps">
+        {applicationSuccessSteps.map(([title, copy]) => (
+          <article key={title}>
+            <CheckCircle2 size={18} aria-hidden="true" />
+            <div>
+              <strong>{title}</strong>
+              <p>{copy}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="form-success-actions">
+        <Link href="/puppies/current-litters" className="button secondary">Current Litters</Link>
+        <a href={brand.sms} className="button primary">Text Us Now</a>
+      </div>
+    </div>
+  );
 }
 
 function formatList(items) {
@@ -7572,6 +7639,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
           {status}
         </p>
       )}
+      {statusType === "success" && <FormSuccessPanel formType={formType} />}
     </form>
   );
 }
