@@ -1624,6 +1624,33 @@ const socialProofItems = [
   ["Texas-based, family-owned program", HomeIcon]
 ];
 
+const homeBuyerPathItems = [
+  {
+    label: "Available Puppies",
+    copy: "See puppies open to reserve now.",
+    href: "/puppies/available",
+    icon: PawPrint
+  },
+  {
+    label: "Current Litters",
+    copy: "Compare puppies growing now.",
+    href: "/puppies/current-litters",
+    icon: Camera
+  },
+  {
+    label: "Apply",
+    copy: "Start the fit and timing conversation.",
+    href: "/apply",
+    icon: CheckCircle2
+  },
+  {
+    label: "Text Us",
+    copy: "Ask a quick availability question.",
+    href: brand.sms,
+    icon: MessageCircle
+  }
+];
+
 function HomeHero() {
   return (
     <section className="premium-hero" id="home-hero">
@@ -1675,6 +1702,43 @@ function SocialProofStrip({
         </div>
       </div>
     </section>
+  );
+}
+
+function HomeBuyerPath() {
+  return (
+    <FadeInSection className="home-buyer-path-section" aria-labelledby="home-buyer-path-title">
+      <div className="home-buyer-path-panel">
+        <div className="home-buyer-path-copy">
+          <p className="premium-kicker">Start Here</p>
+          <h2 id="home-buyer-path-title">Choose the next step that fits today.</h2>
+        </div>
+        <div className="home-buyer-path-grid">
+          {homeBuyerPathItems.map(({ label, copy, href, icon: Icon }) => {
+            const content = (
+              <>
+                <Icon size={18} aria-hidden="true" />
+                <span>
+                  <strong>{label}</strong>
+                  <em>{copy}</em>
+                </span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </>
+            );
+
+            return href.startsWith("/") ? (
+              <Link className="home-buyer-path-link" href={href} key={label}>
+                {content}
+              </Link>
+            ) : (
+              <a className="home-buyer-path-link" href={href} key={label}>
+                {content}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </FadeInSection>
   );
 }
 
@@ -2095,6 +2159,7 @@ function HomePage() {
     <Layout>
       <HomeHero />
       <SocialProofStrip className="hero-adjacent" />
+      <HomeBuyerPath />
       <HomeReadySoonStrip />
       <HomeDoodles />
       <WhyRedRanch />

@@ -754,6 +754,98 @@ body.menu-locked {
   gap: 14px;
 }
 
+.home-buyer-path-section {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: clamp(12px, 2vw, 20px) 0;
+}
+
+.home-buyer-path-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.32fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  background: rgba(255, 250, 242, 0.82);
+  border: 1px solid rgba(95, 69, 45, 0.16);
+  border-radius: var(--radius-md);
+  box-shadow: 0 14px 34px rgba(67, 42, 24, 0.07);
+}
+
+.home-buyer-path-copy {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.home-buyer-path-copy h2 {
+  max-width: 12ch;
+  margin: 0;
+  color: var(--premium-ink);
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.home-buyer-path-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.home-buyer-path-link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  min-height: 72px;
+  padding: 11px;
+  color: var(--premium-ink);
+  text-decoration: none;
+  background: rgba(255, 250, 242, 0.72);
+  border: 1px solid rgba(95, 69, 45, 0.14);
+  border-radius: 8px;
+}
+
+.home-buyer-path-link:hover {
+  color: var(--brand-red);
+  border-color: rgba(148, 31, 23, 0.28);
+  transform: translateY(-1px);
+}
+
+.home-buyer-path-link svg {
+  color: var(--brand-red);
+}
+
+.home-buyer-path-link span {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.home-buyer-path-link strong {
+  overflow: hidden;
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1.08;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.home-buyer-path-link em {
+  display: block;
+  color: var(--premium-muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.18;
+}
+
 .testimonial-feature {
   display: grid;
   gap: 22px;
@@ -11571,6 +11663,51 @@ summary {
 
   .social-proof-strip.hero-adjacent {
     margin-top: -12px;
+  }
+
+  .home-buyer-path-section {
+    width: min(100%, calc(100% - 28px));
+    padding-top: 10px;
+    padding-bottom: 14px;
+  }
+
+  .home-buyer-path-panel {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .home-buyer-path-copy {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 6px 12px;
+    align-items: baseline;
+  }
+
+  .home-buyer-path-copy .premium-kicker {
+    margin: 0;
+  }
+
+  .home-buyer-path-copy h2 {
+    max-width: none;
+    font-size: clamp(1.95rem, 8vw, 2.6rem);
+  }
+
+  .home-buyer-path-grid {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .home-buyer-path-link {
+    min-height: 58px;
+    padding: 10px;
+  }
+
+  .home-buyer-path-link em {
+    display: none;
+  }
+
+  .home-buyer-path-link strong {
+    font-size: 0.86rem;
   }
 
   .social-proof-inner {
