@@ -847,6 +847,10 @@ function faqRecordsForPath(path) {
     return guardianProgram.faqs.map(normalizeFaqRecord);
   }
 
+  if (path === "/puppies/doodle-generations" || path === "/doodle-generations") {
+    return doodleGenerationFaqs.map(normalizeFaqRecord);
+  }
+
   if (path === "/process/faq" || path === "/faq") {
     return (faqProfiles.length ? faqProfiles : faqs).map(normalizeFaqRecord);
   }
@@ -1006,6 +1010,29 @@ function pageSpecificSchemaForPath(path) {
       serviceType: "Puppy application and waitlist inquiry",
       provider: {
         "@id": `${siteOrigin}/#local-business`
+      }
+    };
+  }
+
+  if (path === "/puppies/doodle-generations" || path === "/doodle-generations") {
+    return {
+      "@type": "Article",
+      "@id": `${canonical}#article`,
+      headline: "Doodle Generations Explained",
+      description: "A Red Ranch Dogs guide to F1, F1B, F1BB, and multigen doodles, including why generation labels are only one part of coat, health, temperament, and family-fit planning.",
+      mainEntityOfPage: {
+        "@id": `${canonical}#webpage`
+      },
+      author: {
+        "@id": `${siteOrigin}/#organization`
+      },
+      publisher: {
+        "@id": `${siteOrigin}/#organization`
+      },
+      about: ["F1 Goldendoodles", "F1B Goldendoodles", "F1BB Goldendoodles", "Multigen Goldendoodles", "Doodle coat genetics", "Doodle puppy family fit"],
+      audience: {
+        "@type": "Audience",
+        audienceType: "Families comparing doodle puppy generations"
       }
     };
   }
@@ -1583,11 +1610,45 @@ const reviewThemes = [
   }
 ];
 
+const homeReviewProofStats = [
+  ["100", "Google reviews"],
+  ["4.9", "star family rating"],
+  ["Salado", "Texas raised"],
+  ["Ongoing", "puppy family support"]
+];
+
 const socialProofItems = [
   ["100 Google reviews", Star],
   ["Nearly 10,000 Instagram followers", Instagram],
   ["Health-tested parent dogs", PawPrint],
   ["Texas-based, family-owned program", HomeIcon]
+];
+
+const homeBuyerPathItems = [
+  {
+    label: "Available Puppies",
+    copy: "See puppies open to reserve now.",
+    href: "/puppies/available",
+    icon: PawPrint
+  },
+  {
+    label: "Current Litters",
+    copy: "Compare puppies growing now.",
+    href: "/puppies/current-litters",
+    icon: Camera
+  },
+  {
+    label: "Apply",
+    copy: "Start the fit and timing conversation.",
+    href: "/apply",
+    icon: CheckCircle2
+  },
+  {
+    label: "Text Us",
+    copy: "Ask a quick availability question.",
+    href: brand.sms,
+    icon: MessageCircle
+  }
 ];
 
 function HomeHero() {
@@ -1641,6 +1702,43 @@ function SocialProofStrip({
         </div>
       </div>
     </section>
+  );
+}
+
+function HomeBuyerPath() {
+  return (
+    <FadeInSection className="home-buyer-path-section" aria-labelledby="home-buyer-path-title">
+      <div className="home-buyer-path-panel">
+        <div className="home-buyer-path-copy">
+          <p className="premium-kicker">Start Here</p>
+          <h2 id="home-buyer-path-title">Choose the next step that fits today.</h2>
+        </div>
+        <div className="home-buyer-path-grid">
+          {homeBuyerPathItems.map(({ label, copy, href, icon: Icon }) => {
+            const content = (
+              <>
+                <Icon size={18} aria-hidden="true" />
+                <span>
+                  <strong>{label}</strong>
+                  <em>{copy}</em>
+                </span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </>
+            );
+
+            return href.startsWith("/") ? (
+              <Link className="home-buyer-path-link" href={href} key={label}>
+                {content}
+              </Link>
+            ) : (
+              <a className="home-buyer-path-link" href={href} key={label}>
+                {content}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </FadeInSection>
   );
 }
 
@@ -1959,9 +2057,35 @@ function HomeTestimonials() {
               </article>
             ))}
           </div>
-          <a className="button secondary testimonial-review-link" href={brand.googleReviews} target="_blank" rel="noreferrer">
-            Read Our Google Reviews
-          </a>
+          <div className="testimonial-proof-panel" aria-label="Red Ranch Dogs review highlights">
+            <div className="testimonial-proof-stats">
+              {homeReviewProofStats.map(([value, label]) => (
+                <div key={label}>
+                  <strong>{value}</strong>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+            <div className="testimonial-proof-themes">
+              {reviewThemes.map(({ title, copy, icon: Icon }) => (
+                <article key={title}>
+                  <Icon size={18} aria-hidden="true" />
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{copy}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="testimonial-proof-actions">
+              <a className="button secondary testimonial-review-link" href={brand.googleReviews} target="_blank" rel="noreferrer">
+                Read Our Google Reviews
+              </a>
+              <Link className="button primary" href="/about/reviews">
+                Family Stories
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </FadeInSection>
@@ -2035,6 +2159,7 @@ function HomePage() {
     <Layout>
       <HomeHero />
       <SocialProofStrip className="hero-adjacent" />
+      <HomeBuyerPath />
       <HomeReadySoonStrip />
       <HomeDoodles />
       <WhyRedRanch />
@@ -6338,6 +6463,36 @@ const doodleGenerationQuestions = [
   "How consistent have related litters or program lines been over time?"
 ];
 
+const doodleGenerationAnswerCards = [
+  {
+    title: "What families usually ask",
+    copy: "Families often ask whether F1B is automatically the best doodle generation. The better question is what the specific parent dogs and pairing are likely to produce."
+  },
+  {
+    title: "What the label can tell you",
+    copy: "F1, F1B, F1BB, and multigen labels describe ancestry. They do not guarantee adult size, shedding level, allergy response, coat texture, or temperament."
+  },
+  {
+    title: "What matters at Red Ranch",
+    copy: "Our Goldendoodle program primarily leans multigen so we can keep selecting for desirable coat traits, health traits, size, temperament, and family consistency over time."
+  }
+];
+
+const doodleGenerationFaqs = [
+  {
+    question: "Is F1B always better?",
+    answer: "No. F1B can be a good fit for lower-shedding goals, but it is not automatically better for every family. Parent traits and the actual pairing matter."
+  },
+  {
+    question: "Are multigen doodles hypoallergenic?",
+    answer: "No dog is fully hypoallergenic. Multigen planning can support lower-shedding goals, but allergies are personal and results can vary by family and puppy."
+  },
+  {
+    question: "Why not only breed early generations?",
+    answer: "Early generations can be wonderful, but they can also carry more variation. Our multigen focus lets us preserve the traits we want Red Ranch families to experience."
+  }
+];
+
 function CoatTraitCard({ trait }) {
   return (
     <article className="coat-card">
@@ -6392,6 +6547,23 @@ function DoodleGenerationsPage() {
         title="Doodle Generations Explained"
         copy="F1, F1B, F1BB, and multigen labels can be helpful, but they are only one part of choosing the right puppy. The pairing, parent dogs, coat genetics, temperament, health, and long-term program choices matter too."
       />
+      <section className="content-section doodle-generation-answer-section">
+        <article className="doodle-generation-answer-panel">
+          <div className="doodle-generation-answer-copy">
+            <p className="eyebrow">Short Answer</p>
+            <h2>Generation labels help, but they are not the whole decision.</h2>
+            <p>For Red Ranch Dogs, F1, F1B, F1BB, and multigen labels are a starting point. The more useful family-fit question is how the exact pairing is planned: parent dogs, coat genetics, health traits, size, temperament, and what the program has selected for over time.</p>
+          </div>
+          <div className="doodle-generation-answer-grid">
+            {doodleGenerationAnswerCards.map(({ title, copy }) => (
+              <article key={title}>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+        </article>
+      </section>
       <section className="content-section doodle-generation-hero">
         <article className="doodle-generation-principle">
           <p className="eyebrow">The Red Ranch View</p>
@@ -6459,18 +6631,12 @@ function DoodleGenerationsPage() {
           <h2>What this means when choosing a puppy</h2>
         </div>
         <div className="doodle-generation-faq-grid">
-          <article>
-            <h3>Is F1B always better?</h3>
-            <p>No. F1B can be a good fit for lower-shedding goals, but it is not automatically better for every family. Parent traits and the actual pairing matter.</p>
-          </article>
-          <article>
-            <h3>Are multigen doodles hypoallergenic?</h3>
-            <p>No dog is fully hypoallergenic. Multigen planning can support lower-shedding goals, but allergies are personal and results can vary by family and puppy.</p>
-          </article>
-          <article>
-            <h3>Why not only breed early generations?</h3>
-            <p>Early generations can be wonderful, but they can also carry more variation. Our multigen focus lets us preserve the traits we want Red Ranch families to experience.</p>
-          </article>
+          {doodleGenerationFaqs.map(({ question, answer }) => (
+            <article key={question}>
+              <h3>{question}</h3>
+              <p>{answer}</p>
+            </article>
+          ))}
         </div>
       </section>
       <CTASection
@@ -6612,6 +6778,12 @@ const formNextStepNotes = {
   waitlist: "We will reply with breed-specific waitlist guidance, deposit details, and current litter timing."
 };
 
+const applicationSuccessSteps = [
+  ["Watch for our reply", "We will review breed fit, timing, current availability, and any puppy or litter you mentioned."],
+  ["Keep browsing litters", "Current litter pages stay available if you want to compare timing, size, coat, or parent pairings."],
+  ["Text if timing is urgent", "If you are hoping to move quickly on an available puppy, a text is the fastest way to flag that."]
+];
+
 const requiredFieldsByForm = {
   application: [
     ["name", "full name"],
@@ -6679,6 +6851,34 @@ function validateLeadPayload(formType, payload) {
   }
 
   return null;
+}
+
+function FormSuccessPanel({ formType }) {
+  if (formType !== "application") return null;
+
+  return (
+    <div className="form-success-panel">
+      <div className="form-success-heading">
+        <p className="eyebrow">What happens next</p>
+        <h3>Your application is in the right place.</h3>
+      </div>
+      <div className="form-success-steps">
+        {applicationSuccessSteps.map(([title, copy]) => (
+          <article key={title}>
+            <CheckCircle2 size={18} aria-hidden="true" />
+            <div>
+              <strong>{title}</strong>
+              <p>{copy}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="form-success-actions">
+        <Link href="/puppies/current-litters" className="button secondary">Current Litters</Link>
+        <a href={brand.sms} className="button primary">Text Us Now</a>
+      </div>
+    </div>
+  );
 }
 
 function formatList(items) {
@@ -7572,6 +7772,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
           {status}
         </p>
       )}
+      {statusType === "success" && <FormSuccessPanel formType={formType} />}
     </form>
   );
 }
