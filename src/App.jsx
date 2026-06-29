@@ -847,6 +847,10 @@ function faqRecordsForPath(path) {
     return guardianProgram.faqs.map(normalizeFaqRecord);
   }
 
+  if (path === "/puppies/doodle-generations" || path === "/doodle-generations") {
+    return doodleGenerationFaqs.map(normalizeFaqRecord);
+  }
+
   if (path === "/process/faq" || path === "/faq") {
     return (faqProfiles.length ? faqProfiles : faqs).map(normalizeFaqRecord);
   }
@@ -1006,6 +1010,29 @@ function pageSpecificSchemaForPath(path) {
       serviceType: "Puppy application and waitlist inquiry",
       provider: {
         "@id": `${siteOrigin}/#local-business`
+      }
+    };
+  }
+
+  if (path === "/puppies/doodle-generations" || path === "/doodle-generations") {
+    return {
+      "@type": "Article",
+      "@id": `${canonical}#article`,
+      headline: "Doodle Generations Explained",
+      description: "A Red Ranch Dogs guide to F1, F1B, F1BB, and multigen doodles, including why generation labels are only one part of coat, health, temperament, and family-fit planning.",
+      mainEntityOfPage: {
+        "@id": `${canonical}#webpage`
+      },
+      author: {
+        "@id": `${siteOrigin}/#organization`
+      },
+      publisher: {
+        "@id": `${siteOrigin}/#organization`
+      },
+      about: ["F1 Goldendoodles", "F1B Goldendoodles", "F1BB Goldendoodles", "Multigen Goldendoodles", "Doodle coat genetics", "Doodle puppy family fit"],
+      audience: {
+        "@type": "Audience",
+        audienceType: "Families comparing doodle puppy generations"
       }
     };
   }
@@ -6371,6 +6398,36 @@ const doodleGenerationQuestions = [
   "How consistent have related litters or program lines been over time?"
 ];
 
+const doodleGenerationAnswerCards = [
+  {
+    title: "What families usually ask",
+    copy: "Families often ask whether F1B is automatically the best doodle generation. The better question is what the specific parent dogs and pairing are likely to produce."
+  },
+  {
+    title: "What the label can tell you",
+    copy: "F1, F1B, F1BB, and multigen labels describe ancestry. They do not guarantee adult size, shedding level, allergy response, coat texture, or temperament."
+  },
+  {
+    title: "What matters at Red Ranch",
+    copy: "Our Goldendoodle program primarily leans multigen so we can keep selecting for desirable coat traits, health traits, size, temperament, and family consistency over time."
+  }
+];
+
+const doodleGenerationFaqs = [
+  {
+    question: "Is F1B always better?",
+    answer: "No. F1B can be a good fit for lower-shedding goals, but it is not automatically better for every family. Parent traits and the actual pairing matter."
+  },
+  {
+    question: "Are multigen doodles hypoallergenic?",
+    answer: "No dog is fully hypoallergenic. Multigen planning can support lower-shedding goals, but allergies are personal and results can vary by family and puppy."
+  },
+  {
+    question: "Why not only breed early generations?",
+    answer: "Early generations can be wonderful, but they can also carry more variation. Our multigen focus lets us preserve the traits we want Red Ranch families to experience."
+  }
+];
+
 function CoatTraitCard({ trait }) {
   return (
     <article className="coat-card">
@@ -6425,6 +6482,23 @@ function DoodleGenerationsPage() {
         title="Doodle Generations Explained"
         copy="F1, F1B, F1BB, and multigen labels can be helpful, but they are only one part of choosing the right puppy. The pairing, parent dogs, coat genetics, temperament, health, and long-term program choices matter too."
       />
+      <section className="content-section doodle-generation-answer-section">
+        <article className="doodle-generation-answer-panel">
+          <div className="doodle-generation-answer-copy">
+            <p className="eyebrow">Short Answer</p>
+            <h2>Generation labels help, but they are not the whole decision.</h2>
+            <p>For Red Ranch Dogs, F1, F1B, F1BB, and multigen labels are a starting point. The more useful family-fit question is how the exact pairing is planned: parent dogs, coat genetics, health traits, size, temperament, and what the program has selected for over time.</p>
+          </div>
+          <div className="doodle-generation-answer-grid">
+            {doodleGenerationAnswerCards.map(({ title, copy }) => (
+              <article key={title}>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+        </article>
+      </section>
       <section className="content-section doodle-generation-hero">
         <article className="doodle-generation-principle">
           <p className="eyebrow">The Red Ranch View</p>
@@ -6492,18 +6566,12 @@ function DoodleGenerationsPage() {
           <h2>What this means when choosing a puppy</h2>
         </div>
         <div className="doodle-generation-faq-grid">
-          <article>
-            <h3>Is F1B always better?</h3>
-            <p>No. F1B can be a good fit for lower-shedding goals, but it is not automatically better for every family. Parent traits and the actual pairing matter.</p>
-          </article>
-          <article>
-            <h3>Are multigen doodles hypoallergenic?</h3>
-            <p>No dog is fully hypoallergenic. Multigen planning can support lower-shedding goals, but allergies are personal and results can vary by family and puppy.</p>
-          </article>
-          <article>
-            <h3>Why not only breed early generations?</h3>
-            <p>Early generations can be wonderful, but they can also carry more variation. Our multigen focus lets us preserve the traits we want Red Ranch families to experience.</p>
-          </article>
+          {doodleGenerationFaqs.map(({ question, answer }) => (
+            <article key={question}>
+              <h3>{question}</h3>
+              <p>{answer}</p>
+            </article>
+          ))}
         </div>
       </section>
       <CTASection

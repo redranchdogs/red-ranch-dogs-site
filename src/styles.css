@@ -4447,6 +4447,76 @@ textarea {
   line-height: 1.52;
 }
 
+.doodle-generation-answer-section {
+  padding-top: 12px;
+  padding-bottom: 10px;
+}
+
+.doodle-generation-answer-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(300px, 1fr);
+  gap: 18px;
+  align-items: stretch;
+  padding: clamp(22px, 4vw, 34px);
+  border: 1px solid rgba(148, 31, 23, 0.18);
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(135deg, rgba(255, 250, 242, 0.96), rgba(246, 236, 220, 0.88)),
+    var(--warm-paper);
+  box-shadow: 0 16px 42px rgba(54, 36, 20, 0.08);
+}
+
+.doodle-generation-answer-copy {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+}
+
+.doodle-generation-answer-copy h2 {
+  max-width: 13ch;
+  margin: 0;
+  color: var(--premium-ink);
+  font-size: clamp(2.4rem, 4.9vw, 4.3rem);
+  line-height: 0.9;
+}
+
+.doodle-generation-answer-copy p:not(.eyebrow) {
+  margin: 0;
+  color: var(--premium-muted);
+  font-size: clamp(1rem, 1.45vw, 1.1rem);
+  line-height: 1.5;
+}
+
+.doodle-generation-answer-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.doodle-generation-answer-grid article {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+  padding: 16px;
+  border: 1px solid rgba(95, 69, 45, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 250, 242, 0.72);
+}
+
+.doodle-generation-answer-grid h3 {
+  margin: 0;
+  color: var(--brand-red-dark);
+  font-size: 0.92rem;
+  font-weight: 900;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.doodle-generation-answer-grid p {
+  margin: 0;
+  color: var(--premium-muted);
+  line-height: 1.44;
+}
+
 .doodle-generation-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.72fr);
@@ -9045,6 +9115,7 @@ summary {
 
   .doodle-generation-preview-card,
   .generation-callout-panel,
+  .doodle-generation-answer-panel,
   .doodle-generation-hero,
   .doodle-generation-ranch-card,
   .doodle-generation-faq-grid {
@@ -9052,9 +9123,15 @@ summary {
   }
 
   .doodle-generation-preview-card,
-  .generation-callout-panel {
+  .generation-callout-panel,
+  .doodle-generation-answer-panel {
     justify-items: start;
     padding: 20px;
+  }
+
+  .doodle-generation-answer-copy h2 {
+    max-width: 12ch;
+    font-size: clamp(2.35rem, 11vw, 3.35rem);
   }
 
   .doodle-generation-map {
