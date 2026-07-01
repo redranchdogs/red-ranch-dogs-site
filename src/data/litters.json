@@ -423,9 +423,9 @@
   {
     "slug": "penny-wyatt-spring-2026",
     "name": "Penny + Wyatt",
-    "visibility": "public",
-    "status": "Current Litter",
-    "featuredAvailable": true,
+    "visibility": "private",
+    "status": "Previous Litter",
+    "featuredAvailable": false,
     "litterNumber": "Penny 1",
     "mamaSlug": "penny",
     "mama": "Penny",
@@ -443,8 +443,8 @@
     "priceRange": "$4,500",
     "image": "/images/litters/penny-wyatt.webp",
     "parentPairingImage": "/images/litters/penny-wyatt.webp",
-    "availabilitySummary": "Penny and Wyatt have a current litter of F1B Micro Cavapoos.",
-    "availabilityNote": "Available puppies from this litter are posted publicly and ready to reserve.",
+    "availabilitySummary": "Penny and Wyatt's F1B Micro Cavapoo puppies have all found their homes.",
+    "availabilityNote": "This litter has gone home and now lives in the previous litter archive.",
     "aboutTitle": "A tiny F1B Cavapoo pairing with sweet companion temperaments.",
     "aboutThisLitter": [
       "Penny and Wyatt have produced a beautiful litter of F1B Micro Cavapoos with soft coats, joyful temperaments, and classic companion-dog sweetness.",
@@ -471,19 +471,20 @@
       "pitch",
       "fifa"
     ],
-    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Penny 1 + Wyatt",
-    "weeklyUpdateStatus": "Week 10 photos are live for available puppies.",
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Previous Litters / Penny 1 + Wyatt",
+    "weeklyUpdateStatus": "Moved to previous litters.",
     "weeklyUpdateGallery": [
       "/images/puppies/penny-wyatt-2026/goalie-f1b-micro-cavapoo-puppy-penny-wyatt-week-10-red-ranch-dogs.jpg"
     ],
-    "quickNote": "Week 10 photos are live for available puppies."
+    "quickNote": "All puppies have found their homes.",
+    "previousLitterHref": "/penny-wyatt-spring-2026"
   },
   {
     "slug": "ginny-butch-spring-2026",
     "name": "Ginny + Butch Cassidy",
-    "visibility": "public",
-    "status": "Current Litter",
-    "featuredAvailable": true,
+    "visibility": "private",
+    "status": "Previous Litter",
+    "featuredAvailable": false,
     "litterNumber": "Ginny 1",
     "mamaSlug": "ginny",
     "mama": "Ginny",
@@ -501,8 +502,8 @@
     "priceRange": "$3,500",
     "image": "/images/litters/ginny-butch-cassidy-parent-pairing-red-ranch-dogs.webp",
     "parentPairingImage": "/images/litters/ginny-butch-cassidy-parent-pairing-red-ranch-dogs.webp",
-    "availabilitySummary": "Ginny and Butch Cassidy have a current litter of Multigen Mini Goldendoodles.",
-    "availabilityNote": "Available puppies from this litter are posted publicly and ready to reserve.",
+    "availabilitySummary": "Ginny and Butch Cassidy's Multigen Mini Goldendoodle puppies have all found their homes.",
+    "availabilityNote": "This litter has gone home and now lives in the previous litter archive.",
     "aboutTitle": "A multigen mini Goldendoodle pairing with warm family temperaments.",
     "aboutThisLitter": [
       "Ginny and Butch Cassidy have produced a beautiful litter of Multigen Mini Goldendoodles with soft coats, warm apricot and red tones, and the steady companion temperament families love.",
@@ -530,11 +531,12 @@
       "ridge",
       "trek"
     ],
-    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Ginny 1 + Butch Cassidy",
-    "weeklyUpdateStatus": "Week 10 photos are live for available puppies.",
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Previous Litters / Ginny 1 + Butch Cassidy",
+    "weeklyUpdateStatus": "Moved to previous litters.",
     "weeklyUpdateGallery": [
       "/images/puppies/ginny-butch-2026/ridge-mini-goldendoodle-puppy-ginny-butch-week-10-red-ranch-dogs.jpg"
     ],
-    "quickNote": "Week 10 photos are live for available puppies."
+    "quickNote": "All puppies have found their homes.",
+    "previousLitterHref": "/ginny-butch-spring-2026"
   }
 ]
