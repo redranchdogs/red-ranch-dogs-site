@@ -91,8 +91,6 @@ Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The public
 - https://www.redranchdogs.com/litters/reece-wyatt-summer-2026
 - https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026
 - https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026
-- https://www.redranchdogs.com/litters/penny-wyatt-spring-2026
-- https://www.redranchdogs.com/litters/ginny-butch-spring-2026
 - https://www.redranchdogs.com/parents/birdie
 - https://www.redranchdogs.com/parents/honey
 - https://www.redranchdogs.com/parents/phoebe
@@ -122,6 +120,8 @@ Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The public
 - https://www.redranchdogs.com/parents/johnny-cash
 - https://www.redranchdogs.com/parents/wyatt-earp
 - https://www.redranchdogs.com/parents/bodhe
+- https://www.redranchdogs.com/ginny-butch-spring-2026
+- https://www.redranchdogs.com/penny-wyatt-spring-2026
 - https://www.redranchdogs.com/honey-bram
 - https://www.redranchdogs.com/birdie-waylon-spring-2026
 - https://www.redranchdogs.com/birdie-waylon-jennings
@@ -147,13 +147,9 @@ Red Ranch Dogs is a family-run doodle puppy program in Salado, Texas. The public
 - Whitley + Waylon: https://www.redranchdogs.com/litters/whitley-waylon-april-2026. Status: Current Litter. Breed: Multigen Mini Goldendoodle. Birth: May 3, 2026. Go-home: June 24-26, 2026. Available puppies from this litter are posted publicly and ready to reserve.
 - Faye + Sundance: https://www.redranchdogs.com/litters/faye-sundance-may-2026. Status: Current Litter. Breed: Multigen Petite Goldendoodle. Birth: May 23, 2026. Go-home: July 14-16, 2026. Available puppies from this litter are posted publicly and ready to reserve.
 - Georgia + Waylon: https://www.redranchdogs.com/litters/georgia-waylon-may-2026. Status: Current Litter. Breed: Multigen Mini Goldendoodle. Birth: May 23, 2026. Go-home: July 14-16, 2026. Available puppies from this litter are posted publicly and ready to reserve.
-- Penny + Wyatt: https://www.redranchdogs.com/litters/penny-wyatt-spring-2026. Status: Current Litter. Breed: F1B Micro Cavapoo. Birth: April 23, 2026. Go-home: June 14-16, 2026. Available puppies from this litter are posted publicly and ready to reserve.
-- Ginny + Butch Cassidy: https://www.redranchdogs.com/litters/ginny-butch-spring-2026. Status: Current Litter. Breed: Multigen Mini Goldendoodle. Birth: April 23, 2026. Go-home: June 14-16, 2026. Available puppies from this litter are posted publicly and ready to reserve.
 
 ## Available Puppies
 
-- Goalie: https://www.redranchdogs.com/puppies/goalie. Male F1B Micro Cavapoo. Litter: Penny + Wyatt. Go-home: June 14-16, 2026.
-- Ridge: https://www.redranchdogs.com/puppies/ridge. Male Multigen Mini Goldendoodle. Litter: Ginny + Butch Cassidy. Go-home: June 14-16, 2026.
 - Minnow: https://www.redranchdogs.com/puppies/minnow. Female Multigen Mini Goldendoodle. Litter: Whitley + Waylon. Go-home: June 24-26, 2026.
 - Skipper: https://www.redranchdogs.com/puppies/skipper. Male Multigen Mini Goldendoodle. Litter: Whitley + Waylon. Go-home: June 24-26, 2026.
 - Marine: https://www.redranchdogs.com/puppies/marine. Male Multigen Petite Goldendoodle. Litter: Faye + Sundance. Go-home: July 14-16, 2026.
