@@ -1417,7 +1417,7 @@
     "stud": "Butch Cassidy",
     "gender": "Male",
     "collarColor": "Orange",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "15-20 lbs",
     "birthDate": "April 23, 2026",
@@ -1507,7 +1507,7 @@
       }
     ],
     "description": "Ridge is a male Multigen Mini Goldendoodle puppy from Ginny and Butch Cassidy's Van Life litter.",
-    "availabilityNote": "Ridge is available to reserve now.",
+    "availabilityNote": "Ridge has found his home and is reserved.",
     "personalityNote": "Week 8 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "youtube_short_url": "https://youtube.com/shorts/z2XqsaO8bmA",
     "featured_video_label": "Watch Litter Videos",
