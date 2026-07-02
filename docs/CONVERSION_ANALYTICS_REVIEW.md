@@ -1,6 +1,6 @@
 # Conversion Analytics Review
 
-This is the lightweight analytics contract for the public Red Ranch Dogs website. Vercel Web Analytics shows traffic and device trends, while the Google Sheets / CRM intake path remains the source of truth for actual leads.
+This is the lightweight analytics contract for the public Red Ranch Dogs website. Vercel Web Analytics remains enabled for traffic and device trends. GA4 is a secondary analytics layer when `VITE_GA_MEASUREMENT_ID` is configured. The Google Sheets / CRM intake path remains the source of truth for actual leads.
 
 ## Current Tracked Events
 
@@ -80,17 +80,28 @@ Tracked attribution fields:
 - `lastGbraid`
 - `lastWbraid`
 
-Google click IDs are stored as metadata only. Do not expose names, emails, phone numbers, message text, or private lead details through analytics events.
+Google click IDs are stored as metadata only. Do not expose names, emails, phone numbers, addresses, message text, submission IDs, or private lead details through analytics events.
+
+## GA4 Contract
+
+- GA4 loads only when `VITE_GA_MEASUREMENT_ID` exists.
+- Vercel Analytics stays mounted through `<Analytics />`.
+- GA4 automatic page views are disabled with `send_page_view: false`; the SPA sends one `page_view` event after route changes.
+- GA4 mirrors only the important public behavior events: `form_start`, `form_submit_success`, `cta_apply_click`, `cta_text_click`, `view_available_puppies_click`, and `view_litter_click`.
+- GA4 event payloads use non-private labels such as `form_type`, `page_path`, `from_path`, and `link_target`.
+- Recommend marking `form_submit_success` as the GA4 key event after it appears in GA4 Realtime or DebugView.
+- Do not connect GA4 key events to Google Ads until Adam explicitly approves that separate step.
 
 ## First Live Readout
 
 Use this as the first live analytics pass after the site has had a few real traffic days:
 
 1. In Vercel Analytics, compare mobile, desktop, and tablet traffic for Home, Available Puppies, Current Litters, Apply, Contact, and litter detail pages.
-2. Check whether Apply, Text Us, Current Litters, Available Puppies, and litter-detail clicks are visible as tracked events on the current Vercel plan.
-3. Compare `form_submit_success` counts with rows added to Lead Queue for the same period.
-4. If page views are high but form starts are low, review that page for CTA placement and clarity.
-5. If form starts are high but successful submissions are low, review form validation, field burden, and error messaging before changing the CRM.
+2. In GA4 Realtime or DebugView, confirm route changes produce page views without duplicates.
+3. Check whether Apply, Text Us, Available Puppies, litter-detail clicks, form starts, and successful forms appear as GA4 events.
+4. Compare `form_submit_success` counts with rows added to Lead Queue for the same period.
+5. If page views are high but form starts are low, review that page for CTA placement and clarity.
+6. If form starts are high but successful submissions are low, review form validation, field burden, and error messaging before changing the CRM.
 
 ## Conversion Questions To Review Weekly
 
@@ -103,12 +114,13 @@ Use this as the first live analytics pass after the site has had a few real traf
 ## Source Of Truth
 
 - Vercel Analytics: page views, referrers, device and visitor behavior, and supported custom events.
+- GA4: secondary page-view and event trend reporting when `VITE_GA_MEASUREMENT_ID` is configured.
 - Website Leads: immutable raw submission archive.
 - Lead Queue: daily working inbox and first CRM handoff point.
 - Submission ID: stable join key between website submission, Lead Queue, email notification, and future CRM record.
 
 ## Notes For The CRM Build
 
-- Treat `form_submit_success` as a helpful signal, but do not use analytics as the official lead record.
+- Treat `form_submit_success` as a helpful analytics signal, but do not use analytics as the official lead record.
 - Lead Queue should remain the CRM intake source until the CRM owns the form backend.
-- If Vercel Analytics does not expose every custom event clearly on the current plan, continue using Lead Queue counts for conversion truth and analytics for visitor behavior.
+- If an analytics platform does not expose every custom event clearly on the current plan, continue using Lead Queue counts for conversion truth and analytics for visitor behavior.

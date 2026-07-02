@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
+import { trackGa4Event, trackGa4PageView } from "./ga4.js";
 import {
   ArrowRight,
   Camera,
@@ -109,6 +110,12 @@ function trackSiteEvent(name, data = {}) {
     track(name, data);
   } catch {
     // Analytics should never interfere with puppy families using the site.
+  }
+
+  try {
+    trackGa4Event(name, data);
+  } catch {
+    // Secondary analytics should never interfere with puppy families using the site.
   }
 }
 
@@ -5605,8 +5612,9 @@ function PrivacyPage() {
       <section className="content-section narrow privacy-detail-panel">
         <h2>Website analytics</h2>
         <p>
-          We use Vercel Web Analytics to understand general website traffic, such as page visits and device trends. This helps us see what
-          families are using most and improve the site over time.
+          We use Vercel Web Analytics and, when enabled, Google Analytics 4 to understand general website traffic, such as page visits,
+          device trends, and broad button interactions. Website analytics do not replace our internal lead records, and we do not send
+          names, emails, phone numbers, addresses, message text, or private application details to analytics tools.
         </p>
         <h2>Updates or deletion requests</h2>
         <p>
@@ -7877,6 +7885,7 @@ export default function App() {
   useEffect(() => {
     if (clientRedirects[path]) return;
     applySeo(path);
+    trackGa4PageView(path);
   }, [path]);
 
   const page = useMemo(() => {
