@@ -196,8 +196,8 @@ if (!app.includes("featuredAvailablePuppies()")) {
   blockers.push("Available Puppies page should use featuredAvailable litters as the merchandising filter.");
 }
 
-if (featuredAvailablePuppies.length > 0 && !app.includes("Ready to go home now")) {
-  blockers.push("Homepage should feature the ready-to-go-home-now strip when featured Available puppies exist.");
+if (featuredAvailablePuppies.length > 0 && !app.includes("Ready to go home mid July")) {
+  blockers.push("Homepage should feature the ready-to-go-home-mid-July strip when featured Available puppies exist.");
 }
 
 if (!app.includes('source: "home_ready_strip"') || !app.includes('trackSiteEvent("cta_reserve_click"')) {
