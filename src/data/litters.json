@@ -47,9 +47,9 @@
   {
     "slug": "whitley-waylon-april-2026",
     "name": "Whitley + Waylon",
-    "visibility": "public",
-    "status": "Current Litter",
-    "featuredAvailable": true,
+    "visibility": "private",
+    "status": "Previous Litter",
+    "featuredAvailable": false,
     "litterNumber": "Whitley 1",
     "mamaSlug": "whitley",
     "mama": "Whitley",
@@ -64,15 +64,15 @@
     "expectedColors": "Red abstract possibilities",
     "expectedCoatTraits": "Straight to wavy low-shedding coat possibilities",
     "priceRange": "$3,200",
-    "availabilitySummary": "Whitley and Waylon have a current litter of Multigen Mini Goldendoodles.",
-    "availabilityNote": "Available puppies from this litter are posted publicly and ready to reserve.",
+    "availabilitySummary": "Whitley and Waylon had a 2026 litter of Multigen Mini Goldendoodles, and all puppies have found their homes.",
+    "availabilityNote": "This litter has moved to the previous litters archive.",
     "aboutTitle": "A sweet multigen mini Goldendoodle litter with warm family temperaments.",
     "aboutThisLitter": [
-      "Whitley and Waylon have produced a beautiful litter of Multigen Mini Goldendoodles with warm red abstract possibilities, soft coats, and the steady companion temperament families love.",
+      "Whitley and Waylon produced a beautiful 2026 litter of Multigen Mini Goldendoodles with warm red abstract possibilities, soft coats, and the steady companion temperament families love.",
       "Whitley is a sweet F1 Goldendoodle mama weighing around 34 pounds with a gentle, family-ready personality. Waylon Jennings weighs about 19 pounds and brings confidence, sweetness, and a beautiful doodle coat to this pairing.",
-      "These puppies are expected to mature around 25 to 30 pounds full grown, making them a wonderful mini size for families wanting a sturdy but still manageable companion.",
-      "This pairing is expected to produce puppies that are approximately 42% Golden Retriever and 58% Poodle, with straight to wavy lower-shedding coat possibilities.",
-      "Week 7 photos are live, and the puppies marked available are ready to reserve now."
+      "These puppies were expected to mature around 25 to 30 pounds full grown, making them a wonderful mini size for families wanting a sturdy but still manageable companion.",
+      "This pairing was expected to produce puppies that are approximately 42% Golden Retriever and 58% Poodle, with straight to wavy lower-shedding coat possibilities.",
+      "All puppies from this litter have found their homes, and this pairing is now archived as a previous litter."
     ],
     "geneticMakeup": [
       "~58% Poodle",
@@ -82,7 +82,7 @@
       "Multigen Mini Goldendoodles",
       "Expected 25-30 lbs full grown",
       "Straight to wavy coats",
-      "Week 7 photos live"
+      "All puppies found homes"
     ],
     "puppySlugs": [
       "hook",
@@ -92,15 +92,16 @@
       "bobber",
       "skipper"
     ],
-    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Whitley 1 + Waylon",
-    "weeklyUpdateStatus": "Week 8 photos are live for available puppies.",
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Previous Litters / Whitley 1 + Waylon",
+    "weeklyUpdateStatus": "Archived previous litter. All puppies have found their homes.",
     "weeklyUpdateGallery": [
       "/images/puppies/whitley-waylon-2026/minnow-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg",
       "/images/puppies/whitley-waylon-2026/tackle-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg",
       "/images/puppies/whitley-waylon-2026/skipper-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg"
     ],
     "theme": "Gone Fishin",
-    "quickNote": "Week 8 photos are live for available puppies."
+    "quickNote": "Archived previous litter. All puppies have found their homes.",
+    "previousLitterHref": "/whitley-waylon-april-2026"
   },
   {
     "slug": "faye-sundance-may-2026",

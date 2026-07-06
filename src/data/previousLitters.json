@@ -89,6 +89,142 @@
     "photoFolderHint": "Website Hub / Weekly Media Drops / Previous Litters / Ginny 1 + Butch Cassidy"
   },
   {
+    "href": "/whitley-waylon-april-2026",
+    "visibility": "public",
+    "name": "Whitley + Waylon 2026",
+    "group": "Goldendoodles",
+    "breed": "Multigen Mini Goldendoodles",
+    "image": "/images/puppies/whitley-waylon-2026/minnow-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg",
+    "facts": [
+      [
+        "Born",
+        "May 3, 2026"
+      ],
+      [
+        "Go Home",
+        "June 24-26, 2026"
+      ],
+      [
+        "Coloring",
+        "Red abstract possibilities"
+      ],
+      [
+        "Size",
+        "25-30 lbs"
+      ],
+      [
+        "Coat",
+        "Straight to wavy low-shedding coat possibilities"
+      ]
+    ],
+    "parents": "Whitley + Waylon Jennings",
+    "parentPhotos": [
+      {
+        "name": "Whitley",
+        "image": "/images/dams/whitley.webp",
+        "href": "/parents/whitley"
+      },
+      {
+        "name": "Waylon Jennings",
+        "image": "/images/studs/waylon-jennings-red-ranch-dogs.webp",
+        "href": "/parents/waylon-jennings"
+      }
+    ],
+    "theme": "Whitley's Gone Fishin' Litter",
+    "puppies": [
+      "Hook",
+      "Minnow",
+      "Tackle",
+      "Bass",
+      "Bobber",
+      "Skipper"
+    ],
+    "puppyPhotos": [
+      {
+        "name": "Hook",
+        "image": "/images/puppies/whitley-waylon-2026/hook-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Minnow",
+        "image": "/images/puppies/whitley-waylon-2026/minnow-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Tackle",
+        "image": "/images/puppies/whitley-waylon-2026/tackle-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Bass",
+        "image": "/images/puppies/whitley-waylon-2026/bass-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Bobber",
+        "image": "/images/puppies/whitley-waylon-2026/bobber-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Skipper",
+        "image": "/images/puppies/whitley-waylon-2026/skipper-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg"
+      }
+    ],
+    "weeklyPuppyPhotos": [
+      {
+        "week": "Week 8",
+        "photos": [
+          {
+            "name": "Minnow",
+            "image": "/images/puppies/whitley-waylon-2026/minnow-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Tackle",
+            "image": "/images/puppies/whitley-waylon-2026/tackle-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Skipper",
+            "image": "/images/puppies/whitley-waylon-2026/skipper-multigen-mini-goldendoodle-puppy-whitley-waylon-week-8-red-ranch-dogs.jpg"
+          }
+        ]
+      },
+      {
+        "week": "Week 7",
+        "photos": [
+          {
+            "name": "Hook",
+            "image": "/images/puppies/whitley-waylon-2026/hook-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Minnow",
+            "image": "/images/puppies/whitley-waylon-2026/minnow-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Tackle",
+            "image": "/images/puppies/whitley-waylon-2026/tackle-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Bass",
+            "image": "/images/puppies/whitley-waylon-2026/bass-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Bobber",
+            "image": "/images/puppies/whitley-waylon-2026/bobber-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Skipper",
+            "image": "/images/puppies/whitley-waylon-2026/skipper-multigen-mini-goldendoodle-puppy-whitley-waylon-week-7-red-ranch-dogs.jpg"
+          }
+        ]
+      }
+    ],
+    "milestones": [
+      "Week 8 Photos",
+      "Week 7 Photos",
+      "Week 6 Photos",
+      "Week 5 Photos",
+      "Week 4 Photos",
+      "Week 3 Photos",
+      "Week 2 Photos"
+    ],
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Previous Litters / Whitley 1 + Waylon"
+  },
+  {
     "href": "/penny-wyatt-spring-2026",
     "visibility": "public",
     "name": "Penny + Wyatt 2026",
