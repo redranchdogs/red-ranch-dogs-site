@@ -4,6 +4,14 @@ import path from "node:path";
 const root = process.cwd();
 const outputDir = path.join(root, "outputs", "content-sheet-exports");
 const normalizedStatus = (value = "") => String(value).trim().toLowerCase();
+const litterData = JSON.parse(fs.readFileSync(path.join(root, "src/data/litters.json"), "utf8"));
+const featuredAvailableLitterSlugs = new Set(
+  litterData
+    .filter((litter) => litter.featuredAvailable === true)
+    .map((litter) => litter.slug)
+);
+const shouldDisplayOnHomepage = (puppy) =>
+  normalizedStatus(puppy.status) === "available" && featuredAvailableLitterSlugs.has(puppy.litterSlug);
 
 const SHEETS = {
   puppies: {
@@ -52,7 +60,7 @@ const SHEETS = {
       price: puppy.price,
       availability_status: puppy.status,
       display_on_available_puppies: normalizedStatus(puppy.status) === "available" ? "Yes" : "No",
-      display_on_homepage: "No",
+      display_on_homepage: shouldDisplayOnHomepage(puppy) ? "Yes" : "No",
       matched_family_display: puppy.matchedFamilyDisplay || "",
       main_photo_file: fileName(puppy.mainPhoto),
       gallery_folder: photoFolder(puppy.weeklyPhotos),
