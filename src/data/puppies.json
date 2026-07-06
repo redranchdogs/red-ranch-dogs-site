@@ -2529,7 +2529,7 @@
     "price": "$2,800",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Available",
+    "status": "Reserved",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2594,12 +2594,13 @@
       }
     ],
     "description": "Pilot is a male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Pilot is available to reserve now.",
+    "availabilityNote": "Pilot has found his home and is reserved.",
     "personalityNote": "Week 3 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/pilot-multigen-petite-goldendoodle-puppy-faye-sundance-week-5-red-ranch-dogs.jpg",
     "youtube_short_url": "https://youtube.com/shorts/6aOLCvu-R1I",
     "featured_video_label": "Watch Litter Videos",
-    "youtube_video_url": "https://www.youtube.com/playlist?list=PLb6oo023ZrSA"
+    "youtube_video_url": "https://www.youtube.com/playlist?list=PLb6oo023ZrSA",
+    "matchedFamilyDisplay": "Corey B."
   },
   {
     "slug": "victory",
@@ -3033,7 +3034,7 @@
     "price": "$3,200",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Available",
+    "status": "Reserved",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -3095,11 +3096,12 @@
       }
     ],
     "description": "Jubilee is a female Multigen Mini Goldendoodle puppy from Georgia + Waylon.",
-    "availabilityNote": "Jubilee is available to reserve now.",
+    "availabilityNote": "Jubilee has found her home and is reserved.",
     "personalityNote": "Week 3 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/georgia-waylon-2026/jubilee-multigen-mini-goldendoodle-puppy-georgia-waylon-week-5-red-ranch-dogs.jpg",
     "youtube_short_url": "https://youtube.com/shorts/pU59dU-WW9g",
     "featured_video_label": "Watch Litter Videos",
-    "youtube_video_url": "https://www.youtube.com/playlist?list=PLMgM3uAjSgg4"
+    "youtube_video_url": "https://www.youtube.com/playlist?list=PLMgM3uAjSgg4",
+    "matchedFamilyDisplay": "Kristine B."
   }
 ]
