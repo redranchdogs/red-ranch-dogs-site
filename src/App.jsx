@@ -1863,10 +1863,10 @@ function HomeReadySoonStrip() {
       <ContentContainer>
         <div className="home-ready-strip-header">
           <p className="premium-kicker">Available Now</p>
-          <h2>Ready to go home now</h2>
-          <p>These puppies are available to join their families now.</p>
+          <h2>Ready to go home mid July</h2>
+          <p>These puppies are available and ready to go home mid July.</p>
         </div>
-        <div className="home-ready-puppy-row" aria-label="Puppies ready to go home now">
+        <div className="home-ready-puppy-row" aria-label="Puppies ready to go home mid July">
           {readyPuppies.map((puppy) => {
             const photo = puppy.mainPhoto || puppy.image;
             const gender = puppy.gender || puppy.sex || "Gender to be announced";
