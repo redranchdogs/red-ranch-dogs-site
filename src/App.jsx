@@ -6166,14 +6166,6 @@ function GuardianProgramPage() {
           <p className="eyebrow">The Straightforward Version</p>
           <h2>Your family dog. A future Red Ranch mama.</h2>
           <p>She lives in your home as a loved indoor pet, and Red Ranch Dogs retains breeding rights. She stays with you during pregnancy, then returns to Red Ranch before delivery to whelp her puppies.</p>
-          <div className="guardian-primer-list">
-            {guardianProgram.expectations.slice(0, 4).map(([title, copy]) => (
-              <div key={title}>
-                <strong>{title}</strong>
-                <span>{copy}</span>
-              </div>
-            ))}
-          </div>
         </article>
         <article className="group-panel guardian-process-card">
           <p className="eyebrow">How It Works</p>
@@ -6183,17 +6175,17 @@ function GuardianProgramPage() {
       </section>
       <section className="content-section guardian-benefits-section">
         <SectionHeader
-          eyebrow="What You Receive"
-          title="A loved family dog with a meaningful future role."
-          copy="Guardian families get a sweet Red Ranch girl at no puppy purchase cost, while Red Ranch stays responsible for her breeding program and breeding-related care."
+          eyebrow="The Practical Side"
+          title="The financial and ownership pieces."
+          copy="The agreement keeps the cost, breeding-related care, and eventual ownership transfer clear from the start."
         />
       </section>
       <CompactTextCardGrid items={guardianProgram.benefits} className="guardian-benefit-grid" />
       <section className="content-section guardian-expectations-section">
         <SectionHeader
-          eyebrow="Clear Expectations"
-          title="What the guardian commitment includes."
-          copy="This is a real partnership: you provide her loving everyday home, and we work together around the planned seasons when she returns to Red Ranch for breeding and puppies."
+          eyebrow="Your Part"
+          title="The everyday guardian commitment."
+          copy="A good fit comes down to a stable local home, reliable routine care, a secure yard, and clear communication."
         />
       </section>
       <CompactTextCardGrid items={guardianProgram.expectations} className="guardian-expectation-grid" />

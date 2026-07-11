@@ -9951,30 +9951,6 @@ summary {
   line-height: 1.55;
 }
 
-.guardian-primer-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 4px;
-}
-
-.guardian-primer-list div {
-  display: grid;
-  gap: 3px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-
-.guardian-primer-list strong {
-  color: var(--clay-dark);
-  font-size: 0.82rem;
-  text-transform: uppercase;
-}
-
-.guardian-primer-list span {
-  color: var(--muted);
-  line-height: 1.45;
-}
-
 .guardian-process-steps {
   gap: 10px;
 }
@@ -10155,10 +10131,6 @@ summary {
   .guardian-benefits-section .section-header h2,
   .guardian-expectations-section .section-header h2 {
     font-size: clamp(1.75rem, 9vw, 2.35rem);
-  }
-
-  .guardian-primer-list {
-    gap: 8px;
   }
 
   .guardian-benefits-section,
