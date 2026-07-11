@@ -2474,7 +2474,7 @@
     "price": "$2,800",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Available",
+    "status": "Reserved",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2533,8 +2533,9 @@
         ]
       }
     ],
-    "description": "Trooper is a male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Trooper is available to reserve now.",
+    "matchedFamilyDisplay": "Whitney S.",
+    "description": "Trooper is a reserved male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
+    "availabilityNote": "Trooper has found his home and is reserved.",
     "personalityNote": "Week 6 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/trooper-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg",
     "youtube_short_url": "https://youtube.com/shorts/V3W_63k84Qo",
