@@ -926,16 +926,14 @@ export const familyStory = [
 
 export const guardianProgram = {
   fitHighlights: [
-    ["Future breeding mama", "An approved guardian girl grows up as your family dog and a future Red Ranch mama."],
+    ["Your family dog", "She lives with you as a loved indoor pet and future Red Ranch mama."],
     ["Breeding rights", "Red Ranch Dogs retains breeding rights during her breeding career."],
     ["Whelping happens at Red Ranch", "She stays with you during pregnancy, then returns to Red Ranch before delivery to whelp her puppies."],
-    ["Breeding-season teamwork", "We stay in touch and coordinate the drop-off and return timing together."]
+    ["Ownership after retirement", "Full ownership transfers to your family after her breeding career."]
   ],
   benefits: [
-    ["A sweet Red Ranch girl", "Welcome an approved, health-tested Red Ranch girl into your home as a loved family pet."],
     ["No puppy purchase cost", "There is no puppy purchase cost for an approved guardian placement; your family provides her everyday home, care, and love."],
-    ["Future mama role", "She is reserved for the Red Ranch breeding program as a future mama while living her everyday life with your family."],
-    ["Breeding rights stay with Red Ranch", "Red Ranch Dogs retains breeding rights and covers breeding-related care and appointments during her program career."],
+    ["Breeding-related care", "Red Ranch Dogs covers breeding-related care and appointments during her program career."],
     ["Full ownership after retirement", "When her breeding career is complete, ownership transfers fully to the guardian family."]
   ],
   process: [
@@ -945,10 +943,6 @@ export const guardianProgram = {
     ["Whelping at Red Ranch", "She stays with you during pregnancy, then returns to Red Ranch before delivery to whelp her puppies. She returns home to you after that season is complete."]
   ],
   expectations: [
-    ["Your home is her home", "She lives with you as an indoor family pet, not at Red Ranch Dogs, except during breeding-related stays."],
-    ["Red Ranch retains breeding rights", "The guardian agreement gives Red Ranch Dogs the breeding rights and outlines each family's responsibilities during her program career."],
-    ["Whelping happens at Red Ranch", "She stays with you during pregnancy, then returns to Red Ranch Dogs before delivery to whelp her puppies."],
-    ["Breeding-season availability", "You let us know promptly when she is in heat and stay available for planned appointments, drop-off, and pickup timing."],
     ["Local availability", "Female guardians should be close enough for breeding-related visits without it becoming a burden. Stud guardians need to be in Salado or very close."],
     ["Secure fenced yard", "A physical fenced yard is required so the dog can be safely managed at home."],
     ["Routine care", "Guardian families handle routine care, approved food, grooming, exercise, training, and normal veterinary needs."],
