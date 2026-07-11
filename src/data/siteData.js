@@ -928,7 +928,7 @@ export const guardianProgram = {
   fitHighlights: [
     ["Future breeding mama", "An approved guardian girl grows up as your family dog and a future Red Ranch mama."],
     ["Breeding rights", "Red Ranch Dogs retains breeding rights during her breeding career."],
-    ["Puppies stay with Red Ranch", "No puppies are born, whelped, raised, or placed from your home."],
+    ["Whelping happens at Red Ranch", "She stays with you during pregnancy, then returns to Red Ranch before delivery to whelp her puppies."],
     ["Breeding-season teamwork", "We stay in touch and coordinate the drop-off and return timing together."]
   ],
   benefits: [
@@ -942,12 +942,12 @@ export const guardianProgram = {
     ["Apply and talk it through", "We discuss your home, location, schedule, and the full guardian agreement before deciding whether the fit is right."],
     ["Welcome her as your family dog", "Once matched, she lives in your home as a loved indoor pet and future Red Ranch breeding mama."],
     ["Coordinate each breeding season", "When she comes into heat, you notify us right away. Together we coordinate testing, breeding appointments, and her scheduled drop-off and return."],
-    ["Red Ranch handles whelping and puppies", "When it is time for a litter, she comes to Red Ranch Dogs for whelping, puppy care, and placement. She returns home to you after that season is complete."]
+    ["Whelping at Red Ranch", "She stays with you during pregnancy, then returns to Red Ranch before delivery to whelp her puppies. She returns home to you after that season is complete."]
   ],
   expectations: [
     ["Your home is her home", "She lives with you as an indoor family pet, not at Red Ranch Dogs, except during breeding-related stays."],
     ["Red Ranch retains breeding rights", "The guardian agreement gives Red Ranch Dogs the breeding rights and outlines each family's responsibilities during her program career."],
-    ["No whelping or puppy care at your home", "Your home is never a whelping or puppy-raising site. Mama returns to Red Ranch Dogs for her litter, then returns home to you."],
+    ["Whelping happens at Red Ranch", "She stays with you during pregnancy, then returns to Red Ranch Dogs before delivery to whelp her puppies."],
     ["Breeding-season availability", "You let us know promptly when she is in heat and stay available for planned appointments, drop-off, and pickup timing."],
     ["Local availability", "Female guardians should be close enough for breeding-related visits without it becoming a burden. Stud guardians need to be in Salado or very close."],
     ["Secure fenced yard", "A physical fenced yard is required so the dog can be safely managed at home."],
@@ -962,7 +962,7 @@ export const guardianProgram = {
     ["Is the guardian dog our family dog?", "Yes. She lives with you as your family pet. The guardian agreement clearly gives Red Ranch Dogs breeding rights and explains the communication, drop-off, and return expectations during breeding-related seasons."],
     ["What happens when a female goes into heat?", "Guardians notify us right away so we can coordinate timing, testing, and breeding-related appointments."],
     ["How often would a female guardian have puppies?", "It depends on the dog, her health, timing, and what is best for her. We do not place a litter ahead of the mama's wellbeing, and we talk through timing with the guardian family as each season approaches."],
-    ["Where does a mama go for whelping?", "When it is time for puppies, mama comes back to Red Ranch Dogs. Whelping, puppy care, and puppy placement all happen through Red Ranch Dogs, never in a guardian family's home. She returns home after that season is complete."],
+    ["Where does a mama go for whelping?", "Mama stays with her guardian family during pregnancy, then returns to Red Ranch Dogs before delivery to whelp her puppies. She returns home after that season is complete."],
     ["How long is a dog in the guardian program?", "The length depends on the dog and her breeding career. Once the breeding career is complete, ownership transfers fully to the guardian family."],
     ["Who covers veterinary costs?", "Guardian families handle routine and non-breeding veterinary care, just like they would for their own family dog. Red Ranch Dogs covers breeding-related expenses and appointments, and guardian families are compensated for eligible litters according to the guardian agreement."],
     ["What routine care is expected?", "Guardians handle everyday care such as approved food, grooming, exercise, basic training, normal vet care, and keeping the dog safe as an indoor family pet."],
