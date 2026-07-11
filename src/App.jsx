@@ -6165,7 +6165,7 @@ function GuardianProgramPage() {
         <article className="group-panel guardian-primer-card">
           <p className="eyebrow">The Straightforward Version</p>
           <h2>Your family dog. A future Red Ranch mama.</h2>
-          <p>She lives in your home as a loved indoor pet. Red Ranch Dogs retains breeding rights, and breeding, whelping, puppy care, and puppy placement are handled through Red Ranch, not from your home.</p>
+          <p>She lives in your home as a loved indoor pet, and Red Ranch Dogs retains breeding rights. She stays with you during pregnancy, then returns to Red Ranch before delivery to whelp her puppies.</p>
           <div className="guardian-primer-list">
             {guardianProgram.expectations.slice(0, 4).map(([title, copy]) => (
               <div key={title}>
