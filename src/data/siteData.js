@@ -926,40 +926,43 @@ export const familyStory = [
 
 export const guardianProgram = {
   fitHighlights: [
-    ["Female guardians", "Usually within 30 to 60 minutes of Salado."],
-    ["Stud guardians", "Must live in Salado or very close by."],
-    ["Home setup", "Secure fenced yard and indoor family life required."],
-    ["Next step", "A 30 to 45 minute phone call helps both sides confirm fit."]
+    ["Future breeding mama", "An approved guardian girl grows up as your family dog and a future Red Ranch mama."],
+    ["Breeding rights", "Red Ranch Dogs retains breeding rights during her breeding career."],
+    ["Puppies stay with Red Ranch", "No puppies are born, whelped, raised, or placed from your home."],
+    ["Breeding-season teamwork", "We stay in touch and coordinate the drop-off and return timing together."]
   ],
   benefits: [
-    ["Exceptional Red Ranch dog", "Welcome a health-tested Red Ranch dog into your home as a loved family pet."],
-    ["No upfront puppy purchase", "Guardian families provide everyday care while Red Ranch Dogs retains breeding rights during the breeding career."],
-    ["Purposeful partnership", "Help us raise exceptional future mamas and studs in real family homes."],
-    ["Ongoing support", "Stay connected with us for questions, timing, care guidance, and breeding-related logistics."],
-    ["Ownership after retirement", "When the breeding career is complete, ownership transfers fully to the guardian family."]
+    ["A sweet Red Ranch girl", "Welcome an approved, health-tested Red Ranch girl into your home as a loved family pet."],
+    ["No puppy purchase cost", "There is no puppy purchase cost for an approved guardian placement; your family provides her everyday home, care, and love."],
+    ["Future mama role", "She is reserved for the Red Ranch breeding program as a future mama while living her everyday life with your family."],
+    ["Breeding rights stay with Red Ranch", "Red Ranch Dogs retains breeding rights and covers breeding-related care and appointments during her program career."],
+    ["Full ownership after retirement", "When her breeding career is complete, ownership transfers fully to the guardian family."]
   ],
   process: [
-    ["Apply", "Tell us where you live, your home setup, and whether you are interested in a female or stud guardian opportunity."],
-    ["Talk it through", "We schedule a real conversation to explain the commitment, answer questions, and make sure expectations are clear."],
-    ["Match only if it fits", "If the timing, dog, family, and location are right, we move forward with a guardian placement."]
+    ["Apply and talk it through", "We discuss your home, location, schedule, and the full guardian agreement before deciding whether the fit is right."],
+    ["Welcome her as your family dog", "Once matched, she lives in your home as a loved indoor pet and future Red Ranch breeding mama."],
+    ["Coordinate each breeding season", "When she comes into heat, you notify us right away. Together we coordinate testing, breeding appointments, and her scheduled drop-off and return."],
+    ["Red Ranch handles whelping and puppies", "When it is time for a litter, she comes to Red Ranch Dogs for whelping, puppy care, and placement. She returns home to you after that season is complete."]
   ],
   expectations: [
+    ["Your home is her home", "She lives with you as an indoor family pet, not at Red Ranch Dogs, except during breeding-related stays."],
+    ["Red Ranch retains breeding rights", "The guardian agreement gives Red Ranch Dogs the breeding rights and outlines each family's responsibilities during her program career."],
+    ["No whelping or puppy care at your home", "Your home is never a whelping or puppy-raising site. Mama returns to Red Ranch Dogs for her litter, then returns home to you."],
+    ["Breeding-season availability", "You let us know promptly when she is in heat and stay available for planned appointments, drop-off, and pickup timing."],
     ["Local availability", "Female guardians should be close enough for breeding-related visits without it becoming a burden. Stud guardians need to be in Salado or very close."],
     ["Secure fenced yard", "A physical fenced yard is required so the dog can be safely managed at home."],
-    ["Indoor family life", "Guardian dogs live as indoor family pets, never outside-only dogs."],
     ["Routine care", "Guardian families handle routine care, approved food, grooming, exercise, training, and normal veterinary needs."],
-    ["Clear communication", "Quick communication matters, especially around heat cycles, appointments, travel, moves, or health concerns."],
-    ["Breeding season support", "Guardians help with transportation and availability for breeding-related appointments, whelping handoff, and return timing."]
+    ["Clear communication", "Quick communication matters around heat cycles, appointments, travel, moves, and health concerns."]
   ],
   faqs: [
     ["How close do guardian families need to live?", "Female guardians are usually best within about 30 to 60 minutes of Salado. Stud guardians need to live in Salado or very close by because timing can be more immediate."],
     ["What kind of family makes a good guardian home?", "The best fit is a stable local family that wants the dog to be a loved indoor pet, communicates quickly, keeps a secure home setup, and understands that timing matters during breeding seasons."],
     ["Can guardian families have children or other pets?", "Yes. Children are welcome, and other pets can be fine as long as they are safely managed and spayed or neutered."],
     ["Do guardian families pay to purchase the dog?", "No upfront puppy purchase is required for an approved guardian placement. Red Ranch Dogs retains breeding rights during the breeding career, and the guardian family provides the everyday home, care, and love."],
-    ["Is the guardian dog our family dog?", "Yes. The dog lives with you as your family pet. The guardian agreement simply outlines Red Ranch Dogs' breeding rights, communication expectations, and what happens during breeding-related seasons."],
+    ["Is the guardian dog our family dog?", "Yes. She lives with you as your family pet. The guardian agreement clearly gives Red Ranch Dogs breeding rights and explains the communication, drop-off, and return expectations during breeding-related seasons."],
     ["What happens when a female goes into heat?", "Guardians notify us right away so we can coordinate timing, testing, and breeding-related appointments."],
     ["How often would a female guardian have puppies?", "It depends on the dog, her health, timing, and what is best for her. We do not place a litter ahead of the mama's wellbeing, and we talk through timing with the guardian family as each season approaches."],
-    ["Where does a mama go for whelping?", "When it is time for puppies, the mama comes back to Red Ranch Dogs for whelping and puppy care, then returns home after that season is complete."],
+    ["Where does a mama go for whelping?", "When it is time for puppies, mama comes back to Red Ranch Dogs. Whelping, puppy care, and puppy placement all happen through Red Ranch Dogs, never in a guardian family's home. She returns home after that season is complete."],
     ["How long is a dog in the guardian program?", "The length depends on the dog and her breeding career. Once the breeding career is complete, ownership transfers fully to the guardian family."],
     ["Who covers veterinary costs?", "Guardian families handle routine and non-breeding veterinary care, just like they would for their own family dog. Red Ranch Dogs covers breeding-related expenses and appointments, and guardian families are compensated for eligible litters according to the guardian agreement."],
     ["What routine care is expected?", "Guardians handle everyday care such as approved food, grooming, exercise, basic training, normal vet care, and keeping the dog safe as an indoor family pet."],

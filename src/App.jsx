@@ -6139,7 +6139,7 @@ function GuardianProgramPage() {
       <PageHero
         eyebrow="Guardian Program"
         title="Guardian Family Program"
-        copy="A local partnership for families near Salado who want to love and care for an exceptional Red Ranch dog while supporting our responsible breeding program."
+        copy="An approved guardian family welcomes a sweet Red Ranch girl at no puppy purchase cost. She lives with you as your family dog and future breeding mama while Red Ranch Dogs retains breeding rights during her program career."
         image={guardianApplicationImage}
         imageAlt="Red Ranch Dogs guardian family with a puppy"
         actions={(
@@ -6163,9 +6163,9 @@ function GuardianProgramPage() {
       </section>
       <section className="content-section guardian-program-primer">
         <article className="group-panel guardian-primer-card">
-          <p className="eyebrow">Best Fit</p>
-          <h2>Local families who want the dog to be family first.</h2>
-          <p>Guardian dogs live as indoor family pets while Red Ranch Dogs stays involved for breeding-related timing, support, and care guidance.</p>
+          <p className="eyebrow">The Straightforward Version</p>
+          <h2>Your family dog. A future Red Ranch mama.</h2>
+          <p>She lives in your home as a loved indoor pet. Red Ranch Dogs retains breeding rights, and breeding, whelping, puppy care, and puppy placement are handled through Red Ranch, not from your home.</p>
           <div className="guardian-primer-list">
             {guardianProgram.expectations.slice(0, 4).map(([title, copy]) => (
               <div key={title}>
@@ -6176,24 +6176,24 @@ function GuardianProgramPage() {
           </div>
         </article>
         <article className="group-panel guardian-process-card">
-          <p className="eyebrow">How It Starts</p>
-          <h2>The fit conversation</h2>
+          <p className="eyebrow">How It Works</p>
+          <h2>The guardian partnership</h2>
           <ProcessStepCards steps={guardianProgram.process} className="guardian-process-steps" />
         </article>
       </section>
       <section className="content-section guardian-benefits-section">
         <SectionHeader
-          eyebrow="Why Families Like It"
-          title="A Red Ranch dog with ongoing support."
-          copy="The guardian program is personal, practical, and only moves forward when the timing, dog, family, and location all make sense."
+          eyebrow="What You Receive"
+          title="A loved family dog with a meaningful future role."
+          copy="Guardian families get a sweet Red Ranch girl at no puppy purchase cost, while Red Ranch stays responsible for her breeding program and breeding-related care."
         />
       </section>
       <CompactTextCardGrid items={guardianProgram.benefits} className="guardian-benefit-grid" />
       <section className="content-section guardian-expectations-section">
         <SectionHeader
-          eyebrow="Guardian Fit"
-          title="What's expected of guardian families?"
-          copy="A practical snapshot of the home setup, distance, communication, and daily care we look for before a phone conversation."
+          eyebrow="Clear Expectations"
+          title="What the guardian commitment includes."
+          copy="This is a real partnership: you provide her loving everyday home, and we work together around the planned seasons when she returns to Red Ranch for breeding and puppies."
         />
       </section>
       <CompactTextCardGrid items={guardianProgram.expectations} className="guardian-expectation-grid" />
