@@ -2282,7 +2282,7 @@
     "price": "$2,800",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Available",
+    "status": "Reserved",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2347,8 +2347,9 @@
         ]
       }
     ],
-    "description": "Major is a male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Major is available to reserve now.",
+    "description": "Major is a reserved male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
+    "availabilityNote": "Major has found his home and is reserved.",
+    "matchedFamilyDisplay": "Brittney G.",
     "personalityNote": "Week 6 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/major-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg",
     "youtube_short_url": "https://youtube.com/shorts/T-zEKxzzNN0",
