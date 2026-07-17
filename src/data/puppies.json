@@ -2188,7 +2188,8 @@
     "price": "$2,800",
     "visibility": "public",
     "breedSlug": "goldendoodle-puppies",
-    "status": "Available",
+    "status": "Reserved",
+    "matchedFamilyDisplay": "Andrea W.",
     "birthDate": "May 23, 2026",
     "goHomeDate": "July 14-16, 2026",
     "color": "To be updated after photo day",
@@ -2257,8 +2258,8 @@
         ]
       }
     ],
-    "description": "Marine is a male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
-    "availabilityNote": "Marine is available to reserve now.",
+    "description": "Marine is a reserved male Multigen Petite Goldendoodle puppy from Faye + Sundance.",
+    "availabilityNote": "Marine has found his home and is reserved.",
     "personalityNote": "Week 6 photos are live. Personality notes will continue to be updated as this puppy grows.",
     "mainPhoto": "/images/puppies/faye-sundance-2026/marine-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg",
     "youtube_short_url": "https://youtube.com/shorts/16Kxl2WGQfU",
