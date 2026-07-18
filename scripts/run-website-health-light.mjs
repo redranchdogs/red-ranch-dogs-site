@@ -10,6 +10,18 @@ const baseUrl = (process.env.WEBSITE_HEALTH_LIGHT_BASE_URL || "https://www.redra
 const liveRoutes = ["/", "/puppies/available", "/puppies/current-litters", "/apply"];
 const checks = [
   {
+    label: "Source-of-truth guardrails",
+    command: "npm",
+    args: ["run", "check:source"],
+    urgent: true
+  },
+  {
+    label: "Route and redirect verification",
+    command: "npm",
+    args: ["run", "verify:routes"],
+    urgent: true
+  },
+  {
     label: "Website QA agent rollup",
     command: "npm",
     args: ["run", "agent:website-qa"],

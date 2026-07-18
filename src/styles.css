@@ -2100,6 +2100,10 @@ main {
   scroll-margin-top: 96px;
 }
 
+#application-form {
+  scroll-margin-top: 96px;
+}
+
 .page-hero {
   display: grid;
   align-items: center;
