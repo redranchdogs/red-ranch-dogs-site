@@ -499,8 +499,8 @@ const clientRedirects = Object.fromEntries([
   ["/reviews-1", "/about/reviews"],
   ["/contact-1", "/contact"],
   ["/birdie-waylon-jennings-1", "/birdie-waylon-spring-2026"],
-  ["/penny-wyatt", "/litters/penny-wyatt-spring-2026"],
-  ["/ginnybutch", "/litters/ginny-butch-spring-2026"],
+  ["/penny-wyatt", "/penny-wyatt-spring-2026"],
+  ["/ginnybutch", "/ginny-butch-spring-2026"],
   ["/winnie-wyatt", "/litters/winnie-wyatt-spring-2026"],
   ["/winnie-redford", "/litters/winnie-wyatt-spring-2026"],
   ["/kylie-ranger", "/litters/kylie-ranger-late-summer-2026"],
@@ -3748,12 +3748,14 @@ function breedProgramSizeGuideFor(breed) {
 function breedProgramSizeGuideImageFor(breed) {
   if (breed.slug === "bernedoodle-puppies") {
     return {
+      avif: "/images/breed-guides/red-ranch-dogs-bernedoodle-size-guide-v2.avif",
       src: "/images/breed-guides/red-ranch-dogs-bernedoodle-size-guide-v2.webp",
       alt: "Size comparison chart showing a 6 ft adult beside Micro Bernedoodle and Mini Bernedoodle size ranges for Red Ranch Dogs."
     };
   }
 
   return {
+    avif: "/images/breed-guides/red-ranch-dogs-doodle-size-guide-standard.avif",
     src: "/images/breed-guides/red-ranch-dogs-doodle-size-guide-standard.webp",
     alt: "Size comparison chart showing a 6 ft adult beside Micro, Petite Mini, and Mini doodle size ranges for Red Ranch Dogs."
   };
@@ -3855,7 +3857,10 @@ function BreedPageTemplate({ breed }) {
         <article className={`breed-size-visual-card size-count-${sizeGuide.length}${sizeGuideImage ? " has-size-guide-image" : ""}`}>
           {sizeGuideImage ? (
             <figure className="breed-size-guide-asset">
-              <img src={sizeGuideImage.src} alt={sizeGuideImage.alt} width="1536" height="1024" loading="lazy" />
+              <picture>
+                <source srcSet={sizeGuideImage.avif} type="image/avif" />
+                <img src={sizeGuideImage.src} alt={sizeGuideImage.alt} width="1536" height="1024" loading="lazy" />
+              </picture>
             </figure>
           ) : (
             <>
@@ -5065,6 +5070,10 @@ function LitterBreedAccordionGroup({ countLabel, detailLabel, detailValue, group
 function AvailablePuppyBreedAccordionGroup({ group, isOpen, onToggle }) {
   const panelId = `${group.slug}-available-panel`;
   const headingId = `${group.slug}-available-heading`;
+  const puppyNames = group.puppies.map((puppy) => puppy.name);
+  const puppySummary = puppyNames.length <= 2
+    ? `${puppyNames.join(" and ")} ${puppyNames.length === 1 ? "is" : "are"} available now`
+    : `${puppyNames.slice(0, 2).join(", ")} and ${puppyNames.length - 2} more are available now`;
 
   return (
     <section className={`upcoming-litter-group available-puppy-breed-group${isOpen ? " is-open" : ""}`} aria-labelledby={headingId}>
@@ -5078,7 +5087,7 @@ function AvailablePuppyBreedAccordionGroup({ group, isOpen, onToggle }) {
         <span className="upcoming-breed-toggle-copy">
           <span className="eyebrow">{group.puppies.length} {group.puppies.length === 1 ? "puppy" : "puppies"} open</span>
           <strong id={headingId}>{group.pluralName}</strong>
-          <span>Available to reserve right now with profiles, photos, and next-step details</span>
+          <span className="available-puppy-summary">{puppySummary}. Open to see photos and details.</span>
         </span>
         <ChevronDown aria-hidden="true" className="upcoming-breed-toggle-icon" size={24} />
       </button>
@@ -5981,11 +5990,16 @@ function ApplicationPage() {
         <ApplicationReserveHero puppy={reservePuppy} />
       ) : (
         <>
-          <PageHero eyebrow="Application & Waitlist" title="Puppy Application" copy="Start here even if you are not sure which litter, breed, or timeline is the right fit yet." />
+          <PageHero
+            eyebrow="Application & Waitlist"
+            title="Puppy Application"
+            copy="Start here even if you are not sure which litter, breed, or timeline is the right fit yet."
+            actions={<a href="#application-form" className="button primary">Start Application <ChevronDown size={18} aria-hidden="true" /></a>}
+          />
           <ApplicationIntroPanel />
         </>
       )}
-      <section className="form-shell">
+      <section className="form-shell" id="application-form">
         <LeadForm formType="application" title="Application details" reservePuppy={reservePuppy} />
       </section>
     </Layout>

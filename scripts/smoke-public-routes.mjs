@@ -298,15 +298,16 @@ async function auditRoute(context, config, viewportName) {
     if (config.availableAccordionCheck && featuredAvailablePuppies.length) {
       const initiallyOpenPanels = await visibleCount(page, ".available-puppy-panel");
       const initiallyVisibleCards = await visibleCount(page, ".available-puppy-card");
-      const initiallyVisiblePuppies = featuredAvailablePuppies
-        .map((puppy) => puppy.name)
-        .filter((name) => includesText(pageText, name));
       const toggles = page.locator(".available-puppy-breed-group .upcoming-breed-toggle");
       const toggleCount = await toggles.count();
 
       if (initiallyOpenPanels !== 0) failures.push(`Available puppy accordions should start closed, found ${initiallyOpenPanels} open panels.`);
       if (initiallyVisibleCards !== 0) failures.push(`Available puppy cards should be hidden until a breed group opens, found ${initiallyVisibleCards} visible cards.`);
-      if (initiallyVisiblePuppies.length) failures.push(`Available puppy names should be hidden before opening a breed group: ${initiallyVisiblePuppies.join(", ")}`);
+      const summaryText = normalize(await page.locator(".available-puppy-summary").allTextContents().then((items) => items.join(" ")));
+      const missingSummaryNames = featuredAvailablePuppies
+        .map((puppy) => puppy.name)
+        .filter((name) => !includesText(summaryText, name));
+      if (missingSummaryNames.length) failures.push(`Closed available-puppy summaries are missing: ${missingSummaryNames.join(", ")}`);
       if (toggleCount < 1) {
         failures.push("Available puppy breed toggles were not found.");
       } else {

@@ -76,6 +76,8 @@ Recommended command set:
 npm run health:daily
 ```
 
+The Daily Light Check also runs source-of-truth and redirect verification so stale availability copy or a broken legacy destination cannot pass the daily report.
+
 The daily wrapper runs:
 
 ```bash
@@ -133,6 +135,18 @@ Use `npm run publish:check` when the weekly pass should also prove the productio
 ```bash
 npm run health:weekly
 ```
+
+GitHub Actions runs the repository-only weekly check with `npm run health:weekly:ci`. The local `health:weekly` command remains the full operational check because it includes the authenticated, read-only Website Hub sheet comparison.
+
+## Scheduled Checks
+
+`.github/workflows/website-health.yml` runs:
+
+- Daily Light Check every morning.
+- Weekly repository health check every Monday morning.
+- After-change checks on pushes to `main` or `codex/launch-candidate` and pull requests to `main`.
+
+GitHub artifacts retain the generated health reports. The workflow does not deploy, write sheets, or require production credentials.
 
 Weekly report format:
 
