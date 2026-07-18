@@ -4040,12 +4040,18 @@ function LitterPage({ litter }) {
         copy: "Apply now or ask about availability, timing, and whether this puppy is the right fit for your family.",
         primaryLabel: "Apply for a Puppy"
       }
-    : waitlistMatchingPuppies.length
+      : waitlistMatchingPuppies.length
       ? {
           title: "Want a future litter like this?",
           copy: "Puppies not marked Available are not open to reserve publicly. Apply and we will help you understand future timing for this breed.",
           primaryLabel: "Apply for a Future Litter"
         }
+      : isPlannedLitter(litter)
+        ? {
+            title: "Want updates on this planned litter?",
+            copy: "Join the waitlist and we will share timing, pregnancy confirmation, and availability updates as this pairing progresses.",
+            primaryLabel: "Join the Waitlist"
+          }
       : isCurrentLitter(litter) && puppies.length === 0
         ? {
             title: "Want updates on this litter?",
@@ -4183,15 +4189,19 @@ function LitterPage({ litter }) {
           </details>
         </section>
       )}
-      <section className="card-list litter-puppy-list">
-        <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
-        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
-      </section>
-      <section className="content-section litter-gallery-section">
-        <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
-        <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />
-        {gallery.length > 0 && <LitterImageGallery images={gallery} puppies={puppies} label={`${litter.name} weekly update`} />}
-      </section>
+      {!isPlannedLitter(litter) && (
+        <>
+          <section className="card-list litter-puppy-list">
+            <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
+            {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
+          </section>
+          <section className="content-section litter-gallery-section">
+            <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
+            <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />
+            {gallery.length > 0 && <LitterImageGallery images={gallery} puppies={puppies} label={`${litter.name} weekly update`} />}
+          </section>
+        </>
+      )}
       {litter.videoPlaylistUrl && (
         <section className="content-section litter-video-section">
           <SectionHeader eyebrow="Videos" title={`${litter.name} videos`} copy="Tap to play the video playlist for this litter." />
