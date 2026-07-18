@@ -1,5 +1,122 @@
 [
   {
+    "href": "/faye-sundance-may-2026",
+    "visibility": "public",
+    "name": "Faye + Sundance 2026",
+    "group": "Goldendoodles",
+    "breed": "Multigen Petite Goldendoodles",
+    "image": "/images/puppies/faye-sundance-2026/marine-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg",
+    "facts": [
+      [
+        "Born",
+        "May 23, 2026"
+      ],
+      [
+        "Go Home",
+        "July 14-16, 2026"
+      ],
+      [
+        "Coloring",
+        "Chocolate, chocolate merle, red, apricot, and abstract possibilities"
+      ],
+      [
+        "Size",
+        "25-35 lbs"
+      ],
+      [
+        "Coat",
+        "Silky straight to wavy, very low-shedding coat expectations"
+      ]
+    ],
+    "parents": "Faye + Sundance",
+    "parentPhotos": [
+      {
+        "name": "Faye",
+        "image": "/images/dams/faye-red-ranch-dogs.webp",
+        "href": "/parents/faye"
+      },
+      {
+        "name": "Sundance",
+        "image": "/images/studs/sundance-red-ranch-dogs.webp",
+        "href": "/parents/sundance"
+      }
+    ],
+    "puppies": [
+      "Marine",
+      "Major",
+      "Navy",
+      "Trooper",
+      "Pilot",
+      "Victory"
+    ],
+    "puppyPhotos": [
+      {
+        "name": "Marine",
+        "image": "/images/puppies/faye-sundance-2026/marine-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Major",
+        "image": "/images/puppies/faye-sundance-2026/major-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Navy",
+        "image": "/images/puppies/faye-sundance-2026/navy-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Trooper",
+        "image": "/images/puppies/faye-sundance-2026/trooper-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Pilot",
+        "image": "/images/puppies/faye-sundance-2026/pilot-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Victory",
+        "image": "/images/puppies/faye-sundance-2026/victory-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+      }
+    ],
+    "weeklyPuppyPhotos": [
+      {
+        "week": "Week 6",
+        "photos": [
+          {
+            "name": "Marine",
+            "image": "/images/puppies/faye-sundance-2026/marine-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Major",
+            "image": "/images/puppies/faye-sundance-2026/major-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Navy",
+            "image": "/images/puppies/faye-sundance-2026/navy-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Trooper",
+            "image": "/images/puppies/faye-sundance-2026/trooper-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Pilot",
+            "image": "/images/puppies/faye-sundance-2026/pilot-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Victory",
+            "image": "/images/puppies/faye-sundance-2026/victory-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg"
+          }
+        ]
+      }
+    ],
+    "milestones": [
+      "Week 6 Photos",
+      "Week 5 Photos",
+      "Week 4 Photos",
+      "Week 3 Photos",
+      "Week 2 Photos",
+      "Week 1 Photos"
+    ],
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Faye 4 + Sundance"
+  },
+  {
     "href": "/ginny-butch-spring-2026",
     "visibility": "public",
     "name": "Ginny + Butch Cassidy 2026",
