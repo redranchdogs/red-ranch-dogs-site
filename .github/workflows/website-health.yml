@@ -1,0 +1,86 @@
+name: Website Health
+
+on:
+  schedule:
+    - cron: "15 12 * * *"
+    - cron: "45 12 * * 1"
+  workflow_dispatch:
+    inputs:
+      check:
+        description: Health check depth
+        required: true
+        default: daily
+        type: choice
+        options:
+          - daily
+          - weekly
+  push:
+    branches:
+      - main
+      - codex/launch-candidate
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-health-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  daily:
+    if: github.event.schedule == '15 12 * * *' || (github.event_name == 'workflow_dispatch' && inputs.check == 'daily')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run health:daily
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-health-daily
+          path: docs/WEBSITE_HEALTH_LIGHT_REPORT.md
+
+  weekly:
+    if: github.event.schedule == '45 12 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.check == 'weekly')
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run health:weekly:ci
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-health-weekly
+          path: |
+            docs/WEBSITE_HEALTH_LIGHT_REPORT.md
+            docs/VISUAL_QA_REPORT.md
+            docs/CONTENT_FRESHNESS_REVIEW.md
+
+  after-change:
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run health:change:ci

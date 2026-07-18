@@ -212,6 +212,18 @@ litters.filter(isPublicRecord).forEach((litter) => {
   const statusText = normalize(litter.status);
   const statuses = statusesByLitter.get(litterSlug) || new Set();
 
+  if (litter.featuredAvailable === true && availableCount === 0) {
+    blockers.push(
+      `${litter.litterName || litterSlug} is featured as available, but no public puppy in puppies.json is Available.`
+    );
+  }
+
+  if (litter.featuredAvailable !== true && availableCount > 0) {
+    blockers.push(
+      `${litter.litterName || litterSlug} has ${availableCount} public Available ${availableCount === 1 ? "puppy" : "puppies"}, but featuredAvailable is not true.`
+    );
+  }
+
   if (availableCount === 0 && textIncludesAvailabilityClaim(availabilityText)) {
     blockers.push(
       `${litter.litterName || litterSlug} claims public availability, but no public puppy in puppies.json is Available.`
