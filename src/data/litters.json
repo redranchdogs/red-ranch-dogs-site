@@ -106,8 +106,8 @@
   {
     "slug": "faye-sundance-may-2026",
     "name": "Faye + Sundance",
-    "visibility": "public",
-    "status": "Current Litter",
+    "visibility": "private",
+    "status": "Previous Litter",
     "featuredAvailable": false,
     "litterNumber": "Faye 4",
     "mamaSlug": "faye",
@@ -123,14 +123,14 @@
     "expectedColors": "Chocolate, chocolate merle, red, apricot, and abstract possibilities",
     "expectedCoatTraits": "Silky straight to wavy, very low-shedding coat expectations",
     "priceRange": "$2,800",
-    "availabilitySummary": "Faye and Sundance have a current Multigen Petite Goldendoodle litter born May 23, 2026.",
-    "availabilityNote": "This litter has no public puppy openings. Navy is reserved for the Red Ranch Dogs program and is currently seeking a local guardian family.",
+    "availabilitySummary": "Faye and Sundance's 2026 Multigen Petite Goldendoodle puppies have all found their homes.",
+    "availabilityNote": "This litter has gone home and now lives in the previous litter archive.",
     "aboutTitle": "A petite Goldendoodle pairing with chocolate color possibilities and soft coats.",
     "aboutThisLitter": [
       "Faye is one of our smartest mamas: sweet, steady, attentive, and deeply people-focused. She has a calm, thoughtful temperament and has consistently produced healthy, happy puppies with the kind of family-ready sweetness we love.",
       "Sundance is a tiny 11-pound Goldendoodle boy with a silky-soft, straighter coat and an incredibly sweet personality. He brings compact size, beautiful coat texture, and fun chocolate and merle color genetics to this pairing.",
-      "This litter is expected to produce Multigen Petite Goldendoodles around 25-35 pounds full grown, with very low-shedding, allergy-friendly coat expectations. We are especially excited about the chocolate, chocolate merle, red, apricot, and rich abstract color possibilities in this litter.",
-      "Genetically, these puppies are expected to be about 89% Poodle and 11% Golden Retriever, giving families a very Poodle-forward Goldendoodle with soft coats, beautiful coloring, and sweet companion temperaments."
+      "This litter produced Multigen Petite Goldendoodles expected to mature around 25-35 pounds full grown, with very low-shedding coat expectations and chocolate, chocolate merle, red, apricot, and rich abstract color possibilities.",
+      "All six puppies have found their homes. Navy remains part of the Red Ranch Dogs program as a future mama, with her separate guardian opportunity still open."
     ],
     "aboutHighlights": [
       "Multigen Petite Goldendoodles",
@@ -138,7 +138,7 @@
       "Chocolate, merle, and abstract color possibilities",
       "About 89% Poodle / 11% Golden Retriever",
       "Born May 23, 2026",
-      "Week 6 photos live"
+      "All puppies found homes"
     ],
     "puppySlugs": [
       "marine",
@@ -149,7 +149,7 @@
       "victory"
     ],
     "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Faye 4 + Sundance",
-    "weeklyUpdateStatus": "Week 6 photos are live.",
+    "weeklyUpdateStatus": "Archived previous litter. All puppies have found their homes.",
     "weeklyUpdateGallery": [
       "/images/puppies/faye-sundance-2026/marine-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg",
       "/images/puppies/faye-sundance-2026/major-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg",
@@ -162,8 +162,9 @@
       "~89% Poodle",
       "~11% Golden Retriever"
     ],
-    "quickNote": "Week 6 photos are live. All puppies have been matched, and Navy's guardian opportunity is open.",
-    "videoPlaylistUrl": "https://www.youtube.com/playlist?list=PLBdu7wEtS3tI"
+    "quickNote": "Archived previous litter. All puppies have found their homes, and Navy's separate guardian opportunity remains open.",
+    "videoPlaylistUrl": "https://www.youtube.com/playlist?list=PLBdu7wEtS3tI",
+    "previousLitterHref": "/faye-sundance-may-2026"
   },
   {
     "slug": "georgia-waylon-may-2026",
