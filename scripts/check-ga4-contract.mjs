@@ -24,7 +24,7 @@ function assert(condition, message) {
 }
 
 function startDevServer() {
-  return spawn("npm", ["run", "dev", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
+  return spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
     cwd: root,
     env: {
       ...process.env,
@@ -33,6 +33,20 @@ function startDevServer() {
     },
     stdio: ["ignore", "pipe", "pipe"]
   });
+}
+
+async function stopDevServer(server) {
+  if (!server || server.exitCode !== null) return;
+
+  const exited = new Promise((resolve) => server.once("exit", resolve));
+  server.kill("SIGTERM");
+
+  await Promise.race([
+    exited,
+    delay(3000).then(() => {
+      if (server.exitCode === null) server.kill("SIGKILL");
+    })
+  ]);
 }
 
 async function waitForServer() {
@@ -205,7 +219,7 @@ async function runBrowserContract() {
     return events;
   } finally {
     if (browser) await browser.close();
-    server.kill("SIGTERM");
+    await stopDevServer(server);
   }
 }
 
