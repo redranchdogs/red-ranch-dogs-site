@@ -28,11 +28,25 @@ function isPublicRecord(item = {}) {
 function startDevServer() {
   if (useExternalServer) return null;
 
-  return spawn("npm", ["run", "dev", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
+  return spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
     cwd: root,
     env: process.env,
     stdio: ["ignore", "pipe", "pipe"]
   });
+}
+
+async function stopDevServer(server) {
+  if (!server || server.exitCode !== null) return;
+
+  const exited = new Promise((resolve) => server.once("exit", resolve));
+  server.kill("SIGTERM");
+
+  await Promise.race([
+    exited,
+    delay(3000).then(() => {
+      if (server.exitCode === null) server.kill("SIGKILL");
+    })
+  ]);
 }
 
 async function waitForServer() {
@@ -500,7 +514,7 @@ try {
   }
 } finally {
   if (browser) await browser.close();
-  if (server) server.kill("SIGTERM");
+  await stopDevServer(server);
 }
 
 const failed = results.filter((result) => result.failures.length);
