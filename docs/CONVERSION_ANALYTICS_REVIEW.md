@@ -14,7 +14,7 @@ This is the lightweight analytics contract for the public Red Ranch Dogs website
 | `form_start` | Form lifecycle | Behavior signal only |
 | `form_submit_attempt` | Form lifecycle | Behavior signal only |
 | `form_submit_error` | Form lifecycle | Behavior signal only |
-| `form_submit_success` | Form lifecycle | Match to Lead Queue by submissionId |
+| `form_submit_success` | Form lifecycle | Compare aggregate counts with Lead Queue; GA4 receives no submission ID or private lead data |
 | `form_validation_error` | Form lifecycle | Behavior signal only |
 | `social_google_reviews_click` | Navigation click | Behavior signal only |
 | `social_instagram_click` | Navigation click | Behavior signal only |
@@ -89,7 +89,8 @@ Google click IDs are stored as metadata only. Do not expose names, emails, phone
 - GA4 automatic page views are disabled with `send_page_view: false`; the SPA sends one `page_view` event after route changes.
 - GA4 mirrors only the important public behavior events: `form_start`, `form_submit_success`, `cta_apply_click`, `cta_text_click`, `view_available_puppies_click`, and `view_litter_click`.
 - GA4 event payloads use non-private labels such as `form_type`, `page_path`, `from_path`, and `link_target`.
-- Recommend marking `form_submit_success` as the GA4 key event after it appears in GA4 Realtime or DebugView.
+- After live verification, create a derived GA4 event named `puppy_application_submit` from `form_submit_success` where `form_type` exactly equals `application`, then mark only that derived event as the key event.
+- Do not mark broad `form_submit_success` as the advertising conversion; guardian, contact, stud, newsletter, and general waitlist submissions must remain separate.
 - Do not connect GA4 key events to Google Ads until Adam explicitly approves that separate step.
 
 ## First Live Readout
