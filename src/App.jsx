@@ -3085,12 +3085,12 @@ function ListingStatusStrip({ items = [], className = "" }) {
   );
 }
 
-function SmartEmptyState({ eyebrow = "Update", title, copy, steps = [], primaryHref = "/apply", primaryLabel = "Apply for a Puppy", secondaryHref, secondaryLabel }) {
+function SmartEmptyState({ eyebrow = "Update", title, copy, steps = [], primaryHref = "/apply", primaryLabel = "Apply for a Puppy", secondaryHref, secondaryLabel, className = "" }) {
   const hasPrimaryAction = Boolean(primaryHref && primaryLabel);
   const hasSecondaryAction = Boolean(secondaryHref && secondaryLabel);
 
   return (
-    <section className="content-section narrow availability-empty-panel smart-empty-state">
+    <section className={`content-section narrow availability-empty-panel smart-empty-state ${className}`.trim()}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
       <h2>{title}</h2>
       {copy && <p>{copy}</p>}
@@ -4774,10 +4774,6 @@ function AvailablePuppiesPage() {
     });
   const visibleAvailableBreedGroups = availableBreedGroups.filter((group) => group.puppies.length);
   const [openBreedSlugs, setOpenBreedSlugs] = useState([]);
-  const availabilityStats = availableBreedGroups.map((group) => ({
-    value: group.puppies.length,
-    label: `${group.name} ${group.puppies.length === 1 ? "puppy" : "puppies"} available`
-  }));
   const handleAvailableBreedToggle = (slug) => {
     setOpenBreedSlugs((currentSlugs) => {
       return currentSlugs.includes(slug)
@@ -4795,12 +4791,12 @@ function AvailablePuppiesPage() {
       title="Available Puppies"
       copy="These puppies are looking for their families now and are available to reserve with a deposit."
     >
-      <ListingStatusStrip items={availabilityStats} className="available-puppy-tracker" />
       {availableNow.length === 0 && (
         <SmartEmptyState
           eyebrow="Availability Update"
           title={noAvailabilityTitle}
           copy="All current puppies have families. Watch current and upcoming litters for future openings."
+          className="available-puppy-empty-state"
           steps={[
             "View current litters for puppies already growing.",
             "Check upcoming litters for planned pairings.",
