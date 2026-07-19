@@ -80,7 +80,7 @@ async function launchBrowser() {
 async function gaEvents(page) {
   return page.evaluate(() => {
     return (window.dataLayer || [])
-      .filter((entry) => Array.isArray(entry) && entry[0] === "event")
+      .filter((entry) => entry?.[0] === "event")
       .map((entry) => ({
         name: entry[1],
         params: entry[2] || {}
@@ -91,7 +91,7 @@ async function gaEvents(page) {
 async function waitForEventCount(page, eventName, expectedCount) {
   await page.waitForFunction(
     ({ eventName: name, expectedCount: count }) => {
-      return (window.dataLayer || []).filter((entry) => Array.isArray(entry) && entry[0] === "event" && entry[1] === name).length >= count;
+      return (window.dataLayer || []).filter((entry) => entry?.[0] === "event" && entry[1] === name).length >= count;
     },
     { eventName, expectedCount },
     { timeout: 8000 }

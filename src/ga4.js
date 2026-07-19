@@ -17,9 +17,9 @@ function canUseBrowserAnalytics() {
   return Boolean(GA_MEASUREMENT_ID && typeof window !== "undefined" && typeof document !== "undefined");
 }
 
-function gtag(...args) {
+function gtag() {
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(args);
+  window.dataLayer.push(arguments);
 }
 
 function normalizedPath(value = "") {
