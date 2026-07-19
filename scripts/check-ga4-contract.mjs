@@ -180,12 +180,12 @@ async function runBrowserContract() {
     await waitForEventCount(page, "cta_text_click", 1);
 
     await page.evaluate(() => {
-      window.history.pushState({}, "", "/puppies/current-litters");
+      window.history.pushState({}, "", "/puppies/upcoming-litters");
       window.dispatchEvent(new PopStateEvent("popstate"));
     });
-    await page.waitForURL(`${baseUrl}/puppies/current-litters`, { timeout: 8000 });
+    await page.waitForURL(`${baseUrl}/puppies/upcoming-litters`, { timeout: 8000 });
     await waitForEventCount(page, "page_view", 5);
-    await clickFirstVisible(page, ".current-litter-list .upcoming-breed-toggle");
+    await clickFirstVisible(page, ".upcoming-litter-groups .upcoming-breed-toggle");
     await clickFirstVisible(page, 'a[href^="/litters/"]');
     await page.waitForFunction(() => window.location.pathname.startsWith("/litters/"), {}, { timeout: 8000 });
     await waitForEventCount(page, "view_litter_click", 1);

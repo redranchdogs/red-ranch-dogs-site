@@ -170,7 +170,7 @@
     "slug": "georgia-waylon-may-2026",
     "name": "Georgia + Waylon",
     "visibility": "public",
-    "status": "Current Litter",
+    "status": "Previous Litter",
     "featuredAvailable": false,
     "litterNumber": "Georgia 2",
     "mamaSlug": "georgia",
@@ -186,8 +186,8 @@
     "expectedColors": "Red abstract and apricot possibilities",
     "expectedCoatTraits": "Silky-soft straight to wavy low-shedding coat possibilities",
     "priceRange": "$3,200",
-    "availabilitySummary": "Georgia and Waylon have a current Multigen Mini Goldendoodle litter born May 23, 2026.",
-    "availabilityNote": "This litter is fully reserved.",
+    "availabilitySummary": "Georgia and Waylon's 2026 Multigen Mini Goldendoodle litter is fully reserved and ready to go home.",
+    "availabilityNote": "This litter is fully reserved and now lives in the previous litter archive.",
     "aboutTitle": "A sweet mini Goldendoodle pairing with silky-soft coat expectations.",
     "aboutThisLitter": [
       "Georgia is a super sweet F1 Mini Goldendoodle mama with a silky-soft coat, gentle confidence, and a people-focused temperament that makes families fall in love quickly.",
@@ -215,8 +215,8 @@
       "rocket",
       "jubilee"
     ],
-    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Georgia 2 + Waylon",
-    "weeklyUpdateStatus": "Week 6 photos are live.",
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Previous Litters / Georgia 2 + Waylon",
+    "weeklyUpdateStatus": "Archived previous litter. All puppies are reserved and ready to go home.",
     "weeklyUpdateGallery": [
       "/images/puppies/georgia-waylon-2026/firecracker-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg",
       "/images/puppies/georgia-waylon-2026/valor-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg",
@@ -224,8 +224,9 @@
       "/images/puppies/georgia-waylon-2026/rocket-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg",
       "/images/puppies/georgia-waylon-2026/jubilee-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
     ],
-    "quickNote": "Week 6 photos are live, and this litter is fully reserved.",
-    "videoPlaylistUrl": "https://www.youtube.com/playlist?list=PLMBIqBPLnlqY"
+    "quickNote": "Archived previous litter. All puppies are reserved and ready to go home.",
+    "videoPlaylistUrl": "https://www.youtube.com/playlist?list=PLMBIqBPLnlqY",
+    "previousLitterHref": "/georgia-waylon-may-2026"
   },
   {
     "slug": "beatrix-enzo-planned-2026",
