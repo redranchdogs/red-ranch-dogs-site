@@ -9446,6 +9446,15 @@ summary {
   padding-top: 10px;
 }
 
+.availability-empty-panel.zero-inventory-empty-state {
+  padding-bottom: 18px;
+}
+
+.zero-inventory-upcoming-path.listing-content-section {
+  padding-top: 6px;
+  padding-bottom: 32px;
+}
+
 .availability-empty-panel > .eyebrow {
   margin-bottom: -4px;
 }
