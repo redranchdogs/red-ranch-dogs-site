@@ -80,6 +80,8 @@ const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
+const currentLitters = litters.filter((litter) => normalize(litter.status).includes("current"));
+const plannedLitters = litters.filter((litter) => /planned|upcoming/.test(normalize(litter.status)));
 const openGuardianNames = puppies
   .filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open")
   .map((puppy) => puppy.name);
@@ -97,11 +99,21 @@ const routeExpectations = [
     route: "/puppies/available",
     requiredText: [
       "available puppies",
-      ...(featuredAvailablePuppies.length ? [] : ["more puppy options are coming soon"])
+      ...(featuredAvailablePuppies.length ? [] : ["explore our upcoming litters", "join the waitlist"])
     ],
     availableAccordionCheck: true,
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
     requiredSelectors: [featuredAvailablePuppies.length ? ".available-puppy-breed-group" : ".smart-empty-state"]
+  },
+  {
+    route: "/puppies/current-litters",
+    requiredText: [
+      "current litters",
+      ...(currentLitters.length ? [] : ["planned pairings are ahead", "join the waitlist"])
+    ],
+    requiredSelectors: currentLitters.length
+      ? [".current-litter-list"]
+      : [".smart-empty-state", ...(plannedLitters.length ? [".zero-inventory-upcoming-path"] : [])]
   },
   {
     route: "/puppies/goldendoodle-puppies",

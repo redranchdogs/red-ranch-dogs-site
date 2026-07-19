@@ -184,7 +184,7 @@ if (availablePuppies.some((puppy) => /\b(waitlist|pending|matching|pick first)\b
   blockers.push("Available puppies must not carry waitlist or pending language in availabilityNote.");
 }
 
-if (featuredAvailablePuppies.length === 0 && !/More puppy options are coming soon|No (public )?puppies are available right now/.test(app)) {
+if (featuredAvailablePuppies.length === 0 && !/Explore our upcoming litters|No (public )?puppies are available right now/.test(app)) {
   blockers.push("Available Puppies needs the zero-availability empty state when no featured puppies are Available.");
 }
 
