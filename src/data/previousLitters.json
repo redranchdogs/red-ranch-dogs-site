@@ -117,6 +117,114 @@
     "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Faye 4 + Sundance"
   },
   {
+    "href": "/georgia-waylon-may-2026",
+    "visibility": "public",
+    "name": "Georgia + Waylon 2026",
+    "group": "Goldendoodles",
+    "breed": "Multigen Mini Goldendoodles",
+    "image": "/images/puppies/georgia-waylon-2026/firecracker-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg",
+    "facts": [
+      [
+        "Born",
+        "May 23, 2026"
+      ],
+      [
+        "Go Home",
+        "July 14-16, 2026"
+      ],
+      [
+        "Coloring",
+        "Red abstract and apricot possibilities"
+      ],
+      [
+        "Size",
+        "20-25 lbs"
+      ],
+      [
+        "Coat",
+        "Silky-soft straight to wavy low-shedding coat possibilities"
+      ]
+    ],
+    "parents": "Georgia + Waylon Jennings",
+    "parentPhotos": [
+      {
+        "name": "Georgia",
+        "image": "/images/dams/georgia-red-ranch-dogs.webp",
+        "href": "/parents/georgia"
+      },
+      {
+        "name": "Waylon Jennings",
+        "image": "/images/studs/waylon-jennings-red-ranch-dogs.webp",
+        "href": "/parents/waylon-jennings"
+      }
+    ],
+    "puppies": [
+      "Firecracker",
+      "Valor",
+      "Glory",
+      "Rocket",
+      "Jubilee"
+    ],
+    "puppyPhotos": [
+      {
+        "name": "Firecracker",
+        "image": "/images/puppies/georgia-waylon-2026/firecracker-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Valor",
+        "image": "/images/puppies/georgia-waylon-2026/valor-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Glory",
+        "image": "/images/puppies/georgia-waylon-2026/glory-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Rocket",
+        "image": "/images/puppies/georgia-waylon-2026/rocket-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+      },
+      {
+        "name": "Jubilee",
+        "image": "/images/puppies/georgia-waylon-2026/jubilee-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+      }
+    ],
+    "weeklyPuppyPhotos": [
+      {
+        "week": "Week 6",
+        "photos": [
+          {
+            "name": "Firecracker",
+            "image": "/images/puppies/georgia-waylon-2026/firecracker-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Valor",
+            "image": "/images/puppies/georgia-waylon-2026/valor-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Glory",
+            "image": "/images/puppies/georgia-waylon-2026/glory-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Rocket",
+            "image": "/images/puppies/georgia-waylon-2026/rocket-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+          },
+          {
+            "name": "Jubilee",
+            "image": "/images/puppies/georgia-waylon-2026/jubilee-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
+          }
+        ]
+      }
+    ],
+    "milestones": [
+      "Week 6 Photos",
+      "Week 5 Photos",
+      "Week 4 Photos",
+      "Week 3 Photos",
+      "Week 2 Photos",
+      "Week 1 Photos"
+    ],
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Previous Litters / Georgia 2 + Waylon"
+  },
+  {
     "href": "/ginny-butch-spring-2026",
     "visibility": "public",
     "name": "Ginny + Butch Cassidy 2026",
