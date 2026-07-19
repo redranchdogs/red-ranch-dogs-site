@@ -96,11 +96,15 @@ const routeExpectations = [
   {
     route: "/puppies/available",
     requiredText: [
-      "available puppies"
+      "available puppies",
+      ...(featuredAvailablePuppies.length ? [] : ["more puppy options are coming soon"])
     ],
     availableAccordionCheck: true,
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
-    requiredSelectors: [".available-puppy-tracker", ".available-puppy-breed-group"]
+    requiredSelectors: [
+      ".available-puppy-tracker",
+      featuredAvailablePuppies.length ? ".available-puppy-breed-group" : ".smart-empty-state"
+    ]
   },
   {
     route: "/puppies/goldendoodle-puppies",

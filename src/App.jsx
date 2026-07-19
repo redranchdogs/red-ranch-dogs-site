@@ -1856,7 +1856,18 @@ function HomeDoodles() {
 function HomeReadySoonStrip() {
   const readyPuppies = featuredAvailablePuppies();
 
-  if (!readyPuppies.length) return null;
+  if (!readyPuppies.length) {
+    return (
+      <CTASection
+        title={noAvailabilityTitle}
+        copy="All current puppies have families. View upcoming litters or join the waitlist."
+        primaryHref="/puppies/upcoming-litters"
+        primaryLabel="View Upcoming Litters"
+        secondaryHref="/apply"
+        secondaryLabel="Join the Waitlist"
+      />
+    );
+  }
 
   return (
     <FadeInSection className="home-ready-strip-section">
@@ -3419,6 +3430,7 @@ const isReservedPuppy = (puppy) => ["reserved", "matched"].includes(normalizedSt
 const isWaitlistMatchingPuppy = (puppy) => statusMatches(puppy, "waitlist matching");
 const puppyDisplayStatus = (status = "") => ["pending", "waitlist matching"].includes(normalizedStatus(status)) ? "Reserved" : status;
 const litterDateSortValue = (litter) => sortableLitterDate(litter?.goHomeDate || litter?.goHome || litter?.birthDate || "");
+const noAvailabilityTitle = "More puppy options are coming soon";
 const featuredAvailablePuppies = () => puppyData
   .filter((puppy) => {
     const litter = litterProfileBySlug.get(puppy.litterSlug);
@@ -4394,7 +4406,7 @@ function PuppiesOverviewPage() {
       <section className="content-section narrow puppy-overview-availability-section">
         <article className="group-panel puppy-overview-availability-card">
           <p className="eyebrow">Current Availability</p>
-          <h2>{availableNow.length ? "Puppies are available now" : "No public puppies are available right now"}</h2>
+          <h2>{availableNow.length ? "Puppies are available now" : noAvailabilityTitle}</h2>
           <p>
             {availableNow.length
               ? "Only the priority puppies looking for families soonest appear on the Available Puppies page."
@@ -4787,8 +4799,8 @@ function AvailablePuppiesPage() {
       {availableNow.length === 0 && (
         <SmartEmptyState
           eyebrow="Availability Update"
-          title="No public puppies are available right now."
-          copy="Current and upcoming litter pages are still the best place to watch timing, photos, and waitlist opportunities."
+          title={noAvailabilityTitle}
+          copy="All current puppies have families. Watch current and upcoming litters for future openings."
           steps={[
             "View current litters for puppies already growing.",
             "Check upcoming litters for planned pairings.",
