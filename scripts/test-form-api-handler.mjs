@@ -1,3 +1,4 @@
+import { generateKeyPairSync, verify } from "node:crypto";
 import handler from "../api/forms.js";
 
 const externalEnvKeys = [
@@ -8,7 +9,9 @@ const externalEnvKeys = [
   "RED_RANCH_BRIDGE_URL",
   "RESEND_API_KEY",
   "FORM_TO_EMAIL",
-  "FORM_FROM_EMAIL"
+  "FORM_FROM_EMAIL",
+  "CRM_INTAKE_URL",
+  "CRM_INTAKE_PRIVATE_KEY"
 ];
 
 externalEnvKeys.forEach((key) => {
@@ -323,6 +326,64 @@ assert(
   emailRequests[0].body.text.includes("How they heard about us: Instagram"),
   "notification email should include expanded detail fields"
 );
+
+process.env.CRM_INTAKE_URL = "https://crm.example.test/api/intake/website-application";
+const crmIntakeTestKeys = generateKeyPairSync("ed25519");
+process.env.CRM_INTAKE_PRIVATE_KEY = crmIntakeTestKeys.privateKey.export({ type: "pkcs8", format: "der" }).toString("base64");
+const directIntakeRequests = [];
+globalThis.fetch = async (url, options = {}) => {
+  directIntakeRequests.push({
+    body: options.body || "",
+    headers: options.headers || {},
+    method: options.method,
+    signal: options.signal,
+    url: String(url)
+  });
+  return { ok: true, status: 200 };
+};
+
+const directIntakeApplication = await post({
+  ...basePayload,
+  submissionId: `codex-direct-intake-${Date.now()}`,
+  formType: "application",
+  formTitle: "Application details",
+  preferredBreed: "Cavapoo",
+  processAgreement: "Understands process, pricing, deposit policy, and spay/neuter agreement",
+  signature: "Codex Form Test"
+});
+assert(directIntakeApplication.statusCode === 200, "signed CRM intake should preserve public application success");
+assert(directIntakeRequests.length === 2, "application should preserve email and add one direct CRM delivery");
+const crmRequest = directIntakeRequests.find((request) => request.url === process.env.CRM_INTAKE_URL);
+assert(crmRequest, "application should call the configured CRM intake endpoint");
+assert(crmRequest.method === "POST", "CRM intake should use POST");
+assert(crmRequest.signal, "CRM intake should use a bounded request signal");
+const crmTimestamp = crmRequest.headers["X-Red-Ranch-Timestamp"];
+const actualCrmSignature = globalThis.Buffer.from(crmRequest.headers["X-Red-Ranch-Signature"].replace(/^ed25519=/, ""), "base64");
+assert(
+  verify(null, globalThis.Buffer.from(`${crmTimestamp}.${crmRequest.body}`), crmIntakeTestKeys.publicKey, actualCrmSignature),
+  "CRM intake payload should carry a valid Ed25519 signature"
+);
+assert(JSON.parse(crmRequest.body).formType === "application", "CRM intake should receive the normalized application payload");
+
+globalThis.fetch = async (url) => {
+  if (String(url) === process.env.CRM_INTAKE_URL) return { ok: false, status: 503 };
+  return { ok: true, status: 200 };
+};
+const crmFailureEmailSuccess = await post({
+  ...basePayload,
+  submissionId: `codex-direct-intake-fallback-${Date.now()}`,
+  formType: "application",
+  formTitle: "Application details",
+  preferredBreed: "Goldendoodle",
+  processAgreement: "Understands process, pricing, deposit policy, and spay/neuter agreement",
+  signature: "Codex Form Test"
+});
+assert(
+  crmFailureEmailSuccess.statusCode === 200,
+  "CRM intake failure must not reject an application delivered through existing email"
+);
+delete process.env.CRM_INTAKE_URL;
+delete process.env.CRM_INTAKE_PRIVATE_KEY;
 delete process.env.RESEND_API_KEY;
 delete process.env.FORM_TO_EMAIL;
 delete process.env.FORM_FROM_EMAIL;

@@ -212,6 +212,10 @@ addBlocker(
   packageJson.scripts?.["publish:check"]?.includes("npm run check:form-contract"),
   'package.json publish:check must run "npm run check:form-contract".'
 );
+addBlocker(apiSource.includes("sendApplicationToCrm(payload)"), "api/forms.js is missing direct CRM application delivery.");
+addBlocker(apiSource.includes("X-Red-Ranch-Signature"), "api/forms.js is missing the signed CRM intake header.");
+addBlocker(apiSource.includes("CRM_INTAKE_PRIVATE_KEY"), "api/forms.js is missing the CRM intake signing-key contract.");
+addBlocker(testSource.includes("actualCrmSignature"), "Form handler tests do not verify the CRM signature.");
 
 if (blockerMessages.length) {
   console.error("Form contract check failed:");

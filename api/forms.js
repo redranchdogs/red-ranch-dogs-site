@@ -1,3 +1,5 @@
+import { createPrivateKey, sign } from "node:crypto";
+
 const allowedForms = new Set(["application", "contact", "guardian", "newsletter", "stud", "waitlist"]);
 const defaultFormSheetId = "1872yXbOwwtio73bK5wlZJKEaBez4czsGuU0bcYaxriE";
 const defaultLeadSheetName = "Website Leads";
@@ -600,6 +602,46 @@ async function sendEmail(payload) {
   return { skipped: false };
 }
 
+async function sendApplicationToCrm(payload) {
+  if (payload.formType !== "application") {
+    return { skipped: true };
+  }
+  if (!process.env.CRM_INTAKE_URL || !process.env.CRM_INTAKE_PRIVATE_KEY) {
+    return { skipped: true };
+  }
+
+  const body = JSON.stringify(payload);
+  const timestamp = String(Date.now());
+  const privateKey = createPrivateKey({
+    key: globalThis.Buffer.from(process.env.CRM_INTAKE_PRIVATE_KEY, "base64"),
+    format: "der",
+    type: "pkcs8"
+  });
+  const signature = sign(null, globalThis.Buffer.from(`${timestamp}.${body}`), privateKey).toString("base64");
+  const controller = new AbortController();
+  const timeoutId = globalThis.setTimeout(() => controller.abort(), 1800);
+
+  try {
+    const response = await fetch(process.env.CRM_INTAKE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Red-Ranch-Timestamp": timestamp,
+        "X-Red-Ranch-Signature": `ed25519=${signature}`
+      },
+      body,
+      signal: controller.signal
+    });
+
+    if (!response.ok) {
+      throw new Error(`CRM intake delivery failed with status ${response.status || "unknown"}.`);
+    }
+    return { skipped: false };
+  } finally {
+    globalThis.clearTimeout(timeoutId);
+  }
+}
+
 async function appendSheetViaBridge(payload) {
   if (!process.env.RED_RANCH_BRIDGE_URL || !process.env.RED_RANCH_BRIDGE_SECRET) {
     return { skipped: true };
@@ -796,7 +838,11 @@ export default async function handler(request, response) {
   payload.leadSummary = compactLeadSummary(payload);
 
   try {
-    const [emailDelivery, sheetDelivery] = await Promise.allSettled([sendEmail(payload), appendSheet(payload)]);
+    const [emailDelivery, sheetDelivery, crmDelivery] = await Promise.allSettled([
+      sendEmail(payload),
+      appendSheet(payload),
+      sendApplicationToCrm(payload)
+    ]);
     const emailResult = emailDelivery.status === "fulfilled" ? emailDelivery.value : { skipped: true };
     const sheetResult = sheetDelivery.status === "fulfilled" ? sheetDelivery.value : { skipped: true };
     const emailDelivered = emailDelivery.status === "fulfilled" && !emailResult.skipped;
@@ -813,6 +859,14 @@ export default async function handler(request, response) {
     if (sheetDelivery.status === "rejected") {
       console.error("Form sheet delivery failed.", {
         error: sheetDelivery.reason?.message || String(sheetDelivery.reason),
+        formType: payload.formType,
+        submissionId: payload.submissionId
+      });
+    }
+
+    if (crmDelivery.status === "rejected") {
+      console.error("Form CRM intake delivery failed safely; email and Sheets remain authoritative fallbacks.", {
+        error: crmDelivery.reason?.message || String(crmDelivery.reason),
         formType: payload.formType,
         submissionId: payload.submissionId
       });
