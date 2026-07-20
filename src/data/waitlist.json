@@ -106,6 +106,20 @@
       "show_publicly": "Yes"
     },
     {
+      "breed": "Cavapoo",
+      "position": 9,
+      "display_name": "Kelly A.",
+      "status": "Active",
+      "show_publicly": "Yes"
+    },
+    {
+      "breed": "Cavapoo",
+      "position": 10,
+      "display_name": "Kirby S.",
+      "status": "Active",
+      "show_publicly": "Yes"
+    },
+    {
       "breed": "Bernedoodle",
       "position": 1,
       "display_name": "Christine W.",
