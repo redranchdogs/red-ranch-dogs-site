@@ -5,7 +5,7 @@
     "tab": "Public Waitlist",
     "hub": "Website Hub"
   },
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-20",
   "publicRows": [
     {
       "breed": "Goldendoodle",
@@ -39,6 +39,13 @@
       "breed": "Goldendoodle",
       "position": 5,
       "display_name": "Katie A.",
+      "status": "Active",
+      "show_publicly": "Yes"
+    },
+    {
+      "breed": "Goldendoodle",
+      "position": 6,
+      "display_name": "Laurn R.",
       "status": "Active",
       "show_publicly": "Yes"
     },
