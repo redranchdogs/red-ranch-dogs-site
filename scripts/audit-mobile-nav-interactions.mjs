@@ -19,17 +19,21 @@ const routes = [
 ];
 
 function startDevServer() {
-  return spawn("npm", ["run", "dev", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
+  return spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
     cwd: root,
     env: process.env,
     stdio: ["ignore", "pipe", "pipe"],
   });
 }
 
-async function waitForServer() {
+async function waitForServer(server) {
   const started = Date.now();
 
   while (Date.now() - started < 20000) {
+    if (server.exitCode !== null) {
+      throw new Error(`Mobile nav QA server exited before startup at ${baseUrl}${serverOutput ? `\n${serverOutput.trim()}` : ""}`);
+    }
+
     try {
       const response = await fetch(baseUrl);
       if (response.ok) return;
@@ -40,7 +44,21 @@ async function waitForServer() {
     await delay(400);
   }
 
-  throw new Error(`Mobile nav QA server did not start at ${baseUrl}`);
+  throw new Error(`Mobile nav QA server did not start at ${baseUrl}${serverOutput ? `\n${serverOutput.trim()}` : ""}`);
+}
+
+async function stopDevServer(server) {
+  if (!server || server.exitCode !== null) return;
+
+  const exited = new Promise((resolve) => server.once("exit", resolve));
+  server.kill("SIGTERM");
+
+  await Promise.race([
+    exited,
+    delay(3000).then(() => {
+      if (server.exitCode === null) server.kill("SIGKILL");
+    }),
+  ]);
 }
 
 async function launchBrowser() {
@@ -111,7 +129,7 @@ const results = [];
 let browser;
 
 try {
-  await waitForServer();
+  await waitForServer(server);
   browser = await launchBrowser();
   const context = await browser.newContext({
     viewport: { width: 390, height: 844 },
@@ -128,7 +146,7 @@ try {
   await context.close();
 } finally {
   if (browser) await browser.close();
-  server.kill("SIGTERM");
+  await stopDevServer(server);
 }
 
 const blockers = results.filter((result) => result.blockers.length);
