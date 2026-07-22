@@ -3432,7 +3432,7 @@ const statusMatches = (puppy, status) => normalizedStatus(puppy?.status) === nor
 const isAvailablePuppy = (puppy) => statusMatches(puppy, "available");
 const isReservedPuppy = (puppy) => ["reserved", "matched"].includes(normalizedStatus(puppy?.status));
 const isWaitlistMatchingPuppy = (puppy) => statusMatches(puppy, "waitlist matching");
-const puppyDisplayStatus = (status = "") => ["pending", "waitlist matching"].includes(normalizedStatus(status)) ? "Reserved" : status;
+const puppyDisplayStatus = (status = "") => normalizedStatus(status) === "pending" ? "Reserved" : status;
 const litterDateSortValue = (litter) => sortableLitterDate(litter?.goHomeDate || litter?.goHome || litter?.birthDate || "");
 const noAvailabilityTitle = "Explore our upcoming litters";
 const featuredAvailablePuppies = () => puppyData
@@ -3463,7 +3463,8 @@ const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter
   const reservedCount = litterPuppies.filter(isReservedPuppy).length;
 
   if (availableCount) return `${availableCount} available`;
-  if (litterPuppies.length && reservedCount + waitlistCount === litterPuppies.length) return "Reserved";
+  if (waitlistCount) return "Waitlist matching";
+  if (litterPuppies.length && reservedCount === litterPuppies.length) return "Reserved";
   if (!isCurrentLitter(litter)) return "Planning";
   if (litterPuppies.length) return `${litterPuppies.length} puppy profiles`;
   return "Updates soon";
