@@ -116,7 +116,9 @@
       "https://my.embarkvet.com/dog/beatrix145"
     ],
     "geneticTestingLinks": [],
-    "relatedLitters": [],
+    "relatedLitters": [
+      "beatrix-enzo-planned-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Beatrix",
     "description": "F1 Goldendoodle mama with classic family-dog sweetness and an affectionate personality."
   },
@@ -562,10 +564,12 @@
       "https://my.embarkvet.com/dog/redranchdogsenzo"
     ],
     "geneticTestingLinks": [],
-    "relatedLitters": [],
+    "relatedLitters": [
+      "beatrix-enzo-planned-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Enzo",
     "description": "Micro Goldendoodle stud with a compact frame and soft coat traits.",
-    "genetics": "ee KBky aya BB Ssp +/- FF; 10:0 Red Intensity; 94% Poodle"
+    "genetics": "ee KBky aya BB Ssp +/- FF; 10:0 Red Intensity; 96% Poodle"
   },
   {
     "slug": "butch-cassidy",

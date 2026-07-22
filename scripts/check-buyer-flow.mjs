@@ -184,7 +184,7 @@ if (availablePuppies.some((puppy) => /\b(waitlist|pending|matching|pick first)\b
   blockers.push("Available puppies must not carry waitlist or pending language in availabilityNote.");
 }
 
-if (featuredAvailablePuppies.length === 0 && !/No (public )?puppies are available right now/.test(app)) {
+if (featuredAvailablePuppies.length === 0 && !/Explore our upcoming litters|No (public )?puppies are available right now/.test(app)) {
   blockers.push("Available Puppies needs the zero-availability empty state when no featured puppies are Available.");
 }
 
@@ -196,8 +196,8 @@ if (!app.includes("featuredAvailablePuppies()")) {
   blockers.push("Available Puppies page should use featuredAvailable litters as the merchandising filter.");
 }
 
-if (featuredAvailablePuppies.length > 0 && !app.includes("Ready to go home mid July")) {
-  blockers.push("Homepage should feature the ready-to-go-home-mid-July strip when featured Available puppies exist.");
+if (featuredAvailablePuppies.length > 0 && !app.includes("Ready to go home now")) {
+  blockers.push("Homepage should feature the ready-to-go-home-now strip when featured Available puppies exist.");
 }
 
 if (!app.includes('source: "home_ready_strip"') || !app.includes('trackSiteEvent("cta_reserve_click"')) {

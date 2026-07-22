@@ -278,7 +278,7 @@ export const litterDetails = {
 };
 
 export const upcomingLitters = {
-  updated: "5/12/2026",
+  updated: "7/18/2026",
   groups: [
     {
       breed: "Goldendoodles",
@@ -673,7 +673,7 @@ export const studCatalog = [
     dogs: [
       ["Waylon Jennings", "Multigen Mini Goldendoodle", "19 lbs", "ee KBky atat Bb SS -/- FF, 10:0 Red Intensity, 32% Retriever", "/waylon-jennings"],
       ["Sundance", "Micro Goldendoodle", "11 lbs", "ee KBky atat bb spsp FF -/- Curl TT Shedding, 22.4% Golden Retriever", "/sundance"],
-      ["Enzo", "Micro Goldendoodle", "13 lbs", "ee KBky aya BB Ssp +/- FF, 10:0 Red Intensity, 94% Retriever", "/enzo"],
+      ["Enzo", "Micro Goldendoodle", "13 lbs", "ee KBky aya BB Ssp +/- FF, 10:0 Red Intensity, 96% Poodle", "/enzo"],
       ["Butch Cassidy", "Micro Goldendoodle", "16 lbs", "ee KBky ata Bb Ssp FF -/- Curl TT Shedding, 16% Retriever", "/butch-cassidy"],
       ["Knox", "F1b Mini Goldendoodle", "10 lbs", "ee KBKB ata BB SS +/- FF, 9:1 Red Intensity, 33% Retriever", "/knox"]
     ]
@@ -759,7 +759,7 @@ export const studDetails = {
     group: "Goldendoodles",
     type: "Micro Goldendoodle",
     weight: "13 lbs",
-    genetics: "ee KBky aya BB Ssp +/- FF, 10:0 Red Intensity, 94% Retriever",
+    genetics: "ee KBky aya BB Ssp +/- FF, 10:0 Red Intensity, 96% Poodle",
     image: "/images/studs/enzo-red-ranch-dogs.webp",
     fee: "$1500",
     testing: ["Embark Testing", "UC Davis Results"],

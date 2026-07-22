@@ -56,10 +56,14 @@ function wait(ms) {
   return delay(ms);
 }
 
-async function waitForPreview() {
+async function waitForPreview(preview) {
   const started = Date.now();
 
   while (Date.now() - started < 20000) {
+    if (preview.exitCode !== null) {
+      throw new Error(`Vite server exited before startup at ${baseUrl}${previewOutput ? `\n${previewOutput.trim()}` : ""}`);
+    }
+
     try {
       const response = await fetch(baseUrl);
       if (response.ok) return;
@@ -70,15 +74,29 @@ async function waitForPreview() {
     await wait(500);
   }
 
-  throw new Error(`Vite preview did not start at ${baseUrl}`);
+  throw new Error(`Vite server did not start at ${baseUrl}${previewOutput ? `\n${previewOutput.trim()}` : ""}`);
 }
 
 function startPreview() {
-  return spawn("npm", ["run", "preview", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
+  return spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
     cwd: root,
     env: process.env,
     stdio: ["ignore", "pipe", "pipe"],
   });
+}
+
+async function stopPreview(preview) {
+  if (!preview || preview.exitCode !== null) return;
+
+  const exited = new Promise((resolve) => preview.once("exit", resolve));
+  preview.kill("SIGTERM");
+
+  await Promise.race([
+    exited,
+    delay(3000).then(() => {
+      if (preview.exitCode === null) preview.kill("SIGKILL");
+    }),
+  ]);
 }
 
 async function launchBrowser() {
@@ -177,7 +195,7 @@ const results = [];
 let browser;
 
 try {
-  await waitForPreview();
+  await waitForPreview(preview);
   browser = await launchBrowser();
 
   for (const viewport of viewports) {
@@ -195,7 +213,7 @@ try {
   }
 } finally {
   if (browser) await browser.close();
-  preview.kill("SIGTERM");
+  await stopPreview(preview);
 }
 
 const blockers = results.filter((result) => result.blockers.length);

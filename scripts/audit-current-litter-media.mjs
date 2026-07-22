@@ -49,7 +49,28 @@ for (const litter of currentLitters) {
     .filter(Boolean);
 
   if (!litter.puppySlugs?.length) {
-    addError(`Current litter ${litter.slug} has no puppySlugs.`);
+    const currentWeek = String(litter.weeklyUpdateStatus || "").match(/Week\s+\d+/i)?.[0] || "";
+
+    if (!litter.weeklyUpdateGallery?.length) {
+      addError(`Current litter ${litter.slug} has no puppy profiles or weeklyUpdateGallery.`);
+    }
+
+    for (const galleryPhoto of litter.weeklyUpdateGallery || []) {
+      if (!publicPathExists(galleryPhoto)) {
+        addError(`Litter ${litter.slug} gallery photo is missing from public/: ${galleryPhoto}`);
+      }
+      if (currentWeek && !hasWeekPath(galleryPhoto, currentWeek)) {
+        addWarning(`Litter ${litter.slug} gallery photo does not appear to use ${currentWeek}: ${galleryPhoto}`);
+      }
+    }
+
+    summary.push({
+      litter: litter.name || litter.slug,
+      puppies: 0,
+      latestWeek: currentWeek || "profiles pending",
+      latestPhotos: 0,
+      galleryPhotos: litter.weeklyUpdateGallery?.length || 0,
+    });
     continue;
   }
 

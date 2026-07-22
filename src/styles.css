@@ -9392,10 +9392,6 @@ summary {
   margin-inline: auto;
 }
 
-.available-puppy-tracker {
-  padding-bottom: 14px;
-}
-
 .available-puppy-groups.listing-content-section {
   padding-top: 8px;
   padding-bottom: 24px;
@@ -9444,6 +9440,19 @@ summary {
   gap: 16px;
   padding-top: clamp(28px, 4vw, 42px);
   padding-bottom: clamp(44px, 5vw, 64px);
+}
+
+.availability-empty-panel.available-puppy-empty-state {
+  padding-top: 10px;
+}
+
+.availability-empty-panel.zero-inventory-empty-state {
+  padding-bottom: 18px;
+}
+
+.zero-inventory-upcoming-path.listing-content-section {
+  padding-top: 6px;
+  padding-bottom: 32px;
 }
 
 .availability-empty-panel > .eyebrow {

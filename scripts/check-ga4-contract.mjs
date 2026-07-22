@@ -8,10 +8,14 @@ const root = process.cwd();
 const port = Number(process.env.GA4_CONTRACT_PORT || 5229);
 const baseUrl = `http://127.0.0.1:${port}`;
 const privateTestValues = [
-  "Analytics Test Family",
-  "analytics-test@example.com",
-  "555-010-9999",
-  "Please tell me about private puppy timing.",
+  "Rejected Contact Test",
+  "rejected-contact@example.com",
+  "555-010-1111",
+  "This rejected contact message must stay private.",
+  "Application Test Family",
+  "application-test@example.com",
+  "555-010-2222",
+  "This application answer must stay private.",
   "TEST-SUBMISSION-ID"
 ];
 
@@ -24,7 +28,7 @@ function assert(condition, message) {
 }
 
 function startDevServer() {
-  return spawn("npm", ["run", "dev", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
+  return spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
     cwd: root,
     env: {
       ...process.env,
@@ -33,6 +37,20 @@ function startDevServer() {
     },
     stdio: ["ignore", "pipe", "pipe"]
   });
+}
+
+async function stopDevServer(server) {
+  if (!server || server.exitCode !== null) return;
+
+  const exited = new Promise((resolve) => server.once("exit", resolve));
+  server.kill("SIGTERM");
+
+  await Promise.race([
+    exited,
+    delay(3000).then(() => {
+      if (server.exitCode === null) server.kill("SIGKILL");
+    })
+  ]);
 }
 
 async function waitForServer() {
@@ -62,7 +80,7 @@ async function launchBrowser() {
 async function gaEvents(page) {
   return page.evaluate(() => {
     return (window.dataLayer || [])
-      .filter((entry) => Array.isArray(entry) && entry[0] === "event")
+      .filter((entry) => entry?.[0] === "event")
       .map((entry) => ({
         name: entry[1],
         params: entry[2] || {}
@@ -73,7 +91,7 @@ async function gaEvents(page) {
 async function waitForEventCount(page, eventName, expectedCount) {
   await page.waitForFunction(
     ({ eventName: name, expectedCount: count }) => {
-      return (window.dataLayer || []).filter((entry) => Array.isArray(entry) && entry[0] === "event" && entry[1] === name).length >= count;
+      return (window.dataLayer || []).filter((entry) => entry?.[0] === "event" && entry[1] === name).length >= count;
     },
     { eventName, expectedCount },
     { timeout: 8000 }
@@ -109,15 +127,25 @@ async function runBrowserContract() {
     });
 
     await page.route("**/api/forms", (route) => {
+      const payload = route.request().postDataJSON();
+      if (payload.formType !== "application") {
+        route.fulfill({
+          status: 500,
+          contentType: "application/json",
+          body: JSON.stringify({ ok: false, message: "Controlled test rejection." })
+        });
+        return;
+      }
+
       route.fulfill({
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
           ok: true,
           submissionId: "TEST-SUBMISSION-ID",
-          formType: "contact",
-          leadType: "General Contact",
-          routingBucket: "contact",
+          formType: "application",
+          leadType: "Puppy Application",
+          routingBucket: "application",
           message: "Thank you. We received your submission."
         })
       });
@@ -147,12 +175,32 @@ async function runBrowserContract() {
     await waitForEventCount(page, "page_view", 4);
 
     const form = page.locator('form[data-form-type="contact"]');
-    await form.locator('input[name="name"]').fill("Analytics Test Family");
+    await form.locator('input[name="name"]').fill("Rejected Contact Test");
     await waitForEventCount(page, "form_start", 1);
-    await form.locator('input[name="email"]').fill("analytics-test@example.com");
-    await form.locator('input[name="phone"]').fill("555-010-9999");
-    await form.locator('textarea[name="message"]').fill("Please tell me about private puppy timing.");
+    await form.locator('input[name="email"]').fill("rejected-contact@example.com");
+    await form.locator('input[name="phone"]').fill("555-010-1111");
+    await form.locator('textarea[name="message"]').fill("This rejected contact message must stay private.");
     await form.locator('button[type="submit"]').click();
+    await form.locator(".form-status.error").waitFor({ state: "visible" });
+    assert(!(await gaEvents(page)).some((event) => event.name === "form_submit_success"), "GA4 form_submit_success must not fire after an API rejection.");
+
+    await page.evaluate(() => {
+      window.history.pushState({}, "", "/apply");
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    await page.waitForURL(`${baseUrl}/apply`, { timeout: 8000 });
+    await waitForEventCount(page, "page_view", 5);
+
+    const applicationForm = page.locator('form[data-form-type="application"]');
+    await applicationForm.locator('input[name="name"]').fill("Application Test Family");
+    await waitForEventCount(page, "form_start", 2);
+    await applicationForm.locator('input[name="email"]').fill("application-test@example.com");
+    await applicationForm.locator('input[name="phone"]').fill("555-010-2222");
+    await applicationForm.locator('input[name="preferredBreed"][value="Goldendoodle"]').check();
+    await applicationForm.locator('textarea[name="message"]').fill("This application answer must stay private.");
+    await applicationForm.locator('input[name="processAgreement"]').check();
+    await applicationForm.locator('input[name="signature"]').fill("Application Test Family");
+    await applicationForm.locator('button[type="submit"]').click();
     await waitForEventCount(page, "form_submit_success", 1);
 
     await page.evaluate(() => {
@@ -166,16 +214,16 @@ async function runBrowserContract() {
     await waitForEventCount(page, "cta_text_click", 1);
 
     await page.evaluate(() => {
-      window.history.pushState({}, "", "/puppies/current-litters");
+      window.history.pushState({}, "", "/puppies/upcoming-litters");
       window.dispatchEvent(new PopStateEvent("popstate"));
     });
-    await page.waitForURL(`${baseUrl}/puppies/current-litters`, { timeout: 8000 });
-    await waitForEventCount(page, "page_view", 5);
-    await clickFirstVisible(page, ".current-litter-list .upcoming-breed-toggle");
+    await page.waitForURL(`${baseUrl}/puppies/upcoming-litters`, { timeout: 8000 });
+    await waitForEventCount(page, "page_view", 6);
+    await clickFirstVisible(page, ".upcoming-litter-groups .upcoming-breed-toggle");
     await clickFirstVisible(page, 'a[href^="/litters/"]');
     await page.waitForFunction(() => window.location.pathname.startsWith("/litters/"), {}, { timeout: 8000 });
     await waitForEventCount(page, "view_litter_click", 1);
-    await waitForEventCount(page, "page_view", 6);
+    await waitForEventCount(page, "page_view", 7);
 
     const events = await gaEvents(page);
     const eventNames = events.map((event) => event.name);
@@ -191,7 +239,7 @@ async function runBrowserContract() {
       assert(eventNames.includes(eventName), `Missing GA4 event ${eventName}.`);
     });
 
-    assert(eventNames.filter((eventName) => eventName === "page_view").length === 6, "GA4 emitted duplicate or missing page views during route checks.");
+    assert(eventNames.filter((eventName) => eventName === "page_view").length === 7, "GA4 emitted duplicate or missing page views during route checks.");
 
     const serializedEvents = JSON.stringify(events);
     privateTestValues.forEach((privateValue) => {
@@ -199,13 +247,13 @@ async function runBrowserContract() {
     });
 
     const formSuccess = events.find((event) => event.name === "form_submit_success");
-    assert(formSuccess?.params?.form_type === "contact", "GA4 form_submit_success should include only the non-private form_type.");
+    assert(formSuccess?.params?.form_type === "application", "GA4 form_submit_success should identify puppy applications with form_type=application.");
     assert(!("submissionId" in (formSuccess?.params || {})), "GA4 form_submit_success must not include submissionId.");
 
     return events;
   } finally {
     if (browser) await browser.close();
-    server.kill("SIGTERM");
+    await stopDevServer(server);
   }
 }
 

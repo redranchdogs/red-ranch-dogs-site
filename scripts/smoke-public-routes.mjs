@@ -28,11 +28,25 @@ function isPublicRecord(item = {}) {
 function startDevServer() {
   if (useExternalServer) return null;
 
-  return spawn("npm", ["run", "dev", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
+  return spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
     cwd: root,
     env: process.env,
     stdio: ["ignore", "pipe", "pipe"]
   });
+}
+
+async function stopDevServer(server) {
+  if (!server || server.exitCode !== null) return;
+
+  const exited = new Promise((resolve) => server.once("exit", resolve));
+  server.kill("SIGTERM");
+
+  await Promise.race([
+    exited,
+    delay(3000).then(() => {
+      if (server.exitCode === null) server.kill("SIGKILL");
+    })
+  ]);
 }
 
 async function waitForServer() {
@@ -66,6 +80,8 @@ const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
+const currentLitters = litters.filter((litter) => normalize(litter.status).includes("current"));
+const plannedLitters = litters.filter((litter) => /planned|upcoming/.test(normalize(litter.status)));
 const openGuardianNames = puppies
   .filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open")
   .map((puppy) => puppy.name);
@@ -82,11 +98,22 @@ const routeExpectations = [
   {
     route: "/puppies/available",
     requiredText: [
-      "available puppies"
+      "available puppies",
+      ...(featuredAvailablePuppies.length ? [] : ["explore our upcoming litters", "join the waitlist"])
     ],
     availableAccordionCheck: true,
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
-    requiredSelectors: [".available-puppy-tracker", ".available-puppy-breed-group"]
+    requiredSelectors: [featuredAvailablePuppies.length ? ".available-puppy-breed-group" : ".smart-empty-state"]
+  },
+  {
+    route: "/puppies/current-litters",
+    requiredText: [
+      "current litters",
+      ...(currentLitters.length ? [] : ["planned pairings are ahead", "join the waitlist"])
+    ],
+    requiredSelectors: currentLitters.length
+      ? [".current-litter-list"]
+      : [".smart-empty-state", ...(plannedLitters.length ? [".zero-inventory-upcoming-path"] : [])]
   },
   {
     route: "/puppies/goldendoodle-puppies",
@@ -500,7 +527,7 @@ try {
   }
 } finally {
   if (browser) await browser.close();
-  if (server) server.kill("SIGTERM");
+  await stopDevServer(server);
 }
 
 const failed = results.filter((result) => result.failures.length);

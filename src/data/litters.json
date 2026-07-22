@@ -106,8 +106,8 @@
   {
     "slug": "faye-sundance-may-2026",
     "name": "Faye + Sundance",
-    "visibility": "public",
-    "status": "Current Litter",
+    "visibility": "private",
+    "status": "Previous Litter",
     "featuredAvailable": false,
     "litterNumber": "Faye 4",
     "mamaSlug": "faye",
@@ -123,14 +123,14 @@
     "expectedColors": "Chocolate, chocolate merle, red, apricot, and abstract possibilities",
     "expectedCoatTraits": "Silky straight to wavy, very low-shedding coat expectations",
     "priceRange": "$2,800",
-    "availabilitySummary": "Faye and Sundance have a current Multigen Petite Goldendoodle litter born May 23, 2026.",
-    "availabilityNote": "This litter has no public puppy openings. Navy is reserved for the Red Ranch Dogs program and is currently seeking a local guardian family.",
+    "availabilitySummary": "Faye and Sundance's 2026 Multigen Petite Goldendoodle puppies have all found their homes.",
+    "availabilityNote": "This litter has gone home and now lives in the previous litter archive.",
     "aboutTitle": "A petite Goldendoodle pairing with chocolate color possibilities and soft coats.",
     "aboutThisLitter": [
       "Faye is one of our smartest mamas: sweet, steady, attentive, and deeply people-focused. She has a calm, thoughtful temperament and has consistently produced healthy, happy puppies with the kind of family-ready sweetness we love.",
       "Sundance is a tiny 11-pound Goldendoodle boy with a silky-soft, straighter coat and an incredibly sweet personality. He brings compact size, beautiful coat texture, and fun chocolate and merle color genetics to this pairing.",
-      "This litter is expected to produce Multigen Petite Goldendoodles around 25-35 pounds full grown, with very low-shedding, allergy-friendly coat expectations. We are especially excited about the chocolate, chocolate merle, red, apricot, and rich abstract color possibilities in this litter.",
-      "Genetically, these puppies are expected to be about 89% Poodle and 11% Golden Retriever, giving families a very Poodle-forward Goldendoodle with soft coats, beautiful coloring, and sweet companion temperaments."
+      "This litter produced Multigen Petite Goldendoodles expected to mature around 25-35 pounds full grown, with very low-shedding coat expectations and chocolate, chocolate merle, red, apricot, and rich abstract color possibilities.",
+      "All six puppies have found their homes. Navy remains part of the Red Ranch Dogs program as a future mama, with her separate guardian opportunity still open."
     ],
     "aboutHighlights": [
       "Multigen Petite Goldendoodles",
@@ -138,7 +138,7 @@
       "Chocolate, merle, and abstract color possibilities",
       "About 89% Poodle / 11% Golden Retriever",
       "Born May 23, 2026",
-      "Week 6 photos live"
+      "All puppies found homes"
     ],
     "puppySlugs": [
       "marine",
@@ -149,7 +149,7 @@
       "victory"
     ],
     "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Faye 4 + Sundance",
-    "weeklyUpdateStatus": "Week 6 photos are live.",
+    "weeklyUpdateStatus": "Archived previous litter. All puppies have found their homes.",
     "weeklyUpdateGallery": [
       "/images/puppies/faye-sundance-2026/marine-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg",
       "/images/puppies/faye-sundance-2026/major-multigen-petite-goldendoodle-puppy-faye-sundance-week-6-red-ranch-dogs.jpg",
@@ -162,15 +162,16 @@
       "~89% Poodle",
       "~11% Golden Retriever"
     ],
-    "quickNote": "Week 6 photos are live. All puppies have been matched, and Navy's guardian opportunity is open.",
-    "videoPlaylistUrl": "https://www.youtube.com/playlist?list=PLBdu7wEtS3tI"
+    "quickNote": "Archived previous litter. All puppies have found their homes, and Navy's separate guardian opportunity remains open.",
+    "videoPlaylistUrl": "https://www.youtube.com/playlist?list=PLBdu7wEtS3tI",
+    "previousLitterHref": "/faye-sundance-may-2026"
   },
   {
     "slug": "georgia-waylon-may-2026",
     "name": "Georgia + Waylon",
     "visibility": "public",
-    "status": "Current Litter",
-    "featuredAvailable": true,
+    "status": "Previous Litter",
+    "featuredAvailable": false,
     "litterNumber": "Georgia 2",
     "mamaSlug": "georgia",
     "mama": "Georgia",
@@ -185,8 +186,8 @@
     "expectedColors": "Red abstract and apricot possibilities",
     "expectedCoatTraits": "Silky-soft straight to wavy low-shedding coat possibilities",
     "priceRange": "$3,200",
-    "availabilitySummary": "Georgia and Waylon have a current Multigen Mini Goldendoodle litter born May 23, 2026.",
-    "availabilityNote": "Available puppies from this litter are posted publicly and ready to reserve.",
+    "availabilitySummary": "Georgia and Waylon's 2026 Multigen Mini Goldendoodle litter is fully reserved and ready to go home.",
+    "availabilityNote": "This litter is fully reserved and now lives in the previous litter archive.",
     "aboutTitle": "A sweet mini Goldendoodle pairing with silky-soft coat expectations.",
     "aboutThisLitter": [
       "Georgia is a super sweet F1 Mini Goldendoodle mama with a silky-soft coat, gentle confidence, and a people-focused temperament that makes families fall in love quickly.",
@@ -214,8 +215,8 @@
       "rocket",
       "jubilee"
     ],
-    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Georgia 2 + Waylon",
-    "weeklyUpdateStatus": "Week 6 photos are live.",
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Previous Litters / Georgia 2 + Waylon",
+    "weeklyUpdateStatus": "Archived previous litter. All puppies are reserved and ready to go home.",
     "weeklyUpdateGallery": [
       "/images/puppies/georgia-waylon-2026/firecracker-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg",
       "/images/puppies/georgia-waylon-2026/valor-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg",
@@ -223,14 +224,66 @@
       "/images/puppies/georgia-waylon-2026/rocket-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg",
       "/images/puppies/georgia-waylon-2026/jubilee-multigen-mini-goldendoodle-puppy-georgia-waylon-week-6-red-ranch-dogs.jpg"
     ],
-    "quickNote": "Week 6 photos are live, and available puppies are now posted publicly.",
-    "videoPlaylistUrl": "https://www.youtube.com/playlist?list=PLMBIqBPLnlqY"
+    "quickNote": "Archived previous litter. All puppies are reserved and ready to go home.",
+    "videoPlaylistUrl": "https://www.youtube.com/playlist?list=PLMBIqBPLnlqY",
+    "previousLitterHref": "/georgia-waylon-may-2026"
+  },
+  {
+    "slug": "beatrix-enzo-planned-2026",
+    "name": "Beatrix + Enzo",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "featuredAvailable": false,
+    "litterNumber": "Second pairing",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-Style Goldendoodle",
+    "birthDate": "Expected late September to early October 2026",
+    "goHomeDate": "Expected late November to early December 2026",
+    "expectedSize": "25-35 lbs full-grown",
+    "expectedTiming": "Breeding planned for late July to early August 2026",
+    "expectedColors": "Warm apricot and red possibilities",
+    "expectedCoatTraits": "Silky-soft wavy to curly, lower-shedding coat possibilities",
+    "priceRange": "$2,800",
+    "availabilitySummary": "Beatrix is in heat, and breeding with Enzo is planned for their second F1B-style Goldendoodle pairing.",
+    "availabilityNote": "Join the Goldendoodle waitlist for breeding and pregnancy confirmation, with go-home estimated for late November to early December 2026.",
+    "aboutTitle": "A much-loved second pairing with silky-soft coats and family-favorite temperaments.",
+    "aboutThisLitter": [
+      "We are so excited to bring Beatrix and Enzo together for their second pairing. Their first pairing gave us so much to love, and we cannot wait to see this combination again.",
+      "Beatrix is one of the sweetest mamas in our program. She has an exceptionally silky-soft coat, an affectionate family-dog temperament, and the kind of gentle personality that has made her a true Red Ranch family favorite.",
+      "Enzo is a top-notch Goldendoodle stud in our program and consistently produces some of the cutest puppies. His compact size, beautiful red coat, and proven contribution to our Goldendoodle lines make him a special match for Beatrix.",
+      "Because Beatrix is an F1 Goldendoodle and Enzo is approximately 96% Poodle and 4% Golden Retriever, their puppies are expected to average about 73% Poodle and 27% Golden Retriever. That gives this Goldendoodle-to-Goldendoodle pairing an F1B-style genetic balance.",
+      "Beatrix is now in heat, so breeding is planned for late July to early August. If breeding and pregnancy progress as expected, puppies would be due in late September to early October, with go-home estimated for late November to early December 2026.",
+      "We expect warm apricot and red possibilities with silky-soft wavy to curly, lower-shedding coat possibilities. Puppies are expected to mature around 25-35 lbs full-grown, though individual puppy size can vary."
+    ],
+    "geneticMakeup": [
+      "~73% Poodle",
+      "~27% Golden Retriever",
+      "F1B-style Goldendoodle pairing"
+    ],
+    "aboutHighlights": [
+      "Second Beatrix + Enzo pairing",
+      "F1B-style Goldendoodles",
+      "About 73% Poodle / 27% Golden Retriever",
+      "25-35 lbs expected adult size",
+      "Late November to early December 2026 estimated go-home"
+    ],
+    "puppySlugs": [],
+    "weeklyUpdateStatus": "Beatrix is in heat. Breeding is planned for late July to early August, with pregnancy confirmation to follow.",
+    "weeklyUpdateGallery": [
+      "/images/dams/beatrix-red-ranch-dogs.webp",
+      "/images/studs/enzo-red-ranch-dogs.webp"
+    ],
+    "quickNote": "Beatrix is in heat. Their second pairing is planned for late July to early August, with estimated go-home in late November to early December 2026."
   },
   {
     "slug": "reece-wyatt-summer-2026",
     "name": "Reece + Wyatt",
     "visibility": "public",
-    "status": "Planned Litter",
+    "status": "Current Litter",
     "featuredAvailable": false,
     "litterNumber": "",
     "mamaSlug": "reece",
@@ -239,20 +292,20 @@
     "stud": "Wyatt Earp",
     "breedSlug": "cavapoo-puppies",
     "breed": "F1B Micro Cavapoo",
-    "birthDate": "Planned",
+    "birthDate": "July 2026",
     "goHomeDate": "To be announced",
     "expectedSize": "8-12 lbs",
-    "expectedTiming": "Summer 2026 planning",
+    "expectedTiming": "Puppies born July 2026",
     "expectedColors": "Red abstract, apricot, and parti possibilities",
     "expectedCoatTraits": "Soft, silky, wavy Cavapoo coat possibilities",
     "priceRange": "$4,500",
-    "availabilitySummary": "Reece and Wyatt are being bred for a planned summer F1B Micro Cavapoo litter.",
-    "availabilityNote": "Join the Cavapoo waitlist for updates as breeding and pregnancy timing are confirmed.",
-    "aboutTitle": "A planned summer Cavapoo pairing with a compact companion size.",
+    "availabilitySummary": "Reece and Wyatt's F1B Micro Cavapoo puppies are here, and Week 2 photos are now live.",
+    "availabilityNote": "Join the Cavapoo waitlist for puppy profile and availability updates as the litter grows.",
+    "aboutTitle": "A current Cavapoo litter with a compact companion size.",
     "aboutThisLitter": [
-      "Reece and Wyatt are being bred for a planned summer F1B Micro Cavapoo litter.",
+      "Reece and Wyatt's F1B Micro Cavapoo puppies arrived in July 2026.",
       "Reece is a 15 pound F1 Cavapoo mama with a sweet, companion-focused temperament. Wyatt Earp is a 4 pound toy Poodle stud selected for affectionate temperament, compact size, and soft coat possibilities.",
-      "This pairing is in the earliest planning stage, so final timing and puppy availability will be updated as pregnancy is confirmed.",
+      "Puppy profiles and availability will be updated as the litter grows.",
       "Families on the Cavapoo waitlist will be contacted in order as availability becomes clear."
     ],
     "geneticMakeup": [
@@ -260,17 +313,22 @@
       "25% Cavalier King Charles Spaniel"
     ],
     "aboutHighlights": [
-      "Planned summer Cavapoo litter",
+      "Current summer Cavapoo litter",
       "F1B Micro Cavapoos",
       "Expected 8-12 lbs full grown",
       "Cavapoo waitlist pairing"
     ],
     "puppySlugs": [],
-    "photoFolderHint": "Website Hub / Photos / Litters / Reece + Wyatt",
-    "weeklyUpdateStatus": "Breeding is in progress. Puppy photos will be added after birth.",
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Reece 2 + Wyatt",
+    "weeklyUpdateStatus": "Week 2 photos are live.",
     "weeklyUpdateGallery": [
-      "/images/dams/reece-red-ranch-dogs.webp",
-      "/images/studs/wyatt-earp-red-ranch-dogs.webp"
+      "/images/puppies/reece-wyatt-2026/blue-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif",
+      "/images/puppies/reece-wyatt-2026/green-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif",
+      "/images/puppies/reece-wyatt-2026/orange-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif",
+      "/images/puppies/reece-wyatt-2026/gray-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif",
+      "/images/puppies/reece-wyatt-2026/pink-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif",
+      "/images/puppies/reece-wyatt-2026/white-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif",
+      "/images/puppies/reece-wyatt-2026/yellow-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif"
     ]
   },
   {

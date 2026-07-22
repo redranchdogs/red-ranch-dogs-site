@@ -9,51 +9,88 @@ const outputPath = path.join(root, "docs", "MOBILE_TEMPLATE_QA.md");
 const port = Number(process.env.MOBILE_TEMPLATE_QA_PORT || 5205);
 const baseUrl = `http://127.0.0.1:${port}`;
 
-const routes = [
-  {
-    route: "/puppies/current-litters",
-    label: "Current Litters",
-    requiredText: ["growing now", "waitlist"],
-    selectors: [".current-litter-list .litter-card"],
-  },
-  {
-    route: "/litters/penny-wyatt-spring-2026",
-    label: "Current Litter Detail",
-    requiredText: ["penny + wyatt", "week 4"],
-    selectors: [".litter-summary-panel", ".litter-puppy-list .puppy-card", ".litter-gallery-section img"],
-  },
-  {
-    route: "/litters/whitley-waylon-april-2026",
-    label: "Newest Current Litter Detail",
-    requiredText: ["whitley + waylon", "week 2"],
-    selectors: [".litter-summary-panel", ".litter-puppy-list .puppy-card", ".litter-gallery-section img"],
-  },
-  {
-    route: "/puppies/striker",
-    label: "Puppy Detail With Weekly Photos",
-    requiredText: ["striker", "week 4"],
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(path.join(root, filePath), "utf8"));
+}
+
+function normalize(value = "") {
+  return String(value || "").trim().toLowerCase();
+}
+
+function isPublicRecord(record = {}) {
+  const visibility = normalize(record.visibility || "public");
+  return visibility !== "hidden" && visibility !== "private";
+}
+
+const litters = readJson("src/data/litters.json").filter(isPublicRecord);
+const puppies = readJson("src/data/puppies.json").filter(isPublicRecord);
+const currentLitters = litters.filter((litter) => normalize(litter.status).includes("current"));
+const currentLitterSlugs = new Set(currentLitters.map((litter) => litter.slug));
+const currentPuppies = puppies.filter((puppy) => currentLitterSlugs.has(puppy.litterSlug));
+const puppiesByLitter = new Map(
+  currentLitters.map((litter) => [litter.slug, currentPuppies.filter((puppy) => puppy.litterSlug === litter.slug)]),
+);
+
+const currentLitterRoute = currentLitters.length
+  ? {
+      route: "/puppies/current-litters",
+      label: "Current Litters",
+      requiredText: ["current litters"],
+      expandSelector: ".current-litter-list .upcoming-breed-toggle",
+      selectors: [".current-litter-list .upcoming-breed-toggle", ".current-litter-list .litter-card"],
+    }
+  : {
+      route: "/puppies/current-litters",
+      label: "Current Litters Empty State",
+      requiredText: ["planned pairings are ahead", "join the waitlist"],
+      selectors: [".smart-empty-state"],
+    };
+
+const currentLitterDetails = currentLitters.slice(0, 2).map((litter, index) => {
+  const litterPuppies = puppiesByLitter.get(litter.slug) || [];
+  const hasGallery = Array.isArray(litter.weeklyUpdateGallery) && litter.weeklyUpdateGallery.length > 0;
+  const litterName = String(litter.name || [litter.mama, litter.stud].filter(Boolean).join(" + ") || litter.slug).trim();
+
+  return {
+    route: `/litters/${litter.slug}`,
+    label: index ? "Additional Current Litter Detail" : "Current Litter Detail",
+    requiredText: [litterName],
+    selectors: [
+      ".litter-summary-panel",
+      ...(litterPuppies.length ? [".litter-puppy-list .puppy-card"] : []),
+      ...(hasGallery ? [".litter-gallery-section img"] : []),
+    ],
+  };
+});
+
+const puppyDetails = currentPuppies
+  .filter((puppy) => Array.isArray(puppy.weeklyPhotos) && puppy.weeklyPhotos.length > 0)
+  .slice(0, 2)
+  .map((puppy, index) => ({
+    route: `/puppies/${puppy.slug}`,
+    label: index ? "Additional Puppy Detail With Weekly Photos" : "Puppy Detail With Weekly Photos",
+    requiredText: [puppy.name],
     selectors: [".puppy-detail-section .puppy-card", ".puppy-weekly-photo-section img"],
-  },
-  {
-    route: "/puppies/hook",
-    label: "Newest Puppy Detail With Weekly Photos",
-    requiredText: ["hook", "week 2"],
-    selectors: [".puppy-detail-section .puppy-card", ".puppy-weekly-photo-section img"],
-  },
-];
+  }));
+
+const routes = [currentLitterRoute, ...currentLitterDetails, ...puppyDetails];
 
 function startDevServer() {
-  return spawn("npm", ["run", "dev", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
+  return spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
     cwd: root,
     env: process.env,
     stdio: ["ignore", "pipe", "pipe"],
   });
 }
 
-async function waitForServer() {
+async function waitForServer(server) {
   const started = Date.now();
 
   while (Date.now() - started < 20000) {
+    if (server.exitCode !== null) {
+      throw new Error(`Mobile template QA server exited before startup at ${baseUrl}${serverOutput ? `\n${serverOutput.trim()}` : ""}`);
+    }
+
     try {
       const response = await fetch(baseUrl);
       if (response.ok) return;
@@ -64,7 +101,21 @@ async function waitForServer() {
     await delay(400);
   }
 
-  throw new Error(`Mobile template QA server did not start at ${baseUrl}`);
+  throw new Error(`Mobile template QA server did not start at ${baseUrl}${serverOutput ? `\n${serverOutput.trim()}` : ""}`);
+}
+
+async function stopDevServer(server) {
+  if (!server || server.exitCode !== null) return;
+
+  const exited = new Promise((resolve) => server.once("exit", resolve));
+  server.kill("SIGTERM");
+
+  await Promise.race([
+    exited,
+    delay(3000).then(() => {
+      if (server.exitCode === null) server.kill("SIGKILL");
+    }),
+  ]);
 }
 
 async function launchBrowser() {
@@ -139,6 +190,11 @@ async function auditRoute(page, routeConfig) {
   const response = await page.goto(`${baseUrl}${routeConfig.route}`, { waitUntil: "networkidle", timeout: 20000 });
   await page.evaluate(() => window.scrollTo(0, 0));
 
+  if (routeConfig.expandSelector) {
+    const toggle = page.locator(routeConfig.expandSelector).first();
+    if (await toggle.count()) await toggle.click();
+  }
+
   const text = (await page.locator("body").innerText()).toLowerCase();
   const missingText = routeConfig.requiredText.filter((required) => !text.includes(required.toLowerCase()));
   const selectorResults = [];
@@ -192,7 +248,7 @@ const results = [];
 let browser;
 
 try {
-  await waitForServer();
+  await waitForServer(server);
   browser = await launchBrowser();
   const context = await browser.newContext({
     viewport: { width: 390, height: 844 },
@@ -209,7 +265,7 @@ try {
   await context.close();
 } finally {
   if (browser) await browser.close();
-  server.kill("SIGTERM");
+  await stopDevServer(server);
 }
 
 const blockers = results.filter((result) => result.blockers.length);
@@ -223,7 +279,7 @@ const report = [
   "",
   `Status: **${blockers.length ? "FAIL" : "PASS"}**`,
   "",
-  "This audit checks the mobile template stack for current litters, current litter detail pages, and individual puppy pages. It is meant to catch missing weekly photos, broken public images, and horizontal overflow before Adam spots it on an iPhone.",
+  "This audit checks the mobile template stack for the current-litter listing, current litter detail pages, and current puppy pages with weekly photos. When no current litters are posted, it validates the public empty state instead. It is meant to catch missing weekly photos, broken public images, and horizontal overflow before Adam spots it on an iPhone.",
   "",
   "## Blockers",
   "",

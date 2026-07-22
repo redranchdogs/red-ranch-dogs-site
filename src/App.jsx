@@ -1594,7 +1594,7 @@ const aboutStoryImage = "/images/about/red-ranch-dogs-our-story-family.jpg";
 const contactPuppyImage = "/images/puppies/honey-bram-2026/bumble-micro-goldendoodle-puppy-honey-bram-week-6-red-ranch-dogs.jpg";
 const guardianApplicationImage = "/images/guardian/red-ranch-dogs-guardian-application-family.jpg";
 const reviewHeroStats = [
-  { value: "100", label: "Google reviews" },
+  { value: "100+", label: "Google reviews" },
   { value: "Family", label: "communication focused" },
   { value: "Texas", label: "raised in Salado" }
 ];
@@ -1618,14 +1618,14 @@ const reviewThemes = [
 ];
 
 const homeReviewProofStats = [
-  ["100", "Google reviews"],
-  ["4.9", "star family rating"],
+  ["100+", "Google reviews"],
+  ["5.0", "Google rating"],
   ["Salado", "Texas raised"],
   ["Ongoing", "puppy family support"]
 ];
 
 const socialProofItems = [
-  ["100 Google reviews", Star],
+  ["100+ Google reviews", Star],
   ["Nearly 10,000 Instagram followers", Instagram],
   ["Health-tested parent dogs", PawPrint],
   ["Texas-based, family-owned program", HomeIcon]
@@ -1833,6 +1833,8 @@ function BreedCard({ breed }) {
 }
 
 function HomeDoodles() {
+  const hasCurrentLitters = currentLitterProfiles.length > 0;
+
   return (
     <PageSection id="our-doodles" className="home-doodles-section" variant="compact">
       <ContentContainer>
@@ -1845,7 +1847,9 @@ function HomeDoodles() {
           {homepageBreeds.map((breed) => <BreedCard breed={breed} key={breed.name} />)}
         </CardGrid>
         <div className="section-cta-row">
-          <CTAButton href="/puppies/current-litters" variant="primary">View Current Litters</CTAButton>
+          <CTAButton href={hasCurrentLitters ? "/puppies/current-litters" : "/puppies/upcoming-litters"} variant="primary">
+            {hasCurrentLitters ? "View Current Litters" : "View Upcoming Litters"}
+          </CTAButton>
           <CTAButton href="/apply" variant="secondary">Join the Waitlist</CTAButton>
         </div>
       </ContentContainer>
@@ -1856,17 +1860,28 @@ function HomeDoodles() {
 function HomeReadySoonStrip() {
   const readyPuppies = featuredAvailablePuppies();
 
-  if (!readyPuppies.length) return null;
+  if (!readyPuppies.length) {
+    return (
+      <CTASection
+        title={noAvailabilityTitle}
+        copy="All current puppies have families. View upcoming litters or join the waitlist."
+        primaryHref="/puppies/upcoming-litters"
+        primaryLabel="View Upcoming Litters"
+        secondaryHref="/apply"
+        secondaryLabel="Join the Waitlist"
+      />
+    );
+  }
 
   return (
     <FadeInSection className="home-ready-strip-section">
       <ContentContainer>
         <div className="home-ready-strip-header">
           <p className="premium-kicker">Available Now</p>
-          <h2>Ready to go home mid July</h2>
-          <p>These puppies are available and ready to go home mid July.</p>
+          <h2>Ready to go home now</h2>
+          <p>These puppies are available and ready to go home now.</p>
         </div>
-        <div className="home-ready-puppy-row" aria-label="Puppies ready to go home mid July">
+        <div className="home-ready-puppy-row" aria-label="Puppies ready to go home now">
           {readyPuppies.map((puppy) => {
             const photo = puppy.mainPhoto || puppy.image;
             const gender = puppy.gender || puppy.sex || "Gender to be announced";
@@ -3074,12 +3089,12 @@ function ListingStatusStrip({ items = [], className = "" }) {
   );
 }
 
-function SmartEmptyState({ eyebrow = "Update", title, copy, steps = [], primaryHref = "/apply", primaryLabel = "Apply for a Puppy", secondaryHref, secondaryLabel }) {
+function SmartEmptyState({ eyebrow = "Update", title, copy, steps = [], primaryHref = "/apply", primaryLabel = "Apply for a Puppy", secondaryHref, secondaryLabel, className = "" }) {
   const hasPrimaryAction = Boolean(primaryHref && primaryLabel);
   const hasSecondaryAction = Boolean(secondaryHref && secondaryLabel);
 
   return (
-    <section className="content-section narrow availability-empty-panel smart-empty-state">
+    <section className={`content-section narrow availability-empty-panel smart-empty-state ${className}`.trim()}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
       <h2>{title}</h2>
       {copy && <p>{copy}</p>}
@@ -3419,6 +3434,7 @@ const isReservedPuppy = (puppy) => ["reserved", "matched"].includes(normalizedSt
 const isWaitlistMatchingPuppy = (puppy) => statusMatches(puppy, "waitlist matching");
 const puppyDisplayStatus = (status = "") => ["pending", "waitlist matching"].includes(normalizedStatus(status)) ? "Reserved" : status;
 const litterDateSortValue = (litter) => sortableLitterDate(litter?.goHomeDate || litter?.goHome || litter?.birthDate || "");
+const noAvailabilityTitle = "Explore our upcoming litters";
 const featuredAvailablePuppies = () => puppyData
   .filter((puppy) => {
     const litter = litterProfileBySlug.get(puppy.litterSlug);
@@ -4040,12 +4056,18 @@ function LitterPage({ litter }) {
         copy: "Apply now or ask about availability, timing, and whether this puppy is the right fit for your family.",
         primaryLabel: "Apply for a Puppy"
       }
-    : waitlistMatchingPuppies.length
+      : waitlistMatchingPuppies.length
       ? {
           title: "Want a future litter like this?",
           copy: "Puppies not marked Available are not open to reserve publicly. Apply and we will help you understand future timing for this breed.",
           primaryLabel: "Apply for a Future Litter"
         }
+      : isPlannedLitter(litter)
+        ? {
+            title: "Want updates on this planned litter?",
+            copy: "Join the waitlist and we will share timing, pregnancy confirmation, and availability updates as this pairing progresses.",
+            primaryLabel: "Join the Waitlist"
+          }
       : isCurrentLitter(litter) && puppies.length === 0
         ? {
             title: "Want updates on this litter?",
@@ -4183,15 +4205,19 @@ function LitterPage({ litter }) {
           </details>
         </section>
       )}
-      <section className="card-list litter-puppy-list">
-        <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
-        {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
-      </section>
-      <section className="content-section litter-gallery-section">
-        <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
-        <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />
-        {gallery.length > 0 && <LitterImageGallery images={gallery} puppies={puppies} label={`${litter.name} weekly update`} />}
-      </section>
+      {!isPlannedLitter(litter) && (
+        <>
+          <section className="card-list litter-puppy-list">
+            <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
+            {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
+          </section>
+          <section className="content-section litter-gallery-section">
+            <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
+            <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />
+            {gallery.length > 0 && <LitterImageGallery images={gallery} puppies={puppies} label={`${litter.name} weekly update`} />}
+          </section>
+        </>
+      )}
       {litter.videoPlaylistUrl && (
         <section className="content-section litter-video-section">
           <SectionHeader eyebrow="Videos" title={`${litter.name} videos`} copy="Tap to play the video playlist for this litter." />
@@ -4384,7 +4410,7 @@ function PuppiesOverviewPage() {
       <section className="content-section narrow puppy-overview-availability-section">
         <article className="group-panel puppy-overview-availability-card">
           <p className="eyebrow">Current Availability</p>
-          <h2>{availableNow.length ? "Puppies are available now" : "No public puppies are available right now"}</h2>
+          <h2>{availableNow.length ? "Puppies are available now" : noAvailabilityTitle}</h2>
           <p>
             {availableNow.length
               ? "Only the priority puppies looking for families soonest appear on the Available Puppies page."
@@ -4752,10 +4778,6 @@ function AvailablePuppiesPage() {
     });
   const visibleAvailableBreedGroups = availableBreedGroups.filter((group) => group.puppies.length);
   const [openBreedSlugs, setOpenBreedSlugs] = useState([]);
-  const availabilityStats = availableBreedGroups.map((group) => ({
-    value: group.puppies.length,
-    label: `${group.name} ${group.puppies.length === 1 ? "puppy" : "puppies"} available`
-  }));
   const handleAvailableBreedToggle = (slug) => {
     setOpenBreedSlugs((currentSlugs) => {
       return currentSlugs.includes(slug)
@@ -4771,23 +4793,29 @@ function AvailablePuppiesPage() {
   return (
     <BuyerPageTemplate
       title="Available Puppies"
-      copy="These puppies are looking for their families now and are available to reserve with a deposit."
+      copy={availableNow.length
+        ? "These puppies are looking for their families now and are available to reserve with a deposit."
+        : "No puppies are currently open for reservation. Explore our upcoming pairings and join the waitlist for future availability."}
     >
-      <ListingStatusStrip items={availabilityStats} className="available-puppy-tracker" />
       {availableNow.length === 0 && (
-        <SmartEmptyState
-          eyebrow="Availability Update"
-          title="No public puppies are available right now."
-          copy="Current and upcoming litter pages are still the best place to watch timing, photos, and waitlist opportunities."
-          steps={[
-            "View current litters for puppies already growing.",
-            "Check upcoming litters for planned pairings.",
-            "Apply for the breed waitlist that best fits your family."
-          ]}
-          primaryLabel="Apply for a Puppy"
-          secondaryHref="/puppies/current-litters"
-          secondaryLabel="Current Litters"
-        />
+        <>
+          <SmartEmptyState
+            eyebrow="Availability Update"
+            title={noAvailabilityTitle}
+            copy="Preview planned pairings, expected timing, and parent dogs, then join the waitlist when you find the right fit."
+            primaryHref="/puppies/upcoming-litters"
+            primaryLabel="View Upcoming Litters"
+            secondaryHref="/apply"
+            secondaryLabel="Join the Waitlist"
+            className="available-puppy-empty-state zero-inventory-empty-state"
+          />
+          <PlannedLitterGroups
+            className="zero-inventory-upcoming-path"
+            eyebrow="Upcoming Litters"
+            introCopy="Open a breed to preview planned pairings, expected timing, and size information."
+            panelIdSuffix="available-fallback"
+          />
+        </>
       )}
       {visibleAvailableBreedGroups.length > 0 && (
         <section className="upcoming-litter-groups listing-content-section available-puppy-groups">
@@ -4802,20 +4830,20 @@ function AvailablePuppiesPage() {
         </section>
       )}
       <CTASection
-        title={availableNow.length ? "Ready to ask about a puppy?" : "Want help choosing the right path?"}
+        title={availableNow.length ? "Ready to ask about a puppy?" : "Ready to join a future litter?"}
         copy={availableNow.length
           ? "Apply now and tell us which puppy caught your eye. We will help you understand availability, timing, and fit."
-          : "Apply now or text us if you want help choosing the breed and timing that fit your family."}
-        primaryLabel="Apply for a Puppy"
+          : "Join the waitlist or text us if you want help choosing the breed and timing that fit your family."}
+        primaryLabel={availableNow.length ? "Apply for a Puppy" : "Join the Waitlist"}
         secondaryHref={brand.sms}
         secondaryLabel="Text Us"
         className={availableNow.length ? "available-puppy-path-cta" : "available-puppy-empty-cta"}
       />
       <StickyMobileCta
-        primaryHref="/apply"
-        primaryLabel={availableNow.length ? "Apply" : "Join Waitlist"}
-        secondaryHref={brand.sms}
-        secondaryLabel="Text Us"
+        primaryHref={availableNow.length ? "/apply" : "/puppies/upcoming-litters"}
+        primaryLabel={availableNow.length ? "Apply" : "Upcoming Litters"}
+        secondaryHref={availableNow.length ? brand.sms : "/apply"}
+        secondaryLabel={availableNow.length ? "Text Us" : "Join Waitlist"}
       />
     </BuyerPageTemplate>
   );
@@ -4830,6 +4858,68 @@ function CurrentLitterWaitlistNote() {
           as Reserved.
         </p>
       </article>
+    </section>
+  );
+}
+
+function PlannedLitterGroups({ className = "", eyebrow = "Planned Pairings", introCopy = "", panelIdSuffix = "upcoming" }) {
+  const [openBreedSlug, setOpenBreedSlug] = useState("");
+  const groupedPlannedLitters = plannedLitterBreedGroups
+    .map((group) => ({
+      ...group,
+      litters: plannedLitterProfiles.filter((litter) => litter.breedSlug === group.slug)
+    }))
+    .filter((group) => group.litters.length);
+  const ungroupedPlannedLitters = plannedLitterProfiles.filter((litter) => !plannedLitterBreedGroups.some((group) => group.slug === litter.breedSlug));
+  const additionalGroupSlug = `additional-planned-litters-${panelIdSuffix}`;
+
+  if (!plannedLitterProfiles.length) {
+    return null;
+  }
+
+  const handleBreedToggle = (slug) => {
+    const nextOpenBreedSlug = openBreedSlug === slug ? "" : slug;
+    setOpenBreedSlug(nextOpenBreedSlug);
+    scrollLitterBreedGroupIntoView(nextOpenBreedSlug, panelIdSuffix);
+  };
+
+  return (
+    <section className={`upcoming-litter-groups listing-content-section ${className}`.trim()}>
+      <SectionHeader
+        eyebrow={eyebrow}
+        title="Choose a breed"
+        copy={introCopy}
+      />
+      {groupedPlannedLitters.map((group) => (
+        <LitterBreedAccordionGroup
+          countLabel={`${group.litters.length} ${group.litters.length === 1 ? "planned pairing" : "planned pairings"}`}
+          detailLabel="Next timing"
+          detailValue={nextLitterTiming(group.litters)}
+          group={group}
+          isOpen={openBreedSlug === group.slug}
+          key={group.slug}
+          onToggle={() => handleBreedToggle(group.slug)}
+          panelIdSuffix={panelIdSuffix}
+          showAvailabilityNote={false}
+        />
+      ))}
+      {ungroupedPlannedLitters.length > 0 && (
+        <LitterBreedAccordionGroup
+          countLabel={`${ungroupedPlannedLitters.length} ${ungroupedPlannedLitters.length === 1 ? "planned pairing" : "planned pairings"}`}
+          detailLabel="Next timing"
+          detailValue={nextLitterTiming(ungroupedPlannedLitters)}
+          group={{
+            slug: additionalGroupSlug,
+            eyebrow: "More Pairings",
+            copy: "Additional pairings will be updated as program plans are confirmed.",
+            litters: ungroupedPlannedLitters
+          }}
+          isOpen={openBreedSlug === additionalGroupSlug}
+          onToggle={() => handleBreedToggle(additionalGroupSlug)}
+          panelIdSuffix={panelIdSuffix}
+          showAvailabilityNote={false}
+        />
+      )}
     </section>
   );
 }
@@ -4854,7 +4944,9 @@ function CurrentLittersPage() {
     <BuyerPageTemplate
       eyebrow="Puppies"
       title="Current Litters"
-      copy="Ordered by go-home timing with availability kept simple on each card."
+      copy={currentLitterProfiles.length
+        ? "Ordered by go-home timing with availability kept simple on each card."
+        : "We do not have puppies currently growing. Explore planned pairings and join the waitlist for future availability."}
     >
       {currentLitterProfiles.length ? (
         <>
@@ -4899,45 +4991,36 @@ function CurrentLittersPage() {
           <CurrentLitterWaitlistNote />
         </>
       ) : (
-        <SmartEmptyState
-          eyebrow="Current Litter Update"
-          title="No current litters posted"
-          copy="When puppies are growing now, this page will show parent pairings, weekly photos, go-home timing, and availability notes."
-          steps={[
-            "View upcoming litters to see planned pairings.",
-            "Apply for the breed waitlist that fits your family.",
-            "Watch this page for current litter updates."
-          ]}
-          primaryLabel="Apply for a Puppy"
-          secondaryHref="/puppies/upcoming-litters"
-          secondaryLabel="View Upcoming Litters"
-        />
+        <>
+          <SmartEmptyState
+            eyebrow="Current Litter Update"
+            title="Planned pairings are ahead"
+            copy="Several thoughtfully planned pairings are coming up. Explore the timing and parent dogs, then join the waitlist when a pairing fits your family."
+            primaryHref="/puppies/upcoming-litters"
+            primaryLabel="View Upcoming Litters"
+            secondaryHref="/apply"
+            secondaryLabel="Join the Waitlist"
+            className="zero-inventory-empty-state"
+          />
+          <PlannedLitterGroups
+            className="zero-inventory-upcoming-path"
+            eyebrow="Upcoming Litters"
+            introCopy="Open a breed to preview planned pairings, expected timing, and size information."
+            panelIdSuffix="current-fallback"
+          />
+        </>
       )}
       <StickyMobileCta
-        primaryHref="/apply"
-        primaryLabel="Apply"
-        secondaryHref="/puppies/available"
-        secondaryLabel="Available"
+        primaryHref={currentLitterProfiles.length ? "/apply" : "/puppies/upcoming-litters"}
+        primaryLabel={currentLitterProfiles.length ? "Apply" : "Upcoming Litters"}
+        secondaryHref={currentLitterProfiles.length ? "/puppies/available" : "/apply"}
+        secondaryLabel={currentLitterProfiles.length ? "Available" : "Join Waitlist"}
       />
     </BuyerPageTemplate>
   );
 }
 
 function UpcomingLittersPage() {
-  const [openBreedSlug, setOpenBreedSlug] = useState("");
-  const groupedPlannedLitters = plannedLitterBreedGroups
-    .map((group) => ({
-      ...group,
-      litters: plannedLitterProfiles.filter((litter) => litter.breedSlug === group.slug)
-    }))
-    .filter((group) => group.litters.length);
-  const ungroupedPlannedLitters = plannedLitterProfiles.filter((litter) => !plannedLitterBreedGroups.some((group) => group.slug === litter.breedSlug));
-  const handleUpcomingBreedToggle = (slug) => {
-    const nextOpenBreedSlug = openBreedSlug === slug ? "" : slug;
-    setOpenBreedSlug(nextOpenBreedSlug);
-    scrollLitterBreedGroupIntoView(nextOpenBreedSlug, "upcoming");
-  };
-
   return (
     <BuyerPageTemplate
       eyebrow={`Updated ${upcomingLitters.updated}`}
@@ -4946,43 +5029,7 @@ function UpcomingLittersPage() {
     >
       {plannedLitterProfiles.length > 0 ? (
         <>
-          <section className="upcoming-litter-groups listing-content-section">
-            <SectionHeader
-              eyebrow="Planned Pairings"
-              title="Choose a breed"
-            />
-            {groupedPlannedLitters.map((group) => (
-              <LitterBreedAccordionGroup
-                countLabel={`${group.litters.length} ${group.litters.length === 1 ? "planned pairing" : "planned pairings"}`}
-                detailLabel="Next timing"
-                detailValue={nextLitterTiming(group.litters)}
-                group={group}
-                isOpen={openBreedSlug === group.slug}
-                key={group.slug}
-                onToggle={() => handleUpcomingBreedToggle(group.slug)}
-                panelIdSuffix="upcoming"
-                showAvailabilityNote={false}
-              />
-            ))}
-            {ungroupedPlannedLitters.length > 0 && (
-              <LitterBreedAccordionGroup
-                countLabel={`${ungroupedPlannedLitters.length} ${ungroupedPlannedLitters.length === 1 ? "planned pairing" : "planned pairings"}`}
-                detailLabel="Next timing"
-                detailValue={nextLitterTiming(ungroupedPlannedLitters)}
-                group={{
-                  slug: "additional-planned-litters",
-                  eyebrow: "More Pairings",
-                  title: "Additional planned litters",
-                  copy: "Additional pairings will be updated as program plans are confirmed.",
-                  litters: ungroupedPlannedLitters
-                }}
-                isOpen={openBreedSlug === "additional-planned-litters"}
-                onToggle={() => handleUpcomingBreedToggle("additional-planned-litters")}
-                panelIdSuffix="upcoming"
-                showAvailabilityNote={false}
-              />
-            )}
-          </section>
+          <PlannedLitterGroups />
           <CTASection
             title="Want to be contacted when a litter fits?"
             copy="Apply for the breed waitlist and we will help you understand timing, puppy picks, and which pairings may be a good fit."
@@ -5748,7 +5795,7 @@ function ReviewsPage() {
         <article className="group-panel">
           <p className="eyebrow">Google feedback</p>
           <h2>Trusted by puppy families</h2>
-          <p>We are grateful to have 100 Google reviews from puppy families who trusted Red Ranch Dogs with one of the sweetest decisions they will make.</p>
+          <p>We are grateful to have more than 100 Google reviews and a 5.0-star rating from puppy families who trusted Red Ranch Dogs with one of the sweetest decisions they will make.</p>
           <div className="actions">
             <a className="button primary" href={brand.googleReviews} target="_blank" rel="noreferrer">Read Google Reviews</a>
             <Link className="button secondary" href="/apply">Apply for a Puppy</Link>
