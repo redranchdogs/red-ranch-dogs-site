@@ -292,20 +292,20 @@
     "stud": "Wyatt Earp",
     "breedSlug": "cavapoo-puppies",
     "breed": "F1B Micro Cavapoo",
-    "birthDate": "July 2026",
+    "birthDate": "July 5, 2026",
     "goHomeDate": "To be announced",
     "expectedSize": "8-12 lbs",
-    "expectedTiming": "Puppies born July 2026",
+    "expectedTiming": "Puppies born July 5, 2026",
     "expectedColors": "Red abstract, apricot, and parti possibilities",
     "expectedCoatTraits": "Soft, silky, wavy Cavapoo coat possibilities",
     "priceRange": "$4,500",
     "availabilitySummary": "Reece and Wyatt's F1B Micro Cavapoo puppies are here, and Week 2 photos are now live.",
-    "availabilityNote": "Join the Cavapoo waitlist for puppy profile and availability updates as the litter grows.",
+    "availabilityNote": "Puppy profiles are live. Join the Cavapoo waitlist for selection and availability updates as the litter grows.",
     "aboutTitle": "A current Cavapoo litter with a compact companion size.",
     "aboutThisLitter": [
-      "Reece and Wyatt's F1B Micro Cavapoo puppies arrived in July 2026.",
+      "Reece and Wyatt's F1B Micro Cavapoo puppies arrived on July 5, 2026.",
       "Reece is a 15 pound F1 Cavapoo mama with a sweet, companion-focused temperament. Wyatt Earp is a 4 pound toy Poodle stud selected for affectionate temperament, compact size, and soft coat possibilities.",
-      "Puppy profiles and availability will be updated as the litter grows.",
+      "Puppy profiles and Week 2 photos are live, with future updates added as the litter grows.",
       "Families on the Cavapoo waitlist will be contacted in order as availability becomes clear."
     ],
     "geneticMakeup": [
@@ -318,7 +318,15 @@
       "Expected 8-12 lbs full grown",
       "Cavapoo waitlist pairing"
     ],
-    "puppySlugs": [],
+    "puppySlugs": [
+      "cannon",
+      "marco",
+      "polo",
+      "noodle",
+      "sun-kissed",
+      "floatie",
+      "jet"
+    ],
     "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Reece 2 + Wyatt",
     "weeklyUpdateStatus": "Week 2 photos are live.",
     "weeklyUpdateGallery": [
