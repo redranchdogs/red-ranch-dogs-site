@@ -3265,45 +3265,6 @@
     "personalityNote": "Personality notes will be updated as Marco grows."
   },
   {
-    "slug": "polo",
-    "name": "Polo",
-    "visibility": "public",
-    "breedSlug": "cavapoo-puppies",
-    "breed": "F1B Micro Cavapoo",
-    "litterSlug": "reece-wyatt-summer-2026",
-    "litter": "Reece + Wyatt",
-    "mamaSlug": "reece",
-    "mama": "Reece",
-    "studSlug": "wyatt-earp",
-    "stud": "Wyatt Earp",
-    "gender": "Male",
-    "collarColor": "Orange",
-    "status": "Waitlist Matching",
-    "sizeCategory": "Micro",
-    "estimatedAdultWeight": "8-12 lbs",
-    "birthDate": "July 5, 2026",
-    "goHomeDate": "To be announced",
-    "price": "$4,500",
-    "color": "Red abstract, apricot, and parti possibilities",
-    "coat": "Soft, silky, wavy Cavapoo coat possibilities",
-    "mainPhoto": "/images/puppies/reece-wyatt-2026/orange-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif",
-    "photos": [
-      "/images/puppies/reece-wyatt-2026/orange-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif"
-    ],
-    "weeklyPhotos": [
-      {
-        "week": "Week 2",
-        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Reece 2 + Wyatt / Week 2 / Photos",
-        "photos": [
-          "/images/puppies/reece-wyatt-2026/orange-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif"
-        ]
-      }
-    ],
-    "description": "Polo is a male F1B Micro Cavapoo puppy from Reece and Wyatt.",
-    "availabilityNote": "Puppy selections are being coordinated through the Cavapoo waitlist.",
-    "personalityNote": "Personality notes will be updated as Polo grows."
-  },
-  {
     "slug": "noodle",
     "name": "Noodle",
     "visibility": "public",
