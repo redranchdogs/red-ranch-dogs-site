@@ -95,6 +95,9 @@ const routes = uniqueRoutes([
   ...breedProfiles.map((breed) => breed.route),
   ...puppies.map((puppy) => `/puppies/${puppy.slug}`),
   ...litters.map((litter) => `/litters/${litter.slug}`),
+  ...litters
+    .filter((litter) => litter.pastPuppyGallery?.images?.length)
+    .map((litter) => `/litters/${litter.slug}/past-puppies`),
   ...parents.map((parent) => `/parents/${parent.slug}`),
   ...previousLitters.map((litter) => litter.href),
 ]);

@@ -202,6 +202,7 @@ litters.forEach((litter) => {
 
   if (isPublicRecord(litter)) {
     checkImageList(litter.weeklyUpdateGallery, `Litter ${litter.slug}`);
+    checkImageList(litter.pastPuppyGallery?.images, `Litter ${litter.slug} past puppy gallery`);
   }
 });
 
