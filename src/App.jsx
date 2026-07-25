@@ -98,6 +98,22 @@ function compactPath(path = "") {
   return path.replace(/\/$/, "") || "/";
 }
 
+function pastPuppyGalleryPath(litter) {
+  return litter?.slug && litter?.pastPuppyGallery?.images?.length
+    ? `/litters/${litter.slug}/past-puppies`
+    : "";
+}
+
+function litterForPastPuppyGalleryPath(path) {
+  const match = path.match(/^\/litters\/([^/]+)\/past-puppies$/);
+  if (!match) return null;
+
+  return publicLitterProfiles.find((litter) => (
+    litter.slug === match[1] &&
+    litter.pastPuppyGallery?.images?.length
+  )) || null;
+}
+
 function cleanAnalyticsTarget(value = "") {
   return String(value || "")
     .replace(siteOrigin, "")
@@ -559,6 +575,7 @@ function isKnownPublicPath(path) {
       breedProfiles.some((item) => item.route === path) ||
       publicPuppyProfiles.some((item) => `/puppies/${item.slug}` === path) ||
       publicLitterProfiles.some((item) => `/litters/${item.slug}` === path) ||
+      litterForPastPuppyGalleryPath(path) ||
       publicParentProfiles.some((item) => `/parents/${item.slug}` === path) ||
       litterDetails[path] ||
       previousLitterArchiveGroups[path] ||
@@ -589,6 +606,14 @@ function seoFor(path) {
     }
   }
   if (path.startsWith("/litters/")) {
+    const galleryLitter = litterForPastPuppyGalleryPath(path);
+    if (galleryLitter) {
+      return {
+        title: `Past Puppies From ${galleryLitter.name} | Red Ranch Dogs`,
+        description: `See recent photos of puppies from a previous ${galleryLitter.name} litter as they approach their adult look.`
+      };
+    }
+
     const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
     if (litter) {
       return {
@@ -742,6 +767,8 @@ function titleCaseSlug(slug) {
 function recordTitleForPath(path) {
   const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
   if (puppy) return puppy.name;
+  const galleryLitter = litterForPastPuppyGalleryPath(path);
+  if (galleryLitter) return `Past Puppies From ${galleryLitter.name}`;
   const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
   if (litter) return litter.name;
   const parent = publicParentProfiles.find((item) => `/parents/${item.slug}` === path);
@@ -813,6 +840,11 @@ function socialImageFor(path) {
   const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
   if (puppy?.mainPhoto) return absoluteUrl(puppy.mainPhoto);
 
+  const galleryLitter = litterForPastPuppyGalleryPath(path);
+  if (galleryLitter?.pastPuppyGallery?.images?.[0]) {
+    return absoluteUrl(galleryLitter.pastPuppyGallery.images[0]);
+  }
+
   const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
   if (litter?.weeklyUpdateGallery?.[0]) return absoluteUrl(litter.weeklyUpdateGallery[0]);
 
@@ -825,6 +857,9 @@ function socialImageFor(path) {
 function socialImageAltFor(path, meta) {
   const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
   if (puppy?.name) return `${puppy.name}, a ${puppy.breed} puppy at Red Ranch Dogs`;
+
+  const galleryLitter = litterForPastPuppyGalleryPath(path);
+  if (galleryLitter?.name) return `Past puppies from ${galleryLitter.name} at Red Ranch Dogs`;
 
   const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
   if (litter?.name) return `${litter.name} litter at Red Ranch Dogs`;
@@ -4045,6 +4080,7 @@ function LitterPage({ litter }) {
   const pastLitterHrefs = pastLitterHrefsFor(litter);
   const pastLitterHref = pastLitterHrefs[0] || "";
   const pastLitterLabel = pastLitterHrefs.length > 1 ? "View Past Litters" : "View Past Litter";
+  const pastPuppyGalleryHref = pastPuppyGalleryPath(litter);
   const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
   const waitlistName = breedProgram?.name || "breed";
   const isLongLitterName = litter.name.length > 18;
@@ -4150,9 +4186,14 @@ function LitterPage({ litter }) {
             <div><dt>Expected size</dt><dd>{litter.expectedSize}</dd></div>
             <div><dt>Price</dt><dd>{litter.priceRange}</dd></div>
           </dl>
-          {pastLitterHref && (
+          {(pastLitterHref || pastPuppyGalleryHref) && (
             <div className="actions litter-summary-actions">
-              <Link href={pastLitterHref} className="button secondary">{pastLitterLabel}</Link>
+              {pastPuppyGalleryHref && (
+                <Link href={pastPuppyGalleryHref} className="button primary">See Their Past Puppies</Link>
+              )}
+              {pastLitterHref && (
+                <Link href={pastLitterHref} className="button secondary">{pastLitterLabel}</Link>
+              )}
             </div>
           )}
         </aside>
@@ -4252,6 +4293,74 @@ function LitterPage({ litter }) {
         primaryLabel={availablePuppies.length ? "Apply" : "Join Waitlist"}
         secondaryHref={availablePuppies.length ? "/puppies/available" : brand.sms}
         secondaryLabel={availablePuppies.length ? "Available" : "Text Us"}
+      />
+    </Layout>
+  );
+}
+
+function PastPuppyGalleryPage({ litter }) {
+  const gallery = litter.pastPuppyGallery;
+  const currentLitterHref = `/litters/${litter.slug}`;
+  const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
+  const waitlistName = breedProgram?.name || "breed";
+  const waitlistLabel = breedProgram?.name ? `Join the ${breedProgram.name} Waitlist` : "Join the Waitlist";
+
+  return (
+    <Layout>
+      <PageHero
+        eyebrow={gallery.eyebrow || "Past Puppies"}
+        title={gallery.title || `Past Puppies From ${litter.name}`}
+        copy={gallery.summary}
+        className="compact-page-hero past-puppy-gallery-hero"
+        actions={(
+          <>
+            <Link href={currentLitterHref} className="button primary">View Current Litter</Link>
+            <Link href="/apply" className="button secondary">{waitlistLabel}</Link>
+          </>
+        )}
+      />
+      <section className="content-section past-pairing-context">
+        <div className="past-pairing-context-copy">
+          <p className="eyebrow">A Look Ahead</p>
+          <h2>Puppies from the same pairing</h2>
+          <p>
+            Reece and Wyatt&rsquo;s previous litter was born on {gallery.litterBirthDate}.
+            These photos were shared in {gallery.photoTiming}, when the puppies were {gallery.ageLabel.toLowerCase()}.
+          </p>
+        </div>
+        <aside className="past-pairing-reference-note">
+          <ShieldCheck size={24} aria-hidden="true" />
+          <div>
+            <strong>Helpful reference, not a guarantee</strong>
+            <p>{gallery.disclaimer}</p>
+          </div>
+        </aside>
+      </section>
+      <section className="content-section past-puppy-gallery-section">
+        <SectionHeader
+          eyebrow={gallery.ageLabel}
+          title="Past puppies, growing up"
+          copy="Tap any photo for a closer look."
+        />
+        <ImageGallery
+          images={gallery.images}
+          label={`${litter.name} past puppy, ${gallery.ageLabel.toLowerCase()}`}
+          className="past-puppy-photo-grid"
+        />
+      </section>
+      <CTASection
+        title={`Interested in a ${litter.name} puppy?`}
+        copy={`Return to the current litter for puppy updates, or apply to join the ${waitlistName} waitlist.`}
+        primaryHref={currentLitterHref}
+        primaryLabel="View Current Litter"
+        secondaryHref="/apply"
+        secondaryLabel={waitlistLabel}
+      />
+      <StickyMobileCta
+        primaryHref={currentLitterHref}
+        primaryLabel="Current Litter"
+        secondaryHref="/apply"
+        secondaryLabel="Join Waitlist"
       />
     </Layout>
   );
@@ -8016,6 +8125,8 @@ export default function App() {
     if (routes[path]) return routes[path];
     const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
     if (puppy) return <PuppyDetailPage puppy={puppy} />;
+    const galleryLitter = litterForPastPuppyGalleryPath(path);
+    if (galleryLitter) return <PastPuppyGalleryPage litter={galleryLitter} />;
     const litter = publicLitterProfiles.find((item) => `/litters/${item.slug}` === path);
     if (litter) return <LitterPage litter={litter} />;
     const parent = publicParentProfiles.find((item) => `/parents/${item.slug}` === path);

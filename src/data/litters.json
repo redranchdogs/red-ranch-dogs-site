@@ -335,7 +335,22 @@
       "/images/puppies/reece-wyatt-2026/pink-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif",
       "/images/puppies/reece-wyatt-2026/white-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif",
       "/images/puppies/reece-wyatt-2026/yellow-collar-f1b-micro-cavapoo-puppy-reece-wyatt-week-2-red-ranch-dogs.avif"
-    ]
+    ],
+    "pastPuppyGallery": {
+      "eyebrow": "Previous Reece + Wyatt Litter",
+      "title": "See How Their Past Puppies Are Growing",
+      "summary": "These recent family photos show puppies from Reece and Wyatt's previous litter as they approach their adult look.",
+      "litterBirthDate": "November 30, 2025",
+      "photoTiming": "July 2026",
+      "ageLabel": "Nearly 8 months old",
+      "disclaimer": "Past puppies are a helpful visual reference, not a prediction. Adult size, coat, color, furnishings, and overall appearance can vary from puppy to puppy.",
+      "images": [
+        "/images/litters/reece-wyatt-past-puppies-2025/reece-wyatt-past-puppy-01.webp",
+        "/images/litters/reece-wyatt-past-puppies-2025/reece-wyatt-past-puppy-02.webp",
+        "/images/litters/reece-wyatt-past-puppies-2025/reece-wyatt-past-puppy-03.webp",
+        "/images/litters/reece-wyatt-past-puppies-2025/reece-wyatt-past-puppy-04.webp"
+      ]
+    }
   },
   {
     "slug": "winnie-wyatt-spring-2026",

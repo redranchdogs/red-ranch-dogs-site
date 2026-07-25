@@ -48,6 +48,9 @@ const previousLitterArchiveRoutes = new Set(
 const dynamicRoutes = new Set([
   ...puppies.filter(isPublicRecord).map(routeFor("puppies")).filter(Boolean),
   ...litters.filter(isPublicRecord).map(routeFor("litters")).filter(Boolean),
+  ...litters
+    .filter((item) => isPublicRecord(item) && item.pastPuppyGallery?.images?.length)
+    .map((item) => `/litters/${item.slug}/past-puppies`),
   ...previousLitters.filter(isPublicRecord).map((item) => item.href).filter(Boolean),
   ...previousLitterArchiveRoutes,
   ...parents.filter(isPublicRecord).map(routeFor("parents")).filter(Boolean)

@@ -4076,6 +4076,106 @@ textarea {
   line-height: 1.35;
 }
 
+.past-puppy-gallery-hero {
+  padding-bottom: 28px;
+}
+
+.past-puppy-gallery-hero .hero-copy {
+  max-width: 900px;
+}
+
+.past-puppy-gallery-hero .hero-copy h1 {
+  max-width: 13ch;
+}
+
+.past-pairing-context {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: clamp(24px, 5vw, 64px);
+  align-items: start;
+  padding-top: 28px;
+  padding-bottom: 42px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.past-pairing-context-copy {
+  max-width: 660px;
+}
+
+.past-pairing-context-copy h2 {
+  max-width: 12ch;
+  margin: 0 0 16px;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  line-height: 0.92;
+}
+
+.past-pairing-context-copy p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.past-pairing-reference-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  padding: 18px 0 18px 20px;
+  border-left: 3px solid var(--brand-red);
+}
+
+.past-pairing-reference-note svg {
+  color: var(--brand-red);
+}
+
+.past-pairing-reference-note strong {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.past-pairing-reference-note p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.past-puppy-gallery-section {
+  padding-top: 54px;
+  padding-bottom: 58px;
+}
+
+.past-puppy-gallery-section .section-header {
+  margin-bottom: 20px;
+}
+
+.past-puppy-gallery-section .section-header h2 {
+  max-width: 13ch;
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+}
+
+.image-gallery.past-puppy-photo-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.past-puppy-photo-grid .gallery-photo-button {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+}
+
+.past-puppy-photo-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
 .litter-about-section {
   padding-top: 10px;
   padding-bottom: 32px;
@@ -8113,6 +8213,43 @@ summary {
   .litter-about-section {
     padding-top: 4px;
     padding-bottom: 26px;
+  }
+
+  .past-puppy-gallery-hero {
+    padding-bottom: 20px;
+  }
+
+  .past-puppy-gallery-hero .hero-copy h1 {
+    max-width: 10ch;
+  }
+
+  .past-pairing-context {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-top: 24px;
+    padding-bottom: 30px;
+  }
+
+  .past-pairing-context-copy h2 {
+    font-size: clamp(2.4rem, 12vw, 3.7rem);
+  }
+
+  .past-pairing-reference-note {
+    padding: 15px 0 15px 14px;
+  }
+
+  .past-puppy-gallery-section {
+    padding-top: 36px;
+    padding-bottom: 42px;
+  }
+
+  .past-puppy-gallery-section .section-header h2 {
+    font-size: clamp(2.5rem, 12vw, 3.8rem);
+  }
+
+  .image-gallery.past-puppy-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .litter-about-panel {

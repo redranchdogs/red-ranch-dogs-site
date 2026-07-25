@@ -115,6 +115,17 @@ const routeExpectations = [
       ? [".current-litter-list"]
       : [".smart-empty-state", ...(plannedLitters.length ? [".zero-inventory-upcoming-path"] : [])]
   },
+  ...litters
+    .filter((litter) => litter.pastPuppyGallery?.images?.length)
+    .map((litter) => ({
+      route: `/litters/${litter.slug}/past-puppies`,
+      requiredText: [
+        litter.pastPuppyGallery.title,
+        litter.pastPuppyGallery.ageLabel,
+        "helpful reference, not a guarantee"
+      ],
+      requiredSelectors: [".past-pairing-context", ".past-puppy-photo-grid"]
+    })),
   {
     route: "/puppies/goldendoodle-puppies",
     requiredText: ["goldendoodle", "how big will they get", "how to compare goldendoodle puppies", "most red ranch goldendoodles are multigen"],
