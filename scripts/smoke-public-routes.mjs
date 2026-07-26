@@ -122,9 +122,9 @@ const routeExpectations = [
       requiredText: [
         litter.pastPuppyGallery.title,
         litter.pastPuppyGallery.ageLabel,
-        "helpful reference, not a guarantee"
+        "helpful visual reference"
       ],
-      requiredSelectors: [".past-pairing-context", ".past-puppy-photo-grid"]
+      requiredSelectors: [".past-puppy-gallery-hero", ".past-puppy-photo-grid"]
     })),
   {
     route: "/puppies/goldendoodle-puppies",

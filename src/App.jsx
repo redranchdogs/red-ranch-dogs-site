@@ -4186,14 +4186,9 @@ function LitterPage({ litter }) {
             <div><dt>Expected size</dt><dd>{litter.expectedSize}</dd></div>
             <div><dt>Price</dt><dd>{litter.priceRange}</dd></div>
           </dl>
-          {(pastLitterHref || pastPuppyGalleryHref) && (
+          {pastLitterHref && (
             <div className="actions litter-summary-actions">
-              {pastPuppyGalleryHref && (
-                <Link href={pastPuppyGalleryHref} className="button primary">See Their Past Puppies</Link>
-              )}
-              {pastLitterHref && (
-                <Link href={pastLitterHref} className="button secondary">{pastLitterLabel}</Link>
-              )}
+              <Link href={pastLitterHref} className="button secondary">{pastLitterLabel}</Link>
             </div>
           )}
         </aside>
@@ -4221,6 +4216,17 @@ function LitterPage({ litter }) {
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </details>
+                )}
+                {pastPuppyGalleryHref && (
+                  <div className="litter-past-puppy-prompt">
+                    <div>
+                      <p className="eyebrow">Previous Litter</p>
+                      <h3>Want to see puppies from this pairing nearly full grown?</h3>
+                    </div>
+                    <Link href={pastPuppyGalleryHref} className="button secondary">
+                      See the Photos <ArrowRight size={17} aria-hidden="true" />
+                    </Link>
+                  </div>
                 )}
               </div>
               {(litter.geneticMakeup?.length || litter.aboutHighlights?.length) && (
@@ -4312,41 +4318,14 @@ function PastPuppyGalleryPage({ litter }) {
         title={gallery.title || `Past Puppies From ${litter.name}`}
         copy={gallery.summary}
         className="compact-page-hero past-puppy-gallery-hero"
-        actions={(
-          <>
-            <Link href={currentLitterHref} className="button primary">View Current Litter</Link>
-            <Link href="/apply" className="button secondary">{waitlistLabel}</Link>
-          </>
-        )}
       />
-      <section className="content-section past-pairing-context">
-        <div className="past-pairing-context-copy">
-          <p className="eyebrow">A Look Ahead</p>
-          <h2>Puppies from the same pairing</h2>
-          <p>
-            Reece and Wyatt&rsquo;s previous litter was born on {gallery.litterBirthDate}.
-            These photos were shared in {gallery.photoTiming}, when the puppies were {gallery.ageLabel.toLowerCase()}.
-          </p>
-        </div>
-        <aside className="past-pairing-reference-note">
-          <ShieldCheck size={24} aria-hidden="true" />
-          <div>
-            <strong>Helpful reference, not a guarantee</strong>
-            <p>{gallery.disclaimer}</p>
-          </div>
-        </aside>
-      </section>
       <section className="content-section past-puppy-gallery-section">
-        <SectionHeader
-          eyebrow={gallery.ageLabel}
-          title="Past puppies, growing up"
-          copy="Tap any photo for a closer look."
-        />
         <ImageGallery
           images={gallery.images}
           label={`${litter.name} past puppy, ${gallery.ageLabel.toLowerCase()}`}
           className="past-puppy-photo-grid"
         />
+        <p className="past-puppy-gallery-note">{gallery.disclaimer}</p>
       </section>
       <CTASection
         title={`Interested in a ${litter.name} puppy?`}
