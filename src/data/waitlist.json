@@ -5,7 +5,7 @@
     "tab": "Public Waitlist",
     "hub": "Website Hub"
   },
-  "updatedAt": "2026-07-25",
+  "updatedAt": "2026-07-27",
   "publicRows": [
     {
       "breed": "Goldendoodle",
@@ -123,6 +123,13 @@
       "breed": "Cavapoo",
       "position": 11,
       "display_name": "Vicki H.",
+      "status": "Active",
+      "show_publicly": "Yes"
+    },
+    {
+      "breed": "Cavapoo",
+      "position": 12,
+      "display_name": "Ashley M.",
       "status": "Active",
       "show_publicly": "Yes"
     },
