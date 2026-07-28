@@ -494,6 +494,9 @@ process.env.RED_RANCH_BRIDGE_URL = "https://example.test/red-ranch-bridge";
 process.env.RED_RANCH_BRIDGE_SECRET = "test-secret";
 process.env.FORM_SHEET_ID = "test-form-sheet";
 process.env.FORM_SHEET_NAME = "Website Leads";
+process.env.RESEND_API_KEY = "test-resend-key";
+process.env.FORM_TO_EMAIL = "team@example.test";
+process.env.FORM_FROM_EMAIL = "Red Ranch Dogs <forms@example.test>";
 
 const bridgeRequests = [];
 globalThis.fetch = async (url, options = {}) => {
@@ -596,8 +599,15 @@ assert(queueReplaceRequest.body.values[0].includes("Next Action"), "lead queue h
 assert(queueAppendRequest.body.spreadsheetId === "test-form-sheet", "lead queue append should use configured sheet ID");
 assert(queueAppendRequest.body.values[0][9] === "Puppy Alert Signup", "lead queue row should include lead type");
 assert(queueAppendRequest.body.values[0][15].includes("Codex Form Test"), "lead queue row should include lead summary");
+assert(
+  bridgeRequests.filter((request) => String(request.url) === "https://api.resend.com/emails").length === 0,
+  "successful primary bridge delivery should not also invoke Resend"
+);
 
 delete process.env.FORM_WEBHOOK_URL;
+delete process.env.RESEND_API_KEY;
+delete process.env.FORM_TO_EMAIL;
+delete process.env.FORM_FROM_EMAIL;
 const mismatchBridgeActions = [];
 globalThis.fetch = async (url, options = {}) => {
   const body = JSON.parse(options.body || "{}");
@@ -737,7 +747,10 @@ process.env.FORM_TO_EMAIL = "team@example.test";
 process.env.FORM_FROM_EMAIL = "Red Ranch Dogs <forms@example.test>";
 process.env.FORM_WEBHOOK_URL = "https://example.test/red-ranch-dogs-form-webhook";
 
+const sheetSuccessResendRequests = [];
 globalThis.fetch = async (url) => {
+  sheetSuccessResendRequests.push(String(url));
+
   if (String(url).includes("api.resend.com")) {
     return { ok: false };
   }
@@ -755,8 +768,15 @@ assert(
   emailFailureSheetSuccess.statusCode === 200,
   "sheet delivery should prevent duplicate-resubmission error when email delivery fails"
 );
+assert(
+  sheetSuccessResendRequests.filter((url) => url === "https://api.resend.com/emails").length === 0,
+  "successful sheet delivery should keep Resend out of the normal notification path"
+);
 
+const sheetFailureResendRequests = [];
 globalThis.fetch = async (url) => {
+  sheetFailureResendRequests.push(String(url));
+
   if (String(url).includes("api.resend.com")) {
     return { ok: true };
   }
@@ -773,6 +793,10 @@ const sheetFailureEmailSuccess = await post({
 assert(
   sheetFailureEmailSuccess.statusCode === 200,
   "email delivery should prevent duplicate-resubmission error when sheet delivery fails"
+);
+assert(
+  sheetFailureResendRequests.filter((url) => url === "https://api.resend.com/emails").length === 1,
+  "failed sheet delivery should invoke exactly one Resend fallback notification"
 );
 
 globalThis.fetch = originalFetch;

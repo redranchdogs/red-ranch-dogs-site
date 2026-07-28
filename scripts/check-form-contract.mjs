@@ -229,6 +229,14 @@ addBlocker(apiSource.includes("CRM_INTAKE_PRIVATE_KEY"), "api/forms.js is missin
 addBlocker(testSource.includes("actualCrmSignature"), "Form handler tests do not verify the CRM signature.");
 addBlocker(testSource.includes("directIntakeNewsletter"), "Form handler tests do not cover direct CRM Puppy Alert delivery.");
 addBlocker(testSource.includes("transientCrmRequests"), "Form handler tests do not cover stable CRM retry delivery.");
+addBlocker(
+  apiSource.includes("if (!sheetDelivered)") && apiSource.includes("sendEmail(payload)"),
+  "api/forms.js must reserve Resend for the Sheet delivery fallback path."
+);
+addBlocker(
+  testSource.includes("sheetSuccessResendRequests") && testSource.includes("sheetFailureResendRequests"),
+  "Form handler tests do not cover normal-path notification suppression and Resend fallback."
+);
 
 if (blockerMessages.length) {
   console.error("Form contract check failed:");
