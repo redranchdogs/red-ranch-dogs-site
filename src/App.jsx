@@ -4221,7 +4221,7 @@ function LitterPage({ litter }) {
                   <div className="litter-past-puppy-prompt">
                     <div>
                       <p className="eyebrow">Previous Litter</p>
-                      <h3>Want to see puppies from this pairing nearly full grown?</h3>
+                      <h3>{litter.pastPuppyGallery.promptTitle || "Want to see puppies from this pairing nearly full grown?"}</h3>
                     </div>
                     <Link href={pastPuppyGalleryHref} className="button secondary">
                       See the Photos <ArrowRight size={17} aria-hidden="true" />
