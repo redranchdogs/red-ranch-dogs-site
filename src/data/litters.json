@@ -277,7 +277,19 @@
       "/images/dams/beatrix-red-ranch-dogs.webp",
       "/images/studs/enzo-red-ranch-dogs.webp"
     ],
-    "quickNote": "Beatrix is in heat. Their second pairing is planned for late July to early August, with estimated go-home in late November to early December 2026."
+    "quickNote": "Beatrix is in heat. Their second pairing is planned for late July to early August, with estimated go-home in late November to early December 2026.",
+    "pastPuppyGallery": {
+      "eyebrow": "Beatrix + Enzo Past Puppies",
+      "title": "See Their Previous Puppies",
+      "summary": "Puppies from their previous pairing.",
+      "ageLabel": "Puppies from their previous pairing",
+      "promptTitle": "Want to see puppies from their previous pairing?",
+      "disclaimer": "Past puppies are a helpful visual reference. Adult size, coat, color, and overall appearance can vary.",
+      "images": [
+        "/images/litters/beatrix-enzo-past-puppies/beatrix-enzo-past-puppy-01.webp",
+        "/images/litters/beatrix-enzo-past-puppies/beatrix-enzo-past-puppy-02.webp"
+      ]
+    }
   },
   {
     "slug": "reece-wyatt-summer-2026",
