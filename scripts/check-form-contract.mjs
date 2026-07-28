@@ -212,10 +212,23 @@ addBlocker(
   packageJson.scripts?.["publish:check"]?.includes("npm run check:form-contract"),
   'package.json publish:check must run "npm run check:form-contract".'
 );
-addBlocker(apiSource.includes("sendApplicationToCrm(payload)"), "api/forms.js is missing direct CRM application delivery.");
+addBlocker(
+  apiSource.includes("sendLeadEventToCrm(payload)"),
+  "api/forms.js is missing direct CRM application and Puppy Alert delivery."
+);
+addBlocker(
+  apiSource.includes('endpoint.pathname = "/api/intake/website-event"'),
+  "api/forms.js is missing the current CRM website-event endpoint."
+);
+addBlocker(
+  apiSource.includes("eventId: payload.submissionId"),
+  "api/forms.js is missing the stable CRM event identity contract."
+);
 addBlocker(apiSource.includes("X-Red-Ranch-Signature"), "api/forms.js is missing the signed CRM intake header.");
 addBlocker(apiSource.includes("CRM_INTAKE_PRIVATE_KEY"), "api/forms.js is missing the CRM intake signing-key contract.");
 addBlocker(testSource.includes("actualCrmSignature"), "Form handler tests do not verify the CRM signature.");
+addBlocker(testSource.includes("directIntakeNewsletter"), "Form handler tests do not cover direct CRM Puppy Alert delivery.");
+addBlocker(testSource.includes("transientCrmRequests"), "Form handler tests do not cover stable CRM retry delivery.");
 
 if (blockerMessages.length) {
   console.error("Form contract check failed:");

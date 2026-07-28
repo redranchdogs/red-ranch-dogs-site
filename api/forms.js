@@ -602,44 +602,71 @@ async function sendEmail(payload) {
   return { skipped: false };
 }
 
-async function sendApplicationToCrm(payload) {
-  if (payload.formType !== "application") {
+async function sendLeadEventToCrm(payload) {
+  if (!["application", "newsletter"].includes(payload.formType)) {
     return { skipped: true };
   }
   if (!process.env.CRM_INTAKE_URL || !process.env.CRM_INTAKE_PRIVATE_KEY) {
     return { skipped: true };
   }
 
-  const body = JSON.stringify(payload);
-  const timestamp = String(Date.now());
+  const endpoint = new globalThis.URL(process.env.CRM_INTAKE_URL);
+  endpoint.pathname = "/api/intake/website-event";
+  endpoint.search = "";
+  endpoint.hash = "";
+
+  const body = JSON.stringify({
+    ...payload,
+    eventId: payload.submissionId
+  });
   const privateKey = createPrivateKey({
     key: globalThis.Buffer.from(process.env.CRM_INTAKE_PRIVATE_KEY, "base64"),
     format: "der",
     type: "pkcs8"
   });
-  const signature = sign(null, globalThis.Buffer.from(`${timestamp}.${body}`), privateKey).toString("base64");
-  const controller = new AbortController();
-  const timeoutId = globalThis.setTimeout(() => controller.abort(), 1800);
+  let previousTimestamp = 0;
 
-  try {
-    const response = await fetch(process.env.CRM_INTAKE_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Red-Ranch-Timestamp": timestamp,
-        "X-Red-Ranch-Signature": `ed25519=${signature}`
-      },
-      body,
-      signal: controller.signal
-    });
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    const timestampNumber = Math.max(Date.now(), previousTimestamp + 1);
+    const timestamp = String(timestampNumber);
+    previousTimestamp = timestampNumber;
+    const signature = sign(null, globalThis.Buffer.from(`${timestamp}.${body}`), privateKey).toString("base64");
+    const controller = new AbortController();
+    const timeoutId = globalThis.setTimeout(() => controller.abort(), 1800);
+    let response;
 
-    if (!response.ok) {
-      throw new Error(`CRM intake delivery failed with status ${response.status || "unknown"}.`);
+    try {
+      response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Red-Ranch-Timestamp": timestamp,
+          "X-Red-Ranch-Signature": `ed25519=${signature}`
+        },
+        body,
+        signal: controller.signal
+      });
+    } catch (error) {
+      if (attempt < 2) {
+        continue;
+      }
+      throw error;
+    } finally {
+      globalThis.clearTimeout(timeoutId);
     }
-    return { skipped: false };
-  } finally {
-    globalThis.clearTimeout(timeoutId);
+
+    if (response.ok) {
+      return { skipped: false };
+    }
+
+    if ((response.status === 401 || response.status >= 500) && attempt < 2) {
+      continue;
+    }
+
+    throw new Error(`CRM intake delivery failed with status ${response.status || "unknown"}.`);
   }
+
+  throw new Error("CRM intake delivery failed.");
 }
 
 async function appendSheetViaBridge(payload) {
@@ -841,7 +868,7 @@ export default async function handler(request, response) {
     const [emailDelivery, sheetDelivery, crmDelivery] = await Promise.allSettled([
       sendEmail(payload),
       appendSheet(payload),
-      sendApplicationToCrm(payload)
+      sendLeadEventToCrm(payload)
     ]);
     const emailResult = emailDelivery.status === "fulfilled" ? emailDelivery.value : { skipped: true };
     const sheetResult = sheetDelivery.status === "fulfilled" ? sheetDelivery.value : { skipped: true };

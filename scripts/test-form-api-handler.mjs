@@ -328,6 +328,7 @@ assert(
 );
 
 process.env.CRM_INTAKE_URL = "https://crm.example.test/api/intake/website-application";
+const crmWebsiteEventUrl = "https://crm.example.test/api/intake/website-event";
 const crmIntakeTestKeys = generateKeyPairSync("ed25519");
 process.env.CRM_INTAKE_PRIVATE_KEY = crmIntakeTestKeys.privateKey.export({ type: "pkcs8", format: "der" }).toString("base64");
 const directIntakeRequests = [];
@@ -353,8 +354,8 @@ const directIntakeApplication = await post({
 });
 assert(directIntakeApplication.statusCode === 200, "signed CRM intake should preserve public application success");
 assert(directIntakeRequests.length === 2, "application should preserve email and add one direct CRM delivery");
-const crmRequest = directIntakeRequests.find((request) => request.url === process.env.CRM_INTAKE_URL);
-assert(crmRequest, "application should call the configured CRM intake endpoint");
+const crmRequest = directIntakeRequests.find((request) => request.url === crmWebsiteEventUrl);
+assert(crmRequest, "application should call the current CRM website-event endpoint");
 assert(crmRequest.method === "POST", "CRM intake should use POST");
 assert(crmRequest.signal, "CRM intake should use a bounded request signal");
 const crmTimestamp = crmRequest.headers["X-Red-Ranch-Timestamp"];
@@ -363,10 +364,105 @@ assert(
   verify(null, globalThis.Buffer.from(`${crmTimestamp}.${crmRequest.body}`), crmIntakeTestKeys.publicKey, actualCrmSignature),
   "CRM intake payload should carry a valid Ed25519 signature"
 );
-assert(JSON.parse(crmRequest.body).formType === "application", "CRM intake should receive the normalized application payload");
+const directApplicationPayload = JSON.parse(crmRequest.body);
+assert(directApplicationPayload.formType === "application", "CRM intake should receive the normalized application payload");
+assert(
+  directApplicationPayload.eventId === directApplicationPayload.submissionId,
+  "CRM application delivery should use submissionId as the stable eventId"
+);
+assert(
+  directIntakeRequests.filter((request) => request.url === "https://api.resend.com/emails").length === 1,
+  "application should retain exactly one existing email-notification request"
+);
 
+const directIntakeNewsletter = await post({
+  ...basePayload,
+  submissionId: `codex-direct-newsletter-${Date.now()}`,
+  formType: "newsletter",
+  formTitle: "Puppy Alert Email",
+  preferredBreed: "Goldendoodle"
+});
+assert(directIntakeNewsletter.statusCode === 200, "signed CRM intake should preserve public Puppy Alert success");
+const newsletterCrmRequests = directIntakeRequests
+  .filter((request) => request.url === crmWebsiteEventUrl)
+  .filter((request) => JSON.parse(request.body).formType === "newsletter");
+assert(newsletterCrmRequests.length === 1, "Puppy Alert should add one direct CRM delivery");
+const directNewsletterPayload = JSON.parse(newsletterCrmRequests[0].body);
+assert(
+  directNewsletterPayload.eventId === directNewsletterPayload.submissionId,
+  "CRM Puppy Alert delivery should use submissionId as the stable eventId"
+);
+assert(
+  directIntakeRequests.filter((request) => request.url === "https://api.resend.com/emails").length === 2,
+  "application and Puppy Alert should each retain one existing email-notification request"
+);
+
+const transientCrmRequests = [];
+const transientNotificationRequests = [];
+globalThis.fetch = async (url, options = {}) => {
+  const requestUrl = String(url);
+  if (requestUrl === crmWebsiteEventUrl) {
+    transientCrmRequests.push({
+      body: options.body || "",
+      headers: options.headers || {},
+      url: requestUrl
+    });
+    return transientCrmRequests.length === 1
+      ? { ok: false, status: 503 }
+      : { ok: true, status: 201 };
+  }
+  transientNotificationRequests.push(requestUrl);
+  return { ok: true, status: 200 };
+};
+const transientCrmApplication = await post({
+  ...basePayload,
+  submissionId: `codex-direct-intake-retry-${Date.now()}`,
+  formType: "application",
+  formTitle: "Application details",
+  preferredBreed: "Goldendoodle",
+  processAgreement: "Understands process, pricing, deposit policy, and spay/neuter agreement",
+  signature: "Codex Form Test"
+});
+assert(transientCrmApplication.statusCode === 200, "transient CRM retry should preserve public application success");
+assert(transientCrmRequests.length === 2, "transient CRM failure should make one bounded retry");
+assert(
+  transientCrmRequests[0].body === transientCrmRequests[1].body,
+  "CRM retry should preserve the exact serialized request body"
+);
+assert(
+  transientCrmRequests[0].headers["X-Red-Ranch-Timestamp"] !==
+    transientCrmRequests[1].headers["X-Red-Ranch-Timestamp"],
+  "CRM retry should use a fresh signature timestamp"
+);
+transientCrmRequests.forEach((request) => {
+  const signature = globalThis.Buffer.from(
+    request.headers["X-Red-Ranch-Signature"].replace(/^ed25519=/, ""),
+    "base64"
+  );
+  assert(
+    verify(
+      null,
+      globalThis.Buffer.from(`${request.headers["X-Red-Ranch-Timestamp"]}.${request.body}`),
+      crmIntakeTestKeys.publicKey,
+      signature
+    ),
+    "each CRM retry should carry a valid fresh Ed25519 signature"
+  );
+});
+assert(
+  transientNotificationRequests.filter((url) => url === "https://api.resend.com/emails").length === 1,
+  "CRM retries must not duplicate the existing notification path"
+);
+
+const failedCrmRequests = [];
+const failedCrmNotificationRequests = [];
 globalThis.fetch = async (url) => {
-  if (String(url) === process.env.CRM_INTAKE_URL) return { ok: false, status: 503 };
+  const requestUrl = String(url);
+  if (requestUrl === crmWebsiteEventUrl) {
+    failedCrmRequests.push(requestUrl);
+    return { ok: false, status: 503 };
+  }
+  failedCrmNotificationRequests.push(requestUrl);
   return { ok: true, status: 200 };
 };
 const crmFailureEmailSuccess = await post({
@@ -381,6 +477,11 @@ const crmFailureEmailSuccess = await post({
 assert(
   crmFailureEmailSuccess.statusCode === 200,
   "CRM intake failure must not reject an application delivered through existing email"
+);
+assert(failedCrmRequests.length === 2, "persistent transient CRM failure should stop after one retry");
+assert(
+  failedCrmNotificationRequests.filter((url) => url === "https://api.resend.com/emails").length === 1,
+  "persistent CRM failure must not duplicate the existing notification path"
 );
 delete process.env.CRM_INTAKE_URL;
 delete process.env.CRM_INTAKE_PRIVATE_KEY;
