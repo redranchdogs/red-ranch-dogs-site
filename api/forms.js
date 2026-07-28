@@ -865,15 +865,20 @@ export default async function handler(request, response) {
   payload.leadSummary = compactLeadSummary(payload);
 
   try {
-    const [emailDelivery, sheetDelivery, crmDelivery] = await Promise.allSettled([
-      sendEmail(payload),
+    const [sheetDelivery, crmDelivery] = await Promise.allSettled([
       appendSheet(payload),
       sendLeadEventToCrm(payload)
     ]);
-    const emailResult = emailDelivery.status === "fulfilled" ? emailDelivery.value : { skipped: true };
     const sheetResult = sheetDelivery.status === "fulfilled" ? sheetDelivery.value : { skipped: true };
-    const emailDelivered = emailDelivery.status === "fulfilled" && !emailResult.skipped;
     const sheetDelivered = sheetDelivery.status === "fulfilled" && !sheetResult.skipped;
+    let emailDelivery = { status: "fulfilled", value: { skipped: true } };
+
+    if (!sheetDelivered) {
+      [emailDelivery] = await Promise.allSettled([sendEmail(payload)]);
+    }
+
+    const emailResult = emailDelivery.status === "fulfilled" ? emailDelivery.value : { skipped: true };
+    const emailDelivered = emailDelivery.status === "fulfilled" && !emailResult.skipped;
 
     if (emailDelivery.status === "rejected") {
       console.error("Form email delivery failed.", {
