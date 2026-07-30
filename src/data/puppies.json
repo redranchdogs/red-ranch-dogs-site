@@ -3288,7 +3288,8 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Gray",
-    "status": "Waitlist Matching",
+    "status": "Reserved",
+    "matchedFamilyDisplay": "Anita",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "8-12 lbs",
     "birthDate": "July 5, 2026",
@@ -3314,7 +3315,7 @@
       }
     ],
     "description": "Noodle is a male F1B Micro Cavapoo puppy from Reece and Wyatt.",
-    "availabilityNote": "Puppy selections are being coordinated through the Cavapoo waitlist.",
+    "availabilityNote": "Noodle has found his home and is reserved.",
     "personalityNote": "Personality notes will be updated as Noodle grows.",
     "youtube_short_url": "https://youtube.com/shorts/3JQTqYCQ_w0"
   },
