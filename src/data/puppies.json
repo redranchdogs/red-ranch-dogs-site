@@ -3200,7 +3200,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Blue",
-    "status": "Waitlist Matching",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "8-12 lbs",
     "birthDate": "July 5, 2026",
@@ -3226,7 +3226,8 @@
       }
     ],
     "description": "Cannon is a male F1B Micro Cavapoo puppy from Reece and Wyatt.",
-    "availabilityNote": "Puppy selections are being coordinated through the Cavapoo waitlist.",
+    "matchedFamilyDisplay": "Cullen",
+    "availabilityNote": "Cannon has found his home and is reserved.",
     "personalityNote": "Personality notes will be updated as Cannon grows.",
     "youtube_short_url": "https://youtube.com/shorts/oaJwc1gAY4E"
   },
