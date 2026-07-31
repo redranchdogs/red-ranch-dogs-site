@@ -3378,7 +3378,7 @@
     "stud": "Wyatt Earp",
     "gender": "Female",
     "collarColor": "White",
-    "status": "Waitlist Matching",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "8-12 lbs",
     "birthDate": "July 5, 2026",
@@ -3404,7 +3404,7 @@
       }
     ],
     "description": "Floatie is a female F1B Micro Cavapoo puppy from Reece and Wyatt.",
-    "availabilityNote": "Puppy selections are being coordinated through the Cavapoo waitlist.",
+    "availabilityNote": "Floatie has found her home and is reserved.",
     "personalityNote": "Personality notes will be updated as Floatie grows.",
     "youtube_short_url": "https://youtube.com/shorts/UUf8HH4LKzg"
   },
@@ -3422,7 +3422,7 @@
     "stud": "Wyatt Earp",
     "gender": "Male",
     "collarColor": "Yellow",
-    "status": "Waitlist Matching",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "8-12 lbs",
     "birthDate": "July 5, 2026",
@@ -3448,7 +3448,7 @@
       }
     ],
     "description": "Jet is a male F1B Micro Cavapoo puppy from Reece and Wyatt.",
-    "availabilityNote": "Puppy selections are being coordinated through the Cavapoo waitlist.",
+    "availabilityNote": "Jet has found his home and is reserved.",
     "personalityNote": "Personality notes will be updated as Jet grows.",
     "youtube_short_url": "https://youtube.com/shorts/WDdoQfUd51I"
   }
