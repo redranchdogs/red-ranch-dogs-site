@@ -292,6 +292,59 @@
     }
   },
   {
+    "slug": "lulu-bram-fall-2026",
+    "name": "Lulu + Bram",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "featuredAvailable": false,
+    "litterNumber": "First pairing",
+    "mamaSlug": "lulu",
+    "mama": "Lulu",
+    "studSlug": "bram",
+    "stud": "Bram",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Micro Goldendoodle",
+    "birthDate": "Expected October 2026, pending pregnancy confirmation",
+    "goHomeDate": "Expected December 2026, pending confirmation",
+    "expectedSize": "Approximately 12-18 lbs full-grown",
+    "expectedTiming": "Breeding planned for August 2026; pregnancy confirmation to follow",
+    "expectedColors": "Deep red, red abstract, caramel, and red-chocolate possibilities",
+    "expectedCoatTraits": "Silky-soft straight to wavy, low-shedding coat possibilities",
+    "priceRange": "$4,500",
+    "availabilitySummary": "Lulu is in heat, and this first Lulu + Bram multigen Goldendoodle pairing is planned for August 2026.",
+    "availabilityNote": "We expect this litter to fill quickly. Join the Goldendoodle waitlist for breeding and pregnancy-confirmation updates.",
+    "aboutTitle": "A first-time micro Goldendoodle pairing with rare color and silky-soft coat possibilities.",
+    "aboutThisLitter": [
+      "Lulu and Bram are planned for their first pairing, bringing together two small multigen Goldendoodles selected for beautiful coats and affectionate family temperaments.",
+      "Lulu is a 16-pound multigen Goldendoodle with rare deep-red intensity and a warm chocolate undertone. Her coat is silky soft, and she is one of our sweetest girls: she loves to be held, stays close to her people, and settles beautifully into home life.",
+      "Bram is a small multigen Goldendoodle with a confident, playful temperament. His verified Embark breed profile supports a balanced Goldendoodle pairing while keeping the compact size and soft coat qualities families love.",
+      "Based on Lulu and Bram's verified Embark profiles, these puppies are expected to average approximately 71.2% Poodle and 28.8% Golden Retriever. Parent percentages are not listed publicly; this estimate describes the expected litter as a whole.",
+      "Puppies are expected to mature around 12-18 pounds full-grown, with individual size variation possible. Deep red, red abstract, caramel, and red-chocolate tones are possible, along with silky-soft straight to wavy, low-shedding coats.",
+      "Puppies from this planned litter will be priced at $4,500. We expect strong interest and recommend joining the Goldendoodle waitlist early while breeding and pregnancy confirmation are still pending."
+    ],
+    "geneticMakeup": [
+      "~71% Poodle",
+      "~29% Golden Retriever",
+      "Multigen Goldendoodle pairing"
+    ],
+    "aboutHighlights": [
+      "First Lulu + Bram pairing",
+      "Multigen Micro Goldendoodles",
+      "About 71% Poodle / 29% Golden Retriever",
+      "Approximately 12-18 lbs full-grown",
+      "Deep red and red-chocolate possibilities",
+      "$4,500"
+    ],
+    "puppySlugs": [],
+    "photoFolderHint": "Website Hub / Website Photos / Litters / Lulu + Bram",
+    "weeklyUpdateStatus": "Lulu is in heat. Breeding is planned for August 2026, with pregnancy confirmation to follow.",
+    "weeklyUpdateGallery": [
+      "/images/dams/lulu-red-ranch-dogs.webp",
+      "/images/studs/bram-outside-stud-honey-bram-red-ranch-dogs.jpg"
+    ],
+    "quickNote": "Lulu is in heat for this first pairing. Breeding is planned now, and pregnancy confirmation will follow before timing or availability is promised."
+  },
+  {
     "slug": "reece-wyatt-summer-2026",
     "name": "Reece + Wyatt",
     "visibility": "public",

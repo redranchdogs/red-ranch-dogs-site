@@ -52,6 +52,34 @@
     "description": "Micro Goldendoodle mama known for beautiful color, compact size, and a cuddly temperament."
   },
   {
+    "slug": "lulu",
+    "name": "Lulu",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "weight": "16 lbs",
+    "color": "Deep red with chocolate undertones",
+    "coat": "Silky-soft wavy",
+    "status": "Active",
+    "mainPhoto": "/images/dams/lulu-red-ranch-dogs.webp",
+    "photos": [
+      "/images/dams/lulu-red-ranch-dogs.webp",
+      "/images/dams/lulu-goldendoodle-mama-02.webp",
+      "/images/dams/lulu-goldendoodle-mama-03.webp",
+      "/images/dams/lulu-goldendoodle-mama-04.webp"
+    ],
+    "healthTestingLinks": [
+      "https://my.embarkvet.com/dog/lulu5142"
+    ],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "lulu-bram-fall-2026"
+    ],
+    "photoFolderHint": "Website Hub / Website Photos / Parents / Mamas / Lulu",
+    "description": "A 16-pound multigen Goldendoodle with rare deep-red chocolate-toned coloring, a silky-soft coat, and an exceptionally sweet, cuddly temperament. Lulu loves to be held and settles beautifully into home life."
+  },
+  {
     "slug": "phoebe",
     "name": "Phoebe",
     "visibility": "public",
@@ -731,22 +759,25 @@
     "visibility": "private",
     "role": "stud",
     "breedSlug": "goldendoodle-puppies",
-    "breed": "Outside stud",
+    "breed": "Multigen Mini Goldendoodle",
     "weight": "To be confirmed",
-    "color": "To be confirmed",
-    "coat": "To be confirmed",
+    "color": "Red abstract",
+    "coat": "Straight to wavy",
     "status": "Outside Stud",
     "mainPhoto": "/images/studs/bram-outside-stud-honey-bram-red-ranch-dogs.jpg",
     "photos": [
       "/images/studs/bram-outside-stud-honey-bram-red-ranch-dogs.jpg"
     ],
-    "healthTestingLinks": [],
+    "healthTestingLinks": [
+      "https://app.embarkvet.com/pet/10e656fb-3801-440a-aa35-966405518512/about"
+    ],
     "geneticTestingLinks": [],
     "relatedLitters": [
-      "honey-bram-spring-2026"
+      "honey-bram-spring-2026",
+      "lulu-bram-fall-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Bram",
-    "description": "Outside stud for Honey 2 with a confident, playful temperament."
+    "description": "Outside multigen Goldendoodle stud with a confident, playful temperament for select small Goldendoodle pairings."
   },
   {
     "slug": "ranger-outside-stud",
