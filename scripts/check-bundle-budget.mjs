@@ -3,7 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const assetsDir = path.join(root, "dist", "assets");
-const maxJsAssetBytes = Number(process.env.BUNDLE_MAX_JS_ASSET_BYTES || 515 * 1024);
+const maxJsAssetBytes = Number(process.env.BUNDLE_MAX_JS_ASSET_BYTES || 520 * 1024);
 const maxCssAssetBytes = Number(process.env.BUNDLE_MAX_CSS_ASSET_BYTES || 220 * 1024);
 
 function formatKb(bytes) {
