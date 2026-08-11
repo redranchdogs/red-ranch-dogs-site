@@ -2736,6 +2736,7 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
   const puppyCountLabel = litterAvailabilityLabel(litter, litterPuppies);
   const cardAvailabilityNote = showAvailabilityNote && !isCurrentLitter(litter) ? litter.availabilityNote : "";
   const actionLabel = isCurrentLitter(litter) && isFullyReservedLitter ? "View Updates" : isCurrentLitter(litter) ? "View Litter" : "View Pairing";
+  const plannedLitter = isPlannedLitter(litter);
 
   return (
     <article className="litter-card animal-card">
@@ -2768,8 +2769,8 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
         <dl className="details compact-details litter-card-facts">
           <div><dt>Mama</dt><dd>{litter.mama || "Mama to be announced"}</dd></div>
           <div><dt>Stud</dt><dd>{litter.stud || "Stud to be announced"}</dd></div>
-          <div><dt>Timing</dt><dd>{litter.expectedTiming || delivery}</dd></div>
-          <div><dt>Go Home</dt><dd>{goHome}</dd></div>
+          <div><dt>{plannedLitter ? "Expected Birth" : "Timing"}</dt><dd>{plannedLitter ? delivery : litter.expectedTiming || delivery}</dd></div>
+          <div><dt>{plannedLitter ? "Estimated Go Home" : "Go Home"}</dt><dd>{goHome}</dd></div>
           <div><dt>Size</dt><dd>{size}</dd></div>
           {price && <div><dt>Price</dt><dd>{price}</dd></div>}
         </dl>
@@ -4181,8 +4182,8 @@ function LitterPage({ litter }) {
           <dl className="details litter-facts">
             <div><dt>Mama</dt><dd>{litter.mama}</dd></div>
             <div><dt>Stud</dt><dd>{litter.stud}</dd></div>
-            <div><dt>Birth date</dt><dd>{litter.birthDate}</dd></div>
-            <div><dt>Go-home</dt><dd>{litter.goHomeDate}</dd></div>
+            <div><dt>{isPlannedLitter(litter) ? "Expected Birth" : "Birth date"}</dt><dd>{litter.birthDate}</dd></div>
+            <div><dt>{isPlannedLitter(litter) ? "Estimated Go Home" : "Go-home"}</dt><dd>{litter.goHomeDate}</dd></div>
             <div><dt>Expected size</dt><dd>{litter.expectedSize}</dd></div>
             <div><dt>Price</dt><dd>{litter.priceRange}</dd></div>
           </dl>
