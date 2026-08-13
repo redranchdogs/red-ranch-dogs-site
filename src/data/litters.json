@@ -423,6 +423,7 @@
     "visibility": "public",
     "status": "Planned Litter",
     "featuredAvailable": false,
+    "pregnancyConfirmed": true,
     "litterNumber": "",
     "mamaSlug": "winnie",
     "mama": "Winnie",
@@ -437,23 +438,23 @@
     "expectedColors": "Red abstract possibilities",
     "expectedCoatTraits": "Soft wavy to curly Cavapoo coat possibilities",
     "priceRange": "$3,200",
-    "availabilitySummary": "Winnie and Wyatt were paired in July. Pregnancy outcome is awaiting confirmation.",
-    "availabilityNote": "Expected birth is September 7-8, 2026, with estimated go-home November 2-3, 2026. Join the Cavapoo waitlist for updates.",
-    "aboutTitle": "A planned F1B Cavapoo pairing with sweet companion temperaments.",
+    "availabilitySummary": "Great news: Winnie is confirmed pregnant with her first litter with Wyatt.",
+    "availabilityNote": "This confirmed F1B Petite Mini Cavapoo litter is expected September 7-8, 2026, with estimated go-home November 2-3, 2026. Expected adult size is 15-20 lbs.",
+    "aboutTitle": "Winnie and Wyatt's first litter together is confirmed.",
     "aboutThisLitter": [
-      "Winnie and Wyatt were paired for an F1B Petite Mini Cavapoo litter with red abstract coat possibilities and sweet companion temperaments.",
-      "Winnie is 34 pounds and Wyatt Earp is 4 pounds, so this planned litter is expected to mature around 15-20 pounds full grown.",
-      "Pregnancy outcome is awaiting confirmation, with expected birth September 7-8, 2026 and estimated go-home November 2-3, 2026."
+      "Winnie is confirmed pregnant with her first litter with Wyatt, an F1B Petite Mini Cavapoo pairing with red abstract coat possibilities and sweet companion temperaments.",
+      "Winnie is 34 pounds and Wyatt Earp is 4 pounds, so their puppies are expected to mature around 15-20 pounds full grown.",
+      "Expected birth is September 7-8, 2026, with estimated go-home November 2-3, 2026."
     ],
     "aboutHighlights": [
+      "Pregnancy confirmed",
       "F1B Petite Mini Cavapoos",
       "Expected 15-20 lbs full grown",
-      "Red abstract possibilities",
-      "Cavapoo waitlist pairing"
+      "Red abstract possibilities"
     ],
     "puppySlugs": [],
     "photoFolderHint": "Website Hub / Photos / Litters / Winnie + Wyatt",
-    "weeklyUpdateStatus": "Pregnancy outcome is awaiting confirmation. Expected birth is September 7-8, 2026, with estimated go-home November 2-3, 2026.",
+    "weeklyUpdateStatus": "Winnie is confirmed pregnant. Expected birth is September 7-8, 2026, with estimated go-home November 2-3, 2026.",
     "weeklyUpdateGallery": [
       "/images/dams/winnie-red-ranch-dogs.webp",
       "/images/studs/wyatt-earp-red-ranch-dogs.webp"
