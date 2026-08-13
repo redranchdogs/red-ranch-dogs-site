@@ -3501,6 +3501,7 @@ const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter
   if (availableCount) return `${availableCount} available`;
   if (waitlistCount) return "Waitlist matching";
   if (litterPuppies.length && reservedCount === litterPuppies.length) return "Reserved";
+  if (litter?.pregnancyConfirmed && isPlannedLitter(litter)) return "Pregnancy confirmed";
   if (!isCurrentLitter(litter)) return "Planning";
   if (litterPuppies.length) return `${litterPuppies.length} puppy profiles`;
   return "Updates soon";
@@ -4102,8 +4103,10 @@ function LitterPage({ litter }) {
         }
       : isPlannedLitter(litter)
         ? {
-            title: "Want updates on this planned litter?",
-            copy: "Join the waitlist and we will share timing, pregnancy confirmation, and availability updates as this pairing progresses.",
+            title: litter.pregnancyConfirmed ? "Interested in this confirmed litter?" : "Want updates on this planned litter?",
+            copy: litter.pregnancyConfirmed
+              ? "Join the waitlist for timing and availability updates as this litter progresses."
+              : "Join the waitlist and we will share timing, pregnancy confirmation, and availability updates as this pairing progresses.",
             primaryLabel: "Join the Waitlist"
           }
       : isCurrentLitter(litter) && puppies.length === 0
