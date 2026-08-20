@@ -628,6 +628,20 @@
     "genetics": "ee KBky ata Bb Ssp; FF -/- Curl TT Shedding; 16% Retriever"
   },
   {
+    "slug": "tex",
+    "name": "Tex",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Micro Goldendoodle",
+    "weight": "Pending",
+    "color": "Red chocolate",
+    "coat": "Pending",
+    "status": "Active",
+    "mainPhoto": "/images/studs/tex.webp",
+    "description": "Red chocolate Micro Goldendoodle stud."
+  },
+  {
     "slug": "knox",
     "name": "Knox",
     "visibility": "public",
