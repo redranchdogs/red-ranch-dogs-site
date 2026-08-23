@@ -467,6 +467,7 @@
     "visibility": "public",
     "status": "Planned Litter",
     "featuredAvailable": false,
+    "pregnancyConfirmed": true,
     "litterNumber": "Kylie repeat",
     "mamaSlug": "kylie",
     "mama": "Kylie",
@@ -483,29 +484,29 @@
     "priceRange": "$4,500",
     "image": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
     "parentPairingImage": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
-    "availabilitySummary": "Kylie and outside stud Ranger were paired in July. Pregnancy outcome is awaiting confirmation.",
+    "availabilitySummary": "Great news: Kylie is confirmed pregnant with her repeat litter with outside stud Ranger.",
     "availabilityNote": "Expected birth is September 20-21, 2026, with estimated go-home November 15-16, 2026. Join the Bernedoodle waitlist for updates.",
-    "aboutTitle": "A repeat micro Bernedoodle pairing with rare color possibilities.",
+    "aboutTitle": "Kylie and Ranger's repeat micro Bernedoodle litter is confirmed.",
     "aboutThisLitter": [
-      "Kylie and outside stud Ranger were paired for a repeat Multigen Micro Bernedoodle litter with the rich color, compact size, and steady family temperament this pairing is known for.",
+      "Kylie is confirmed pregnant with her repeat Multigen Micro Bernedoodle litter with outside stud Ranger, a pairing known for rich color, compact size, and steady family temperament.",
       "Kylie is an ultra Bernedoodle in our program with a chocolate-toned coat and a sweet, people-focused temperament. Ranger is an outside Bernedoodle stud selected for this repeat pairing.",
       "Based on the previous pairing, these puppies are expected to mature around 25 pounds full grown.",
       "Coats are expected to range from straight to wavy, with chocolate tri, merle, red, and abstract possibilities throughout the litter.",
-      "Pregnancy outcome is awaiting confirmation, with expected birth September 20-21, 2026 and estimated go-home November 15-16, 2026."
+      "Expected birth is September 20-21, 2026, with estimated go-home November 15-16, 2026."
     ],
     "geneticMakeup": [
       "Multigen Bernedoodle pairing",
       "Estimated around 25 lbs full grown"
     ],
     "aboutHighlights": [
-      "Repeat Kylie + Ranger pairing",
+      "Pregnancy confirmed",
       "Multigen Micro Bernedoodles",
       "Chocolate tri and merle possibilities",
       "Expected birth September 20-21, 2026"
     ],
     "puppySlugs": [],
     "photoFolderHint": "Website Hub / Photos / Litters / Kylie + Ranger",
-    "weeklyUpdateStatus": "Pregnancy outcome is awaiting confirmation. Expected birth is September 20-21, 2026, with estimated go-home November 15-16, 2026.",
+    "weeklyUpdateStatus": "Kylie is confirmed pregnant. Expected birth is September 20-21, 2026, with estimated go-home November 15-16, 2026.",
     "weeklyUpdateGallery": [
       "/images/dams/kylie-red-ranch-dogs.webp",
       "/images/studs/ranger-bernedoodle-stud-red-ranch-dogs.webp"
