@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars, no-undef */
-// Red Ranch Dogs Website Bridge v3.2.
+// Red Ranch Dogs Website Bridge v3.3.
 //
 // Purpose:
 // - Let Codex safely read and update Website Hub sheets through Apps Script.
@@ -23,7 +23,7 @@ function doGet() {
   return json_({
     ok: true,
     message: "Red Ranch Dogs bridge is working.",
-    version: "3.2.0"
+    version: "3.3.0"
   });
 }
 
@@ -49,6 +49,10 @@ function doPost(e) {
       return json_(appendRows_(body));
     }
 
+    if (body.action === "appendWebsiteSubmission") {
+      return json_(appendWebsiteSubmission_(body));
+    }
+
     if (body.action === "deleteSheet") {
       return json_(deleteSheet_(body));
     }
@@ -69,7 +73,8 @@ function doPost(e) {
   } catch (error) {
     return json_({
       ok: false,
-      error: error && error.message ? error.message : String(error)
+      error: error && error.message ? error.message : String(error),
+      code: (error && error.code) || ""
     });
   }
 }
@@ -91,7 +96,7 @@ function getSheetValues_(body) {
 
 function replaceSheet_(body) {
   var sheet = getSheet_(body.spreadsheetId, body.sheetName);
-  var values = normalizeValues_(body.values || []);
+  var values = sanitizeValuesForSheet_(body.sheetName, normalizeValues_(body.values || []));
 
   if (sheet.getLastRow() > 0) {
     throw new Error("replaceSheet refused because " + body.sheetName + " already contains rows.");
@@ -113,7 +118,7 @@ function replaceSheet_(body) {
 
 function appendRows_(body) {
   var sheet = getSheet_(body.spreadsheetId, body.sheetName);
-  var values = normalizeValues_(body.values || []);
+  var values = sanitizeValuesForSheet_(body.sheetName, normalizeValues_(body.values || []));
   var notificationResult = { sent: 0 };
 
   if (!values.length || !values[0].length) {
@@ -135,6 +140,200 @@ function appendRows_(body) {
     columns: values[0].length,
     notifications: notificationResult
   };
+}
+
+function appendWebsiteSubmission_(body) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+
+  try {
+    if (!body.spreadsheetId) {
+      throw new Error("spreadsheetId is required.");
+    }
+
+    var rawSheetName = body.sheetName || "Website Leads";
+    var queueSheetName = body.leadQueueSheetName || "Lead Queue";
+    var rawHeaders = normalizeSingleRow_(body.submissionHeaders, "submissionHeaders");
+    var queueHeaders = normalizeSingleRow_(body.leadQueueHeaders, "leadQueueHeaders");
+    var rawRow = sanitizeValuesForSheet_(
+      rawSheetName,
+      [normalizeSingleRow_(body.submissionRow, "submissionRow")]
+    )[0];
+    var notificationRow = body.notificationRow
+      ? normalizeSingleRow_(body.notificationRow, "notificationRow")
+      : rawRow.map(comparableSheetCell_);
+    var queueRow = sanitizeValuesForSheet_(
+      queueSheetName,
+      [normalizeSingleRow_(body.leadQueueRow, "leadQueueRow")]
+    )[0];
+    var rawIdIndex = rawHeaders.indexOf("Submission ID");
+    var queueIdIndex = queueHeaders.indexOf("Submission ID");
+
+    if (rawIdIndex === -1 || queueIdIndex === -1) {
+      throw new Error("Website submission headers must include Submission ID.");
+    }
+
+    if (
+      rawRow.length !== rawHeaders.length ||
+      notificationRow.length !== rawHeaders.length ||
+      queueRow.length !== queueHeaders.length
+    ) {
+      throw new Error("Website submission row length does not match its headers.");
+    }
+
+    var submissionId = comparableSheetCell_(rawRow[rawIdIndex]);
+    var notificationSubmissionId = comparableSheetCell_(notificationRow[rawIdIndex]);
+    var queueSubmissionId = comparableSheetCell_(queueRow[queueIdIndex]);
+
+    if (
+      !submissionId ||
+      submissionId !== notificationSubmissionId ||
+      submissionId !== queueSubmissionId
+    ) {
+      throw new Error("Website Leads and Lead Queue must use the same non-empty Submission ID.");
+    }
+
+    var spreadsheet = SpreadsheetApp.openById(body.spreadsheetId);
+    var rawSheet = spreadsheet.getSheetByName(rawSheetName);
+    var queueSheet = spreadsheet.getSheetByName(queueSheetName);
+
+    validateExactHeaders_(rawSheet, rawHeaders, rawSheetName);
+    validateExactHeaders_(queueSheet, queueHeaders, queueSheetName);
+
+    rawSheet = rawSheet || spreadsheet.insertSheet(rawSheetName);
+    queueSheet = queueSheet || spreadsheet.insertSheet(queueSheetName);
+    ensureHeaderRow_(rawSheet, rawHeaders);
+    ensureHeaderRow_(queueSheet, queueHeaders);
+
+    var rawMatches = findRowsBySubmissionId_(rawSheet, rawIdIndex, submissionId, rawHeaders.length);
+    var queueMatches = findRowsBySubmissionId_(queueSheet, queueIdIndex, submissionId, queueHeaders.length);
+    var rawCompareIndexes = comparisonIndexes_(rawHeaders.length, [0]);
+    var queueCompareIndexes = comparisonIndexes_(queueHeaders.length, [0, 1, 2, 3, 4, 5, 17]);
+
+    assertMatchingRows_(rawMatches, rawRow, rawCompareIndexes, submissionId, rawSheetName);
+    assertMatchingRows_(queueMatches, queueRow, queueCompareIndexes, submissionId, queueSheetName);
+
+    var rawAlreadyExists = rawMatches.length > 0;
+    var queueAlreadyExists = queueMatches.length > 0;
+
+    if (!rawAlreadyExists) {
+      appendRow_(rawSheet, rawRow);
+    }
+
+    if (!queueAlreadyExists) {
+      appendRow_(queueSheet, queueRow);
+    }
+
+    var notificationResult = { sent: 0 };
+    if (!rawAlreadyExists && body.notifyEmail !== false) {
+      notificationResult = sendLeadNotifications_([notificationRow]);
+    }
+
+    return {
+      ok: true,
+      action: "appendWebsiteSubmission",
+      submissionId: submissionId,
+      duplicate: rawAlreadyExists || queueAlreadyExists,
+      repaired: rawAlreadyExists !== queueAlreadyExists,
+      websiteLeadAppended: !rawAlreadyExists,
+      leadQueueAppended: !queueAlreadyExists,
+      notifications: notificationResult
+    };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function normalizeSingleRow_(row, label) {
+  if (!Array.isArray(row)) {
+    throw new Error(label + " must be an array.");
+  }
+
+  return row.map(function (cell) {
+    return cell === null || cell === undefined ? "" : String(cell);
+  });
+}
+
+function validateExactHeaders_(sheet, headers, sheetName) {
+  if (!sheet || sheet.getLastRow() === 0) {
+    return;
+  }
+
+  var existingHeaders = sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), 1)).getDisplayValues()[0];
+  var matches =
+    existingHeaders.length === headers.length &&
+    headers.every(function (header, index) {
+      return existingHeaders[index] === header;
+    });
+
+  if (!matches) {
+    throw new Error(
+      "Sheet header mismatch for " +
+        sheetName +
+        ". Existing rows were preserved; append the new columns manually."
+    );
+  }
+}
+
+function ensureHeaderRow_(sheet, headers) {
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+  }
+}
+
+function findRowsBySubmissionId_(sheet, idIndex, submissionId, columnCount) {
+  var rowCount = sheet.getLastRow() - 1;
+
+  if (rowCount <= 0) {
+    return [];
+  }
+
+  return sheet
+    .getRange(2, 1, rowCount, columnCount)
+    .getDisplayValues()
+    .filter(function (row) {
+      return comparableSheetCell_(row[idIndex]) === submissionId;
+    });
+}
+
+function comparisonIndexes_(length, ignoredIndexes) {
+  var ignored = {};
+  ignoredIndexes.forEach(function (index) {
+    ignored[index] = true;
+  });
+
+  return Array.from({ length: length }, function (_, index) {
+    return index;
+  }).filter(function (index) {
+    return !ignored[index];
+  });
+}
+
+function assertMatchingRows_(existingRows, candidateRow, indexes, submissionId, sheetName) {
+  var differs = existingRows.some(function (existingRow) {
+    return indexes.some(function (index) {
+      return comparableSheetCell_(existingRow[index]) !== comparableSheetCell_(candidateRow[index]);
+    });
+  });
+
+  if (differs) {
+    var error = new Error(
+      "Submission ID " + submissionId + " already exists with materially different data in " + sheetName + "."
+    );
+    error.code = "SUBMISSION_ID_CONFLICT";
+    throw error;
+  }
+}
+
+function appendRow_(sheet, row) {
+  sheet.getRange(sheet.getLastRow() + 1, 1, 1, row.length).setValues([row]);
+}
+
+function comparableSheetCell_(value) {
+  return String(value === null || value === undefined ? "" : value).replace(
+    /^'(?=[\t\r\n ]*[=+\-@])/,
+    ""
+  );
 }
 
 function sendLeadNotifications_(rows) {
@@ -735,6 +934,26 @@ function normalizeValues_(values) {
 
     return normalized;
   });
+}
+
+function sanitizeValuesForSheet_(sheetName, values) {
+  if (sheetName !== "Website Leads" && sheetName !== "Lead Queue") {
+    return values;
+  }
+
+  return values.map(function (row) {
+    return row.map(sanitizeSheetCell_);
+  });
+}
+
+function sanitizeSheetCell_(value) {
+  var cell = value === null || value === undefined ? "" : String(value);
+
+  if (/^[\t\r\n ]*[=+\-@]/.test(cell)) {
+    return "'" + cell;
+  }
+
+  return cell;
 }
 
 function json_(payload) {

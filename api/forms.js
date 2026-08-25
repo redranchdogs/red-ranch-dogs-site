@@ -296,6 +296,16 @@ function clean(value) {
   return value.trim().slice(0, 4000);
 }
 
+export function sanitizeSpreadsheetCell(value) {
+  const cell = value === null || value === undefined ? "" : String(value);
+
+  if (/^[\t\r\n ]*[=+\-@]/.test(cell)) {
+    return `'${cell}`;
+  }
+
+  return cell;
+}
+
 function createSubmissionId() {
   const cryptoApi = globalThis.crypto;
 
@@ -313,6 +323,10 @@ function submissionText(payload) {
 }
 
 function submissionRow(payload) {
+  return submissionHeaderKeys.map((key) => sanitizeSpreadsheetCell(payload[key] || ""));
+}
+
+function notificationRow(payload) {
   return submissionHeaderKeys.map((key) => payload[key] || "");
 }
 
@@ -347,45 +361,7 @@ function leadQueueRow(payload) {
     payload.leadSummary || "",
     payload.submissionId || "",
     ""
-  ];
-}
-
-function headersMatch(values, expectedHeaders = submissionHeaders) {
-  const firstRow = values?.[0] || [];
-  return (
-    firstRow.length === expectedHeaders.length &&
-    expectedHeaders.every((header, index) => firstRow[index] === header)
-  );
-}
-
-async function ensureSheetHeaders(spreadsheetId, sheetName, headers) {
-  const currentSheet = await postBridge({
-    action: "getSheetValues",
-    spreadsheetId,
-    sheetName
-  });
-  const values = currentSheet.values || [];
-
-  if (!values.length) {
-    await postBridge({
-      action: "replaceSheet",
-      spreadsheetId,
-      sheetName,
-      values: [headers]
-    });
-    return;
-  }
-
-  if (!headersMatch(values, headers)) {
-    console.error("Refusing to replace non-empty sheet headers.", {
-      expectedColumns: headers.length,
-      existingColumns: values[0]?.length || 0,
-      sheetName
-    });
-    throw new Error(
-      `Sheet header mismatch for ${sheetName}. Existing rows were preserved; append the new columns manually.`
-    );
-  }
+  ].map(sanitizeSpreadsheetCell);
 }
 
 async function postBridge(payload) {
@@ -408,7 +384,9 @@ async function postBridge(payload) {
   }
 
   if (!response.ok || !body.ok) {
-    throw new Error(body.error || "Bridge sheet logging failed.");
+    const error = new Error(body.error || "Bridge sheet logging failed.");
+    error.code = body.code || "";
+    throw error;
   }
 
   return body;
@@ -590,7 +568,8 @@ async function sendEmail(payload) {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Idempotency-Key": payload.submissionId
     },
     body: JSON.stringify(emailPayload)
   });
@@ -677,76 +656,28 @@ async function appendSheetViaBridge(payload) {
   const spreadsheetId = process.env.FORM_SHEET_ID || defaultFormSheetId;
   const sheetName = process.env.FORM_SHEET_NAME || defaultLeadSheetName;
 
-  await ensureSheetHeaders(spreadsheetId, sheetName, submissionHeaders);
-
-  await postBridge({
-    action: "appendRows",
+  const result = await postBridge({
+    action: "appendWebsiteSubmission",
     spreadsheetId,
     sheetName,
-    values: [submissionRow(payload)]
+    submissionHeaders,
+    submissionRow: submissionRow(payload),
+    notificationRow: notificationRow(payload),
+    leadQueueSheetName,
+    leadQueueHeaders,
+    leadQueueRow: leadQueueRow(payload)
   });
 
-  await ensureSheetHeaders(spreadsheetId, leadQueueSheetName, leadQueueHeaders);
-
-  await postBridge({
-    action: "appendRows",
-    spreadsheetId,
-    sheetName: leadQueueSheetName,
-    values: [leadQueueRow(payload)]
-  });
-
-  return { skipped: false };
-}
-
-async function appendSheetViaWebhook(payload) {
-  if (!process.env.FORM_WEBHOOK_URL) {
-    return { skipped: true };
-  }
-
-  const response = await fetch(process.env.FORM_WEBHOOK_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
-
-  if (!response.ok) {
-    throw new Error("Spreadsheet logging failed.");
-  }
-
-  return { skipped: false };
+  return {
+    duplicate: Boolean(result.duplicate),
+    notificationFailed: Boolean(result.notifications?.error && !result.notifications?.sent),
+    repaired: Boolean(result.repaired),
+    skipped: false
+  };
 }
 
 async function appendSheet(payload) {
-  let bridgeResult = { skipped: true };
-  let bridgeError;
-
-  try {
-    bridgeResult = await appendSheetViaBridge(payload);
-  } catch (error) {
-    bridgeError = error;
-  }
-
-  if (!bridgeResult.skipped) {
-    return { skipped: false };
-  }
-
-  try {
-    const webhookResult = await appendSheetViaWebhook(payload);
-
-    if (!webhookResult.skipped) {
-      return { skipped: false };
-    }
-  } catch (error) {
-    if (!bridgeError) {
-      throw error;
-    }
-  }
-
-  if (bridgeError) {
-    throw bridgeError;
-  }
-
-  return bridgeResult;
+  return appendSheetViaBridge(payload);
 }
 
 export default async function handler(request, response) {
@@ -865,15 +796,27 @@ export default async function handler(request, response) {
   payload.leadSummary = compactLeadSummary(payload);
 
   try {
-    const [sheetDelivery, crmDelivery] = await Promise.allSettled([
-      appendSheet(payload),
-      sendLeadEventToCrm(payload)
-    ]);
+    let sheetDelivery;
+
+    try {
+      sheetDelivery = { status: "fulfilled", value: await appendSheet(payload) };
+    } catch (error) {
+      if (error?.code === "SUBMISSION_ID_CONFLICT") {
+        return response.status(400).json({
+          message: "This submission ID was already used for different form details. Please refresh and try again."
+        });
+      }
+
+      sheetDelivery = { status: "rejected", reason: error };
+    }
+
     const sheetResult = sheetDelivery.status === "fulfilled" ? sheetDelivery.value : { skipped: true };
     const sheetDelivered = sheetDelivery.status === "fulfilled" && !sheetResult.skipped;
+
+    const [crmDelivery] = await Promise.allSettled([sendLeadEventToCrm(payload)]);
     let emailDelivery = { status: "fulfilled", value: { skipped: true } };
 
-    if (!sheetDelivered) {
+    if (!sheetDelivered || sheetResult.notificationFailed) {
       [emailDelivery] = await Promise.allSettled([sendEmail(payload)]);
     }
 

@@ -48,12 +48,12 @@ Production environment variables:
 
 - `RED_RANCH_BRIDGE_URL`: Google Apps Script bridge web app URL for spreadsheet logging and notification emails.
 - `RED_RANCH_BRIDGE_SECRET`: shared secret for bridge requests.
-- `FORM_WEBHOOK_URL`: optional legacy Google Apps Script web app URL fallback.
+- `FORM_WEBHOOK_URL`: retired; remove it from Vercel during the form-security release.
 - `RESEND_API_KEY`: optional Resend API key for email delivery.
 - `FORM_TO_EMAIL`: destination email, for example `adam@redranchdogs.com`.
 - `FORM_FROM_EMAIL`: verified sender email for Resend.
 
-The included `scripts/website-bridge-apps-script.js` logs submissions to Google Sheets and can send a notification email through Google Apps Script. If the bridge, Resend, and legacy Apps Script fallback are all unset, local previews accept submissions with a preview message, but production returns a configuration error.
+The included `scripts/website-bridge-apps-script.js` logs submissions to Google Sheets and can send a notification email through Google Apps Script. Resend remains the supported notification fallback. If the bridge and Resend are both unset, local previews accept submissions with a preview message, but production returns a configuration error.
 
 Form smoke test:
 
@@ -63,13 +63,7 @@ npm run test:forms
 
 This checks the local form API handler without sending emails or writing external sheet rows.
 
-Live webhook test:
-
-```bash
-npm run test:forms:webhook -- --all
-```
-
-This uses `FORM_WEBHOOK_URL` from `.env.local`, writes clearly marked fake rows to the Google Sheet, verifies the lead routing columns, and may send legacy Apps Script notification emails.
+The legacy live webhook is retired and is not part of `/api/forms` delivery. Its old test script remains only as historical tooling; do not run it or re-enable the public Apps Script deployment.
 
 ## Deployment
 

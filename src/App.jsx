@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import { trackGa4Event, trackGa4PageView } from "./ga4.js";
+import { submitFormPayload } from "./formSubmission.js";
 import {
   ArrowRight,
   Camera,
@@ -7684,10 +7685,12 @@ function GuardianFields() {
 }
 
 function LeadForm({ formType, title, compact = false, newsletterOnly = false, guardianFields = false, reservePuppy = null }) {
+  const { location, navigator, crypto } = globalThis;
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState("");
   const [busy, setBusy] = useState(false);
   const [started, setStarted] = useState(false);
+  const pendingSubmissionId = useRef("");
   const applicationFields = formType === "application" && !newsletterOnly;
   const contactFields = formType === "contact" && !newsletterOnly;
   const guardianApplicationFields = formType === "guardian" && guardianFields && !newsletterOnly;
@@ -7700,58 +7703,49 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     setStatusType(type);
   }
 
-  function focusField(formElement, fieldName) {
-    if (!fieldName) return;
-    const field = formElement.elements[fieldName];
-    const target = field?.length ? field[0] : field;
-    target?.focus?.();
-  }
-
   function onFormFocusCapture() {
     if (started) return;
     setStarted(true);
     trackSiteEvent("form_start", {
       formType,
-      path: compactPath(window.location.pathname)
+      path: compactPath(location.pathname)
     });
   }
 
   async function onSubmit(event) {
     event.preventDefault();
     const formElement = event.currentTarget;
-    setBusy(true);
+    const successMessage = formSuccessMessages[formType];
     updateStatus("", "");
     const form = new FormData(formElement);
     if (form.get("companyWebsite")?.trim()) {
       formElement.reset();
-      setBusy(false);
-      updateStatus(formSuccessMessages[formType] || "Thank you. We received your submission.", "success");
+      updateStatus(successMessage, "success");
       return;
     }
 
     const payload = collectFormPayload(form);
-    trackSiteEvent("form_submit_attempt", {
+    const eventContext = {
       formType,
-      path: compactPath(window.location.pathname)
-    });
+      path: compactPath(location.pathname)
+    };
+    trackSiteEvent("form_submit_attempt", eventContext);
     const validationError = validateLeadPayload(formType, payload);
     if (validationError) {
-      trackSiteEvent("form_validation_error", {
-        formType,
-        path: compactPath(window.location.pathname)
-      });
-      focusField(formElement, validationError.fieldName);
-      setBusy(false);
+      trackSiteEvent("form_validation_error", eventContext);
+      const field = formElement.elements[validationError.fieldName];
+      (field?.length ? field[0] : field)?.focus?.();
       updateStatus(validationError.message, "error");
       return;
     }
 
+    setBusy(true);
     payload.formType = formType;
     payload.formTitle = title;
-    payload.page = window.location.pathname;
-    payload.currentUrl = window.location.href;
+    payload.page = location.pathname;
+    payload.currentUrl = location.href;
     payload.referrer = document.referrer;
-    payload.userAgent = window.navigator.userAgent;
+    payload.userAgent = navigator.userAgent;
     payload.submittedAt = new Date().toISOString();
     try {
       Object.assign(payload, collectTrackingPayload());
@@ -7759,34 +7753,20 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       // Tracking should never block a family from sending a form.
     }
 
+    payload.submissionId = pendingSubmissionId.current ||= crypto.randomUUID();
     try {
-      const response = await fetch("/api/forms", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.message || "Submission failed.");
-      }
-      trackSiteEvent("form_submit_success", {
-        formType,
-        path: compactPath(window.location.pathname),
-        submissionId: result.submissionId || ""
-      });
+      const serverMessage = await submitFormPayload(payload);
+      eventContext.submissionId = payload.submissionId;
+      trackSiteEvent("form_submit_success", eventContext);
       formElement.reset();
-      const serverMessage = result.message || "";
       updateStatus(
-        serverMessage && !serverMessage.startsWith("Thank you. We received")
+        serverMessage && serverMessage[0] !== "T"
           ? serverMessage
-          : formSuccessMessages[formType] || "Thank you. We received your submission.",
+          : successMessage,
         "success"
       );
     } catch (error) {
-      trackSiteEvent("form_submit_error", {
-        formType,
-        path: compactPath(window.location.pathname)
-      });
+      trackSiteEvent("form_submit_error", eventContext);
       updateStatus(error.message || "Unable to submit right now. Please call or text us.", "error");
     } finally {
       setBusy(false);
@@ -7799,6 +7779,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       data-form-type={formType}
       aria-busy={busy}
       onFocusCapture={onFormFocusCapture}
+      onReset={() => (pendingSubmissionId.current = "")}
       onSubmit={onSubmit}
     >
       <h2>{title}</h2>

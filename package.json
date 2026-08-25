@@ -84,7 +84,7 @@
     "leads:packet": "node scripts/generate-lead-workflow-packet.mjs",
     "leads:uat": "node scripts/run-lead-uat-scenarios.mjs",
     "leads:uat:write": "node scripts/run-lead-uat-scenarios.mjs --write",
-    "test:forms": "node scripts/test-form-api-handler.mjs",
+    "test:forms": "node scripts/test-form-api-handler.mjs && node scripts/test-form-security.mjs",
     "test:forms:webhook": "node scripts/test-form-webhook.mjs",
     "test:forms:live-notification": "node scripts/run-live-form-notification-recheck.mjs",
     "ops:workflow": "node scripts/generate-weekly-workflow.mjs",

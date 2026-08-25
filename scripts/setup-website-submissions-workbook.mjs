@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const DEFAULT_SUBMISSIONS_SHEET_ID = "1872yXbOwwtio73bK5wlZJKEaBez4czsGuU0bcYaxriE";
-const EXPECTED_BRIDGE_VERSION = "3.2.0";
+const EXPECTED_BRIDGE_VERSION = "3.3.0";
 const root = process.cwd();
 const envPath = path.join(root, ".env.local");
 

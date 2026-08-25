@@ -207,17 +207,34 @@ assert(wrongMethod.statusCode === 405, "GET requests should fail with 405");
 
 const originalFetch = globalThis.fetch;
 const webhookRequests = [];
-process.env.FORM_WEBHOOK_URL = "https://example.test/red-ranch-dogs-form-webhook";
+process.env.RED_RANCH_BRIDGE_URL = "https://example.test/red-ranch-bridge";
+process.env.RED_RANCH_BRIDGE_SECRET = "test-secret";
 process.env.VERCEL_ENV = "production";
 globalThis.fetch = async (url, options = {}) => {
+  const requestBody = JSON.parse(options.body || "{}");
+  const valueFor = (header) =>
+    requestBody.notificationRow?.[requestBody.submissionHeaders?.indexOf(header)] || "";
   webhookRequests.push({
-    body: JSON.parse(options.body || "{}"),
+    body: {
+      formType: valueFor("Form Type"),
+      leadType: valueFor("Lead Type"),
+      routingBucket: valueFor("Routing Bucket"),
+      replyPriority: valueFor("Reply Priority"),
+      recommendedNextStep: valueFor("Recommended Next Step"),
+      leadSummary: valueFor("Lead Summary"),
+      gclid: valueFor("Google Click ID"),
+      firstLandingPage: valueFor("First Landing Page"),
+      firstUtmSource: valueFor("First UTM Source"),
+      lastUtmTerm: valueFor("Last UTM Term"),
+      preferredBreed: valueFor("Preferred Breed"),
+      message: valueFor("Message")
+    },
     headers: options.headers,
     method: options.method,
     url
   });
 
-  return { ok: true };
+  return { ok: true, text: async () => JSON.stringify({ ok: true, duplicate: false }) };
 };
 
 const richApplication = await post({
@@ -293,7 +310,8 @@ assert(
   "sheet webhook message should keep the raw family-entered message"
 );
 
-delete process.env.FORM_WEBHOOK_URL;
+delete process.env.RED_RANCH_BRIDGE_URL;
+delete process.env.RED_RANCH_BRIDGE_SECRET;
 process.env.RESEND_API_KEY = "test-resend-key";
 process.env.FORM_TO_EMAIL = "team@example.test";
 process.env.FORM_FROM_EMAIL = "Red Ranch Dogs <forms@example.test>";
@@ -314,12 +332,21 @@ const emailOnlyApplication = await post({
   formType: "application",
   formTitle: "Application details",
   hearAbout: "Instagram",
+  name: "=Dangerous Sheet Name",
   preferredBreed: "Goldendoodle, Cavapoo",
   processAgreement: "Understands process, pricing, deposit policy, and spay/neuter agreement",
   signature: "Codex Form Test"
 });
 assert(emailOnlyApplication.statusCode === 200, "email-only configured application should submit successfully");
 assert(emailRequests.length === 1, "email-only path should send one email request");
+assert(
+  emailRequests[0].headers["Idempotency-Key"] === emailOnlyApplication.body.submissionId,
+  "Resend fallback should use submissionId as its Idempotency-Key"
+);
+assert(
+  emailRequests[0].body.text.includes("name: =Dangerous Sheet Name"),
+  "Sheet escaping must not alter the original email payload"
+);
 assert(emailRequests[0].body.text.includes("Lead Routing"), "notification email should include routing details");
 assert(emailRequests[0].body.text.includes("Application Details"), "notification email should include expanded application details");
 assert(
@@ -348,6 +375,7 @@ const directIntakeApplication = await post({
   submissionId: `codex-direct-intake-${Date.now()}`,
   formType: "application",
   formTitle: "Application details",
+  name: "=Dangerous CRM Name",
   preferredBreed: "Cavapoo",
   processAgreement: "Understands process, pricing, deposit policy, and spay/neuter agreement",
   signature: "Codex Form Test"
@@ -366,6 +394,10 @@ assert(
 );
 const directApplicationPayload = JSON.parse(crmRequest.body);
 assert(directApplicationPayload.formType === "application", "CRM intake should receive the normalized application payload");
+assert(
+  directApplicationPayload.name === "=Dangerous CRM Name",
+  "Sheet escaping must not alter the original CRM payload"
+);
 assert(
   directApplicationPayload.eventId === directApplicationPayload.submissionId,
   "CRM application delivery should use submissionId as the stable eventId"
@@ -509,17 +541,10 @@ globalThis.fetch = async (url, options = {}) => {
     url
   });
 
-  if (body.action === "getSheetValues") {
+  if (body.action === "appendWebsiteSubmission") {
     return {
       ok: true,
-      text: async () => JSON.stringify({ ok: true, values: [] })
-    };
-  }
-
-  if (body.action === "replaceSheet" || body.action === "appendRows") {
-    return {
-      ok: true,
-      text: async () => JSON.stringify({ ok: true })
+      text: async () => JSON.stringify({ ok: true, duplicate: false })
     };
   }
 
@@ -537,44 +562,32 @@ const bridgeNewsletter = await post({
 });
 assert(bridgeNewsletter.statusCode === 200, "bridge configured newsletter should submit successfully");
 assert(
-  bridgeRequests.map((request) => request.body.action).join(",") ===
-    "getSheetValues,replaceSheet,appendRows,getSheetValues,replaceSheet,appendRows",
-  "bridge logging should read and write both Website Leads and Lead Queue"
+  bridgeRequests.map((request) => request.body.action).join(",") === "appendWebsiteSubmission",
+  "bridge logging should use one atomic Website Leads and Lead Queue action"
 );
 
-const replaceRequest = bridgeRequests.find(
-  (request) => request.body.action === "replaceSheet" && request.body.sheetName === "Website Leads"
-);
-const appendRequest = bridgeRequests.find(
-  (request) => request.body.action === "appendRows" && request.body.sheetName === "Website Leads"
-);
-const queueReplaceRequest = bridgeRequests.find(
-  (request) => request.body.action === "replaceSheet" && request.body.sheetName === "Lead Queue"
-);
-const queueAppendRequest = bridgeRequests.find(
-  (request) => request.body.action === "appendRows" && request.body.sheetName === "Lead Queue"
-);
+const atomicRequest = bridgeRequests.find((request) => request.body.action === "appendWebsiteSubmission");
 
-assert(replaceRequest.body.values[0].includes("Lead Type"), "bridge header row should include lead routing columns");
-assert(replaceRequest.body.values[0].includes("Google Click ID"), "bridge header row should include Google click ID");
-assert(replaceRequest.body.values[0].includes("GBRAID"), "bridge header row should include GBRAID");
-assert(replaceRequest.body.values[0].includes("WBRAID"), "bridge header row should include WBRAID");
+assert(atomicRequest.body.submissionHeaders.includes("Lead Type"), "bridge header row should include lead routing columns");
+assert(atomicRequest.body.submissionHeaders.includes("Google Click ID"), "bridge header row should include Google click ID");
+assert(atomicRequest.body.submissionHeaders.includes("GBRAID"), "bridge header row should include GBRAID");
+assert(atomicRequest.body.submissionHeaders.includes("WBRAID"), "bridge header row should include WBRAID");
 assert(
-  replaceRequest.body.values[0].includes("Preferred Contact Method"),
+  atomicRequest.body.submissionHeaders.includes("Preferred Contact Method"),
   "bridge header row should include preferred contact method"
 );
-assert(replaceRequest.body.values[0].includes("First Landing Page"), "bridge header row should include first-touch attribution");
-assert(replaceRequest.body.values[0].includes("First UTM Source"), "bridge header row should include first-touch UTM source");
-assert(replaceRequest.body.values[0].includes("Last UTM Source"), "bridge header row should include last-touch attribution");
+assert(atomicRequest.body.submissionHeaders.includes("First Landing Page"), "bridge header row should include first-touch attribution");
+assert(atomicRequest.body.submissionHeaders.includes("First UTM Source"), "bridge header row should include first-touch UTM source");
+assert(atomicRequest.body.submissionHeaders.includes("Last UTM Source"), "bridge header row should include last-touch attribution");
 assert(
-  replaceRequest.body.values[0].indexOf("Google Click ID") >
-    replaceRequest.body.values[0].indexOf("User Agent"),
+  atomicRequest.body.submissionHeaders.indexOf("Google Click ID") >
+    atomicRequest.body.submissionHeaders.indexOf("User Agent"),
   "new attribution columns should be appended after historical form columns"
 );
-assert(appendRequest.body.spreadsheetId === "test-form-sheet", "bridge append should use configured sheet ID");
-assert(appendRequest.body.sheetName === "Website Leads", "bridge append should use configured sheet name");
-const websiteLeadHeaders = replaceRequest.body.values[0];
-const websiteLeadRow = appendRequest.body.values[0];
+assert(atomicRequest.body.spreadsheetId === "test-form-sheet", "bridge append should use configured sheet ID");
+assert(atomicRequest.body.sheetName === "Website Leads", "bridge append should use configured sheet name");
+const websiteLeadHeaders = atomicRequest.body.submissionHeaders;
+const websiteLeadRow = atomicRequest.body.submissionRow;
 function websiteLeadValue(header) {
   const index = websiteLeadHeaders.indexOf(header);
   assert(index !== -1, `Website Leads header should include ${header}`);
@@ -595,14 +608,150 @@ assert(websiteLeadValue("Google Click ID") === "last-test-gclid", "bridge row sh
 assert(websiteLeadValue("GBRAID") === "last-test-gbraid", "bridge row should include GBRAID");
 assert(websiteLeadValue("WBRAID") === "last-test-wbraid", "bridge row should include WBRAID");
 assert(websiteLeadValue("First Landing Page").includes("utm_source=google"), "bridge row should include first landing page");
-assert(queueReplaceRequest.body.values[0].includes("Next Action"), "lead queue header row should include workflow columns");
-assert(queueAppendRequest.body.spreadsheetId === "test-form-sheet", "lead queue append should use configured sheet ID");
-assert(queueAppendRequest.body.values[0][9] === "Puppy Alert Signup", "lead queue row should include lead type");
-assert(queueAppendRequest.body.values[0][15].includes("Codex Form Test"), "lead queue row should include lead summary");
+assert(atomicRequest.body.leadQueueHeaders.includes("Next Action"), "lead queue header row should include workflow columns");
+assert(atomicRequest.body.leadQueueSheetName === "Lead Queue", "lead queue append should use the queue sheet");
+assert(atomicRequest.body.leadQueueRow[9] === "Puppy Alert Signup", "lead queue row should include lead type");
+assert(atomicRequest.body.leadQueueRow[15].includes("Codex Form Test"), "lead queue row should include lead summary");
 assert(
   bridgeRequests.filter((request) => String(request.url) === "https://api.resend.com/emails").length === 0,
   "successful primary bridge delivery should not also invoke Resend"
 );
+
+const formulaSubmission = await post({
+  ...basePayload,
+  formType: "contact",
+  inquiryType: "Formula security regression",
+  message: "+cmd",
+  name: "=Dangerous Sheet Name",
+  submissionId: `codex-formula-${Date.now()}`
+});
+assert(formulaSubmission.statusCode === 200, "formula-like contact input should remain a valid form submission");
+const formulaRequest = bridgeRequests.at(-1).body;
+const formulaNameIndex = formulaRequest.submissionHeaders.indexOf("Name");
+const formulaMessageIndex = formulaRequest.submissionHeaders.indexOf("Message");
+const formulaSummaryIndex = formulaRequest.submissionHeaders.indexOf("Lead Summary");
+assert(formulaRequest.submissionRow[formulaNameIndex] === "'=Dangerous Sheet Name", "direct Sheet cells should be escaped");
+assert(formulaRequest.submissionRow[formulaMessageIndex] === "'+cmd", "all dangerous formula prefixes should be escaped");
+assert(
+  formulaRequest.notificationRow[formulaNameIndex] === "=Dangerous Sheet Name" &&
+    formulaRequest.notificationRow[formulaMessageIndex] === "+cmd",
+  "bridge notification payload should retain the original normalized form values"
+);
+assert(
+  formulaRequest.submissionRow[formulaSummaryIndex].startsWith("'=Dangerous Sheet Name"),
+  "derived Website Leads summary cells should be escaped"
+);
+assert(formulaRequest.leadQueueRow[6] === "'=Dangerous Sheet Name", "direct Lead Queue cells should be escaped");
+assert(
+  formulaRequest.leadQueueRow[15].startsWith("'=Dangerous Sheet Name"),
+  "derived Lead Queue summary cells should be escaped"
+);
+
+const notificationFallbackRequests = [];
+globalThis.fetch = async (url, options = {}) => {
+  const requestUrl = String(url);
+  const body = JSON.parse(options.body || "{}");
+  notificationFallbackRequests.push({ body, headers: options.headers || {}, url: requestUrl });
+
+  if (requestUrl.includes("red-ranch-bridge") && body.action === "appendWebsiteSubmission") {
+    return {
+      ok: true,
+      text: async () =>
+        JSON.stringify({
+          ok: true,
+          duplicate: false,
+          notifications: { sent: 0, error: "Mail quota unavailable" }
+        })
+    };
+  }
+
+  return { ok: true, status: 200 };
+};
+const bridgeNotificationFallback = await post({
+  ...basePayload,
+  formType: "contact",
+  inquiryType: "Bridge notification fallback",
+  submissionId: `codex-notification-fallback-${Date.now()}`
+});
+assert(bridgeNotificationFallback.statusCode === 200, "Sheet success should survive a bridge notification failure");
+const notificationResend = notificationFallbackRequests.find(
+  (request) => request.url === "https://api.resend.com/emails"
+);
+assert(notificationResend, "bridge notification failure should invoke the Resend fallback");
+assert(
+  notificationResend.headers["Idempotency-Key"] === bridgeNotificationFallback.body.submissionId,
+  "notification fallback should retain the submission idempotency key"
+);
+
+process.env.CRM_INTAKE_URL = "https://crm.example.test/api/intake/website-event";
+process.env.CRM_INTAKE_PRIVATE_KEY = crmIntakeTestKeys.privateKey
+  .export({ type: "pkcs8", format: "der" })
+  .toString("base64");
+const duplicateSideEffects = [];
+globalThis.fetch = async (url, options = {}) => {
+  const requestUrl = String(url);
+  const body = JSON.parse(options.body || "{}");
+
+  if (requestUrl.includes("red-ranch-bridge") && body.action === "appendWebsiteSubmission") {
+    return {
+      ok: true,
+      text: async () => JSON.stringify({ ok: true, duplicate: true })
+    };
+  }
+
+  duplicateSideEffects.push(requestUrl);
+  return { ok: true, status: 200 };
+};
+const exactDuplicate = await post({
+  ...basePayload,
+  formType: "application",
+  formTitle: "Application details",
+  preferredBreed: "Goldendoodle",
+  processAgreement: "Understands process, pricing, deposit policy, and spay/neuter agreement",
+  signature: "Codex Form Test",
+  submissionId: `codex-exact-duplicate-${Date.now()}`
+});
+assert(exactDuplicate.statusCode === 200, "exact logical duplicate should retain normal public success");
+assert(
+  duplicateSideEffects.filter((url) => url === crmWebsiteEventUrl).length === 1,
+  "exact duplicate should replay the stable CRM event once so a missing event can repair idempotently"
+);
+assert(
+  duplicateSideEffects.filter((url) => url === "https://api.resend.com/emails").length === 0,
+  "exact duplicate should not duplicate notification side effects"
+);
+
+process.env.FORM_WEBHOOK_URL = "https://example.test/red-ranch-dogs-form-webhook";
+const conflictRequests = [];
+globalThis.fetch = async (url, options = {}) => {
+  const requestUrl = String(url);
+  const body = JSON.parse(options.body || "{}");
+  conflictRequests.push(requestUrl);
+
+  if (requestUrl.includes("red-ranch-bridge") && body.action === "appendWebsiteSubmission") {
+    return {
+      ok: true,
+      text: async () =>
+        JSON.stringify({
+          ok: false,
+          code: "SUBMISSION_ID_CONFLICT",
+          error: "Submission ID already exists with materially different data."
+        })
+    };
+  }
+
+  return { ok: true, status: 200, text: async () => JSON.stringify({ ok: true }) };
+};
+const conflictingSubmission = await post({
+  ...basePayload,
+  formType: "contact",
+  inquiryType: "Conflicting retry",
+  submissionId: `codex-conflict-${Date.now()}`
+});
+assert(conflictingSubmission.statusCode === 400, "same ID with different material data should return 400");
+assert(conflictRequests.length === 1, "submission ID conflict should not fall through to webhook, CRM, or Resend");
+delete process.env.CRM_INTAKE_URL;
+delete process.env.CRM_INTAKE_PRIVATE_KEY;
 
 delete process.env.FORM_WEBHOOK_URL;
 delete process.env.RESEND_API_KEY;
@@ -613,24 +762,14 @@ globalThis.fetch = async (url, options = {}) => {
   const body = JSON.parse(options.body || "{}");
   mismatchBridgeActions.push(body.action);
 
-  if (body.action === "getSheetValues") {
+  if (body.action === "appendWebsiteSubmission") {
     return {
       ok: true,
       text: async () =>
         JSON.stringify({
-          ok: true,
-          values: [
-            ["Submitted At", "Old Header"],
-            ["2026-06-10T00:00:00.000Z", "Existing lead row"]
-          ]
+          ok: false,
+          error: "Sheet header mismatch for Website Leads. Existing rows were preserved."
         })
-    };
-  }
-
-  if (body.action === "replaceSheet") {
-    return {
-      ok: false,
-      text: async () => JSON.stringify({ ok: false, error: "replaceSheet should not run on non-empty sheets" })
     };
   }
 
@@ -662,17 +801,10 @@ globalThis.fetch = async (url, options = {}) => {
     return { ok: true };
   }
 
-  if (body.action === "getSheetValues") {
+  if (body.action === "appendWebsiteSubmission") {
     return {
       ok: true,
-      text: async () => JSON.stringify({ ok: true, values: [] })
-    };
-  }
-
-  if (body.action === "replaceSheet" || body.action === "appendRows") {
-    return {
-      ok: true,
-      text: async () => JSON.stringify({ ok: true })
+      text: async () => JSON.stringify({ ok: true, duplicate: false })
     };
   }
 
@@ -708,20 +840,20 @@ globalThis.fetch = async (url, options = {}) => {
   return { ok: true };
 };
 
-const webhookFallback = await post({
+const retiredWebhookFallback = await post({
   ...basePayload,
   formType: "contact",
   inquiryType: "Fallback route test",
   message: "Codex bridge fallback test."
 });
-assert(webhookFallback.statusCode === 200, "webhook should rescue submissions when the bridge errors");
+assert(retiredWebhookFallback.statusCode === 502, "bridge errors should fail closed when no supported fallback is configured");
 assert(
-  fallbackRequests.some((request) => request.body.action === "getSheetValues"),
+  fallbackRequests.some((request) => request.body.action === "appendWebsiteSubmission"),
   "fallback test should attempt bridge logging first"
 );
 assert(
-  fallbackRequests.some((request) => request.body.formType === "contact"),
-  "fallback test should send the form payload to the legacy webhook"
+  fallbackRequests.length === 1 && !fallbackRequests.some((request) => String(request.url).includes("form-webhook")),
+  "retired FORM_WEBHOOK_URL must not receive public form payloads"
 );
 
 delete process.env.RED_RANCH_BRIDGE_URL;
@@ -730,16 +862,60 @@ delete process.env.FORM_SHEET_ID;
 delete process.env.FORM_SHEET_NAME;
 process.env.FORM_WEBHOOK_URL = "https://example.test/red-ranch-dogs-form-webhook";
 
+process.env.CRM_INTAKE_URL = "https://crm.example.test/api/intake/website-event";
+process.env.CRM_INTAKE_PRIVATE_KEY = crmIntakeTestKeys.privateKey
+  .export({ type: "pkcs8", format: "der" })
+  .toString("base64");
+process.env.RESEND_API_KEY = "test-resend-key";
+process.env.FORM_TO_EMAIL = "team@example.test";
+process.env.FORM_FROM_EMAIL = "Red Ranch Dogs <forms@example.test>";
+const legacyDuplicateRequests = [];
+globalThis.fetch = async (url) => {
+  legacyDuplicateRequests.push(String(url));
+  return {
+    ok: true,
+    text: async () => JSON.stringify({ ok: true, duplicate: true })
+  };
+};
+const retiredLegacyConfiguration = await post({
+  ...basePayload,
+  formType: "application",
+  formTitle: "Application details",
+  preferredBreed: "Cavapoo",
+  processAgreement: "Understands process, pricing, deposit policy, and spay/neuter agreement",
+  signature: "Codex Form Test",
+  submissionId: `codex-legacy-duplicate-${Date.now()}`
+});
+assert(retiredLegacyConfiguration.statusCode === 200, "supported CRM and Resend fallbacks should retain public success");
+assert(
+  legacyDuplicateRequests.filter((url) => url === process.env.FORM_WEBHOOK_URL).length === 0,
+  "retired FORM_WEBHOOK_URL should not receive submissions"
+);
+assert(
+  legacyDuplicateRequests.filter((url) => url === crmWebsiteEventUrl).length === 1,
+  "application should retain one stable CRM delivery when the bridge is not configured"
+);
+assert(
+  legacyDuplicateRequests.filter((url) => url === "https://api.resend.com/emails").length === 1,
+  "Resend should remain the supported notification fallback"
+);
+
+delete process.env.CRM_INTAKE_URL;
+delete process.env.CRM_INTAKE_PRIVATE_KEY;
+delete process.env.RESEND_API_KEY;
+delete process.env.FORM_TO_EMAIL;
+delete process.env.FORM_FROM_EMAIL;
+
 globalThis.fetch = async () => ({ ok: false });
 const failedSheetDelivery = await post({
   ...basePayload,
   formType: "newsletter",
   formTitle: "Puppy Alert Email"
 });
-assert(failedSheetDelivery.statusCode === 502, "failed sheet logging should return a delivery error");
+assert(failedSheetDelivery.statusCode === 500, "retired webhook-only production delivery should fail as unconfigured");
 assert(
-  failedSheetDelivery.body.message === "Unable to submit right now. Please call or text us, and we can help.",
-  "failed sheet logging should return a generic friendly delivery message"
+  failedSheetDelivery.body.message.includes("not configured"),
+  "retired webhook-only production delivery should explain that supported delivery is not configured"
 );
 
 process.env.RESEND_API_KEY = "test-resend-key";
@@ -758,19 +934,19 @@ globalThis.fetch = async (url) => {
   return { ok: true };
 };
 
-const emailFailureSheetSuccess = await post({
+const emailFailureWithoutSheet = await post({
   ...basePayload,
   formType: "contact",
   inquiryType: "Partial delivery test",
   message: "The sheet can still receive this submission."
 });
 assert(
-  emailFailureSheetSuccess.statusCode === 200,
-  "sheet delivery should prevent duplicate-resubmission error when email delivery fails"
+  emailFailureWithoutSheet.statusCode === 502,
+  "email failure without bridge Sheet delivery should return a delivery error"
 );
 assert(
-  sheetSuccessResendRequests.filter((url) => url === "https://api.resend.com/emails").length === 0,
-  "successful sheet delivery should keep Resend out of the normal notification path"
+  sheetSuccessResendRequests.filter((url) => url === "https://api.resend.com/emails").length === 1,
+  "retired webhook configuration should fall through to the supported Resend notification path"
 );
 
 const sheetFailureResendRequests = [];

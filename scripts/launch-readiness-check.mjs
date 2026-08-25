@@ -301,8 +301,8 @@ if (!bridgeUrl || !bridgeSecret) {
   blockers.push("RED_RANCH_BRIDGE_URL and RED_RANCH_BRIDGE_SECRET are not both configured. Live form submissions would not reach the sheet/email workflow.");
 }
 
-if (!formWebhook) {
-  warnings.push("FORM_WEBHOOK_URL is not configured. That is acceptable if the bridge is deployed with notification support, but it removes the legacy fallback.");
+if (formWebhook) {
+  blockers.push("FORM_WEBHOOK_URL is retired. Remove it and disable or restrict the old public Apps Script deployment before release.");
 }
 
 if (missingImages.length > 0) {

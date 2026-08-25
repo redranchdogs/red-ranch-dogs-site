@@ -111,7 +111,7 @@ Website:
 - Production deploy rule: merge \`codex/launch-candidate\` into \`main\` and push only after Adam explicitly approves deploy. Never use \`vercel deploy --prod\`.
 - Latest operations status: **${extractOverallStatus(operationsStatus)}**
 - Apps Script bridge version: ${extractBridgeVersion(operationsStatus)}
-- Expected bridge version for compact lead sheets and notification emails: 3.2.0
+- Expected bridge version for compact lead sheets, secure form intake, and notification emails: 3.3.0
 
 ## Start-of-Session Routine
 
@@ -163,7 +163,7 @@ Use \`npm run ops:full\` for the heavier pass: it rebuilds the lead queue, refre
 
 - Website data is primarily stored in \`src/data/*.json\` and synced outward to Google Sheets when needed.
 - The Apps Script bridge is configured by env variable names \`RED_RANCH_BRIDGE_URL\` and \`RED_RANCH_BRIDGE_SECRET\`; never commit the secret value.
-- Bridge v3.2.0 is the template that supports compact Website Submissions formatting and bridge-managed notification emails to \`adam@redranchdogs.com\`.
+- Bridge v3.3.0 is the template that supports compact Website Submissions formatting, secure idempotent form intake, and bridge-managed notification emails to \`adam@redranchdogs.com\`.
 - Website form submissions write to the Website Submissions workbook. \`Website Leads\` is the raw intake tab; \`Lead Queue\` is Adam's daily working tab; \`Reply Templates\` and \`Workflow Notes\` support follow-up.
 - Content sheets to keep aligned: Puppy Tracker, Litters, Parent Dogs, Public Waitlist, Previous Litters, and Website Submissions.
 - Use dry-run commands before sheet writes when the business change is non-trivial:
