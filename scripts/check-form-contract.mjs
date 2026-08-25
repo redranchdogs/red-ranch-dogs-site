@@ -3,12 +3,14 @@ import path from "node:path";
 
 const rootDir = process.cwd();
 const appPath = path.join(rootDir, "src/App.jsx");
+const formSubmissionPath = path.join(rootDir, "src/formSubmission.js");
 const apiPath = path.join(rootDir, "api/forms.js");
 const appsScriptPath = path.join(rootDir, "scripts/google-apps-script.js");
 const testPath = path.join(rootDir, "scripts/test-form-api-handler.mjs");
 const packagePath = path.join(rootDir, "package.json");
 
 const appSource = fs.readFileSync(appPath, "utf8");
+const formSubmissionSource = fs.readFileSync(formSubmissionPath, "utf8");
 const apiSource = fs.readFileSync(apiPath, "utf8");
 const appsScriptSource = fs.readFileSync(appsScriptPath, "utf8");
 const testSource = fs.readFileSync(testPath, "utf8");
@@ -133,12 +135,36 @@ const frontendTrackingMarkers = [
   'wbraid: "wbraid"',
   "collectTrackingPayload()",
   "captureCurrentAttribution()",
-  '<input type="hidden" name="source" value="red-ranch-dogs-site" />',
-  'fetch("/api/forms"'
+  '<input type="hidden" name="source" value="red-ranch-dogs-site" />'
 ];
 
 frontendTrackingMarkers.forEach((marker) => {
   addBlocker(appSource.includes(marker), `src/App.jsx is missing frontend form marker: ${marker}`);
+});
+
+[
+  'import { submitFormPayload } from "./formSubmission.js"',
+  "pendingSubmissionId.current ||= crypto.randomUUID()",
+  "await submitFormPayload(payload)",
+  'pendingSubmissionId.current = ""'
+].forEach((marker) => {
+  addBlocker(appSource.includes(marker), `src/App.jsx is missing secure submission marker: ${marker}`);
+});
+
+[
+  'request("/api/forms"',
+  'method: "POST"',
+  '"Content-Type": "application/json"',
+  "response.json().catch",
+  "if (response.ok)",
+  'throw new Error("Invalid response.")',
+  "result?.message",
+  "response.status === 429"
+].forEach((marker) => {
+  addBlocker(
+    formSubmissionSource.includes(marker),
+    `src/formSubmission.js is missing submission contract marker: ${marker}`
+  );
 });
 
 selectTags.forEach((selectTag) => {
@@ -205,7 +231,8 @@ leadCaptureFields.forEach((field) => {
 });
 
 addBlocker(
-  packageJson.scripts?.["test:forms"] === "node scripts/test-form-api-handler.mjs",
+  packageJson.scripts?.["test:forms"]?.includes("node scripts/test-form-api-handler.mjs") &&
+    packageJson.scripts?.["test:forms"]?.includes("node scripts/test-form-security.mjs"),
   'package.json is missing the "test:forms" local handler smoke test.'
 );
 addBlocker(
@@ -230,8 +257,13 @@ addBlocker(testSource.includes("actualCrmSignature"), "Form handler tests do not
 addBlocker(testSource.includes("directIntakeNewsletter"), "Form handler tests do not cover direct CRM Puppy Alert delivery.");
 addBlocker(testSource.includes("transientCrmRequests"), "Form handler tests do not cover stable CRM retry delivery.");
 addBlocker(
-  apiSource.includes("if (!sheetDelivered)") && apiSource.includes("sendEmail(payload)"),
+  apiSource.includes("if (!sheetDelivered || sheetResult.notificationFailed)") &&
+    apiSource.includes("sendEmail(payload)"),
   "api/forms.js must reserve Resend for the Sheet delivery fallback path."
+);
+addBlocker(
+  !apiSource.includes("process.env.FORM_WEBHOOK_URL"),
+  "api/forms.js must not restore the retired unauthenticated FORM_WEBHOOK_URL delivery path."
 );
 addBlocker(
   testSource.includes("sheetSuccessResendRequests") && testSource.includes("sheetFailureResendRequests"),

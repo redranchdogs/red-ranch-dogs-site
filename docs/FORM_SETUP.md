@@ -54,7 +54,7 @@ The website supplies the target spreadsheet through Vercel environment variables
 - `BRIDGE_SECRET`: set this as a script property, matching `RED_RANCH_BRIDGE_SECRET`
 - `NOTIFY_EMAIL`: optional, defaults to `adam@redranchdogs.com`
 
-The legacy fallback script in `scripts/google-apps-script.js` still includes `SHEET_ID`, `SHEET_NAME`, and `NOTIFY_EMAIL` defaults if you ever use `FORM_WEBHOOK_URL` directly.
+The retired legacy script in `scripts/google-apps-script.js` remains formula-safe for teardown/forensic use, but it is no longer a supported `/api/forms` delivery path.
 
 ## Paid Attribution Fields
 
@@ -78,7 +78,7 @@ After deployment, copy the web app URL into the Vercel environment variable:
 
 `RED_RANCH_BRIDGE_URL`
 
-Keep `FORM_WEBHOOK_URL` only if you want the older `scripts/google-apps-script.js` logger as a legacy fallback.
+Do not configure `FORM_WEBHOOK_URL`; remove it from Vercel during the form-security release and disable or restrict the old public Apps Script deployment.
 
 ## Vercel Environment Variables
 
@@ -91,7 +91,7 @@ Required:
 
 Optional if using Resend for direct email delivery:
 
-- `FORM_WEBHOOK_URL` as a legacy fallback if the bridge is unavailable.
+- `FORM_WEBHOOK_URL` is retired and must be absent.
 - `RESEND_API_KEY`
 - `FORM_TO_EMAIL=adam@redranchdogs.com`
 - `FORM_FROM_EMAIL=Red Ranch Dogs <forms@redranchdogs.com>`
@@ -100,7 +100,7 @@ Optional if using Resend for direct email delivery:
 
 The Google Sheet has been created manually in the `adam@redranchdogs.com` account.
 
-The Apps Script web app has been deployed and the live `/exec` URL has been saved locally in `.env.local` as `RED_RANCH_BRIDGE_URL`. The same URL may also be used as `FORM_WEBHOOK_URL` for legacy fallback delivery.
+The Apps Script web app has been deployed and the live `/exec` URL has been saved locally in `.env.local` as `RED_RANCH_BRIDGE_URL`. Do not duplicate that URL into the retired `FORM_WEBHOOK_URL` variable.
 
 Spreadsheet logging and notification email delivery to `adam@redranchdogs.com` were confirmed on April 25, 2026.
 
@@ -179,7 +179,7 @@ Daily use:
 6. Use `Notes` for short context like “sent Zelle info” or “asked about timing.”
 7. Keep `Website Leads` untouched so the raw submission history stays clean.
 
-Run this command only when you intentionally want to test the legacy live webhook fallback:
+Run this command only for an explicitly approved legacy retirement diagnostic; it is not a supported fallback:
 
 ```bash
 npm run test:forms:webhook -- --all
@@ -187,4 +187,4 @@ npm run test:forms:webhook -- --all
 
 The live webhook test writes clearly marked fake rows to the `Website Leads` tab and may send Apps Script notification emails. It should populate the lead routing columns so the sheet can be filtered by application, general inquiry, stud inquiry, guardian candidate, puppy alert signup, and waitlist interest.
 
-Next required deployment step: add `RED_RANCH_BRIDGE_URL`, `RED_RANCH_BRIDGE_SECRET`, `FORM_SHEET_ID`, and `FORM_SHEET_NAME` to the Vercel project environment variables before production launch. Keep `FORM_WEBHOOK_URL` only as a fallback if desired.
+Next required deployment step: add `RED_RANCH_BRIDGE_URL`, `RED_RANCH_BRIDGE_SECRET`, `FORM_SHEET_ID`, and `FORM_SHEET_NAME` to the Vercel project environment variables before production launch. Remove `FORM_WEBHOOK_URL` and retire its old public deployment.

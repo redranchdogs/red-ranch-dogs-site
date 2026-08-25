@@ -19,9 +19,11 @@ Last updated: May 12, 2026.
 - Apps Script bridge v3.2 deployed as a web app and saved locally as `RED_RANCH_BRIDGE_URL` in `.env.local`.
 - Bridge notification email confirmed with `adam@redranchdogs.com`.
 - Add `RED_RANCH_BRIDGE_URL`, `RED_RANCH_BRIDGE_SECRET`, `FORM_SHEET_ID`, and `FORM_SHEET_NAME` to the Vercel project environment variables before production launch.
-- Optional: keep `FORM_WEBHOOK_URL` configured as a legacy fallback.
+- Remove the retired `FORM_WEBHOOK_URL` from Vercel and verify the old public Apps Script deployment is disabled or access-restricted.
 - Optional: configure Resend with `RESEND_API_KEY`, `FORM_TO_EMAIL`, and `FORM_FROM_EMAIL`.
 - Run `npm run test:forms` after form changes. Run `npm run test:bridge` after any Apps Script redeploy to confirm authenticated bridge access.
+- Form-security deployment checkpoint: deploy and verify Website Bridge `3.3.0` before publishing the matching API code; do not treat the local patch as live protection.
+- Vercel production checkpoint: configure and verify the approved WAF/rate-limit rule for `/api/forms`, including a real `429` response and `Retry-After` header. The repository intentionally does not use a fake in-memory limiter.
 - Before launch, submit browser tests for puppy application, waitlist, contact, guardian application, stud inquiry, and newsletter.
 
 ## URL And SEO Review

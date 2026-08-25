@@ -3,7 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const envPath = path.join(root, ".env.local");
-const EXPECTED_BRIDGE_VERSION = "3.2.0";
+const EXPECTED_BRIDGE_VERSION = "3.3.0";
 
 function loadLocalEnv() {
   if (!fs.existsSync(envPath)) return;
