@@ -1,12 +1,12 @@
 # SEO Metadata Report
 
-Generated: 6/22/2026, 5:24:38 PM Central
+Generated: 8/25/2026, 11:43:25 AM Central
 
 Status: **PASS**
 
-Sitemap routes checked: 130
+Sitemap routes checked: 144
 Routes with blockers: 0
-Routes with warnings: 0
+Routes with warnings: 2
 
 ## Blockers
 
@@ -14,7 +14,8 @@ Routes with warnings: 0
 
 ## Warnings
 
-- None flagged.
+- /parents/lulu: Meta description length is 206
+- /parents/tex: Meta description length is 38
 
 
 ## Route Snapshot
@@ -29,6 +30,7 @@ Routes with warnings: 0
 | /puppies/previous-litters | 200 | Previous Litters | Red Ranch Dogs | 97 | Previous Litters | 1 | https://www.redranchdogs.com/puppies/previous-litters |
 | /puppies/what-comes-with-your-puppy | 200 | What Comes With Your Puppy | Red Ranch Dogs | 114 | What Comes With Your Puppy? | 1 | https://www.redranchdogs.com/puppies/what-comes-with-your-puppy |
 | /puppies/coat-traits | 200 | Coat Traits | Red Ranch Dogs | 101 | Understanding Coat Traits | 1 | https://www.redranchdogs.com/puppies/coat-traits |
+| /puppies/doodle-generations | 200 | Doodle Generations Explained | Red Ranch Dogs | 123 | Doodle Generations Explained | 1 | https://www.redranchdogs.com/puppies/doodle-generations |
 | /parents | 200 | Parent Dogs | Red Ranch Dogs | 98 | Parent Dogs | 1 | https://www.redranchdogs.com/parents |
 | /parents/mamas | 200 | Mamas | Red Ranch Dogs | 92 | Mamas | 1 | https://www.redranchdogs.com/parents/mamas |
 | /parents/studs | 200 | Studs | Red Ranch Dogs | 85 | Studs | 1 | https://www.redranchdogs.com/parents/studs |
@@ -101,16 +103,23 @@ Routes with warnings: 0
 | /puppies/glory | 200 | Glory | Multigen Mini Goldendoodle Puppy | Red Ranch Dogs | 84 | Glory | 1 | https://www.redranchdogs.com/puppies/glory |
 | /puppies/rocket | 200 | Rocket | Multigen Mini Goldendoodle Puppy | Red Ranch Dogs | 83 | Rocket | 1 | https://www.redranchdogs.com/puppies/rocket |
 | /puppies/jubilee | 200 | Jubilee | Multigen Mini Goldendoodle Puppy | Red Ranch Dogs | 86 | Jubilee | 1 | https://www.redranchdogs.com/puppies/jubilee |
-| /litters/whitley-waylon-april-2026 | 200 | Whitley + Waylon | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 72 | Whitley + Waylon | 1 | https://www.redranchdogs.com/litters/whitley-waylon-april-2026 |
-| /litters/faye-sundance-may-2026 | 200 | Faye + Sundance | Multigen Petite Goldendoodle Litter | Red Ranch Dogs | 87 | Faye + Sundance | 1 | https://www.redranchdogs.com/litters/faye-sundance-may-2026 |
-| /litters/georgia-waylon-may-2026 | 200 | Georgia + Waylon | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 86 | Georgia + Waylon | 1 | https://www.redranchdogs.com/litters/georgia-waylon-may-2026 |
-| /litters/reece-wyatt-summer-2026 | 200 | Reece + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 77 | Reece + Wyatt | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026 |
-| /litters/winnie-wyatt-spring-2026 | 200 | Winnie + Wyatt | F1B Petite Mini Cavapoo Litter | Red Ranch Dogs | 67 | Winnie + Wyatt | 1 | https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026 |
-| /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 90 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
-| /litters/penny-wyatt-spring-2026 | 200 | Penny + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 60 | Penny + Wyatt | 1 | https://www.redranchdogs.com/litters/penny-wyatt-spring-2026 |
-| /litters/ginny-butch-spring-2026 | 200 | Ginny + Butch Cassidy | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 77 | Ginny + Butch Cassidy | 1 | https://www.redranchdogs.com/litters/ginny-butch-spring-2026 |
+| /puppies/cannon | 200 | Cannon | F1B Micro Cavapoo Puppy | Red Ranch Dogs | 71 | Cannon | 1 | https://www.redranchdogs.com/puppies/cannon |
+| /puppies/marco | 200 | Marco | F1B Micro Cavapoo Puppy | Red Ranch Dogs | 70 | Marco | 1 | https://www.redranchdogs.com/puppies/marco |
+| /puppies/noodle | 200 | Noodle | F1B Micro Cavapoo Puppy | Red Ranch Dogs | 71 | Noodle | 1 | https://www.redranchdogs.com/puppies/noodle |
+| /puppies/sun-kissed | 200 | Sun-kissed | F1B Micro Cavapoo Puppy | Red Ranch Dogs | 77 | Sun-kissed | 1 | https://www.redranchdogs.com/puppies/sun-kissed |
+| /puppies/floatie | 200 | Floatie | F1B Micro Cavapoo Puppy | Red Ranch Dogs | 74 | Floatie | 1 | https://www.redranchdogs.com/puppies/floatie |
+| /puppies/jet | 200 | Jet | F1B Micro Cavapoo Puppy | Red Ranch Dogs | 68 | Jet | 1 | https://www.redranchdogs.com/puppies/jet |
+| /litters/georgia-waylon-may-2026 | 200 | Georgia + Waylon | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 99 | Georgia + Waylon | 1 | https://www.redranchdogs.com/litters/georgia-waylon-may-2026 |
+| /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs | 103 | Beatrix + Enzo | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026 |
+| /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs | 93 | Lulu + Bram | 1 | https://www.redranchdogs.com/litters/lulu-bram-fall-2026 |
+| /litters/reece-wyatt-summer-2026 | 200 | Reece + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 96 | Reece + Wyatt | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026 |
+| /litters/winnie-wyatt-spring-2026 | 200 | Winnie + Wyatt | F1B Petite Mini Cavapoo Litter | Red Ranch Dogs | 74 | Winnie + Wyatt | 1 | https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026 |
+| /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 88 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
+| /litters/beatrix-enzo-planned-2026/past-puppies | 200 | Past Puppies From Beatrix + Enzo | Red Ranch Dogs | 101 | See Their Previous Puppies | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026/past-puppies |
+| /litters/reece-wyatt-summer-2026/past-puppies | 200 | Past Puppies From Reece + Wyatt | Red Ranch Dogs | 100 | See How Their Puppies Are Growing | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026/past-puppies |
 | /parents/birdie | 200 | Birdie | Parent Dog | Red Ranch Dogs | 72 | Birdie | 1 | https://www.redranchdogs.com/parents/birdie |
 | /parents/honey | 200 | Honey | Parent Dog | Red Ranch Dogs | 90 | Honey | 1 | https://www.redranchdogs.com/parents/honey |
+| /parents/lulu | 200 | Lulu | Parent Dog | Red Ranch Dogs | 206 | Lulu | 1 | https://www.redranchdogs.com/parents/lulu |
 | /parents/phoebe | 200 | Phoebe | Parent Dog | Red Ranch Dogs | 85 | Phoebe | 1 | https://www.redranchdogs.com/parents/phoebe |
 | /parents/daisy | 200 | Daisy | Parent Dog | Red Ranch Dogs | 66 | Daisy | 1 | https://www.redranchdogs.com/parents/daisy |
 | /parents/beatrix | 200 | Beatrix | Parent Dog | Red Ranch Dogs | 87 | Beatrix | 1 | https://www.redranchdogs.com/parents/beatrix |
@@ -133,11 +142,17 @@ Routes with warnings: 0
 | /parents/sundance | 200 | Sundance | Parent Dog | Red Ranch Dogs | 120 | Sundance | 1 | https://www.redranchdogs.com/parents/sundance |
 | /parents/enzo | 200 | Enzo | Parent Dog | Red Ranch Dogs | 66 | Enzo | 1 | https://www.redranchdogs.com/parents/enzo |
 | /parents/butch-cassidy | 200 | Butch Cassidy | Parent Dog | Red Ranch Dogs | 99 | Butch Cassidy | 1 | https://www.redranchdogs.com/parents/butch-cassidy |
+| /parents/tex | 200 | Tex | Parent Dog | Red Ranch Dogs | 38 | Tex | 1 | https://www.redranchdogs.com/parents/tex |
 | /parents/knox | 200 | Knox | Parent Dog | Red Ranch Dogs | 81 | Knox | 1 | https://www.redranchdogs.com/parents/knox |
 | /parents/robert-redford | 200 | Robert Redford | Parent Dog | Red Ranch Dogs | 65 | Robert Redford | 1 | https://www.redranchdogs.com/parents/robert-redford |
 | /parents/johnny-cash | 200 | Johnny Cash | Parent Dog | Red Ranch Dogs | 65 | Johnny Cash | 1 | https://www.redranchdogs.com/parents/johnny-cash |
 | /parents/wyatt-earp | 200 | Wyatt Earp | Parent Dog | Red Ranch Dogs | 92 | Wyatt Earp | 1 | https://www.redranchdogs.com/parents/wyatt-earp |
 | /parents/bodhe | 200 | Bodhe | Parent Dog | Red Ranch Dogs | 72 | Bodhe | 1 | https://www.redranchdogs.com/parents/bodhe |
+| /faye-sundance-may-2026 | 200 | Faye + Sundance 2026 | Previous Litter | Red Ranch Dogs | 102 | Faye + Sundance 2026 | 1 | https://www.redranchdogs.com/faye-sundance-may-2026 |
+| /georgia-waylon-may-2026 | 200 | Georgia + Waylon 2026 | Previous Litter | Red Ranch Dogs | 101 | Georgia + Waylon 2026 | 1 | https://www.redranchdogs.com/georgia-waylon-may-2026 |
+| /ginny-butch-spring-2026 | 200 | Ginny + Butch Cassidy 2026 | Previous Litter | Red Ranch Dogs | 105 | Ginny + Butch Cassidy 2026 | 1 | https://www.redranchdogs.com/ginny-butch-spring-2026 |
+| /whitley-waylon-april-2026 | 200 | Whitley + Waylon 2026 | Previous Litter | Red Ranch Dogs | 101 | Whitley + Waylon 2026 | 1 | https://www.redranchdogs.com/whitley-waylon-april-2026 |
+| /penny-wyatt-spring-2026 | 200 | Penny + Wyatt 2026 | Previous Litter | Red Ranch Dogs | 88 | Penny + Wyatt 2026 | 1 | https://www.redranchdogs.com/penny-wyatt-spring-2026 |
 | /honey-bram | 200 | Honey + Bram | Previous Litter | Red Ranch Dogs | 93 | Honey + Bram | 1 | https://www.redranchdogs.com/honey-bram |
 | /birdie-waylon-spring-2026 | 200 | Birdie + Waylon 2026 | Previous Litter | Red Ranch Dogs | 100 | Birdie + Waylon 2026 | 1 | https://www.redranchdogs.com/birdie-waylon-spring-2026 |
 | /birdie-waylon-jennings | 200 | Birdie + Waylon | Previous Litter | Red Ranch Dogs | 90 | Birdie + Waylon | 1 | https://www.redranchdogs.com/birdie-waylon-jennings |
