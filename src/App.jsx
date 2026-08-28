@@ -2100,7 +2100,7 @@ function FinalCta() {
         <div>
           <p className="premium-kicker">Ready when you are</p>
           <h2>Let&apos;s help you find the right puppy.</h2>
-          <p>Whether you&apos;re ready to apply or still deciding which breed fits your family, we&apos;ll help you understand availability, timing, and the next best step.</p>
+          <p>Ready to apply or still choosing? We&apos;ll help with breed fit, timing, and availability.</p>
           <div className="actions">
             <Link href="/apply" className="button primary">Apply for a Puppy</Link>
             <a href={brand.sms} className="button secondary">Text Us Now</a>
@@ -4769,11 +4769,11 @@ function GuardianOpportunitiesPage() {
 function ReproductiveServicesPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Stud Services" title="Reproductive Services" copy="Stud service details, timing, paperwork, and communication are organized here for breeder inquiries." />
+      <PageHero eyebrow="Stud Services" title="Reproductive Services" copy="Stud service timing, records, and coordination for breeder inquiries." />
       <CompactTextCardGrid items={reproductiveServiceCards} className="stud-service-steps" />
       <CTASection
         title="Ready to ask about stud services?"
-        copy="Send a short breeder inquiry and we will help with stud fit, timing, records, AI, or service coordination."
+        copy="Send a short inquiry about stud fit, timing, AI, or shipping."
         primaryHref="/stud-services#stud-inquiry"
         primaryLabel="Start Stud Inquiry"
         secondaryHref="/stud-services/our-studs"
@@ -4828,22 +4828,21 @@ function AboutOverviewPage() {
       <PageHero
         eyebrow="About"
         title="About Red Ranch Dogs"
-        copy="Learn more about our family, team, reviews, and the people behind each puppy update."
+        copy="Meet the family and team behind Red Ranch Dogs."
         className="compact-page-hero about-overview-hero"
       />
       <section className="content-section page-hub-path-section about-overview-path-section">
         <SectionHeader
           eyebrow="Start Here"
           title="Get to know Red Ranch"
-          copy="Choose the part of the story you want to see first."
         />
         <OverviewPathGrid links={aboutLinks} />
       </section>
       <section className="content-section narrow about-overview-note-section">
         <article className="group-panel about-overview-note">
           <p className="eyebrow">Family-Run in Salado</p>
-          <h2>Hands-on care, clear updates, and real people behind the process.</h2>
-          <p>Red Ranch Dogs is built around family-raised puppy care, thoughtful matching, and practical communication before and after go-home day.</p>
+          <h2>Family-raised puppies and clear communication.</h2>
+          <p>We focus on thoughtful matching and practical support before and after go-home day.</p>
           <div className="actions">
             <Link href="/about/reviews" className="button secondary">Read Reviews</Link>
             <Link href="/contact" className="button primary">Contact Us</Link>
@@ -4889,14 +4888,14 @@ function AvailablePuppiesPage() {
       title="Available Puppies"
       copy={availableNow.length
         ? "These puppies are looking for their families now and are available to reserve with a deposit."
-        : "No puppies are currently open for reservation. Explore our upcoming pairings and join the waitlist for future availability."}
+        : "No puppies are currently open for reservation."}
     >
       {availableNow.length === 0 && (
         <>
           <SmartEmptyState
             eyebrow="Availability Update"
             title={noAvailabilityTitle}
-            copy="Preview planned pairings, expected timing, and parent dogs, then join the waitlist when you find the right fit."
+            copy="See planned pairings and timing, then join the waitlist when one fits."
             primaryHref="/puppies/upcoming-litters"
             primaryLabel="View Upcoming Litters"
             secondaryHref="/apply"
@@ -4906,7 +4905,7 @@ function AvailablePuppiesPage() {
           <PlannedLitterGroups
             className="zero-inventory-upcoming-path"
             eyebrow="Upcoming Litters"
-            introCopy="Open a breed to preview planned pairings, expected timing, and size information."
+            introCopy="Open a breed to see pairings, timing, and expected size."
             panelIdSuffix="available-fallback"
           />
         </>
@@ -4923,16 +4922,16 @@ function AvailablePuppiesPage() {
           ))}
         </section>
       )}
-      <CTASection
-        title={availableNow.length ? "Ready to ask about a puppy?" : "Ready to join a future litter?"}
-        copy={availableNow.length
-          ? "Apply now and tell us which puppy caught your eye. We will help you understand availability, timing, and fit."
-          : "Join the waitlist or text us if you want help choosing the breed and timing that fit your family."}
-        primaryLabel={availableNow.length ? "Apply for a Puppy" : "Join the Waitlist"}
-        secondaryHref={brand.sms}
-        secondaryLabel="Text Us"
-        className={availableNow.length ? "available-puppy-path-cta" : "available-puppy-empty-cta"}
-      />
+      {availableNow.length > 0 && (
+        <CTASection
+          title="Ready to ask about a puppy?"
+          copy="Apply and tell us which puppy caught your eye."
+          primaryLabel="Apply for a Puppy"
+          secondaryHref={brand.sms}
+          secondaryLabel="Text Us"
+          className="available-puppy-path-cta"
+        />
+      )}
       <StickyMobileCta
         primaryHref={availableNow.length ? "/apply" : "/puppies/upcoming-litters"}
         primaryLabel={availableNow.length ? "Apply" : "Upcoming Litters"}
@@ -5039,8 +5038,8 @@ function CurrentLittersPage() {
       eyebrow="Puppies"
       title="Current Litters"
       copy={currentLitterProfiles.length
-        ? "Ordered by go-home timing with availability kept simple on each card."
-        : "We do not have puppies currently growing. Explore planned pairings and join the waitlist for future availability."}
+        ? "See each litter's go-home timing and availability."
+        : "No puppies are currently growing. Explore planned pairings for what is next."}
     >
       {currentLitterProfiles.length ? (
         <>
@@ -5075,8 +5074,8 @@ function CurrentLittersPage() {
             )}
           </section>
           <CTASection
-            title="Want help choosing a path?"
-            copy="Apply and we will help you understand current litters, waitlist timing, and whether an available puppy or future pairing is the right fit."
+            title="Need help choosing?"
+            copy="Apply and we will help with litter fit and timing."
             primaryLabel="Apply for a Puppy"
             secondaryHref="/puppies/upcoming-litters"
             secondaryLabel="View Upcoming Litters"
@@ -5089,7 +5088,7 @@ function CurrentLittersPage() {
           <SmartEmptyState
             eyebrow="Current Litter Update"
             title="Planned pairings are ahead"
-            copy="Several thoughtfully planned pairings are coming up. Explore the timing and parent dogs, then join the waitlist when a pairing fits your family."
+            copy="See upcoming timing and parent dogs, then join the waitlist when a pairing fits."
             primaryHref="/puppies/upcoming-litters"
             primaryLabel="View Upcoming Litters"
             secondaryHref="/apply"
@@ -5099,7 +5098,7 @@ function CurrentLittersPage() {
           <PlannedLitterGroups
             className="zero-inventory-upcoming-path"
             eyebrow="Upcoming Litters"
-            introCopy="Open a breed to preview planned pairings, expected timing, and size information."
+            introCopy="Open a breed to see pairings, timing, and expected size."
             panelIdSuffix="current-fallback"
           />
         </>
@@ -5119,14 +5118,14 @@ function UpcomingLittersPage() {
     <BuyerPageTemplate
       eyebrow={`Updated ${upcomingLitters.updated}`}
       title="Upcoming Litters"
-      copy="Planned and expected pairings from our Goldendoodle, Cavapoo, and Bernedoodle litters."
+      copy="Planned Goldendoodle, Cavapoo, and Bernedoodle pairings."
     >
       {plannedLitterProfiles.length > 0 ? (
         <>
           <PlannedLitterGroups />
           <CTASection
-            title="Want to be contacted when a litter fits?"
-            copy="Apply for the breed waitlist and we will help you understand timing, puppy picks, and which pairings may be a good fit."
+            title="See a pairing that fits?"
+            copy="Apply for that breed's waitlist and talk through timing with us."
             primaryLabel="Apply for a Puppy"
             secondaryHref="/puppies/current-litters"
             secondaryLabel="View Current Litters"
@@ -6049,11 +6048,11 @@ function ApplicationProcessPage() {
     <ProcessPageTemplate
       eyebrow={brand.location}
       title="Puppy Application Process"
-      copy="A clear, fair, and stress-free path from application to go-home day."
+      copy="From application to go-home day."
       stats={processOverviewStats}
     >
       <section className="content-section process-compact-section">
-        <SectionHeader eyebrow="How It Works" title="The path families follow" copy="Families choose the breed they are interested in, then we keep the process clear from waitlist to puppy pick to go-home day." />
+        <SectionHeader eyebrow="How It Works" title="The path families follow" />
         <ProcessStepCards steps={steps} />
       </section>
       <section className="content-section narrow process-note-panel">
@@ -6072,9 +6071,9 @@ const applicationStatusItems = [
 ];
 
 const applicationReassuranceCards = [
-  ["No obligation", "The puppy application starts a conversation. It does not lock you into a puppy, litter, or deposit.", CheckCircle2],
-  ["Guided choice", "If you are between breeds, sizes, or timelines, we help narrow the best path with you.", MessageCircle],
-  ["Clear next step", "We follow up with availability, waitlist timing, or a reserve path only when the fit is clear.", ShieldCheck]
+  ["No obligation", "Submitting an application does not require a deposit.", CheckCircle2],
+  ["Guided choice", "We can help compare breeds, sizes, and timing.", MessageCircle],
+  ["Clear next step", "We follow up with the best available path.", ShieldCheck]
 ];
 
 function applicationPuppyFromUrl() {
@@ -6109,8 +6108,7 @@ function ApplicationIntroPanel() {
       <ListingStatusStrip className="application-status-strip" items={applicationStatusItems} />
       <div className="application-intro-copy">
         <p className="eyebrow">Before You Apply</p>
-        <h2>A simple first step</h2>
-        <p>The application starts the conversation - no commitment to a puppy, litter, or deposit.</p>
+        <h2>Helpful details</h2>
         <div className="application-form-links" aria-label="Helpful application links">
           <Link href="/process/how-it-works">How it works</Link>
           <Link href="/process/faq">FAQ</Link>
@@ -6164,7 +6162,7 @@ function WaitlistPage() {
       stats={waitlistStats}
       cta={{
         title: "Ready to join a waitlist?",
-        copy: "Apply now and we will help you understand breed fit, current availability, and what the next step looks like.",
+        copy: "Apply and we will help with breed fit and timing.",
         primaryLabel: "Apply for a Puppy",
         secondaryHref: "/puppies/current-litters",
         secondaryLabel: "View Current Litters"
@@ -6210,40 +6208,23 @@ function JoinWaitlistPage() {
     <ProcessPageTemplate
       eyebrow="Application & Waitlist"
       title="Application and Waitlist"
-      copy="A clear, fair process for moving from application to puppy selection and go-home day."
+      copy="How applications, deposits, puppy picks, and go-home timing work."
       stats={processOverviewStats}
     >
       <section className="content-section process-compact-section">
-        <SectionHeader eyebrow="Simple Overview" title="Your place on the list" copy="Families are contacted in order of deposit placed. When a litter is announced, you can move forward or pass and remain on your breed waitlist for a future opportunity." />
+        <SectionHeader eyebrow="Simple Overview" title="Your place on the list" />
         <ProcessStepCards steps={waitlistProcessSteps} />
-      </section>
-      <section className="tile-grid three priority-grid process-card-grid process-note-grid">
-        <article className="text-card icon-card compact-card">
-          <ShieldCheck size={24} />
-          <h2>Deposit</h2>
-          <p>The deposit reserves your place and helps us keep communication clear as litters are planned and born.</p>
-        </article>
-        <article className="text-card icon-card compact-card">
-          <CheckCircle2 size={24} />
-          <h2>Pick or Pass</h2>
-          <p>Families can pass on a litter and remain on their breed waitlist without starting over.</p>
-        </article>
-        <article className="text-card icon-card compact-card">
-          <Heart size={24} />
-          <h2>Litter Born</h2>
-          <p>When a litter is born, families receive updates and puppy picks happen in waitlist order using photos, videos, personality notes, and video calls.</p>
-        </article>
       </section>
       <CTASection
         title="Ready to join a waitlist?"
-        copy="Joining a Red Ranch Dogs waitlist starts with the puppy application. We will use it to understand breed fit, timing, current availability, and the best next step for your family."
+        copy="Start with the puppy application so we can understand breed fit and timing."
         primaryHref="/apply"
         primaryLabel="Start Puppy Application"
         secondaryHref="/process/waitlist"
         secondaryLabel="View Current Waitlist"
       />
       <section className="content-section narrow process-faq-preview">
-        <SectionHeader eyebrow="FAQ Preview" title="Common questions" copy="These answers keep the process understandable before a family reaches out." />
+        <SectionHeader eyebrow="FAQ Preview" title="Common questions" />
         <FAQSection items={(faqProfiles.length ? faqProfiles : faqs).filter((item) => Array.isArray(item) || item.category === "Getting on the waitlist" || item.category === "Puppy selection")} />
       </section>
     </ProcessPageTemplate>
@@ -6253,13 +6234,13 @@ function JoinWaitlistPage() {
 function StudServicesPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Stud Services" title="Health-Tested Stud Services" copy="Health-tested stud options, reproductive education, and breeder inquiry details for approved programs." image={images.studGoldendoodle} />
+      <PageHero eyebrow="Stud Services" title="Health-Tested Stud Services" copy="Health-tested studs and inquiry details for approved breeding programs." image={images.studGoldendoodle} />
       <ListingStatusStrip items={studServiceStats} className="process-status-strip" />
       <section className="content-section process-compact-section">
         <SectionHeader
           eyebrow="Breeder Inquiry"
-          title="A simple first step for stud service questions"
-          copy="If you have a stud in mind, tell us who you are considering. If you are still matching traits, describe what you are hoping for and we can point you toward the best fit."
+          title="Tell us about your program"
+          copy="Share your female, timing, and preferred stud. If you are still comparing traits, tell us your goals."
         />
       </section>
       <CompactTextCardGrid items={studServiceStepCards} className="stud-service-steps" />
@@ -6294,7 +6275,7 @@ function GuardianProgramPage() {
       <PageHero
         eyebrow="Guardian Program"
         title="Guardian Family Program"
-        copy="An approved guardian family welcomes a sweet Red Ranch girl at no puppy purchase cost. She lives with you as your family dog and future breeding mama while Red Ranch Dogs retains breeding rights during her program career."
+        copy="A guardian family welcomes a future Red Ranch mama at no puppy purchase cost. She lives with you while Red Ranch Dogs retains breeding rights."
         image={guardianApplicationImage}
         imageAlt="Red Ranch Dogs guardian family with a puppy"
         actions={(
@@ -6316,15 +6297,10 @@ function GuardianProgramPage() {
           </article>
         ))}
       </section>
-      <section className="content-section guardian-program-primer">
-        <article className="group-panel guardian-primer-card">
-          <p className="eyebrow">The Straightforward Version</p>
-          <h2>Your family dog. A future Red Ranch mama.</h2>
-          <p>She lives in your home as a loved indoor pet, and Red Ranch Dogs retains breeding rights. She stays with you during pregnancy, then returns to Red Ranch before delivery to whelp her puppies.</p>
-        </article>
+      <section className="content-section narrow">
         <article className="group-panel guardian-process-card">
           <p className="eyebrow">How It Works</p>
-          <h2>The guardian partnership</h2>
+          <h2>Your family dog. A future Red Ranch mama.</h2>
           <ProcessStepCards steps={guardianProgram.process} className="guardian-process-steps" />
         </article>
       </section>
@@ -6332,7 +6308,6 @@ function GuardianProgramPage() {
         <SectionHeader
           eyebrow="The Practical Side"
           title="The financial and ownership pieces."
-          copy="The agreement keeps the cost, breeding-related care, and eventual ownership transfer clear from the start."
         />
       </section>
       <CompactTextCardGrid items={guardianProgram.benefits} className="guardian-benefit-grid" />
@@ -6340,19 +6315,9 @@ function GuardianProgramPage() {
         <SectionHeader
           eyebrow="Your Part"
           title="The everyday guardian commitment."
-          copy="A good fit comes down to a stable local home, reliable routine care, a secure yard, and clear communication."
         />
       </section>
       <CompactTextCardGrid items={guardianProgram.expectations} className="guardian-expectation-grid" />
-      <CTASection
-        title="Think this could be a fit?"
-        copy="Start with the guardian application and we will talk through location, home setup, timing, and whether the program feels right."
-        primaryHref="/guardian-program/application"
-        primaryLabel="Guardian Application"
-        secondaryHref={brand.sms}
-        secondaryLabel="Text Us"
-        className="guardian-mid-cta"
-      />
       <section className="faq-list guardian-faq-list">
         {guardianProgram.faqs.map(([question, answer]) => (
           <details key={question}>
@@ -6362,8 +6327,8 @@ function GuardianProgramPage() {
         ))}
       </section>
       <CTASection
-        title="Have more questions?"
-        copy={`Reach out at ${brand.email} or ${brand.phone}, or start the guardian application when you are ready.`}
+        title="Could this be a fit?"
+        copy="Apply to talk through location, home setup, timing, and the guardian agreement."
         primaryHref="/guardian-program/application"
         primaryLabel="Guardian Application"
         secondaryHref="/contact"
@@ -6379,7 +6344,7 @@ function GuardianApplicationPage() {
       <PageHero
         eyebrow="Guardian Program"
         title="Guardian Application"
-        copy="Start here if you live near Salado and are interested in partnering with Red Ranch Dogs as a guardian family."
+        copy="Apply if you live near Salado and want to become a guardian family."
         image={guardianApplicationImage}
         className="guardian-application-hero"
       />

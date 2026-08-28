@@ -932,21 +932,21 @@ export const guardianProgram = {
     ["Ownership after retirement", "Full ownership transfers to your family after her breeding career."]
   ],
   benefits: [
-    ["No puppy purchase cost", "There is no puppy purchase cost for an approved guardian placement; your family provides her everyday home, care, and love."],
-    ["Breeding-related care", "Red Ranch Dogs covers breeding-related care and appointments during her program career."],
+    ["No puppy purchase cost", "Approved guardian placements have no puppy purchase cost; your family provides her everyday home and care."],
+    ["Breeding-related care", "Red Ranch Dogs covers breeding-related care and appointments."],
     ["Full ownership after retirement", "When her breeding career is complete, ownership transfers fully to the guardian family."]
   ],
   process: [
-    ["Apply and talk it through", "We discuss your home, location, schedule, and the full guardian agreement before deciding whether the fit is right."],
-    ["Welcome her as your family dog", "Once matched, she lives in your home as a loved indoor pet and future Red Ranch breeding mama."],
-    ["Coordinate each breeding season", "When she comes into heat, you notify us right away. Together we coordinate testing, breeding appointments, and her scheduled drop-off and return."],
-    ["Whelping at Red Ranch", "She stays with you during pregnancy, then returns to Red Ranch before delivery to whelp her puppies. She returns home to you after that season is complete."]
+    ["Apply and talk it through", "We discuss your home, location, schedule, and the guardian agreement."],
+    ["Welcome her home", "She lives with you as a loved family dog and future Red Ranch mama."],
+    ["Coordinate each breeding season", "Notify us when she comes into heat so we can coordinate testing, breeding, drop-off, and return."],
+    ["Whelping at Red Ranch", "Before delivery, she returns to Red Ranch to whelp her puppies. She returns home after the season."]
   ],
   expectations: [
-    ["Local availability", "Female guardians should be close enough for breeding-related visits without it becoming a burden. Stud guardians need to be in Salado or very close."],
+    ["Local availability", "Female guardians should be close enough for breeding visits. Stud guardians need to be in Salado or very close."],
     ["Secure fenced yard", "A physical fenced yard is required so the dog can be safely managed at home."],
     ["Routine care", "Guardian families handle routine care, approved food, grooming, exercise, training, and normal veterinary needs."],
-    ["Clear communication", "Quick communication matters around heat cycles, appointments, travel, moves, and health concerns."]
+    ["Clear communication", "Quick communication matters around heat cycles, appointments, travel, moves, and health."]
   ],
   faqs: [
     ["How close do guardian families need to live?", "Female guardians are usually best within about 30 to 60 minutes of Salado. Stud guardians need to live in Salado or very close by because timing can be more immediate."],
