@@ -4087,6 +4087,7 @@ function LitterPage({ litter }) {
   const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
   const waitlistName = breedProgram?.name || "breed";
   const isLongLitterName = litter.name.length > 18;
+  const isLitterWaitlistFull = /waitlist is full/i.test(litter.availabilityNote || "");
   const litterHeroCopy = litter.theme
     ? `Our "${litter.theme}" Litter of ${pluralizeLitterBreed(litter.breed)}.`
     : litter.availabilitySummary;
@@ -4102,6 +4103,12 @@ function LitterPage({ litter }) {
           copy: "Puppies not marked Available are not open to reserve publicly. Apply and we will help you understand future timing for this breed.",
           primaryLabel: "Apply for a Future Litter"
         }
+      : isPlannedLitter(litter) && isLitterWaitlistFull
+        ? {
+            title: "This litter's waitlist is full",
+            copy: `Apply for the ${waitlistName} waitlist to hear about future options and similar pairings.`,
+            primaryLabel: "Apply for a Future Litter"
+          }
       : isPlannedLitter(litter)
         ? {
             title: litter.pregnancyConfirmed ? "Interested in this confirmed litter?" : "Want updates on this planned litter?",
