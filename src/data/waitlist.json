@@ -5,7 +5,7 @@
     "tab": "Public Waitlist",
     "hub": "Website Hub"
   },
-  "updatedAt": "2026-08-06",
+  "updatedAt": "2026-08-29",
   "publicRows": [
     {
       "breed": "Goldendoodle",
@@ -90,6 +90,14 @@
       "display_name": "Kirby S.",
       "status": "Active",
       "show_publicly": "Yes"
+    },
+    {
+      "breed": "Cavapoo",
+      "position": 7,
+      "display_name": "Kari P.",
+      "status": "Active",
+      "show_publicly": "Yes",
+      "public_notes": "Winnie + Wyatt"
     },
     {
       "breed": "Bernedoodle",
