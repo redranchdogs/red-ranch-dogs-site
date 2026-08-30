@@ -234,6 +234,7 @@
     "visibility": "public",
     "status": "Planned Litter",
     "featuredAvailable": false,
+    "pregnancyConfirmed": true,
     "litterNumber": "Second pairing",
     "mamaSlug": "beatrix",
     "mama": "Beatrix",
@@ -241,22 +242,22 @@
     "stud": "Enzo",
     "breedSlug": "goldendoodle-puppies",
     "breed": "F1B-Style Goldendoodle",
-    "birthDate": "September 28-29, 2026",
+    "birthDate": "Estimated September 29, 2026",
     "goHomeDate": "November 23-24, 2026",
     "expectedSize": "25-35 lbs full-grown",
-    "expectedTiming": "September 28-29, 2026",
+    "expectedTiming": "Estimated September 29, 2026",
     "expectedColors": "Warm apricot and red possibilities",
     "expectedCoatTraits": "Silky-soft wavy to curly, lower-shedding coat possibilities",
     "priceRange": "$2,800",
-    "availabilitySummary": "Beatrix and Enzo were paired in late July and early August. Pregnancy outcome is awaiting confirmation.",
-    "availabilityNote": "Expected birth is September 28-29, 2026, with estimated go-home November 23-24, 2026. Join the Goldendoodle waitlist for updates.",
-    "aboutTitle": "A much-loved second pairing with silky-soft coats and family-favorite temperaments.",
+    "availabilitySummary": "Great news: Beatrix is confirmed pregnant with her second litter with Enzo.",
+    "availabilityNote": "The estimated due date is September 29, 2026. Join the Goldendoodle waitlist for updates.",
+    "aboutTitle": "Beatrix and Enzo's second Goldendoodle litter is confirmed.",
     "aboutThisLitter": [
-      "We are so excited to bring Beatrix and Enzo together for their second pairing. Their first pairing gave us so much to love, and we cannot wait to see this combination again.",
+      "Beatrix is confirmed pregnant with their second litter together. Their first pairing gave us so much to love, and we cannot wait to see this combination again.",
       "Beatrix is one of the sweetest mamas in our program. She has an exceptionally silky-soft coat, an affectionate family-dog temperament, and the kind of gentle personality that has made her a true Red Ranch family favorite.",
       "Enzo is a top-notch Goldendoodle stud in our program and consistently produces some of the cutest puppies. His compact size, beautiful red coat, and proven contribution to our Goldendoodle lines make him a special match for Beatrix.",
       "Because Beatrix is an F1 Goldendoodle and Enzo is approximately 96% Poodle and 4% Golden Retriever, their puppies are expected to average about 73% Poodle and 27% Golden Retriever. That gives this Goldendoodle-to-Goldendoodle pairing an F1B-style genetic balance.",
-      "Beatrix and Enzo were paired in late July and early August. Pregnancy outcome is awaiting confirmation, with expected birth September 28-29, 2026 and estimated go-home November 23-24, 2026.",
+      "The estimated due date is September 29, 2026.",
       "We expect warm apricot and red possibilities with silky-soft wavy to curly, lower-shedding coat possibilities. Puppies are expected to mature around 25-35 lbs full-grown, though individual puppy size can vary."
     ],
     "geneticMakeup": [
@@ -265,19 +266,19 @@
       "F1B-style Goldendoodle pairing"
     ],
     "aboutHighlights": [
-      "Second Beatrix + Enzo pairing",
+      "Pregnancy confirmed",
       "F1B-style Goldendoodles",
       "About 73% Poodle / 27% Golden Retriever",
       "25-35 lbs expected adult size",
-      "Expected birth September 28-29, 2026"
+      "Estimated due date September 29, 2026"
     ],
     "puppySlugs": [],
-    "weeklyUpdateStatus": "Pregnancy outcome is awaiting confirmation. Expected birth is September 28-29, 2026, with estimated go-home November 23-24, 2026.",
+    "weeklyUpdateStatus": "Beatrix is confirmed pregnant. The estimated due date is September 29, 2026.",
     "weeklyUpdateGallery": [
       "/images/dams/beatrix-red-ranch-dogs.webp",
       "/images/studs/enzo-red-ranch-dogs.webp"
     ],
-    "quickNote": "Pregnancy outcome is awaiting confirmation. Expected birth is September 28-29, 2026, with estimated go-home November 23-24, 2026.",
+    "quickNote": "Beatrix is confirmed pregnant. The estimated due date is September 29, 2026.",
     "pastPuppyGallery": {
       "eyebrow": "Beatrix + Enzo Past Puppies",
       "title": "See Their Previous Puppies",
