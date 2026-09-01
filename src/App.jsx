@@ -1877,7 +1877,6 @@ function HomeDoodles() {
         <SectionHeader
           eyebrow="Our Doodles"
           title="Find the right fit for your family"
-          copy="Goldendoodles, Cavapoos, and Bernedoodles raised with hands-on care in Central Texas."
         />
         <CardGrid className="breed-card-grid" columns={3}>
           {homepageBreeds.map((breed) => <BreedCard breed={breed} key={breed.name} />)}
@@ -1915,7 +1914,6 @@ function HomeReadySoonStrip() {
         <div className="home-ready-strip-header">
           <p className="premium-kicker">Available Now</p>
           <h2>Ready to go home now</h2>
-          <p>These puppies are available and ready to go home now.</p>
         </div>
         <div className="home-ready-puppy-row" aria-label="Puppies ready to go home now">
           {readyPuppies.map((puppy) => {
@@ -1986,7 +1984,6 @@ function WhyRedRanch() {
       <SectionIntro
         eyebrow="Why Red Ranch Dogs"
         title="Raised with intention, matched with care."
-        copy="From health-tested parent dogs to weekly litter updates, our process is built to help families feel confident before, during, and after puppy go-home."
       />
       <div className="premium-card-grid trust-grid">
         {items.map(([title, copy, Icon]) => <TrustCard title={title} copy={copy} Icon={Icon} key={title} />)}
@@ -2008,7 +2005,6 @@ function WaitlistSteps() {
       <SectionIntro
         eyebrow="See How It Works"
         title="A simple, fair waitlist process."
-        copy="Apply when you're ready, join the breed waitlist that fits your family, and we'll guide you through each litter announcement, puppy pick, and go-home step."
       />
       <div className="waitlist-steps">
         {steps.map(([number, title, copy]) => (
@@ -2035,7 +2031,6 @@ function HomeTestimonials() {
           <SectionIntro
             eyebrow="Google Reviews"
             title="Kind words from puppy families."
-            copy="Families often mention the communication, care, and confidence they felt throughout the Red Ranch Dogs process."
           />
           <div className="testimonial-card-list">
             {reviews.slice(0, 3).map((review) => (
