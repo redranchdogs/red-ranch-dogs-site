@@ -188,7 +188,7 @@ const SHEETS = {
       healthTestingLinks: links(parent.healthTestingLinks),
       geneticTestingLinks: links(parent.geneticTestingLinks),
       relatedLitters: list(parent.relatedLitters),
-      publicPage: `/parents/${parent.slug}`,
+      publicPage: parent.visibility === "hidden" ? "" : `/parents/${parent.slug}`,
       internalNotes: "",
     }),
   },

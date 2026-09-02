@@ -233,11 +233,6 @@
       "permanent": true
     },
     {
-      "source": "/trudy",
-      "destination": "/parents/trudy",
-      "permanent": true
-    },
-    {
       "source": "/faye",
       "destination": "/parents/faye",
       "permanent": true

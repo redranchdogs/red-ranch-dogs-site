@@ -539,18 +539,6 @@ export const damProfiles = [
     previousLitters: []
   },
   {
-    name: "Trudy",
-    href: "/trudy",
-    group: "Poodle Dams",
-    type: "AKC Toy Poodle",
-    weight: "6 lbs",
-    image: "/images/dams/trudy.webp",
-    genetics: "",
-    copy: "Trudy is an AKC toy poodle momma with an old soul and a love for kids.",
-    testing: ["Embark Testing", "UC Davis Testing", "OFA cardiac normal/clear", "OFA elbows negative for dysplasia", "OFA hips good", "OFA patellas normal"],
-    previousLitters: ["Trudy Litter 1", "Trudy Litter 2"]
-  },
-  {
     name: "Faye",
     href: "/faye",
     group: "Poodle Dams",
@@ -643,7 +631,7 @@ export const damGroups = {
     name: "Poodle Dams",
     image: images.damsPoodle,
     copy: "AKC poodle mommas supporting Goldendoodle, Cavapoo, and poodle pairings.",
-    profiles: ["/trudy", "/faye"]
+    profiles: ["/faye"]
   },
   "/cavapoo-dams": {
     name: "Cavapoo Dams",
