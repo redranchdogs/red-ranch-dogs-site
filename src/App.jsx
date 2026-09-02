@@ -2708,7 +2708,9 @@ function pastLitterHrefsFor(litter) {
 }
 
 function currentLitterHrefForPastLitter(href) {
-  const litter = publicLitterProfiles.find((item) => pastLitterHrefsFor(item).includes(href));
+  const litter = publicLitterProfiles.find(
+    (item) => isCurrentLitter(item) && pastLitterHrefsFor(item).includes(href)
+  );
 
   return litter?.slug ? `/litters/${litter.slug}` : "";
 }
