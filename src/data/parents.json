@@ -226,14 +226,14 @@
   {
     "slug": "trudy",
     "name": "Trudy",
-    "visibility": "public",
+    "visibility": "hidden",
     "role": "mama",
     "breedSlug": "goldendoodle-puppies",
     "breed": "AKC Toy Poodle",
     "weight": "6 lbs",
     "color": "Apricot",
     "coat": "Curly",
-    "status": "Active",
+    "status": "Retired",
     "mainPhoto": "/images/dams/trudy-red-ranch-dogs.webp",
     "photos": [
       "/images/dams/trudy-red-ranch-dogs.webp"
