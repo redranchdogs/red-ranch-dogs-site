@@ -41,7 +41,7 @@ Apply: https://www.redranchdogs.com/apply
 ## Current public status summary
 
 - Available puppy records: 0
-- Current litters: 1
+- Current litters: 0
 - Upcoming or planned litters: 4
 - Public parent dog profiles: 31
 

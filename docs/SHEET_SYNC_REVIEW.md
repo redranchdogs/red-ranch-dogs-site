@@ -1,5 +1,5 @@
 # Sheet Sync Review
-Generated: 8/31/2026, 1:17:53 PM Central
+Generated: 9/1/2026, 7:24:53 PM Central
 Status: **PASS**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary
@@ -7,7 +7,7 @@ This is a read-only comparison between website-generated sheet exports and the l
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Puppy Tracker | 47 | 47 | 0 | 0 | 0 | 0 |
 | Litters | 12 | 12 | 0 | 0 | 0 | 0 |
-| Previous Litters | 20 | 20 | 0 | 0 | 0 | 0 |
+| Previous Litters | 21 | 21 | 0 | 0 | 0 | 0 |
 | Parent Dogs | 33 | 33 | 0 | 0 | 0 | 0 |
 ## Items To Fix
 - None.

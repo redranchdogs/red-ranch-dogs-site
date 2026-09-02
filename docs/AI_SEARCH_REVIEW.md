@@ -1,6 +1,6 @@
 # AI Search Review
 
-Generated: 8/31/2026, 1:17:35 PM Central
+Generated: 9/1/2026, 7:21:07 PM Central
 
 Status: **PASS**
 
@@ -11,7 +11,7 @@ This report checks the public signals that help Google and AI-answer systems und
 | Check | Status | Detail |
 | --- | --- | --- |
 | robots.txt points to production sitemap | PASS | Crawlers can discover the canonical sitemap. |
-| sitemap uses production domain | PASS | 144 sitemap URLs found. |
+| sitemap uses production domain | PASS | 145 sitemap URLs found. |
 | AI summary file exists and points to full summary | PASS | llms.txt exposes a concise public index for answer engines. |
 | Full AI summary excludes private operations | PASS | The full summary is public-facing and directs answers back to live pages. |
 | Structured data includes local business and FAQ support | PASS | Public templates expose answer-engine-friendly JSON-LD markers. |

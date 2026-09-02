@@ -349,7 +349,7 @@
     "slug": "reece-wyatt-summer-2026",
     "name": "Reece + Wyatt",
     "visibility": "public",
-    "status": "Current Litter",
+    "status": "Previous Litter",
     "featuredAvailable": false,
     "litterNumber": "",
     "mamaSlug": "reece",
@@ -365,24 +365,23 @@
     "expectedColors": "Red abstract, apricot, and parti possibilities",
     "expectedCoatTraits": "Soft, silky, wavy Cavapoo coat possibilities",
     "priceRange": "$4,500",
-    "availabilitySummary": "Reece and Wyatt's F1B Micro Cavapoo puppies are here, and Week 6 photos and videos are now live.",
-    "availabilityNote": "Puppy profiles are live. Join the Cavapoo waitlist for selection and availability updates as the litter grows.",
-    "aboutTitle": "A current Cavapoo litter with a compact companion size.",
+    "availabilitySummary": "Reece and Wyatt's F1B Micro Cavapoo puppies have all found their homes.",
+    "availabilityNote": "This litter has gone home and now lives in the previous litter archive.",
+    "aboutTitle": "A past Cavapoo pairing with a compact companion size.",
     "aboutThisLitter": [
-      "Reece and Wyatt's F1B Micro Cavapoo puppies arrived on July 5, 2026.",
+      "Reece and Wyatt's F1B Micro Cavapoo puppies arrived on July 5, 2026 and have all gone home with their families.",
       "Reece is a 15 pound F1 Cavapoo mama with a sweet, companion-focused temperament. Wyatt Earp is a 4 pound toy Poodle stud selected for affectionate temperament, compact size, and soft coat possibilities.",
-      "Puppy profiles and Week 6 photos and videos are live, with future updates added as the litter grows.",
-      "Families on the Cavapoo waitlist will be contacted in order as availability becomes clear."
+      "Puppy profiles and Week 6 photos and videos remain available as a reference for this pairing."
     ],
     "geneticMakeup": [
       "75% Poodle",
       "25% Cavalier King Charles Spaniel"
     ],
     "aboutHighlights": [
-      "Current summer Cavapoo litter",
+      "2026 Cavapoo litter",
       "F1B Micro Cavapoos",
       "Expected 8-12 lbs full grown",
-      "Cavapoo waitlist pairing"
+      "All puppies found homes"
     ],
     "puppySlugs": [
       "cannon",
@@ -393,7 +392,7 @@
       "jet"
     ],
     "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Reece 2 + Wyatt",
-    "weeklyUpdateStatus": "Week 6 photos and videos are live.",
+    "weeklyUpdateStatus": "Archived previous litter. Week 6 photos and videos remain available.",
     "weeklyUpdateGallery": [
       "/images/puppies/reece-wyatt-2026/cannon-week-6.avif",
       "/images/puppies/reece-wyatt-2026/marco-week-6.avif",
@@ -403,6 +402,7 @@
       "/images/puppies/reece-wyatt-2026/jet-week-6.avif"
     ],
     "videoPlaylistUrl": "https://www.youtube.com/playlist?list=PLMr0A6M9Y7Ts",
+    "previousLitterHref": "/reece-wyatt-summer-2026",
     "pastPuppyGallery": {
       "eyebrow": "Reece + Wyatt Past Puppies",
       "title": "See How Their Puppies Are Growing",

@@ -1,5 +1,44 @@
 [
   {
+    "href": "/reece-wyatt-summer-2026",
+    "visibility": "public",
+    "name": "Reece + Wyatt 2026",
+    "group": "Cavapoos",
+    "breed": "F1B Micro Cavapoo",
+    "image": "/images/puppies/reece-wyatt-2026/cannon-week-6.avif",
+    "facts": [
+      ["Born", "July 5, 2026"],
+      ["Go Home", "August 28-30, 2026"],
+      ["Coloring", "Red abstract, apricot, and parti possibilities"],
+      ["Size", "8-12 lbs"],
+      ["Coat", "Soft, silky, wavy Cavapoo coat possibilities"]
+    ],
+    "parents": "Reece + Wyatt Earp",
+    "parentPhotos": [
+      {
+        "name": "Reece",
+        "image": "/images/dams/reece-red-ranch-dogs-2026.webp",
+        "href": "/parents/reece"
+      },
+      {
+        "name": "Wyatt Earp",
+        "image": "/images/studs/wyatt-earp-red-ranch-dogs.webp",
+        "href": "/parents/wyatt-earp"
+      }
+    ],
+    "puppies": ["Cannon", "Marco", "Noodle", "Sun-kissed", "Floatie", "Jet"],
+    "puppyPhotos": [
+      { "name": "Cannon", "image": "/images/puppies/reece-wyatt-2026/cannon-week-6.avif" },
+      { "name": "Marco", "image": "/images/puppies/reece-wyatt-2026/marco-week-6.avif" },
+      { "name": "Noodle", "image": "/images/puppies/reece-wyatt-2026/noodle-week-6.avif" },
+      { "name": "Sun-kissed", "image": "/images/puppies/reece-wyatt-2026/sun-kissed-week-6.avif" },
+      { "name": "Floatie", "image": "/images/puppies/reece-wyatt-2026/floatie-week-6.avif" },
+      { "name": "Jet", "image": "/images/puppies/reece-wyatt-2026/jet-week-6.avif" }
+    ],
+    "milestones": ["Week 6 Photos"],
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Reece 2 + Wyatt"
+  },
+  {
     "href": "/faye-sundance-may-2026",
     "visibility": "public",
     "name": "Faye + Sundance 2026",
