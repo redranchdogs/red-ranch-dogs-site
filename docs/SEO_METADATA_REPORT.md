@@ -1,10 +1,10 @@
 # SEO Metadata Report
 
-Generated: 9/1/2026, 7:27:00 PM Central
+Generated: 9/2/2026, 8:47:58 AM Central
 
 Status: **PASS**
 
-Sitemap routes checked: 145
+Sitemap routes checked: 144
 Routes with blockers: 0
 Routes with warnings: 2
 
@@ -126,7 +126,6 @@ Routes with warnings: 2
 | /parents/june | 200 | June | Parent Dog | Red Ranch Dogs | 57 | June | 1 | https://www.redranchdogs.com/parents/june |
 | /parents/georgia | 200 | Georgia | Parent Dog | Red Ranch Dogs | 62 | Georgia | 1 | https://www.redranchdogs.com/parents/georgia |
 | /parents/ginny | 200 | Ginny | Parent Dog | Red Ranch Dogs | 82 | Ginny | 1 | https://www.redranchdogs.com/parents/ginny |
-| /parents/trudy | 200 | Trudy | Parent Dog | Red Ranch Dogs | 58 | Trudy | 1 | https://www.redranchdogs.com/parents/trudy |
 | /parents/faye | 200 | Faye | Parent Dog | Red Ranch Dogs | 128 | Faye | 1 | https://www.redranchdogs.com/parents/faye |
 | /parents/kylie | 200 | Kylie | Parent Dog | Red Ranch Dogs | 80 | Kylie | 1 | https://www.redranchdogs.com/parents/kylie |
 | /parents/tilly | 200 | Tilly | Parent Dog | Red Ranch Dogs | 77 | Tilly | 1 | https://www.redranchdogs.com/parents/tilly |
