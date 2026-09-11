@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 9/11/2026, 12:24:44 PM Central
+Generated: 9/11/2026, 4:11:36 PM Central
 
 Status: **PASS**
 
@@ -113,7 +113,7 @@ Routes with warnings: 2
 | /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs | 75 | Beatrix + Enzo | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026 |
 | /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs | 71 | Lulu + Bram | 1 | https://www.redranchdogs.com/litters/lulu-bram-fall-2026 |
 | /litters/reece-wyatt-summer-2026 | 200 | Reece + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 71 | Reece + Wyatt | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026 |
-| /litters/winnie-wyatt-spring-2026 | 200 | Winnie + Wyatt | F1B Petite Mini Cavapoo Litter | Red Ranch Dogs | 74 | Winnie + Wyatt | 1 | https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026 |
+| /litters/winnie-wyatt-spring-2026 | 200 | Winnie + Wyatt | F1B Petite Mini Cavapoo Litter | Red Ranch Dogs | 53 | Winnie + Wyatt | 1 | https://www.redranchdogs.com/litters/winnie-wyatt-spring-2026 |
 | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 88 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
 | /litters/beatrix-enzo-planned-2026/past-puppies | 200 | Past Puppies From Beatrix + Enzo | Red Ranch Dogs | 101 | See Their Previous Puppies | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026/past-puppies |
 | /litters/reece-wyatt-summer-2026/past-puppies | 200 | Past Puppies From Reece + Wyatt | Red Ranch Dogs | 100 | See How Their Puppies Are Growing | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026/past-puppies |
