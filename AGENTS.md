@@ -19,6 +19,8 @@ Do not ask for repeated approval during normal local website development once Ad
 
 Still ask for explicit approval before production deploys, DNS or GoDaddy changes, Vercel settings, env vars/secrets, source sheet mutations, Google Drive changes, payment/email/ad settings, destructive actions, or changes that affect live website behavior outside the requested scope.
 
+For a verified routine pregnancy-status or related public-wording update, Adam's explicit instruction to publish authorizes the matching Website Hub mirror update, required checks, and normal `codex/launch-candidate` to `main` deployment without another confirmation. Changes to pricing or policy, uncertain reproductive facts, and broader website changes still require explicit review.
+
 Browser tooling: use the Codex in-app browser for local/public website QA. Use Chrome with the Codex Chrome extension for logged-in Vercel, GoDaddy, Google, Meta, Amazon, or other account dashboards.
 
 ## Ownership
