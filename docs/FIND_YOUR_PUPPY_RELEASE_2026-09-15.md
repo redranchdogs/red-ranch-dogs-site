@@ -22,7 +22,7 @@ Inside the hamburger menu, the former Available Puppies, Current Litters, and Up
 
 The current public source returns zero puppies that qualify as Available. The page says this directly and provides two useful next steps:
 
-- Current Litters uses Ridge from Ginny + Butch Cassidy as an approved historical image and labels it `Past Red Ranch puppy`.
+- Current Litters uses Ridge from Ginny + Butch Cassidy as an approved navigation illustration without an over-image label.
 - Upcoming Litters uses the existing Beatrix and Enzo parent photos and links to the Goldendoodle view.
 
 The copy does not infer availability from a current litter or from survivor counts. It also reminds visitors that current litters may already have families waiting.
@@ -66,3 +66,9 @@ GitHub Website Health:
 Production verification at `https://www.redranchdogs.com/puppies/available` passed at 390 pixels. The correct title and canonical were present, the zero-availability statement and both real-image previews rendered, all three images loaded at their expected source dimensions and focal positions, the page had no horizontal overflow, the consolidated hamburger menu was correct, and route navigation preserved separate Current and Upcoming URLs, titles, canonicals, and browser history.
 
 Production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/production-available-empty-390.png`
+
+### Caption follow-up
+
+Adam reported that the first production image banners covered too much of the photos. Code commit `99bcad5dadf67919ca024a7ff6491831a52d7359` removed the Current Litters label and moved the Beatrix + Enzo pairing name below its images. Launch-candidate Website Health run `35032503681` and main run `35032634252` passed. Fresh production measurements at 320, 390, and 1440 pixels showed no caption overlap and no horizontal overflow.
+
+Corrected production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-caption-fix-2026-09-15/production-final-full-390.png`

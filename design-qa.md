@@ -69,7 +69,7 @@ Final result: passed
 - Populated layout fixture at 390 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/available-populated-390.png`
 - Production empty state at 390 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/production-available-empty-390.png`
 
-The implementation preserves the selected concept's cream, red, and charcoal hierarchy, three destination selector, compact image-and-copy rows, and direct calls to action. It intentionally uses the existing Red Ranch header and footer, labels the historical Ridge image as `Past Red Ranch puppy`, and uses the verified Beatrix + Enzo parent photos instead of generated dogs.
+The implementation preserves the selected concept's cream, red, and charcoal hierarchy, three destination selector, compact image-and-copy rows, and direct calls to action. It intentionally uses the existing Red Ranch header and footer, uses Ridge as an unlabeled Current Litters navigation illustration, and uses the verified Beatrix + Enzo parent photos instead of generated dogs.
 
 ### Findings
 
@@ -94,3 +94,9 @@ The implementation preserves the selected concept's cream, red, and charcoal hie
 4. Kept Available puppy browsing compact with the existing three-breed order for future populated states.
 5. Removed the global grid only behind the new finder flow and preserved it elsewhere.
 6. Added empty, populated, history, metadata, mobile menu, keyboard, reduced-motion, image, and overflow checks.
+
+### Preview caption correction
+
+Adam reported that the original dark image banners obscured the puppy photos. The Current Litters illustration now has no visible caption. The Beatrix + Enzo pairing name remains as a small caption below its images. Production checks at 320, 390, and 1440 pixels confirmed zero caption overlap, full image loading, retained focal positions, and no horizontal overflow.
+
+Production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-caption-fix-2026-09-15/production-final-full-390.png`.
