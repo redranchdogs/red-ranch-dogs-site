@@ -2,7 +2,7 @@
 
 Date: September 15, 2026
 
-Release state: local implementation and review passed; production verification pending
+Release state: deployed and production verified
 
 ## Result
 
@@ -56,4 +56,13 @@ Evidence:
 
 ## Production checkpoint
 
-After release, verify the deployed asset, the zero-availability statement, the two real-image preview paths, the consolidated hamburger entry, route titles and canonicals, direct reload, browser history, image loading, and horizontal overflow. Record the commit and Website Health run here.
+Deployed code and review commit: `565bc04ab628cd5e8c38166ad9d82afa05795290`
+
+GitHub Website Health:
+
+- Launch candidate run `35029478117`: passed
+- Main run `35029635978`: passed
+
+Production verification at `https://www.redranchdogs.com/puppies/available` passed at 390 pixels. The correct title and canonical were present, the zero-availability statement and both real-image previews rendered, all three images loaded at their expected source dimensions and focal positions, the page had no horizontal overflow, the consolidated hamburger menu was correct, and route navigation preserved separate Current and Upcoming URLs, titles, canonicals, and browser history.
+
+Production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/production-available-empty-390.png`

@@ -17,7 +17,7 @@ Use this file when starting a fresh Codex session to reduce RAM pressure without
 - QA: 320, 390, and 1440 pixel visual review passed; empty and development-only populated states passed; focused lint, build, route, metadata, reduced-motion, image, overflow, keyboard, and menu checks passed.
 - Safety: no business data writes, Sheet sync, CRM write, message, or live form submission occurred.
 - Detailed evidence: `docs/FIND_YOUR_PUPPY_RELEASE_2026-09-15.md` and root `design-qa.md`.
-- Release state: local implementation passed; production verification pending.
+- Release state: deployed and verified at commit `565bc04ab628cd5e8c38166ad9d82afa05795290`; launch-candidate Website Health run `35029478117` and main run `35029635978` passed.
 
 
 ## September 15, 2026 Litter Browser Release

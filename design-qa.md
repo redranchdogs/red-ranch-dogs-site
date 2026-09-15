@@ -57,7 +57,7 @@ Comparison: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-
 
 ## Find Your Puppy hub
 
-Final result: passed locally; production verification pending release
+Final result: passed
 
 ### Source and implementation
 
@@ -67,6 +67,7 @@ Final result: passed locally; production verification pending release
 - Empty state at 390 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/available-empty-390.png`
 - Empty state at 1440 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/available-empty-1440.png`
 - Populated layout fixture at 390 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/available-populated-390.png`
+- Production empty state at 390 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/production-available-empty-390.png`
 
 The implementation preserves the selected concept's cream, red, and charcoal hierarchy, three destination selector, compact image-and-copy rows, and direct calls to action. It intentionally uses the existing Red Ranch header and footer, labels the historical Ridge image as `Past Red Ranch puppy`, and uses the verified Beatrix + Enzo parent photos instead of generated dogs.
 
