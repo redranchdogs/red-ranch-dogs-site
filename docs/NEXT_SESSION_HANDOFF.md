@@ -4,6 +4,17 @@ Last updated: 6/27/2026, 6:05:34 PM Central.
 
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
 
+
+## September 15, 2026 Litter Browser Release
+
+- Approved direction: compact Current/Upcoming switch plus three always-visible breed tabs in the order Cavapoos, Goldendoodles, Bernedoodles.
+- Scope: `/puppies/current-litters` and `/puppies/upcoming-litters` presentation only, plus directly necessary tests and review documents.
+- Behavior: `?breed=` deep links, breed preservation across Current/Upcoming, browser Back restoration, keyboard tab behavior, vertical multi-litter lists, and truthful breed-specific empty states.
+- Assets and facts: existing Red Ranch parent photos and public litter records only.
+- QA: `npm run publish:check` passed; 320, 390, and 1440 pixel visual checks passed; no live form submissions or business data writes occurred.
+- Detailed evidence: `docs/LITTER_BROWSER_RELEASE_2026-09-15.md` and root `design-qa.md`.
+- Release state: authorized and pending production verification.
+
 ## Project
 
 ```text
