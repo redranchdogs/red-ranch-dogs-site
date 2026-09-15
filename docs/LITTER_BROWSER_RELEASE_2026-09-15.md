@@ -48,4 +48,4 @@ Adam approved and requested an immediate production correction after the first r
 - Verified Current Cavapoo, Upcoming Goldendoodle, and Upcoming Bernedoodle at 390 and 1440 pixels.
 - Focused checks: public-route smoke, lint, and production build, all PASS.
 - Before/after comparison: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-face-framing-2026-09-15/all-mobile-before-after.png`.
-- Production verification will be recorded after release.
+- Deployed in code commit `0873b2d` and verified on the primary production domain at 390 and 1440 pixels for Current Cavapoo, Upcoming Goldendoodle, and Upcoming Bernedoodle. All eight images loaded with their intended focal positions and zero horizontal overflow. GitHub Website Health run `35024554809` passed.

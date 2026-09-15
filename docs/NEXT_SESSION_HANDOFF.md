@@ -14,7 +14,7 @@ Use this file when starting a fresh Codex session to reduce RAM pressure without
 - QA: `npm run publish:check` passed; 320, 390, and 1440 pixel visual checks passed; no live form submissions or business data writes occurred.
 - Detailed evidence: `docs/LITTER_BROWSER_RELEASE_2026-09-15.md` and root `design-qa.md`.
 - Release state: deployed to production and verified at commit `f1506f5e4259fa1f01c43e1bb8c1b4d580e15f2c`; GitHub Website Health run `35023576787` passed.
-- Follow-up: parent-photo face centering was corrected for all eight Current/Upcoming card images using asset-specific focal points and a taller mobile portrait crop; release verification pending.
+- Follow-up: parent-photo face centering was corrected for all eight Current/Upcoming card images using asset-specific focal points and a taller mobile portrait crop; deployed in code commit `0873b2d`, production verified at 390 and 1440 pixels, and GitHub Website Health run `35024554809` passed.
 
 ## Project
 
