@@ -18,6 +18,7 @@ Use this file when starting a fresh Codex session to reduce RAM pressure without
 - Safety: no business data writes, Sheet sync, CRM write, message, or live form submission occurred.
 - Detailed evidence: `docs/FIND_YOUR_PUPPY_RELEASE_2026-09-15.md` and root `design-qa.md`.
 - Release state: deployed and verified through caption correction commit `99bcad5dadf67919ca024a7ff6491831a52d7359`; launch-candidate Website Health run `35032503681` and main run `35032634252` passed.
+- Focal-point follow-up: Ridge now uses `50% 30%` so the head has breathing room above it while remaining above center. Deployed code commit `907bbca`; launch-candidate run `35033333327` and main run `35033445791` passed.
 
 
 ## September 15, 2026 Litter Browser Release

@@ -100,3 +100,9 @@ The implementation preserves the selected concept's cream, red, and charcoal hie
 Adam reported that the original dark image banners obscured the puppy photos. The Current Litters illustration now has no visible caption. The Beatrix + Enzo pairing name remains as a small caption below its images. Production checks at 320, 390, and 1440 pixels confirmed zero caption overlap, full image loading, retained focal positions, and no horizontal overflow.
 
 Production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-caption-fix-2026-09-15/production-final-full-390.png`.
+
+### Current Litters puppy focal point
+
+Adam requested a small amount of space above the puppy's head. Ridge now uses an asset-specific `50% 30%` focal point. Production checks at 320, 390, and 1440 pixels confirmed the same crop, full source-image loading, no caption, and no horizontal overflow.
+
+Production card capture: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-focal-fix-2026-09-15/production-final-ridge-card-390.png`.

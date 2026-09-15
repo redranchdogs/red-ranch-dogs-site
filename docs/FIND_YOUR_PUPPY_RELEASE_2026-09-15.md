@@ -72,3 +72,7 @@ Production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a
 Adam reported that the first production image banners covered too much of the photos. Code commit `99bcad5dadf67919ca024a7ff6491831a52d7359` removed the Current Litters label and moved the Beatrix + Enzo pairing name below its images. Launch-candidate Website Health run `35032503681` and main run `35032634252` passed. Fresh production measurements at 320, 390, and 1440 pixels showed no caption overlap and no horizontal overflow.
 
 Corrected production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-caption-fix-2026-09-15/production-final-full-390.png`
+
+### Puppy focal-point follow-up
+
+Code commit `907bbcad00142833b861332980e252e421366e96` moved Ridge's focal point from `50% 38%` to `50% 30%`, adding a small amount of space above the head while keeping the face above center. Launch-candidate Website Health run `35033333327` and main run `35033445791` passed. The deployed crop was verified at 320, 390, and 1440 pixels.
