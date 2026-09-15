@@ -39,3 +39,13 @@ The selected generated option is the implementation source. A1 Gallery, Refero S
 - Live Current/Upcoming switch preserved `breed=goldendoodle-puppies`; browser Back restored Upcoming with Goldendoodles selected.
 - `https://red-ranch-dogs-site.vercel.app` served the same release asset as the primary domain.
 - Production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-release-2026-09-15/production-upcoming-goldendoodle-390.png`.
+
+## Photo framing correction
+
+Adam approved and requested an immediate production correction after the first release. All eight parent images used by the Current and Upcoming cards now share a taller mobile portrait crop and asset-specific focal points so each face remains centered without clipping eyes, ears, or muzzle. The original authorized files remain unchanged.
+
+- Reviewed parents: Winnie, Wyatt Earp, Beatrix, Enzo, Lulu, Bram, Kylie, and Ranger.
+- Verified Current Cavapoo, Upcoming Goldendoodle, and Upcoming Bernedoodle at 390 and 1440 pixels.
+- Focused checks: public-route smoke, lint, and production build, all PASS.
+- Before/after comparison: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-face-framing-2026-09-15/all-mobile-before-after.png`.
+- Production verification will be recorded after release.

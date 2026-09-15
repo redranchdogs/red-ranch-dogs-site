@@ -48,3 +48,9 @@ The implementation preserves the reference hierarchy while matching the live bra
 4. Reduced card facts and actions to the source-backed essentials.
 5. Removed the background grid behind this flow to keep the approved plain cream presentation.
 6. Updated public route and GA4 browser contracts for the new interaction.
+
+## Photo framing follow-up
+
+Adam requested that every dog face be centered after reviewing the first production release. A focused before/after review covered all eight parent images in the affected cards at 390 and 1440 pixels. Mobile pairing images now use a 4:5 portrait treatment instead of the earlier landscape crop, and each authorized source image has a small presentation focal point. All faces remain visible with eyes, ears, and muzzles intact. The card order, copy, actions, and data did not change.
+
+Comparison: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-face-framing-2026-09-15/all-mobile-before-after.png`.
