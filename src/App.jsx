@@ -3464,6 +3464,16 @@ const litterBrowserBreeds = [
   { slug: "goldendoodle-puppies", label: "Goldendoodles", breedName: "Goldendoodle" },
   { slug: "bernedoodle-puppies", label: "Bernedoodles", breedName: "Bernedoodle" }
 ];
+const litterBrowserParentFocalPoints = {
+  beatrix: "50% 27%",
+  bram: "50% 30%",
+  enzo: "50% 39%",
+  kylie: "50% 31%",
+  lulu: "50% 34%",
+  "ranger-outside-stud": "50% 35%",
+  winnie: "50% 34%",
+  "wyatt-earp": "50% 38%"
+};
 const puppiesForLitter = (litter) => puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
 const statusMatches = (puppy, status) => normalizedStatus(puppy?.status) === normalizedStatus(status);
 const isAvailablePuppy = (puppy) => statusMatches(puppy, "available");
@@ -5037,8 +5047,8 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
     <article className="litter-browser-card">
       {mama?.mainPhoto && stud?.mainPhoto ? (
         <figure className="litter-browser-pairing" aria-label={`${litter.name} parent pairing`}>
-          <div><img src={mama.mainPhoto} alt={`${mama.name}, mama for ${litter.name}`} loading="lazy" /><figcaption>{mama.name}</figcaption></div>
-          <div><img src={stud.mainPhoto} alt={`${stud.name}, stud for ${litter.name}`} loading="lazy" /><figcaption>{stud.name}</figcaption></div>
+          <div><img src={mama.mainPhoto} alt={`${mama.name}, mama for ${litter.name}`} loading="lazy" style={{ "--litter-image-position": litterBrowserParentFocalPoints[mama.slug] || "50% 35%" }} /><figcaption>{mama.name}</figcaption></div>
+          <div><img src={stud.mainPhoto} alt={`${stud.name}, stud for ${litter.name}`} loading="lazy" style={{ "--litter-image-position": litterBrowserParentFocalPoints[stud.slug] || "50% 35%" }} /><figcaption>{stud.name}</figcaption></div>
         </figure>
       ) : image ? (
         <img className="litter-browser-image" src={image} alt={`${litter.name} parent pairing`} loading="lazy" />

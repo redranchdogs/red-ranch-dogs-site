@@ -9230,6 +9230,10 @@ summary {
   object-fit: cover;
 }
 
+.litter-browser-pairing img {
+  object-position: var(--litter-image-position, 50% 35%);
+}
+
 .litter-browser-pairing figcaption {
   position: absolute;
   right: 7px;
@@ -9383,7 +9387,7 @@ summary {
   .litter-browser-pairing img,
   .litter-browser-image {
     min-height: 0;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 5;
   }
 
   .litter-browser-card-body {
