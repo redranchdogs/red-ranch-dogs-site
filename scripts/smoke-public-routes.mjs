@@ -95,26 +95,31 @@ const routeExpectations = [
   },
   {
     route: "/puppies/available",
-    requiredText: [
-      "available puppies",
-      ...(featuredAvailablePuppies.length ? [] : ["explore our upcoming litters", "join the waitlist"])
-    ],
-    availableAccordionCheck: true,
+    requiredText: ["find your puppy", "no puppies are listed as available right now", "two ways to explore", "past red ranch puppy", "beatrix + enzo"],
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
-    requiredSelectors: [featuredAvailablePuppies.length ? ".available-puppy-breed-group" : ".smart-empty-state"]
+    requiredSelectors: [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
+    finderNavCheck: { mode: "available", history: true }
+  },
+  {
+    route: "/puppies/available?fixture=populated",
+    requiredText: ["find your puppy", "layout fixture", "illustrative local fixture", "available"],
+    requiredSelectors: [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"],
+    finderNavCheck: { mode: "available" }
   },
   {
     route: "/puppies/current-litters?breed=cavapoo-puppies",
     requiredText: ["current litters", "winnie + wyatt", "view litter"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
-    litterBrowserCheck: { mode: "current", selectedBreed: "cavapoo-puppies" }
+    litterBrowserCheck: { mode: "current", selectedBreed: "cavapoo-puppies" },
+    finderNavCheck: { mode: "current", selectedBreed: "cavapoo-puppies" }
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
     requiredText: ["no current goldendoodle litters are listed right now.", "view upcoming litters"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-empty"],
-    litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" }
+    litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
+    finderNavCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" }
   },
   {
     route: "/puppies/current-litters?breed=cavapoo-puppies&fixture=all-matched",
@@ -138,14 +143,16 @@ const routeExpectations = [
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
     requiredText: ["upcoming litters", "beatrix + enzo", "lulu + bram"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
-    litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" }
+    litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
+    finderNavCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" }
   },
   {
     route: "/puppies/upcoming-litters?breed=cavapoo-puppies",
     requiredText: ["no upcoming cavapoo litters are listed right now.", "see our waitlist process"],
     forbiddenText: ["beatrix + enzo", "kylie + ranger"],
     requiredSelectors: [".litter-browser", ".litter-browser-empty"],
-    litterBrowserCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" }
+    litterBrowserCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" },
+    finderNavCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" }
   },
   ...litters
     .filter((litter) => litter.pastPuppyGallery?.images?.length)
@@ -413,11 +420,6 @@ async function auditRoute(context, config, viewportName) {
         failures.push(`Unexpected selected breed tab: ${selectedId || "none"}`);
       }
 
-      const modeHref = await page.locator(`.litter-browser-mode a:not(.is-active)`).getAttribute("href");
-      if (!modeHref?.includes(`breed=${config.litterBrowserCheck.selectedBreed}`)) {
-        failures.push(`Current/Upcoming switch did not preserve selected breed: ${modeHref || "missing href"}`);
-      }
-
       const originalUrl = page.url();
       const nextTab = tabs.nth((expectedLabels.indexOf((await selectedTab.textContent())?.trim()) + 1) % expectedLabels.length);
       await selectedTab.focus();
@@ -434,6 +436,44 @@ async function auditRoute(context, config, viewportName) {
         return rect.width < 76 || rect.height < 44;
       }).map((node) => `${node.textContent.trim()}:${Math.round(node.getBoundingClientRect().width)}x${Math.round(node.getBoundingClientRect().height)}`));
       if (smallButtons.length) failures.push(`Breed tabs are below touch/readability size: ${smallButtons.join(", ")}`);
+    }
+
+    if (config.finderNavCheck) {
+      const finderLinks = page.locator(".puppy-finder-route-nav a");
+      const labels = (await finderLinks.allTextContents()).map((label) => label.trim());
+      const expectedLabels = ["Available Now", "Current Litters", "Upcoming Litters"];
+      if (JSON.stringify(labels) !== JSON.stringify(expectedLabels)) failures.push(`Find Your Puppy navigation is incomplete or out of order: ${labels.join(", ")}`);
+
+      const activeLink = page.locator('.puppy-finder-route-nav a[aria-current="page"]');
+      if (await activeLink.count() !== 1 || !(await activeLink.getAttribute("href"))?.includes(config.finderNavCheck.mode === "available" ? "/puppies/available" : `/${config.finderNavCheck.mode}-litters`)) {
+        failures.push(`Find Your Puppy navigation did not mark ${config.finderNavCheck.mode} active.`);
+      }
+
+      const availableHref = await finderLinks.nth(0).getAttribute("href");
+      const currentHref = await finderLinks.nth(1).getAttribute("href");
+      const upcomingHref = await finderLinks.nth(2).getAttribute("href");
+      if (availableHref !== "/puppies/available") failures.push(`Available Now link is not the real Available route: ${availableHref}`);
+      if (!currentHref?.startsWith("/puppies/current-litters")) failures.push(`Current Litters link is not crawlable: ${currentHref}`);
+      if (!upcomingHref?.startsWith("/puppies/upcoming-litters")) failures.push(`Upcoming Litters link is not crawlable: ${upcomingHref}`);
+      if (config.finderNavCheck.selectedBreed && (!currentHref.includes(`breed=${config.finderNavCheck.selectedBreed}`) || !upcomingHref.includes(`breed=${config.finderNavCheck.selectedBreed}`))) {
+        failures.push("Current/Upcoming links did not preserve the selected breed.");
+      }
+
+      const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
+      const expectedPath = config.route.split("?")[0];
+      if (canonical !== `https://www.redranchdogs.com${expectedPath}`) failures.push(`Unexpected canonical for ${expectedPath}: ${canonical}`);
+
+      if (config.finderNavCheck.history) {
+        const originalUrl = page.url();
+        await finderLinks.nth(1).click();
+        await page.waitForURL(/\/puppies\/current-litters\?breed=cavapoo-puppies$/);
+        if (!(await page.title()).toLowerCase().includes("current")) failures.push("Find Your Puppy route switch did not update the page title.");
+        await page.goBack({ waitUntil: "domcontentloaded" });
+        if (page.url() !== originalUrl) failures.push("Browser Back did not restore Available Now.");
+        await page.goForward({ waitUntil: "domcontentloaded" });
+        if (!page.url().includes("/puppies/current-litters")) failures.push("Browser Forward did not restore Current Litters.");
+        await page.goBack({ waitUntil: "domcontentloaded" });
+      }
     }
 
     const health = await pageHealth(page);
@@ -512,7 +552,7 @@ async function auditMobileMenu(context) {
       if (!menuVisible) failures.push("Mobile menu did not become visible after tap.");
 
       const menuText = normalize(await menu.innerText());
-      for (const phrase of ["home", "puppies", "available puppies", "apply", "text us now"]) {
+      for (const phrase of ["home", "puppies", "find your puppy", "apply", "text us now"]) {
         if (!includesText(menuText, phrase)) failures.push(`Mobile menu missing text: ${phrase}`);
       }
 
@@ -523,12 +563,10 @@ async function auditMobileMenu(context) {
         await puppiesTrigger.click();
         const puppiesSubmenu = page.locator("#mobile-nav-puppies");
         const submenuText = normalize(await puppiesSubmenu.innerText());
-        const currentLittersLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Current Litters" }).isVisible();
-        const availableLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Available Puppies" }).isVisible();
-
-        if (!currentLittersLinkVisible) failures.push("Puppies submenu did not expose Current Litters.");
-        if (!availableLinkVisible || !includesText(submenuText, "available puppies")) {
-          failures.push("Puppies submenu did not expose Available Puppies.");
+        const findPuppyLink = page.locator("#mobile-nav-puppies a", { hasText: "Find Your Puppy" });
+        if (!(await findPuppyLink.isVisible()) || !includesText(submenuText, "find your puppy")) failures.push("Puppies submenu did not expose Find Your Puppy.");
+        for (const removedLabel of ["Available Puppies", "Current Litters", "Upcoming Litters"]) {
+          if (await page.locator("#mobile-nav-puppies a", { hasText: removedLabel }).count()) failures.push(`Puppies submenu still exposes the replaced ${removedLabel} entry.`);
         }
       }
 

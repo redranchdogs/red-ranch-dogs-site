@@ -1354,6 +1354,18 @@ const primaryNav = [
   { label: "Apply", href: "/apply", cta: true }
 ];
 
+const mobilePrimaryNav = primaryNav.map((item) => {
+  if (item.label !== "Puppies") return item;
+
+  return {
+    ...item,
+    links: [
+      { label: "Find Your Puppy", href: "/puppies/available" },
+      ...item.links.slice(3)
+    ]
+  };
+});
+
 function AccordionNav({ item, currentPath, onNavigate, index, openGroup, onToggle }) {
   const panelId = `mobile-nav-${item.label.toLowerCase().replace(/\W+/g, "-")}`;
   const expanded = openGroup === item.label;
@@ -1528,7 +1540,7 @@ function Header() {
         inert={open ? undefined : ""}
       >
         <nav aria-label="Mobile navigation">
-          {primaryNav.map((item, index) => (
+          {mobilePrimaryNav.map((item, index) => (
             <AccordionNav
               item={item}
               currentPath={currentPath}
@@ -4870,154 +4882,186 @@ function AboutOverviewPage() {
   );
 }
 
-function AvailablePuppiesPage() {
-  const availableNow = featuredAvailablePuppies();
-  const breedOrderBySlug = new Map(breedProfiles.map((breed, index) => [breed.slug, index]));
-  const availableBreedGroups = breedProfiles
-    .map((breed) => ({
-      ...breed,
-      puppies: availableNow.filter((puppy) => puppy.breedSlug === breed.slug)
-    }))
-    .sort((first, second) => {
-      const firstPuppy = first.puppies[0];
-      const secondPuppy = second.puppies[0];
-      const firstDate = firstPuppy ? litterDateSortValue(litterProfileBySlug.get(firstPuppy.litterSlug)) : Number.POSITIVE_INFINITY;
-      const secondDate = secondPuppy ? litterDateSortValue(litterProfileBySlug.get(secondPuppy.litterSlug)) : Number.POSITIVE_INFINITY;
-      if (firstDate !== secondDate) return firstDate - secondDate;
-      return (breedOrderBySlug.get(first.slug) ?? 999) - (breedOrderBySlug.get(second.slug) ?? 999);
-    });
-  const visibleAvailableBreedGroups = availableBreedGroups.filter((group) => group.puppies.length);
-  const [openBreedSlugs, setOpenBreedSlugs] = useState([]);
-  const handleAvailableBreedToggle = (slug) => {
-    setOpenBreedSlugs((currentSlugs) => {
-      return currentSlugs.includes(slug)
-        ? currentSlugs.filter((currentSlug) => currentSlug !== slug)
-        : [...currentSlugs, slug];
-    });
-
-    if (!openBreedSlugs.includes(slug)) {
-      scrollLitterBreedGroupIntoView(slug, "available");
-    }
-  };
+function PuppyFinderRouteNav({ mode, breedSlug = "" }) {
+  const links = [
+    { mode: "available", label: "Available Now", href: "/puppies/available" },
+    { mode: "current", label: "Current Litters", href: litterBrowserHref("current", breedSlug || litterBrowserBreeds[0].slug) },
+    { mode: "upcoming", label: "Upcoming Litters", href: litterBrowserHref("upcoming", breedSlug || litterBrowserBreeds[0].slug) }
+  ];
 
   return (
-    <BuyerPageTemplate
-      title="Available Puppies"
-      copy={availableNow.length
-        ? "These puppies are looking for their families now and are available to reserve with a deposit."
-        : "No puppies are currently open for reservation."}
-    >
-      {availableNow.length === 0 && (
-        <>
-          <SmartEmptyState
-            eyebrow="Availability Update"
-            title={noAvailabilityTitle}
-            copy="See planned pairings and timing, then join the waitlist when one fits."
-            primaryHref="/puppies/upcoming-litters"
-            primaryLabel="View Upcoming Litters"
-            secondaryHref="/apply"
-            secondaryLabel="Join the Waitlist"
-            className="available-puppy-empty-state zero-inventory-empty-state"
-          />
-          <PlannedLitterGroups
-            className="zero-inventory-upcoming-path"
-            eyebrow="Upcoming Litters"
-            introCopy="Open a breed to see pairings, timing, and expected size."
-            panelIdSuffix="available-fallback"
-          />
-        </>
-      )}
-      {visibleAvailableBreedGroups.length > 0 && (
-        <section className="upcoming-litter-groups listing-content-section available-puppy-groups">
-          {visibleAvailableBreedGroups.map((group) => (
-            <AvailablePuppyBreedAccordionGroup
-              group={group}
-              isOpen={openBreedSlugs.includes(group.slug)}
-              key={group.slug}
-              onToggle={() => handleAvailableBreedToggle(group.slug)}
-            />
-          ))}
-        </section>
-      )}
-      {availableNow.length > 0 && (
-        <CTASection
-          title="Ready to ask about a puppy?"
-          copy="Apply and tell us which puppy caught your eye."
-          primaryLabel="Apply for a Puppy"
-          secondaryHref={brand.sms}
-          secondaryLabel="Text Us"
-          className="available-puppy-path-cta"
-        />
-      )}
-      <StickyMobileCta
-        primaryHref={availableNow.length ? "/apply" : "/puppies/upcoming-litters"}
-        primaryLabel={availableNow.length ? "Apply" : "Upcoming Litters"}
-        secondaryHref={availableNow.length ? brand.sms : "/apply"}
-        secondaryLabel={availableNow.length ? "Text Us" : "Join Waitlist"}
-      />
-    </BuyerPageTemplate>
+    <nav className="puppy-finder-route-nav" aria-label="Find your puppy">
+      {links.map((link) => (
+        <Link
+          aria-current={mode === link.mode ? "page" : undefined}
+          className={mode === link.mode ? "is-active" : ""}
+          href={link.href}
+          key={link.mode}
+        >
+          {link.label}
+        </Link>
+      ))}
+    </nav>
   );
 }
 
-function PlannedLitterGroups({ className = "", eyebrow = "Planned Pairings", introCopy = "", panelIdSuffix = "upcoming" }) {
-  const [openBreedSlug, setOpenBreedSlug] = useState("");
-  const groupedPlannedLitters = plannedLitterBreedGroups
-    .map((group) => ({
-      ...group,
-      litters: plannedLitterProfiles.filter((litter) => litter.breedSlug === group.slug)
-    }))
-    .filter((group) => group.litters.length);
-  const ungroupedPlannedLitters = plannedLitterProfiles.filter((litter) => !plannedLitterBreedGroups.some((group) => group.slug === litter.breedSlug));
-  const additionalGroupSlug = `additional-planned-litters-${panelIdSuffix}`;
+function AvailablePuppyBrowser({ puppies }) {
+  const defaultBreed = litterBrowserBreeds.find((breed) => puppies.some((puppy) => puppy.breedSlug === breed.slug)) || litterBrowserBreeds[0];
+  const requestedBreed = litterBrowserSlugFromUrl();
+  const hasRequestedBreed = new window.URLSearchParams(window.location.search).has("breed");
+  const [selectedBreedSlug, setSelectedBreedSlug] = useState(hasRequestedBreed ? requestedBreed : defaultBreed.slug);
+  const tabRefs = useRef([]);
+  const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || defaultBreed;
+  const selectedPuppies = puppies.filter((puppy) => puppy.breedSlug === selectedBreed.slug);
 
-  if (!plannedLitterProfiles.length) {
-    return null;
-  }
+  useEffect(() => {
+    const syncSelection = () => {
+      const params = new window.URLSearchParams(window.location.search);
+      setSelectedBreedSlug(params.has("breed") ? litterBrowserSlugFromUrl() : defaultBreed.slug);
+    };
+    window.addEventListener("popstate", syncSelection);
+    return () => window.removeEventListener("popstate", syncSelection);
+  }, [defaultBreed.slug]);
 
-  const handleBreedToggle = (slug) => {
-    const nextOpenBreedSlug = openBreedSlug === slug ? "" : slug;
-    setOpenBreedSlug(nextOpenBreedSlug);
-    scrollLitterBreedGroupIntoView(nextOpenBreedSlug, panelIdSuffix);
+  const selectBreed = (slug, focus = false) => {
+    if (slug === selectedBreedSlug) return;
+    window.history.pushState({}, "", `/puppies/available?breed=${encodeURIComponent(slug)}`);
+    setSelectedBreedSlug(slug);
+    if (focus) window.requestAnimationFrame(() => tabRefs.current[litterBrowserBreeds.findIndex((breed) => breed.slug === slug)]?.focus());
+  };
+
+  const handleKeyDown = (event, index) => {
+    let nextIndex = index;
+    if (event.key === "ArrowRight") nextIndex = (index + 1) % litterBrowserBreeds.length;
+    else if (event.key === "ArrowLeft") nextIndex = (index - 1 + litterBrowserBreeds.length) % litterBrowserBreeds.length;
+    else if (event.key === "Home") nextIndex = 0;
+    else if (event.key === "End") nextIndex = litterBrowserBreeds.length - 1;
+    else return;
+    event.preventDefault();
+    selectBreed(litterBrowserBreeds[nextIndex].slug, true);
   };
 
   return (
-    <section className={`upcoming-litter-groups listing-content-section ${className}`.trim()}>
-      <SectionHeader
-        eyebrow={eyebrow}
-        title="Choose a breed"
-        copy={introCopy}
-      />
-      {groupedPlannedLitters.map((group) => (
-        <LitterBreedAccordionGroup
-          countLabel={`${group.litters.length} ${group.litters.length === 1 ? "planned pairing" : "planned pairings"}`}
-          detailLabel="Next timing"
-          detailValue={nextLitterTiming(group.litters)}
-          group={group}
-          isOpen={openBreedSlug === group.slug}
-          key={group.slug}
-          onToggle={() => handleBreedToggle(group.slug)}
-          panelIdSuffix={panelIdSuffix}
-          showAvailabilityNote={false}
-        />
-      ))}
-      {ungroupedPlannedLitters.length > 0 && (
-        <LitterBreedAccordionGroup
-          countLabel={`${ungroupedPlannedLitters.length} ${ungroupedPlannedLitters.length === 1 ? "planned pairing" : "planned pairings"}`}
-          detailLabel="Next timing"
-          detailValue={nextLitterTiming(ungroupedPlannedLitters)}
-          group={{
-            slug: additionalGroupSlug,
-            eyebrow: "More Pairings",
-            copy: "Additional pairings will be updated as program plans are confirmed.",
-            litters: ungroupedPlannedLitters
-          }}
-          isOpen={openBreedSlug === additionalGroupSlug}
-          onToggle={() => handleBreedToggle(additionalGroupSlug)}
-          panelIdSuffix={panelIdSuffix}
-          showAvailabilityNote={false}
-        />
-      )}
+    <section className="available-puppy-browser" aria-label="Available puppies by breed">
+      <div className="litter-browser-tabs" role="tablist" aria-label="Choose a breed">
+        {litterBrowserBreeds.map((breed, index) => {
+          const selected = breed.slug === selectedBreed.slug;
+          return (
+            <button
+              aria-controls="available-puppy-panel"
+              aria-selected={selected}
+              className={selected ? "is-active" : ""}
+              id={`available-puppy-tab-${breed.slug}`}
+              key={breed.slug}
+              onClick={() => selectBreed(breed.slug)}
+              onKeyDown={(event) => handleKeyDown(event, index)}
+              ref={(node) => { tabRefs.current[index] = node; }}
+              role="tab"
+              tabIndex={selected ? 0 : -1}
+              type="button"
+            >
+              {breed.label}
+            </button>
+          );
+        })}
+      </div>
+      <div aria-labelledby={`available-puppy-tab-${selectedBreed.slug}`} className="litter-browser-panel" id="available-puppy-panel" key={selectedBreed.slug} role="tabpanel">
+        {selectedPuppies.length ? (
+          <div className="available-puppy-card-list">
+            {selectedPuppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />)}
+          </div>
+        ) : (
+          <div className="litter-browser-empty">
+            <h2>No {selectedBreed.breedName} puppies are listed as available right now.</h2>
+            <Link className="litter-browser-empty-link" href={litterBrowserHref("upcoming", selectedBreed.slug)}>View upcoming litters</Link>
+          </div>
+        )}
+      </div>
     </section>
+  );
+}
+
+function AvailablePuppyEmptyHub() {
+  const historicalPuppy = publicPuppyProfiles.find((puppy) => puppy.slug === "ridge") || publicPuppyProfiles.find((puppy) => puppy.name === "Ridge");
+  const upcomingPairing = plannedLitterProfiles.find((litter) => litter.slug === "beatrix-enzo-planned-2026");
+  const mama = parentProfiles.find((parent) => parent.slug === upcomingPairing?.mamaSlug);
+  const stud = parentProfiles.find((parent) => parent.slug === upcomingPairing?.studSlug);
+
+  return (
+    <section className="available-empty-hub">
+      <p className="available-empty-statement">No puppies are listed as available right now.</p>
+      <div className="available-empty-heading">
+        <p className="eyebrow">Keep exploring</p>
+        <h2>Two ways to explore</h2>
+      </div>
+      <div className="available-empty-paths">
+        <article className="available-empty-path-card">
+          <figure>
+            {historicalPuppy?.mainPhoto ? <img src={historicalPuppy.mainPhoto} alt="Past Red Ranch Goldendoodle puppy" loading="eager" /> : <ImagePlaceholder label="Past Red Ranch puppy" />}
+            <figcaption>Past Red Ranch puppy</figcaption>
+          </figure>
+          <div>
+            <h3>Current Litters</h3>
+            <p>Meet the litters growing up here.</p>
+            <Link href={litterBrowserHref("current", "cavapoo-puppies")} className="available-empty-path-link">View current litters <ChevronRight aria-hidden="true" size={20} /></Link>
+          </div>
+        </article>
+        <article className="available-empty-path-card">
+          <figure className="available-empty-pairing">
+            {mama?.mainPhoto && <img src={mama.mainPhoto} alt={`${mama.name}, mama for ${upcomingPairing.name}`} loading="eager" style={{ "--preview-position": litterBrowserParentFocalPoints[mama.slug] }} />}
+            {stud?.mainPhoto && <img src={stud.mainPhoto} alt={`${stud.name}, stud for ${upcomingPairing.name}`} loading="eager" style={{ "--preview-position": litterBrowserParentFocalPoints[stud.slug] }} />}
+            <figcaption>{upcomingPairing?.name || "Upcoming pairing"}</figcaption>
+          </figure>
+          <div>
+            <h3>Upcoming Litters</h3>
+            <p>Explore verified pairings and estimated timing.</p>
+            <Link href={litterBrowserHref("upcoming", upcomingPairing?.breedSlug || "goldendoodle-puppies")} className="button primary">View upcoming litters <ChevronRight aria-hidden="true" size={20} /></Link>
+          </div>
+        </article>
+      </div>
+      <div className="available-empty-note">
+        <p>A current litter may already have families waiting.</p>
+        <Link href="/process/application-and-waitlist">How our waitlist works <ChevronRight aria-hidden="true" size={18} /></Link>
+      </div>
+    </section>
+  );
+}
+
+function AvailablePuppiesPage() {
+  const fixturePuppy = import.meta.env.DEV && new window.URLSearchParams(window.location.search).get("fixture") === "populated"
+    ? publicPuppyProfiles.find((puppy) => puppy.name === "Ridge")
+    : null;
+  const availableNow = fixturePuppy ? [{
+    ...fixturePuppy,
+    name: "Layout fixture",
+    description: "Illustrative local fixture for layout verification only.",
+    availabilityNote: "Illustrative local fixture for layout verification only.",
+    personalityNote: "Illustrative local fixture for layout verification only.",
+    status: "Available"
+  }] : featuredAvailablePuppies();
+
+  return (
+    <BuyerPageTemplate
+      eyebrow="Available Puppies"
+      title="Find Your Puppy"
+      copy={availableNow.length ? "Browse puppies currently open for reservation." : "Start with current availability, growing litters, or upcoming pairings."}
+      heroClassName="compact-page-hero buyer-page-hero litter-browser-hero puppy-finder-hero"
+    >
+      <div className="puppy-finder-nav-shell"><PuppyFinderRouteNav mode="available" /></div>
+      {availableNow.length ? (
+        <>
+          <AvailablePuppyBrowser puppies={availableNow} />
+          <CTASection
+            title="Ready to ask about a puppy?"
+            copy="Apply and tell us which puppy caught your eye."
+            primaryLabel="Apply for a Puppy"
+            secondaryHref={brand.sms}
+            secondaryLabel="Text Us"
+            className="available-puppy-path-cta"
+          />
+        </>
+      ) : <AvailablePuppyEmptyHub />}
+    </BuyerPageTemplate>
   );
 }
 
@@ -5131,10 +5175,7 @@ function LitterBrowser({ mode }) {
 
   return (
     <section className="litter-browser" aria-label={`${mode === "current" ? "Current" : "Upcoming"} litters by breed`}>
-      <nav className="litter-browser-mode" aria-label="Litter timing">
-        <Link className={mode === "current" ? "is-active" : ""} href={litterBrowserHref("current", selectedBreed.slug)} aria-current={mode === "current" ? "page" : undefined}>Current</Link>
-        <Link className={mode === "upcoming" ? "is-active" : ""} href={litterBrowserHref("upcoming", selectedBreed.slug)} aria-current={mode === "upcoming" ? "page" : undefined}>Upcoming</Link>
-      </nav>
+      <PuppyFinderRouteNav mode={mode} breedSlug={selectedBreed.slug} />
       <div className="litter-browser-tabs" role="tablist" aria-label="Choose a breed">
         {litterBrowserBreeds.map((breed, index) => {
           const selected = breed.slug === selectedBreed.slug;
@@ -5202,13 +5243,6 @@ function UpcomingLittersPage() {
   );
 }
 
-function nextLitterTiming(litters = []) {
-  const nextLitter = litters.find((litter) => litter.expectedTiming || litter.delivery);
-  return (nextLitter?.expectedTiming || nextLitter?.delivery || "Timing to be announced")
-    .replace(/^Expected\s+/i, "")
-    .replace(/^./, (letter) => letter.toUpperCase());
-}
-
 function scrollLitterBreedGroupIntoView(slug, panelIdSuffix) {
   if (!slug) return;
 
@@ -5252,41 +5286,6 @@ function LitterBreedAccordionGroup({ countLabel, detailLabel, detailValue, group
           {group.copy && <p>{group.copy}</p>}
           <div className="upcoming-litter-card-list">
             {group.litters.map((litter) => <LitterCard litter={litter} key={litter.slug || litter.name} showAvailabilityNote={showAvailabilityNote} />)}
-          </div>
-        </div>
-      )}
-    </section>
-  );
-}
-
-function AvailablePuppyBreedAccordionGroup({ group, isOpen, onToggle }) {
-  const panelId = `${group.slug}-available-panel`;
-  const headingId = `${group.slug}-available-heading`;
-  const puppyNames = group.puppies.map((puppy) => puppy.name);
-  const puppySummary = puppyNames.length <= 2
-    ? `${puppyNames.join(" and ")} ${puppyNames.length === 1 ? "is" : "are"} available now`
-    : `${puppyNames.slice(0, 2).join(", ")} and ${puppyNames.length - 2} more are available now`;
-
-  return (
-    <section className={`upcoming-litter-group available-puppy-breed-group${isOpen ? " is-open" : ""}`} aria-labelledby={headingId}>
-      <button
-        aria-controls={panelId}
-        aria-expanded={isOpen}
-        className="upcoming-breed-toggle"
-        onClick={onToggle}
-        type="button"
-      >
-        <span className="upcoming-breed-toggle-copy">
-          <span className="eyebrow">{group.puppies.length} {group.puppies.length === 1 ? "puppy" : "puppies"} open</span>
-          <strong id={headingId}>{group.pluralName}</strong>
-          <span className="available-puppy-summary">{puppySummary}. Open to see photos and details.</span>
-        </span>
-        <ChevronDown aria-hidden="true" className="upcoming-breed-toggle-icon" size={24} />
-      </button>
-      {isOpen && (
-        <div className="upcoming-litter-panel available-puppy-panel" id={panelId}>
-          <div className="available-puppy-card-list">
-            {group.puppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />)}
           </div>
         </div>
       )}
