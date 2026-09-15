@@ -2,7 +2,7 @@
 
 Date: September 15, 2026
 
-Status: **PASS, release authorized**
+Status: **DEPLOYED AND VERIFIED**
 
 ## Result
 
@@ -33,4 +33,9 @@ The selected generated option is the implementation source. A1 Gallery, Refero S
 
 ## Release state
 
-Deployment evidence will be added after the authorized launch-candidate to main release completes and production is verified.
+- Released through `codex/launch-candidate` and merged to `main` in commit `f1506f5e4259fa1f01c43e1bb8c1b4d580e15f2c`.
+- GitHub Website Health after-change run `35023576787`: PASS.
+- `https://www.redranchdogs.com/puppies/upcoming-litters?breed=goldendoodle-puppies`: HTTP 200; three breed tabs, two Goldendoodle cards, real parent images, no horizontal overflow at 390 pixels.
+- Live Current/Upcoming switch preserved `breed=goldendoodle-puppies`; browser Back restored Upcoming with Goldendoodles selected.
+- `https://red-ranch-dogs-site.vercel.app` served the same release asset as the primary domain.
+- Production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-release-2026-09-15/production-upcoming-goldendoodle-390.png`.

@@ -17,6 +17,7 @@ The selected visual supplied the compact timing switch, three always-visible bre
 | Upcoming Goldendoodle with multiple litters | 390 x 844, full page | `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-release-2026-09-15/upcoming-goldendoodle-390.png` |
 | Upcoming Cavapoo empty state | 320 x 700, full page | `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-release-2026-09-15/upcoming-cavapoo-empty-320.png` |
 | Upcoming Goldendoodle desktop | 1440 x 1000, full page | `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-release-2026-09-15/upcoming-goldendoodle-1440.png` |
+| Production Upcoming Goldendoodle | 390 x 844, full page | `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-release-2026-09-15/production-upcoming-goldendoodle-390.png` |
 
 ## Full-page comparison
 

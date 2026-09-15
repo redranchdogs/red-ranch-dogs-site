@@ -13,7 +13,7 @@ Use this file when starting a fresh Codex session to reduce RAM pressure without
 - Assets and facts: existing Red Ranch parent photos and public litter records only.
 - QA: `npm run publish:check` passed; 320, 390, and 1440 pixel visual checks passed; no live form submissions or business data writes occurred.
 - Detailed evidence: `docs/LITTER_BROWSER_RELEASE_2026-09-15.md` and root `design-qa.md`.
-- Release state: authorized and pending production verification.
+- Release state: deployed to production and verified at commit `f1506f5e4259fa1f01c43e1bb8c1b4d580e15f2c`; GitHub Website Health run `35023576787` passed.
 
 ## Project
 
