@@ -3486,6 +3486,9 @@ const litterBrowserParentFocalPoints = {
   winnie: "50% 34%",
   "wyatt-earp": "50% 38%"
 };
+const availableEmptyPuppyFocalPoints = {
+  ridge: "50% 30%"
+};
 const puppiesForLitter = (litter) => puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
 const statusMatches = (puppy, status) => normalizedStatus(puppy?.status) === normalizedStatus(status);
 const isAvailablePuppy = (puppy) => statusMatches(puppy, "available");
@@ -4997,7 +5000,7 @@ function AvailablePuppyEmptyHub() {
       <div className="available-empty-paths">
         <article className="available-empty-path-card">
           <figure>
-            {historicalPuppy?.mainPhoto ? <img src={historicalPuppy.mainPhoto} alt="Red Ranch Goldendoodle puppy" loading="eager" /> : <ImagePlaceholder label="Red Ranch puppy" />}
+            {historicalPuppy?.mainPhoto ? <img src={historicalPuppy.mainPhoto} alt="Red Ranch Goldendoodle puppy" loading="eager" style={{ "--preview-position": availableEmptyPuppyFocalPoints[historicalPuppy.slug] }} /> : <ImagePlaceholder label="Red Ranch puppy" />}
           </figure>
           <div>
             <h3>Current Litters</h3>

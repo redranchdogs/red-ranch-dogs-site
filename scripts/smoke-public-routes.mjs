@@ -488,12 +488,14 @@ async function auditRoute(context, config, viewportName) {
           captionPosition: caption ? window.getComputedStyle(caption).position : "missing",
           captionTop: captionBox?.top ?? 0,
           imageBottom,
-          imagesLoaded: images.every((image) => image.complete && image.naturalWidth > 0)
+          imagesLoaded: images.every((image) => image.complete && image.naturalWidth > 0),
+          imagePositions: images.map((image) => window.getComputedStyle(image).objectPosition)
         };
       }));
 
       if (previewResults.length !== 2) failures.push(`Expected two preview figures, found ${previewResults.length}.`);
       if (previewResults[0]?.caption) failures.push("Current Litters illustration should not show a historical puppy caption.");
+      if (previewResults[0]?.imagePositions?.[0] !== "50% 30%") failures.push(`Unexpected Current Litters puppy focal point: ${previewResults[0]?.imagePositions?.[0] || "missing"}.`);
       if (previewResults[1]?.caption !== "Beatrix + Enzo") failures.push(`Unexpected upcoming pairing caption: ${previewResults[1]?.caption || "missing"}.`);
 
       for (const result of previewResults) {
