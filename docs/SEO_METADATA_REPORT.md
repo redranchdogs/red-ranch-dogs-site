@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 9/15/2026, 4:04:04 PM Central
+Generated: 9/15/2026, 5:08:30 PM Central
 
 Status: **PASS**
 
@@ -24,7 +24,7 @@ Routes with warnings: 2
 | --- | ---: | --- | ---: | --- | ---: | --- |
 | / | 200 | Red Ranch Dogs | Goldendoodle, Cavapoo & Bernedoodle Puppies in Texas | 99 | Goldendoodle, Cavapoo& Bernedoodle Puppies | 1 | https://www.redranchdogs.com/ |
 | /puppies | 200 | Puppies | Red Ranch Dogs | 98 | Puppies | 1 | https://www.redranchdogs.com/puppies |
-| /puppies/available | 200 | Available Puppies in Texas | Red Ranch Dogs | 133 | Available Puppies | 1 | https://www.redranchdogs.com/puppies/available |
+| /puppies/available | 200 | Available Puppies in Texas | Red Ranch Dogs | 133 | Find Your Puppy | 1 | https://www.redranchdogs.com/puppies/available |
 | /puppies/current-litters | 200 | Current Doodle Litters in Texas | Red Ranch Dogs | 131 | Current Litters | 1 | https://www.redranchdogs.com/puppies/current-litters |
 | /puppies/upcoming-litters | 200 | Upcoming Doodle Litters in Texas | Red Ranch Dogs | 129 | Upcoming Litters | 1 | https://www.redranchdogs.com/puppies/upcoming-litters |
 | /puppies/previous-litters | 200 | Previous Litters | Red Ranch Dogs | 97 | Previous Litters | 1 | https://www.redranchdogs.com/puppies/previous-litters |

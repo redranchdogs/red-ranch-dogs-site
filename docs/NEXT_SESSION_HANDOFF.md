@@ -5,6 +5,21 @@ Last updated: 6/27/2026, 6:05:34 PM Central.
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
 
 
+## September 15, 2026 Find Your Puppy Release
+
+- Approved direction: combine the selected Find Your Puppy hub with the existing compact breed browser and keep the visual change restrained.
+- Scope: Available Puppies presentation, the shared Available/Current/Upcoming route selector, the related hamburger entries, tests, and review documents.
+- Public availability at implementation time: zero puppies qualified as Available. No availability was inferred from current-litter counts.
+- Empty state: approved Ridge historical photo labeled `Past Red Ranch puppy`, verified Beatrix + Enzo parent photos, and real links to Current Litters, Upcoming Litters, and the waitlist process.
+- Routing: all three existing URLs, page titles, canonicals, query-backed breed state, reload behavior, and browser history remain intact.
+- Current and Upcoming: existing breed tabs, layouts, factual records, and parent-photo focal fixes remain in use.
+- Mobile menu: one Find Your Puppy entry replaces the three redundant timing links; unrelated Puppy links remain present.
+- QA: 320, 390, and 1440 pixel visual review passed; empty and development-only populated states passed; focused lint, build, route, metadata, reduced-motion, image, overflow, keyboard, and menu checks passed.
+- Safety: no business data writes, Sheet sync, CRM write, message, or live form submission occurred.
+- Detailed evidence: `docs/FIND_YOUR_PUPPY_RELEASE_2026-09-15.md` and root `design-qa.md`.
+- Release state: local implementation passed; production verification pending.
+
+
 ## September 15, 2026 Litter Browser Release
 
 - Approved direction: compact Current/Upcoming switch plus three always-visible breed tabs in the order Cavapoos, Goldendoodles, Bernedoodles.

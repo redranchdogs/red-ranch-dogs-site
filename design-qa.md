@@ -54,3 +54,42 @@ The implementation preserves the reference hierarchy while matching the live bra
 Adam requested that every dog face be centered after reviewing the first production release. A focused before/after review covered all eight parent images in the affected cards at 390 and 1440 pixels. Mobile pairing images now use a 4:5 portrait treatment instead of the earlier landscape crop, and each authorized source image has a small presentation focal point. All faces remain visible with eyes, ears, and muzzles intact. The card order, copy, actions, and data did not change.
 
 Comparison: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-browser-face-framing-2026-09-15/all-mobile-before-after.png`.
+
+## Find Your Puppy hub
+
+Final result: passed locally; production verification pending release
+
+### Source and implementation
+
+- Selected visual: `/Users/adamdietlein/.codex/generated_images/01a05e23-7840-7ad2-b872-56105195c3dd/exec-fc639d65-0bf0-477e-8684-9b6197c5f016.png`
+- Combined comparison: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/source-vs-implementation.png`
+- Empty state at 320 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/available-empty-320.png`
+- Empty state at 390 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/available-empty-390.png`
+- Empty state at 1440 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/available-empty-1440.png`
+- Populated layout fixture at 390 pixels: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/find-your-puppy-release-2026-09-15/available-populated-390.png`
+
+The implementation preserves the selected concept's cream, red, and charcoal hierarchy, three destination selector, compact image-and-copy rows, and direct calls to action. It intentionally uses the existing Red Ranch header and footer, labels the historical Ridge image as `Past Red Ranch puppy`, and uses the verified Beatrix + Enzo parent photos instead of generated dogs.
+
+### Findings
+
+| Area | Result | Evidence |
+| --- | --- | --- |
+| Mobile hierarchy | Passed | Available Now, Current Litters, and Upcoming Litters stay visible above the first decision point at 320 and 390 pixels. |
+| Empty availability | Passed | The page states that no puppies are listed as available and offers current and upcoming paths without treating current litter counts as availability. |
+| Populated safety | Passed | A development-only fixture exercises the Available card layout and is labeled as illustrative local content. Production data remains unchanged. |
+| Real imagery | Passed | Ridge renders from a 1200 x 1800 approved project asset. Beatrix and Enzo render from their 900 x 1350 approved parent assets with retained focal positions. |
+| Navigation | Passed | The three destinations are real links with distinct URLs, titles, canonicals, reload behavior, and browser Back and Forward behavior. |
+| Mobile menu | Passed | The three redundant puppy-timing choices are replaced by one Find Your Puppy entry. Previous Litters and breed pages remain present. |
+| Current and Upcoming | Passed | Existing breed tabs, litter cards, empty states, and parent-photo focal fixes remain in use. |
+| Accessibility | Passed | Route controls expose `aria-current`, breed controls retain keyboard tab behavior, and reduced motion collapses the panel animation to 0.001ms. |
+| Layout | Passed | No horizontal overflow at 320, 390, or 1440 pixels. Mobile route controls are 48 pixels high and desktop controls are at least 46 pixels high. |
+| Visual restraint | Passed | The new flow uses a plain cream surface and existing type, color, spacing, cards, and footer conventions. |
+
+### Iteration history
+
+1. Unified the three discovery routes with a shared, crawlable selector while preserving their individual URLs and metadata.
+2. Replaced the zero-availability dead end with two truthful preview paths.
+3. Chose one approved historical puppy image and one verified upcoming pairing.
+4. Kept Available puppy browsing compact with the existing three-breed order for future populated states.
+5. Removed the global grid only behind the new finder flow and preserved it elsewhere.
+6. Added empty, populated, history, metadata, mobile menu, keyboard, reduced-motion, image, and overflow checks.
