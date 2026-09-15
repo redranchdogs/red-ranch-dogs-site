@@ -95,10 +95,11 @@ const routeExpectations = [
   },
   {
     route: "/puppies/available",
-    requiredText: ["find your puppy", "no puppies are listed as available right now", "two ways to explore", "past red ranch puppy", "beatrix + enzo"],
+    requiredText: ["find your puppy", "no puppies are listed as available right now", "two ways to explore", "beatrix + enzo"],
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
     requiredSelectors: [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
-    finderNavCheck: { mode: "available", history: true }
+    finderNavCheck: { mode: "available", history: true },
+    previewCaptionCheck: true
   },
   {
     route: "/puppies/available?fixture=populated",
@@ -473,6 +474,35 @@ async function auditRoute(context, config, viewportName) {
         await page.goForward({ waitUntil: "domcontentloaded" });
         if (!page.url().includes("/puppies/current-litters")) failures.push("Browser Forward did not restore Current Litters.");
         await page.goBack({ waitUntil: "domcontentloaded" });
+      }
+    }
+
+    if (config.previewCaptionCheck) {
+      const previewResults = await page.locator(".available-empty-path-card figure").evaluateAll((figures) => figures.map((figure) => {
+        const images = [...figure.querySelectorAll("img")];
+        const caption = figure.querySelector("figcaption");
+        const imageBottom = Math.max(...images.map((image) => image.getBoundingClientRect().bottom));
+        const captionBox = caption?.getBoundingClientRect();
+        return {
+          caption: caption?.textContent?.trim() || "",
+          captionPosition: caption ? window.getComputedStyle(caption).position : "missing",
+          captionTop: captionBox?.top ?? 0,
+          imageBottom,
+          imagesLoaded: images.every((image) => image.complete && image.naturalWidth > 0)
+        };
+      }));
+
+      if (previewResults.length !== 2) failures.push(`Expected two preview figures, found ${previewResults.length}.`);
+      if (previewResults[0]?.caption) failures.push("Current Litters illustration should not show a historical puppy caption.");
+      if (previewResults[1]?.caption !== "Beatrix + Enzo") failures.push(`Unexpected upcoming pairing caption: ${previewResults[1]?.caption || "missing"}.`);
+
+      for (const result of previewResults) {
+        if (!result.imagesLoaded) failures.push(`Preview image did not load for ${result.caption || "Current Litters illustration"}.`);
+      }
+
+      const pairingPreview = previewResults[1];
+      if (pairingPreview && (pairingPreview.captionPosition !== "static" || pairingPreview.captionTop < pairingPreview.imageBottom - 0.5)) {
+        failures.push("Upcoming pairing caption overlaps its images.");
       }
     }
 

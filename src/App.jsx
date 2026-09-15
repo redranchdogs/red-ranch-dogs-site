@@ -4997,8 +4997,7 @@ function AvailablePuppyEmptyHub() {
       <div className="available-empty-paths">
         <article className="available-empty-path-card">
           <figure>
-            {historicalPuppy?.mainPhoto ? <img src={historicalPuppy.mainPhoto} alt="Past Red Ranch Goldendoodle puppy" loading="eager" /> : <ImagePlaceholder label="Past Red Ranch puppy" />}
-            <figcaption>Past Red Ranch puppy</figcaption>
+            {historicalPuppy?.mainPhoto ? <img src={historicalPuppy.mainPhoto} alt="Red Ranch Goldendoodle puppy" loading="eager" /> : <ImagePlaceholder label="Red Ranch puppy" />}
           </figure>
           <div>
             <h3>Current Litters</h3>
