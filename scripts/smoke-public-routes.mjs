@@ -80,8 +80,6 @@ const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
-const currentLitters = litters.filter((litter) => normalize(litter.status).includes("current"));
-const plannedLitters = litters.filter((litter) => /planned|upcoming/.test(normalize(litter.status)));
 const openGuardianNames = puppies
   .filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open")
   .map((puppy) => puppy.name);
@@ -106,14 +104,48 @@ const routeExpectations = [
     requiredSelectors: [featuredAvailablePuppies.length ? ".available-puppy-breed-group" : ".smart-empty-state"]
   },
   {
-    route: "/puppies/current-litters",
-    requiredText: [
-      "current litters",
-      ...(currentLitters.length ? [] : ["planned pairings are ahead", "join the waitlist"])
-    ],
-    requiredSelectors: currentLitters.length
-      ? [".current-litter-list"]
-      : [".smart-empty-state", ...(plannedLitters.length ? [".zero-inventory-upcoming-path"] : [])]
+    route: "/puppies/current-litters?breed=cavapoo-puppies",
+    requiredText: ["current litters", "winnie + wyatt", "view litter"],
+    requiredSelectors: [".litter-browser", ".litter-browser-card"],
+    litterBrowserCheck: { mode: "current", selectedBreed: "cavapoo-puppies" }
+  },
+  {
+    route: "/puppies/current-litters?breed=goldendoodle-puppies",
+    requiredText: ["no current goldendoodle litters are listed right now.", "view upcoming litters"],
+    forbiddenText: ["winnie + wyatt"],
+    requiredSelectors: [".litter-browser", ".litter-browser-empty"],
+    litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" }
+  },
+  {
+    route: "/puppies/current-litters?breed=cavapoo-puppies&fixture=all-matched",
+    requiredText: ["winnie + wyatt", "reserved", "view litter"],
+    requiredSelectors: [".litter-browser-card"],
+    litterBrowserCheck: { mode: "current", selectedBreed: "cavapoo-puppies" }
+  },
+  {
+    route: "/puppies/current-litters?breed=cavapoo-puppies&fixture=loading",
+    requiredText: ["loading cavapoo litters"],
+    forbiddenText: ["no current cavapoo litters are listed right now."],
+    requiredSelectors: [".litter-browser-load-state[role='status']"]
+  },
+  {
+    route: "/puppies/current-litters?breed=cavapoo-puppies&fixture=error",
+    requiredText: ["we could not load cavapoo litters right now."],
+    forbiddenText: ["no current cavapoo litters are listed right now."],
+    requiredSelectors: [".litter-browser-load-state[role='alert']"]
+  },
+  {
+    route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
+    requiredText: ["upcoming litters", "beatrix + enzo", "lulu + bram"],
+    requiredSelectors: [".litter-browser", ".litter-browser-card"],
+    litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" }
+  },
+  {
+    route: "/puppies/upcoming-litters?breed=cavapoo-puppies",
+    requiredText: ["no upcoming cavapoo litters are listed right now.", "see our waitlist process"],
+    forbiddenText: ["beatrix + enzo", "kylie + ranger"],
+    requiredSelectors: [".litter-browser", ".litter-browser-empty"],
+    litterBrowserCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" }
   },
   ...litters
     .filter((litter) => litter.pastPuppyGallery?.images?.length)
@@ -317,7 +349,8 @@ async function auditRoute(context, config, viewportName) {
   const failures = [];
 
   try {
-    const response = await page.goto(`${baseUrl}${config.route}`, { waitUntil: "networkidle", timeout: 20000 });
+    const response = await page.goto(`${baseUrl}${config.route}`, { waitUntil: "domcontentloaded", timeout: 20000 });
+    await page.locator("main").waitFor({ state: "visible", timeout: 10000 });
     const status = response?.status() || 0;
     if (status >= 400 || status === 0) failures.push(`HTTP status ${status || "unknown"}`);
 
@@ -365,6 +398,44 @@ async function auditRoute(context, config, viewportName) {
       }
     }
 
+    if (config.litterBrowserCheck) {
+      const tabs = page.locator('.litter-browser-tabs [role="tab"]');
+      const labels = await tabs.allTextContents();
+      const expectedLabels = ["Cavapoos", "Goldendoodles", "Bernedoodles"];
+      if (JSON.stringify(labels.map((label) => label.trim())) !== JSON.stringify(expectedLabels)) {
+        failures.push(`Litter browser tabs are out of order or incomplete: ${labels.join(", ")}`);
+      }
+
+      const selectedTab = page.locator('.litter-browser-tabs [role="tab"][aria-selected="true"]');
+      if (await selectedTab.count() !== 1) failures.push("Litter browser should have exactly one selected breed tab.");
+      const selectedId = await selectedTab.getAttribute("id");
+      if (!selectedId?.endsWith(config.litterBrowserCheck.selectedBreed)) {
+        failures.push(`Unexpected selected breed tab: ${selectedId || "none"}`);
+      }
+
+      const modeHref = await page.locator(`.litter-browser-mode a:not(.is-active)`).getAttribute("href");
+      if (!modeHref?.includes(`breed=${config.litterBrowserCheck.selectedBreed}`)) {
+        failures.push(`Current/Upcoming switch did not preserve selected breed: ${modeHref || "missing href"}`);
+      }
+
+      const originalUrl = page.url();
+      const nextTab = tabs.nth((expectedLabels.indexOf((await selectedTab.textContent())?.trim()) + 1) % expectedLabels.length);
+      await selectedTab.focus();
+      await page.keyboard.press("ArrowRight");
+      if (await nextTab.getAttribute("aria-selected") !== "true") failures.push("ArrowRight did not select and focus the next breed tab.");
+      if (!page.url().includes("breed=")) failures.push("Breed selection did not create a deep-link URL.");
+      await page.goBack({ waitUntil: "domcontentloaded" });
+      if (page.url() !== originalUrl) failures.push("Browser Back did not restore the prior breed selection URL.");
+      const restoredId = await page.locator('.litter-browser-tabs [role="tab"][aria-selected="true"]').getAttribute("id");
+      if (!restoredId?.endsWith(config.litterBrowserCheck.selectedBreed)) failures.push("Browser Back did not restore the prior selected breed.");
+
+      const smallButtons = await tabs.evaluateAll((nodes) => nodes.filter((node) => {
+        const rect = node.getBoundingClientRect();
+        return rect.width < 76 || rect.height < 44;
+      }).map((node) => `${node.textContent.trim()}:${Math.round(node.getBoundingClientRect().width)}x${Math.round(node.getBoundingClientRect().height)}`));
+      if (smallButtons.length) failures.push(`Breed tabs are below touch/readability size: ${smallButtons.join(", ")}`);
+    }
+
     const health = await pageHealth(page);
     if (health.bodyHeight < 500) failures.push(`Body height looks too small: ${health.bodyHeight}px`);
     if (health.h1Count !== 1) failures.push(`Expected exactly one visible h1, found ${health.h1Count}`);
@@ -410,7 +481,7 @@ async function auditMobileMenu(context) {
   const failures = [];
 
   try {
-    const response = await page.goto(`${baseUrl}/puppies/available`, { waitUntil: "networkidle", timeout: 20000 });
+    const response = await page.goto(`${baseUrl}/puppies/available`, { waitUntil: "domcontentloaded", timeout: 20000 });
     const status = response?.status() || 0;
     if (status >= 400 || status === 0) failures.push(`HTTP status ${status || "unknown"}`);
 
