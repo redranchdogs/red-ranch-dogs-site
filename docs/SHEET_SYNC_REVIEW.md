@@ -1,15 +1,15 @@
 # Sheet Sync Review
-Generated: 9/15/2026, 5:06:54 PM Central
-Status: **PASS**
+Generated: 9/16/2026, 9:38:02 AM Central
+Status: **FAIL**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary
 | Sheet | Website rows | Live rows | Missing columns | Missing rows | Extra rows | Cell mismatches |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Puppy Tracker | 47 | 47 | 0 | 0 | 0 | 0 |
-| Litters | 12 | 12 | 0 | 0 | 0 | 0 |
+| Litters | 12 | 12 | 0 | 0 | 0 | 1 |
 | Previous Litters | 21 | 21 | 0 | 0 | 0 | 0 |
 | Parent Dogs | 33 | 33 | 0 | 0 | 0 | 0 |
 ## Items To Fix
-- None.
+- Litters: winnie-wyatt-spring-2026 column "status" is out of sync. Website="Previous Litter" Sheet="Current Litter".
 ## Recommended Fix
-No sheet sync fixes are needed right now.
+Run `npm run sync:sheets` after confirming the website data is the source of truth, then rerun `npm run review:sheets`.
