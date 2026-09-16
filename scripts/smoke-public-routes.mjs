@@ -109,35 +109,30 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=cavapoo-puppies",
-    requiredText: ["current litters", "winnie + wyatt", "view litter"],
-    requiredSelectors: [".litter-browser", ".litter-browser-card"],
+    requiredText: ["current litters", "no current litters are listed right now.", "view upcoming litters"],
+    forbiddenText: ["winnie + wyatt"],
+    requiredSelectors: [".litter-browser", ".litter-browser-empty"],
     litterBrowserCheck: { mode: "current", selectedBreed: "cavapoo-puppies" },
     finderNavCheck: { mode: "current", selectedBreed: "cavapoo-puppies" }
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    requiredText: ["no current goldendoodle litters are listed right now.", "view upcoming litters"],
+    requiredText: ["no current litters are listed right now.", "view upcoming litters"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-empty"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
     finderNavCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" }
   },
   {
-    route: "/puppies/current-litters?breed=cavapoo-puppies&fixture=all-matched",
-    requiredText: ["winnie + wyatt", "reserved", "view litter"],
-    requiredSelectors: [".litter-browser-card"],
-    litterBrowserCheck: { mode: "current", selectedBreed: "cavapoo-puppies" }
-  },
-  {
     route: "/puppies/current-litters?breed=cavapoo-puppies&fixture=loading",
     requiredText: ["loading cavapoo litters"],
-    forbiddenText: ["no current cavapoo litters are listed right now."],
+    forbiddenText: ["no current litters are listed right now."],
     requiredSelectors: [".litter-browser-load-state[role='status']"]
   },
   {
     route: "/puppies/current-litters?breed=cavapoo-puppies&fixture=error",
     requiredText: ["we could not load cavapoo litters right now."],
-    forbiddenText: ["no current cavapoo litters are listed right now."],
+    forbiddenText: ["no current litters are listed right now."],
     requiredSelectors: [".litter-browser-load-state[role='alert']"]
   },
   {
@@ -154,6 +149,12 @@ const routeExpectations = [
     requiredSelectors: [".litter-browser", ".litter-browser-empty"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" },
     finderNavCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" }
+  },
+  {
+    route: "/litters/winnie-wyatt-spring-2026",
+    requiredText: ["winnie + wyatt", "previous litter", "september 7, 2026"],
+    requiredSelectors: [".litter-page-hero", ".litter-summary-panel"],
+    litterStatusCheck: { hero: "Previous Litter", summary: "Previous litter" }
   },
   ...litters
     .filter((litter) => litter.pastPuppyGallery?.images?.length)
@@ -495,7 +496,7 @@ async function auditRoute(context, config, viewportName) {
 
       if (previewResults.length !== 2) failures.push(`Expected two preview figures, found ${previewResults.length}.`);
       if (previewResults[0]?.caption) failures.push("Current Litters illustration should not show a historical puppy caption.");
-      if (previewResults[0]?.imagePositions?.[0] !== "50% 30%") failures.push(`Unexpected Current Litters puppy focal point: ${previewResults[0]?.imagePositions?.[0] || "missing"}.`);
+      if (previewResults[0]?.imagePositions?.[0] !== "50% 25%") failures.push(`Unexpected Current Litters puppy focal point: ${previewResults[0]?.imagePositions?.[0] || "missing"}.`);
       if (previewResults[1]?.caption !== "Beatrix + Enzo") failures.push(`Unexpected upcoming pairing caption: ${previewResults[1]?.caption || "missing"}.`);
 
       for (const result of previewResults) {
@@ -506,6 +507,13 @@ async function auditRoute(context, config, viewportName) {
       if (pairingPreview && (pairingPreview.captionPosition !== "static" || pairingPreview.captionTop < pairingPreview.imageBottom - 0.5)) {
         failures.push("Upcoming pairing caption overlaps its images.");
       }
+    }
+
+    if (config.litterStatusCheck) {
+      const heroStatus = (await page.locator(".litter-page-hero .eyebrow").textContent())?.trim();
+      const summaryStatus = (await page.locator(".litter-summary-heading .status-badge").textContent())?.trim();
+      if (heroStatus !== config.litterStatusCheck.hero) failures.push(`Unexpected litter hero status: ${heroStatus || "missing"}.`);
+      if (summaryStatus !== config.litterStatusCheck.summary) failures.push(`Unexpected litter summary status: ${summaryStatus || "missing"}.`);
     }
 
     const health = await pageHealth(page);

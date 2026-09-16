@@ -3404,6 +3404,7 @@ const publicParentProfiles = publicRecords(parentProfiles);
 const puppyData = publicPuppyProfiles;
 const litterProfileBySlug = new Map(publicLitterProfiles.map((litter) => [litter.slug, litter]));
 const isCurrentLitter = (litter) => normalizedStatus(litter?.status).includes("current");
+const isPreviousLitter = (litter) => normalizedStatus(litter?.status).includes("previous");
 const isPlannedLitter = (litter) => {
   const status = normalizedStatus(litter?.status);
   return status.includes("planned") || status.includes("upcoming");
@@ -3487,7 +3488,7 @@ const litterBrowserParentFocalPoints = {
   "wyatt-earp": "50% 38%"
 };
 const availableEmptyPuppyFocalPoints = {
-  ridge: "50% 30%"
+  ridge: "50% 25%"
 };
 const puppiesForLitter = (litter) => puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
 const statusMatches = (puppy, status) => normalizedStatus(puppy?.status) === normalizedStatus(status);
@@ -3528,6 +3529,7 @@ const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter
   if (waitlistCount) return "Waitlist matching";
   if (litterPuppies.length && reservedCount === litterPuppies.length) return "Reserved";
   if (litter?.pregnancyConfirmed && isPlannedLitter(litter)) return "Pregnancy confirmed";
+  if (isPreviousLitter(litter)) return "Previous litter";
   if (!isCurrentLitter(litter)) return "Planning";
   if (litterPuppies.length) return `${litterPuppies.length} puppy profiles`;
   return "Updates soon";
@@ -4989,6 +4991,7 @@ function AvailablePuppyEmptyHub() {
   const upcomingPairing = plannedLitterProfiles.find((litter) => litter.slug === "beatrix-enzo-planned-2026");
   const mama = parentProfiles.find((parent) => parent.slug === upcomingPairing?.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === upcomingPairing?.studSlug);
+  const hasCurrentLitters = currentLitterProfiles.length > 0;
 
   return (
     <section className="available-empty-hub">
@@ -5004,8 +5007,8 @@ function AvailablePuppyEmptyHub() {
           </figure>
           <div>
             <h3>Current Litters</h3>
-            <p>Meet the litters growing up here.</p>
-            <Link href={litterBrowserHref("current", "cavapoo-puppies")} className="available-empty-path-link">View current litters <ChevronRight aria-hidden="true" size={20} /></Link>
+            <p>{hasCurrentLitters ? "Meet the litters growing up here." : "No current litters are posted at the moment."}</p>
+            <Link href={litterBrowserHref("current", "cavapoo-puppies")} className="available-empty-path-link">View current litter update <ChevronRight aria-hidden="true" size={20} /></Link>
           </div>
         </article>
         <article className="available-empty-path-card">
@@ -5121,19 +5124,22 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
   );
 }
 
-function LitterBrowserEmptyState({ mode, breed }) {
+function LitterBrowserEmptyState({ mode, breed, allCurrentEmpty = false }) {
   const hasUpcoming = plannedLitterProfiles.some((litter) => litter.breedSlug === breed.slug);
   const currentCanShowUpcoming = mode === "current" && hasUpcoming;
-  const actionHref = currentCanShowUpcoming
+  const firstUpcomingBreedSlug = plannedLitterProfiles[0]?.breedSlug || breed.slug;
+  const actionHref = allCurrentEmpty
+    ? litterBrowserHref("upcoming", firstUpcomingBreedSlug)
+    : currentCanShowUpcoming
     ? litterBrowserHref("upcoming", breed.slug)
     : "/process/application-and-waitlist";
 
   return (
     <div className="litter-browser-empty">
-      <h2>No {mode} {breed.breedName} litters are listed right now.</h2>
-      {!currentCanShowUpcoming && <p>Interested in a future puppy?</p>}
+      <h2>{allCurrentEmpty ? "No current litters are listed right now." : `No ${mode} ${breed.breedName} litters are listed right now.`}</h2>
+      {allCurrentEmpty ? <p>Explore upcoming pairings and estimated timing.</p> : !currentCanShowUpcoming && <p>Interested in a future puppy?</p>}
       <Link href={actionHref} className="litter-browser-empty-link">
-        {currentCanShowUpcoming ? "View upcoming litters" : "See our waitlist process"}
+        {allCurrentEmpty || currentCanShowUpcoming ? "View upcoming litters" : "See our waitlist process"}
       </Link>
     </div>
   );
@@ -5145,6 +5151,7 @@ function LitterBrowser({ mode }) {
   const litters = mode === "current" ? currentLitterProfiles : plannedLitterProfiles;
   const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || litterBrowserBreeds[0];
   const selectedLitters = litters.filter((litter) => litter.breedSlug === selectedBreed.slug);
+  const allCurrentEmpty = mode === "current" && currentLitterProfiles.length === 0;
   const developmentFixture = import.meta.env.DEV
     ? new window.URLSearchParams(window.location.search).get("fixture")
     : "";
@@ -5222,7 +5229,7 @@ function LitterBrowser({ mode }) {
             ))}
           </div>
         ) : (
-          <LitterBrowserEmptyState breed={selectedBreed} mode={mode} />
+          <LitterBrowserEmptyState allCurrentEmpty={allCurrentEmpty} breed={selectedBreed} mode={mode} />
         )}
       </div>
     </section>
@@ -5231,7 +5238,7 @@ function LitterBrowser({ mode }) {
 
 function CurrentLittersPage() {
   return (
-    <BuyerPageTemplate eyebrow="Puppies" title="Current Litters" copy="See current litters by breed, including timing and availability." heroClassName="compact-page-hero buyer-page-hero litter-browser-hero">
+    <BuyerPageTemplate eyebrow="Puppies" title="Current Litters" copy={currentLitterProfiles.length ? "See current litters by breed, including timing and availability." : "No current litters are posted at the moment. Explore upcoming pairings by breed."} heroClassName="compact-page-hero buyer-page-hero litter-browser-hero">
       <LitterBrowser mode="current" />
     </BuyerPageTemplate>
   );
