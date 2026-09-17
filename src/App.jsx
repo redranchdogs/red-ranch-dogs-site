@@ -303,8 +303,8 @@ const architectureSeo = {
     description: "Meet Red Ranch Dogs Bernedoodle program parents with structured photos, traits, testing links, and related litters."
   },
   "/process": {
-    title: "Process | Red Ranch Dogs",
-    description: "Learn how Red Ranch Dogs applications, pricing, waitlists, pickup, delivery, and FAQs fit together."
+    title: "Getting Your Puppy | Red Ranch Dogs",
+    description: "Follow the Red Ranch Dogs puppy journey from application and pricing through the waitlist, go-home preparation, pickup, and delivery."
   },
   "/process/how-it-works": {
     title: "How It Works | Red Ranch Dogs",
@@ -315,8 +315,8 @@ const architectureSeo = {
     description: "Review Red Ranch Dogs Goldendoodle, Cavapoo, and Bernedoodle pricing, deposits, and what is included with each puppy."
   },
   "/process/application-and-waitlist": {
-    title: "Puppy Application & Waitlist | Red Ranch Dogs",
-    description: "Start the Red Ranch Dogs puppy application and waitlist process for Goldendoodles, Cavapoos, and Bernedoodles in Texas."
+    title: "How the Puppy Waitlist Works | Red Ranch Dogs",
+    description: "Understand Red Ranch Dogs deposits, breed waitlist order, litter updates, puppy picks, passing, and current public positions."
   },
   "/process/waitlist": {
     title: "Current Waitlist | Red Ranch Dogs",
@@ -741,7 +741,7 @@ const breadcrumbLabels = {
   "goldendoodle-parents": "Goldendoodle Parents",
   "cavapoo-parents": "Cavapoo Parents",
   "bernedoodle-parents": "Bernedoodle Parents",
-  process: "Process",
+  process: "Getting Your Puppy",
   "how-it-works": "How It Works",
   pricing: "Pricing",
   "application-and-waitlist": "Application & Waitlist",
@@ -1317,18 +1317,23 @@ const primaryNav = [
     ]
   },
   {
-    label: "Process",
+    label: "Getting Your Puppy",
     href: "/process",
     links: [
       { label: "How It Works", href: "/process/how-it-works" },
       { label: "Pricing", href: "/process/pricing" },
-      { label: "Application and Waitlist", href: "/process/application-and-waitlist" },
-      { label: "Current Waitlist", href: "/process/waitlist" },
+      { label: "Waitlist", href: "/process/application-and-waitlist" },
       { label: "What Comes With Your Puppy", href: "/puppies/what-comes-with-your-puppy" },
+      { label: "Pickup & Delivery", href: "/process/pickup-and-delivery" }
+    ]
+  },
+  {
+    label: "Learn",
+    href: "/process/faq",
+    links: [
       { label: "Coat Traits", href: "/puppies/coat-traits" },
       { label: "Doodle Generations", href: "/puppies/doodle-generations" },
-      { label: "FAQ", href: "/process/faq" },
-      { label: "Puppy Pickup and Delivery", href: "/process/pickup-and-delivery" }
+      { label: "FAQ", href: "/process/faq" }
     ]
   },
   {
@@ -3181,7 +3186,7 @@ function BuyerPageTemplate({ eyebrow, title, copy, actions, image, children, cta
   );
 }
 
-function ProcessPageTemplate({ eyebrow = "Process", title, copy, stats = [], children, cta }) {
+function ProcessPageTemplate({ eyebrow = "Getting Your Puppy", title, copy, stats = [], children, cta }) {
   return (
     <Layout>
       <PageHero eyebrow={eyebrow} title={title} copy={copy} className="compact-page-hero" />
@@ -3557,6 +3562,12 @@ const processOverviewStats = [
   { value: "$500", label: "deposit applies toward final puppy price" },
   { value: "3", label: "separate breed waitlists" },
   { value: "7-8", label: "weeks old at go-home" }
+];
+
+const waitlistOverviewStats = [
+  { value: "$500", label: "non-refundable deposit applied toward your puppy" },
+  { value: "3", label: "separate breed waitlists" },
+  { value: "Pick or pass", label: "keep your place for a future litter" }
 ];
 
 const pricingStats = [
@@ -4648,17 +4659,13 @@ function BreedParentDirectoryPage({ breedSlug }) {
 }
 
 function ProcessOverviewPage() {
-  const processLinks = primaryNav.find((item) => item.label === "Process").links;
+  const processLinks = primaryNav.find((item) => item.label === "Getting Your Puppy").links;
   const processPathLinks = processLinks.map((link) => {
     const copyByHref = {
       "/process/how-it-works": "Application, deposit, updates, picks, and go-home timing.",
       "/process/pricing": "Deposits, puppy pricing, payment timing, and what is included.",
-      "/process/application-and-waitlist": "Start here when you are ready to talk through fit and timing.",
-      "/process/waitlist": "See the public waitlist view and how breed order works.",
+      "/process/application-and-waitlist": "Understand deposits, breed order, picks, passing, and current positions.",
       "/puppies/what-comes-with-your-puppy": "A clear look at starter guidance, records, and go-home support.",
-      "/puppies/coat-traits": "Blazes, color, markings, coat texture, and puppy trait basics.",
-      "/puppies/doodle-generations": "F1, F1B, F1BB, multigen, and why pairing choices matter.",
-      "/process/faq": "Quick answers for pricing, waitlists, pickup, coats, and timing.",
       "/process/pickup-and-delivery": "Pickup day, ride-home guidance, and travel coordination."
     };
 
@@ -4670,21 +4677,22 @@ function ProcessOverviewPage() {
 
   return (
     <ProcessPageTemplate
-      title="How the Red Ranch Dogs process fits together"
-      copy="Pricing, applications, waitlist details, FAQs, pickup, and delivery guidance are organized in one clear place."
+      eyebrow="Getting Your Puppy"
+      title="From application to go-home day"
+      copy="Follow the five parts of the Red Ranch Dogs puppy journey, with the details you need at each step."
       stats={processOverviewStats}
     >
       <section className="content-section page-hub-path-section process-overview-path-section">
         <SectionHeader
-          eyebrow="Choose Your Step"
-          title="What do you want to understand?"
-          copy="Use these quick paths to jump into the part of the process you are looking for."
+          eyebrow="Your Puppy Journey"
+          title="Start where you are"
+          copy="Each guide gives you the essentials and points clearly to what comes next."
         />
         <OverviewPathGrid links={processPathLinks} />
       </section>
       <CTASection
         title="Ready to take the next step?"
-        copy="Apply now and we will help you understand the right breed waitlist, current timing, and whether a current or future litter fits your family."
+        copy="The application goes directly to our team so we can help with breed fit, availability, and timing."
         primaryHref="/apply"
         primaryLabel="Apply for a Puppy"
         secondaryHref="/puppies/current-litters"
@@ -4699,7 +4707,7 @@ function PickupDeliveryPage() {
   return (
     <ProcessPageTemplate
       title="Puppy Pickup and Delivery"
-      copy="Go-home day, local pickup, travel coordination, and delivery options are organized clearly for each litter."
+      copy="Plan go-home day, local pickup, and any travel coordination after your puppy is matched."
       stats={pickupDeliveryStats}
     >
       <CompactTextCardGrid items={pickupDeliveryCards} />
@@ -4707,6 +4715,14 @@ function PickupDeliveryPage() {
         <SectionHeader eyebrow="Pickup Day" title="Go-home basics" copy="The exact appointment details are confirmed by litter, but families can expect these same practical pickup reminders." />
         <CompactTextCardGrid columns="four" className="go-home-guidance-grid" items={goHomeDayGuidanceCards} />
       </section>
+      <CTASection
+        title="Ready to start the puppy journey?"
+        copy="Apply now and we will help you understand breed fit, timing, and availability."
+        primaryHref="/apply"
+        primaryLabel="Apply for a Puppy"
+        secondaryHref="/process/how-it-works"
+        secondaryLabel="Review How It Works"
+      />
     </ProcessPageTemplate>
   );
 }
@@ -5685,11 +5701,12 @@ function PricingPage() {
       copy="Clear pricing helps families understand what affects cost, what is included, and when payments are due."
       stats={pricingStats}
       cta={{
-        title: "Ready to talk through pricing and availability?",
-        copy: "Apply now and we will help you understand current puppies, upcoming litters, and the right fit for your family.",
-        primaryLabel: "Apply for a Puppy",
-        secondaryHref: "/puppies/current-litters",
-        secondaryLabel: "View Current Litters"
+        title: "Next: understand the waitlist",
+        copy: "See how the deposit, breed order, puppy picks, and passing work before you apply.",
+        primaryHref: "/process/application-and-waitlist",
+        primaryLabel: "How the Waitlist Works",
+        secondaryHref: "/apply",
+        secondaryLabel: "Apply for a Puppy"
       }}
     >
       <PricingSection items={pricingProfiles.length ? pricingProfiles : priceGroups} />
@@ -5980,12 +5997,12 @@ function WhatsIncludedPage() {
       <PageHero eyebrow="Puppy Care" title="What Comes With Your Puppy?" copy="Every puppy is prepared for home with health care, early socialization, confidence-building, and transition support." />
       <ChecklistCardGrid items={puppyIncludedSections} />
       <CTASection
-        title="Ready to understand the full puppy process?"
-        copy="Start with the application or browse current litters when you are comparing timing, breed fit, and availability."
-        primaryHref="/apply"
-        primaryLabel="Apply for a Puppy"
-        secondaryHref="/process/faq"
-        secondaryLabel="Puppy FAQ"
+        title="Next: plan go-home day"
+        copy="See how pickup, travel coordination, records, and ride-home details are handled."
+        primaryHref="/process/pickup-and-delivery"
+        primaryLabel="Pickup & Delivery"
+        secondaryHref="/apply"
+        secondaryLabel="Apply for a Puppy"
       />
     </Layout>
   );
@@ -6104,19 +6121,22 @@ function ApplicationProcessPage() {
   return (
     <ProcessPageTemplate
       eyebrow={brand.location}
-      title="Puppy Application Process"
-      copy="From application to go-home day."
+      title="How It Works"
+      copy="Five clear steps from your first application to bringing your puppy home."
       stats={processOverviewStats}
     >
       <section className="content-section process-compact-section">
         <SectionHeader eyebrow="How It Works" title="The path families follow" />
         <ProcessStepCards steps={steps} />
       </section>
-      <section className="content-section narrow process-note-panel">
-        <h2>Ready to apply?</h2>
-        <p>Questions are always welcome. Call or text {brand.phone} or email {brand.email}.</p>
-        <Link href="/apply" className="button primary">Start Application</Link>
-      </section>
+      <CTASection
+        title="Ready for the first step?"
+        copy="Go directly to the puppy application, or review pricing before you begin."
+        primaryHref="/apply"
+        primaryLabel="Start Application"
+        secondaryHref="/process/pricing"
+        secondaryLabel="Review Pricing"
+      />
     </ProcessPageTemplate>
   );
 }
@@ -6263,22 +6283,22 @@ function WaitlistPage() {
 function JoinWaitlistPage() {
   return (
     <ProcessPageTemplate
-      eyebrow="Application & Waitlist"
-      title="Application and Waitlist"
-      copy="How applications, deposits, puppy picks, and go-home timing work."
-      stats={processOverviewStats}
+      eyebrow="Getting Your Puppy"
+      title="How the Waitlist Works"
+      copy="Understand the deposit, breed order, updates, puppy picks, and your option to pass."
+      stats={waitlistOverviewStats}
     >
       <section className="content-section process-compact-section">
         <SectionHeader eyebrow="Simple Overview" title="Your place on the list" />
-        <ProcessStepCards steps={waitlistProcessSteps} />
+        <ProcessStepCards steps={waitlistProcessSteps.slice(1, 5)} />
       </section>
       <CTASection
-        title="Ready to join a waitlist?"
-        copy="Start with the puppy application so we can understand breed fit and timing."
+        title="New family or already waiting?"
+        copy="New families can apply directly. Existing families can open the live public positions without repeating the application."
         primaryHref="/apply"
         primaryLabel="Start Puppy Application"
         secondaryHref="/process/waitlist"
-        secondaryLabel="View Current Waitlist"
+        secondaryLabel="View Current Positions"
       />
       <section className="content-section narrow process-faq-preview">
         <SectionHeader eyebrow="FAQ Preview" title="Common questions" />
@@ -7962,9 +7982,9 @@ const categories = {
     links: navGroups.find((group) => group.label === "Parents").links
   },
   "/application-1": {
-    title: "Process",
-    copy: "Start an application, review the waitlist process, check pricing, or read the FAQ.",
-    links: navGroups.find((group) => group.label === "Process").links
+    title: "Getting Your Puppy",
+    copy: "Review how it works, pricing, the waitlist, what comes home, pickup, and delivery.",
+    links: navGroups.find((group) => group.label === "Getting Your Puppy").links
   },
   "/studservices": {
     title: "Stud Services",

@@ -87,7 +87,13 @@ async function auditRoute(page, route) {
   const puppiesTrigger = page.locator(".mobile-menu-trigger", { hasText: "Puppies" });
   await puppiesTrigger.click();
   const submenuText = await page.locator("#mobile-nav-puppies").innerText();
-  const currentLittersLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Current Litters" }).isVisible();
+  const puppyFinderLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Find Your Puppy" }).isVisible();
+  const puppyJourneyTrigger = page.locator(".mobile-menu-trigger", { hasText: "Getting Your Puppy" });
+  await puppyJourneyTrigger.click();
+  const puppyJourneyLinks = await page.locator("#mobile-nav-getting-your-puppy a").allTextContents();
+  const learnTrigger = page.locator(".mobile-menu-trigger", { hasText: "Learn" });
+  await learnTrigger.click();
+  const learnLinks = await page.locator("#mobile-nav-learn a").allTextContents();
   await page.locator(".premium-menu-button").click();
   const isClosed = await page.locator(".premium-menu-button").getAttribute("aria-expanded");
 
@@ -100,8 +106,14 @@ async function auditRoute(page, route) {
   }
   if (isExpanded !== "true") blockers.push("Menu button did not report aria-expanded=true after tap.");
   if (!menuVisible) blockers.push("Mobile menu did not become visible after tap.");
-  if (!currentLittersLinkVisible || !submenuText.includes("Available Puppies")) {
+  if (!puppyFinderLinkVisible || !submenuText.includes("Previous Litters")) {
     blockers.push("Puppies submenu did not expose expected buyer links.");
+  }
+  if (puppyJourneyLinks.join("|") !== "How It Works|Pricing|Waitlist|What Comes With Your Puppy|Pickup & Delivery") {
+    blockers.push(`Getting Your Puppy submenu changed unexpectedly: ${puppyJourneyLinks.join(" | ") || "missing"}.`);
+  }
+  if (learnLinks.join("|") !== "Coat Traits|Doodle Generations|FAQ") {
+    blockers.push(`Learn submenu changed unexpectedly: ${learnLinks.join(" | ") || "missing"}.`);
   }
   if (isClosed !== "false") warnings.push("Menu button did not return aria-expanded=false after close tap.");
   if (pageErrors.length) blockers.push(`Page errors: ${pageErrors.slice(0, 3).join("; ")}`);

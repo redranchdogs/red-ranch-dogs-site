@@ -61,18 +61,23 @@ export const navGroups = [
     ]
   },
   {
-    label: "Process",
+    label: "Getting Your Puppy",
     href: "/process",
     links: [
       { label: "How It Works", href: "/process/how-it-works" },
       { label: "Pricing", href: "/process/pricing" },
-      { label: "Application and Waitlist", href: "/process/application-and-waitlist" },
-      { label: "Public Waitlist", href: "/process/waitlist" },
+      { label: "Waitlist", href: "/process/application-and-waitlist" },
       { label: "What Comes With Your Puppy", href: "/puppies/what-comes-with-your-puppy" },
+      { label: "Pickup & Delivery", href: "/process/pickup-and-delivery" }
+    ]
+  },
+  {
+    label: "Learn",
+    href: "/process/faq",
+    links: [
       { label: "Coat Traits", href: "/puppies/coat-traits" },
       { label: "Doodle Generations", href: "/puppies/doodle-generations" },
-      { label: "FAQ", href: "/process/faq" },
-      { label: "Puppy Pickup and Delivery", href: "/process/pickup-and-delivery" }
+      { label: "FAQ", href: "/process/faq" }
     ]
   },
   {
