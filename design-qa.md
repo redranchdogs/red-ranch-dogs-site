@@ -254,7 +254,7 @@ No actionable P0, P1, or P2 differences remain in the local preview.
 | --- | --- | --- |
 | Litter continuity | Passed | The Beatrix + Enzo action carries its public slug to Apply. The application visibly names the litter, preselects Goldendoodle, and fills the editable specific-interest field. |
 | General entry | Passed | `/apply` shows no invented litter or breed and tells families that a specific litter is not required. |
-| Supported payload | Passed | Litter name and the optional openness choice use the existing `specificInterest` field. No API, sheet, CRM, or database schema changed. |
+| Supported payload | Passed | Litter name and the optional openness choice use the existing `specificInterest` field. Openness starts unspecified and is included only when the family selects it. No API, sheet, CRM, or database schema changed. |
 | Form structure | Passed | The same questions now appear as Contact Info, Puppy Interest, Fit and Logistics, and Review and Send. Optional fields are visibly marked. Required contact, breed, agreement, and signature fields remain. |
 | Mobile density | Passed | General application height at 390 pixels fell from 4573 to 3563 pixels. The hierarchy remains readable at 320 and 390 pixels. |
 | Failure state | Passed | A controlled 503 response shows an alert, preserves entered values and litter context, keeps retry enabled, and never shows confirmation. |
