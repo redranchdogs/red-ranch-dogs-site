@@ -93,6 +93,16 @@ function scheduleRouteScroll(hash, behavior = "auto") {
   });
 }
 
+function scrollToRoutePosition(top = 0) {
+  window.scrollTo({ top: Math.max(0, Number(top) || 0), left: 0, behavior: "auto" });
+}
+
+function scheduleRoutePosition(top = 0) {
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => scrollToRoutePosition(top));
+  });
+}
+
 function compactPath(path = "") {
   if (!path) return "/";
   return path.replace(/\/$/, "") || "/";
@@ -170,10 +180,9 @@ function trackNavigationIntent(href) {
 
 function goTo(href) {
   const hash = href.includes("#") ? href.split("#")[1] : "";
-  if (!hash) {
-    scrollToRouteTarget("", "auto");
-  }
-  window.history.pushState({}, "", href);
+  const currentState = window.history.state || {};
+  window.history.replaceState({ ...currentState, scrollY: window.scrollY }, "", window.location.href);
+  window.history.pushState({ scrollY: 0 }, "", href);
   window.dispatchEvent(new PopStateEvent("popstate"));
   scheduleRouteScroll(hash, hash ? "smooth" : "auto");
 }
@@ -3488,7 +3497,7 @@ const litterBrowserParentFocalPoints = {
   "wyatt-earp": "50% 38%"
 };
 const availableEmptyPuppyFocalPoints = {
-  ridge: "50% 25%"
+  ridge: "50% 30%"
 };
 const puppiesForLitter = (litter) => puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
 const statusMatches = (puppy, status) => normalizedStatus(puppy?.status) === normalizedStatus(status);
@@ -3525,11 +3534,11 @@ const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter
   const waitlistCount = litterPuppies.filter(isWaitlistMatchingPuppy).length;
   const reservedCount = litterPuppies.filter(isReservedPuppy).length;
 
+  if (isPreviousLitter(litter)) return "Previous litter";
   if (availableCount) return `${availableCount} available`;
   if (waitlistCount) return "Waitlist matching";
   if (litterPuppies.length && reservedCount === litterPuppies.length) return "Reserved";
   if (litter?.pregnancyConfirmed && isPlannedLitter(litter)) return "Pregnancy confirmed";
-  if (isPreviousLitter(litter)) return "Previous litter";
   if (!isCurrentLitter(litter)) return "Planning";
   if (litterPuppies.length) return `${litterPuppies.length} puppy profiles`;
   return "Updates soon";
@@ -4089,7 +4098,6 @@ function PuppyDetailPage({ puppy }) {
 
 function LitterPage({ litter }) {
   const puppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
-  const parents = parentProfiles.filter((parent) => parent.slug === litter.mamaSlug || parent.slug === litter.studSlug);
   const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const availablePuppies = puppies.filter(isAvailablePuppy);
@@ -4101,8 +4109,6 @@ function LitterPage({ litter }) {
   const hasParentPairing = mama?.mainPhoto && stud?.mainPhoto;
   const hasAboutSection = litter.aboutThisLitter?.length || litter.geneticMakeup?.length || litter.aboutHighlights?.length;
   const aboutParagraphs = litter.aboutThisLitter || [];
-  const visibleAboutParagraphs = aboutParagraphs.slice(0, 2);
-  const extraAboutParagraphs = aboutParagraphs.slice(2);
   const currentWeek =
     puppies.flatMap((puppy) => puppy.weeklyPhotos?.map((update) => update.week) || [])[0] ||
     litter.weeklyUpdateStatus?.match(/Week\s+\d+/i)?.[0];
@@ -4115,49 +4121,57 @@ function LitterPage({ litter }) {
   const waitlistName = breedProgram?.name || "breed";
   const isLongLitterName = litter.name.length > 18;
   const isLitterWaitlistFull = /waitlist is full/i.test(litter.availabilityNote || "");
-  const litterHeroCopy = litter.theme
-    ? `Our "${litter.theme}" Litter of ${pluralizeLitterBreed(litter.breed)}.`
-    : litter.availabilitySummary;
+  const litterDescriptor = litter.displayDescriptor || pluralizeLitterBreed(litter.breed);
+  const litterStatusLabel = litter.pregnancyConfirmed ? "Pregnancy confirmed" : statusLabel;
+  const birthIsEstimated = isPlannedLitter(litter) || /^estimated\b/i.test(litter.birthDate || "");
+  const goHomeIsEstimated = isPlannedLitter(litter) || /^estimated\b/i.test(litter.goHomeDate || "");
+  const birthLabel = birthIsEstimated ? "Estimated Birth" : "Birth Date";
+  const goHomeLabel = goHomeIsEstimated ? "Estimated Go-Home" : "Go-Home";
+  const displayBirthDate = (litter.birthDate || "Timing to be announced").replace(/^(Estimated|Expected)\s+/i, "");
+  const displayGoHomeDate = (litter.goHomeDate || "Timing to be announced").replace(/^(Estimated|Expected)\s+/i, "");
+  const displaySize = (litter.expectedSize || "Size estimate to be announced").replace(/\s+full[- ]grown$/i, "");
+  const detailBackHref = isPlannedLitter(litter)
+    ? litterBrowserHref("upcoming", litter.breedSlug)
+    : isCurrentLitter(litter)
+      ? litterBrowserHref("current", litter.breedSlug)
+      : "/puppies/previous-litters";
+  const detailBackLabel = isPlannedLitter(litter) ? "Upcoming litters" : isCurrentLitter(litter) ? "Current litters" : "Previous litters";
+  const aboutPreview = litter.litterNumber
+    ? `${litter.litterNumber} of ${litter.mama} and ${litter.stud}.`
+    : litter.aboutTitle || litter.availabilitySummary || `Pairing details for ${litter.name}.`;
   const litterCta = availablePuppies.length
     ? {
-        title: "Interested in an available puppy?",
         copy: "Apply now or ask about availability, timing, and whether this puppy is the right fit for your family.",
         primaryLabel: "Apply for a Puppy"
       }
       : waitlistMatchingPuppies.length
       ? {
-          title: "Want a future litter like this?",
           copy: "Puppies not marked Available are not open to reserve publicly. Apply and we will help you understand future timing for this breed.",
           primaryLabel: "Apply for a Future Litter"
         }
       : isPlannedLitter(litter) && isLitterWaitlistFull
         ? {
-            title: "This litter's waitlist is full",
             copy: `Apply for the ${waitlistName} waitlist to hear about future options and similar pairings.`,
             primaryLabel: "Apply for a Future Litter"
           }
       : isPlannedLitter(litter)
         ? {
-            title: litter.pregnancyConfirmed ? "Interested in this confirmed litter?" : "Want updates on this planned litter?",
             copy: litter.pregnancyConfirmed
-              ? "Join the waitlist for timing and availability updates as this litter progresses."
+              ? "Picking opportunities depend on availability."
               : "Join the waitlist and we will share timing, pregnancy confirmation, and availability updates as this pairing progresses.",
             primaryLabel: "Join the Waitlist"
           }
       : isCurrentLitter(litter) && puppies.length === 0
         ? {
-            title: "Want updates on this litter?",
             copy: "Puppy profiles are being prepared. Apply for the waitlist or ask about current timing and future availability.",
             primaryLabel: "Join the Waitlist"
-        }
+          }
       : isFullyReservedLitter
         ? {
-            title: "Want a future litter like this?",
             copy: `${litter.name} is fully reserved. Apply for the ${waitlistName} waitlist and we will help you understand future timing, similar pairings, and the best next step for your family.`,
             primaryLabel: "Apply for a Future Litter"
-        }
+          }
       : {
-          title: "Want updates on future litters?",
           copy: "This litter is currently reserved, but you can apply for a future pairing or ask about upcoming availability.",
           primaryLabel: "Apply for a Puppy"
         };
@@ -4178,83 +4192,68 @@ function LitterPage({ litter }) {
         copy: "Pickup timing, final records, ride-home tips, and puppy prep details are shared directly before go-home day.",
         items: []
       };
+  const primaryAction = (
+    <section className="content-section litter-primary-cta-section">
+      <Link href="/apply" className="button primary">{litterCta.primaryLabel}</Link>
+      <p>{litterCta.copy}</p>
+      <Link href="/contact" className="litter-question-link">Ask a question</Link>
+    </section>
+  );
 
   return (
     <Layout>
-      <PageHero
-        eyebrow={litter.status || "Litter"}
-        title={litter.name}
-        copy={litterHeroCopy}
-        className={`litter-page-hero ${isLongLitterName ? "litter-page-hero-long" : ""}`.trim()}
-      />
-      <section className="litter-detail-shell">
-        <article className="litter-pairing-card group-panel">
+      <section className={`litter-detail-hero ${isLongLitterName ? "litter-detail-hero-long" : ""}`.trim()}>
+        <Link className="litter-detail-back" href={detailBackHref}>
+          <ChevronLeft aria-hidden="true" size={22} /> {detailBackLabel}
+        </Link>
+        <div className="litter-detail-title-block">
+          <h1>{litter.name}</h1>
+          <p>{litterDescriptor}</p>
+          <span className="status-badge litter-detail-status">{litterStatusLabel}</span>
+        </div>
+      </section>
+      <section className="litter-detail-overview">
+        <dl className="litter-primary-facts">
+          <div className="litter-primary-fact litter-primary-fact-emphasis"><dt>Price</dt><dd>{litter.priceRange}</dd></div>
+          <div className="litter-primary-fact litter-primary-fact-emphasis"><dt>Expected Adult Size</dt><dd>{displaySize}</dd></div>
+          <div className="litter-primary-fact"><dt>{birthLabel}</dt><dd>{displayBirthDate}</dd></div>
+          <div className="litter-primary-fact"><dt>{goHomeLabel}</dt><dd>{displayGoHomeDate}</dd></div>
+        </dl>
+        <article className="litter-pairing-card">
           {hasParentPairing ? (
-            <figure className="pairing-photo-grid large litter-pairing-media" aria-label={`${litter.name} parent pairing`}>
-              <div>
-                <img src={mama.mainPhoto} alt={`${mama.name} - mama for ${litter.name}`} loading="lazy" />
-                <figcaption>{mama.name}</figcaption>
-              </div>
-              <div>
-                <img src={stud.mainPhoto} alt={`${stud.name} - stud for ${litter.name}`} loading="lazy" />
-                <figcaption>{stud.name}</figcaption>
-              </div>
+            <figure className="litter-parent-portraits" aria-label={`${litter.name} parent pairing`}>
+              <Link href={`/parents/${mama.slug}`} className="litter-parent-portrait-link" aria-label={`View ${mama.name}, mama profile`}>
+                <img src={mama.mainPhoto} alt={`${mama.name} - mama for ${litter.name}`} loading="eager" />
+                <figcaption><strong>{mama.name}</strong><span>· Mama</span></figcaption>
+              </Link>
+              <Link href={`/parents/${stud.slug}`} className="litter-parent-portrait-link" aria-label={`View ${stud.name}, sire profile`}>
+                <img src={stud.mainPhoto} alt={`${stud.name} - sire for ${litter.name}`} loading="eager" />
+                <figcaption><strong>{stud.name}</strong><span>· Sire</span></figcaption>
+              </Link>
             </figure>
           ) : fallbackLitterImage ? (
-            <img className="litter-feature-photo" src={fallbackLitterImage} alt={`${litter.name} parent pairing`} loading="lazy" />
+            <img className="litter-feature-photo" src={fallbackLitterImage} alt={`${litter.name} parent pairing`} loading="eager" />
           ) : (
             <ImagePlaceholder label="Litter pairing photo" tall />
           )}
         </article>
-        <aside className="litter-summary-panel group-panel">
-          <div className="litter-summary-heading">
-            <p className="eyebrow">Litter Snapshot</p>
-            <span className="status-badge">{statusLabel}</span>
-          </div>
-          <div className="litter-summary-intro">
-            <h2>
-              <span>{litter.name}</span>
-              <span>at a glance</span>
-            </h2>
-          </div>
-          <dl className="details litter-facts">
-            <div><dt>Mama</dt><dd>{litter.mama}</dd></div>
-            <div><dt>Stud</dt><dd>{litter.stud}</dd></div>
-            <div><dt>{isPlannedLitter(litter) ? "Expected Birth" : "Birth date"}</dt><dd>{litter.birthDate}</dd></div>
-            <div><dt>{isPlannedLitter(litter) ? "Estimated Go Home" : "Go-home"}</dt><dd>{litter.goHomeDate}</dd></div>
-            <div><dt>Expected size</dt><dd>{litter.expectedSize}</dd></div>
-            <div><dt>Price</dt><dd>{litter.priceRange}</dd></div>
-          </dl>
-          {pastLitterHref && (
-            <div className="actions litter-summary-actions">
-              <Link href={pastLitterHref} className="button secondary">{pastLitterLabel}</Link>
-            </div>
-          )}
-        </aside>
       </section>
       {hasAboutSection && (
         <section className="content-section litter-about-section">
           <details className="group-panel litter-about-disclosure">
             <summary>
               <span>
-                <span className="eyebrow">About This Litter</span>
-                <strong>Pairing Details</strong>
+                <strong>About This Litter</strong>
+                <span className="litter-about-preview">{aboutPreview}</span>
               </span>
-              <span className="litter-about-toggle-label">View Details</span>
+              <span className="litter-about-toggle-label" aria-hidden="true"><ChevronDown size={24} /></span>
             </summary>
             <div className="litter-about-panel">
               <div className="litter-about-copy">
                 <h2>{litter.aboutTitle || `${litter.name} details`}</h2>
-                {visibleAboutParagraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-                {extraAboutParagraphs.length > 0 && (
-                  <details className="litter-more-details">
-                    <summary>More about this pairing</summary>
-                    {extraAboutParagraphs.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
-                  </details>
+                {aboutParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {pastLitterHref && (
+                  <Link href={pastLitterHref} className="button secondary litter-past-litter-link">{pastLitterLabel}</Link>
                 )}
                 {pastPuppyGalleryHref && (
                   <div className="litter-past-puppy-prompt">
@@ -4292,6 +4291,7 @@ function LitterPage({ litter }) {
           </details>
         </section>
       )}
+      {isPlannedLitter(litter) && primaryAction}
       {!isPlannedLitter(litter) && (
         <>
           <section className="card-list litter-puppy-list">
@@ -4311,10 +4311,6 @@ function LitterPage({ litter }) {
           <YouTubeFacade title={`${litter.name} video playlist`} url={litter.videoPlaylistUrl} image={fallbackLitterImage} />
         </section>
       )}
-      <section className="tile-grid three litter-parent-grid">
-        <SectionHeader eyebrow="Parents" title={`${litter.mama} + ${litter.stud}`} copy="Meet the parent dogs behind this pairing." />
-        {parents.map((parent) => <ParentCard parent={parent} key={parent.slug} />)}
-      </section>
       {isCurrentLitter(litter) && (
         <section className="content-section narrow litter-go-home-note-section">
           <article className={`note-panel litter-go-home-note${isFullyReservedLitter ? " reserved-litter-go-home-note" : ""}`}>
@@ -4332,7 +4328,7 @@ function LitterPage({ litter }) {
           </article>
         </section>
       )}
-      <CTASection title={litterCta.title} copy={litterCta.copy} primaryLabel={litterCta.primaryLabel} secondaryHref="/contact" secondaryLabel="Ask a Question" />
+      {!isPlannedLitter(litter) && primaryAction}
       <StickyMobileCta
         primaryHref="/apply"
         primaryLabel={availablePuppies.length ? "Apply" : "Join Waitlist"}
@@ -4342,7 +4338,6 @@ function LitterPage({ litter }) {
     </Layout>
   );
 }
-
 function PastPuppyGalleryPage({ litter }) {
   const gallery = litter.pastPuppyGallery;
   const currentLitterHref = `/litters/${litter.slug}`;
@@ -8025,10 +8020,16 @@ export default function App() {
   useLayoutEffect(() => {
     if (clientRedirects[path]) return undefined;
     const hash = hashNow();
-    scheduleRouteScroll(hash, hash ? "smooth" : "auto");
-    const routeScrollTimers = [150, 500].map((delay) =>
-      window.setTimeout(() => scrollToRouteTarget(hash, "auto"), delay)
-    );
+    const savedScrollY = Number(window.history.state?.scrollY) || 0;
+    if (hash) {
+      scheduleRouteScroll(hash, "smooth");
+    } else {
+      scheduleRoutePosition(savedScrollY);
+    }
+    const routeScrollTimers = [150, 500].map((delay) => window.setTimeout(() => {
+      if (hash) scrollToRouteTarget(hash, "auto");
+      else scrollToRoutePosition(savedScrollY);
+    }, delay));
     return () => {
       routeScrollTimers.forEach((timer) => window.clearTimeout(timer));
     };

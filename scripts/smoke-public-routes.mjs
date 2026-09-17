@@ -151,10 +151,23 @@ const routeExpectations = [
     finderNavCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" }
   },
   {
+    route: "/litters/beatrix-enzo-planned-2026",
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "pregnancy confirmed", "$2,800", "25-35 lbs", "estimated birth", "estimated go-home", "about this litter", "join the waitlist"],
+    forbiddenText: ["at a glance", "great news: beatrix is confirmed pregnant"],
+    requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
+    litterDetailCheck: { expectedStatus: "Pregnancy confirmed", expectedPuppies: 0, testParentBack: true }
+  },
+  {
     route: "/litters/winnie-wyatt-spring-2026",
     requiredText: ["winnie + wyatt", "previous litter", "september 7, 2026"],
-    requiredSelectors: [".litter-page-hero", ".litter-summary-panel"],
-    litterStatusCheck: { hero: "Previous Litter", summary: "Previous litter" }
+    requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0 }
+  },
+  {
+    route: "/litters/georgia-waylon-may-2026",
+    requiredText: ["georgia + waylon", "previous litter", "birth date", "go-home", "puppies from this litter"],
+    requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-puppy-list", ".litter-puppy-card"],
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 5 }
   },
   ...litters
     .filter((litter) => litter.pastPuppyGallery?.images?.length)
@@ -496,7 +509,7 @@ async function auditRoute(context, config, viewportName) {
 
       if (previewResults.length !== 2) failures.push(`Expected two preview figures, found ${previewResults.length}.`);
       if (previewResults[0]?.caption) failures.push("Current Litters illustration should not show a historical puppy caption.");
-      if (previewResults[0]?.imagePositions?.[0] !== "50% 25%") failures.push(`Unexpected Current Litters puppy focal point: ${previewResults[0]?.imagePositions?.[0] || "missing"}.`);
+      if (previewResults[0]?.imagePositions?.[0] !== "50% 30%") failures.push(`Unexpected Current Litters puppy focal point: ${previewResults[0]?.imagePositions?.[0] || "missing"}.`);
       if (previewResults[1]?.caption !== "Beatrix + Enzo") failures.push(`Unexpected upcoming pairing caption: ${previewResults[1]?.caption || "missing"}.`);
 
       for (const result of previewResults) {
@@ -509,11 +522,48 @@ async function auditRoute(context, config, viewportName) {
       }
     }
 
-    if (config.litterStatusCheck) {
-      const heroStatus = (await page.locator(".litter-page-hero .eyebrow").textContent())?.trim();
-      const summaryStatus = (await page.locator(".litter-summary-heading .status-badge").textContent())?.trim();
-      if (heroStatus !== config.litterStatusCheck.hero) failures.push(`Unexpected litter hero status: ${heroStatus || "missing"}.`);
-      if (summaryStatus !== config.litterStatusCheck.summary) failures.push(`Unexpected litter summary status: ${summaryStatus || "missing"}.`);
+    if (config.litterDetailCheck) {
+      const detailStatus = (await page.locator(".litter-detail-status").textContent())?.trim();
+      if (detailStatus !== config.litterDetailCheck.expectedStatus) failures.push(`Unexpected litter detail status: ${detailStatus || "missing"}.`);
+
+      const puppyCards = await page.locator(".litter-puppy-card").count();
+      if (puppyCards !== config.litterDetailCheck.expectedPuppies) failures.push(`Expected ${config.litterDetailCheck.expectedPuppies} litter puppy cards, found ${puppyCards}.`);
+
+      const portraitChecks = await page.locator(".litter-parent-portrait-link").evaluateAll((links) => links.map((link) => {
+        const image = link.querySelector("img");
+        return {
+          href: link.getAttribute("href") || "",
+          imageLoaded: Boolean(image?.complete && image?.naturalWidth > 0),
+          objectFit: image ? window.getComputedStyle(image).objectFit : "missing"
+        };
+      }));
+      if (portraitChecks.length !== 2) failures.push(`Expected two linked parent portraits, found ${portraitChecks.length}.`);
+      for (const portrait of portraitChecks) {
+        if (!portrait.href.startsWith("/parents/")) failures.push(`Unexpected parent portrait link: ${portrait.href || "missing"}.`);
+        if (!portrait.imageLoaded) failures.push(`Parent portrait did not load for ${portrait.href || "unknown parent"}.`);
+        if (portrait.objectFit !== "contain") failures.push(`Parent portrait should preserve the full original image for ${portrait.href || "unknown parent"}.`);
+      }
+
+      const disclosure = page.locator(".litter-about-disclosure");
+      if (await disclosure.count()) {
+        await disclosure.locator("summary").click();
+        if (!(await disclosure.getAttribute("open")) && !(await disclosure.evaluate((element) => element.open))) failures.push("About this litter accordion did not open.");
+      }
+
+      if (config.litterDetailCheck.testParentBack) {
+        const originalUrl = page.url();
+        const firstParent = page.locator(".litter-parent-portrait-link").first();
+        await firstParent.scrollIntoViewIfNeeded();
+        const savedScrollY = await page.evaluate(() => window.scrollY);
+        await firstParent.click();
+        await page.waitForURL(/\/parents\//);
+        await page.waitForTimeout(650);
+        await page.goBack();
+        await page.waitForURL(originalUrl);
+        await page.waitForTimeout(650);
+        const restoredScrollY = await page.evaluate(() => window.scrollY);
+        if (Math.abs(restoredScrollY - savedScrollY) > 8) failures.push(`Browser Back did not restore litter scroll position: expected ${Math.round(savedScrollY)}px, got ${Math.round(restoredScrollY)}px.`);
+      }
     }
 
     const health = await pageHealth(page);

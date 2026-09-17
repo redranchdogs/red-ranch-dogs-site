@@ -12466,3 +12466,351 @@ summary {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
+
+/* Shared editorial litter-detail template. */
+.litter-detail-hero,
+.litter-detail-overview {
+  width: min(940px, calc(100% - 36px));
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.litter-detail-hero {
+  padding: clamp(24px, 4vw, 48px) 0 22px;
+}
+
+.litter-detail-back {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  color: var(--brand-red);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.litter-detail-back:hover,
+.litter-detail-back:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.litter-detail-title-block {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding-top: clamp(22px, 4vw, 42px);
+  text-align: center;
+}
+
+.litter-detail-title-block h1 {
+  max-width: 100%;
+  margin: 0;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(4rem, 10vw, 7.25rem);
+  font-weight: 500;
+  line-height: 0.86;
+}
+
+.litter-detail-hero-long .litter-detail-title-block h1 {
+  font-size: clamp(3rem, 7.8vw, 5.8rem);
+}
+
+.litter-detail-title-block > p {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.3rem, 3.2vw, 2.15rem);
+  line-height: 1.12;
+}
+
+.litter-detail-status {
+  margin-top: 6px;
+  padding: 10px 20px;
+  border: 1px solid rgba(156, 31, 22, 0.3);
+  background: rgba(156, 31, 22, 0.05);
+  font-size: 0.88rem;
+}
+
+.litter-detail-overview {
+  padding-bottom: 8px;
+}
+
+.litter-primary-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.litter-primary-fact {
+  min-width: 0;
+  padding: 16px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.litter-primary-fact:nth-child(odd) {
+  padding-right: clamp(14px, 3vw, 30px);
+}
+
+.litter-primary-fact:nth-child(even) {
+  padding-left: clamp(14px, 3vw, 30px);
+  border-left: 1px solid var(--line);
+}
+
+.litter-primary-fact dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.litter-primary-fact dd {
+  margin: 7px 0 0;
+  color: var(--ink);
+  font-size: clamp(1.05rem, 2.5vw, 1.5rem);
+  line-height: 1.15;
+}
+
+.litter-primary-fact-emphasis dd {
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(3rem, 7.5vw, 5rem);
+  line-height: 0.9;
+}
+
+.litter-detail-overview .litter-pairing-card {
+  display: block;
+  padding: 18px 0 0;
+  overflow: visible;
+}
+
+.litter-parent-portraits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.litter-parent-portrait-link {
+  display: grid;
+  min-width: 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.litter-parent-portrait-link img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+  object-position: center;
+  background: var(--soft-tan);
+}
+
+.litter-parent-portrait-link figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  padding: 12px 6px 2px;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.litter-parent-portrait-link strong {
+  font-weight: 900;
+}
+
+.litter-parent-portrait-link:hover figcaption strong,
+.litter-parent-portrait-link:focus-visible figcaption strong {
+  color: var(--brand-red);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.litter-about-section,
+.litter-primary-cta-section {
+  width: min(940px, calc(100% - 36px));
+}
+
+.litter-about-disclosure > summary {
+  gap: 18px;
+  padding: 18px 22px;
+}
+
+.litter-about-disclosure > summary > span:first-child {
+  display: grid;
+  gap: 5px;
+}
+
+.litter-about-disclosure > summary strong {
+  font-size: clamp(1.7rem, 3.5vw, 2.45rem);
+}
+
+.litter-about-preview {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.litter-about-toggle-label {
+  display: grid;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  min-height: 0;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--brand-red);
+}
+
+.litter-about-toggle-label svg {
+  transition: transform 180ms ease;
+}
+
+.litter-about-disclosure[open] .litter-about-toggle-label svg {
+  transform: rotate(180deg);
+}
+
+.litter-past-litter-link {
+  width: fit-content;
+}
+
+.litter-primary-cta-section {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  padding-bottom: 42px;
+  text-align: center;
+}
+
+.litter-primary-cta-section .button {
+  width: min(100%, 640px);
+  min-height: 58px;
+}
+
+.litter-primary-cta-section p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.litter-question-link {
+  color: var(--brand-red);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .litter-detail-hero,
+  .litter-detail-overview,
+  .litter-about-section,
+  .litter-primary-cta-section {
+    width: calc(100% - 28px);
+    max-width: calc(100vw - 28px);
+  }
+
+  .litter-detail-hero {
+    padding-top: 20px;
+    padding-bottom: 12px;
+  }
+
+  .litter-detail-title-block {
+    gap: 6px;
+    padding-top: 14px;
+  }
+
+  .litter-detail-title-block h1 {
+    font-size: clamp(3.25rem, 15.5vw, 4.15rem);
+    white-space: normal;
+  }
+
+  .litter-detail-hero-long .litter-detail-title-block h1 {
+    font-size: clamp(2.7rem, 13.5vw, 4rem);
+  }
+
+  .litter-detail-title-block > p {
+    max-width: 19ch;
+    font-size: clamp(1.15rem, 5.3vw, 1.45rem);
+  }
+
+  .litter-detail-status {
+    margin-top: 4px;
+    padding: 8px 14px;
+  }
+
+  .litter-primary-fact {
+    padding-top: 11px;
+    padding-bottom: 12px;
+  }
+
+  .litter-primary-fact dt {
+    font-size: 0.68rem;
+  }
+
+  .litter-primary-fact dd {
+    font-size: clamp(0.9rem, 4vw, 1.05rem);
+    letter-spacing: -0.02em;
+  }
+
+  .litter-primary-fact-emphasis dd {
+    font-size: clamp(2.55rem, 13vw, 3.5rem);
+  }
+
+  .litter-detail-overview .litter-pairing-card {
+    padding: 14px 0 0;
+  }
+
+  .litter-parent-portraits {
+    gap: 6px;
+  }
+
+  .litter-parent-portrait-link figcaption {
+    gap: 4px;
+    padding-top: 10px;
+    font-size: 0.95rem;
+  }
+
+  .litter-about-section {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .litter-about-disclosure > summary {
+    align-items: center;
+    padding: 12px 14px;
+  }
+
+  .litter-about-disclosure > summary strong {
+    max-width: none;
+    font-size: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  .litter-about-preview {
+    font-size: 0.84rem;
+  }
+
+  .litter-about-toggle-label {
+    width: 34px;
+    height: 34px;
+  }
+
+  .litter-primary-cta-section {
+    gap: 6px;
+    padding-top: 0;
+    padding-bottom: 26px;
+  }
+
+  .litter-primary-cta-section p {
+    font-size: 0.86rem;
+  }
+
+  .litter-question-link {
+    font-size: 0.82rem;
+  }
+}
