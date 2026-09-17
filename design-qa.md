@@ -164,3 +164,33 @@ Kylie + Ranger exposed a shared responsive-density issue: the breed descriptor a
 - Production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-fact-fit-2026-09-16/production-kylie-ranger-390.png`
 - Production viewports: 320, 375, 390, 430, and 1440 pixels, all with zero horizontal overflow and no console errors.
 - Website Health: launch-candidate run `35172831209` and main run `35172939440` passed on commit `dffee82eb89cc6f5fd2ac984c28782c864bc51ab`.
+
+## September 17, 2026 Getting Your Puppy preview
+
+Final result: passed
+
+### Source and implementation
+
+- Approved mobile menu direction: `/Users/adamdietlein/.codex/generated_images/01a05e23-7840-7ad2-b872-56105195c3dd/exec-e5f5cedf-4930-4104-b31a-1b79906065e3.png`
+- Local menu capture: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/getting-your-puppy-preview-2026-09-17/02-mobile-menu-viewport.png`
+- Local journey hub: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/getting-your-puppy-preview-2026-09-17/01-getting-your-puppy-hub.png`
+- Local waitlist guide: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/getting-your-puppy-preview-2026-09-17/03-waitlist-guide.png`
+- Local current positions: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/getting-your-puppy-preview-2026-09-17/04-current-positions.png`
+
+The implementation uses the approved grouping within the existing Red Ranch ivory, burgundy, and charcoal system. It keeps the current header, footer, routes, application form, public waitlist binding, analytics, and SEO framework.
+
+### Findings
+
+| Area | Result | Evidence |
+| --- | --- | --- |
+| Mobile navigation | Passed | Getting Your Puppy exposes five links and Learn exposes Coat Traits, Doodle Generations, and FAQ. |
+| Journey hierarchy | Passed | The hub presents five concise destinations in order with one direct Apply action. |
+| Waitlist overlap | Passed | How It Works owns the full application-to-go-home journey. Waitlist focuses on deposit, updates, pick-or-pass, and puppy selection. |
+| Existing families | Passed | The Waitlist guide provides a direct View Current Positions action to the unchanged public waitlist route. |
+| Application | Passed | Apply links still open `/apply` directly with the existing form and no added gate. |
+| URL preservation | Passed | All existing process, application, waitlist, learning, and legacy routes remain registered. |
+| Responsive layout | Passed | All eight reviewed journey routes have zero horizontal overflow at 390 pixels. The desktop header fits at 1440 pixels. |
+| Runtime health | Passed | Reviewed routes return 200 with no browser console or page errors. |
+| Policy and data | Passed | Existing deposit, pricing, pick-or-pass, and go-home facts remain source-backed. No public roster or form data changed. |
+
+No P0, P1, or P2 visual or interaction issues remain in the local preview. Public deployment was not performed.
