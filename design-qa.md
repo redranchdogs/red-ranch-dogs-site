@@ -232,3 +232,39 @@ No actionable P0, P1, or P2 differences remain.
 1. The supplied production captures showed oversized constrained titles, a redundant synopsis, three summary tiles, and repeated card containers before the primary information.
 2. The implementation removed the approved redundant layers and consolidated overlapping waitlist copy into three complete sections.
 3. Responsive review confirmed natural title wrapping, readable section density, preserved downstream content, and no overflow.
+
+## September 17, 2026 Litter to application journey preview
+
+Final result: passed
+
+### Scope and evidence
+
+- General application before and after: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-application-journey-2026-09-17/general-before-after-390.png`
+- Litter to application to confirmed receipt: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-application-journey-2026-09-17/litter-application-confirmation-390.png`
+- Individual captures: before and after files at 320, 390, and 1440 pixels are in the same evidence folder.
+- Test fixture: Beatrix + Enzo planned litter. Submission and failure states use intercepted local API responses only.
+
+The selected direction preserves the existing litter detail, application contract, site navigation, brand, and CRM boundary. A litter action now opens the existing application with verified litter and breed context. General Apply remains context-free. The form keeps every existing field and all required consent, validation, attribution, and payload behavior while grouping the questions into four clearer sections.
+
+### Findings
+
+No actionable P0, P1, or P2 differences remain in the local preview.
+
+| Area | Result | Evidence |
+| --- | --- | --- |
+| Litter continuity | Passed | The Beatrix + Enzo action carries its public slug to Apply. The application visibly names the litter, preselects Goldendoodle, and fills the editable specific-interest field. |
+| General entry | Passed | `/apply` shows no invented litter or breed and tells families that a specific litter is not required. |
+| Supported payload | Passed | Litter name and the optional openness choice use the existing `specificInterest` field. No API, sheet, CRM, or database schema changed. |
+| Form structure | Passed | The same questions now appear as Contact Info, Puppy Interest, Fit and Logistics, and Review and Send. Optional fields are visibly marked. Required contact, breed, agreement, and signature fields remain. |
+| Mobile density | Passed | General application height at 390 pixels fell from 4573 to 3563 pixels. The hierarchy remains readable at 320 and 390 pixels. |
+| Failure state | Passed | A controlled 503 response shows an alert, preserves entered values and litter context, keeps retry enabled, and never shows confirmation. |
+| Loading state | Passed | Submit disables during the intercepted request and displays `Sending...`. |
+| Confirmation | Passed | Confirmation appears only after a successful intercepted response. It says the application was received and explicitly states that an application does not reserve a puppy or create a waitlist position. |
+| Duplicate prevention | Passed | After confirmed receipt, fields and the submit button are replaced by the receipt panel. A repeat Enter action sends no second request. |
+| Accessibility | Passed | Existing wrapped labels, required controls, focus behavior, alert/status semantics, and keyboard submission remain. |
+| Responsive layout | Passed | General, litter-context, and confirmation states have zero horizontal overflow at 320, 390, and 1440 pixels. |
+| External effects | Passed | Tests use local route interception. No application, email, sheet row, CRM record, or analytics request was sent. |
+
+### Release boundary
+
+This is a local preview only. Production deployment still requires Gatekeeper review and Adam's explicit approval.
