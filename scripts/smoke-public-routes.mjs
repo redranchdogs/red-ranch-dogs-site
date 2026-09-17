@@ -426,7 +426,7 @@ async function auditRoute(context, config, viewportName) {
       expectedDetails.filter((phrase) => !includesText(expandedText, phrase)).forEach((phrase) => failures.push(`Missing health guarantee detail: ${phrase}`));
 
       const agreementHref = await disclosure.locator("a").getAttribute("href");
-      const expectedHref = "/docs/red-ranch-dogs-puppy-purchase-agreement-2026-09-17.pdf";
+      const expectedHref = "/agreements/red-ranch-dogs-puppy-purchase-agreement-2026-09-17.pdf";
       if (agreementHref !== expectedHref) failures.push(`Unexpected health guarantee PDF link: ${agreementHref || "missing"}`);
 
       const agreementResponse = await context.request.get(`${baseUrl}${expectedHref}`);

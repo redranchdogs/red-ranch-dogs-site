@@ -914,7 +914,7 @@ export const puppyIncludedSections = [
           "Notify Red Ranch Dogs within seven days of diagnosis and provide veterinary records as they become available.",
           "Previously signed agreements retain their original terms."
         ],
-        href: "/docs/red-ranch-dogs-puppy-purchase-agreement-2026-09-17.pdf"
+        href: "/agreements/red-ranch-dogs-puppy-purchase-agreement-2026-09-17.pdf"
       }
     ]
   },
