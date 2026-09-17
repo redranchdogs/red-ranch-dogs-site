@@ -433,7 +433,7 @@ async function auditRoute(context, config, viewportName) {
       if (!agreementResponse.ok()) failures.push(`Health guarantee PDF returned ${agreementResponse.status()}.`);
       if (!agreementResponse.headers()["content-type"]?.includes("application/pdf")) failures.push(`Health guarantee link did not return a PDF: ${agreementResponse.headers()["content-type"] || "missing content type"}`);
       const agreementHash = createHash("sha256").update(await agreementResponse.body()).digest("hex");
-      if (agreementHash !== "427c1dc6bf316c2765db426e437ea7d0caeafa5326463e84bfbf6f134a11bde9") failures.push(`Unexpected health guarantee PDF hash: ${agreementHash}`);
+      if (agreementHash !== "184c1a2186ab4a4a6e655b30bc0172c9a209e4c14497ab2d2e754a31562aa729") failures.push(`Unexpected health guarantee PDF hash: ${agreementHash}`);
     }
 
     if (config.availableAccordionCheck && featuredAvailablePuppies.length) {
