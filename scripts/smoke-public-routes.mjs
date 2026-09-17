@@ -600,13 +600,16 @@ async function auditRoute(context, config, viewportName) {
         await page.waitForTimeout(650);
         await page.goBack();
         await page.waitForURL(originalUrl);
+        const expectedScrollY = await page.evaluate(() => Number(window.history.state?.scrollY) || 0);
+        if (savedScrollY > 8 && expectedScrollY <= 0) failures.push("Browser Back history did not retain the litter scroll position.");
+        if (Math.abs(expectedScrollY - savedScrollY) > 24) failures.push(`Browser navigation changed the saved litter position unexpectedly: before click ${Math.round(savedScrollY)}px, saved ${Math.round(expectedScrollY)}px.`);
         await page.waitForFunction(
           (expectedScrollY) => Math.abs(window.scrollY - expectedScrollY) <= 8,
-          savedScrollY,
+          expectedScrollY,
           { timeout: 1800 }
         ).catch(() => {});
         const restoredScrollY = await page.evaluate(() => window.scrollY);
-        if (Math.abs(restoredScrollY - savedScrollY) > 8) failures.push(`Browser Back did not restore litter scroll position: expected ${Math.round(savedScrollY)}px, got ${Math.round(restoredScrollY)}px.`);
+        if (Math.abs(restoredScrollY - expectedScrollY) > 8) failures.push(`Browser Back did not restore litter scroll position: expected ${Math.round(expectedScrollY)}px, got ${Math.round(restoredScrollY)}px.`);
       }
     }
 
