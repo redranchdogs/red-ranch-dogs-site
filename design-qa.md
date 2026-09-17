@@ -268,3 +268,33 @@ No actionable P0, P1, or P2 differences remain in the local preview.
 ### Release boundary
 
 This is a local preview only. Production deployment still requires Gatekeeper review and Adam's explicit approval.
+
+## September 17, 2026 Homepage availability CTA and puppy crop
+
+Final result: passed
+
+### Scope and evidence
+
+- Evidence folder: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/homepage-availability-cta-2026-09-17`
+- Production before captures: `before-320.png`, `before-390.png`, and `before-1440.png`
+- Local no-availability captures: `after-empty-320.png`, `after-empty-390.png`, and `after-empty-1440.png`
+- Local available-puppy fixture: `after-available-390.png`
+- Mobile viewport details: `after-empty-320-viewport.png` and `after-empty-390-viewport.png`
+
+The refinement keeps the existing hero image, frame, page order, puppy cards, waitlist explanations, application form, and public data unchanged. It gives the mobile puppy a small amount of additional headroom, makes hero actions easier to read, and derives the hero browse destination from the same featured Available puppy result used by the homepage puppy section.
+
+### Findings
+
+| Area | Result | Evidence |
+| --- | --- | --- |
+| Puppy crop | Passed | Mobile object position moved from 18% to 8%, exposing more of the original photo above the puppy without replacing, shortening, or overlaying the image. Desktop remains at 30%. |
+| Empty availability state | Passed | With the current source state of zero featured Available puppies, the hero action says View Upcoming Litters and opens `/puppies/upcoming-litters`. |
+| Available-puppy state | Passed | A local route-intercept fixture changed one existing public puppy to Available and its litter to featured. The hero changed to View Available Puppies and the same puppy rendered in the homepage ready strip. Source JSON files were not edited. |
+| Shared decision | Passed | `HomePage` computes `featuredAvailablePuppies()` once and passes that result to both the hero action and the ready-puppy section. |
+| Application labels | Passed | Buttons that open `/apply`, including the homepage hero and sticky mobile action, use Apply for a Puppy. Explanatory waitlist copy and links remain. |
+| Mobile actions | Passed | Hero actions are 50 pixels tall and render at 12.48 pixels at 320 width and 13.26 pixels at 390 width. Labels wrap naturally with no clipping. |
+| Responsive layout | Passed | The homepage has zero horizontal overflow at 320, 390, and 1440 pixels. The mobile hero uses the 900-pixel image and desktop uses the 1365-pixel image. |
+| Application regression | Passed | The visible sticky action opens `/apply` and the existing Puppy Application page. No form was submitted. |
+| External effects | Passed | Browser tests blocked analytics and used local data interception. No form, email, sheet row, CRM record, or source-data write was sent. |
+
+No actionable P0, P1, or P2 visual or interaction issues remain in the reviewed homepage states.
