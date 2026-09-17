@@ -158,6 +158,19 @@ const routeExpectations = [
     litterDetailCheck: { expectedStatus: "Pregnancy confirmed", expectedPuppies: 0, testParentBack: true }
   },
   {
+    route: "/litters/kylie-ranger-late-summer-2026",
+    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "pregnancy confirmed", "$4,500", "~25 lbs", "estimated birth", "estimated go-home"],
+    forbiddenText: ["around 25 lbs"],
+    requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
+    litterDetailCheck: {
+      expectedStatus: "Pregnancy confirmed",
+      expectedPuppies: 0,
+      expectedDescriptor: "Multigen Micro Bernedoodles",
+      expectedSize: "~25 lbs",
+      requireSingleLinePrimary: true
+    }
+  },
+  {
     route: "/litters/winnie-wyatt-spring-2026",
     requiredText: ["winnie + wyatt", "previous litter", "september 7, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
@@ -525,6 +538,33 @@ async function auditRoute(context, config, viewportName) {
     if (config.litterDetailCheck) {
       const detailStatus = (await page.locator(".litter-detail-status").textContent())?.trim();
       if (detailStatus !== config.litterDetailCheck.expectedStatus) failures.push(`Unexpected litter detail status: ${detailStatus || "missing"}.`);
+
+      if (config.litterDetailCheck.expectedDescriptor) {
+        const descriptor = (await page.locator(".litter-detail-title-block > p").textContent())?.trim();
+        if (descriptor !== config.litterDetailCheck.expectedDescriptor) failures.push(`Unexpected litter descriptor: ${descriptor || "missing"}.`);
+      }
+
+      if (config.litterDetailCheck.expectedSize) {
+        const size = (await page.locator(".litter-primary-fact-emphasis dd").nth(1).textContent())?.trim();
+        if (size !== config.litterDetailCheck.expectedSize) failures.push(`Unexpected litter size display: ${size || "missing"}.`);
+      }
+
+      if (config.litterDetailCheck.requireSingleLinePrimary && viewportName === "mobile") {
+        const lineChecks = await page.locator(".litter-detail-title-block > p, .litter-primary-fact-emphasis dd").evaluateAll((elements) => elements.map((element) => {
+          const style = window.getComputedStyle(element);
+          const lineHeight = Number.parseFloat(style.lineHeight);
+          return {
+            text: element.textContent?.trim() || "",
+            lines: lineHeight > 0 ? Math.round(element.getBoundingClientRect().height / lineHeight) : 0,
+            overflow: style.overflow,
+            textOverflow: style.textOverflow
+          };
+        }));
+        for (const check of lineChecks) {
+          if (check.lines !== 1) failures.push(`Expected one mobile line for ${check.text || "litter detail text"}, found ${check.lines}.`);
+          if (check.overflow === "hidden" || check.textOverflow === "ellipsis") failures.push(`Litter detail text hides content: ${check.text || "unknown"}.`);
+        }
+      }
 
       const puppyCards = await page.locator(".litter-puppy-card").count();
       if (puppyCards !== config.litterDetailCheck.expectedPuppies) failures.push(`Expected ${config.litterDetailCheck.expectedPuppies} litter puppy cards, found ${puppyCards}.`);

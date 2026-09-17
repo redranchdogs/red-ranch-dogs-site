@@ -12735,8 +12735,9 @@ summary {
   }
 
   .litter-detail-title-block > p {
-    max-width: 19ch;
-    font-size: clamp(1.15rem, 5.3vw, 1.45rem);
+    max-width: 100%;
+    font-size: clamp(0.96rem, 4.25vw, 1.2rem);
+    line-height: 1.08;
   }
 
   .litter-detail-status {
@@ -12759,7 +12760,8 @@ summary {
   }
 
   .litter-primary-fact-emphasis dd {
-    font-size: clamp(2.55rem, 13vw, 3.5rem);
+    font-size: clamp(2.15rem, 10vw, 3rem);
+    line-height: 0.92;
   }
 
   .litter-detail-overview .litter-pairing-card {

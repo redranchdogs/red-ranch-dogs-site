@@ -4129,7 +4129,9 @@ function LitterPage({ litter }) {
   const goHomeLabel = goHomeIsEstimated ? "Estimated Go-Home" : "Go-Home";
   const displayBirthDate = (litter.birthDate || "Timing to be announced").replace(/^(Estimated|Expected)\s+/i, "");
   const displayGoHomeDate = (litter.goHomeDate || "Timing to be announced").replace(/^(Estimated|Expected)\s+/i, "");
-  const displaySize = (litter.expectedSize || "Size estimate to be announced").replace(/\s+full[- ]grown$/i, "");
+  const displaySize = (litter.expectedSize || "Size estimate to be announced")
+    .replace(/\s+full[- ]grown$/i, "")
+    .replace(/^(?:around|approximately|approx\.?)\s+/i, "~");
   const detailBackHref = isPlannedLitter(litter)
     ? litterBrowserHref("upcoming", litter.breedSlug)
     : isCurrentLitter(litter)
