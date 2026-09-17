@@ -169,8 +169,8 @@ if (!primaryNavBlock) {
     }
   });
 
-  if (!/label:\s*"Apply"[\s\S]*?cta:\s*true/.test(primaryNavBlock)) {
-    blockers.push("Shared primaryNav does not expose Apply as the main CTA.");
+  if (!/label:\s*"Apply for a Puppy"[\s\S]*?cta:\s*true/.test(primaryNavBlock)) {
+    blockers.push("Shared primaryNav does not expose Apply for a Puppy as the main CTA.");
   }
 }
 
@@ -204,9 +204,13 @@ if (!app.includes('source: "home_ready_strip"') || !app.includes('trackSiteEvent
   blockers.push("Homepage ready strip Reserve buttons should track cta_reserve_click with source home_ready_strip.");
 }
 
-const homeReadyStripSource = app.match(/function HomeReadySoonStrip\(\) \{[\s\S]*?\n\}/)?.[0] || "";
+const homeReadyStripSource = app.match(/function HomeReadySoonStrip\([^)]*\) \{[\s\S]*?\n\}/)?.[0] || "";
 if (homeReadyStripSource && /\b(price|previousPrice|markdown|strikethrough)\b/i.test(homeReadyStripSource)) {
   blockers.push("Homepage ready strip must not render prices, markdowns, or discount fields.");
+}
+
+if (!/function HomePage\(\)[\s\S]*?const readyPuppies = featuredAvailablePuppies\(\);[\s\S]*?<HomeHero browseAction=\{browseAction\} \/>[\s\S]*?<HomeReadySoonStrip readyPuppies=\{readyPuppies\} \/>/.test(app)) {
+  blockers.push("Homepage hero and availability strip should share one featured Available puppy result.");
 }
 
 if (app.includes("Current litters may still be growing and matching with waitlist families first")) {
@@ -243,7 +247,7 @@ expectedRenderedFormTypes.forEach((formType) => {
   }
 });
 
-if (!app.includes('primaryHref="/apply"') || !app.includes('primaryLabel="Start Puppy Application"')) {
+if (!app.includes('primaryHref="/apply"') || !app.includes('primaryLabel="Apply for a Puppy"')) {
   blockers.push("Public waitlist CTA should route families to the puppy application instead of the old mini waitlist form.");
 }
 

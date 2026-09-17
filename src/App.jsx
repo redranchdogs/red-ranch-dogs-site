@@ -1365,7 +1365,7 @@ const primaryNav = [
       { label: "Contact", href: "/contact" }
     ]
   },
-  { label: "Apply", href: "/apply", cta: true }
+  { label: "Apply for a Puppy", href: "/apply", cta: true }
 ];
 
 const mobilePrimaryNav = primaryNav.map((item) => {
@@ -1567,7 +1567,7 @@ function Header() {
           ))}
         </nav>
         <div className="mobile-menu-ctas">
-          <Link href="/apply" className="button primary" onClick={closeMenu}>Apply</Link>
+          <Link href="/apply" className="button primary" onClick={closeMenu}>Apply for a Puppy</Link>
           <Link href="/puppies/available" className="button secondary" onClick={closeMenu}>Available Puppies</Link>
           <a href={brand.sms} className="button text-button" onClick={closeMenu}>Text Us Now</a>
         </div>
@@ -1691,7 +1691,7 @@ const socialProofItems = [
   ["Texas-based, family-owned program", HomeIcon]
 ];
 
-function HomeHero() {
+function HomeHero({ browseAction }) {
   return (
     <section className="premium-hero" id="home-hero">
       <div className="premium-hero-copy">
@@ -1703,10 +1703,10 @@ function HomeHero() {
         <p>Lovingly raised in Central Texas.</p>
         <div className="actions hero-actions">
           <Link href="/apply" className="button primary">
-            Join the Waitlist
+            Apply for a Puppy
           </Link>
-          <Link href="/puppies/available" className="button secondary">
-            View Available Puppies
+          <Link href={browseAction.href} className="button secondary">
+            {browseAction.label}
           </Link>
         </div>
       </div>
@@ -1909,16 +1909,14 @@ function HomeDoodles() {
           <CTAButton href={hasCurrentLitters ? "/puppies/current-litters" : "/puppies/upcoming-litters"} variant="primary">
             {hasCurrentLitters ? "View Current Litters" : "View Upcoming Litters"}
           </CTAButton>
-          <CTAButton href="/apply" variant="secondary">Join the Waitlist</CTAButton>
+          <CTAButton href="/apply" variant="secondary">Apply for a Puppy</CTAButton>
         </div>
       </ContentContainer>
     </PageSection>
   );
 }
 
-function HomeReadySoonStrip() {
-  const readyPuppies = featuredAvailablePuppies();
-
+function HomeReadySoonStrip({ readyPuppies }) {
   if (!readyPuppies.length) {
     return (
       <CTASection
@@ -1927,7 +1925,7 @@ function HomeReadySoonStrip() {
         primaryHref="/puppies/upcoming-litters"
         primaryLabel="View Upcoming Litters"
         secondaryHref="/apply"
-        secondaryLabel="Join the Waitlist"
+        secondaryLabel="Apply for a Puppy"
       />
     );
   }
@@ -2140,7 +2138,7 @@ function StickyMobileCtaLink({ href, className, children }) {
 
 function StickyMobileCta({
   primaryHref = "/apply",
-  primaryLabel = "Join Waitlist",
+  primaryLabel = "Apply for a Puppy",
   secondaryHref = brand.sms,
   secondaryLabel = "Text Us"
 }) {
@@ -2168,11 +2166,16 @@ function StickyMobileCta({
 }
 
 function HomePage() {
+  const readyPuppies = featuredAvailablePuppies();
+  const browseAction = readyPuppies.length
+    ? { href: "/puppies/available", label: "View Available Puppies" }
+    : { href: "/puppies/upcoming-litters", label: "View Upcoming Litters" };
+
   return (
     <Layout>
-      <HomeHero />
+      <HomeHero browseAction={browseAction} />
       <SocialProofStrip className="hero-adjacent" />
-      <HomeReadySoonStrip />
+      <HomeReadySoonStrip readyPuppies={readyPuppies} />
       <HomeDoodles />
       <WhyRedRanch />
       <WaitlistSteps />
@@ -4365,7 +4368,7 @@ function LitterPage({ litter }) {
       {!isPlannedLitter(litter) && primaryAction}
       <StickyMobileCta
         primaryHref="/apply"
-        primaryLabel={availablePuppies.length ? "Apply" : "Join Waitlist"}
+        primaryLabel="Apply for a Puppy"
         secondaryHref={availablePuppies.length ? "/puppies/available" : brand.sms}
         secondaryLabel={availablePuppies.length ? "Available" : "Text Us"}
       />
@@ -4377,7 +4380,6 @@ function PastPuppyGalleryPage({ litter }) {
   const currentLitterHref = `/litters/${litter.slug}`;
   const breedProgram = breedProfiles.find((breed) => breed.slug === litter.breedSlug);
   const waitlistName = breedProgram?.name || "breed";
-  const waitlistLabel = breedProgram?.name ? `Join the ${breedProgram.name} Waitlist` : "Join the Waitlist";
 
   return (
     <Layout>
@@ -4401,13 +4403,13 @@ function PastPuppyGalleryPage({ litter }) {
         primaryHref={currentLitterHref}
         primaryLabel="View Current Litter"
         secondaryHref="/apply"
-        secondaryLabel={waitlistLabel}
+        secondaryLabel="Apply for a Puppy"
       />
       <StickyMobileCta
         primaryHref={currentLitterHref}
         primaryLabel="Current Litter"
         secondaryHref="/apply"
-        secondaryLabel="Join Waitlist"
+        secondaryLabel="Apply for a Puppy"
       />
     </Layout>
   );
@@ -5871,7 +5873,7 @@ function PrivacyPage() {
         primaryHref="/contact"
         primaryLabel="Contact Red Ranch Dogs"
         secondaryHref="/apply"
-        secondaryLabel="Puppy Application"
+        secondaryLabel="Apply for a Puppy"
       />
     </Layout>
   );
@@ -5957,7 +5959,7 @@ function FamilyPage() {
           </div>
           <div className="story-actions">
             <Link href="/puppies/current-litters" className="button primary">View Current Litters</Link>
-            <Link href="/apply" className="button secondary">Join Our Waitlist</Link>
+            <Link href="/apply" className="button secondary">Apply for a Puppy</Link>
           </div>
         </article>
       </section>
@@ -6153,7 +6155,7 @@ function ApplicationProcessPage() {
         title="Ready for the first step?"
         copy="Go directly to the puppy application, or review pricing before you begin."
         primaryHref="/apply"
-        primaryLabel="Start Application"
+        primaryLabel="Apply for a Puppy"
         secondaryHref="/process/pricing"
         secondaryLabel="Review Pricing"
       />
@@ -6317,7 +6319,7 @@ function JoinWaitlistPage() {
         title="New family or already waiting?"
         copy="New families can apply directly. Existing families can open the live public positions without repeating the application."
         primaryHref="/apply"
-        primaryLabel="Start Puppy Application"
+        primaryLabel="Apply for a Puppy"
         secondaryHref="/process/waitlist"
         secondaryLabel="View Current Positions"
       />

@@ -5882,7 +5882,7 @@ summary {
   }
 
   .hero-image-frame img {
-    object-position: 50% 18%;
+    object-position: 50% 8%;
   }
 
   .testimonial-feature {
@@ -5991,7 +5991,8 @@ summary {
     min-height: 50px !important;
     padding: 0 4px !important;
     font-size: 0.54rem !important;
-    white-space: nowrap;
+    line-height: 1.12;
+    white-space: normal;
   }
 
   .waitlist-actions.actions {
@@ -6217,7 +6218,7 @@ summary {
   .premium-hero .hero-actions .button {
     max-width: 186px !important;
     min-height: 48px !important;
-    font-size: 0.7rem !important;
+    font-size: 0.92rem !important;
   }
 }
 
@@ -6235,7 +6236,7 @@ summary {
 
   .premium-hero .hero-actions .button {
     max-width: 181px !important;
-    font-size: 0.62rem !important;
+    font-size: 1rem !important;
   }
 }
 
@@ -6651,7 +6652,9 @@ summary {
     max-width: none !important;
     min-height: 50px !important;
     padding: 0 4px !important;
-    font-size: clamp(0.56rem, 2.45vw, 0.68rem) !important;
+    font-size: clamp(0.76rem, 2.8vw, 0.9rem) !important;
+    line-height: 1.12;
+    white-space: normal;
   }
 
   .hero-image-frame {
@@ -6710,7 +6713,7 @@ summary {
   }
 
   .premium-hero .hero-actions .button {
-    font-size: clamp(0.52rem, 2.35vw, 0.58rem) !important;
+    font-size: clamp(0.78rem, 3.4vw, 0.9rem) !important;
   }
 }
 
