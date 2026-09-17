@@ -194,3 +194,41 @@ The implementation uses the approved grouping within the existing Red Ranch ivor
 | Policy and data | Passed | Existing deposit, pricing, pick-or-pass, and go-home facts remain source-backed. No public roster or form data changed. |
 
 No P0, P1, or P2 visual or interaction issues remain in the local preview. Public deployment was not performed.
+
+## September 17, 2026 Waitlist and Pickup page cleanup
+
+Final result: passed
+
+### Source and implementation
+
+- Waitlist source: `/private/var/folders/k0/2_zwgnq5159gv29xcv5_qjsm0000gn/T/TemporaryItems/com.apple.Photos.NSItemProvider/uuid=139E5128-D043-4BAA-BEF7-1D21862B178C&code=001&library=1&type=1&mode=1&loc=true&cap=true&keywords=true&provenance=false.png/IMG_5415.png`
+- Pickup source: `/private/var/folders/k0/2_zwgnq5159gv29xcv5_qjsm0000gn/T/TemporaryItems/com.apple.Photos.NSItemProvider/uuid=19A0848E-76D9-4058-AEB2-AEC4172759F9&code=001&library=1&type=1&mode=1&loc=true&cap=true&keywords=true&provenance=false.png/IMG_5414.png`
+- Source dimensions: 1320 x 2868 pixels. Comparison boards normalize each source to 390 CSS pixels wide.
+- Waitlist comparison: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/waitlist-pickup-cleanup-2026-09-17/waitlist-before-after.png`
+- Pickup comparison: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/waitlist-pickup-cleanup-2026-09-17/pickup-before-after.png`
+- Local mobile captures: `local-waitlist-390.png` and `local-pickup-390.png` in the same evidence folder.
+- Additional responsive captures: 320 and 1440 pixels for both routes in the same evidence folder.
+
+The cleanup removes the synopsis and three summary tiles from both page openings, allows the titles to use the full content width, and moves the required information into flat divided sections immediately below each title. Browser chrome differs between the supplied iPhone captures and the automated implementation captures, so the comparison focuses on the page content beginning at the site header.
+
+### Findings
+
+No actionable P0, P1, or P2 differences remain.
+
+| Area | Result | Evidence |
+| --- | --- | --- |
+| Mobile hierarchy | Passed | Waitlist begins with Deposit, Updates, and Pick or pass. Pickup begins with Local pickup, Travel options, and Preparation. No synopsis or summary tile intervenes. |
+| Title fit | Passed | Titles use the full content width. Waitlist fits on one line at 390 pixels and wraps naturally at 320 pixels. Pickup uses two lines at mobile widths and one line at 1440 pixels. |
+| Spacing and rhythm | Passed | At 390 pixels the first waitlist content moves from about 556 to 192 pixels from the page top; pickup moves from about 489 to 232 pixels. Flat dividers replace the former repeated card treatment. |
+| Typography and tokens | Passed | Existing Bebas Neue, Libre Franklin, ivory, burgundy, charcoal, and line tokens remain unchanged. |
+| Copy and facts | Passed | Deposit amount and status, separate breed lists, waitlist contact order, pick-or-pass meaning, selection materials, local pickup, travel cost separation, and preparation guidance remain present. |
+| Policy boundary | Passed | The removed `7-8` summary tile was not replaced with a new age assertion. No pickup-age policy or source data changed. |
+| Existing content | Passed | Waitlist calls to action and FAQs remain. Pickup go-home guidance and calls to action remain. Header, footer, newsletter, metadata, forms, analytics, and unrelated pages are unchanged. |
+| Interaction | Passed | Waitlist FAQ disclosure opens. Apply, public positions, and How It Works links retain their existing destinations. |
+| Responsive layout | Passed | Both routes have zero horizontal overflow at 320, 390, and 1440 pixels. |
+
+### Comparison history
+
+1. The supplied production captures showed oversized constrained titles, a redundant synopsis, three summary tiles, and repeated card containers before the primary information.
+2. The implementation removed the approved redundant layers and consolidated overlapping waitlist copy into three complete sections.
+3. Responsive review confirmed natural title wrapping, readable section density, preserved downstream content, and no overflow.
