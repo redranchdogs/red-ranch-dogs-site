@@ -221,8 +221,8 @@ const routeExpectations = [
   },
   {
     route: "/apply",
-    requiredText: ["puppy application", "no obligation", "guided choice", "clear next step"],
-    requiredSelectors: [".application-intro-panel", ".application-reassurance-grid", ".lead-form"]
+    requiredText: ["puppy application", "you do not need to choose a puppy or litter before applying", "contact info", "puppy interest", "review and send"],
+    requiredSelectors: [".application-page-hero", ".application-form-note", ".application-form-sections", ".lead-form"]
   },
   {
     route: "/contact",

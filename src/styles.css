@@ -2819,6 +2819,15 @@ h3 {
   gap: 16px;
 }
 
+.page-hero.application-page-hero {
+  padding-top: clamp(24px, 4vw, 42px);
+  padding-bottom: clamp(12px, 2vw, 20px);
+}
+
+.page-hero.application-page-hero .hero-copy h1 {
+  font-size: clamp(3rem, 6vw, 5.4rem);
+}
+
 .application-form-note {
   display: flex;
   flex-wrap: wrap;
@@ -2909,6 +2918,21 @@ h3 {
   font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.field-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.optional-mark {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -5589,7 +5613,17 @@ summary {
   }
 
   .application-form-sections {
-    gap: 14px;
+    gap: 0;
+  }
+
+  .page-hero.application-page-hero {
+    padding-top: 22px;
+    padding-bottom: 8px;
+  }
+
+  .page-hero.application-page-hero .hero-copy h1 {
+    max-width: none;
+    font-size: clamp(3rem, 14vw, 4rem);
   }
 
   .application-reserve-hero,
@@ -5652,11 +5686,16 @@ summary {
     align-items: flex-start;
     flex-direction: column;
     padding: 13px 14px;
+    margin-bottom: 4px;
   }
 
   .form-section {
     gap: 15px;
-    padding: 14px;
+    padding: 18px 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
   }
 
   .form-section-heading h3 {
