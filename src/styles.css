@@ -10952,6 +10952,75 @@ summary {
   margin-top: 12px;
 }
 
+.page-hero.streamlined-process-hero {
+  padding-top: clamp(20px, 3vw, 32px);
+  padding-bottom: clamp(10px, 1.5vw, 16px);
+}
+
+.page-hero.streamlined-process-hero .hero-copy {
+  max-width: none;
+}
+
+.page-hero.streamlined-process-hero .eyebrow {
+  margin-bottom: 8px;
+}
+
+.page-hero.streamlined-process-hero .hero-copy h1 {
+  max-width: none;
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  line-height: 0.94;
+}
+
+.streamlined-process-list {
+  padding-top: 2px;
+  padding-bottom: 34px;
+}
+
+.streamlined-process-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.streamlined-process-list article:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.streamlined-process-list.is-numbered article {
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 18px;
+}
+
+.streamlined-process-list article > span {
+  color: var(--brand-red);
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.streamlined-process-list h2 {
+  margin: 0;
+  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: 500;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.streamlined-process-list p {
+  max-width: 52rem;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: clamp(0.98rem, 1.5vw, 1.08rem);
+  line-height: 1.48;
+}
+
+.streamlined-process-list + .pickup-day-basics-section {
+  padding-top: 12px;
+}
+
 .page-hero.buyer-page-hero {
   padding-top: clamp(24px, 3.5vw, 38px);
   padding-bottom: clamp(8px, 1.6vw, 16px);
@@ -11188,6 +11257,48 @@ summary {
 
   .page-hero.compact-page-hero .hero-copy h1 {
     max-width: min(12ch, 100%);
+  }
+
+  .page-hero.streamlined-process-hero {
+    padding-top: 20px;
+    padding-bottom: 8px;
+  }
+
+  .page-hero.streamlined-process-hero .hero-copy h1 {
+    max-width: none;
+    font-size: clamp(2.55rem, 11vw, 3.45rem);
+    line-height: 0.94;
+  }
+
+  .streamlined-process-list {
+    padding-top: 0;
+    padding-bottom: 26px;
+  }
+
+  .streamlined-process-list article,
+  .streamlined-process-list.is-numbered article {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 12px;
+    padding: 18px 0;
+  }
+
+  .streamlined-process-list:not(.is-numbered) article {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .streamlined-process-list article > span {
+    padding-top: 2px;
+    font-size: 1.35rem;
+  }
+
+  .streamlined-process-list h2 {
+    font-size: clamp(1.9rem, 8vw, 2.35rem);
+  }
+
+  .streamlined-process-list p {
+    margin-top: 6px;
+    font-size: 0.94rem;
+    line-height: 1.42;
   }
 
   .process-status-strip {

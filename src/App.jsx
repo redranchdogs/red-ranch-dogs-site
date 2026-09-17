@@ -2653,6 +2653,22 @@ function ProcessStepCards({ steps, className = "" }) {
   );
 }
 
+function StreamlinedProcessList({ items = [], numbered = false, className = "", label }) {
+  return (
+    <section className={`content-section streamlined-process-list ${numbered ? "is-numbered" : ""} ${className}`.trim()} aria-label={label}>
+      {items.map(([title, copy], index) => (
+        <article key={title}>
+          {numbered ? <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span> : null}
+          <div>
+            <h2>{title}</h2>
+            <p>{copy}</p>
+          </div>
+        </article>
+      ))}
+    </section>
+  );
+}
+
 function CompactTextCardGrid({ items = [], columns = "three", className = "" }) {
   if (!items.length) {
     return null;
@@ -3206,11 +3222,11 @@ function BuyerPageTemplate({ eyebrow, title, copy, actions, image, children, cta
   );
 }
 
-function ProcessPageTemplate({ eyebrow = "Getting Your Puppy", title, copy, stats = [], children, cta }) {
+function ProcessPageTemplate({ eyebrow = "Getting Your Puppy", title, copy, stats = [], children, cta, heroClassName = "" }) {
   return (
     <Layout>
-      <PageHero eyebrow={eyebrow} title={title} copy={copy} className="compact-page-hero" />
-      <ListingStatusStrip items={stats} className="process-status-strip" />
+      <PageHero eyebrow={eyebrow} title={title} copy={copy} className={`compact-page-hero ${heroClassName}`.trim()} />
+      {stats.length ? <ListingStatusStrip items={stats} className="process-status-strip" /> : null}
       {children}
       {cta && <CTASection {...cta} />}
     </Layout>
@@ -3569,25 +3585,16 @@ const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter
   return "Updates soon";
 };
 
-const waitlistProcessSteps = [
-  ["Apply", "Tell us your preferred breed, size range, timeline, and any questions so we can understand fit."],
-  ["Deposit", "A $500 non-refundable deposit reserves your place on that breed's waitlist and applies toward your puppy."],
-  ["Updates", "When a litter is born or planned, waitlist families are contacted in order of deposit placed."],
-  ["Pick or pass", "You can move forward with a litter or pass and remain on your breed waitlist for a future opportunity."],
-  ["Choose puppy", "Puppy picks happen in waitlist order using photos, videos, personality notes, and video calls."],
-  ["Go home", "We help with timing, records, supplies, and transition details before pickup."]
-];
-
 const processOverviewStats = [
   { value: "$500", label: "deposit applies toward final puppy price" },
   { value: "3", label: "separate breed waitlists" },
   { value: "7-8", label: "weeks old at go-home" }
 ];
 
-const waitlistOverviewStats = [
-  { value: "$500", label: "non-refundable deposit applied toward your puppy" },
-  { value: "3", label: "separate breed waitlists" },
-  { value: "Pick or pass", label: "keep your place for a future litter" }
+const streamlinedWaitlistSteps = [
+  ["Deposit", "A $500 non-refundable deposit reserves your place on that breed's waitlist and applies toward your puppy. Goldendoodles, Cavapoos, and Bernedoodles each have a separate waitlist."],
+  ["Updates", "When a litter is born or planned, waitlist families are contacted in order of deposit placed."],
+  ["Pick or pass", "You can move forward with a litter or pass and remain on your breed waitlist for a future opportunity. Puppy picks follow waitlist order using photos, videos, personality notes, and video calls."]
 ];
 
 const pricingStats = [
@@ -3604,12 +3611,6 @@ const faqStats = [
   { value: "Coats", label: "traits, shedding, and care" }
 ];
 
-const pickupDeliveryStats = [
-  { value: "7-8", label: "weeks old for go-home" },
-  { value: "Texas", label: "local pickup coordination" },
-  { value: "Travel", label: "flight nanny or delivery by plan" }
-];
-
 const pricingTimingCards = [
   ["Deposit", "A $500 non-refundable deposit joins the selected breed waitlist or reserves an available puppy. It applies toward the final puppy price."],
   ["Final Payment", "Final payment is confirmed before pickup so each family knows the amount due and timing. Zelle is currently preferred."],
@@ -3617,9 +3618,9 @@ const pricingTimingCards = [
 ];
 
 const pickupDeliveryCards = [
-  ["Pickup in Central Texas", "Most families pick up in Salado or Central Texas. We confirm timing, records, and what to bring before go-home."],
-  ["Flight nanny coordination", "When travel is needed, we can help coordinate options. Flight nanny or delivery costs are separate from puppy pricing."],
-  ["Go-home preparation", "Families receive timing, records, supply notes, and transition guidance before pickup so go-home feels clear."]
+  ["Local pickup", "Most families pick up in Salado or Central Texas. We confirm timing, records, and what to bring before go-home."],
+  ["Travel options", "When travel is needed, we can help coordinate options. Flight nanny or delivery costs are separate from puppy pricing."],
+  ["Preparation", "Families receive timing, records, supply notes, and transition guidance before pickup so go-home feels clear."]
 ];
 
 const goHomeDayGuidanceCards = [
@@ -4727,10 +4728,9 @@ function PickupDeliveryPage() {
   return (
     <ProcessPageTemplate
       title="Puppy Pickup and Delivery"
-      copy="Plan go-home day, local pickup, and any travel coordination after your puppy is matched."
-      stats={pickupDeliveryStats}
+      heroClassName="streamlined-process-hero"
     >
-      <CompactTextCardGrid items={pickupDeliveryCards} />
+      <StreamlinedProcessList items={pickupDeliveryCards} label="Pickup and delivery overview" />
       <section className="content-section pickup-day-basics-section">
         <SectionHeader eyebrow="Pickup Day" title="Go-home basics" copy="The exact appointment details are confirmed by litter, but families can expect these same practical pickup reminders." />
         <CompactTextCardGrid columns="four" className="go-home-guidance-grid" items={goHomeDayGuidanceCards} />
@@ -6305,13 +6305,9 @@ function JoinWaitlistPage() {
     <ProcessPageTemplate
       eyebrow="Getting Your Puppy"
       title="How the Waitlist Works"
-      copy="Understand the deposit, breed order, updates, puppy picks, and your option to pass."
-      stats={waitlistOverviewStats}
+      heroClassName="streamlined-process-hero"
     >
-      <section className="content-section process-compact-section">
-        <SectionHeader eyebrow="Simple Overview" title="Your place on the list" />
-        <ProcessStepCards steps={waitlistProcessSteps.slice(1, 5)} />
-      </section>
+      <StreamlinedProcessList items={streamlinedWaitlistSteps} numbered label="How the waitlist works" />
       <CTASection
         title="New family or already waiting?"
         copy="New families can apply directly. Existing families can open the live public positions without repeating the application."
