@@ -82,11 +82,15 @@ const internalHrefs = [
   .map(normalizePath)
   .filter(Boolean);
 const uniqueInternalHrefs = [...new Set(internalHrefs)].sort();
+const isPublicFile = (href) => {
+  const publicPath = `public${href}`;
+  return href.startsWith("/") && fs.existsSync(publicPath) && fs.statSync(publicPath).isFile();
+};
 const missing = urls.filter((url) => !knownRoutes.has(url));
 const privateUrlsInSitemap = urls.filter((url) => privateDynamicRoutes.has(url));
 const redirectedInSitemap = urls.filter((url) => redirectSources.has(url));
 const missingInternalLinks = uniqueInternalHrefs.filter((href) => {
-  return !knownRoutes.has(href) && !redirectSources.has(href) && !redirectDestinations.has(href);
+  return !knownRoutes.has(href) && !redirectSources.has(href) && !redirectDestinations.has(href) && !isPublicFile(href);
 });
 const missingRedirectDestinations = [...redirectDestinations].filter((destination) => !knownRoutes.has(destination));
 const tooLongDescriptions = [...app.matchAll(/description: "([^"]+)"/g)]

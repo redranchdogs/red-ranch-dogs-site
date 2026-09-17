@@ -4998,6 +4998,58 @@ textarea {
   color: var(--sage-dark);
 }
 
+.check-list-detail > strong {
+  display: block;
+}
+
+.check-list-detail > p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.check-list-disclosure {
+  margin-top: 12px;
+  padding: 0;
+  background: rgba(255, 252, 245, 0.7);
+  border-color: rgba(156, 31, 22, 0.18);
+  border-radius: 10px;
+}
+
+.check-list-disclosure summary {
+  padding: 12px 14px;
+  color: var(--brand-red);
+  font-size: 0.82rem;
+  list-style-position: inside;
+}
+
+.check-list-disclosure[open] summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.check-list-disclosure > div {
+  padding: 12px 14px 14px;
+}
+
+.check-list-disclosure p {
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.check-list-disclosure p:last-of-type {
+  margin-bottom: 12px;
+}
+
+.check-list-disclosure a {
+  color: var(--brand-red);
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
 .faq-list {
   display: grid;
   gap: 12px;

@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { createHash } from "node:crypto";
 import { spawn } from "node:child_process";
 import { setTimeout as delay } from "node:timers/promises";
 import { chromium } from "playwright";
@@ -240,6 +241,12 @@ const routeExpectations = [
     requiredSelectors: ["main", ".process-status-strip"]
   },
   {
+    route: "/puppies/what-comes-with-your-puppy",
+    requiredText: ["what comes with your puppy", "two-year genetic health guarantee", "coverage for certain serious inherited conditions or birth defects", "what does this cover?"],
+    requiredSelectors: [".process-checklist-grid", ".check-list-detail", ".check-list-disclosure"],
+    guaranteeCheck: true
+  },
+  {
     route: "/puppies/doodle-generations",
     requiredText: ["doodle generations explained", "multigen", "red ranch"],
     requiredSelectors: [".doodle-generation-hero", ".doodle-generation-grid"]
@@ -399,6 +406,34 @@ async function auditRoute(context, config, viewportName) {
     for (const selector of config.requiredSelectors || []) {
       const count = await visibleCount(page, selector);
       if (count < 1) failures.push(`Missing visible selector: ${selector}`);
+    }
+
+    if (config.guaranteeCheck) {
+      const disclosure = page.locator(".check-list-disclosure");
+      if (await disclosure.getAttribute("open") !== null) failures.push("Health guarantee disclosure should start closed.");
+
+      await disclosure.locator("summary").click();
+      if (await disclosure.getAttribute("open") === null) failures.push("Health guarantee disclosure did not open.");
+
+      const expandedText = normalize(await disclosure.innerText());
+      const expectedDetails = [
+        "replacement puppy from a future litter",
+        "does not provide routine care or general veterinary-bill reimbursement",
+        "hernias, cancer, and endocrine disorders are excluded",
+        "within seven days of diagnosis",
+        "previously signed agreements retain their original terms"
+      ];
+      expectedDetails.filter((phrase) => !includesText(expandedText, phrase)).forEach((phrase) => failures.push(`Missing health guarantee detail: ${phrase}`));
+
+      const agreementHref = await disclosure.locator("a").getAttribute("href");
+      const expectedHref = "/docs/red-ranch-dogs-puppy-purchase-agreement-2026-09-17.pdf";
+      if (agreementHref !== expectedHref) failures.push(`Unexpected health guarantee PDF link: ${agreementHref || "missing"}`);
+
+      const agreementResponse = await context.request.get(`${baseUrl}${expectedHref}`);
+      if (!agreementResponse.ok()) failures.push(`Health guarantee PDF returned ${agreementResponse.status()}.`);
+      if (!agreementResponse.headers()["content-type"]?.includes("application/pdf")) failures.push(`Health guarantee link did not return a PDF: ${agreementResponse.headers()["content-type"] || "missing content type"}`);
+      const agreementHash = createHash("sha256").update(await agreementResponse.body()).digest("hex");
+      if (agreementHash !== "427c1dc6bf316c2765db426e437ea7d0caeafa5326463e84bfbf6f134a11bde9") failures.push(`Unexpected health guarantee PDF hash: ${agreementHash}`);
     }
 
     if (config.availableAccordionCheck && featuredAvailablePuppies.length) {

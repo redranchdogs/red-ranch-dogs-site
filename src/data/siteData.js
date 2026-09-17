@@ -897,7 +897,27 @@ export const reviews = [
 ];
 
 export const puppyIncludedSections = [
-  ["Health & Wellness", ["Comprehensive vet check", "Age-appropriate first vaccinations", "Routine deworming and parasite prevention", "Microchip included", "2-year genetic health guarantee"]],
+  {
+    title: "Health & Wellness",
+    items: [
+      "Comprehensive vet check",
+      "Age-appropriate first vaccinations",
+      "Routine deworming and parasite prevention",
+      "Microchip included",
+      {
+        title: "Two-year genetic health guarantee",
+        description: "Coverage for certain serious inherited conditions or birth defects, beginning when your puppy goes home.",
+        disclosureLabel: "What does this cover?",
+        disclosure: [
+          "For an eligible claim, the agreement provides a replacement puppy from a future litter. It does not provide routine care or general veterinary-bill reimbursement.",
+          "Hernias, cancer, and endocrine disorders are excluded. Other exclusions and requirements apply.",
+          "Notify Red Ranch Dogs within seven days of diagnosis and provide veterinary records as they become available.",
+          "Previously signed agreements retain their original terms."
+        ],
+        href: "/docs/red-ranch-dogs-puppy-purchase-agreement-2026-09-17.pdf"
+      }
+    ]
+  },
   ["Training & Early Socialization", ["Early Neurological Stimulation (ENS)", "Early Scent Introduction (ESI)", "Sound and surface exposure", "Potty training foundations", "Crate exposure", "Litterbox training foundations"]],
   ["Puppy Take-Home Kit", ["Puppy Pal comfort toy scented by mom and littermates", "Premium puppy food sample", "Toys and chews", "Health and vaccine records", "Puppy care guide"]],
   ["Lifetime Support", ["Ongoing puppy family support", "Advice for feeding, grooming, training, and transition questions", "Optional flight nanny service", "Limited ground transportation in select regions"]]

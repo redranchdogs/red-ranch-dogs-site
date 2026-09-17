@@ -2709,7 +2709,27 @@ function ChecklistCardGrid({ items = [], columns = "three", className = "" }) {
               {copy && <p>{copy}</p>}
               {points?.length ? (
                 <ul className="check-list">
-                  {points.map((point) => <li key={point}>{point}</li>)}
+                  {points.map((point) => {
+                    if (typeof point === "string") {
+                      return <li key={point}>{point}</li>;
+                    }
+
+                    return (
+                      <li className="check-list-detail" key={point.title}>
+                        <strong>{point.title}</strong>
+                        {point.description && <p>{point.description}</p>}
+                        {point.disclosure?.length ? (
+                          <details className="check-list-disclosure">
+                            <summary>{point.disclosureLabel || "Learn more"}</summary>
+                            <div>
+                              {point.disclosure.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                              {point.href ? <a href={point.href} target="_blank" rel="noreferrer">Read the full guarantee</a> : null}
+                            </div>
+                          </details>
+                        ) : null}
+                      </li>
+                    );
+                  })}
                 </ul>
               ) : null}
             </div>
