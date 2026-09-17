@@ -1,5 +1,5 @@
 # Sheet Sync Review
-Generated: 9/16/2026, 9:38:02 AM Central
+Generated: 9/16/2026, 8:18:28 PM Central
 Status: **FAIL**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary

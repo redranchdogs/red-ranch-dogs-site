@@ -1,8 +1,22 @@
 # Next Session Handoff
 
-Last updated: September 16, 2026, 9:44 AM Central.
+Last updated: September 16, 2026, 8:34 PM Central.
 
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
+
+
+## September 16, 2026 Shared Litter Detail Template Release
+
+- Shared template: planned, current, and previous litter detail routes now use the approved compact mobile hierarchy rather than a Beatrix-only page.
+- Beatrix + Enzo reference: F1B-style Mini Goldendoodles, one Pregnancy confirmed badge, $2,800, 25-35 lbs, estimated September 29 birth, and estimated November 23-24 go-home.
+- Photos and content: original full-body parent photos use `object-fit: contain`; Beatrix and Enzo names link to their profiles as Mama and Sire; About This Litter retains all detailed copy, genetics, highlights, and prior-litter evidence.
+- Behavior: parent links stay in the same tab, Browser Back restores the litter scroll position, and existing puppy cards, galleries, videos, go-home sections, waitlist, and contact actions remain intact.
+- Lifecycle verification: Georgia + Waylon shows Previous litter with five puppy cards and recorded date labels. Winnie + Wyatt shows Previous litter on its stable URL.
+- Ridge crop follow-up: Find Your Puppy now uses `50% 30%`, leaving a small strip above Ridge's head while keeping the face above center.
+- Release: data commit `12b2c25`, template commit `b6cfbab`, scroll hardening commit `253804e`; launch-candidate Website Health run `35170718093` and main run `35170854384` passed.
+- Production verification: 390px and 1440px checks passed with zero overflow and no console errors. Browser Back restored 169px to 169px.
+- Boundary: no Sheet, CRM, Breeding Ops, form, applicant, or communication record changed. The read-only Winnie Sheet mismatch remains intentional and unresolved.
+- Detailed evidence: `docs/LITTER_DETAIL_TEMPLATE_RELEASE_2026-09-16.md` and root `design-qa.md`.
 
 
 ## September 16, 2026 No Current Litters Release
@@ -10,7 +24,7 @@ Use this file when starting a fresh Codex session to reduce RAM pressure without
 - Public state: no current litters are listed. Winnie + Wyatt moved from `Current Litter` to `Previous Litter` in website-owned public data; the record and stable `/litters/winnie-wyatt-spring-2026` URL remain intact.
 - Current Litters: all breed views show the truthful global empty state and link to the first verified upcoming pairing, Kylie + Ranger.
 - Find Your Puppy: the Current Litters preview says no current litters are posted and no longer presents Winnie as current.
-- Puppy crop follow-up: the Ridge preview focal point is `50% 25%`, leaving visible space above the head while keeping the face above center.
+- Puppy crop follow-up: the Ridge preview focal point was `50% 25%` in this release and was subsequently adjusted to `50% 30%` in the shared litter-detail release.
 - Production verification: 390px and 1440px checks passed with zero horizontal overflow. Current Litters contains no Winnie card; the Upcoming link resolves to the Kylie + Ranger card; Winnie’s retained detail page shows `Previous Litter`; `llms-full.txt` says no current litters.
 - Release: code/content commit `b6a1ddd9f24d4a940aa2f06e7e82fbec2f2d56a3`; launch-candidate Website Health run `35110116264` and main run `35110319913` passed.
 - Boundary: the live Website Hub Litters sheet still says `Current Litter` for Winnie. The read-only sheet audit records this one intentional mismatch; no Sheet, CRM, Breeding Ops, form, or applicant workflow was changed.
@@ -30,7 +44,7 @@ Use this file when starting a fresh Codex session to reduce RAM pressure without
 - Safety: no business data writes, Sheet sync, CRM write, message, or live form submission occurred.
 - Detailed evidence: `docs/FIND_YOUR_PUPPY_RELEASE_2026-09-15.md` and root `design-qa.md`.
 - Release state: deployed and verified through caption correction commit `99bcad5dadf67919ca024a7ff6491831a52d7359`; launch-candidate Website Health run `35032503681` and main run `35032634252` passed.
-- Focal-point follow-up: Ridge first moved to `50% 30%` in commit `907bbca`, then to `50% 25%` in the September 16 release so the head has a little more breathing room while remaining above center.
+- Focal-point follow-up: Ridge moved to `50% 30%` in commit `907bbca`, briefly used `50% 25%` in the no-current-litters release, and returned to `50% 30%` after Adam requested slightly more room above the head.
 
 
 ## September 15, 2026 Litter Browser Release
