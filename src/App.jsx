@@ -7347,7 +7347,6 @@ function ApplicationFields({ applicationInterest = null }) {
                 name="specificInterest"
                 type="checkbox"
                 value="Also open to similar or future litters"
-                defaultChecked
               />
               <span>I am also open to a similar puppy or future litter.</span>
             </label>

@@ -108,7 +108,8 @@ try {
   assert((await page.locator(".application-reserve-hero h1").innerText()) === "Apply for Beatrix + Enzo", "The application must visibly confirm the selected litter.");
   assert((await litterForm.locator('input[name="specificInterest"]').first().inputValue()).startsWith("Beatrix + Enzo"), "The specific-interest field must carry the litter name.");
   assert(await litterForm.locator('input[name="preferredBreed"][value="Goldendoodle"]').isChecked(), "The litter breed should be preselected.");
-  assert(await litterForm.locator('input[name="specificInterest"][type="checkbox"]').isChecked(), "Litter entry should expose openness to similar or future litters.");
+  const opennessChoice = litterForm.locator('input[name="specificInterest"][type="checkbox"]');
+  assert(!(await opennessChoice.isChecked()), "Openness to similar or future litters must start unspecified.");
 
   responseMode = "success";
   await fillRequiredApplication(litterForm, { breed: "Goldendoodle", name: "Litter Journey Test" });
@@ -122,13 +123,23 @@ try {
   assert((await litterForm.locator('button[type="submit"]').count()) === 0, "The confirmed state must not offer a duplicate submit button.");
   assert(submissions.length === 2, `Expected one failed attempt and one confirmed attempt, received ${submissions.length}.`);
   assert(submissions[1].specificInterest.includes("Beatrix + Enzo"), "Submitted payload must preserve the selected litter.");
-  assert(submissions[1].specificInterest.includes("open to similar or future litters"), "Submitted payload must preserve the family's openness choice.");
+  assert(!submissions[1].specificInterest.includes("open to similar or future litters"), "An unset openness choice must not assert that preference.");
 
   await page.keyboard.press("Enter");
   await delay(300);
   assert(submissions.length === 2, "The confirmation state must prevent a repeat submission.");
 
-  console.log("Application journey passed: general entry, litter context, editable supported payload, failure retention, loading, confirmed receipt, and duplicate prevention.");
+  await page.goto(`${baseUrl}/apply?litter=beatrix-enzo-planned-2026`, { waitUntil: "networkidle" });
+  const openLitterForm = page.locator('form[data-form-type="application"]');
+  await fillRequiredApplication(openLitterForm, { breed: "Goldendoodle", name: "Open Journey Test" });
+  await openLitterForm.locator('input[name="specificInterest"][type="checkbox"]').check();
+  await openLitterForm.locator('button[type="submit"]').click();
+  await openLitterForm.locator(".form-success-panel").waitFor();
+  assert(submissions.length === 3, `Expected the explicit-openness submission to be recorded once, received ${submissions.length} total requests.`);
+  assert(submissions[2].specificInterest.includes("Beatrix + Enzo"), "Explicit-openness payload must preserve the selected litter.");
+  assert(submissions[2].specificInterest.includes("open to similar or future litters"), "A selected openness choice must survive submission.");
+
+  console.log("Application journey passed: general entry, litter context, explicit openness choice, editable supported payload, failure retention, loading, confirmed receipt, and duplicate prevention.");
 } finally {
   if (browser) await browser.close();
   await stopDevServer(server);
