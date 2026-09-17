@@ -560,7 +560,11 @@ async function auditRoute(context, config, viewportName) {
         await page.waitForTimeout(650);
         await page.goBack();
         await page.waitForURL(originalUrl);
-        await page.waitForTimeout(650);
+        await page.waitForFunction(
+          (expectedScrollY) => Math.abs(window.scrollY - expectedScrollY) <= 8,
+          savedScrollY,
+          { timeout: 1800 }
+        ).catch(() => {});
         const restoredScrollY = await page.evaluate(() => window.scrollY);
         if (Math.abs(restoredScrollY - savedScrollY) > 8) failures.push(`Browser Back did not restore litter scroll position: expected ${Math.round(savedScrollY)}px, got ${Math.round(restoredScrollY)}px.`);
       }

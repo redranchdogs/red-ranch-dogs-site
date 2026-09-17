@@ -8026,7 +8026,7 @@ export default function App() {
     } else {
       scheduleRoutePosition(savedScrollY);
     }
-    const routeScrollTimers = [150, 500].map((delay) => window.setTimeout(() => {
+    const routeScrollTimers = [100, 250, 500, 900].map((delay) => window.setTimeout(() => {
       if (hash) scrollToRouteTarget(hash, "auto");
       else scrollToRoutePosition(savedScrollY);
     }, delay));
