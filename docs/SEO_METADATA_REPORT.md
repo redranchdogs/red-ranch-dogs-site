@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 9/16/2026, 8:20:06 PM Central
+Generated: 9/17/2026, 9:03:00 AM Central
 
 Status: **PASS**
 
@@ -37,10 +37,10 @@ Routes with warnings: 2
 | /parents/goldendoodle-parents | 200 | Goldendoodle Parents | Red Ranch Dogs | 116 | Goldendoodle Parents | 1 | https://www.redranchdogs.com/parents/goldendoodle-parents |
 | /parents/cavapoo-parents | 200 | Cavapoo Parents | Red Ranch Dogs | 111 | Cavapoo Parents | 1 | https://www.redranchdogs.com/parents/cavapoo-parents |
 | /parents/bernedoodle-parents | 200 | Bernedoodle Parents | Red Ranch Dogs | 115 | Bernedoodle Parents | 1 | https://www.redranchdogs.com/parents/bernedoodle-parents |
-| /process | 200 | Process | Red Ranch Dogs | 99 | How the Red Ranch Dogs process fits together | 1 | https://www.redranchdogs.com/process |
-| /process/how-it-works | 200 | How It Works | Red Ranch Dogs | 103 | Puppy Application Process | 1 | https://www.redranchdogs.com/process/how-it-works |
+| /process | 200 | Getting Your Puppy | Red Ranch Dogs | 133 | From application to go-home day | 1 | https://www.redranchdogs.com/process |
+| /process/how-it-works | 200 | How It Works | Red Ranch Dogs | 103 | How It Works | 1 | https://www.redranchdogs.com/process/how-it-works |
 | /process/pricing | 200 | Puppy Pricing in Texas | Red Ranch Dogs | 117 | Puppy Prices & Deposits | 1 | https://www.redranchdogs.com/process/pricing |
-| /process/application-and-waitlist | 200 | Puppy Application & Waitlist | Red Ranch Dogs | 119 | Application and Waitlist | 1 | https://www.redranchdogs.com/process/application-and-waitlist |
+| /process/application-and-waitlist | 200 | How the Puppy Waitlist Works | Red Ranch Dogs | 125 | How the Waitlist Works | 1 | https://www.redranchdogs.com/process/application-and-waitlist |
 | /process/waitlist | 200 | Current Waitlist | Red Ranch Dogs | 100 | Public Waitlist | 1 | https://www.redranchdogs.com/process/waitlist |
 | /process/faq | 200 | FAQ | Red Ranch Dogs | 92 | Puppy FAQ | 1 | https://www.redranchdogs.com/process/faq |
 | /process/pickup-and-delivery | 200 | Puppy Pickup & Delivery | Red Ranch Dogs | 85 | Puppy Pickup and Delivery | 1 | https://www.redranchdogs.com/process/pickup-and-delivery |
