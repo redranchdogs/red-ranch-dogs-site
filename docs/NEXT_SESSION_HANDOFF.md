@@ -1,6 +1,6 @@
 # Next Session Handoff
 
-Last updated: September 16, 2026, 8:34 PM Central.
+Last updated: September 16, 2026, 9:06 PM Central.
 
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
 
@@ -13,10 +13,13 @@ Use this file when starting a fresh Codex session to reduce RAM pressure without
 - Behavior: parent links stay in the same tab, Browser Back restores the litter scroll position, and existing puppy cards, galleries, videos, go-home sections, waitlist, and contact actions remain intact.
 - Lifecycle verification: Georgia + Waylon shows Previous litter with five puppy cards and recorded date labels. Winnie + Wyatt shows Previous litter on its stable URL.
 - Ridge crop follow-up: Find Your Puppy now uses `50% 30%`, leaving a small strip above Ridge's head while keeping the face above center.
+- Mobile fact-fit follow-up: descriptors and the Price / Expected Adult Size values use smaller shared mobile typography. Kylie + Ranger now shows `Multigen Micro Bernedoodles`, `$4,500`, and `~25 lbs` on one line at 320-430px; approximate wording is display-only and source data remains unchanged.
+- Fact-fit accessibility: at simulated 200% text size the descriptor reflows visibly, with no clipping, ellipsis, or horizontal overflow.
+- Fact-fit release: runtime commit `d454061`, viewport-aware regression commit `dffee82`; launch-candidate Website Health run `35172831209` and main run `35172939440` passed.
 - Release: data commit `12b2c25`, template commit `b6cfbab`, scroll hardening commit `253804e`; launch-candidate Website Health run `35170718093` and main run `35170854384` passed.
 - Production verification: 390px and 1440px checks passed with zero overflow and no console errors. Browser Back restored 169px to 169px.
 - Boundary: no Sheet, CRM, Breeding Ops, form, applicant, or communication record changed. The read-only Winnie Sheet mismatch remains intentional and unresolved.
-- Detailed evidence: `docs/LITTER_DETAIL_TEMPLATE_RELEASE_2026-09-16.md` and root `design-qa.md`.
+- Detailed evidence: `docs/LITTER_DETAIL_TEMPLATE_RELEASE_2026-09-16.md`, root `design-qa.md`, and production screenshot `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-fact-fit-2026-09-16/production-kylie-ranger-390.png`.
 
 
 ## September 16, 2026 No Current Litters Release

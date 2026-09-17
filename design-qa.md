@@ -155,3 +155,12 @@ No actionable P0, P1, or P2 differences remain.
 - Open disclosure: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-detail-template-2026-09-16/production-beatrix-about-open-390.png`
 - Ridge crop: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-detail-template-2026-09-16/production-ridge-crop-390.png`
 - Website Health: launch-candidate run `35170718093` and main run `35170854384` passed on commit `253804ee5f570210cb13bab0ae839b1178438f41`.
+
+### Mobile fact-fit follow-up
+
+Kylie + Ranger exposed a shared responsive-density issue: the breed descriptor and `Around 25 lbs` wrapped at ordinary phone widths, making the fact row too tall. The shared template now renders the descriptor, price, and normalized `~25 lbs` display on one line from 320 through 430 pixels without `white-space: nowrap`, clipping, ellipsis, or overflow. At simulated 200% text size, the descriptor reflows to two visible lines and remains fully readable.
+
+- Local screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-fact-fit-2026-09-16/local-kylie-ranger-390.png`
+- Production screenshot: `/Users/adamdietlein/.codex/visualizations/2026/09/08/01a0833e-7820-7550-934b-bf5c4cbb8c0c/litter-fact-fit-2026-09-16/production-kylie-ranger-390.png`
+- Production viewports: 320, 375, 390, 430, and 1440 pixels, all with zero horizontal overflow and no console errors.
+- Website Health: launch-candidate run `35172831209` and main run `35172939440` passed on commit `dffee82eb89cc6f5fd2ac984c28782c864bc51ab`.
