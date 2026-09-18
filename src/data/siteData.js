@@ -66,7 +66,8 @@ export const navGroups = [
     links: [
       { label: "How It Works", href: "/process/how-it-works" },
       { label: "Pricing", href: "/process/pricing" },
-      { label: "Waitlist", href: "/process/application-and-waitlist" },
+      { label: "How the Waitlist Works", href: "/process/application-and-waitlist" },
+      { label: "Current Waitlist", href: "/process/waitlist" },
       { label: "What Comes With Your Puppy", href: "/puppies/what-comes-with-your-puppy" },
       { label: "Pickup & Delivery", href: "/process/pickup-and-delivery" }
     ]

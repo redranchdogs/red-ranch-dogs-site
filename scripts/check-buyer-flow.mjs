@@ -146,6 +146,7 @@ const legacyPublicRoutes = [
 if (!primaryNavBlock) {
   blockers.push("Unable to find the shared primaryNav definition.");
 } else {
+  const sharedNavSource = `${primaryNavBlock}\n${siteData}`;
   [
     "/puppies/available",
     "/puppies/current-litters",
@@ -158,19 +159,31 @@ if (!primaryNavBlock) {
     "/guardian-program/application",
     "/apply"
   ].forEach((route) => {
-    if (!primaryNavBlock.includes(`href: "${route}"`)) {
+    if (!sharedNavSource.includes(`href: "${route}"`)) {
       blockers.push(`Shared primaryNav is missing ${route}`);
     }
   });
 
   legacyPublicRoutes.forEach((route) => {
-    if (primaryNavBlock.includes(`href: "${route}"`)) {
+    if (sharedNavSource.includes(`href: "${route}"`)) {
       blockers.push(`Shared primaryNav still contains legacy route ${route}`);
     }
   });
 
   if (!/label:\s*"Apply for a Puppy"[\s\S]*?cta:\s*true/.test(primaryNavBlock)) {
     blockers.push("Shared primaryNav does not expose Apply for a Puppy as the main CTA.");
+  }
+
+  if (!primaryNavBlock.includes('links: navGroups.find((group) => group.label === "Getting Your Puppy").links')) {
+    blockers.push("Shared primaryNav is not using the structured Getting Your Puppy navigation group.");
+  }
+
+  if (!siteData.includes('{ label: "How the Waitlist Works", href: "/process/application-and-waitlist" }')) {
+    blockers.push("Getting Your Puppy navigation is missing the How the Waitlist Works destination.");
+  }
+
+  if (!siteData.includes('{ label: "Current Waitlist", href: "/process/waitlist" }')) {
+    blockers.push("Getting Your Puppy navigation is missing the direct Current Waitlist destination.");
   }
 }
 

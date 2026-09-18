@@ -90,7 +90,10 @@ async function auditRoute(page, route) {
   const puppyFinderLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Find Your Puppy" }).isVisible();
   const puppyJourneyTrigger = page.locator(".mobile-menu-trigger", { hasText: "Getting Your Puppy" });
   await puppyJourneyTrigger.click();
-  const puppyJourneyLinks = await page.locator("#mobile-nav-getting-your-puppy a").allTextContents();
+  const puppyJourneyLinks = await page.locator("#mobile-nav-getting-your-puppy a").evaluateAll((links) => links.map((link) => ({
+    href: link.getAttribute("href"),
+    label: link.textContent.trim(),
+  })));
   const learnTrigger = page.locator(".mobile-menu-trigger", { hasText: "Learn" });
   await learnTrigger.click();
   const learnLinks = await page.locator("#mobile-nav-learn a").allTextContents();
@@ -109,8 +112,18 @@ async function auditRoute(page, route) {
   if (!puppyFinderLinkVisible || !submenuText.includes("Previous Litters")) {
     blockers.push("Puppies submenu did not expose expected buyer links.");
   }
-  if (puppyJourneyLinks.join("|") !== "How It Works|Pricing|Waitlist|What Comes With Your Puppy|Pickup & Delivery") {
-    blockers.push(`Getting Your Puppy submenu changed unexpectedly: ${puppyJourneyLinks.join(" | ") || "missing"}.`);
+  const expectedPuppyJourneyLinks = [
+    ["How It Works", "/process/how-it-works"],
+    ["Pricing", "/process/pricing"],
+    ["How the Waitlist Works", "/process/application-and-waitlist"],
+    ["Current Waitlist", "/process/waitlist"],
+    ["What Comes With Your Puppy", "/puppies/what-comes-with-your-puppy"],
+    ["Pickup & Delivery", "/process/pickup-and-delivery"],
+  ];
+  const puppyJourneySignature = puppyJourneyLinks.map(({ href, label }) => `${label}|${href}`).join("||");
+  const expectedPuppyJourneySignature = expectedPuppyJourneyLinks.map(([label, href]) => `${label}|${href}`).join("||");
+  if (puppyJourneySignature !== expectedPuppyJourneySignature) {
+    blockers.push(`Getting Your Puppy submenu changed unexpectedly: ${puppyJourneySignature || "missing"}.`);
   }
   if (learnLinks.join("|") !== "Coat Traits|Doodle Generations|FAQ") {
     blockers.push(`Learn submenu changed unexpectedly: ${learnLinks.join(" | ") || "missing"}.`);
