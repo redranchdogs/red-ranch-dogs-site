@@ -1,10 +1,10 @@
 # Mobile Template QA
 
-Generated: 5/21/2026, 11:14:26 AM Central
+Generated: 10/2/2026, 8:45:48 AM Central
 
 Status: **PASS**
 
-This audit checks the mobile template stack for current litters, current litter detail pages, and individual puppy pages. It is meant to catch missing weekly photos, broken public images, and horizontal overflow before Adam spots it on an iPhone.
+This audit checks each current/upcoming litter breed tab against public source records, including populated and empty panels, card destinations, tab navigation, and private-record exclusion. It also checks current litter detail pages and current puppy pages with weekly photos when present, plus broken public images and horizontal overflow at mobile width.
 
 ## Blockers
 
@@ -12,18 +12,20 @@ This audit checks the mobile template stack for current litters, current litter 
 
 ## Warnings
 
-- /puppies/current-litters: Overflow candidates: input
-- /litters/penny-wyatt-spring-2026: Overflow candidates: input
-- /litters/whitley-waylon-april-2026: Overflow candidates: input
-- /puppies/striker: Overflow candidates: input
-- /puppies/hook: Overflow candidates: input
+- /puppies/current-litters?breed=cavapoo-puppies: Overflow candidates: input
+- /puppies/current-litters?breed=goldendoodle-puppies: Overflow candidates: input
+- /puppies/current-litters?breed=bernedoodle-puppies: Overflow candidates: input
+- /puppies/upcoming-litters?breed=cavapoo-puppies: Overflow candidates: input
+- /puppies/upcoming-litters?breed=goldendoodle-puppies: Overflow candidates: input
+- /puppies/upcoming-litters?breed=bernedoodle-puppies: Overflow candidates: input
 
 ## Checked Routes
 
 | Route | Template | Status | Visible images | Key selectors |
 | --- | --- | ---: | ---: | --- |
-| /puppies/current-litters | Current Litters | 200 | 10 | .current-litter-list .litter-card: 4 |
-| /litters/penny-wyatt-spring-2026 | Current Litter Detail | 200 | 18 | .litter-summary-panel: 1<br>.litter-puppy-list .puppy-card: 6<br>.litter-gallery-section img: 6 |
-| /litters/whitley-waylon-april-2026 | Newest Current Litter Detail | 200 | 18 | .litter-summary-panel: 1<br>.litter-puppy-list .puppy-card: 6<br>.litter-gallery-section img: 6 |
-| /puppies/striker | Puppy Detail With Weekly Photos | 200 | 9 | .puppy-detail-section .puppy-card: 1<br>.puppy-weekly-photo-section img: 6 |
-| /puppies/hook | Newest Puppy Detail With Weekly Photos | 200 | 6 | .puppy-detail-section .puppy-card: 1<br>.puppy-weekly-photo-section img: 3 |
+| /puppies/current-litters?breed=cavapoo-puppies | Current Cavapoo Litters | 200 | 2 | .litter-browser-tabs #litter-tab-current-cavapoo-puppies: 1<br>#litter-panel-current: 1<br>.litter-browser-empty: 1 |
+| /puppies/current-litters?breed=goldendoodle-puppies | Current Goldendoodle Litters | 200 | 2 | .litter-browser-tabs #litter-tab-current-goldendoodle-puppies: 1<br>#litter-panel-current: 1<br>.litter-browser-empty: 1 |
+| /puppies/current-litters?breed=bernedoodle-puppies | Current Bernedoodle Litters | 200 | 2 | .litter-browser-tabs #litter-tab-current-bernedoodle-puppies: 1<br>#litter-panel-current: 1<br>.litter-browser-empty: 1 |
+| /puppies/upcoming-litters?breed=cavapoo-puppies | Upcoming Cavapoo Litters | 200 | 2 | .litter-browser-tabs #litter-tab-upcoming-cavapoo-puppies: 1<br>#litter-panel-upcoming: 1<br>.litter-browser-empty: 1 |
+| /puppies/upcoming-litters?breed=goldendoodle-puppies | Upcoming Goldendoodle Litters | 200 | 6 | .litter-browser-tabs #litter-tab-upcoming-goldendoodle-puppies: 1<br>#litter-panel-upcoming: 1<br>.litter-browser-list .litter-browser-card: 2 |
+| /puppies/upcoming-litters?breed=bernedoodle-puppies | Upcoming Bernedoodle Litters | 200 | 4 | .litter-browser-tabs #litter-tab-upcoming-bernedoodle-puppies: 1<br>#litter-panel-upcoming: 1<br>.litter-browser-list .litter-browser-card: 1 |
