@@ -77,7 +77,7 @@ function prefersReducedMotion() {
 }
 
 function scrollBehaviorForPreference(behavior = "auto") {
-  return behavior === "smooth" && prefersReducedMotion() ? "auto" : behavior;
+  return behavior === "smooth" && !prefersReducedMotion() ? "smooth" : "instant";
 }
 
 function scrollToRouteTarget(hash, behavior = "auto") {
@@ -90,20 +90,27 @@ function scrollToRouteTarget(hash, behavior = "auto") {
   window.scrollTo({ top: 0, left: 0, behavior: scrollBehavior });
 }
 
-function scheduleRouteScroll(hash, behavior = "auto") {
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => scrollToRouteTarget(hash, behavior));
+function scheduleRouteFrame(callback) {
+  let secondFrame;
+  const firstFrame = window.requestAnimationFrame(() => {
+    secondFrame = window.requestAnimationFrame(callback);
   });
+  return () => {
+    window.cancelAnimationFrame(firstFrame);
+    window.cancelAnimationFrame(secondFrame);
+  };
+}
+
+function scheduleRouteScroll(hash, behavior = "auto") {
+  return scheduleRouteFrame(() => scrollToRouteTarget(hash, behavior));
 }
 
 function scrollToRoutePosition(top = 0) {
-  window.scrollTo({ top: Math.max(0, Number(top) || 0), left: 0, behavior: "auto" });
+  window.scrollTo({ top: Math.max(0, Number(top) || 0), left: 0, behavior: "instant" });
 }
 
 function scheduleRoutePosition(top = 0) {
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => scrollToRoutePosition(top));
-  });
+  return scheduleRouteFrame(() => scrollToRoutePosition(top));
 }
 
 function compactPath(path = "") {
@@ -183,11 +190,13 @@ function trackNavigationIntent(href) {
 
 function goTo(href) {
   const hash = href.includes("#") ? href.split("#")[1] : "";
+  const previousPath = pathNow();
   const currentState = window.history.state || {};
   window.history.replaceState({ ...currentState, scrollY: window.scrollY }, "", window.location.href);
   window.history.pushState({ scrollY: 0 }, "", href);
   window.dispatchEvent(new PopStateEvent("popstate"));
-  scheduleRouteScroll(hash, hash ? "smooth" : "auto");
+  // New routes restore in the layout effect, which owns cancellation.
+  if (pathNow() === previousPath) scheduleRouteScroll(hash, hash ? "smooth" : "auto");
 }
 
 function Link({ href, children, className, onClick, ...props }) {
@@ -8046,17 +8055,24 @@ export default function App() {
     if (clientRedirects[path]) return undefined;
     const hash = hashNow();
     const savedScrollY = Number(window.history.state?.scrollY) || 0;
-    if (hash) {
-      scheduleRouteScroll(hash, "smooth");
-    } else {
-      scheduleRoutePosition(savedScrollY);
-    }
+    const cancelInitialScroll = hash
+      ? scheduleRouteScroll(hash, "smooth")
+      : scheduleRoutePosition(savedScrollY);
     const routeScrollTimers = [100, 250, 500, 900].map((delay) => window.setTimeout(() => {
       if (hash) scrollToRouteTarget(hash, "auto");
       else scrollToRoutePosition(savedScrollY);
     }, delay));
-    return () => {
+    // Late image/layout retries must never override someone already reading,
+    // focusing a field, or activating a link on the newly rendered route.
+    const stopRestoring = () => {
+      cancelInitialScroll();
       routeScrollTimers.forEach((timer) => window.clearTimeout(timer));
+    };
+    const interactionEvents = ["pointerdown", "wheel", "touchstart", "keydown"];
+    interactionEvents.forEach((name) => window.addEventListener(name, stopRestoring, { capture: true, passive: true }));
+    return () => {
+      stopRestoring();
+      interactionEvents.forEach((name) => window.removeEventListener(name, stopRestoring, true));
     };
   }, [path]);
 
