@@ -14,6 +14,7 @@ export default defineConfig({
             },
             {
               name: "icons-vendor",
+              minSize: 0,
               test: /node_modules[\\/](lucide-react|lucide)[\\/]/,
               priority: 20
             },

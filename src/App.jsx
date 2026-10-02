@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { containTabFocus } from "./focus.js";
 import { track } from "@vercel/analytics";
 import { trackGa4Event, trackGa4PageView } from "./ga4.js";
 import { submitFormPayload } from "./formSubmission.js";
@@ -19,8 +20,7 @@ import {
   Send,
   ShieldCheck,
   Sparkles,
-  Star,
-  X
+  Star
 } from "lucide-react";
 import {
   brand,
@@ -54,6 +54,8 @@ import faqProfiles from "./data/faqs.json";
 import pricingProfiles from "./data/pricing.json";
 import teamProfiles from "./data/team.json";
 import waitlistData from "./data/waitlist.json";
+
+const PhotoLightbox = lazy(() => import("./PhotoLightbox.jsx"));
 
 function pathNow() {
   return window.location.pathname.replace(/\/$/, "") || "/";
@@ -1424,7 +1426,7 @@ function AccordionNav({ item, currentPath, onNavigate, index, openGroup, onToggl
         {item.label}
         <ChevronDown size={18} />
       </button>
-      <div className="mobile-submenu" id={panelId} data-open={expanded} ref={panelRef}>
+      <div className="mobile-submenu" id={panelId} data-open={expanded} ref={panelRef} aria-hidden={!expanded} inert={expanded ? undefined : ""}>
         {item.links.map((link) => (
           <Link
             href={link.href}
@@ -1480,10 +1482,18 @@ function Header() {
       if (event.key === "Escape") {
         setOpen(false);
       }
+      const controls = [menuButtonRef.current, ...mobileMenuRef.current.querySelectorAll("a[href], button:not([disabled])")]
+        .filter((element) => element && !element.closest("[inert]") && element.getClientRects().length);
+      containTabFocus(event, controls);
     };
 
+    const onResize = () => { if (window.innerWidth >= 1024) setOpen(false); };
+    window.addEventListener("resize", onResize);
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      document.removeEventListener("keydown", onKeyDown);
+    };
   }, [open]);
 
   useEffect(() => {
@@ -2180,106 +2190,6 @@ function HomePage() {
   );
 }
 
-function PhotoLightbox({ items = [], activeIndex = 0, onClose, onIndexChange, title = "Photo gallery" }) {
-  const closeButtonRef = useRef(null);
-  const touchStartRef = useRef(null);
-  const activeItem = items[activeIndex];
-  const hasPrevious = activeIndex > 0;
-  const hasNext = activeIndex < items.length - 1;
-
-  useEffect(() => {
-    if (!activeItem) return undefined;
-
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") {
-        onClose?.();
-      } else if (event.key === "ArrowLeft" && hasPrevious) {
-        onIndexChange(activeIndex - 1);
-      } else if (event.key === "ArrowRight" && hasNext) {
-        onIndexChange(activeIndex + 1);
-      }
-    };
-
-    closeButtonRef.current?.focus();
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activeIndex, activeItem, hasNext, hasPrevious, onClose, onIndexChange]);
-
-  useEffect(() => {
-    if (!activeItem || typeof window === "undefined") return undefined;
-
-    [items[activeIndex - 1], items[activeIndex + 1]].filter(Boolean).forEach((item) => {
-      const preload = new window.Image();
-      preload.src = item.src;
-    });
-
-    return undefined;
-  }, [activeIndex, activeItem, items]);
-
-  if (!activeItem) return null;
-
-  const goToPrevious = () => {
-    if (hasPrevious) onIndexChange(activeIndex - 1);
-  };
-
-  const goToNext = () => {
-    if (hasNext) onIndexChange(activeIndex + 1);
-  };
-
-  const onTouchStart = (event) => {
-    if (event.touches.length !== 1) {
-      touchStartRef.current = null;
-      return;
-    }
-
-    touchStartRef.current = {
-      x: event.touches[0].clientX,
-      y: event.touches[0].clientY
-    };
-  };
-
-  const onTouchEnd = (event) => {
-    const start = touchStartRef.current;
-    touchStartRef.current = null;
-    if (!start || event.changedTouches.length !== 1) return;
-
-    const end = event.changedTouches[0];
-    const deltaX = end.clientX - start.x;
-    const deltaY = end.clientY - start.y;
-    if (Math.abs(deltaX) < 44 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
-
-    if (deltaX > 0) {
-      goToPrevious();
-    } else {
-      goToNext();
-    }
-  };
-
-  return (
-    <div className="photo-lightbox" role="dialog" aria-modal="true" aria-label={title}>
-      <button className="photo-lightbox-backdrop" type="button" aria-label="Close photo gallery" onClick={onClose} />
-      <div className="photo-lightbox-panel">
-        <div className="photo-lightbox-toolbar">
-          <p>{activeItem.caption || title}</p>
-          <button className="icon-button photo-lightbox-close" type="button" aria-label="Close photo gallery" onClick={onClose} ref={closeButtonRef}>
-            <X size={22} aria-hidden="true" />
-          </button>
-        </div>
-        <div className="photo-lightbox-stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-          <button className="icon-button photo-lightbox-nav previous" type="button" aria-label="Previous photo" onClick={goToPrevious} disabled={!hasPrevious}>
-            <ChevronLeft size={26} aria-hidden="true" />
-          </button>
-          <img src={activeItem.src} alt={activeItem.alt || activeItem.caption || title} />
-          <button className="icon-button photo-lightbox-nav next" type="button" aria-label="Next photo" onClick={goToNext} disabled={!hasNext}>
-            <ChevronRight size={26} aria-hidden="true" />
-          </button>
-        </div>
-        <p className="photo-lightbox-count">{activeIndex + 1} / {items.length}</p>
-      </div>
-    </div>
-  );
-}
-
 function youtubeEmbedFromUrl(value = "") {
   if (!value) return null;
 
@@ -2389,13 +2299,15 @@ function ImageGallery({ images: gallery = [], label = "Gallery image", className
         ))}
       </div>
       {activeIndex !== null && (
-        <PhotoLightbox
-          items={items}
-          activeIndex={activeIndex}
-          onClose={closeLightbox}
-          onIndexChange={setActiveIndex}
-          title={label}
-        />
+        <Suspense fallback={<p role="status">Opening photo gallery…</p>}>
+          <PhotoLightbox
+            items={items}
+            activeIndex={activeIndex}
+            onClose={closeLightbox}
+            onIndexChange={setActiveIndex}
+            title={label}
+          />
+        </Suspense>
       )}
     </>
   );
@@ -2463,13 +2375,15 @@ function LitterImageGallery({ images: gallery = [], puppies = [], label = "Litte
         ))}
       </div>
       {activeIndex !== null && (
-        <PhotoLightbox
-          items={items}
-          activeIndex={activeIndex}
-          onClose={closeLightbox}
-          onIndexChange={setActiveIndex}
-          title={label}
-        />
+        <Suspense fallback={<p role="status">Opening photo gallery…</p>}>
+          <PhotoLightbox
+            items={items}
+            activeIndex={activeIndex}
+            onClose={closeLightbox}
+            onIndexChange={setActiveIndex}
+            title={label}
+          />
+        </Suspense>
       )}
     </>
   );
@@ -4126,6 +4040,7 @@ function PuppyDetailPage({ puppy }) {
 }
 
 function LitterPage({ litter }) {
+  const isArchived = /previous/i.test(litter.status || "");
   const puppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
   const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
@@ -4170,7 +4085,9 @@ function LitterPage({ litter }) {
   const aboutPreview = litter.litterNumber
     ? `${litter.litterNumber} of ${litter.mama} and ${litter.stud}.`
     : litter.aboutTitle || litter.availabilitySummary || `Pairing details for ${litter.name}.`;
-  const litterCta = availablePuppies.length
+  const litterCta = isArchived
+    ? { copy: "This is a previous litter. Explore upcoming litters or apply for a future pairing.", primaryLabel: "Apply for a Future Litter" }
+    : availablePuppies.length
     ? {
         copy: "Apply now or ask about availability, timing, and whether this puppy is the right fit for your family.",
         primaryLabel: "Apply for a Puppy"
@@ -4225,7 +4142,7 @@ function LitterPage({ litter }) {
       };
   const primaryAction = (
     <section className="content-section litter-primary-cta-section">
-      <Link href={`/apply?litter=${encodeURIComponent(litter.slug)}`} className="button primary">{litterCta.primaryLabel}</Link>
+      <Link href={isArchived ? "/apply" : `/apply?litter=${encodeURIComponent(litter.slug)}`} className="button primary">{litterCta.primaryLabel}</Link>
       <p>{litterCta.copy}</p>
       <Link href="/contact" className="litter-question-link">Ask a question</Link>
     </section>
@@ -4245,10 +4162,10 @@ function LitterPage({ litter }) {
       </section>
       <section className="litter-detail-overview">
         <dl className="litter-primary-facts">
-          <div className="litter-primary-fact litter-primary-fact-emphasis"><dt>Price</dt><dd>{litter.priceRange}</dd></div>
+          {!isArchived && <div className="litter-primary-fact litter-primary-fact-emphasis"><dt>Price</dt><dd>{litter.priceRange}</dd></div>}
           <div className="litter-primary-fact litter-primary-fact-emphasis"><dt>Expected Adult Size</dt><dd>{displaySize}</dd></div>
           <div className="litter-primary-fact"><dt>{birthLabel}</dt><dd>{displayBirthDate}</dd></div>
-          <div className="litter-primary-fact"><dt>{goHomeLabel}</dt><dd>{displayGoHomeDate}</dd></div>
+          {!isArchived && <div className="litter-primary-fact"><dt>{goHomeLabel}</dt><dd>{displayGoHomeDate}</dd></div>}
         </dl>
         <article className="litter-pairing-card">
           {hasParentPairing ? (
@@ -4325,15 +4242,15 @@ function LitterPage({ litter }) {
       {isPlannedLitter(litter) && primaryAction}
       {!isPlannedLitter(litter) && (
         <>
-          <section className="card-list litter-puppy-list">
+          {!isArchived && <section className="card-list litter-puppy-list">
             <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
             {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
-          </section>
-          <section className="content-section litter-gallery-section">
-            <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
-            <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />
-            {gallery.length > 0 && <LitterImageGallery images={gallery} puppies={puppies} label={`${litter.name} weekly update`} />}
-          </section>
+          </section>}
+          {(!isArchived || gallery.length > 0) && <section className="content-section litter-gallery-section">
+            <SectionHeader eyebrow={isArchived ? "Archive" : "Updates"} title={isArchived ? "Photo gallery" : "Weekly photo gallery"} copy={isArchived ? "Photos preserved with this pairing's archive." : "Follow this litter as the puppies grow, with new photos added along the way."} />
+            {!isArchived && <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />}
+            {gallery.length > 0 && <LitterImageGallery images={gallery} puppies={puppies} label={`${litter.name} ${isArchived ? "archive photo" : "weekly update"}`} />}
+          </section>}
         </>
       )}
       {litter.videoPlaylistUrl && (

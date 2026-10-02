@@ -70,6 +70,7 @@ jobs:
             docs/WEBSITE_HEALTH_LIGHT_REPORT.md
             docs/VISUAL_QA_REPORT.md
             docs/CONTENT_FRESHNESS_REVIEW.md
+            docs/MOBILE_TEMPLATE_QA.md
 
   after-change:
     if: github.event_name == 'push' || github.event_name == 'pull_request'

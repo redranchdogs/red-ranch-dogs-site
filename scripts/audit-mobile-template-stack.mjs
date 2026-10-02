@@ -30,21 +30,43 @@ const currentPuppies = puppies.filter((puppy) => currentLitterSlugs.has(puppy.li
 const puppiesByLitter = new Map(
   currentLitters.map((litter) => [litter.slug, currentPuppies.filter((puppy) => puppy.litterSlug === litter.slug)]),
 );
+const plannedLitters = litters.filter((litter) => /planned|upcoming/.test(normalize(litter.status)));
+const browserBreeds = [
+  { slug: "cavapoo-puppies", name: "Cavapoo" },
+  { slug: "goldendoodle-puppies", name: "Goldendoodle" },
+  { slug: "bernedoodle-puppies", name: "Bernedoodle" },
+];
 
-const currentLitterRoute = currentLitters.length
-  ? {
-      route: "/puppies/current-litters",
-      label: "Current Litters",
-      requiredText: ["current litters"],
-      expandSelector: ".current-litter-list .upcoming-breed-toggle",
-      selectors: [".current-litter-list .upcoming-breed-toggle", ".current-litter-list .litter-card"],
-    }
-  : {
-      route: "/puppies/current-litters",
-      label: "Current Litters Empty State",
-      requiredText: ["planned pairings are ahead", "join the waitlist"],
-      selectors: [".smart-empty-state"],
-    };
+function browserRoute(mode, breed) {
+  const records = (mode === "current" ? currentLitters : plannedLitters)
+    .filter((litter) => litter.breedSlug === breed.slug);
+  const allCurrentEmpty = mode === "current" && currentLitters.length === 0;
+  const sameBreedUpcoming = plannedLitters.some((litter) => litter.breedSlug === breed.slug);
+  const publicUpcomingBreeds = [...new Set(plannedLitters.map((litter) => litter.breedSlug))];
+  const emptyHrefs = allCurrentEmpty
+    ? (publicUpcomingBreeds.length ? publicUpcomingBreeds : [breed.slug])
+      .map((slug) => `/puppies/upcoming-litters?breed=${slug}`)
+    : mode === "current" && sameBreedUpcoming
+    ? [`/puppies/upcoming-litters?breed=${breed.slug}`]
+    : ["/process/application-and-waitlist"];
+
+  return {
+    route: `/puppies/${mode === "current" ? "current-litters" : "upcoming-litters"}?breed=${breed.slug}`,
+    label: `${mode === "current" ? "Current" : "Upcoming"} ${breed.name} Litters`,
+    requiredText: records.length
+      ? records.map((litter) => litter.name)
+      : [allCurrentEmpty ? "No current litters are listed right now." : `No ${mode} ${breed.name} litters are listed right now.`],
+    selectors: [
+      `.litter-browser-tabs #litter-tab-${mode}-${breed.slug}`,
+      `#litter-panel-${mode}`,
+      records.length ? ".litter-browser-list .litter-browser-card" : ".litter-browser-empty",
+    ],
+    browser: { mode, breed, records, emptyHrefs },
+  };
+}
+
+const litterBrowserRoutes = ["current", "upcoming"]
+  .flatMap((mode) => browserBreeds.map((breed) => browserRoute(mode, breed)));
 
 const currentLitterDetails = currentLitters.slice(0, 2).map((litter, index) => {
   const litterPuppies = puppiesByLitter.get(litter.slug) || [];
@@ -73,7 +95,7 @@ const puppyDetails = currentPuppies
     selectors: [".puppy-detail-section .puppy-card", ".puppy-weekly-photo-section img"],
   }));
 
-const routes = [currentLitterRoute, ...currentLitterDetails, ...puppyDetails];
+const routes = [...litterBrowserRoutes, ...currentLitterDetails, ...puppyDetails];
 
 function startDevServer() {
   return spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
@@ -190,11 +212,6 @@ async function auditRoute(page, routeConfig) {
   const response = await page.goto(`${baseUrl}${routeConfig.route}`, { waitUntil: "networkidle", timeout: 20000 });
   await page.evaluate(() => window.scrollTo(0, 0));
 
-  if (routeConfig.expandSelector) {
-    const toggle = page.locator(routeConfig.expandSelector).first();
-    if (await toggle.count()) await toggle.click();
-  }
-
   const text = (await page.locator("body").innerText()).toLowerCase();
   const missingText = routeConfig.requiredText.filter((required) => !text.includes(required.toLowerCase()));
   const selectorResults = [];
@@ -222,6 +239,38 @@ async function auditRoute(page, routeConfig) {
   }
   if (pageErrors.length) blockers.push(`Page errors: ${pageErrors.slice(0, 3).join("; ")}`);
   if (consoleErrors.length) warnings.push(`Console errors: ${consoleErrors.slice(0, 3).join("; ")}`);
+
+  if (routeConfig.browser) {
+    const { mode, breed, records, emptyHrefs } = routeConfig.browser;
+    const panel = page.locator(`#litter-panel-${mode}`);
+    const selectedTab = page.locator(`#litter-tab-${mode}-${breed.slug}`);
+    const cardLinks = await panel.locator(".litter-browser-card-action").evaluateAll((links) =>
+      links.map((link) => link.getAttribute("href")));
+    const expectedLinks = records.map((litter) => `/litters/${litter.slug}`);
+
+    if (await selectedTab.getAttribute("aria-selected") !== "true" ||
+        await panel.getAttribute("aria-labelledby") !== `litter-tab-${mode}-${breed.slug}`) {
+      blockers.push(`Breed tab or panel did not select ${breed.name}.`);
+    }
+    if (JSON.stringify([...cardLinks].sort()) !== JSON.stringify([...expectedLinks].sort())) {
+      blockers.push(`Visible litter links differ from public ${breed.name} ${mode} records: ${cardLinks.join(", ") || "none"}.`);
+    }
+    if (!records.length) {
+      const action = panel.locator(".litter-browser-empty-link");
+      const actionHref = await action.getAttribute("href");
+      if (!emptyHrefs.includes(actionHref)) {
+        blockers.push(`Empty-state destination ${actionHref || "missing"} is not an applicable public route: ${emptyHrefs.join(", ")}.`);
+      }
+    }
+
+    const nextBreed = browserBreeds[(browserBreeds.findIndex((item) => item.slug === breed.slug) + 1) % browserBreeds.length];
+    await page.locator(`#litter-tab-${mode}-${nextBreed.slug}`).click();
+    const nextUrl = `${baseUrl}/puppies/${mode === "current" ? "current-litters" : "upcoming-litters"}?breed=${nextBreed.slug}`;
+    if (page.url() !== nextUrl ||
+        await page.locator(`#litter-tab-${mode}-${nextBreed.slug}`).getAttribute("aria-selected") !== "true") {
+      blockers.push(`Breed tab did not navigate to ${nextBreed.name}.`);
+    }
+  }
 
   return {
     blockers,
@@ -279,7 +328,7 @@ const report = [
   "",
   `Status: **${blockers.length ? "FAIL" : "PASS"}**`,
   "",
-  "This audit checks the mobile template stack for the current-litter listing, current litter detail pages, and current puppy pages with weekly photos. When no current litters are posted, it validates the public empty state instead. It is meant to catch missing weekly photos, broken public images, and horizontal overflow before Adam spots it on an iPhone.",
+  "This audit checks each current/upcoming litter breed tab against public source records, including populated and empty panels, card destinations, tab navigation, and private-record exclusion. It also checks current litter detail pages and current puppy pages with weekly photos when present, plus broken public images and horizontal overflow at mobile width.",
   "",
   "## Blockers",
   "",
