@@ -10,4 +10,3 @@ export function containTabFocus(event, controls) {
     first.focus();
   }
 }
-

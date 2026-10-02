@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { containTabFocus } from "./focus.js";
 import { track } from "@vercel/analytics";
 import { trackGa4Event, trackGa4PageView } from "./ga4.js";
@@ -54,7 +54,7 @@ import faqProfiles from "./data/faqs.json";
 import pricingProfiles from "./data/pricing.json";
 import teamProfiles from "./data/team.json";
 
-const PhotoLightbox = lazy(() => import("./PhotoLightbox.jsx"));
+import GalleryViewer from "./GalleryViewer.jsx";
 
 function pathNow() {
   return window.location.pathname.replace(/\/$/, "") || "/";
@@ -2298,15 +2298,13 @@ function ImageGallery({ images: gallery = [], label = "Gallery image", className
         ))}
       </div>
       {activeIndex !== null && (
-        <Suspense fallback={<p role="status">Opening photo gallery…</p>}>
-          <PhotoLightbox
-            items={items}
-            activeIndex={activeIndex}
-            onClose={closeLightbox}
-            onIndexChange={setActiveIndex}
-            title={label}
-          />
-        </Suspense>
+        <GalleryViewer
+          items={items}
+          activeIndex={activeIndex}
+          onClose={closeLightbox}
+          onIndexChange={setActiveIndex}
+          title={label}
+        />
       )}
     </>
   );
@@ -2374,15 +2372,13 @@ function LitterImageGallery({ images: gallery = [], puppies = [], label = "Litte
         ))}
       </div>
       {activeIndex !== null && (
-        <Suspense fallback={<p role="status">Opening photo gallery…</p>}>
-          <PhotoLightbox
-            items={items}
-            activeIndex={activeIndex}
-            onClose={closeLightbox}
-            onIndexChange={setActiveIndex}
-            title={label}
-          />
-        </Suspense>
+        <GalleryViewer
+          items={items}
+          activeIndex={activeIndex}
+          onClose={closeLightbox}
+          onIndexChange={setActiveIndex}
+          title={label}
+        />
       )}
     </>
   );
@@ -4085,7 +4081,7 @@ function LitterPage({ litter }) {
       ? litterBrowserHref("current", litter.breedSlug)
       : "/puppies/previous-litters";
   const detailBackLabel = isPlannedLitter(litter) ? "Upcoming litters" : isCurrentLitter(litter) ? "Current litters" : "Previous litters";
-  const aboutPreview = litter.litterNumber
+  const aboutPreview = isArchived ? `Pairing details for ${litter.name}.` : litter.litterNumber
     ? `${litter.litterNumber} of ${litter.mama} and ${litter.stud}.`
     : litter.aboutTitle || litter.availabilitySummary || `Pairing details for ${litter.name}.`;
   const litterCta = isArchived
@@ -4202,7 +4198,11 @@ function LitterPage({ litter }) {
             <div className="litter-about-panel">
               <div className="litter-about-copy">
                 <h2>{litter.aboutTitle || `${litter.name} details`}</h2>
+                {isArchived && <p className="eyebrow">Historical pairing notes</p>}
                 {aboutParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {isArchived && litter.previousLitterHref && previousLitterDetails[litter.previousLitterHref] && (
+                  <Link href={litter.previousLitterHref} className="button secondary">View Litter History</Link>
+                )}
                 {pastLitterHref && (
                   <Link href={pastLitterHref} className="button secondary litter-past-litter-link">{pastLitterLabel}</Link>
                 )}

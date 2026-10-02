@@ -21,9 +21,7 @@ export default function PhotoLightbox({ items = [], activeIndex = 0, onClose, on
     if (!activeItem) return undefined;
 
     const onKeyDown = (event) => {
-      if (event.key === "Escape") {
-        onClose?.();
-      } else if (event.key === "ArrowLeft" && hasPrevious) {
+      if (event.key === "ArrowLeft" && hasPrevious) {
         event.preventDefault();
         onIndexChange(activeIndex - 1);
       } else if (event.key === "ArrowRight" && hasNext) {
@@ -112,4 +110,3 @@ export default function PhotoLightbox({ items = [], activeIndex = 0, onClose, on
     </div>
   );
 }
-
