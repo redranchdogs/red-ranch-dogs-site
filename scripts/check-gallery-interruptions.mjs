@@ -98,6 +98,39 @@ try {
   assert.equal(await superseded.page.locator(".photo-lightbox-count").innerText(), "2 / 2", "Only the newer photo intent may mount");
   await superseded.context.close();
 
+  const ownershipReceipts = [];
+  for (const releaseOrder of [[0, 1], [1, 0]]) {
+    const multiple = await fixture("hold");
+    await multiple.page.goto(origin + "/puppies/ranger");
+    const galleries = multiple.page.locator(".image-gallery");
+    assert.equal(await galleries.count(), 2, "Regression must exercise separate Week 5 and Week 4 galleries");
+    await galleries.nth(0).locator(".gallery-photo-button").first().click();
+    await multiple.page.getByRole("button", { name: "Cancel gallery", exact: true }).waitFor();
+    await galleries.nth(1).locator(".gallery-photo-button").first().click();
+    await multiple.page.waitForFunction(() => document.querySelectorAll(".gallery-load-state").length === 1);
+    for (let i = 0; multiple.requests() < 2 && i < 40; i += 1) await multiple.page.waitForTimeout(25);
+    assert.equal(multiple.requests(), 2);
+    const counts = [];
+    for (const index of releaseOrder) {
+      const downloaded = multiple.page.waitForResponse((value) => value.url().includes(`galleryRequest=${index + 1}`));
+      await multiple.release(index);
+      await (await downloaded).finished();
+      await multiple.page.waitForTimeout(150);
+      const count = await multiple.page.getByRole("dialog").count();
+      assert.equal(count, index === 1 || counts.includes(1) ? 1 : 0, "Only newest weekly gallery may mount");
+      counts.push(count);
+    }
+    assert((await multiple.page.getByRole("dialog").getAttribute("aria-label")).includes("Week 4"));
+    await multiple.page.keyboard.press("Escape");
+    await multiple.page.getByRole("dialog").waitFor({ state: "detached" });
+    await multiple.page.waitForTimeout(250);
+    await closed(multiple.page);
+    assert(await galleries.nth(1).locator(".gallery-photo-button").first().evaluate((element) => element === document.activeElement), "Focus must return to newest gallery only");
+    ownershipReceipts.push({ releaseOrder, dialogsAfterResponses: counts, dialogsAfterEscape: 0, overflowAfterEscape: await multiple.page.evaluate(() => document.body.style.overflow), activeGallery: "Week 4" });
+    await multiple.context.close();
+  }
+  await fs.writeFile("output/gallery-interruptions/ownership-results.json", JSON.stringify(ownershipReceipts, null, 2));
+
   const crash = await fixture("render-error");
   await crash.page.goto(origin + archive);
   await firstPhoto(crash.page).click();
@@ -140,7 +173,7 @@ try {
   }
   await shared.context.close();
 
-  console.log("Gallery interruption PASS: blocked chunk retains site; repeated Retry downloads and opens; paused load canceled by Escape/button never reopens or locks scroll; superseded requests cannot mount; both gallery callers reopen; render error boundary retains site and dismisses; all three archive routes and history links verified. External requests blocked, no writes; origin 5187 reused.");
+  console.log("Gallery interruption PASS: blocked chunk retains site; repeated Retry downloads and opens; paused load canceled by Escape/button never reopens or locks scroll; superseded requests cannot mount; both gallery callers reopen; render error boundary retains site and dismisses; all three archive routes and history links verified; two distinct weekly galleries retain one owner and restore scroll in both response orders. External requests blocked, no writes; origin 5187 reused.");
 } finally {
   await browser.close();
 }

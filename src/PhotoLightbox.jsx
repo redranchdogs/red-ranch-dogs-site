@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { lockGalleryScroll } from "./gallerySession.js";
 import { containTabFocus } from "./focus.js";
 
 export default function PhotoLightbox({ items = [], activeIndex = 0, onClose, onIndexChange, title = "Photo gallery" }) {
@@ -11,10 +12,9 @@ export default function PhotoLightbox({ items = [], activeIndex = 0, onClose, on
   const hasNext = activeIndex < items.length - 1;
 
   useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const releaseScroll = lockGalleryScroll();
     closeButtonRef.current?.focus();
-    return () => { document.body.style.overflow = previousOverflow; };
+    return releaseScroll;
   }, []);
 
   useEffect(() => {

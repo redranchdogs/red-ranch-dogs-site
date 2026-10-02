@@ -1,4 +1,5 @@
-import { Component, useEffect, useRef, useState } from "react";
+import { Component, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { claimGallery, ownsGallery } from "./gallerySession.js";
 import galleryChunkUrl from "virtual:gallery-chunk-url";
 
 let requestSequence = 0;
@@ -20,9 +21,21 @@ export default function GalleryViewer({ onClose, ...props }) {
   const [attempt, setAttempt] = useState(0);
   const [result, setResult] = useState({ Viewer: null, failed: false });
   const intent = useRef(0);
+  const owner = useRef({});
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
   const { Viewer, failed } = result;
 
+  useLayoutEffect(() => {
+    owner.current.cancel = () => {
+      intent.current += 1;
+      onCloseRef.current({ restoreFocus: false });
+    };
+    return claimGallery(owner.current);
+  }, []);
+
   const close = () => {
+    if (!ownsGallery(owner.current)) return;
     // Invalidate immediately, before a pending download can resolve or React unmounts.
     intent.current += 1;
     onClose();
@@ -34,17 +47,17 @@ export default function GalleryViewer({ onClose, ...props }) {
     (loadedViewer ? Promise.resolve(loadedViewer) : import(/* @vite-ignore */ url))
       .then((module) => {
         loadedViewer = module;
-        if (intent.current === currentIntent) setResult({ Viewer: module.default, failed: false });
+        if (ownsGallery(owner.current) && intent.current === currentIntent) setResult({ Viewer: module.default, failed: false });
       })
       .catch(() => {
-        if (intent.current === currentIntent) setResult({ Viewer: null, failed: true });
+        if (ownsGallery(owner.current) && intent.current === currentIntent) setResult({ Viewer: null, failed: true });
       });
     return () => { intent.current += 1; };
   }, [attempt]);
 
   useEffect(() => {
     const onKeyDown = (event) => {
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && ownsGallery(owner.current)) {
         intent.current += 1;
         onClose();
       }

@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { hasActiveGallery } from "./gallerySession.js";
 import { containTabFocus } from "./focus.js";
 import { track } from "@vercel/analytics";
 import { trackGa4Event, trackGa4PageView } from "./ga4.js";
@@ -2271,9 +2272,11 @@ function ImageGallery({ images: gallery = [], label = "Gallery image", className
     [gallery, label]
   );
 
-  const closeLightbox = () => {
+  const closeLightbox = ({ restoreFocus = true } = {}) => {
     setActiveIndex(null);
-    window.requestAnimationFrame(() => openerRef.current?.focus());
+    if (restoreFocus) window.requestAnimationFrame(() => {
+      if (!hasActiveGallery()) openerRef.current?.focus();
+    });
   };
 
   if (!gallery.length) {
@@ -2343,9 +2346,11 @@ function LitterImageGallery({ images: gallery = [], puppies = [], label = "Litte
     [gallery, label, puppies]
   );
 
-  const closeLightbox = () => {
+  const closeLightbox = ({ restoreFocus = true } = {}) => {
     setActiveIndex(null);
-    window.requestAnimationFrame(() => openerRef.current?.focus());
+    if (restoreFocus) window.requestAnimationFrame(() => {
+      if (!hasActiveGallery()) openerRef.current?.focus();
+    });
   };
 
   if (!gallery.length) {
