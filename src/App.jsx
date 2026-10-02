@@ -53,7 +53,6 @@ import testimonialProfiles from "./data/testimonials.json";
 import faqProfiles from "./data/faqs.json";
 import pricingProfiles from "./data/pricing.json";
 import teamProfiles from "./data/team.json";
-import waitlistData from "./data/waitlist.json";
 
 const PhotoLightbox = lazy(() => import("./PhotoLightbox.jsx"));
 
@@ -1925,7 +1924,7 @@ function HomeReadySoonStrip({ readyPuppies }) {
     return (
       <CTASection
         title={noAvailabilityTitle}
-        copy="All current puppies have families. View upcoming litters or join the waitlist."
+        copy="Explore upcoming litters or join the waitlist."
         primaryHref="/puppies/upcoming-litters"
         primaryLabel="View Upcoming Litters"
         secondaryHref="/apply"
@@ -3629,44 +3628,48 @@ const waitlistPolicies = [
 
 const waitlistBreedOrder = ["Goldendoodle", "Cavapoo", "Bernedoodle"];
 
-function normalizedWaitlistData(data) {
-  const publicRows = Array.isArray(data?.publicRows) ? data.publicRows : [];
-
-  return {
-    ...waitlistData,
-    ...data,
-    publicRows
-  };
-}
-
-function usePublicWaitlistData(initialData) {
-  const [liveWaitlistData, setLiveWaitlistData] = useState(() => normalizedWaitlistData(initialData));
+function usePublicWaitlistData() {
+  const [result, setResult] = useState({ status: "loading", data: null });
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     const controller = new AbortController();
+    let active = true;
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
 
     fetch("/api/waitlist", { signal: controller.signal })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Public waitlist feed unavailable.");
-        }
+        if (!response.ok) throw new Error("Public waitlist feed unavailable.");
         return response.json();
       })
       .then((data) => {
-        if (!controller.signal.aborted) {
-          setLiveWaitlistData(normalizedWaitlistData(data));
+        if (data?.source?.mode !== "public-safe" || !Array.isArray(data.publicRows) ||
+          data.publicRows.some((row) => !row ||
+            typeof row.breed !== "string" || !row.breed.trim() ||
+            typeof row.display_name !== "string" || !row.display_name.trim() ||
+            typeof row.status !== "string" || typeof row.show_publicly !== "string" ||
+            !Number.isInteger(Number(row.position)) || Number(row.position) < 1)) {
+          throw new Error("Public waitlist feed unreadable.");
         }
+        if (active) setResult({ status: "ready", data });
       })
       .catch(() => {
-        if (!controller.signal.aborted) {
-          setLiveWaitlistData(normalizedWaitlistData(initialData));
-        }
-      });
+        if (active) setResult({ status: "error", data: null });
+      })
+      .finally(() => window.clearTimeout(timeout));
 
-    return () => controller.abort();
-  }, [initialData]);
+    return () => {
+      active = false;
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
+  }, [attempt]);
 
-  return liveWaitlistData;
+  const retry = () => {
+    setResult({ status: "loading", data: null });
+    setAttempt((value) => value + 1);
+  };
+  return { ...result, retry };
 }
 
 function isPublicWaitlistRow(row) {
@@ -6161,9 +6164,9 @@ function ApplicationPage() {
 }
 
 function WaitlistPage() {
-  const liveWaitlistData = usePublicWaitlistData(waitlistData);
-  const publicWaitlists = groupPublicWaitlistRows(liveWaitlistData.publicRows);
-  const lastUpdated = formatWaitlistDate(liveWaitlistData.updatedAt);
+  const { data: liveWaitlistData, status, retry } = usePublicWaitlistData();
+  const publicWaitlists = groupPublicWaitlistRows(liveWaitlistData?.publicRows);
+  const lastUpdated = formatWaitlistDate(liveWaitlistData?.updatedAt);
   const waitlistStats = waitlistBreedOrder.map((breed) => {
     const list = publicWaitlists.find((item) => item.breed === breed);
     return { value: list?.rows.length || 0, label: `${breed} active spots` };
@@ -6174,7 +6177,7 @@ function WaitlistPage() {
       eyebrow="Current Waitlist"
       title="Public Waitlist"
       copy="A transparent look at current Red Ranch Dogs waitlist positions for Goldendoodles, Cavapoos, and Bernedoodles."
-      stats={waitlistStats}
+      stats={status === "ready" ? waitlistStats : []}
       cta={{
         title: "Ready to join a waitlist?",
         copy: "Apply and we will help with breed fit and timing.",
@@ -6185,6 +6188,17 @@ function WaitlistPage() {
     >
       <section className="waitlist-board">
         <SectionHeader eyebrow="Current Positions" title="Breed waitlists" copy="Families are contacted in order of deposit placed. When a family chooses a puppy, their public waitlist spot is removed." />
+        {status === "loading" && <p role="status">Loading current waitlist…</p>}
+        {status === "error" && (
+          <div className="note-panel">
+            <p role="alert">We couldn’t load the current waitlist. Please try again or contact us to confirm your position.</p>
+            <div className="actions">
+              <button type="button" className="button primary" onClick={retry}>Retry</button>
+              <Link href="/contact" className="button secondary">Contact Us</Link>
+            </div>
+          </div>
+        )}
+        {status === "ready" && publicWaitlists.length === 0 && <p role="status">No public waitlist positions are listed right now.</p>}
         <div className="waitlist-board-grid">
           {publicWaitlists.map((list) => (
             <article className="text-card waitlist-card public-waitlist-card" key={list.breed}>

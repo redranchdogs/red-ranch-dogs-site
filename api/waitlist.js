@@ -110,7 +110,7 @@ export default async function handler(request, response) {
   } catch (error) {
     response.setHeader("Cache-Control", "no-store");
     return response.status(503).json({
-      message: "Public waitlist is temporarily using the last published version.",
+      message: "Public waitlist is temporarily unavailable.",
       error: error.message || "Unable to read waitlist."
     });
   }
