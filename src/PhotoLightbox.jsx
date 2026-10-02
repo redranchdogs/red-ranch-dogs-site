@@ -100,7 +100,7 @@ export default function PhotoLightbox({ items = [], activeIndex = 0, onClose, on
           <button className="icon-button photo-lightbox-nav previous" type="button" aria-label="Previous photo" onClick={goToPrevious} disabled={!hasPrevious}>
             <ChevronLeft size={26} aria-hidden="true" />
           </button>
-          <img src={activeItem.src} alt={activeItem.alt || activeItem.caption || title} />
+          <img key={activeItem.src} src={activeItem.src} alt={activeItem.alt || activeItem.caption || title} />
           <button className="icon-button photo-lightbox-nav next" type="button" aria-label="Next photo" onClick={goToNext} disabled={!hasNext}>
             <ChevronRight size={26} aria-hidden="true" />
           </button>

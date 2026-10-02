@@ -224,6 +224,16 @@ async function runBrowserContract() {
     await waitForEventCount(page, "view_litter_click", 1);
     await waitForEventCount(page, "page_view", 7);
 
+    await page.evaluate(() => {
+      window.history.pushState({}, "", "/puppies/cavapoo-puppies");
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    await waitForEventCount(page, "page_view", 8);
+    await clickFirstVisible(page, 'main a[href="/apply?breed=cavapoo-puppies"]');
+    await page.waitForURL(`${baseUrl}/apply?breed=cavapoo-puppies`, { timeout: 8000 });
+    await waitForEventCount(page, "cta_apply_click", 2);
+    await waitForEventCount(page, "page_view", 9);
+
     const events = await gaEvents(page);
     const eventNames = events.map((event) => event.name);
     [
@@ -238,8 +248,9 @@ async function runBrowserContract() {
       assert(eventNames.includes(eventName), `Missing GA4 event ${eventName}.`);
     });
 
-    assert(eventNames.filter((eventName) => eventName === "page_view").length === 7, "GA4 emitted duplicate or missing page views during route checks.");
+    assert(eventNames.filter((eventName) => eventName === "page_view").length === 9, "GA4 emitted duplicate or missing page views during route checks.");
 
+    assert(eventNames.filter((eventName) => eventName === "cta_apply_click").length === 2, "Breed Apply must retain exactly one application CTA event.");
     const serializedEvents = JSON.stringify(events);
     privateTestValues.forEach((privateValue) => {
       assert(!serializedEvents.includes(privateValue), `GA4 dataLayer included private test value: ${privateValue}`);

@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import FAQItem from "./FAQItem.jsx";
 import { hasActiveGallery } from "./gallerySession.js";
 import { containTabFocus } from "./focus.js";
 import { track } from "@vercel/analytics";
@@ -154,7 +155,7 @@ function analyticsEventForHref(href = "") {
   if (href.startsWith("tel:")) return "cta_call_click";
   if (href.includes("instagram.com")) return "social_instagram_click";
   if (href.includes("google.com") || href.includes("g.page")) return "social_google_reviews_click";
-  if (href === "/apply" || href === "/puppy-application") return "cta_apply_click";
+  if (href.split(/[?#]/)[0] === "/apply" || href.split(/[?#]/)[0] === "/puppy-application") return "cta_apply_click";
   if (href.includes("/process/application-and-waitlist")) return "view_application_waitlist_click";
   if (href.includes("/process/how-it-works")) return "view_process_click";
   if (href.includes("/process/pickup-and-delivery")) return "view_pickup_delivery_click";
@@ -2975,10 +2976,7 @@ function FAQSection({ items = faqProfiles, category, grouped = false }) {
           <div className="faq-category" key={group}>
             <h2>{group}</h2>
             {scopedItems.filter((item) => (item.category || "General") === group).map((item, index) => (
-              <details key={item.question} open={index === 0}>
-                <summary>{item.question}</summary>
-                <p>{item.answer}</p>
-              </details>
+              <FAQItem key={item.question} question={item.question} answer={item.answer} initiallyOpen={index === 0} />
             ))}
           </div>
         ))}
@@ -2989,10 +2987,7 @@ function FAQSection({ items = faqProfiles, category, grouped = false }) {
   return (
     <section className="faq-list">
       {scopedItems.map((item, index) => (
-        <details key={item.question} open={index === 0}>
-          <summary>{item.question}</summary>
-          <p>{item.answer}</p>
-        </details>
+        <FAQItem key={item.question} question={item.question} answer={item.answer} initiallyOpen={index === 0} />
       ))}
     </section>
   );
@@ -3839,6 +3834,7 @@ function BreedPageTemplate({ breed }) {
         title: `Interested in a ${breed.name}?`,
         copy: "Apply now and we will help you understand current availability, upcoming litters, and the best next step for your family.",
         primaryLabel: "Apply for a Puppy",
+        primaryHref: `/apply?breed=${encodeURIComponent(breed.slug)}`,
         secondaryHref: "/puppies/current-litters",
         secondaryLabel: "View Current Litters"
       }}
@@ -3969,7 +3965,7 @@ function BreedPageTemplate({ breed }) {
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Available Puppies" title={`Available ${breed.name} puppies`} copy="Only puppies truly open for an approved family appear here. Reserved puppies stay on their litter pages." />
-        {availableBreedPuppies.length ? availableBreedPuppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">We do not have available puppies for this breed right now. Join the waitlist or follow current litters for the newest updates.</p>}
+        {availableBreedPuppies.length ? availableBreedPuppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">We do not have available puppies for this breed right now. <Link href="/process/application-and-waitlist">See how the waitlist works</Link> or follow current litters for the newest updates.</p>}
       </section>
       <section className="card-list">
         <SectionHeader eyebrow="Litters" title={`${breed.name} litters`} copy="Current and planned pairings live here so families can follow timing, parent dogs, and weekly updates without crowding the Available Puppies page." />
@@ -6116,7 +6112,18 @@ function applicationInterestContext() {
   }
 
   const litter = applicationLitterFromUrl();
-  if (!litter) return null;
+  if (!litter) {
+    const breed = breedProfiles.find((item) => item.slug === applicationQueryValue("breed"));
+    if (!breed) return null;
+    return {
+      breed: applicationBreedInterest(breed.slug, breed.name),
+      detail: "Your breed interest is selected below. You can change it or choose more than one.",
+      label: "",
+      name: breed.name,
+      title: `Apply for a ${breed.name}`,
+      type: "breed"
+    };
+  }
 
   return {
     breed: applicationBreedInterest(litter.breedSlug, litter.breed),
@@ -6130,10 +6137,10 @@ function applicationInterestContext() {
 }
 
 function ApplicationInterestHero({ interest }) {
-  const eyebrow = interest.type === "puppy" ? "Puppy interest" : "Litter interest";
+  const eyebrow = interest.type === "puppy" ? "Puppy interest" : interest.type === "breed" ? "Breed interest" : "Litter interest";
 
   return (
-    <section className="application-reserve-hero" aria-labelledby="application-reserve-title">
+    <section className={`application-reserve-hero${interest.photo ? "" : " without-photo"}`} aria-labelledby="application-reserve-title">
       {interest.photo && <img src={interest.photo} alt="" loading="eager" />}
       <div>
         <p className="eyebrow">{eyebrow}</p>
@@ -7184,7 +7191,7 @@ function ApplicationFields({ applicationInterest = null }) {
       <div className="application-form-note">
         {applicationInterest ? (
           <p className="application-interest-confirmation">
-            Starting with: <strong>{specificInterestDefault}</strong>. You can edit this below.
+            Starting with: <strong>{applicationInterest.type === "breed" ? applicationInterest.breed : specificInterestDefault}</strong>. You can edit this below.
           </p>
         ) : (
           <>
@@ -7272,7 +7279,7 @@ function ApplicationFields({ applicationInterest = null }) {
               placeholder="Example: Ranger, Birdie + Waylon, Honey + Bram, or not sure yet"
             />
           </label>
-          {applicationInterest && (
+          {applicationInterest && applicationInterest.type !== "breed" && (
             <label className="checkbox-line full application-openness-option">
               <input
                 name="specificInterest"
@@ -7685,6 +7692,34 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
   const [started, setStarted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const pendingSubmissionId = useRef("");
+  const submissionInFlight = useRef(false);
+  const statusRef = useRef(null);
+  const focusStatus = useRef(false);
+  const statusId = useId();
+  const formRef = useRef(null);
+  const [invalidField, setInvalidField] = useState("");
+
+  useLayoutEffect(() => {
+    if (status && focusStatus.current) {
+      statusRef.current?.focus();
+      focusStatus.current = false;
+    }
+  }, [status, busy]);
+
+  useEffect(() => {
+    if (!invalidField) return undefined;
+    const fields = [...formRef.current.elements].filter((field) => field.name === invalidField);
+    const previous = fields.map((field) => field.getAttribute("aria-describedby"));
+    fields.forEach((field) => {
+      field.setAttribute("aria-invalid", "true");
+      field.setAttribute("aria-describedby", [field.getAttribute("aria-describedby"), statusId].filter(Boolean).join(" "));
+    });
+    return () => fields.forEach((field, index) => {
+      field.removeAttribute("aria-invalid");
+      if (previous[index]) field.setAttribute("aria-describedby", previous[index]);
+      else field.removeAttribute("aria-describedby");
+    });
+  }, [invalidField, statusId]);
   const applicationFields = formType === "application" && !newsletterOnly;
   const contactFields = formType === "contact" && !newsletterOnly;
   const guardianApplicationFields = formType === "guardian" && guardianFields && !newsletterOnly;
@@ -7708,7 +7743,9 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
 
   async function onSubmit(event) {
     event.preventDefault();
+    if (submissionInFlight.current || submitted) return;
     const formElement = event.currentTarget;
+    setInvalidField("");
     const successMessage = formSuccessMessages[formType];
     updateStatus("", "");
     const form = new FormData(formElement);
@@ -7727,12 +7764,14 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     const validationError = validateLeadPayload(formType, payload);
     if (validationError) {
       trackSiteEvent("form_validation_error", eventContext);
+      setInvalidField(validationError.fieldName);
       const field = formElement.elements[validationError.fieldName];
       (field?.length ? field[0] : field)?.focus?.();
       updateStatus(validationError.message, "error");
       return;
     }
 
+    submissionInFlight.current = true;
     setBusy(true);
     payload.formType = formType;
     payload.formTitle = title;
@@ -7753,6 +7792,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       eventContext.submissionId = payload.submissionId;
       trackSiteEvent("form_submit_success", eventContext);
       formElement.reset();
+      focusStatus.current = true;
       updateStatus(
         serverMessage && serverMessage[0] !== "T"
           ? serverMessage
@@ -7762,8 +7802,10 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       setSubmitted(true);
     } catch (error) {
       trackSiteEvent("form_submit_error", eventContext);
+      focusStatus.current = true;
       updateStatus(error.message || "Unable to submit right now. Please call or text us.", "error");
     } finally {
+      submissionInFlight.current = false;
       setBusy(false);
     }
   }
@@ -7772,6 +7814,13 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     <form
       className={`lead-form ${compact ? "compact" : ""}`}
       data-form-type={formType}
+      ref={formRef}
+      onChange={(event) => {
+        if (event.target.name === invalidField) {
+          setInvalidField("");
+          updateStatus("", "");
+        }
+      }}
       aria-busy={busy}
       onFocusCapture={onFormFocusCapture}
       onReset={() => (pendingSubmissionId.current = "")}
@@ -7833,9 +7882,10 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
         {busy ? "Sending..." : submitLabel} <Send size={16} />
       </button>}
       {status && (
-        <p className={`form-status ${statusType}`} role={statusType === "error" ? "alert" : "status"} aria-live="polite">
-          {status}
-        </p>
+        <div ref={statusRef} id={statusId} tabIndex={-1} className={`form-status ${statusType}`} role={statusType === "error" ? "alert" : "status"} aria-live="polite">
+          <p>{status}</p>
+          {statusType === "error" && !invalidField && <p>Your answers are still here. Please try again, or call or text us for help.</p>}
+        </div>
       )}
       {statusType === "success" && <FormSuccessPanel formType={formType} />}
     </form>
