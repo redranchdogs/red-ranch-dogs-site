@@ -405,6 +405,10 @@
   ],
   "rewrites": [
     {
+      "source": "/images/litters/winnie-redford.webp",
+      "destination": "/api/retired-litter-media"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/$1"
     },
@@ -477,6 +481,19 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    },
+    {
+      "source": "/images/litters/winnie-redford.webp",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
         }
       ]
     }
