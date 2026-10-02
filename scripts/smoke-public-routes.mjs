@@ -172,12 +172,6 @@ const routeExpectations = [
     }
   },
   {
-    route: "/litters/winnie-wyatt-spring-2026",
-    requiredText: ["winnie + wyatt", "previous litter", "september 7, 2026"],
-    requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
-    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0, archive: true }
-  },
-  {
     route: "/litters/georgia-waylon-may-2026",
     requiredText: ["georgia + waylon", "previous litter", "birth date"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],

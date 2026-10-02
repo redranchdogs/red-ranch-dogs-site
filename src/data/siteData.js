@@ -261,8 +261,11 @@ export const litterDetails = {
     ],
     puppies: [],
     milestones: []
-  },
-  // Legacy detail entry retained for archive data; public traffic redirects to /litters/winnie-wyatt-spring-2026.
+  }
+};
+
+// Internal legacy copy retained for history; never imported by public pages.
+export const unpublishedLitterDetails = {
   "/winnie-wyatt": {
     name: "Winnie + Wyatt",
     breed: "F1B Petite Mini Cavapoos",

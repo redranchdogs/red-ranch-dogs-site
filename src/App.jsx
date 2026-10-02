@@ -528,8 +528,6 @@ const clientRedirects = Object.fromEntries([
   ["/birdie-waylon-jennings-1", "/birdie-waylon-spring-2026"],
   ["/penny-wyatt", "/penny-wyatt-spring-2026"],
   ["/ginnybutch", "/ginny-butch-spring-2026"],
-  ["/winnie-wyatt", "/litters/winnie-wyatt-spring-2026"],
-  ["/winnie-redford", "/litters/winnie-wyatt-spring-2026"],
   ["/kylie-ranger", "/litters/kylie-ranger-late-summer-2026"],
   ["/birdie", "/parents/birdie"],
   ["/honey", "/parents/honey"],
@@ -3147,6 +3145,7 @@ function ProcessPageTemplate({ eyebrow = "Getting Your Puppy", title, copy, stat
 function ParentCard({ parent }) {
   const hasPublicProfile = parent.visibility !== "private";
   const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
+  const publicRelatedCount = (parent.relatedLitters || []).filter((slug) => publicLitterProfiles.some((litter) => litter.slug === slug)).length;
   const program = breedProfiles.find((breed) => breed.slug === parent.breedSlug);
   const previewFacts = [
     ["Breed", parent.breed],
@@ -3177,7 +3176,7 @@ function ParentCard({ parent }) {
         </dl>
         <div className="parent-card-meta" aria-label={`${parent.name} status details`}>
           {parent.status && <span>{parent.status}</span>}
-          {parent.relatedLitters?.length ? <span>{parent.relatedLitters.length} related litter{parent.relatedLitters.length === 1 ? "" : "s"}</span> : null}
+          {publicRelatedCount ? <span>{publicRelatedCount} related litter{publicRelatedCount === 1 ? "" : "s"}</span> : null}
         </div>
         {hasPublicProfile ? (
           <Link href={`/parents/${parent.slug}`} className="button small secondary parent-profile-link">View profile</Link>

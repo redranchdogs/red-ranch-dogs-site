@@ -173,16 +173,6 @@
       "permanent": true
     },
     {
-      "source": "/winnie-wyatt",
-      "destination": "/litters/winnie-wyatt-spring-2026",
-      "permanent": true
-    },
-    {
-      "source": "/winnie-redford",
-      "destination": "/litters/winnie-wyatt-spring-2026",
-      "permanent": true
-    },
-    {
       "source": "/kylie-ranger",
       "destination": "/litters/kylie-ranger-late-summer-2026",
       "permanent": true
@@ -424,6 +414,33 @@
     }
   ],
   "headers": [
+    {
+      "source": "/litters/winnie-wyatt-spring-2026/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/winnie-wyatt",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/winnie-redford",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
     {
       "source": "/assets/(.*)",
       "headers": [

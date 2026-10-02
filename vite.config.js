@@ -1,4 +1,19 @@
 import { defineConfig } from "vite";
+import { fileURLToPath, URL } from "node:url";
+
+// Apply the existing publication control before litter records reach the browser.
+function publicLitterData() {
+  const litterFile = fileURLToPath(new URL("./src/data/litters.json", import.meta.url));
+  return {
+    name: "public-litter-data",
+    enforce: "pre",
+    transform(code, id) {
+      if (id.split("?")[0] !== litterFile) return;
+      const records = JSON.parse(code).filter((record) => !["hidden", "private"].includes(String(record.visibility || "public").trim().toLowerCase()));
+      return { code: JSON.stringify(records), map: null };
+    }
+  };
+}
 
 // Expose the built viewer URL so retries can bypass a browser-cached import failure.
 function galleryChunkUrl() {
@@ -19,7 +34,7 @@ function galleryChunkUrl() {
 }
 
 export default defineConfig({
-  plugins: [galleryChunkUrl()],
+  plugins: [publicLitterData(), galleryChunkUrl()],
   build: {
     rolldownOptions: {
       output: {

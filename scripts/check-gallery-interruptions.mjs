@@ -5,7 +5,7 @@ import { chromium } from "playwright";
 // Test the already-built preview at the established origin; never start a new port.
 const origin = process.env.GALLERY_TEST_ORIGIN || "http://127.0.0.1:5187";
 const browser = await chromium.launch({ headless: true });
-const archive = "/litters/winnie-wyatt-spring-2026";
+const archive = "/litters/georgia-waylon-may-2026";
 const firstPhoto = (page) => page.locator(".gallery-photo-button").first();
 
 async function fixture(mode) {
@@ -29,7 +29,7 @@ async function fixture(mode) {
   return { page, context, requests: () => requests, release: (index = 0) => held[index].continue(), mode: (value) => { behavior = value; } };
 }
 const intact = async (page) => {
-  assert(await page.getByRole("heading", { name: "Winnie + Wyatt", exact: true }).isVisible());
+  assert(await page.getByRole("heading", { name: "Georgia + Waylon", exact: true }).isVisible());
   assert((await page.locator("#root").innerHTML()).length > 1000, "React root must remain intact");
 };
 const closed = async (page) => {
@@ -95,7 +95,7 @@ try {
   assert.equal(await superseded.page.evaluate(() => document.body.style.overflow), "");
   await superseded.release(1);
   await superseded.page.getByRole("dialog").waitFor();
-  assert.equal(await superseded.page.locator(".photo-lightbox-count").innerText(), "2 / 2", "Only the newer photo intent may mount");
+  assert.equal(await superseded.page.locator(".photo-lightbox-count").innerText(), "2 / 5", "Only the newer photo intent may mount");
   await superseded.context.close();
 
   const ownershipReceipts = [];
@@ -156,7 +156,7 @@ try {
   await shared.page.keyboard.press("Escape");
   await shared.page.getByRole("dialog").waitFor({ state: "detached" });
 
-  for (const slug of ["winnie-wyatt-spring-2026", "georgia-waylon-may-2026", "reece-wyatt-summer-2026"]) {
+  for (const slug of ["georgia-waylon-may-2026", "reece-wyatt-summer-2026"]) {
     await shared.page.goto(origin + "/litters/" + slug);
     assert.equal((await shared.page.locator(".litter-detail-status").innerText()).toLowerCase(), "previous litter");
     const facts = await shared.page.locator(".litter-primary-facts").innerText();
@@ -165,15 +165,13 @@ try {
     assert(!/currently reserved|ready to go home|as the puppies grow|will appear here/i.test(main));
     await shared.page.locator(".litter-about-disclosure summary").click();
     await shared.page.getByText("Historical pairing notes", { exact: true }).waitFor();
-    if (!slug.startsWith("winnie")) {
-      assert.equal(await shared.page.getByRole("link", { name: "View Litter History", exact: true }).getAttribute("href"), "/" + slug);
-      await shared.page.getByRole("link", { name: "View Litter History", exact: true }).click();
-      await shared.page.locator(".previous-litter-detail-shell").waitFor();
-    }
+    assert.equal(await shared.page.getByRole("link", { name: "View Litter History", exact: true }).getAttribute("href"), "/" + slug);
+    await shared.page.getByRole("link", { name: "View Litter History", exact: true }).click();
+    await shared.page.locator(".previous-litter-detail-shell").waitFor();
   }
   await shared.context.close();
 
-  console.log("Gallery interruption PASS: blocked chunk retains site; repeated Retry downloads and opens; paused load canceled by Escape/button never reopens or locks scroll; superseded requests cannot mount; both gallery callers reopen; render error boundary retains site and dismisses; all three archive routes and history links verified; two distinct weekly galleries retain one owner and restore scroll in both response orders. External requests blocked, no writes; origin 5187 reused.");
+  console.log("Gallery interruption PASS: blocked chunk retains site; repeated Retry downloads and opens; paused load canceled by Escape/button never reopens or locks scroll; superseded requests cannot mount; both gallery callers reopen; render error boundary retains site and dismisses; both public archive routes and history links verified; two distinct weekly galleries retain one owner and restore scroll in both response orders. External requests blocked, no writes; origin 5187 reused.");
 } finally {
   await browser.close();
 }
