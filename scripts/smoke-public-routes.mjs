@@ -175,13 +175,19 @@ const routeExpectations = [
     route: "/litters/winnie-wyatt-spring-2026",
     requiredText: ["winnie + wyatt", "previous litter", "september 7, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
-    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0 }
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0, archive: true }
   },
   {
     route: "/litters/georgia-waylon-may-2026",
-    requiredText: ["georgia + waylon", "previous litter", "birth date", "go-home", "puppies from this litter"],
-    requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-puppy-list", ".litter-puppy-card"],
-    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 5 }
+    requiredText: ["georgia + waylon", "previous litter", "birth date"],
+    requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0, archive: true, historyHref: "/georgia-waylon-may-2026" }
+  },
+  {
+    route: "/litters/reece-wyatt-summer-2026",
+    requiredText: ["reece + wyatt", "previous litter", "birth date"],
+    requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0, archive: true, historyHref: "/reece-wyatt-summer-2026" }
   },
   ...litters
     .filter((litter) => litter.pastPuppyGallery?.images?.length)
@@ -623,6 +629,19 @@ async function auditRoute(context, config, viewportName) {
       if (await disclosure.count()) {
         await disclosure.locator("summary").click();
         if (!(await disclosure.getAttribute("open")) && !(await disclosure.evaluate((element) => element.open))) failures.push("About this litter accordion did not open.");
+      }
+
+      if (config.litterDetailCheck.archive) {
+        const factLabels = await page.locator(".litter-primary-facts dt").allTextContents();
+        if (factLabels.some((label) => /price|go-home/i.test(label))) failures.push("Archive still shows current price or go-home facts.");
+        if (await page.locator(".litter-puppy-list").count()) failures.push("Archive still shows an active puppy list.");
+        if (!(await disclosure.getByText("Historical pairing notes", { exact: true }).isVisible())) failures.push("Archive historical context is missing.");
+        const archiveApply = page.locator(".litter-primary-cta-section").getByRole("link", { name: "Apply for a Future Litter", exact: true });
+        if (!(await archiveApply.isVisible()) || await archiveApply.getAttribute("href") !== "/apply") failures.push("Archive must offer a general future-litter application.");
+        if (config.litterDetailCheck.historyHref) {
+          const historyLink = disclosure.getByRole("link", { name: "View Litter History", exact: true });
+          if (!(await historyLink.isVisible()) || await historyLink.getAttribute("href") !== config.litterDetailCheck.historyHref) failures.push("Archive history link is missing or incorrect.");
+        }
       }
 
       if (config.litterDetailCheck.testParentBack) {
