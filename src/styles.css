@@ -13059,3 +13059,205 @@ summary {
 }
 
 .application-reserve-hero.without-photo { grid-template-columns: minmax(0, 1fr); }
+
+/* Coat traits: a compact, visual reference rather than a second long sales page. */
+.page-hero.coat-guide-hero {
+  padding-bottom: 8px;
+}
+.coat-guide-hero .hero-copy h1 {
+  max-width: 18ch;
+  font-size: clamp(2.55rem, 5vw, 4.6rem);
+}
+.coat-guide-hero .lead {
+  max-width: 44ch;
+}
+.coat-guide {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto 76px;
+}
+.coat-guide-image-note {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.coat-guide-section {
+  padding-top: clamp(26px, 4vw, 48px);
+}
+.coat-guide-heading {
+  margin-bottom: 16px;
+}
+.coat-guide-heading h2 {
+  margin-bottom: 4px;
+}
+.coat-guide-heading p {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--muted);
+}
+.coat-guide-textures,
+.coat-guide-colors,
+.coat-guide-markings {
+  display: grid;
+  gap: 14px;
+}
+.coat-guide-textures,
+.coat-guide-colors {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.coat-guide-markings {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.coat-guide-card {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+.coat-guide-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center 42%;
+  background: #f7eadb;
+}
+.coat-guide-card--texture img {
+  aspect-ratio: 5 / 3;
+  object-position: center 28%;
+}
+.coat-guide-card--marking img {
+  aspect-ratio: 4 / 3;
+  object-position: center 40%;
+}
+.coat-guide-card--marking:nth-child(3) img {
+  object-position: center 70%;
+}
+.coat-guide-card > div {
+  padding: 12px 14px 15px;
+}
+.coat-guide-card h3 {
+  margin: 0 0 3px;
+  color: var(--clay-dark);
+  font-size: 1.08rem;
+  line-height: 1.25;
+}
+.coat-guide-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.4;
+}
+.coat-guide-genetics {
+  margin-top: 15px;
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+}
+.coat-guide-genetics summary {
+  width: fit-content;
+  color: var(--clay-dark);
+  cursor: pointer;
+  font-weight: 700;
+}
+.coat-guide-genetics summary:focus-visible {
+  outline: 3px solid var(--clay);
+  outline-offset: 4px;
+}
+.coat-guide-genetics p {
+  max-width: 70ch;
+  margin: 10px 0 0;
+}
+.coat-guide-next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(32px, 5vw, 58px);
+  padding: clamp(20px, 3vw, 32px);
+  border-radius: var(--radius-md);
+  background: var(--sage-dark);
+  color: white;
+}
+.coat-guide-next h2,
+.coat-guide-next p {
+  color: white;
+}
+.coat-guide-next h2 {
+  margin-bottom: 5px;
+}
+.coat-guide-next p {
+  max-width: 56ch;
+  margin: 0;
+}
+.coat-guide-next .coat-guide-related {
+  margin-top: 12px;
+  font-size: 0.94rem;
+}
+.coat-guide-next .inline-link {
+  color: white;
+}
+.coat-guide-next .button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .coat-guide-textures {
+    grid-template-columns: 1fr;
+  }
+  .coat-guide-card--texture {
+    display: grid;
+    grid-template-columns: minmax(105px, 34%) minmax(0, 1fr);
+    align-items: center;
+  }
+  .coat-guide-card--texture img {
+    height: 100%;
+    min-height: 112px;
+    aspect-ratio: auto;
+  }
+  .coat-guide-colors,
+  .coat-guide-markings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .coat-guide-next {
+    display: block;
+  }
+  .coat-guide-next .button {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 640px) {
+  .coat-guide {
+    width: min(1180px, calc(100% - 28px));
+  }
+  .page-hero.coat-guide-hero {
+    padding-top: 22px;
+    padding-bottom: 0;
+  }
+  .coat-guide-hero .hero-copy h1 {
+    font-size: clamp(2.25rem, 11vw, 3.2rem);
+  }
+  .coat-guide-image-note {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+  .coat-guide-textures,
+  .coat-guide-colors,
+  .coat-guide-markings {
+    gap: 9px;
+  }
+  .coat-guide-card > div {
+    padding: 10px;
+  }
+  .coat-guide-card h3 {
+    font-size: 0.98rem;
+  }
+  .coat-guide-card p {
+    font-size: 0.84rem;
+  }
+  .coat-guide-card--color img,
+  .coat-guide-card--marking img {
+    aspect-ratio: 1 / 1;
+  }
+}

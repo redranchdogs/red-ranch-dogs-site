@@ -6463,37 +6463,37 @@ const coatColorTraits = [
     name: "Red Abstract",
     image: "/images/coat-traits/red-abstract-doodle.jpg",
     alt: "Red abstract doodle puppy with white markings",
-    copy: "Rich red coloring with white accents like a blaze, chest, boots, or tuxedo markings."
+    copy: "A red coat with small white accents."
   },
   {
     name: "Chocolate",
     image: "/images/coat-traits/chocolate-doodle.jpg",
     alt: "Chocolate doodle puppy",
-    copy: "Chocolate comes from the B locus and is harder to achieve, making it one of the most desirable coat colors."
+    copy: "A brown coat with brown pigment."
   },
   {
     name: "Red Chocolate",
     image: "/images/coat-traits/red-chocolate-doodle.jpg",
     alt: "Red chocolate doodle puppy with copper red coat and chocolate pigment",
-    copy: "Warm red tones with chocolate pigment and soft cocoa undertones from harder-to-achieve B locus genetics."
+    copy: "Warm red coat with brown nose and eye-rim pigment."
   },
   {
     name: "Red Parti",
     image: "/images/coat-traits/parti-doodle.jpg",
     alt: "Red and white parti doodle puppy",
-    copy: "A mostly white coat with warm red patches. Parti coloring is eye-catching, joyful, and highly requested."
+    copy: "Mostly white, with distinct red patches."
   },
   {
     name: "Tricolor",
     image: "/images/coat-traits/tricolor-bernedoodle.jpg",
     alt: "Tricolor Bernedoodle puppy",
-    copy: "Classic Bernedoodle coloring with dark pigment, tan points, and white markings."
+    copy: "Dark coat, tan points, and white markings."
   },
   {
     name: "Tricolor Merle",
     image: "/images/coat-traits/tricolor-merle-bernedoodle.jpg",
     alt: "Tricolor merle Bernedoodle puppy",
-    copy: "Striking and high demand when bred responsibly. We do not do unsafe merle-to-merle pairings."
+    copy: "Mottled dark patches with tan and white markings."
   }
 ];
 
@@ -6502,27 +6502,27 @@ const coatTextureTraits = [
     name: "Curly Coat",
     image: "/images/coat-traits/curly-coat-doodle.jpg",
     alt: "Curly coat doodle puppy",
-    copy: "Curly coats have the most Poodle-like texture and are commonly associated with lower shedding."
+    copy: "Tight, springy curls."
   },
   {
     name: "Wavy Coat",
     image: "/images/coat-traits/wavy-coat-doodle.jpg",
     alt: "Wavy coat doodle puppy",
-    copy: "Wavy coats are soft, classic, and one of the most requested doodle coat types."
+    copy: "Loose waves with a soft, tousled look."
   },
   {
     name: "Straight Teddy Coat",
     image: "/images/coat-traits/straight-teddy-doodle.jpg",
     alt: "Straight teddy coat doodle puppy",
-    copy: "Straight coats create that plush teddy-bear look and are harder to produce while still maintaining minimal shedding."
+    copy: "A flatter coat with little visible curl."
   }
 ];
 
 const coatMarkings = [
-  { name: "Angel Kiss", image: "/images/coat-traits/angel-kiss-marking.jpg", alt: "Angel kiss white marking on doodle puppy forehead" },
-  { name: "Blaze", image: "/images/coat-traits/blaze-marking.jpg", alt: "White blaze marking on doodle puppy face" },
-  { name: "Boots", image: "/images/coat-traits/boots-marking.jpg", alt: "White boots markings on doodle puppy paws" },
-  { name: "Tuxedo", image: "/images/coat-traits/tuxedo-marking.jpg", alt: "Tuxedo white chest marking on doodle puppy" }
+  { name: "Angel Kiss", image: "/images/coat-traits/angel-kiss-marking.jpg", alt: "Small white spot on a puppy's forehead", copy: "A small white forehead spot." },
+  { name: "Blaze", image: "/images/coat-traits/blaze-marking.jpg", alt: "White stripe running down a puppy's face", copy: "A white stripe down the face." },
+  { name: "Boots", image: "/images/coat-traits/boots-marking.jpg", alt: "White fur on a puppy's feet", copy: "White fur on the feet or lower legs." },
+  { name: "Tuxedo", image: "/images/coat-traits/tuxedo-marking.jpg", alt: "White marking across a puppy's chest", copy: "A larger white chest marking." }
 ];
 
 const doodleGenerationCards = [
@@ -6593,32 +6593,15 @@ const doodleGenerationFaqs = [
   }
 ];
 
-function CoatTraitCard({ trait }) {
+function CoatTraitCard({ trait, kind = "color" }) {
   return (
-    <article className="coat-card">
+    <article className={`coat-guide-card coat-guide-card--${kind}`}>
       <img src={trait.image} alt={trait.alt} loading="lazy" />
       <div>
         <h3>{trait.name}</h3>
         <p>{trait.copy}</p>
       </div>
     </article>
-  );
-}
-
-function DoodleGenerationsPreview() {
-  return (
-    <section className="content-section doodle-generations-preview">
-      <article className="doodle-generation-preview-card">
-        <div>
-          <p className="eyebrow">Doodle Generations</p>
-          <h2>F1, F1B, F1BB, and multigen explained without the noise</h2>
-          <p>Generation labels are useful, but they are not the whole story. The better question is how the pairing is planned: coat genetics, parent dogs, size, health, temperament, and the traits a program keeps back over time.</p>
-        </div>
-        <Link href="/puppies/doodle-generations" className="button primary">
-          Understand generations <ArrowRight size={18} />
-        </Link>
-      </article>
-    </section>
   );
 }
 
@@ -6754,59 +6737,54 @@ function DoodleGenerationsPage() {
 function CoatTraitsPage() {
   return (
     <Layout>
-      <PageHero eyebrow="Coat Traits" title="Understanding Coat Traits" copy="Beautiful coats are not accidental. Red Ranch Dogs uses genetics, experience, and thoughtful pairings to produce the coat traits families ask about most." />
-      <section className="content-section narrow">
-        <h2>Our Most Requested Coat Traits</h2>
-        <p>Across Goldendoodles, Bernedoodles, and Cavapoos, families often ask for low shedding, soft texture, rich color, and standout markings. Some traits are common, while others take generations of planning and careful pairing.</p>
-      </section>
-      <section className="content-section">
-        <div className="section-heading">
-          <p className="eyebrow">Color & Markings</p>
-          <h2>Traits Families Notice First</h2>
-        </div>
-        <div className="coat-grid">
-          {coatColorTraits.map((trait) => <CoatTraitCard trait={trait} key={trait.name} />)}
-        </div>
-      </section>
-      <section className="content-section">
-        <div className="section-heading">
-          <p className="eyebrow">Texture & Shedding</p>
-          <h2>How a Coat Feels and Lives at Home</h2>
-        </div>
-        <div className="coat-grid texture">
-          {coatTextureTraits.map((trait) => <CoatTraitCard trait={trait} key={trait.name} />)}
-        </div>
-        <article className="feature-band coat-feature">
-          <img src="/images/coat-traits/tt-low-shed-wavy-doodle.jpg" alt="Low shedding silky soft doodle puppy" loading="lazy" />
-          <div>
-            <p className="eyebrow">Low Shed Genetics</p>
-            <h2>TT Low Shed</h2>
-            <p>TT shedding status is highly desirable because it supports low-to-non shedding coats with the soft feel families love. A straight coat does not automatically mean high shedding; coat texture and shedding status are separate pieces of the genetic picture.</p>
+      <PageHero
+        className="coat-guide-hero"
+        eyebrow="Coat Traits"
+        title="Coat traits, at a glance"
+        copy="See the colors, textures, and white markings families ask us about most."
+      />
+      <div className="coat-guide">
+        <p className="coat-guide-image-note">These are illustrative images, not photos of Red Ranch puppies or currently available puppies.</p>
+        <section className="coat-guide-section" aria-labelledby="coat-texture-title">
+          <div className="coat-guide-heading">
+            <h2 id="coat-texture-title">Coat texture</h2>
+            <p>Look at the shape of the hair. Texture alone does not tell you how much a dog will shed.</p>
           </div>
-        </article>
-      </section>
-      <section className="content-section">
-        <div className="section-heading">
-          <p className="eyebrow">Details</p>
-          <h2>Markings Families Ask About</h2>
+          <div className="coat-guide-textures">
+            {coatTextureTraits.map((trait) => <CoatTraitCard trait={trait} kind="texture" key={trait.name} />)}
+          </div>
+          <details className="coat-guide-genetics">
+            <summary>What about low-shedding genetics?</summary>
+            <p>Shedding is separate from curl. A “TT” shedding result can point toward lighter shedding, but furnishings and other genes matter too. No coat is guaranteed non-shedding or hypoallergenic.</p>
+          </details>
+        </section>
+        <section className="coat-guide-section" aria-labelledby="coat-color-title">
+          <div className="coat-guide-heading">
+            <h2 id="coat-color-title">Color & pattern</h2>
+            <p>Color names describe a look; a photo alone cannot confirm a dog’s genetics.</p>
+          </div>
+          <div className="coat-guide-colors">
+            {coatColorTraits.map((trait) => <CoatTraitCard trait={trait} key={trait.name} />)}
+          </div>
+        </section>
+        <section className="coat-guide-section" aria-labelledby="coat-marking-title">
+          <div className="coat-guide-heading">
+            <h2 id="coat-marking-title">White markings</h2>
+            <p>These names tell you where the white appears.</p>
+          </div>
+          <div className="coat-guide-markings">
+            {coatMarkings.map((trait) => <CoatTraitCard trait={trait} kind="marking" key={trait.name} />)}
+          </div>
+        </section>
+        <div className="coat-guide-next">
+          <div>
+            <h2>Have a coat preference?</h2>
+            <p>Use these examples when telling us what you hope to find. Every puppy’s coat is individual.</p>
+            <p className="coat-guide-related">Curious about F1, F1B, or multigen? <Link href="/puppies/doodle-generations" className="inline-link">Read the generations guide</Link>.</p>
+          </div>
+          <Link href="/puppies/available" className="button primary">Find Your Puppy <ArrowRight size={18} aria-hidden="true" /></Link>
         </div>
-        <div className="marking-grid">
-          {coatMarkings.map((marking) => (
-            <article className="marking-card" key={marking.name}>
-              <img src={marking.image} alt={marking.alt} loading="lazy" />
-              <strong>{marking.name}</strong>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="content-section narrow">
-        <article className="text-card">
-          <CheckCircle2 size={24} />
-          <h2>Why Some Traits Carry More Value</h2>
-          <p>Some combinations are harder to achieve. TT shedding status, straight coats with minimal shedding, chocolate, red chocolate, red abstract, red parti, tricolor, and tricolor merle can require generations of planning and careful pairing. When several of these traits come together, demand is naturally higher and those puppies can command a higher price.</p>
-        </article>
-      </section>
-      <DoodleGenerationsPreview />
+      </div>
     </Layout>
   );
 }
