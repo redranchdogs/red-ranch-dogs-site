@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 10/2/2026, 12:14:48 PM Central
+Generated: 10/2/2026, 9:57:39 PM Central
 
 Status: **PASS**
 
@@ -29,7 +29,7 @@ Routes with warnings: 2
 | /puppies/upcoming-litters | 200 | Upcoming Doodle Litters in Texas | Red Ranch Dogs | 129 | Upcoming Litters | 1 | https://www.redranchdogs.com/puppies/upcoming-litters |
 | /puppies/previous-litters | 200 | Previous Litters | Red Ranch Dogs | 97 | Previous Litters | 1 | https://www.redranchdogs.com/puppies/previous-litters |
 | /puppies/what-comes-with-your-puppy | 200 | What Comes With Your Puppy | Red Ranch Dogs | 114 | What Comes With Your Puppy? | 1 | https://www.redranchdogs.com/puppies/what-comes-with-your-puppy |
-| /puppies/coat-traits | 200 | Coat Traits | Red Ranch Dogs | 101 | Understanding Coat Traits | 1 | https://www.redranchdogs.com/puppies/coat-traits |
+| /puppies/coat-traits | 200 | Coat Traits | Red Ranch Dogs | 101 | Coat traits, at a glance | 1 | https://www.redranchdogs.com/puppies/coat-traits |
 | /puppies/doodle-generations | 200 | Doodle Generations Explained | Red Ranch Dogs | 123 | Doodle Generations Explained | 1 | https://www.redranchdogs.com/puppies/doodle-generations |
 | /parents | 200 | Parent Dogs | Red Ranch Dogs | 98 | Parent Dogs | 1 | https://www.redranchdogs.com/parents |
 | /parents/mamas | 200 | Mamas | Red Ranch Dogs | 92 | Mamas | 1 | https://www.redranchdogs.com/parents/mamas |
