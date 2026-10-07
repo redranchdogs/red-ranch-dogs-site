@@ -96,7 +96,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/available",
-    requiredText: ["find your puppy", "no puppies are listed as available right now", "two ways to explore", "beatrix + enzo"],
+    requiredText: ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "beatrix + enzo"],
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
     requiredSelectors: [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
     finderNavCheck: { mode: "available", history: true },
@@ -104,13 +104,13 @@ const routeExpectations = [
   },
   {
     route: "/puppies/available?fixture=populated",
-    requiredText: ["find your puppy", "layout fixture", "illustrative local fixture", "available"],
+    requiredText: ["find your puppy", "choose a breed", "layout fixture", "illustrative local fixture", "available"],
     requiredSelectors: [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"],
     finderNavCheck: { mode: "available" }
   },
   {
     route: "/puppies/current-litters?breed=cavapoo-puppies",
-    requiredText: ["current litters", "no current litters are listed right now.", "view upcoming litters"],
+    requiredText: ["current litters", "choose a breed", "no current litters are listed right now.", "view upcoming litters"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-empty"],
     litterBrowserCheck: { mode: "current", selectedBreed: "cavapoo-puppies" },
@@ -138,14 +138,14 @@ const routeExpectations = [
   },
   {
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
-    requiredText: ["upcoming litters", "beatrix + enzo", "lulu + bram"],
+    requiredText: ["upcoming litters", "choose a breed", "beatrix + enzo", "lulu + bram"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
     finderNavCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" }
   },
   {
     route: "/puppies/upcoming-litters?breed=cavapoo-puppies",
-    requiredText: ["no upcoming cavapoo litters are listed right now.", "see our waitlist process"],
+    requiredText: ["choose a breed", "no upcoming cavapoo litters are listed right now.", "browse goldendoodles", "browse bernedoodles", "see the cavapoo waitlist process"],
     forbiddenText: ["beatrix + enzo", "kylie + ranger"],
     requiredSelectors: [".litter-browser", ".litter-browser-empty"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" },
