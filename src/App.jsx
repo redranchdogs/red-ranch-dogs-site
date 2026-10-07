@@ -4936,7 +4936,7 @@ function AvailablePuppyBrowser({ puppies }) {
         ) : (
           <div className="litter-browser-empty">
             <h2>No {selectedBreed.breedName} puppies are listed as available right now.</h2>
-            <Link className="litter-browser-empty-link" href={litterBrowserHref("upcoming", selectedBreed.slug)}>View upcoming litters</Link>
+            <Link className="button primary litter-browser-empty-link" href={litterBrowserHref("upcoming", selectedBreed.slug)}>View upcoming litters</Link>
           </div>
         )}
       </div>
@@ -4966,7 +4966,7 @@ function AvailablePuppyEmptyHub() {
           <div>
             <h3>Current Litters</h3>
             <p>{hasCurrentLitters ? "Meet the litters growing up here." : "No current litters are posted at the moment."}</p>
-            <Link href={litterBrowserHref("current", "cavapoo-puppies")} className="available-empty-path-link">View current litter update <ChevronRight aria-hidden="true" size={20} /></Link>
+            <Link href={litterBrowserHref("current", "cavapoo-puppies")} className="button primary available-empty-path-action">View current litters <ChevronRight aria-hidden="true" size={20} /></Link>
           </div>
         </article>
         <article className="available-empty-path-card">
@@ -4978,12 +4978,12 @@ function AvailablePuppyEmptyHub() {
           <div>
             <h3>Upcoming Litters</h3>
             <p>Explore verified pairings and estimated timing.</p>
-            <Link href={litterBrowserHref("upcoming", upcomingPairing?.breedSlug || "goldendoodle-puppies")} className="button primary">View upcoming litters <ChevronRight aria-hidden="true" size={20} /></Link>
+            <Link href={litterBrowserHref("upcoming", upcomingPairing?.breedSlug || "goldendoodle-puppies")} className="button primary available-empty-path-action">View upcoming litters <ChevronRight aria-hidden="true" size={20} /></Link>
           </div>
         </article>
       </div>
       <div className="available-empty-note">
-        <p>A current litter may already have families waiting.</p>
+        <p>{hasCurrentLitters ? "A current litter may already have families waiting." : "Planning ahead for a future puppy?"}</p>
         <Link href="/process/application-and-waitlist">How our waitlist works <ChevronRight aria-hidden="true" size={18} /></Link>
       </div>
     </section>
@@ -5096,7 +5096,7 @@ function LitterBrowserEmptyState({ mode, breed, allCurrentEmpty = false }) {
     <div className="litter-browser-empty">
       <h2>{allCurrentEmpty ? "No current litters are listed right now." : `No ${mode} ${breed.breedName} litters are listed right now.`}</h2>
       {allCurrentEmpty ? <p>Explore upcoming pairings and estimated timing.</p> : !currentCanShowUpcoming && <p>Interested in a future puppy?</p>}
-      <Link href={actionHref} className="litter-browser-empty-link">
+      <Link href={actionHref} className="button primary litter-browser-empty-link">
         {allCurrentEmpty || currentCanShowUpcoming ? "View upcoming litters" : "See our waitlist process"}
       </Link>
     </div>

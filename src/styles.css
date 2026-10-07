@@ -9460,7 +9460,7 @@ summary {
   color: var(--muted);
 }
 
-.litter-browser-empty-link {
+.litter-browser-empty-link:not(.button) {
   color: var(--brand-red);
   font-weight: 900;
   text-underline-offset: 4px;
@@ -9498,10 +9498,13 @@ summary {
 
 .available-empty-statement {
   margin: 4px 0 34px;
-  padding: 22px 0 28px;
-  border-bottom: 1px solid rgba(88, 71, 56, 0.2);
-  color: var(--muted);
+  padding: 22px 24px;
+  border: 1px solid rgba(88, 71, 56, 0.18);
+  border-radius: 10px;
+  background: rgba(255, 250, 242, 0.62);
+  color: var(--ink);
   font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 700;
 }
 
 .available-empty-heading {
@@ -9517,7 +9520,7 @@ summary {
 .available-empty-heading h2 {
   margin: 0;
   font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.8rem, 6vw, 4.7rem);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-weight: 400;
   line-height: 0.92;
 }
@@ -9606,7 +9609,6 @@ summary {
   line-height: 1.45;
 }
 
-.available-empty-path-link,
 .available-empty-note a {
   display: inline-flex;
   align-items: center;
@@ -9615,6 +9617,18 @@ summary {
   font-weight: 900;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
+  min-height: 44px;
+}
+
+.available-empty-path-action {
+  width: min(100%, 320px);
+  min-height: 52px;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.available-empty-path-action svg {
+  flex-shrink: 0;
 }
 
 .available-empty-note {
@@ -9655,6 +9669,10 @@ summary {
   }
 
   .litter-browser-card-action {
+    width: 100%;
+  }
+
+  .litter-browser-empty-link.button {
     width: 100%;
   }
 
