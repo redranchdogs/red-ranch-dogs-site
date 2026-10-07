@@ -9225,47 +9225,49 @@ summary {
   color: var(--cream);
 }
 
+.puppy-breed-selector {
+  display: grid;
+  gap: 12px;
+}
+
+.puppy-breed-selector h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
 .litter-browser-tabs {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-bottom: 1px solid rgba(88, 71, 56, 0.2);
+  gap: 8px;
 }
 
 .litter-browser-tabs button {
   position: relative;
   min-width: 0;
   min-height: 52px;
-  padding: 10px 8px 12px;
-  border: 0;
-  background: transparent;
-  color: var(--muted);
+  padding: 12px 6px;
+  border: 2px solid var(--brand-red);
+  border-radius: 8px;
+  background: var(--warm-paper);
+  color: var(--ink);
   font: inherit;
-  font-size: clamp(0.77rem, 2.5vw, 0.94rem);
-  font-weight: 900;
+  font-size: clamp(0.72rem, 3.4vw, 0.95rem);
+  font-weight: 800;
+  line-height: 1.2;
   cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
 }
 
-.litter-browser-tabs button::after {
-  position: absolute;
-  right: 12px;
-  bottom: -1px;
-  left: 12px;
-  height: 3px;
-  border-radius: 3px 3px 0 0;
-  background: var(--brand-red);
-  content: "";
-  opacity: 0;
-  transform: scaleX(0.45);
-  transition: opacity 160ms ease, transform 160ms ease;
+.litter-browser-tabs button:hover {
+  background: var(--warm-cream);
 }
 
 .litter-browser-tabs button.is-active {
-  color: var(--brand-red);
-}
-
-.litter-browser-tabs button.is-active::after {
-  opacity: 1;
-  transform: scaleX(1);
+  background: var(--brand-red);
+  color: var(--cream);
 }
 
 .litter-browser-tabs button:focus-visible,
@@ -9466,6 +9468,53 @@ summary {
   text-underline-offset: 4px;
 }
 
+.litter-browser-other-breeds {
+  display: grid;
+  gap: 12px;
+  width: min(100%, 480px);
+  margin-top: 8px;
+}
+
+.litter-browser-breed-action.button {
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  border: 2px solid var(--brand-red);
+  border-radius: 8px;
+  background: var(--warm-paper);
+  color: var(--brand-red);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.litter-browser-breed-action.button:hover {
+  background: var(--warm-cream);
+}
+
+.litter-browser-breed-action svg,
+.litter-browser-next-link svg {
+  flex-shrink: 0;
+}
+
+.litter-browser-next-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  width: min(100%, 480px);
+  min-height: 44px;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--premium-line);
+  color: var(--brand-red);
+  font-weight: 500;
+  text-underline-offset: 4px;
+}
+
 .puppy-finder-nav-shell,
 .available-empty-hub,
 .available-puppy-browser {
@@ -9494,6 +9543,13 @@ summary {
 .available-empty-hub {
   padding: 0 0 64px;
   animation: litter-browser-panel-in 180ms ease both;
+}
+
+.available-puppy-browser .available-empty-hub {
+  width: 100%;
+  padding-bottom: 0;
+  box-shadow: none;
+  clip-path: none;
 }
 
 .available-empty-statement {
@@ -9721,10 +9777,18 @@ summary {
 }
 
 @media (max-width: 400px) {
+  .litter-browser-tabs {
+    gap: 6px;
+  }
+
   .litter-browser-tabs button {
     padding-inline: 4px;
-    font-size: 0.74rem;
     letter-spacing: -0.01em;
+  }
+
+  .litter-browser-breed-action.button {
+    padding-inline: 14px;
+    font-size: clamp(0.9rem, 4.1vw, 1rem);
   }
 
   .litter-browser-facts {

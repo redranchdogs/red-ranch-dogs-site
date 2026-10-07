@@ -4868,6 +4868,52 @@ function PuppyFinderRouteNav({ mode, breedSlug = "" }) {
   );
 }
 
+function PuppyBreedSelector({ selectedBreed, selectBreed, handleKeyDown, tabRefs, idPrefix, panelId }) {
+  return (
+    <div className="puppy-breed-selector">
+      <h2 id={`${idPrefix}-heading`}>Choose a breed</h2>
+      <div className="litter-browser-tabs" role="tablist" aria-labelledby={`${idPrefix}-heading`}>
+        {litterBrowserBreeds.map((breed, index) => {
+          const selected = breed.slug === selectedBreed.slug;
+          return (
+            <button
+              aria-controls={panelId}
+              aria-selected={selected}
+              className={selected ? "is-active" : ""}
+              id={`${idPrefix}-${breed.slug}`}
+              key={breed.slug}
+              onClick={() => selectBreed(breed.slug)}
+              onKeyDown={(event) => handleKeyDown(event, index)}
+              ref={(node) => { tabRefs.current[index] = node; }}
+              role="tab"
+              tabIndex={selected ? 0 : -1}
+              type="button"
+            >
+              {breed.label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function OtherBreedActions({ mode, selectedBreed }) {
+  return (
+    <div className="litter-browser-other-breeds" aria-label="Explore other breeds">
+      {litterBrowserBreeds.filter((breed) => breed.slug !== selectedBreed.slug).map((breed) => (
+        <Link
+          className="button secondary litter-browser-breed-action"
+          href={mode === "available" ? `/puppies/available?breed=${encodeURIComponent(breed.slug)}` : litterBrowserHref(mode, breed.slug)}
+          key={breed.slug}
+        >
+          Browse {breed.label} <ChevronRight aria-hidden="true" size={20} />
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 function AvailablePuppyBrowser({ puppies }) {
   const defaultBreed = litterBrowserBreeds.find((breed) => puppies.some((puppy) => puppy.breedSlug === breed.slug)) || litterBrowserBreeds[0];
   const requestedBreed = litterBrowserSlugFromUrl();
@@ -4906,37 +4952,26 @@ function AvailablePuppyBrowser({ puppies }) {
 
   return (
     <section className="available-puppy-browser" aria-label="Available puppies by breed">
-      <div className="litter-browser-tabs" role="tablist" aria-label="Choose a breed">
-        {litterBrowserBreeds.map((breed, index) => {
-          const selected = breed.slug === selectedBreed.slug;
-          return (
-            <button
-              aria-controls="available-puppy-panel"
-              aria-selected={selected}
-              className={selected ? "is-active" : ""}
-              id={`available-puppy-tab-${breed.slug}`}
-              key={breed.slug}
-              onClick={() => selectBreed(breed.slug)}
-              onKeyDown={(event) => handleKeyDown(event, index)}
-              ref={(node) => { tabRefs.current[index] = node; }}
-              role="tab"
-              tabIndex={selected ? 0 : -1}
-              type="button"
-            >
-              {breed.label}
-            </button>
-          );
-        })}
-      </div>
+      <PuppyFinderRouteNav mode="available" breedSlug={selectedBreed.slug} />
+      <PuppyBreedSelector
+        selectedBreed={selectedBreed}
+        selectBreed={selectBreed}
+        handleKeyDown={handleKeyDown}
+        tabRefs={tabRefs}
+        idPrefix="available-puppy-tab"
+        panelId="available-puppy-panel"
+      />
       <div aria-labelledby={`available-puppy-tab-${selectedBreed.slug}`} className="litter-browser-panel" id="available-puppy-panel" key={selectedBreed.slug} role="tabpanel">
-        {selectedPuppies.length ? (
+        {!puppies.length ? <AvailablePuppyEmptyHub /> : selectedPuppies.length ? (
           <div className="available-puppy-card-list">
             {selectedPuppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />)}
           </div>
         ) : (
           <div className="litter-browser-empty">
             <h2>No {selectedBreed.breedName} puppies are listed as available right now.</h2>
-            <Link className="button primary litter-browser-empty-link" href={litterBrowserHref("upcoming", selectedBreed.slug)}>View upcoming litters</Link>
+            <p>You’re viewing {selectedBreed.label}. Explore another breed below.</p>
+            <OtherBreedActions mode="available" selectedBreed={selectedBreed} />
+            <Link className="litter-browser-next-link" href={litterBrowserHref("upcoming", selectedBreed.slug)}>View upcoming {selectedBreed.breedName} litters <ChevronRight aria-hidden="true" size={18} /></Link>
           </div>
         )}
       </div>
@@ -5010,10 +5045,8 @@ function AvailablePuppiesPage() {
       copy={availableNow.length ? "Browse puppies currently open for reservation." : "Start with current availability, growing litters, or upcoming pairings."}
       heroClassName="compact-page-hero buyer-page-hero litter-browser-hero puppy-finder-hero"
     >
-      <div className="puppy-finder-nav-shell"><PuppyFinderRouteNav mode="available" /></div>
-      {availableNow.length ? (
-        <>
-          <AvailablePuppyBrowser puppies={availableNow} />
+      <AvailablePuppyBrowser puppies={availableNow} />
+      {availableNow.length > 0 && (
           <CTASection
             title="Ready to ask about a puppy?"
             copy="Apply and tell us which puppy caught your eye."
@@ -5022,8 +5055,7 @@ function AvailablePuppiesPage() {
             secondaryLabel="Text Us"
             className="available-puppy-path-cta"
           />
-        </>
-      ) : <AvailablePuppyEmptyHub />}
+      )}
     </BuyerPageTemplate>
   );
 }
@@ -5095,9 +5127,15 @@ function LitterBrowserEmptyState({ mode, breed, allCurrentEmpty = false }) {
   return (
     <div className="litter-browser-empty">
       <h2>{allCurrentEmpty ? "No current litters are listed right now." : `No ${mode} ${breed.breedName} litters are listed right now.`}</h2>
-      {allCurrentEmpty ? <p>Explore upcoming pairings and estimated timing.</p> : !currentCanShowUpcoming && <p>Interested in a future puppy?</p>}
-      <Link href={actionHref} className="button primary litter-browser-empty-link">
-        {allCurrentEmpty || currentCanShowUpcoming ? "View upcoming litters" : "See our waitlist process"}
+      {allCurrentEmpty ? <p>Explore upcoming pairings and estimated timing.</p> : (
+        <>
+          <p>You’re viewing {breed.label}. Explore another breed below.</p>
+          <OtherBreedActions mode={mode} selectedBreed={breed} />
+        </>
+      )}
+      <Link href={actionHref} className={allCurrentEmpty ? "button primary litter-browser-empty-link" : "litter-browser-next-link"}>
+        {allCurrentEmpty ? "View upcoming litters" : currentCanShowUpcoming ? `View upcoming ${breed.breedName} litters` : `See the ${breed.breedName} waitlist process`}
+        {!allCurrentEmpty && <ChevronRight aria-hidden="true" size={18} />}
       </Link>
     </div>
   );
@@ -5143,28 +5181,14 @@ function LitterBrowser({ mode }) {
   return (
     <section className="litter-browser" aria-label={`${mode === "current" ? "Current" : "Upcoming"} litters by breed`}>
       <PuppyFinderRouteNav mode={mode} breedSlug={selectedBreed.slug} />
-      <div className="litter-browser-tabs" role="tablist" aria-label="Choose a breed">
-        {litterBrowserBreeds.map((breed, index) => {
-          const selected = breed.slug === selectedBreed.slug;
-          return (
-            <button
-              aria-controls={`litter-panel-${mode}`}
-              aria-selected={selected}
-              className={selected ? "is-active" : ""}
-              id={`litter-tab-${mode}-${breed.slug}`}
-              key={breed.slug}
-              onClick={() => selectBreed(breed.slug)}
-              onKeyDown={(event) => handleTabKeyDown(event, index)}
-              ref={(node) => { tabRefs.current[index] = node; }}
-              role="tab"
-              tabIndex={selected ? 0 : -1}
-              type="button"
-            >
-              {breed.label}
-            </button>
-          );
-        })}
-      </div>
+      <PuppyBreedSelector
+        selectedBreed={selectedBreed}
+        selectBreed={selectBreed}
+        handleKeyDown={handleTabKeyDown}
+        tabRefs={tabRefs}
+        idPrefix={`litter-tab-${mode}`}
+        panelId={`litter-panel-${mode}`}
+      />
       <div
         aria-labelledby={`litter-tab-${mode}-${selectedBreed.slug}`}
         className="litter-browser-panel"
