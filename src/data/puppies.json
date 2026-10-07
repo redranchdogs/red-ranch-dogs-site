@@ -3535,5 +3535,253 @@
     "availabilityNote": "Jet has found his home and is reserved.",
     "personalityNote": "Personality notes will be updated as Jet grows.",
     "youtube_short_url": "https://youtube.com/shorts/kqcK30_R6tY"
+  },
+  {
+    "slug": "october",
+    "name": "October",
+    "visibility": "public",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Multigen Micro Bernedoodle",
+    "litterSlug": "kylie-ranger-late-summer-2026",
+    "litter": "Kylie + Ranger",
+    "mamaSlug": "kylie",
+    "mama": "Kylie",
+    "studSlug": "ranger-outside-stud",
+    "stud": "Ranger",
+    "gender": "Male",
+    "collarColor": "Black",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "~25 lbs",
+    "birthDate": "September 22, 2026",
+    "goHomeDate": "November 14-15, 2026",
+    "price": "$4,500",
+    "mainPhoto": "/images/puppies/kylie-ranger-2026/october-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+    "photos": [
+      "/images/puppies/kylie-ranger-2026/october-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/october-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+      "/images/puppies/kylie-ranger-2026/october-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Kylie + Ranger / Week 2 / Photos",
+        "photos": [
+          "/images/puppies/kylie-ranger-2026/october-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+          "/images/puppies/kylie-ranger-2026/october-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+          "/images/puppies/kylie-ranger-2026/october-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp"
+        ]
+      }
+    ],
+    "description": "October is a male Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
+    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "bram",
+    "name": "Bram",
+    "visibility": "public",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Multigen Micro Bernedoodle",
+    "litterSlug": "kylie-ranger-late-summer-2026",
+    "litter": "Kylie + Ranger",
+    "mamaSlug": "kylie",
+    "mama": "Kylie",
+    "studSlug": "ranger-outside-stud",
+    "stud": "Ranger",
+    "gender": "Male",
+    "collarColor": "Blue",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "~25 lbs",
+    "birthDate": "September 22, 2026",
+    "goHomeDate": "November 14-15, 2026",
+    "price": "$4,500",
+    "mainPhoto": "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+    "photos": [
+      "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+      "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp",
+      "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-04.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Kylie + Ranger / Week 2 / Photos",
+        "photos": [
+          "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+          "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+          "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp",
+          "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-04.webp"
+        ]
+      }
+    ],
+    "description": "Bram is a male Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
+    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "hugo-poe",
+    "name": "Hugo Poe",
+    "visibility": "public",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Multigen Micro Bernedoodle",
+    "litterSlug": "kylie-ranger-late-summer-2026",
+    "litter": "Kylie + Ranger",
+    "mamaSlug": "kylie",
+    "mama": "Kylie",
+    "studSlug": "ranger-outside-stud",
+    "stud": "Ranger",
+    "gender": "Male",
+    "collarColor": "Green",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "~25 lbs",
+    "birthDate": "September 22, 2026",
+    "goHomeDate": "November 14-15, 2026",
+    "price": "$4,500",
+    "mainPhoto": "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+    "photos": [
+      "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+      "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp",
+      "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-04.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Kylie + Ranger / Week 2 / Photos",
+        "photos": [
+          "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+          "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+          "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp",
+          "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-04.webp"
+        ]
+      }
+    ],
+    "description": "Hugo Poe is a male Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
+    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "ophelia-shadow",
+    "name": "Ophelia Shadow",
+    "visibility": "public",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Multigen Micro Bernedoodle",
+    "litterSlug": "kylie-ranger-late-summer-2026",
+    "litter": "Kylie + Ranger",
+    "mamaSlug": "kylie",
+    "mama": "Kylie",
+    "studSlug": "ranger-outside-stud",
+    "stud": "Ranger",
+    "gender": "Female",
+    "collarColor": "Pink",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "~25 lbs",
+    "birthDate": "September 22, 2026",
+    "goHomeDate": "November 14-15, 2026",
+    "price": "$4,500",
+    "mainPhoto": "/images/puppies/kylie-ranger-2026/ophelia-shadow-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+    "photos": [
+      "/images/puppies/kylie-ranger-2026/ophelia-shadow-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/ophelia-shadow-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Kylie + Ranger / Week 2 / Photos",
+        "photos": [
+          "/images/puppies/kylie-ranger-2026/ophelia-shadow-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+          "/images/puppies/kylie-ranger-2026/ophelia-shadow-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp"
+        ]
+      }
+    ],
+    "description": "Ophelia Shadow is a female Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
+    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "salem",
+    "name": "Salem",
+    "visibility": "public",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Multigen Micro Bernedoodle",
+    "litterSlug": "kylie-ranger-late-summer-2026",
+    "litter": "Kylie + Ranger",
+    "mamaSlug": "kylie",
+    "mama": "Kylie",
+    "studSlug": "ranger-outside-stud",
+    "stud": "Ranger",
+    "gender": "Female",
+    "collarColor": "Purple",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "~25 lbs",
+    "birthDate": "September 22, 2026",
+    "goHomeDate": "November 14-15, 2026",
+    "price": "$4,500",
+    "mainPhoto": "/images/puppies/kylie-ranger-2026/salem-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+    "photos": [
+      "/images/puppies/kylie-ranger-2026/salem-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/salem-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+      "/images/puppies/kylie-ranger-2026/salem-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Kylie + Ranger / Week 2 / Photos",
+        "photos": [
+          "/images/puppies/kylie-ranger-2026/salem-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+          "/images/puppies/kylie-ranger-2026/salem-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+          "/images/puppies/kylie-ranger-2026/salem-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp"
+        ]
+      }
+    ],
+    "description": "Salem is a female Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
+    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "raven",
+    "name": "Raven",
+    "visibility": "public",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Multigen Micro Bernedoodle",
+    "litterSlug": "kylie-ranger-late-summer-2026",
+    "litter": "Kylie + Ranger",
+    "mamaSlug": "kylie",
+    "mama": "Kylie",
+    "studSlug": "ranger-outside-stud",
+    "stud": "Ranger",
+    "gender": "Female",
+    "collarColor": "Red",
+    "status": "Waitlist Matching",
+    "sizeCategory": "Micro",
+    "estimatedAdultWeight": "~25 lbs",
+    "birthDate": "September 22, 2026",
+    "goHomeDate": "November 14-15, 2026",
+    "price": "$4,500",
+    "mainPhoto": "/images/puppies/kylie-ranger-2026/raven-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+    "photos": [
+      "/images/puppies/kylie-ranger-2026/raven-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/raven-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+      "/images/puppies/kylie-ranger-2026/raven-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Kylie + Ranger / Week 2 / Photos",
+        "photos": [
+          "/images/puppies/kylie-ranger-2026/raven-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+          "/images/puppies/kylie-ranger-2026/raven-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-02.webp",
+          "/images/puppies/kylie-ranger-2026/raven-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-03.webp"
+        ]
+      }
+    ],
+    "description": "Raven is a female Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
+    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
   }
 ]
