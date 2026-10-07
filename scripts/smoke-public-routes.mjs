@@ -110,7 +110,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=cavapoo-puppies",
-    requiredText: ["current litters", "choose a breed", "no current litters are listed right now.", "view upcoming litters"],
+    requiredText: ["current litters", "choose a breed", "no current cavapoo litters are listed right now.", "browse bernedoodles"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-empty"],
     litterBrowserCheck: { mode: "current", selectedBreed: "cavapoo-puppies" },
@@ -118,11 +118,19 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    requiredText: ["no current litters are listed right now.", "view upcoming litters"],
+    requiredText: ["no current goldendoodle litters are listed right now.", "view upcoming goldendoodle litters"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-empty"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
     finderNavCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" }
+  },
+  {
+    route: "/puppies/current-litters?breed=bernedoodle-puppies",
+    requiredText: ["current litters", "kylie + ranger", "waitlist matching", "september 22, 2026", "november 14-15, 2026"],
+    forbiddenText: ["pregnancy confirmed", "no current litters are listed right now."],
+    requiredSelectors: [".litter-browser-card"],
+    litterBrowserCheck: { mode: "current", selectedBreed: "bernedoodle-puppies" },
+    finderNavCheck: { mode: "current", selectedBreed: "bernedoodle-puppies" }
   },
   {
     route: "/puppies/current-litters?breed=cavapoo-puppies&fixture=loading",
@@ -160,17 +168,22 @@ const routeExpectations = [
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
-    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "puppies born", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "estimated go-home"],
+    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "waitlist matching", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 2", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
     forbiddenText: ["around 25 lbs", "confirmed pregnant", "estimated birth", "september 20-21, 2026", "november 15-16, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: {
-      expectedStatus: "Puppies born",
-      expectedPuppies: 0,
+      expectedStatus: "Waitlist matching",
+      expectedPuppies: 6,
       expectedDescriptor: "Multigen Micro Bernedoodles",
       expectedSize: "~25 lbs",
       requireSingleLinePrimary: true
     }
   },
+  ...["october", "bram", "hugo-poe", "ophelia-shadow", "salem", "raven"].map((slug) => ({
+    route: `/puppies/${slug}`,
+    requiredText: ["kylie + ranger", "waitlist matching", "week 2", "september 22, 2026", "november 14-15, 2026"],
+    requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
+  })),
   {
     route: "/litters/georgia-waylon-may-2026",
     requiredText: ["georgia + waylon", "previous litter", "birth date"],

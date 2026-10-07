@@ -471,7 +471,7 @@
     "slug": "kylie-ranger-late-summer-2026",
     "name": "Kylie + Ranger",
     "visibility": "public",
-    "status": "Planned Litter",
+    "status": "Current Litter",
     "featuredAvailable": false,
     "pregnancyConfirmed": true,
     "litterNumber": "Kylie repeat",
@@ -490,8 +490,8 @@
     "priceRange": "$4,500",
     "image": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
     "parentPairingImage": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
-    "availabilitySummary": "Kylie and Ranger's puppies arrived September 22, 2026.",
-    "availabilityNote": "Puppies were born September 22, 2026, with planned go-home November 14-15, 2026. Join the Bernedoodle waitlist for updates.",
+    "availabilitySummary": "Week 2 photos are here. Kylie and Ranger’s puppies are in waitlist matching.",
+    "availabilityNote": "Puppies were born September 22, 2026, with planned go-home November 14-15, 2026. We are working through the Bernedoodle waitlist first. This litter is not currently available for public reservation.",
     "aboutTitle": "Kylie and Ranger's repeat micro Bernedoodle litter has arrived.",
     "aboutThisLitter": [
       "Kylie's repeat Multigen Micro Bernedoodle litter with outside stud Ranger arrived September 22, 2026. This pairing is known for rich color, compact size, and steady family temperament.",
@@ -510,15 +510,26 @@
       "Chocolate tri and merle possibilities",
       "Born September 22, 2026"
     ],
-    "puppySlugs": [],
-    "photoFolderHint": "Website Hub / Photos / Litters / Kylie + Ranger",
-    "weeklyUpdateStatus": "Puppies arrived September 22, 2026. Planned go-home is November 14-15, 2026.",
+    "puppySlugs": [
+      "october",
+      "bram",
+      "hugo-poe",
+      "ophelia-shadow",
+      "salem",
+      "raven"
+    ],
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Kylie + Ranger / Week 2 / Photos",
+    "weeklyUpdateStatus": "Week 2 photos are live. Puppy selection is being worked through the Bernedoodle waitlist first.",
     "weeklyUpdateGallery": [
-      "/images/dams/kylie-red-ranch-dogs.webp",
-      "/images/studs/ranger-bernedoodle-stud-red-ranch-dogs.webp"
+      "/images/puppies/kylie-ranger-2026/october-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/bram-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/hugo-poe-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/ophelia-shadow-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/salem-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp",
+      "/images/puppies/kylie-ranger-2026/raven-micro-bernedoodle-puppy-kylie-ranger-week-2-red-ranch-dogs-01.webp"
     ],
     "birthConfirmed": true,
-    "publicListingStage": "awaiting-puppy-profiles"
+    "theme": "Moonlit Manor"
   },
   {
     "slug": "honey-bram-spring-2026",

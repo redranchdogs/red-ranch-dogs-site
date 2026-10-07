@@ -1,11 +1,11 @@
 # Visual QA Report
 
-Generated: 10/7/2026, 11:59:50 AM Central
+Generated: 10/7/2026, 6:38:59 PM Central
 
 Status: **PASS**
 
-Routes checked: 22
-Viewport checks: 44
+Routes checked: 23
+Viewport checks: 46
 
 ## Blockers
 
@@ -34,6 +34,7 @@ Viewport checks: 44
 | mobile | /contact | 200 | Contact Red Ranch Dogs | Salado, Texas |
 | mobile | /guardian-program/application | 200 | Guardian Application | Red Ranch Dogs |
 | mobile | /stud-services/our-studs | 200 | Our Studs | Red Ranch Dogs |
+| mobile | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs |
 | mobile | /parents/birdie | 200 | Birdie | Parent Dog | Red Ranch Dogs |
 | mobile | /parents/honey | 200 | Honey | Parent Dog | Red Ranch Dogs |
 | mobile | /parents/ginny | 200 | Ginny | Parent Dog | Red Ranch Dogs |
@@ -56,6 +57,7 @@ Viewport checks: 44
 | desktop | /contact | 200 | Contact Red Ranch Dogs | Salado, Texas |
 | desktop | /guardian-program/application | 200 | Guardian Application | Red Ranch Dogs |
 | desktop | /stud-services/our-studs | 200 | Our Studs | Red Ranch Dogs |
+| desktop | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs |
 | desktop | /parents/birdie | 200 | Birdie | Parent Dog | Red Ranch Dogs |
 | desktop | /parents/honey | 200 | Honey | Parent Dog | Red Ranch Dogs |
 | desktop | /parents/ginny | 200 | Ginny | Parent Dog | Red Ranch Dogs |

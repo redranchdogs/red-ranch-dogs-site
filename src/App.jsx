@@ -4075,7 +4075,7 @@ function LitterPage({ litter }) {
   const isLongLitterName = litter.name.length > 18;
   const isLitterWaitlistFull = /waitlist is full/i.test(litter.availabilityNote || "");
   const litterDescriptor = litter.displayDescriptor || pluralizeLitterBreed(litter.breed);
-  const litterStatusLabel = litter.birthConfirmed ? "Puppies born" : litter.pregnancyConfirmed ? "Pregnancy confirmed" : statusLabel;
+  const litterStatusLabel = isPlannedLitter(litter) && litter.birthConfirmed ? "Puppies born" : isPlannedLitter(litter) && litter.pregnancyConfirmed ? "Pregnancy confirmed" : statusLabel;
   const birthIsEstimated = (isPlannedLitter(litter) && !litter.birthConfirmed) || /^estimated\b/i.test(litter.birthDate || "");
   const goHomeIsEstimated = isPlannedLitter(litter) || /^estimated\b/i.test(litter.goHomeDate || "");
   const birthLabel = birthIsEstimated ? "Estimated Birth" : "Birth Date";
@@ -4144,7 +4144,7 @@ function LitterPage({ litter }) {
         ]
       }
     : {
-        eyebrow: "Go-Home Ready",
+        eyebrow: "Go-Home Planning",
         title: "Approved families receive full go-home guidance",
         copy: "Pickup timing, final records, ride-home tips, and puppy prep details are shared directly before go-home day.",
         items: []
@@ -5002,7 +5002,7 @@ function AvailablePuppyEmptyHub() {
           <div>
             <h3>Current Litters</h3>
             <p>{hasCurrentLitters ? "Meet the litters growing up here." : "No current litters are posted at the moment."}</p>
-            <Link href={litterBrowserHref("current", "cavapoo-puppies")} className="button primary available-empty-path-action">View current litters <ChevronRight aria-hidden="true" size={20} /></Link>
+            <Link href={litterBrowserHref("current", currentLitterProfiles[0]?.breedSlug || "cavapoo-puppies")} className="button primary available-empty-path-action">View current litters <ChevronRight aria-hidden="true" size={20} /></Link>
           </div>
         </article>
         <article className="available-empty-path-card">
@@ -5061,11 +5061,11 @@ function AvailablePuppiesPage() {
   );
 }
 
-function litterBrowserSlugFromUrl() {
+function litterBrowserSlugFromUrl(defaultSlug = litterBrowserBreeds[0].slug) {
   const requested = new window.URLSearchParams(window.location.search).get("breed");
   return litterBrowserBreeds.some((breed) => breed.slug === requested)
     ? requested
-    : litterBrowserBreeds[0].slug;
+    : defaultSlug;
 }
 
 function litterBrowserHref(mode, breedSlug) {
@@ -5143,9 +5143,10 @@ function LitterBrowserEmptyState({ mode, breed, allCurrentEmpty = false }) {
 }
 
 function LitterBrowser({ mode }) {
-  const [selectedBreedSlug, setSelectedBreedSlug] = useState(litterBrowserSlugFromUrl);
-  const tabRefs = useRef([]);
   const litters = mode === "current" ? currentLitterProfiles : plannedLitterProfiles;
+  const defaultBreedSlug = litters[0]?.breedSlug || litterBrowserBreeds[0].slug;
+  const [selectedBreedSlug, setSelectedBreedSlug] = useState(() => litterBrowserSlugFromUrl(defaultBreedSlug));
+  const tabRefs = useRef([]);
   const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || litterBrowserBreeds[0];
   const selectedLitters = litters.filter((litter) => litter.breedSlug === selectedBreed.slug);
   const allCurrentEmpty = mode === "current" && currentLitterProfiles.length === 0;
@@ -5154,10 +5155,10 @@ function LitterBrowser({ mode }) {
     : "";
 
   useEffect(() => {
-    const syncSelection = () => setSelectedBreedSlug(litterBrowserSlugFromUrl());
+    const syncSelection = () => setSelectedBreedSlug(litterBrowserSlugFromUrl(defaultBreedSlug));
     window.addEventListener("popstate", syncSelection);
     return () => window.removeEventListener("popstate", syncSelection);
-  }, []);
+  }, [defaultBreedSlug]);
 
   const selectBreed = (slug, { focus = false } = {}) => {
     if (slug === selectedBreedSlug) return;
