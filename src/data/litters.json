@@ -243,22 +243,22 @@
     "breedSlug": "goldendoodle-puppies",
     "breed": "F1B-Style Goldendoodle",
     "displayDescriptor": "F1B-style Mini Goldendoodles",
-    "birthDate": "Estimated September 29, 2026",
-    "goHomeDate": "November 23-24, 2026",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
     "expectedSize": "25-35 lbs full-grown",
-    "expectedTiming": "Estimated September 29, 2026",
+    "expectedTiming": "Born September 28, 2026",
     "expectedColors": "Warm apricot and red possibilities",
     "expectedCoatTraits": "Silky-soft wavy to curly, lower-shedding coat possibilities",
     "priceRange": "$2,800",
-    "availabilitySummary": "Great news: Beatrix is confirmed pregnant with her second litter with Enzo.",
-    "availabilityNote": "The estimated due date is September 29, 2026. Join the Goldendoodle waitlist for updates.",
-    "aboutTitle": "Beatrix and Enzo's second Goldendoodle litter is confirmed.",
+    "availabilitySummary": "Beatrix and Enzo's puppies arrived September 28, 2026.",
+    "availabilityNote": "Puppies were born September 28, 2026, with planned go-home November 19-21, 2026. Join the Goldendoodle waitlist for updates.",
+    "aboutTitle": "Beatrix and Enzo's second Goldendoodle litter has arrived.",
     "aboutThisLitter": [
-      "Beatrix is confirmed pregnant with their second litter together. Their first pairing gave us so much to love, and we cannot wait to see this combination again.",
+      "Beatrix and Enzo's second litter together arrived September 28, 2026. Their first pairing gave us so much to love, and we are excited to share updates as these puppies grow.",
       "Beatrix is one of the sweetest mamas in our program. She has an exceptionally silky-soft coat, an affectionate family-dog temperament, and the kind of gentle personality that has made her a true Red Ranch family favorite.",
       "Enzo is a top-notch Goldendoodle stud in our program and consistently produces some of the cutest puppies. His compact size, beautiful red coat, and proven contribution to our Goldendoodle lines make him a special match for Beatrix.",
       "Because Beatrix is an F1 Goldendoodle and Enzo is approximately 96% Poodle and 4% Golden Retriever, their puppies are expected to average about 73% Poodle and 27% Golden Retriever. That gives this Goldendoodle-to-Goldendoodle pairing an F1B-style genetic balance.",
-      "The estimated due date is September 29, 2026.",
+      "Puppies were born September 28, 2026, with planned go-home November 19-21, 2026.",
       "We expect warm apricot and red possibilities with silky-soft wavy to curly, lower-shedding coat possibilities. Puppies are expected to mature around 25-35 lbs full-grown, though individual puppy size can vary."
     ],
     "geneticMakeup": [
@@ -267,19 +267,19 @@
       "F1B-style Goldendoodle pairing"
     ],
     "aboutHighlights": [
-      "Pregnancy confirmed",
+      "Puppies born",
       "F1B-style Goldendoodles",
       "About 73% Poodle / 27% Golden Retriever",
       "25-35 lbs expected adult size",
-      "Estimated due date September 29, 2026"
+      "Born September 28, 2026"
     ],
     "puppySlugs": [],
-    "weeklyUpdateStatus": "Beatrix is confirmed pregnant. The estimated due date is September 29, 2026.",
+    "weeklyUpdateStatus": "Puppies arrived September 28, 2026. Planned go-home is November 19-21, 2026.",
     "weeklyUpdateGallery": [
       "/images/dams/beatrix-red-ranch-dogs.webp",
       "/images/studs/enzo-red-ranch-dogs.webp"
     ],
-    "quickNote": "Beatrix is confirmed pregnant. The estimated due date is September 29, 2026.",
+    "quickNote": "Puppies arrived September 28, 2026. Planned go-home is November 19-21, 2026.",
     "pastPuppyGallery": {
       "eyebrow": "Beatrix + Enzo Past Puppies",
       "title": "See Their Previous Puppies",
@@ -291,7 +291,9 @@
         "/images/litters/beatrix-enzo-past-puppies/beatrix-enzo-past-puppy-01.webp",
         "/images/litters/beatrix-enzo-past-puppies/beatrix-enzo-past-puppy-02.webp"
       ]
-    }
+    },
+    "birthConfirmed": true,
+    "publicListingStage": "awaiting-puppy-profiles"
   },
   {
     "slug": "lulu-bram-fall-2026",
@@ -479,42 +481,44 @@
     "stud": "Ranger",
     "breedSlug": "bernedoodle-puppies",
     "breed": "Multigen Micro Bernedoodle",
-    "birthDate": "September 20-21, 2026",
-    "goHomeDate": "November 15-16, 2026",
+    "birthDate": "September 22, 2026",
+    "goHomeDate": "November 14-15, 2026",
     "expectedSize": "Around 25 lbs",
-    "expectedTiming": "September 20-21, 2026",
+    "expectedTiming": "Born September 22, 2026",
     "expectedColors": "Chocolate tri, merle, red, and abstract possibilities",
     "expectedCoatTraits": "Straight to wavy low-shedding coat possibilities",
     "priceRange": "$4,500",
     "image": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
     "parentPairingImage": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
-    "availabilitySummary": "Great news: Kylie is confirmed pregnant with her repeat litter with outside stud Ranger.",
-    "availabilityNote": "Expected birth is September 20-21, 2026, with estimated go-home November 15-16, 2026. Join the Bernedoodle waitlist for updates.",
-    "aboutTitle": "Kylie and Ranger's repeat micro Bernedoodle litter is confirmed.",
+    "availabilitySummary": "Kylie and Ranger's puppies arrived September 22, 2026.",
+    "availabilityNote": "Puppies were born September 22, 2026, with planned go-home November 14-15, 2026. Join the Bernedoodle waitlist for updates.",
+    "aboutTitle": "Kylie and Ranger's repeat micro Bernedoodle litter has arrived.",
     "aboutThisLitter": [
-      "Kylie is confirmed pregnant with her repeat Multigen Micro Bernedoodle litter with outside stud Ranger, a pairing known for rich color, compact size, and steady family temperament.",
+      "Kylie's repeat Multigen Micro Bernedoodle litter with outside stud Ranger arrived September 22, 2026. This pairing is known for rich color, compact size, and steady family temperament.",
       "Kylie is an ultra Bernedoodle in our program with a chocolate-toned coat and a sweet, people-focused temperament. Ranger is an outside Bernedoodle stud selected for this repeat pairing.",
       "Based on the previous pairing, these puppies are expected to mature around 25 pounds full grown.",
       "Coats are expected to range from straight to wavy, with chocolate tri, merle, red, and abstract possibilities throughout the litter.",
-      "Expected birth is September 20-21, 2026, with estimated go-home November 15-16, 2026."
+      "Puppies were born September 22, 2026, with planned go-home November 14-15, 2026."
     ],
     "geneticMakeup": [
       "Multigen Bernedoodle pairing",
       "Estimated around 25 lbs full grown"
     ],
     "aboutHighlights": [
-      "Pregnancy confirmed",
+      "Puppies born",
       "Multigen Micro Bernedoodles",
       "Chocolate tri and merle possibilities",
-      "Expected birth September 20-21, 2026"
+      "Born September 22, 2026"
     ],
     "puppySlugs": [],
     "photoFolderHint": "Website Hub / Photos / Litters / Kylie + Ranger",
-    "weeklyUpdateStatus": "Kylie is confirmed pregnant. Expected birth is September 20-21, 2026, with estimated go-home November 15-16, 2026.",
+    "weeklyUpdateStatus": "Puppies arrived September 22, 2026. Planned go-home is November 14-15, 2026.",
     "weeklyUpdateGallery": [
       "/images/dams/kylie-red-ranch-dogs.webp",
       "/images/studs/ranger-bernedoodle-stud-red-ranch-dogs.webp"
-    ]
+    ],
+    "birthConfirmed": true,
+    "publicListingStage": "awaiting-puppy-profiles"
   },
   {
     "slug": "honey-bram-spring-2026",

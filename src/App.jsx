@@ -3493,6 +3493,7 @@ const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter
   if (availableCount) return `${availableCount} available`;
   if (waitlistCount) return "Waitlist matching";
   if (litterPuppies.length && reservedCount === litterPuppies.length) return "Reserved";
+  if (litter?.birthConfirmed) return "Puppies born";
   if (litter?.pregnancyConfirmed && isPlannedLitter(litter)) return "Pregnancy confirmed";
   if (!isCurrentLitter(litter)) return "Planning";
   if (litterPuppies.length) return `${litterPuppies.length} puppy profiles`;
@@ -4074,8 +4075,8 @@ function LitterPage({ litter }) {
   const isLongLitterName = litter.name.length > 18;
   const isLitterWaitlistFull = /waitlist is full/i.test(litter.availabilityNote || "");
   const litterDescriptor = litter.displayDescriptor || pluralizeLitterBreed(litter.breed);
-  const litterStatusLabel = litter.pregnancyConfirmed ? "Pregnancy confirmed" : statusLabel;
-  const birthIsEstimated = isPlannedLitter(litter) || /^estimated\b/i.test(litter.birthDate || "");
+  const litterStatusLabel = litter.birthConfirmed ? "Puppies born" : litter.pregnancyConfirmed ? "Pregnancy confirmed" : statusLabel;
+  const birthIsEstimated = (isPlannedLitter(litter) && !litter.birthConfirmed) || /^estimated\b/i.test(litter.birthDate || "");
   const goHomeIsEstimated = isPlannedLitter(litter) || /^estimated\b/i.test(litter.goHomeDate || "");
   const birthLabel = birthIsEstimated ? "Estimated Birth" : "Birth Date";
   const goHomeLabel = goHomeIsEstimated ? "Estimated Go-Home" : "Go-Home";
@@ -4112,7 +4113,7 @@ function LitterPage({ litter }) {
           }
       : isPlannedLitter(litter)
         ? {
-            copy: litter.pregnancyConfirmed
+            copy: litter.birthConfirmed || litter.pregnancyConfirmed
               ? "Picking opportunities depend on availability."
               : "Join the waitlist and we will share timing, pregnancy confirmation, and availability updates as this pairing progresses.",
             primaryLabel: "Join the Waitlist"
@@ -5077,7 +5078,7 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const image = litter.parentPairingImage || litter.image || litter.weeklyUpdateGallery?.[0];
   const litterPuppies = puppiesForLitter(litter);
-  const timing = isPlannedLitter(litter)
+  const timing = litter.birthConfirmed ? litter.birthDate : isPlannedLitter(litter)
     ? litter.expectedTiming || litter.delivery || litter.birthDate
     : litter.expectedTiming || litter.birthDate;
   const goHome = litter.goHomeDate || litter.goHome;
@@ -5096,7 +5097,7 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
       )}
       <div className="litter-browser-card-body">
         <div className="litter-browser-card-status">
-          <span>{litter.status || "Litter"}</span>
+          <span>{litter.birthConfirmed && isPlannedLitter(litter) ? "Upcoming Litter" : litter.status || "Litter"}</span>
           <span>{availabilityOverride || litterAvailabilityLabel(litter, litterPuppies)}</span>
         </div>
         <div>
@@ -5105,7 +5106,7 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
         </div>
         {litter.availabilitySummary && <p>{litter.availabilitySummary}</p>}
         <dl className="litter-browser-facts">
-          {timing && <div><dt>{isPlannedLitter(litter) ? "Expected" : "Timing"}</dt><dd>{timing}</dd></div>}
+          {timing && <div><dt>{litter.birthConfirmed ? "Born" : isPlannedLitter(litter) ? "Expected" : "Timing"}</dt><dd>{timing}</dd></div>}
           {goHome && <div><dt>Go home</dt><dd>{goHome}</dd></div>}
         </dl>
         <Link href={route} className="button primary litter-browser-card-action">View litter</Link>
