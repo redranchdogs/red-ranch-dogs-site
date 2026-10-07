@@ -211,6 +211,15 @@ litters.filter(isPublicRecord).forEach((litter) => {
   const timingText = `${litter.expectedTiming || ""} ${litter.aboutTitle || ""} ${(litter.about || []).join(" ")}`;
   const statusText = normalize(litter.status);
   const statuses = statusesByLitter.get(litterSlug) || new Set();
+  const confirmedBirthDate = Date.parse(litter.birthDate || "");
+  const bornAwaitingProfiles = litter.birthConfirmed === true
+    && litter.publicListingStage === "awaiting-puppy-profiles"
+    && /^(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$/.test(litter.birthDate || "")
+    && Number.isFinite(confirmedBirthDate)
+    && confirmedBirthDate <= Date.now()
+    && litter.featuredAvailable === false
+    && (litter.puppySlugs || []).length === 0
+    && statuses.size === 0;
 
   if (litter.featuredAvailable === true && availableCount === 0) {
     blockers.push(
@@ -236,7 +245,7 @@ litters.filter(isPublicRecord).forEach((litter) => {
     );
   }
 
-  if (statusText.includes("planned") && textSuggestsDeliveredLitter(`${timingText} ${availabilityText}`)) {
+  if (statusText.includes("planned") && textSuggestsDeliveredLitter(`${timingText} ${availabilityText}`) && !bornAwaitingProfiles) {
     blockers.push(
       `${litter.litterName || litterSlug} is public as a planned litter, but its timing/copy suggests it has delivered. Make it current with puppy photos/details, or set visibility to hidden until ready.`
     );

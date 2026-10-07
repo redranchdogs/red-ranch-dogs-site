@@ -153,18 +153,18 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "pregnancy confirmed", "$2,800", "25-35 lbs", "estimated birth", "estimated go-home", "about this litter", "join the waitlist"],
-    forbiddenText: ["at a glance", "great news: beatrix is confirmed pregnant"],
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "puppies born", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "estimated go-home", "about this litter", "join the waitlist"],
+    forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "Pregnancy confirmed", expectedPuppies: 0, testParentBack: true }
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, testParentBack: true }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
-    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "pregnancy confirmed", "$4,500", "~25 lbs", "estimated birth", "estimated go-home"],
-    forbiddenText: ["around 25 lbs"],
+    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "puppies born", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "estimated go-home"],
+    forbiddenText: ["around 25 lbs", "confirmed pregnant", "estimated birth", "september 20-21, 2026", "november 15-16, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: {
-      expectedStatus: "Pregnancy confirmed",
+      expectedStatus: "Puppies born",
       expectedPuppies: 0,
       expectedDescriptor: "Multigen Micro Bernedoodles",
       expectedSize: "~25 lbs",
