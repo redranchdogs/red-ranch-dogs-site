@@ -146,6 +146,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
+    expectedLitterOrder: ["Beatrix + Enzo", "Lulu + Bram", "Evie + Waylon"],
     requiredText: ["upcoming litters", "choose a breed", "beatrix + enzo", "lulu + bram", "evie + waylon", "petite mini goldendoodle", "early december 2026"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
@@ -431,6 +432,13 @@ async function auditRoute(context, config, viewportName) {
     for (const selector of config.requiredSelectors || []) {
       const count = await visibleCount(page, selector);
       if (count < 1) failures.push(`Missing visible selector: ${selector}`);
+    }
+
+    if (config.expectedLitterOrder) {
+      const names = await page.locator(".litter-browser-card h2").allTextContents();
+      if (JSON.stringify(names) !== JSON.stringify(config.expectedLitterOrder)) {
+        failures.push(`Unexpected litter order: ${names.join(", ")}`);
+      }
     }
 
     if (config.guaranteeCheck) {
