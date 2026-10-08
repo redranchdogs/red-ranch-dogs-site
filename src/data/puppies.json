@@ -3539,6 +3539,8 @@
   {
     "slug": "october",
     "name": "October",
+    "youtube_short_url": "https://youtube.com/shorts/5uSYxIJ8-Nk",
+    "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
     "breed": "Multigen Micro Bernedoodle",
@@ -3580,6 +3582,8 @@
   {
     "slug": "bram",
     "name": "Bram",
+    "youtube_short_url": "https://youtube.com/shorts/yno4V-1svZs",
+    "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
     "breed": "Multigen Micro Bernedoodle",
@@ -3623,6 +3627,8 @@
   {
     "slug": "hugo-poe",
     "name": "Hugo Poe",
+    "youtube_short_url": "https://youtube.com/shorts/GqHqSy17PSU",
+    "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
     "breed": "Multigen Micro Bernedoodle",
@@ -3666,6 +3672,8 @@
   {
     "slug": "ophelia-shadow",
     "name": "Ophelia Shadow",
+    "youtube_short_url": "https://youtube.com/shorts/Idh67CkVeUE",
+    "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
     "breed": "Multigen Micro Bernedoodle",
@@ -3705,6 +3713,8 @@
   {
     "slug": "salem",
     "name": "Salem",
+    "youtube_short_url": "https://youtube.com/shorts/3pXMamIxw3o",
+    "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
     "breed": "Multigen Micro Bernedoodle",
@@ -3746,6 +3756,8 @@
   {
     "slug": "raven",
     "name": "Raven",
+    "youtube_short_url": "https://youtube.com/shorts/WazOI6NFrns",
+    "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
     "breed": "Multigen Micro Bernedoodle",
