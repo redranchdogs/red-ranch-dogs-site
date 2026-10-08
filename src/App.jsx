@@ -3415,7 +3415,15 @@ const currentLitterProfiles = publicLitterProfiles
   .sort((first, second) => sortableLitterDate(first.goHomeDate || first.goHome) - sortableLitterDate(second.goHomeDate || second.goHome));
 const plannedLitterProfiles = publicLitterProfiles
   .filter(isPlannedLitter)
-  .sort((first, second) => sortableLitterDate(first.expectedTiming || first.delivery || first.goHomeDate || first.goHome) - sortableLitterDate(second.expectedTiming || second.delivery || second.goHomeDate || second.goHome));
+  .sort((first, second) => {
+    const displayOrder = ["beatrix-enzo-planned-2026", "lulu-bram-fall-2026", "evie-waylon-october-2026"];
+    const priority = (litter) => {
+      const index = displayOrder.indexOf(litter.slug);
+      return index < 0 ? Number.POSITIVE_INFINITY : index;
+    };
+    const priorityDifference = priority(first) - priority(second);
+    return priorityDifference || sortableLitterDate(first.expectedTiming || first.delivery || first.goHomeDate || first.goHome) - sortableLitterDate(second.expectedTiming || second.delivery || second.goHomeDate || second.goHome);
+  });
 const plannedLitterBreedGroups = [
   {
     slug: "goldendoodle-puppies",
