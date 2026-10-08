@@ -541,7 +541,8 @@
     "relatedLitters": [
       "birdie-waylon-spring-2026",
       "whitley-waylon-april-2026",
-      "georgia-waylon-may-2026"
+      "georgia-waylon-may-2026",
+      "evie-waylon-october-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Waylon Jennings",
     "description": "Health-tested stud used in select Goldendoodle pairings.",
@@ -815,5 +816,28 @@
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Ranger",
     "description": "Outside Bernedoodle stud planned for Kylie's repeat Bernedoodle pairing."
+  },
+  {
+    "slug": "evie-nicks",
+    "name": "Evie Nicks",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "weight": "24 lbs",
+    "color": "",
+    "coat": "",
+    "status": "Active",
+    "mainPhoto": "/images/dams/evie-nicks.webp",
+    "photos": [
+      "/images/dams/evie-nicks.webp"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "evie-waylon-october-2026"
+    ],
+    "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Evie Nicks",
+    "description": "Evie Nicks is a multigenerational Goldendoodle with a gentle, affectionate nature and a calm, friendly temperament."
   }
 ]

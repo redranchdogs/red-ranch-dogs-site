@@ -490,7 +490,7 @@
     "priceRange": "$4,500",
     "image": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
     "parentPairingImage": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
-    "availabilitySummary": "Week 2 photos are here. Kylie and Ranger’s puppies are in waitlist matching.",
+    "availabilitySummary": "Week 2 photos are here. Kylie and Ranger\u2019s puppies are in waitlist matching.",
     "availabilityNote": "Puppies were born September 22, 2026, with planned go-home November 14-15, 2026. We are working through the Bernedoodle waitlist first. This litter is not currently available for public reservation.",
     "aboutTitle": "Kylie and Ranger's repeat micro Bernedoodle litter has arrived.",
     "aboutThisLitter": [
@@ -707,5 +707,44 @@
     ],
     "quickNote": "All puppies have found their homes.",
     "previousLitterHref": "/ginny-butch-spring-2026"
+  },
+  {
+    "slug": "evie-waylon-october-2026",
+    "name": "Evie + Waylon",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "pregnancyConfirmed": true,
+    "featuredAvailable": false,
+    "litterNumber": "",
+    "mamaSlug": "evie-nicks",
+    "mama": "Evie Nicks",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Petite Mini Goldendoodle",
+    "birthDate": "Estimated October 11-16, 2026",
+    "goHomeDate": "Estimated early December 2026",
+    "expectedSize": "Approximately 20 lbs",
+    "expectedTiming": "Due any day; estimated October 11-16, 2026",
+    "expectedColors": "",
+    "expectedCoatTraits": "",
+    "priceRange": "$3,200",
+    "availabilitySummary": "Evie and Waylon are expecting Petite Mini Goldendoodles, estimated to mature around 20 pounds. Evie is due any day.",
+    "availabilityNote": "Go-home timing is estimated for early December and will be updated once the actual birth date is confirmed. Puppy details and placement timing will be shared as the litter grows.",
+    "aboutTitle": "Petite Mini Goldendoodles, expected around 20 pounds.",
+    "aboutThisLitter": [
+      "Evie Nicks and Waylon Jennings are expecting a Petite Mini Goldendoodle litter, with an estimated adult size of approximately 20 pounds and a price of $3,200.",
+      "Evie is due any day, with estimated delivery October 11-16, 2026. Go-home timing is estimated for early December, based on approximately eight weeks after birth. The actual birth date will determine the final timing."
+    ],
+    "aboutHighlights": [
+      "Petite Mini Goldendoodles",
+      "Expected adult size approximately 20 lbs",
+      "$3,200",
+      "Estimated go-home early December 2026"
+    ],
+    "puppySlugs": [],
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Upcoming Litters / Evie + Waylon",
+    "weeklyUpdateStatus": "Expected litter; puppy photos will follow after birth.",
+    "weeklyUpdateGallery": []
   }
 ]

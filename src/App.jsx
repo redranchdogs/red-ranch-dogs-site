@@ -546,7 +546,7 @@ const clientRedirects = Object.fromEntries([
   ["/beatrix", "/parents/beatrix"],
   ["/june-2", "/parents/june"],
   ["/georgia", "/parents/georgia"],
-  ["/evie-nicks", "/parents/mamas"],
+  ["/evie-nicks", "/parents/evie-nicks"],
   ["/ginny", "/parents/ginny"],
   ["/faye", "/parents/faye"],
   ["/kylie", "/parents/kylie"],
