@@ -132,12 +132,12 @@
       "breed": "Bernedoodle",
       "position": 3,
       "display_name": "Kyle N.",
-      "status": "Active",
-      "show_publicly": "Yes"
+      "status": "Removed",
+      "show_publicly": "No"
     },
     {
       "breed": "Bernedoodle",
-      "position": 4,
+      "position": 3,
       "display_name": "Janae W.",
       "status": "Active",
       "show_publicly": "Yes"
