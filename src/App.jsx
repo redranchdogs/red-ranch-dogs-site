@@ -4131,6 +4131,11 @@ function LitterPage({ litter }) {
             copy: "Puppy profiles are being prepared. Apply for the waitlist or ask about current timing and future availability.",
             primaryLabel: "Join the Waitlist"
           }
+      : puppies.some((puppy) => statusMatches(puppy, "availability to be confirmed"))
+        ? {
+            copy: "Contact us for current puppy availability, matching details, and the next step for your family.",
+            primaryLabel: "Join the Waitlist"
+          }
       : isFullyReservedLitter
         ? {
             copy: `${litter.name} is fully reserved. Apply for the ${waitlistName} waitlist and we will help you understand future timing, similar pairings, and the best next step for your family.`,

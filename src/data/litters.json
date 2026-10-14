@@ -273,8 +273,18 @@
       "25-35 lbs expected adult size",
       "Born September 28, 2026"
     ],
-    "puppySlugs": [],
-    "weeklyUpdateStatus": "Week 2 photos are here. Puppies were born September 28, 2026, with planned go-home November 19-21, 2026.",
+    "puppySlugs": [
+      "atticus",
+      "twain",
+      "wells",
+      "edith",
+      "darcy",
+      "dickens",
+      "austen",
+      "bronte",
+      "louisa"
+    ],
+    "weeklyUpdateStatus": "Week 2 photos and puppy videos are live. Contact us for current availability and matching details.",
     "weeklyUpdateGallery": [
       "/images/puppies/beatrix-2026-week-2/atticus-week-2-01.webp",
       "/images/puppies/beatrix-2026-week-2/atticus-week-2-02.webp",
@@ -317,7 +327,7 @@
       ]
     },
     "birthConfirmed": true,
-    "publicListingStage": "weekly-photos-live",
+    "publicListingStage": "puppy-profiles-live",
     "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos"
   },
   {
