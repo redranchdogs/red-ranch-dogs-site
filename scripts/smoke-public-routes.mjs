@@ -92,8 +92,18 @@ const routeExpectations = [
   {
     route: "/",
     requiredText: ["red ranch dogs", "available puppies", "apply"],
-    requiredSelectors: [".premium-header", "main", ".premium-footer"]
+    requiredSelectors: [".premium-header", "main", ".premium-footer"],
+    homeLitterCheck: {
+      label: litters.some((litter) => normalize(litter.status) === "current litter") ? "Current Litters" : "Upcoming Litters",
+      href: litters.some((litter) => normalize(litter.status) === "current litter") ? "/puppies/current-litters" : "/puppies/upcoming-litters",
+      showUpcoming: litters.some((litter) => normalize(litter.status) === "current litter") && litters.some((litter) => normalize(litter.status) === "planned litter")
+    }
   },
+  ...[
+    { fixture: "home-current-only", label: "Current Litters", href: "/puppies/current-litters", showUpcoming: false },
+    { fixture: "home-upcoming-only", label: "Upcoming Litters", href: "/puppies/upcoming-litters", showUpcoming: false },
+    { fixture: "home-both", label: "Current Litters", href: "/puppies/current-litters", showUpcoming: true }
+  ].map((state) => ({ route: `/?fixture=${state.fixture}`, requiredSelectors: ["main"], homeLitterCheck: state })),
   {
     route: "/puppies/available",
     requiredText: ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "lulu + bram"],
@@ -473,6 +483,24 @@ async function auditRoute(context, config, viewportName) {
       if (!agreementResponse.headers()["content-type"]?.includes("application/pdf")) failures.push(`Health guarantee link did not return a PDF: ${agreementResponse.headers()["content-type"] || "missing content type"}`);
       const agreementHash = createHash("sha256").update(await agreementResponse.body()).digest("hex");
       if (agreementHash !== "184c1a2186ab4a4a6e655b30bc0172c9a209e4c14497ab2d2e754a31562aa729") failures.push(`Unexpected health guarantee PDF hash: ${agreementHash}`);
+    }
+
+    if (config.homeLitterCheck) {
+      const expected = config.homeLitterCheck;
+      const heroBrowse = page.locator(".hero-actions").getByRole("link", { name: expected.label, exact: true });
+      if (await heroBrowse.count() !== 1 || await heroBrowse.getAttribute("href") !== expected.href) failures.push("Homepage hero litter label/destination does not match current litter status.");
+      const heroUpcoming = page.locator(".premium-hero-copy > .home-upcoming-link");
+      if (await heroUpcoming.count() !== Number(expected.showUpcoming)) failures.push("Homepage alternate Upcoming Litters link does not match available litter categories.");
+      const breedBrowse = page.locator(".home-doodles-section").getByRole("link", { name: expected.label, exact: true });
+      if (await breedBrowse.count() !== 1 || await breedBrowse.getAttribute("href") !== expected.href) failures.push("Homepage breed-section litter action differs from hero.");
+      if (!featuredAvailablePuppies.length) {
+        const options = page.locator(".home-litter-options");
+        const primary = options.getByRole("link", { name: expected.label, exact: true });
+        if (await primary.count() !== 1 || await primary.getAttribute("href") !== expected.href) failures.push("Homepage lower litter action differs from hero.");
+        if (await options.locator(".home-upcoming-link").count() !== Number(expected.showUpcoming)) failures.push("Homepage lower alternate litter link is incorrect.");
+        const title = await options.locator("h2").innerText();
+        if (!includesText(normalize(title), `Explore our ${expected.label}`)) failures.push("Homepage lower heading promotes the wrong litter category.");
+      }
     }
 
     if (config.availableAccordionCheck && featuredAvailablePuppies.length) {
