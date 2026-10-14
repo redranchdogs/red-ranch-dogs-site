@@ -1372,17 +1372,7 @@ const primaryNav = [
   { label: "Apply for a Puppy", href: "/apply", cta: true }
 ];
 
-const mobilePrimaryNav = primaryNav.map((item) => {
-  if (item.label !== "Puppies") return item;
-
-  return {
-    ...item,
-    links: [
-      { label: "Current Litters", href: "/puppies/current-litters" },
-      ...item.links.slice(3)
-    ]
-  };
-});
+const mobilePrimaryNav = primaryNav;
 
 function AccordionNav({ item, currentPath, onNavigate, index, openGroup, onToggle }) {
   const panelId = `mobile-nav-${item.label.toLowerCase().replace(/\W+/g, "-")}`;

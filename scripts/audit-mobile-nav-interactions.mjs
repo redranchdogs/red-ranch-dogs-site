@@ -88,6 +88,8 @@ async function auditRoute(page, route) {
   await puppiesTrigger.click();
   const submenuText = await page.locator("#mobile-nav-puppies").innerText();
   const puppyFinderLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Current Litters" }).isVisible();
+  const puppyCategoryLinksVisible = await page.locator("#mobile-nav-puppies").getByRole("link", { name: "Available Puppies", exact: true }).isVisible()
+    && await page.locator("#mobile-nav-puppies a", { hasText: "Upcoming Litters" }).isVisible();
   const puppyJourneyTrigger = page.locator(".mobile-menu-trigger", { hasText: "Getting Your Puppy" });
   await puppyJourneyTrigger.click();
   const puppyJourneyLinks = await page.locator("#mobile-nav-getting-your-puppy a").evaluateAll((links) => links.map((link) => ({
@@ -109,7 +111,7 @@ async function auditRoute(page, route) {
   }
   if (isExpanded !== "true") blockers.push("Menu button did not report aria-expanded=true after tap.");
   if (!menuVisible) blockers.push("Mobile menu did not become visible after tap.");
-  if (!puppyFinderLinkVisible || !submenuText.includes("Previous Litters")) {
+  if (!puppyFinderLinkVisible || !puppyCategoryLinksVisible || !submenuText.includes("Previous Litters")) {
     blockers.push("Puppies submenu did not expose expected buyer links.");
   }
   const expectedPuppyJourneyLinks = [
