@@ -499,7 +499,7 @@ async function auditRoute(context, config, viewportName) {
         if (await primary.count() !== 1 || await primary.getAttribute("href") !== expected.href) failures.push("Homepage lower litter action differs from hero.");
         if (await options.locator(".home-upcoming-link").count() !== Number(expected.showUpcoming)) failures.push("Homepage lower alternate litter link is incorrect.");
         const title = await options.locator("h2").innerText();
-        if (!includesText(title, `Explore our ${expected.label}`)) failures.push("Homepage lower heading promotes the wrong litter category.");
+        if (!includesText(normalize(title), `Explore our ${expected.label}`)) failures.push("Homepage lower heading promotes the wrong litter category.");
       }
     }
 
