@@ -96,7 +96,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/available",
-    requiredText: ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "beatrix + enzo"],
+    requiredText: ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "lulu + bram"],
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
     requiredSelectors: [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
     finderNavCheck: { mode: "available", history: true },
@@ -118,9 +118,9 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    requiredText: ["no current goldendoodle litters are listed right now.", "view upcoming goldendoodle litters"],
+    requiredText: ["current litters", "beatrix + enzo", "puppies born", "september 28, 2026", "november 19-21, 2026"],
     forbiddenText: ["winnie + wyatt"],
-    requiredSelectors: [".litter-browser", ".litter-browser-empty"],
+    requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
     finderNavCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" }
   },
@@ -146,8 +146,8 @@ const routeExpectations = [
   },
   {
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
-    expectedLitterOrder: ["Beatrix + Enzo", "Lulu + Bram", "Evie + Waylon"],
-    requiredText: ["upcoming litters", "choose a breed", "beatrix + enzo", "lulu + bram", "evie + waylon", "petite mini goldendoodle", "early december 2026"],
+    expectedLitterOrder: ["Lulu + Bram", "Evie + Waylon"],
+    requiredText: ["upcoming litters", "choose a breed", "lulu + bram", "evie + waylon", "petite mini goldendoodle", "early december 2026"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
     finderNavCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" }
@@ -174,14 +174,14 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "puppies born", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "estimated go-home", "about this litter", "join the waitlist"],
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "puppies born", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "about this litter", "join the waitlist", "week 2", "weekly photo gallery"],
     forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, testParentBack: true }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
-    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "waitlist matching", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 2", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
+    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "waitlist matching", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 3", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
     forbiddenText: ["around 25 lbs", "confirmed pregnant", "estimated birth", "september 20-21, 2026", "november 15-16, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: {
@@ -194,7 +194,7 @@ const routeExpectations = [
   },
   ...["october", "bram", "hugo-poe", "ophelia-shadow", "salem", "raven"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: ["kylie + ranger", "waitlist matching", "week 2", "september 22, 2026", "november 14-15, 2026"],
+    requiredText: ["kylie + ranger", "waitlist matching", "week 3", "september 22, 2026", "november 14-15, 2026"],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
   })),
   {
@@ -591,7 +591,7 @@ async function auditRoute(context, config, viewportName) {
       if (previewResults.length !== 2) failures.push(`Expected two preview figures, found ${previewResults.length}.`);
       if (previewResults[0]?.caption) failures.push("Current Litters illustration should not show a historical puppy caption.");
       if (previewResults[0]?.imagePositions?.[0] !== "50% 30%") failures.push(`Unexpected Current Litters puppy focal point: ${previewResults[0]?.imagePositions?.[0] || "missing"}.`);
-      if (previewResults[1]?.caption !== "Beatrix + Enzo") failures.push(`Unexpected upcoming pairing caption: ${previewResults[1]?.caption || "missing"}.`);
+      if (previewResults[1]?.caption !== "Lulu + Bram") failures.push(`Unexpected upcoming pairing caption: ${previewResults[1]?.caption || "missing"}.`);
 
       for (const result of previewResults) {
         if (!result.imagesLoaded) failures.push(`Preview image did not load for ${result.caption || "Current Litters illustration"}.`);

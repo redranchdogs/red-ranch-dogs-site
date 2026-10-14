@@ -4990,7 +4990,7 @@ function AvailablePuppyBrowser({ puppies }) {
 
 function AvailablePuppyEmptyHub() {
   const historicalPuppy = publicPuppyProfiles.find((puppy) => puppy.slug === "ridge") || publicPuppyProfiles.find((puppy) => puppy.name === "Ridge");
-  const upcomingPairing = plannedLitterProfiles.find((litter) => litter.slug === "beatrix-enzo-planned-2026");
+  const upcomingPairing = plannedLitterProfiles[0];
   const mama = parentProfiles.find((parent) => parent.slug === upcomingPairing?.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === upcomingPairing?.studSlug);
   const hasCurrentLitters = currentLitterProfiles.length > 0;
