@@ -643,7 +643,7 @@ async function auditRoute(context, config, viewportName) {
       const puppyCards = await page.locator(".litter-puppy-card").count();
       if (puppyCards !== config.litterDetailCheck.expectedPuppies) failures.push(`Expected ${config.litterDetailCheck.expectedPuppies} litter puppy cards, found ${puppyCards}.`);
 
-      const expectedVideos = puppies.filter((puppy) => config.route === `/litters/${puppy.litterSlug}` && puppy.youtube_short_url);
+      const expectedVideos = config.litterDetailCheck.archive ? [] : puppies.filter((puppy) => config.route === `/litters/${puppy.litterSlug}` && puppy.youtube_short_url);
       for (const puppy of expectedVideos) {
         const card = page.locator(".litter-puppy-card").filter({ has: page.getByRole("heading", { name: puppy.name, exact: true }) });
         const video = card.locator(".puppy-video-link");
