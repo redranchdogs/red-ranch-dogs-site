@@ -209,7 +209,7 @@ const routeExpectations = [
   })),
   ...["atticus", "twain", "wells", "edith", "darcy", "dickens", "austen", "bronte", "louisa"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: ["beatrix + enzo", "availability to be confirmed", "week 2", "september 28, 2026", "november 19-21, 2026"],
+    requiredText: ["beatrix + enzo", puppies.find((puppy) => puppy.slug === slug).status, "week 2", "september 28, 2026", "november 19-21, 2026"],
     forbiddenText: ["this litter is currently reserved"],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
