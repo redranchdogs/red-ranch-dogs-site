@@ -16,7 +16,7 @@ const waitlist = readJson("src/data/waitlist.json");
 const errors = [];
 const warnings = [];
 const normalizedStatus = (value = "") => String(value).trim().toLowerCase();
-const puppyStatuses = new Set(["available", "pending", "reserved", "matched", "guardian candidate", "waitlist matching"]);
+const puppyStatuses = new Set(["available", "pending", "reserved", "matched", "guardian candidate", "waitlist matching", "availability to be confirmed"]);
 const publicLitterStatuses = new Set(["current litter", "planned litter", "previous litter"]);
 const parentRoles = new Set(["mama", "stud"]);
 

@@ -177,7 +177,7 @@ const routeExpectations = [
     requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "puppies born", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "about this litter", "join the waitlist", "week 2", "weekly photo gallery"],
     forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, testParentBack: true }
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 9, testParentBack: true }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
@@ -196,6 +196,12 @@ const routeExpectations = [
     route: `/puppies/${slug}`,
     requiredText: ["kylie + ranger", "waitlist matching", "week 3", "september 22, 2026", "november 14-15, 2026"],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
+  })),
+  ...["atticus", "twain", "wells", "edith", "darcy", "dickens", "austen", "bronte", "louisa"].map((slug) => ({
+    route: `/puppies/${slug}`,
+    requiredText: ["beatrix + enzo", "availability to be confirmed", "week 2", "september 28, 2026", "november 19-21, 2026"],
+    forbiddenText: ["this litter is currently reserved"],
+    requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
   {
     route: "/litters/georgia-waylon-may-2026",
@@ -636,6 +642,13 @@ async function auditRoute(context, config, viewportName) {
 
       const puppyCards = await page.locator(".litter-puppy-card").count();
       if (puppyCards !== config.litterDetailCheck.expectedPuppies) failures.push(`Expected ${config.litterDetailCheck.expectedPuppies} litter puppy cards, found ${puppyCards}.`);
+
+      const expectedVideos = puppies.filter((puppy) => config.route === `/litters/${puppy.litterSlug}` && puppy.youtube_short_url);
+      for (const puppy of expectedVideos) {
+        const card = page.locator(".litter-puppy-card").filter({ has: page.getByRole("heading", { name: puppy.name, exact: true }) });
+        const video = card.locator(".puppy-video-link");
+        if (await video.count() !== 1 || await video.getAttribute("href") !== puppy.youtube_short_url) failures.push(`Wrong or missing video link for ${puppy.name}.`);
+      }
 
       const portraitChecks = await page.locator(".litter-parent-portrait-link").evaluateAll((links) => links.map((link) => {
         const image = link.querySelector("img");
