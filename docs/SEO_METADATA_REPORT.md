@@ -1,10 +1,10 @@
 # SEO Metadata Report
 
-Generated: 10/14/2026, 2:09:13 PM Central
+Generated: 10/14/2026, 3:29:20 PM Central
 
 Status: **PASS**
 
-Sitemap routes checked: 151
+Sitemap routes checked: 160
 Routes with blockers: 0
 Routes with warnings: 2
 
@@ -115,6 +115,15 @@ Routes with warnings: 2
 | /puppies/ophelia-shadow | 200 | Ophelia Shadow | Multigen Micro Bernedoodle Puppy | Red Ranch Dogs | 91 | Ophelia Shadow | 1 | https://www.redranchdogs.com/puppies/ophelia-shadow |
 | /puppies/salem | 200 | Salem | Multigen Micro Bernedoodle Puppy | Red Ranch Dogs | 82 | Salem | 1 | https://www.redranchdogs.com/puppies/salem |
 | /puppies/raven | 200 | Raven | Multigen Micro Bernedoodle Puppy | Red Ranch Dogs | 82 | Raven | 1 | https://www.redranchdogs.com/puppies/raven |
+| /puppies/atticus | 200 | Atticus | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 83 | Atticus | 1 | https://www.redranchdogs.com/puppies/atticus |
+| /puppies/twain | 200 | Twain | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 81 | Twain | 1 | https://www.redranchdogs.com/puppies/twain |
+| /puppies/wells | 200 | Wells | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 81 | Wells | 1 | https://www.redranchdogs.com/puppies/wells |
+| /puppies/edith | 200 | Edith | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 83 | Edith | 1 | https://www.redranchdogs.com/puppies/edith |
+| /puppies/darcy | 200 | Darcy | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 81 | Darcy | 1 | https://www.redranchdogs.com/puppies/darcy |
+| /puppies/dickens | 200 | Dickens | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 83 | Dickens | 1 | https://www.redranchdogs.com/puppies/dickens |
+| /puppies/austen | 200 | Austen | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 84 | Austen | 1 | https://www.redranchdogs.com/puppies/austen |
+| /puppies/bronte | 200 | Brontë | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 84 | Brontë | 1 | https://www.redranchdogs.com/puppies/bronte |
+| /puppies/louisa | 200 | Louisa | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 84 | Louisa | 1 | https://www.redranchdogs.com/puppies/louisa |
 | /litters/georgia-waylon-may-2026 | 200 | Georgia + Waylon | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 99 | Georgia + Waylon | 1 | https://www.redranchdogs.com/litters/georgia-waylon-may-2026 |
 | /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs | 54 | Beatrix + Enzo | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026 |
 | /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs | 71 | Lulu + Bram | 1 | https://www.redranchdogs.com/litters/lulu-bram-fall-2026 |
