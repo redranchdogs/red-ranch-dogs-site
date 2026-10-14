@@ -87,7 +87,7 @@ async function auditRoute(page, route) {
   const puppiesTrigger = page.locator(".mobile-menu-trigger", { hasText: "Puppies" });
   await puppiesTrigger.click();
   const submenuText = await page.locator("#mobile-nav-puppies").innerText();
-  const puppyFinderLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Find Your Puppy" }).isVisible();
+  const puppyFinderLinkVisible = await page.locator("#mobile-nav-puppies a", { hasText: "Current Litters" }).isVisible();
   const puppyJourneyTrigger = page.locator(".mobile-menu-trigger", { hasText: "Getting Your Puppy" });
   await puppyJourneyTrigger.click();
   const puppyJourneyLinks = await page.locator("#mobile-nav-getting-your-puppy a").evaluateAll((links) => links.map((link) => ({

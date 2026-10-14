@@ -1378,7 +1378,7 @@ const mobilePrimaryNav = primaryNav.map((item) => {
   return {
     ...item,
     links: [
-      { label: "Find Your Puppy", href: "/puppies/available" },
+      { label: "Current Litters", href: "/puppies/current-litters" },
       ...item.links.slice(3)
     ]
   };
@@ -1714,9 +1714,7 @@ function homepageLitterBrowseAction() {
     href: hasCurrent ? "/puppies/current-litters" : "/puppies/upcoming-litters",
     label: hasCurrent ? "Current Litters" : "Upcoming Litters",
     title: hasCurrent ? "Explore our current litters" : "Explore our upcoming litters",
-    copy: hasCurrent
-      ? "Meet the puppies in our current litters, with weekly photos and videos."
-      : "Explore planned pairings and expected timing, or join the waitlist.",
+    copy: hasCurrent ? "" : "Explore planned pairings and expected timing, or join the waitlist.",
     showUpcoming: hasCurrent && hasUpcoming
   };
 }
@@ -1947,6 +1945,14 @@ function HomeDoodles({ browseAction }) {
 }
 
 function HomeReadySoonStrip({ readyPuppies, browseAction }) {
+  const currentMamas = browseAction.href === "/puppies/current-litters"
+    ? currentLitterProfiles.flatMap((litter) => {
+      const mama = publicParentProfiles.find((parent) => parent.slug === litter.mamaSlug);
+      const breed = plannedLitterBreedGroups.find((group) => group.slug === litter.breedSlug);
+      return mama?.mainPhoto ? [{ litter, mama, breedLabel: breed?.eyebrow || litter.breed }] : [];
+    }).filter(({ mama }, index, items) => items.findIndex((item) => item.mama.slug === mama.slug) === index)
+    : [];
+
   if (!readyPuppies.length) {
     return (
       <CTASection
@@ -1959,7 +1965,19 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
         additionalHref={browseAction.showUpcoming ? "/puppies/upcoming-litters" : ""}
         additionalLabel="Upcoming Litters"
         className="home-litter-options"
-      />
+      >
+        {currentMamas.length > 0 && (
+          <div className="home-mama-preview" aria-label="Mamas with current litters">
+            {currentMamas.map(({ litter, mama, breedLabel }) => (
+              <Link href={`/litters/${litter.slug}`} className="home-mama-link" key={mama.slug}>
+                <img src={mama.mainPhoto} alt={mama.name} width="130" height="110" loading="lazy" decoding="async" />
+                <span className="home-mama-name">{mama.name}</span>
+                <span className="home-mama-breed">{breedLabel}</span>
+              </Link>
+            ))}
+          </div>
+        )}
+      </CTASection>
     );
   }
 
@@ -3083,12 +3101,13 @@ function TestimonialSection({ items = testimonialProfiles }) {
   );
 }
 
-function CTASection({ title = "Ready to take the next step?", copy = "Apply now or view current puppy availability.", primaryHref = "/apply", primaryLabel = "Apply", secondaryHref = "/puppies/available", secondaryLabel = "Available Puppies", className = "", additionalHref = "", additionalLabel = "" }) {
+function CTASection({ title = "Ready to take the next step?", copy = "Apply now or view current puppy availability.", primaryHref = "/apply", primaryLabel = "Apply", secondaryHref = "/puppies/available", secondaryLabel = "Available Puppies", className = "", additionalHref = "", additionalLabel = "", children }) {
   return (
     <section className={`content-section narrow ${className}`.trim()}>
       <article className="group-panel">
         <h2>{title}</h2>
-        <p>{copy}</p>
+        {copy && <p>{copy}</p>}
+        {children}
         <div className="actions">
           <Link href={primaryHref} className="button primary">{primaryLabel}</Link>
           {secondaryHref && secondaryLabel && <Link href={secondaryHref} className="button secondary">{secondaryLabel}</Link>}
