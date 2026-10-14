@@ -833,11 +833,19 @@ async function auditMobileMenu(context) {
         await puppiesTrigger.click();
         const puppiesSubmenu = page.locator("#mobile-nav-puppies");
         const submenuText = normalize(await puppiesSubmenu.innerText());
-        const findPuppyLink = page.locator("#mobile-nav-puppies a", { hasText: "Current Litters" });
-        if (!(await findPuppyLink.isVisible()) || !includesText(submenuText, "current litters")) failures.push("Puppies submenu did not expose Current Litters.");
-        if (await findPuppyLink.getAttribute("href") !== "/puppies/current-litters") failures.push("Current Litters menu link has the wrong destination.");
-        for (const removedLabel of ["Available Puppies", "Find Your Puppy", "Upcoming Litters"]) {
-          if (await page.locator("#mobile-nav-puppies a", { hasText: removedLabel }).count()) failures.push(`Puppies submenu still exposes the replaced ${removedLabel} entry.`);
+        const expectedPuppyLinks = [
+          ["Available Puppies", "/puppies/available"],
+          ["Current Litters", "/puppies/current-litters"],
+          ["Upcoming Litters", "/puppies/upcoming-litters"],
+          ["Previous Litters", "/puppies/previous-litters"],
+          ["Goldendoodle Puppies", "/puppies/goldendoodle-puppies"],
+          ["Cavapoo Puppies", "/puppies/cavapoo-puppies"],
+          ["Bernedoodle Puppies", "/puppies/bernedoodle-puppies"]
+        ];
+        const actualPuppyLinks = await puppiesSubmenu.locator("a").evaluateAll((links) => links.map((link) => [link.textContent.trim(), link.getAttribute("href")]));
+        if (JSON.stringify(actualPuppyLinks) !== JSON.stringify(expectedPuppyLinks)) failures.push("Puppies submenu links are incomplete, out of order, or point to the wrong pages.");
+        for (const [label] of expectedPuppyLinks) {
+          if (!includesText(submenuText, label) || !await puppiesSubmenu.getByRole("link", { name: label, exact: true }).isVisible()) failures.push(`Puppies submenu missing visible ${label} link.`);
         }
       }
 
