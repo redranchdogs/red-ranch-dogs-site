@@ -3539,7 +3539,7 @@
   {
     "slug": "october",
     "name": "October",
-    "youtube_short_url": "https://youtube.com/shorts/5uSYxIJ8-Nk",
+    "youtube_short_url": "https://youtube.com/shorts/rzGIIpj7b8E",
     "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
@@ -3591,7 +3591,7 @@
   {
     "slug": "bram",
     "name": "Bram",
-    "youtube_short_url": "https://youtube.com/shorts/yno4V-1svZs",
+    "youtube_short_url": "https://youtube.com/shorts/oUoqLkKADuI",
     "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
@@ -3644,7 +3644,7 @@
   {
     "slug": "hugo-poe",
     "name": "Hugo Poe",
-    "youtube_short_url": "https://youtube.com/shorts/GqHqSy17PSU",
+    "youtube_short_url": "https://youtube.com/shorts/QJZPgsdocSM",
     "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
@@ -3697,7 +3697,7 @@
   {
     "slug": "ophelia-shadow",
     "name": "Ophelia Shadow",
-    "youtube_short_url": "https://youtube.com/shorts/Idh67CkVeUE",
+    "youtube_short_url": "https://youtube.com/shorts/k2UdBVeEcyM",
     "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
@@ -3748,7 +3748,7 @@
   {
     "slug": "salem",
     "name": "Salem",
-    "youtube_short_url": "https://youtube.com/shorts/3pXMamIxw3o",
+    "youtube_short_url": "https://youtube.com/shorts/3fHJ8sYljIQ",
     "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
@@ -3800,7 +3800,7 @@
   {
     "slug": "raven",
     "name": "Raven",
-    "youtube_short_url": "https://youtube.com/shorts/WazOI6NFrns",
+    "youtube_short_url": "https://youtube.com/shorts/PkUOPEbZFzE",
     "featured_video_label": "Watch Video",
     "visibility": "public",
     "breedSlug": "bernedoodle-puppies",
@@ -3847,6 +3847,391 @@
     ],
     "description": "Raven is a female Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
     "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "atticus",
+    "name": "Atticus",
+    "youtube_short_url": "https://youtube.com/shorts/6vjdzbgKBVU",
+    "featured_video_label": "Watch Video",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-style Mini Goldendoodle",
+    "litterSlug": "beatrix-enzo-planned-2026",
+    "litter": "Beatrix + Enzo",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "gender": "Male",
+    "collarColor": "Blue",
+    "status": "Availability to be confirmed",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "25-35 lbs",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
+    "price": "$2,800",
+    "mainPhoto": "/images/puppies/beatrix-2026-week-2/atticus-week-2-01.webp",
+    "photos": [
+      "/images/puppies/beatrix-2026-week-2/atticus-week-2-01.webp",
+      "/images/puppies/beatrix-2026-week-2/atticus-week-2-02.webp",
+      "/images/puppies/beatrix-2026-week-2/atticus-week-2-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos",
+        "photos": [
+          "/images/puppies/beatrix-2026-week-2/atticus-week-2-01.webp",
+          "/images/puppies/beatrix-2026-week-2/atticus-week-2-02.webp",
+          "/images/puppies/beatrix-2026-week-2/atticus-week-2-03.webp"
+        ]
+      }
+    ],
+    "description": "Atticus is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
+    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "twain",
+    "name": "Twain",
+    "youtube_short_url": "https://youtube.com/shorts/e8VGYBWdIYo",
+    "featured_video_label": "Watch Video",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-style Mini Goldendoodle",
+    "litterSlug": "beatrix-enzo-planned-2026",
+    "litter": "Beatrix + Enzo",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "gender": "Male",
+    "collarColor": "D. Blue",
+    "status": "Availability to be confirmed",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "25-35 lbs",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
+    "price": "$2,800",
+    "mainPhoto": "/images/puppies/beatrix-2026-week-2/twain-week-2-01.webp",
+    "photos": [
+      "/images/puppies/beatrix-2026-week-2/twain-week-2-01.webp",
+      "/images/puppies/beatrix-2026-week-2/twain-week-2-02.webp",
+      "/images/puppies/beatrix-2026-week-2/twain-week-2-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos",
+        "photos": [
+          "/images/puppies/beatrix-2026-week-2/twain-week-2-01.webp",
+          "/images/puppies/beatrix-2026-week-2/twain-week-2-02.webp",
+          "/images/puppies/beatrix-2026-week-2/twain-week-2-03.webp"
+        ]
+      }
+    ],
+    "description": "Twain is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
+    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "wells",
+    "name": "Wells",
+    "youtube_short_url": "https://youtube.com/shorts/HkL3S5GO_9I",
+    "featured_video_label": "Watch Video",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-style Mini Goldendoodle",
+    "litterSlug": "beatrix-enzo-planned-2026",
+    "litter": "Beatrix + Enzo",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "gender": "Male",
+    "collarColor": "Gray",
+    "status": "Availability to be confirmed",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "25-35 lbs",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
+    "price": "$2,800",
+    "mainPhoto": "/images/puppies/beatrix-2026-week-2/wells-week-2-01.webp",
+    "photos": [
+      "/images/puppies/beatrix-2026-week-2/wells-week-2-01.webp",
+      "/images/puppies/beatrix-2026-week-2/wells-week-2-02.webp",
+      "/images/puppies/beatrix-2026-week-2/wells-week-2-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos",
+        "photos": [
+          "/images/puppies/beatrix-2026-week-2/wells-week-2-01.webp",
+          "/images/puppies/beatrix-2026-week-2/wells-week-2-02.webp",
+          "/images/puppies/beatrix-2026-week-2/wells-week-2-03.webp"
+        ]
+      }
+    ],
+    "description": "Wells is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
+    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "edith",
+    "name": "Edith",
+    "youtube_short_url": "https://youtube.com/shorts/thi9ubW4i7M",
+    "featured_video_label": "Watch Video",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-style Mini Goldendoodle",
+    "litterSlug": "beatrix-enzo-planned-2026",
+    "litter": "Beatrix + Enzo",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "gender": "Female",
+    "collarColor": "Maroon",
+    "status": "Availability to be confirmed",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "25-35 lbs",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
+    "price": "$2,800",
+    "mainPhoto": "/images/puppies/beatrix-2026-week-2/edith-week-2-01.webp",
+    "photos": [
+      "/images/puppies/beatrix-2026-week-2/edith-week-2-01.webp",
+      "/images/puppies/beatrix-2026-week-2/edith-week-2-02.webp",
+      "/images/puppies/beatrix-2026-week-2/edith-week-2-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos",
+        "photos": [
+          "/images/puppies/beatrix-2026-week-2/edith-week-2-01.webp",
+          "/images/puppies/beatrix-2026-week-2/edith-week-2-02.webp",
+          "/images/puppies/beatrix-2026-week-2/edith-week-2-03.webp"
+        ]
+      }
+    ],
+    "description": "Edith is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
+    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "darcy",
+    "name": "Darcy",
+    "youtube_short_url": "https://youtube.com/shorts/O540ES4qRwk",
+    "featured_video_label": "Watch Video",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-style Mini Goldendoodle",
+    "litterSlug": "beatrix-enzo-planned-2026",
+    "litter": "Beatrix + Enzo",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "gender": "Male",
+    "collarColor": "Mint",
+    "status": "Availability to be confirmed",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "25-35 lbs",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
+    "price": "$2,800",
+    "mainPhoto": "/images/puppies/beatrix-2026-week-2/darcy-week-2-01.webp",
+    "photos": [
+      "/images/puppies/beatrix-2026-week-2/darcy-week-2-01.webp",
+      "/images/puppies/beatrix-2026-week-2/darcy-week-2-02.webp",
+      "/images/puppies/beatrix-2026-week-2/darcy-week-2-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos",
+        "photos": [
+          "/images/puppies/beatrix-2026-week-2/darcy-week-2-01.webp",
+          "/images/puppies/beatrix-2026-week-2/darcy-week-2-02.webp",
+          "/images/puppies/beatrix-2026-week-2/darcy-week-2-03.webp"
+        ]
+      }
+    ],
+    "description": "Darcy is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
+    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "dickens",
+    "name": "Dickens",
+    "youtube_short_url": "https://youtube.com/shorts/Lyrocl62mfI",
+    "featured_video_label": "Watch Video",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-style Mini Goldendoodle",
+    "litterSlug": "beatrix-enzo-planned-2026",
+    "litter": "Beatrix + Enzo",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "gender": "Male",
+    "collarColor": "Orange",
+    "status": "Availability to be confirmed",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "25-35 lbs",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
+    "price": "$2,800",
+    "mainPhoto": "/images/puppies/beatrix-2026-week-2/dickens-week-2-01.webp",
+    "photos": [
+      "/images/puppies/beatrix-2026-week-2/dickens-week-2-01.webp",
+      "/images/puppies/beatrix-2026-week-2/dickens-week-2-02.webp",
+      "/images/puppies/beatrix-2026-week-2/dickens-week-2-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos",
+        "photos": [
+          "/images/puppies/beatrix-2026-week-2/dickens-week-2-01.webp",
+          "/images/puppies/beatrix-2026-week-2/dickens-week-2-02.webp",
+          "/images/puppies/beatrix-2026-week-2/dickens-week-2-03.webp"
+        ]
+      }
+    ],
+    "description": "Dickens is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
+    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "austen",
+    "name": "Austen",
+    "youtube_short_url": "https://youtube.com/shorts/0uqFBgrQXPk",
+    "featured_video_label": "Watch Video",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-style Mini Goldendoodle",
+    "litterSlug": "beatrix-enzo-planned-2026",
+    "litter": "Beatrix + Enzo",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "gender": "Female",
+    "collarColor": "Pink",
+    "status": "Availability to be confirmed",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "25-35 lbs",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
+    "price": "$2,800",
+    "mainPhoto": "/images/puppies/beatrix-2026-week-2/austen-week-2-01.webp",
+    "photos": [
+      "/images/puppies/beatrix-2026-week-2/austen-week-2-01.webp",
+      "/images/puppies/beatrix-2026-week-2/austen-week-2-02.webp",
+      "/images/puppies/beatrix-2026-week-2/austen-week-2-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos",
+        "photos": [
+          "/images/puppies/beatrix-2026-week-2/austen-week-2-01.webp",
+          "/images/puppies/beatrix-2026-week-2/austen-week-2-02.webp",
+          "/images/puppies/beatrix-2026-week-2/austen-week-2-03.webp"
+        ]
+      }
+    ],
+    "description": "Austen is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
+    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "bronte",
+    "name": "Brontë",
+    "youtube_short_url": "https://youtube.com/shorts/eHlINtZmM7M",
+    "featured_video_label": "Watch Video",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-style Mini Goldendoodle",
+    "litterSlug": "beatrix-enzo-planned-2026",
+    "litter": "Beatrix + Enzo",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "gender": "Female",
+    "collarColor": "Purple",
+    "status": "Availability to be confirmed",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "25-35 lbs",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
+    "price": "$2,800",
+    "mainPhoto": "/images/puppies/beatrix-2026-week-2/bronte-week-2-01.webp",
+    "photos": [
+      "/images/puppies/beatrix-2026-week-2/bronte-week-2-01.webp",
+      "/images/puppies/beatrix-2026-week-2/bronte-week-2-02.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos",
+        "photos": [
+          "/images/puppies/beatrix-2026-week-2/bronte-week-2-01.webp",
+          "/images/puppies/beatrix-2026-week-2/bronte-week-2-02.webp"
+        ]
+      }
+    ],
+    "description": "Brontë is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
+    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "louisa",
+    "name": "Louisa",
+    "youtube_short_url": "https://youtube.com/shorts/y-kcJF1664A",
+    "featured_video_label": "Watch Video",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "F1B-style Mini Goldendoodle",
+    "litterSlug": "beatrix-enzo-planned-2026",
+    "litter": "Beatrix + Enzo",
+    "mamaSlug": "beatrix",
+    "mama": "Beatrix",
+    "studSlug": "enzo",
+    "stud": "Enzo",
+    "gender": "Female",
+    "collarColor": "Yellow",
+    "status": "Availability to be confirmed",
+    "sizeCategory": "Mini",
+    "estimatedAdultWeight": "25-35 lbs",
+    "birthDate": "September 28, 2026",
+    "goHomeDate": "November 19-21, 2026",
+    "price": "$2,800",
+    "mainPhoto": "/images/puppies/beatrix-2026-week-2/louisa-week-2-01.webp",
+    "photos": [
+      "/images/puppies/beatrix-2026-week-2/louisa-week-2-01.webp",
+      "/images/puppies/beatrix-2026-week-2/louisa-week-2-02.webp",
+      "/images/puppies/beatrix-2026-week-2/louisa-week-2-03.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos",
+        "photos": [
+          "/images/puppies/beatrix-2026-week-2/louisa-week-2-01.webp",
+          "/images/puppies/beatrix-2026-week-2/louisa-week-2-02.webp",
+          "/images/puppies/beatrix-2026-week-2/louisa-week-2-03.webp"
+        ]
+      }
+    ],
+    "description": "Louisa is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
+    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   }
 ]
