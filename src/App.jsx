@@ -1703,6 +1703,24 @@ const socialProofItems = [
   ["Texas-based, family-owned program", HomeIcon]
 ];
 
+function homepageLitterBrowseAction() {
+  const fixture = import.meta.env.DEV ? new window.URLSearchParams(window.location.search).get("fixture") : "";
+  const hasCurrent = fixture === "home-current-only" || fixture === "home-both"
+    ? true : fixture === "home-upcoming-only" ? false : currentLitterProfiles.length > 0;
+  const hasUpcoming = fixture === "home-upcoming-only" || fixture === "home-both"
+    ? true : fixture === "home-current-only" ? false : plannedLitterProfiles.length > 0;
+
+  return {
+    href: hasCurrent ? "/puppies/current-litters" : "/puppies/upcoming-litters",
+    label: hasCurrent ? "Current Litters" : "Upcoming Litters",
+    title: hasCurrent ? "Explore our current litters" : "Explore our upcoming litters",
+    copy: hasCurrent
+      ? "Meet the puppies in our current litters, with weekly photos and videos."
+      : "Explore planned pairings and expected timing, or join the waitlist.",
+    showUpcoming: hasCurrent && hasUpcoming
+  };
+}
+
 function HomeHero({ browseAction }) {
   return (
     <section className="premium-hero" id="home-hero">
@@ -1721,6 +1739,7 @@ function HomeHero({ browseAction }) {
             {browseAction.label}
           </Link>
         </div>
+        {browseAction.showUpcoming && <Link href="/puppies/upcoming-litters" className="home-upcoming-link">Upcoming Litters <ArrowRight size={15} aria-hidden="true" /></Link>}
       </div>
       <picture className="hero-image-frame">
         <source srcSet={homeHeroImage.mobileSrc} media="(max-width: 760px)" />
@@ -1904,8 +1923,7 @@ function BreedCard({ breed }) {
   );
 }
 
-function HomeDoodles() {
-  const hasCurrentLitters = currentLitterProfiles.length > 0;
+function HomeDoodles({ browseAction }) {
 
   return (
     <PageSection id="our-doodles" className="home-doodles-section" variant="compact">
@@ -1918,8 +1936,8 @@ function HomeDoodles() {
           {homepageBreeds.map((breed) => <BreedCard breed={breed} key={breed.name} />)}
         </CardGrid>
         <div className="section-cta-row">
-          <CTAButton href={hasCurrentLitters ? "/puppies/current-litters" : "/puppies/upcoming-litters"} variant="primary">
-            {hasCurrentLitters ? "View Current Litters" : "View Upcoming Litters"}
+          <CTAButton href={browseAction.href} variant="primary">
+            {browseAction.label}
           </CTAButton>
           <CTAButton href="/apply" variant="secondary">Apply for a Puppy</CTAButton>
         </div>
@@ -1928,16 +1946,19 @@ function HomeDoodles() {
   );
 }
 
-function HomeReadySoonStrip({ readyPuppies }) {
+function HomeReadySoonStrip({ readyPuppies, browseAction }) {
   if (!readyPuppies.length) {
     return (
       <CTASection
-        title={noAvailabilityTitle}
-        copy="Explore upcoming litters or join the waitlist."
-        primaryHref="/puppies/upcoming-litters"
-        primaryLabel="View Upcoming Litters"
+        title={browseAction.title}
+        copy={browseAction.copy}
+        primaryHref={browseAction.href}
+        primaryLabel={browseAction.label}
         secondaryHref="/apply"
         secondaryLabel="Apply for a Puppy"
+        additionalHref={browseAction.showUpcoming ? "/puppies/upcoming-litters" : ""}
+        additionalLabel="Upcoming Litters"
+        className="home-litter-options"
       />
     );
   }
@@ -2179,16 +2200,14 @@ function StickyMobileCta({
 
 function HomePage() {
   const readyPuppies = featuredAvailablePuppies();
-  const browseAction = readyPuppies.length
-    ? { href: "/puppies/available", label: "View Available Puppies" }
-    : { href: "/puppies/upcoming-litters", label: "View Upcoming Litters" };
+  const browseAction = homepageLitterBrowseAction();
 
   return (
     <Layout>
       <HomeHero browseAction={browseAction} />
       <SocialProofStrip className="hero-adjacent" />
-      <HomeReadySoonStrip readyPuppies={readyPuppies} />
-      <HomeDoodles />
+      <HomeReadySoonStrip readyPuppies={readyPuppies} browseAction={browseAction} />
+      <HomeDoodles browseAction={browseAction} />
       <WhyRedRanch />
       <WaitlistSteps />
       <HomeTestimonials />
@@ -3064,7 +3083,7 @@ function TestimonialSection({ items = testimonialProfiles }) {
   );
 }
 
-function CTASection({ title = "Ready to take the next step?", copy = "Apply now or view current puppy availability.", primaryHref = "/apply", primaryLabel = "Apply", secondaryHref = "/puppies/available", secondaryLabel = "Available Puppies", className = "" }) {
+function CTASection({ title = "Ready to take the next step?", copy = "Apply now or view current puppy availability.", primaryHref = "/apply", primaryLabel = "Apply", secondaryHref = "/puppies/available", secondaryLabel = "Available Puppies", className = "", additionalHref = "", additionalLabel = "" }) {
   return (
     <section className={`content-section narrow ${className}`.trim()}>
       <article className="group-panel">
@@ -3074,6 +3093,7 @@ function CTASection({ title = "Ready to take the next step?", copy = "Apply now 
           <Link href={primaryHref} className="button primary">{primaryLabel}</Link>
           {secondaryHref && secondaryLabel && <Link href={secondaryHref} className="button secondary">{secondaryLabel}</Link>}
         </div>
+        {additionalHref && additionalLabel && <Link href={additionalHref} className="home-upcoming-link">{additionalLabel} <ArrowRight size={15} aria-hidden="true" /></Link>}
       </article>
     </section>
   );

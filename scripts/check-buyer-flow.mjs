@@ -222,7 +222,7 @@ if (homeReadyStripSource && /\b(price|previousPrice|markdown|strikethrough)\b/i.
   blockers.push("Homepage ready strip must not render prices, markdowns, or discount fields.");
 }
 
-if (!/function HomePage\(\)[\s\S]*?const readyPuppies = featuredAvailablePuppies\(\);[\s\S]*?<HomeHero browseAction=\{browseAction\} \/>[\s\S]*?<HomeReadySoonStrip readyPuppies=\{readyPuppies\} \/>/.test(app)) {
+if (!/function HomePage\(\)[\s\S]*?const readyPuppies = featuredAvailablePuppies\(\);[\s\S]*?<HomeHero browseAction=\{browseAction\} \/>[\s\S]*?<HomeReadySoonStrip readyPuppies=\{readyPuppies\} browseAction=\{browseAction\} \/>/.test(app)) {
   blockers.push("Homepage hero and availability strip should share one featured Available puppy result.");
 }
 

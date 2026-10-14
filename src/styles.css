@@ -13343,3 +13343,19 @@ summary {
     aspect-ratio: 1 / 1;
   }
 }
+
+/* Keep the alternate litter route visible without adding a third hero button. */
+.home-upcoming-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-top: 6px;
+  color: var(--brand-red);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
