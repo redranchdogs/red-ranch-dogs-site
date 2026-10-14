@@ -500,6 +500,17 @@ async function auditRoute(context, config, viewportName) {
         if (await options.locator(".home-upcoming-link").count() !== Number(expected.showUpcoming)) failures.push("Homepage lower alternate litter link is incorrect.");
         const title = await options.locator("h2").innerText();
         if (!includesText(normalize(title), `Explore our ${expected.label}`)) failures.push("Homepage lower heading promotes the wrong litter category.");
+        const mamaLinks = options.locator(".home-mama-link");
+        if (expected.label === "Current Litters") {
+          const expectedMamas = litters.filter((litter) => normalize(litter.status) === "current litter").filter((litter, index, items) => items.findIndex((item) => item.mamaSlug === litter.mamaSlug) === index);
+          if (await mamaLinks.count() !== expectedMamas.length) failures.push("Homepage mama preview is missing a current litter.");
+          for (const litter of expectedMamas) {
+            const link = options.locator(`.home-mama-link[href="/litters/${litter.slug}"]`);
+            if (await link.count() !== 1) failures.push(`Homepage mama link missing for ${litter.slug}.`);
+            else if (!await link.locator("img").evaluate((img) => img.complete && img.naturalWidth > 0)) failures.push(`Homepage mama photo did not load for ${litter.slug}.`);
+          }
+          if (await options.locator(".group-panel > p").count()) failures.push("Homepage current-litter box still shows the removed descriptive sentence.");
+        } else if (await mamaLinks.count()) failures.push("Upcoming-only homepage incorrectly shows current mamas.");
       }
     }
 
@@ -811,7 +822,7 @@ async function auditMobileMenu(context) {
       if (!menuVisible) failures.push("Mobile menu did not become visible after tap.");
 
       const menuText = normalize(await menu.innerText());
-      for (const phrase of ["home", "puppies", "find your puppy", "apply", "text us now"]) {
+      for (const phrase of ["home", "puppies", "current litters", "apply", "text us now"]) {
         if (!includesText(menuText, phrase)) failures.push(`Mobile menu missing text: ${phrase}`);
       }
 
@@ -822,9 +833,10 @@ async function auditMobileMenu(context) {
         await puppiesTrigger.click();
         const puppiesSubmenu = page.locator("#mobile-nav-puppies");
         const submenuText = normalize(await puppiesSubmenu.innerText());
-        const findPuppyLink = page.locator("#mobile-nav-puppies a", { hasText: "Find Your Puppy" });
-        if (!(await findPuppyLink.isVisible()) || !includesText(submenuText, "find your puppy")) failures.push("Puppies submenu did not expose Find Your Puppy.");
-        for (const removedLabel of ["Available Puppies", "Current Litters", "Upcoming Litters"]) {
+        const findPuppyLink = page.locator("#mobile-nav-puppies a", { hasText: "Current Litters" });
+        if (!(await findPuppyLink.isVisible()) || !includesText(submenuText, "current litters")) failures.push("Puppies submenu did not expose Current Litters.");
+        if (await findPuppyLink.getAttribute("href") !== "/puppies/current-litters") failures.push("Current Litters menu link has the wrong destination.");
+        for (const removedLabel of ["Available Puppies", "Find Your Puppy", "Upcoming Litters"]) {
           if (await page.locator("#mobile-nav-puppies a", { hasText: removedLabel }).count()) failures.push(`Puppies submenu still exposes the replaced ${removedLabel} entry.`);
         }
       }
