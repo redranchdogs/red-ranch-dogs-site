@@ -204,7 +204,7 @@ const routeExpectations = [
   },
   ...["october", "bram", "hugo-poe", "ophelia-shadow", "salem", "raven"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: ["kylie + ranger", "waitlist matching", "week 3", "september 22, 2026", "november 14-15, 2026"],
+    requiredText: ["kylie + ranger", puppies.find((puppy) => puppy.slug === slug).status, "week 3", "september 22, 2026", "november 14-15, 2026"],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
   })),
   ...["atticus", "twain", "wells", "edith", "darcy", "dickens", "austen", "bronte", "louisa"].map((slug) => ({
