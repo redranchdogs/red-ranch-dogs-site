@@ -2549,6 +2549,7 @@ function PuppyCard({ puppy, variant = "default" }) {
         ) : (
           <ImagePlaceholder label="Available puppy photo" />
         )}
+        {isReservedPuppy(puppy) && <span className="puppy-reserved-ribbon" aria-hidden="true">Reserved</span>}
         <figcaption>{puppy.name}</figcaption>
       </figure>
       <div className="puppy-card-body">

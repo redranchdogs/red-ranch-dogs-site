@@ -13421,3 +13421,26 @@ summary {
   .home-mama-preview { gap: 16px; margin-top: 18px; }
   .home-mama-link { width: calc(50% - 8px); }
 }
+
+
+/* Keep reservation status unmistakable while leaving the puppy's face clear. */
+.puppy-reserved-ribbon {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 28px 10px 16px;
+  color: #fff;
+  background: var(--brand-red);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 50%, 100% 100%, 0 100%);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}

@@ -485,6 +485,28 @@ async function auditRoute(context, config, viewportName) {
       if (agreementHash !== "184c1a2186ab4a4a6e655b30bc0172c9a209e4c14497ab2d2e754a31562aa729") failures.push(`Unexpected health guarantee PDF hash: ${agreementHash}`);
     }
 
+    const reservationRibbons = await page.locator(".puppy-card").evaluateAll((cards) => cards.map((card) => {
+      const status = card.querySelector(".status-badge");
+      const ribbons = card.querySelectorAll(".puppy-reserved-ribbon");
+      const expected = status?.classList.contains("status-reserved") || status?.classList.contains("status-matched");
+      const ribbon = ribbons[0];
+      const frame = card.querySelector(".puppy-photo-frame");
+      const r = ribbon?.getBoundingClientRect();
+      const f = frame?.getBoundingClientRect();
+      return {
+        name: card.querySelector("figcaption")?.textContent,
+        expected,
+        count: ribbons.length,
+        text: ribbon?.textContent,
+        insidePhoto: r && f && r.left >= f.left - 1 && r.right <= f.right + 1 && r.top >= f.top && r.bottom <= f.bottom,
+        legible: r && r.height >= 44 && Number.parseFloat(window.getComputedStyle(ribbon).fontSize) >= 16
+      };
+    }));
+    for (const ribbon of reservationRibbons) {
+      if (ribbon.count !== Number(Boolean(ribbon.expected))) failures.push(`Wrong reserved ribbon visibility for ${ribbon.name}.`);
+      if (ribbon.expected && (ribbon.text !== "Reserved" || !ribbon.insidePhoto || !ribbon.legible)) failures.push(`Reserved photo ribbon is missing, clipped, or too small for ${ribbon.name}.`);
+    }
+
     if (config.homeLitterCheck) {
       const expected = config.homeLitterCheck;
       const heroBrowse = page.locator(".hero-actions").getByRole("link", { name: expected.label, exact: true });
