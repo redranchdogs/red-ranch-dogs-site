@@ -1978,7 +1978,7 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
           <p className="premium-kicker">Meet the puppies</p>
           <h2>Available puppies</h2>
         </div>
-        <div className="home-ready-puppy-row" aria-label="Available puppies from Kylie and Beatrix">
+        <div className="home-ready-puppy-row" aria-label="Available puppies">
           {readyPuppies.map((puppy) => {
             const photo = puppy.mainPhoto || puppy.image;
             const gender = puppy.gender || puppy.sex || "Gender to be announced";
