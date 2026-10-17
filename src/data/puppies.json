@@ -3552,7 +3552,7 @@
     "stud": "Ranger",
     "gender": "Male",
     "collarColor": "Black",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "~25 lbs",
     "birthDate": "September 22, 2026",
@@ -3585,7 +3585,7 @@
       }
     ],
     "description": "October is a male Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
-    "availabilityNote": "October is available for an approved family.",
+    "availabilityNote": "October is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
