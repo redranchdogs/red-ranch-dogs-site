@@ -106,11 +106,11 @@ const routeExpectations = [
   ].map((state) => ({ route: `/?fixture=${state.fixture}`, requiredSelectors: ["main"], homeLitterCheck: state })),
   {
     route: "/puppies/available",
-    requiredText: ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "lulu + bram"],
+    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", "atticus"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "lulu + bram"],
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
-    requiredSelectors: [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
-    finderNavCheck: { mode: "available", history: true },
-    previewCaptionCheck: true
+    requiredSelectors: featuredAvailablePuppies.length ? [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"] : [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
+    finderNavCheck: { mode: "available", history: !featuredAvailablePuppies.length },
+    previewCaptionCheck: !featuredAvailablePuppies.length
   },
   {
     route: "/puppies/available?fixture=populated",
@@ -128,7 +128,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    requiredText: ["current litters", "beatrix + enzo", "puppies born", "september 28, 2026", "november 19-21, 2026"],
+    requiredText: ["current litters", "beatrix + enzo", "7 available", "september 28, 2026", "november 19-21, 2026"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
@@ -136,7 +136,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=bernedoodle-puppies",
-    requiredText: ["current litters", "kylie + ranger", "waitlist matching", "september 22, 2026", "november 14-15, 2026"],
+    requiredText: ["current litters", "kylie + ranger", "4 available", "september 22, 2026", "november 14-15, 2026"],
     forbiddenText: ["pregnancy confirmed", "no current litters are listed right now."],
     requiredSelectors: [".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "bernedoodle-puppies" },
@@ -184,18 +184,18 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "puppies born", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "about this litter", "join the waitlist", "week 2", "weekly photo gallery"],
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "7 available", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "about this litter", "week 2", "weekly photo gallery"],
     forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 9, testParentBack: true }
+    litterDetailCheck: { expectedStatus: "7 available", expectedPuppies: 9, testParentBack: true }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
-    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "waitlist matching", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 3", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
+    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "4 available", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 3", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
     forbiddenText: ["around 25 lbs", "confirmed pregnant", "estimated birth", "september 20-21, 2026", "november 15-16, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: {
-      expectedStatus: "Waitlist matching",
+      expectedStatus: "4 available",
       expectedPuppies: 6,
       expectedDescriptor: "Multigen Micro Bernedoodles",
       expectedSize: "~25 lbs",
