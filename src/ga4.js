@@ -4,6 +4,8 @@ const GA_DEBUG_MODE = String(import.meta.env.VITE_GA_DEBUG_MODE || "").trim().to
 const mirroredEvents = new Set([
   "form_start",
   "form_submit_success",
+  "puppy_buyer_inquiry_success",
+  "puppy_buyer_application_success",
   "cta_apply_click",
   "cta_text_click",
   "view_available_puppies_click",
@@ -45,10 +47,13 @@ function normalizedTarget(value = "") {
 
 function gaEventParams(eventName, data = {}) {
   const params = {
-    event_category: eventName.startsWith("form_") ? "form" : "navigation"
+    event_category: eventName.startsWith("form_") || eventName.startsWith("puppy_buyer_") ? "form" : "navigation"
   };
 
   if (data.formType) params.form_type = String(data.formType).slice(0, 48);
+  if (data.breedSlug) params.breed_slug = String(data.breedSlug).slice(0, 96);
+  if (data.litterSlug) params.litter_slug = String(data.litterSlug).slice(0, 96);
+  if (data.puppySlug) params.puppy_slug = String(data.puppySlug).slice(0, 96);
   if (data.path) params.page_path = normalizedPath(data.path);
   if (data.from) params.from_path = normalizedPath(data.from);
   if (data.target) params.link_target = normalizedTarget(data.target);

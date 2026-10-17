@@ -80,7 +80,7 @@ function extractQuotedArray(source, declarationName) {
 }
 
 function extractLeadFormTypes() {
-  return Array.from(appSource.matchAll(/<LeadForm\b[^>]*\bformType="([^"]+)"/g), (match) => match[1]).sort();
+  return [...new Set(Array.from(appSource.matchAll(/<LeadForm\b[^>]*\bformType="([^"]+)"/g), (match) => match[1]))].sort();
 }
 
 function extractAllowedForms() {

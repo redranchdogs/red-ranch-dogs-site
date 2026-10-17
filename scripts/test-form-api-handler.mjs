@@ -159,6 +159,21 @@ for (const payload of validPayloads) {
   assert(result.body.leadType, `${payload.formType} response should return lead type`);
 }
 
+const puppyInquiry = await post({
+  ...basePayload,
+  submissionId: `${basePayload.submissionId}-puppy`,
+  formType: "contact",
+  inquiryType: "Available puppy",
+  preferredBreed: "Goldendoodle",
+  breedSlug: "goldendoodle-puppies",
+  litterSlug: "beatrix-enzo-planned-2026",
+  puppySlug: "atticus",
+  specificInterest: "Atticus - Beatrix + Enzo",
+  timing: "Yes, November 19-21 works"
+});
+assert(puppyInquiry.statusCode === 200, "puppy inquiry should pass validation");
+assert(puppyInquiry.body.leadType === "Puppy Buyer Inquiry", "puppy inquiry should have distinct CRM lead type");
+
 process.env.VERCEL_ENV = "production";
 const unconfiguredProduction = await post({
   ...basePayload,

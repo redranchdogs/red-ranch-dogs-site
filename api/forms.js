@@ -442,6 +442,9 @@ function compactLeadSummary(payload) {
     summaryItem("Size", payload.sizePreference),
     summaryItem("Timing", payload.timing),
     summaryItem("Interest", payload.specificInterest),
+    summaryItem("Breed ID", payload.breedSlug),
+    summaryItem("Litter ID", payload.litterSlug),
+    summaryItem("Puppy ID", payload.puppySlug),
     summaryItem("Inquiry", payload.inquiryType),
     summaryItem("Pickup", payload.pickupOrDelivery),
     summaryItem("Preferred stud", payload.preferredStud),
@@ -704,7 +707,9 @@ export default async function handler(request, response) {
     return response.status(400).json({ message: "Unknown form type." });
   }
 
-  const routing = routingFor(formType);
+  const routing = formType === "contact" && clean(body.inquiryType) === "Available puppy"
+    ? { leadType: "Puppy Buyer Inquiry", leadLabel: "Puppy buyer inquiry", routingBucket: "Puppy inquiries", replyPriority: "High", nextStep: "Confirm current puppy availability and follow up with the family." }
+    : routingFor(formType);
   const payload = {
     submittedAt: new Date().toISOString(),
     submissionId: clean(body.submissionId) || createSubmissionId(),
@@ -776,6 +781,9 @@ export default async function handler(request, response) {
     sizePreference: clean(body.sizePreference),
     timing: clean(body.timing),
     specificInterest: clean(body.specificInterest),
+    breedSlug: clean(body.breedSlug),
+    litterSlug: clean(body.litterSlug),
+    puppySlug: clean(body.puppySlug),
     homeDescription: clean(body.homeDescription),
     puppyFitNotes: clean(body.puppyFitNotes),
     pickupOrDelivery: clean(body.pickupOrDelivery),

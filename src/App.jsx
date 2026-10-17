@@ -2568,12 +2568,14 @@ function PuppyCard({ puppy, variant = "default" }) {
             <Link href={isAvailable ? puppyApplyHref(puppy) : "/apply"} className="button small">
               {isAvailable ? `Reserve ${puppy.name}` : "Join Waitlist"}
             </Link>
+            {isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" && <Link href={`/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry`} className="button small secondary">Ask about {puppy.name}</Link>}
             {litterRoute && <Link href={litterRoute} className="button small secondary">View Litter</Link>}
             {videoHref && <a href={videoHref} className="button small secondary puppy-video-link" target="_blank" rel="noreferrer">{videoLabel}</a>}
           </div>
         ) : route && (
           <div className="puppy-card-actions">
             <Link href={route} className="button small">View Puppy</Link>
+            {isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" && <Link href={`/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry`} className="button small secondary">Ask about {puppy.name}</Link>}
             {videoHref && <a href={videoHref} className="button small secondary puppy-video-link" target="_blank" rel="noreferrer">{videoLabel}</a>}
           </div>
         )}
@@ -4085,6 +4087,7 @@ function PuppyDetailPage({ puppy }) {
 }
 
 function LitterPage({ litter }) {
+  const isBeatrixOffer = litter.slug === "beatrix-enzo-planned-2026";
   const isArchived = /previous/i.test(litter.status || "");
   const puppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
   const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
@@ -4210,6 +4213,20 @@ function LitterPage({ litter }) {
           <span className="status-badge litter-detail-status">{litterStatusLabel}</span>
         </div>
       </section>
+      {isBeatrixOffer && availablePuppies.length > 0 && (
+        <section className="beatrix-buyer-intro" aria-label="Beatrix available puppy offer">
+          <img src={availablePuppies[0].mainPhoto} alt={`${availablePuppies[0].name}, available Beatrix and Enzo puppy`} loading="eager" />
+          <div>
+            <p className="eyebrow">Available in Salado, Texas</p>
+            <h2>{availablePuppies.length} Mini Goldendoodle puppies looking for families</h2>
+            <p>Born September 28, 2026 · 25–35 lbs expected adult weight · $2,800 · Planned go-home November 19–21, 2026</p>
+            <div className="actions">
+              <a className="button primary" href="#beatrix-puppies">Meet the puppies</a>
+              <a className="button secondary" href="#beatrix-inquiry">Ask about this litter</a>
+            </div>
+          </div>
+        </section>
+      )}
       <section className="litter-detail-overview">
         <dl className="litter-primary-facts">
           {!isArchived && <div className="litter-primary-fact litter-primary-fact-emphasis"><dt>Price</dt><dd>{litter.priceRange}</dd></div>}
@@ -4217,7 +4234,7 @@ function LitterPage({ litter }) {
           <div className="litter-primary-fact"><dt>{birthLabel}</dt><dd>{displayBirthDate}</dd></div>
           {!isArchived && <div className="litter-primary-fact"><dt>{goHomeLabel}</dt><dd>{displayGoHomeDate}</dd></div>}
         </dl>
-        <article className="litter-pairing-card">
+        {!isBeatrixOffer && <article className="litter-pairing-card">
           {hasParentPairing ? (
             <figure className="litter-parent-portraits" aria-label={`${litter.name} parent pairing`}>
               <Link href={`/parents/${mama.slug}`} className="litter-parent-portrait-link" aria-label={`View ${mama.name}, mama profile`}>
@@ -4234,7 +4251,7 @@ function LitterPage({ litter }) {
           ) : (
             <ImagePlaceholder label="Litter pairing photo" tall />
           )}
-        </article>
+        </article>}
       </section>
       {hasAboutSection && (
         <section className="content-section litter-about-section">
@@ -4296,10 +4313,30 @@ function LitterPage({ litter }) {
       {isPlannedLitter(litter) && primaryAction}
       {!isPlannedLitter(litter) && (
         <>
-          {!isArchived && <section className="card-list litter-puppy-list">
+          {!isArchived && <section className="card-list litter-puppy-list" id={isBeatrixOffer ? "beatrix-puppies" : undefined}>
             <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
             {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
           </section>}
+          {isBeatrixOffer && availablePuppies.length > 0 && (
+            <section className="content-section beatrix-inquiry-section" id="beatrix-inquiry">
+              <p className="eyebrow">Start with a question</p>
+              <h2>Ask about a Beatrix puppy</h2>
+              <p>Mini Goldendoodles · 25–35 lbs expected adult weight · $2,800 · Planned go-home November 19–21, 2026 · Salado, Texas</p>
+              <LeadForm key={applicationQueryValue("interest") || "litter"} formType="contact" title="Quick puppy inquiry" buyerInquiry={{ litter, puppies: availablePuppies.slice() }} />
+              <Link href={`/apply?litter=${encodeURIComponent(litter.slug)}`} className="inline-link">Ready for the full application? Apply for this litter</Link>
+            </section>
+          )}
+          {isBeatrixOffer && hasParentPairing && (
+            <section className="content-section beatrix-parent-section">
+              <h2>Meet the parents</h2>
+              <figure className="litter-parent-portraits" aria-label={`${litter.name} parent pairing`}>
+                {[mama, stud].map((parent) => <Link href={`/parents/${parent.slug}`} className="litter-parent-portrait-link" key={parent.slug}>
+                  <img src={parent.mainPhoto} alt={parent.name} loading="eager" />
+                  <figcaption><strong>{parent.name}</strong></figcaption>
+                </Link>)}
+              </figure>
+            </section>
+          )}
           {(!isArchived || gallery.length > 0) && <section className="content-section litter-gallery-section">
             <SectionHeader eyebrow={isArchived ? "Archive" : "Updates"} title={isArchived ? "Photo gallery" : "Weekly photo gallery"} copy={isArchived ? "Photos preserved with this pairing's archive." : "Follow this litter as the puppies grow, with new photos added along the way."} />
             {!isArchived && <LitterGalleryStatus hasGallery={gallery.length > 0} puppyCount={puppies.length} />}
@@ -6178,6 +6215,9 @@ function applicationInterestContext() {
   if (puppy) {
     return {
       breed: applicationBreedInterest(puppy.breedSlug, puppy.breed),
+      breedSlug: puppy.breedSlug,
+      litterSlug: puppy.litterSlug,
+      puppySlug: puppy.slug,
       detail: [puppy.breed, puppy.litter].filter(Boolean).join(" - "),
       label: [puppy.name, puppy.breed, puppy.litter].filter(Boolean).join(" - "),
       name: puppy.name,
@@ -6193,6 +6233,7 @@ function applicationInterestContext() {
     if (!breed) return null;
     return {
       breed: applicationBreedInterest(breed.slug, breed.name),
+      breedSlug: breed.slug,
       detail: "Your breed interest is selected below. You can change it or choose more than one.",
       label: "",
       name: breed.name,
@@ -6203,6 +6244,8 @@ function applicationInterestContext() {
 
   return {
     breed: applicationBreedInterest(litter.breedSlug, litter.breed),
+    breedSlug: litter.breedSlug,
+    litterSlug: litter.slug,
     detail: [litter.displayDescriptor || litter.breed, litter.expectedTiming].filter(Boolean).join(" - "),
     label: [litter.name, litter.displayDescriptor || litter.breed].filter(Boolean).join(" - "),
     name: litter.name,
@@ -7418,7 +7461,34 @@ function ApplicationFields({ applicationInterest = null }) {
   );
 }
 
-function ContactFields() {
+function ContactFields({ buyerInquiry = null }) {
+  const requestedPuppy = applicationQueryValue("interest");
+  const selectedPuppy = buyerInquiry?.puppies.some((puppy) => puppy.slug === requestedPuppy) ? requestedPuppy : "";
+  if (buyerInquiry) return (
+    <div className="field-grid">
+      <input type="hidden" name="inquiryType" value="Available puppy" />
+      <input type="hidden" name="preferredBreed" value="Goldendoodle" />
+      <input type="hidden" name="breedSlug" value={buyerInquiry.litter.breedSlug} />
+      <input type="hidden" name="litterSlug" value={buyerInquiry.litter.slug} />
+      <label>Name<input name="name" required autoComplete="name" /></label>
+      <label>Email<input name="email" type="email" required autoComplete="email" /></label>
+      <label>Phone<input name="phone" required autoComplete="tel" inputMode="tel" /></label>
+      <label>Which puppy interests you?
+        <select name="puppySlug" defaultValue={selectedPuppy} aria-label="Puppy of interest">
+          <option value="">The litter in general</option>
+          {buyerInquiry.puppies.map((puppy) => <option value={puppy.slug} key={puppy.slug}>{puppy.name}</option>)}
+        </select>
+      </label>
+      <label>Does November 19–21 go-home timing work?
+        <select name="timing" required defaultValue="" aria-label="Go-home timing fit">
+          <option value="" disabled>Choose one</option>
+          <option value="Yes, November 19-21 works">Yes</option>
+          <option value="I need to discuss timing">I need to discuss timing</option>
+        </select>
+      </label>
+      <label className="full">What would you like to know?<textarea name="message" rows="3" required placeholder="A short question is fine." /></label>
+    </div>
+  );
   return (
     <div className="application-form-sections">
       <section className="form-section">
@@ -7738,7 +7808,7 @@ function GuardianFields() {
   );
 }
 
-function LeadForm({ formType, title, compact = false, newsletterOnly = false, guardianFields = false, applicationInterest = null }) {
+function LeadForm({ formType, title, compact = false, newsletterOnly = false, guardianFields = false, applicationInterest = null, buyerInquiry = null }) {
   const { location, navigator, crypto } = globalThis;
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState("");
@@ -7778,8 +7848,10 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
   const contactFields = formType === "contact" && !newsletterOnly;
   const guardianApplicationFields = formType === "guardian" && guardianFields && !newsletterOnly;
   const studInquiryFields = formType === "stud" && !newsletterOnly;
-  const submitLabel = formSubmitLabels[formType] || "Submit";
-  const nextStepNote = newsletterOnly ? "" : formNextStepNotes[formType];
+  const submitLabel = buyerInquiry ? "Send Puppy Inquiry" : formSubmitLabels[formType] || "Submit";
+  const nextStepNote = buyerInquiry
+    ? "We will follow up about your selected puppy or this litter. Sending an inquiry does not reserve a puppy."
+    : newsletterOnly ? "" : formNextStepNotes[formType];
 
   function updateStatus(message, type) {
     setStatus(message);
@@ -7810,9 +7882,18 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     }
 
     const payload = collectFormPayload(form);
+    if (buyerInquiry) {
+      const selectedPuppy = buyerInquiry.puppies.find((puppy) => puppy.slug === payload.puppySlug);
+      payload.specificInterest = selectedPuppy ? `${selectedPuppy.name} - ${buyerInquiry.litter.name}` : buyerInquiry.litter.name;
+    }
     const eventContext = {
       formType,
-      path: compactPath(location.pathname)
+      path: compactPath(location.pathname),
+      ...(buyerInquiry || applicationInterest ? {
+        breedSlug: buyerInquiry?.litter.breedSlug || applicationInterest?.breedSlug || "",
+        litterSlug: buyerInquiry?.litter.slug || applicationInterest?.litterSlug || "",
+        puppySlug: payload.puppySlug || applicationInterest?.puppySlug || ""
+      } : {})
     };
     trackSiteEvent("form_submit_attempt", eventContext);
     const validationError = validateLeadPayload(formType, payload);
@@ -7845,6 +7926,10 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       const serverMessage = await submitFormPayload(payload);
       eventContext.submissionId = payload.submissionId;
       trackSiteEvent("form_submit_success", eventContext);
+      if (buyerInquiry) trackSiteEvent("puppy_buyer_inquiry_success", eventContext);
+      if (formType === "application" && (applicationInterest?.puppySlug || applicationInterest?.litterSlug)) {
+        trackSiteEvent("puppy_buyer_application_success", eventContext);
+      }
       formElement.reset();
       focusStatus.current = true;
       updateStatus(
@@ -7882,12 +7967,15 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
     >
       <h2>{title}</h2>
       <input type="hidden" name="source" value="red-ranch-dogs-site" />
+      {applicationInterest?.breedSlug && <input type="hidden" name="breedSlug" value={applicationInterest.breedSlug} />}
+      {applicationInterest?.litterSlug && <input type="hidden" name="litterSlug" value={applicationInterest.litterSlug} />}
+      {applicationInterest?.puppySlug && <input type="hidden" name="puppySlug" value={applicationInterest.puppySlug} />}
       <label className="form-honeypot" aria-hidden="true">
         Company website
         <input name="companyWebsite" tabIndex="-1" autoComplete="off" />
       </label>
       {!submitted && !newsletterOnly && applicationFields && <ApplicationFields applicationInterest={applicationInterest} />}
-      {!submitted && !newsletterOnly && contactFields && <ContactFields />}
+      {!submitted && !newsletterOnly && contactFields && <ContactFields buyerInquiry={buyerInquiry} />}
       {!submitted && !newsletterOnly && studInquiryFields && <StudInquiryFields />}
       {!submitted && !newsletterOnly && guardianApplicationFields && <GuardianFields />}
       {!submitted && !newsletterOnly && !applicationFields && !contactFields && !studInquiryFields && !guardianApplicationFields && (
