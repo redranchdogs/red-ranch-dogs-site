@@ -3552,7 +3552,7 @@
     "stud": "Ranger",
     "gender": "Male",
     "collarColor": "Black",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "~25 lbs",
     "birthDate": "September 22, 2026",
@@ -3585,7 +3585,7 @@
       }
     ],
     "description": "October is a male Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
-    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "availabilityNote": "October is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -3604,7 +3604,7 @@
     "stud": "Ranger",
     "gender": "Male",
     "collarColor": "Blue",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "~25 lbs",
     "birthDate": "September 22, 2026",
@@ -3638,7 +3638,7 @@
       }
     ],
     "description": "Bram is a male Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
-    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "availabilityNote": "Bram is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -3657,7 +3657,7 @@
     "stud": "Ranger",
     "gender": "Male",
     "collarColor": "Green",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "~25 lbs",
     "birthDate": "September 22, 2026",
@@ -3691,7 +3691,7 @@
       }
     ],
     "description": "Hugo Poe is a male Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
-    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "availabilityNote": "Hugo Poe is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -3761,7 +3761,7 @@
     "stud": "Ranger",
     "gender": "Female",
     "collarColor": "Purple",
-    "status": "Waitlist Matching",
+    "status": "Available",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "~25 lbs",
     "birthDate": "September 22, 2026",
@@ -3794,7 +3794,7 @@
       }
     ],
     "description": "Salem is a female Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
-    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "availabilityNote": "Salem is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -3813,7 +3813,7 @@
     "stud": "Ranger",
     "gender": "Female",
     "collarColor": "Red",
-    "status": "Waitlist Matching",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "~25 lbs",
     "birthDate": "September 22, 2026",
@@ -3846,7 +3846,7 @@
       }
     ],
     "description": "Raven is a female Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
-    "availabilityNote": "Waitlist matching is in progress. This puppy is not available for public reservation.",
+    "availabilityNote": "Raven is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -3865,7 +3865,7 @@
     "stud": "Enzo",
     "gender": "Male",
     "collarColor": "Blue",
-    "status": "Availability to be confirmed",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -3889,7 +3889,7 @@
       }
     ],
     "description": "Atticus is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "availabilityNote": "Atticus is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -3908,7 +3908,7 @@
     "stud": "Enzo",
     "gender": "Male",
     "collarColor": "D. Blue",
-    "status": "Availability to be confirmed",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -3932,7 +3932,7 @@
       }
     ],
     "description": "Twain is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "availabilityNote": "Twain is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -3994,7 +3994,7 @@
     "stud": "Enzo",
     "gender": "Female",
     "collarColor": "Maroon",
-    "status": "Availability to be confirmed",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4018,7 +4018,7 @@
       }
     ],
     "description": "Edith is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "availabilityNote": "Edith is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -4037,7 +4037,7 @@
     "stud": "Enzo",
     "gender": "Male",
     "collarColor": "Mint",
-    "status": "Availability to be confirmed",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4061,7 +4061,7 @@
       }
     ],
     "description": "Darcy is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "availabilityNote": "Darcy is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -4080,7 +4080,7 @@
     "stud": "Enzo",
     "gender": "Male",
     "collarColor": "Orange",
-    "status": "Availability to be confirmed",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4104,7 +4104,7 @@
       }
     ],
     "description": "Dickens is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "availabilityNote": "Dickens is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -4123,7 +4123,7 @@
     "stud": "Enzo",
     "gender": "Female",
     "collarColor": "Pink",
-    "status": "Availability to be confirmed",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4147,7 +4147,7 @@
       }
     ],
     "description": "Austen is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "availabilityNote": "Austen is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -4166,7 +4166,7 @@
     "stud": "Enzo",
     "gender": "Female",
     "collarColor": "Purple",
-    "status": "Availability to be confirmed",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4188,7 +4188,7 @@
       }
     ],
     "description": "Brontë is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "availabilityNote": "Bront\u00eb is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
@@ -4207,7 +4207,7 @@
     "stud": "Enzo",
     "gender": "Female",
     "collarColor": "Yellow",
-    "status": "Availability to be confirmed",
+    "status": "Available",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4231,7 +4231,7 @@
       }
     ],
     "description": "Louisa is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Contact Red Ranch Dogs for current puppy availability and matching details.",
+    "availabilityNote": "Louisa is available for an approved family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   }
 ]
