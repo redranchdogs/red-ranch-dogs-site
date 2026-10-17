@@ -21,4 +21,4 @@
 - Preview: Vercel preview for commit `23575b5` is READY and the Beatrix page was read back at the preview URL with seven available choices, Wells/Darcy reserved, and the short form present.
 - Website Hub sheet mirror: Adam approved the exact Kylie change. Four puppy rows and one litter row were updated and read back without touching reserved rows, family fields, waitlist, or other sheets. The bridge-backed sheet review and `check:publish-ready` both passed.
 - Full `npm run publish:check` passed, including the 47-route desktop/mobile browser sweep, SEO audit, and deploy package review.
-- Release status: **prepared locally; not live**. Update this line only after production deployment and live readback.
+- Release status: **live**. Production deployment of `fb33390` reached READY with `www.redranchdogs.com` attached. The live Beatrix page showed the seven confirmed openings, Wells/Darcy reserved, offer details, and the short form; Available Puppies and Goldendoodles showed Beatrix openings without an empty state. A small homepage accessibility-label follow-up is included in the final release after this verified deployment.
