@@ -21,7 +21,7 @@
 - Preview: Vercel preview for commit `23575b5` is READY and the Beatrix page was read back at the preview URL with seven available choices, Wells/Darcy reserved, and the short form present.
 - Website Hub sheet mirror: Adam approved the exact Kylie correction October 17. Puppy Tracker rows 49, 50, 51, and 53 now read Available/Yes/Yes with matching availability notes. Row 52 Ophelia Shadow remains Reserved/No/No. Kylie litter row 8 names the four openings and preserves Ophelia Shadow and Raven as reserved. All changed cells were read back after the scoped edits.
 - Full `npm run publish:check` passed after sheet alignment, including the 48-route desktop/mobile browser sweep, SEO audit, and deploy package review.
-- Release status: **Kylie correction prepared, not yet live**. Corrected preview SHA `453d357` is READY. The Beatrix landing and inquiry changes are live at `4bc4f83`; production has not yet received the Kylie correction.
+- Release status: **live**. Commit `7e6e8d1` deployed from `main`; the Vercel production deployment reached READY. A fresh mobile read of `www.redranchdogs.com` found 11 homepage puppy cards, including all four Kylie Bernedoodles and seven Beatrix Goldendoodles. The live Beatrix page showed Beatrix and Enzo portraits before puppy cards, no promotional puppy hero, and no horizontal overflow. The live Available Puppies Bernedoodle route showed all four Kylie openings.
 
 ## October 17 correction review
 
