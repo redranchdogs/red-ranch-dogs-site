@@ -5,7 +5,7 @@
 - Advertising destination: https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026
 - Beatrix + Enzo, F1B-style Mini Goldendoodles, born September 28, 2026, in Salado, Texas.
 - Expected adult weight: 25–35 lb. Price: $2,800. Planned go-home: November 19–21, 2026.
-- Confirmed open by Adam October 17: Atticus, Twain, Edith, Dickens, Austen, Brontë, Louisa. Wells and Darcy remain reserved. Beatrix is the only litter displayed with available puppies; Kylie status is awaiting confirmation and no Kylie puppy is advertised as available.
+- Confirmed open by Adam October 17: Atticus, Twain, Edith, Dickens, Austen, Brontë, Louisa. Wells and Darcy remain reserved. Later October 17 correction: Kylie + Ranger's October, Bram, Hugo Poe, and Salem are also available and must appear alongside Beatrix puppies on the homepage and Available Puppies page. Ophelia Shadow and Raven remain reserved.
 - The short inquiry offers a puppy selection and timing question. The full application remains at `/apply?interest=<puppy_slug>` or `/apply?litter=beatrix-enzo-planned-2026`. Existing family assignments and selection priority remain with CRM.
 
 ## Conversion and attribution contract
@@ -19,6 +19,12 @@
 
 - Local: content validation, source and buyer-flow checks, form contract, GA4 contract, application journey, form API/security tests, lint, build, and 47 public routes at two viewport sizes passed. At 390 px, the current Atticus photo loaded above the fold, the seven-puppy offer and actions were visible, the `interest=atticus` inquiry preselected Atticus, and horizontal overflow was absent. A two-visit browser check retained first-touch Google/GCLID and last-touch Instagram/WBRAID values. No live buyer form was submitted.
 - Preview: Vercel preview for commit `23575b5` is READY and the Beatrix page was read back at the preview URL with seven available choices, Wells/Darcy reserved, and the short form present.
-- Website Hub sheet mirror: Adam approved the exact Kylie change. Four puppy rows and one litter row were updated and read back without touching reserved rows, family fields, waitlist, or other sheets. The bridge-backed sheet review and `check:publish-ready` both passed.
+- Website Hub sheet mirror: the prior Beatrix-only release changed four Kylie puppy rows and one Kylie litter row. The later Kylie availability correction requires reversing only those exact mirror cells, with a new readback and sheet review before publication.
 - Full `npm run publish:check` passed, including the 47-route desktop/mobile browser sweep, SEO audit, and deploy package review.
-- Release status: **live**. Production deployment of `fb33390` reached READY with `www.redranchdogs.com` attached. The live Beatrix page showed the seven confirmed openings, Wells/Darcy reserved, offer details, and the short form; Available Puppies and Goldendoodles showed Beatrix openings without an empty state. A small homepage accessibility-label follow-up is included in the final release after this verified deployment.
+- Release status: **Kylie correction prepared, not yet live**. The Beatrix landing and inquiry changes are live at `4bc4f83`. Production still omits the four Kylie puppies pending the scoped Website Hub mirror and release checks.
+
+## October 17 correction review
+
+- The homepage uses the same puppy cards for four Kylie Bernedoodles and seven Beatrix Goldendoodles. The Available Puppies breed tabs and Bernedoodle page expose the Kylie puppies; existing reservations stay closed.
+- The Beatrix litter top is back on the shared template: price, size, birth and go-home facts, then Beatrix and Enzo parent photos. The separate puppy-photo promotional block was removed. The short inquiry remains below the puppy cards.
+- Local verification: 48 public routes at mobile and desktop widths passed. A 390 px visual check showed both parent portraits above About This Litter, with no puppy promo block or horizontal overflow. The homepage rendered all 11 cards with breed labels and no horizontal overflow.
