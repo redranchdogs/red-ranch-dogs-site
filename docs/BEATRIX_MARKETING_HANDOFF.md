@@ -19,9 +19,9 @@
 
 - Local: content validation, source and buyer-flow checks, form contract, GA4 contract, application journey, form API/security tests, lint, build, and 47 public routes at two viewport sizes passed. At 390 px, the current Atticus photo loaded above the fold, the seven-puppy offer and actions were visible, the `interest=atticus` inquiry preselected Atticus, and horizontal overflow was absent. A two-visit browser check retained first-touch Google/GCLID and last-touch Instagram/WBRAID values. No live buyer form was submitted.
 - Preview: Vercel preview for commit `23575b5` is READY and the Beatrix page was read back at the preview URL with seven available choices, Wells/Darcy reserved, and the short form present.
-- Website Hub sheet mirror: the prior Beatrix-only release changed four Kylie puppy rows and one Kylie litter row. The later Kylie availability correction requires reversing only those exact mirror cells, with a new readback and sheet review before publication.
-- Full `npm run publish:check` passed, including the 47-route desktop/mobile browser sweep, SEO audit, and deploy package review.
-- Release status: **Kylie correction prepared, not yet live**. The Beatrix landing and inquiry changes are live at `4bc4f83`. Production still omits the four Kylie puppies pending the scoped Website Hub mirror and release checks.
+- Website Hub sheet mirror: Adam approved the exact Kylie correction October 17. Puppy Tracker rows 49, 50, 51, and 53 now read Available/Yes/Yes with matching availability notes. Row 52 Ophelia Shadow remains Reserved/No/No. Kylie litter row 8 names the four openings and preserves Ophelia Shadow and Raven as reserved. All changed cells were read back after the scoped edits.
+- Full `npm run publish:check` passed after sheet alignment, including the 48-route desktop/mobile browser sweep, SEO audit, and deploy package review.
+- Release status: **Kylie correction prepared, not yet live**. Corrected preview SHA `453d357` is READY. The Beatrix landing and inquiry changes are live at `4bc4f83`; production has not yet received the Kylie correction.
 
 ## October 17 correction review
 
