@@ -1977,15 +1977,13 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
         <div className="home-ready-strip-header">
           <p className="premium-kicker">Meet the puppies</p>
           <h2>Available puppies</h2>
-          <p>Meet the Kylie and Beatrix puppies looking for families.</p>
         </div>
         <div className="home-ready-puppy-row" aria-label="Available puppies from Kylie and Beatrix">
           {readyPuppies.map((puppy) => {
             const photo = puppy.mainPhoto || puppy.image;
             const gender = puppy.gender || puppy.sex || "Gender to be announced";
-            const sizeDetails = [puppy.sizeCategory, puppy.estimatedAdultWeight || puppy.size]
-              .filter(Boolean)
-              .join(", ");
+            const breedLabel = puppy.slug === "bram" ? "Micro Chocolate Bernedoodle" : puppy.breed;
+            const litterName = litterProfileBySlug.get(puppy.litterSlug)?.name;
 
             return (
               <article className="home-ready-puppy-card" key={puppy.slug || puppy.name}>
@@ -1997,10 +1995,9 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
                   )}
                 </Link>
                 <div className="home-ready-puppy-body">
-                  <p className="eyebrow">{puppy.breed}</p>
                   <h3>{puppy.name}</h3>
-                  <p className="home-ready-puppy-meta">{litterProfileBySlug.get(puppy.litterSlug)?.name}</p>
-                  <p>{[sizeDetails, gender].filter(Boolean).join(" • ")}</p>
+                  <p className="home-ready-puppy-meta">{breedLabel}</p>
+                  <p>{[litterName, puppy.estimatedAdultWeight || puppy.size, gender].filter(Boolean).join(" • ")}</p>
                   <Link
                     href={puppyApplyHref(puppy)}
                     className="button small"
