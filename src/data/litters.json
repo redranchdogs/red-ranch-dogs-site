@@ -507,7 +507,7 @@
     "name": "Kylie + Ranger",
     "visibility": "public",
     "status": "Current Litter",
-    "featuredAvailable": false,
+    "featuredAvailable": true,
     "pregnancyConfirmed": true,
     "litterNumber": "Kylie repeat",
     "mamaSlug": "kylie",
@@ -525,8 +525,8 @@
     "priceRange": "$4,500",
     "image": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
     "parentPairingImage": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
-    "availabilitySummary": "Week 3 photos are here. Contact Red Ranch Dogs for Kylie and Ranger puppy matching details.",
-    "availabilityNote": "Puppies were born September 22, 2026, with planned go-home November 14-15, 2026. No Kylie and Ranger puppies are currently listed as available. Ophelia Shadow and Raven are reserved.",
+    "availabilitySummary": "Week 3 photos are here. Four Kylie and Ranger puppies are available, and two are reserved.",
+    "availabilityNote": "Puppies were born September 22, 2026, with planned go-home November 14-15, 2026. October, Bram, Hugo Poe, and Salem are available for approved families. Ophelia Shadow and Raven are reserved.",
     "aboutTitle": "Kylie and Ranger's repeat micro Bernedoodle litter has arrived.",
     "aboutThisLitter": [
       "Kylie's repeat Multigen Micro Bernedoodle litter with outside stud Ranger arrived September 22, 2026. This pairing is known for rich color, compact size, and steady family temperament.",
@@ -554,7 +554,7 @@
       "raven"
     ],
     "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Kylie + Ranger / Week 3",
-    "weeklyUpdateStatus": "Week 3 photos are live. Contact us for current matching details.",
+    "weeklyUpdateStatus": "Week 3 photos are live. Four puppies are available for approved families.",
     "weeklyUpdateGallery": [
       "/images/puppies/kylie-2026-week-3/october-week-3-01.webp",
       "/images/puppies/kylie-2026-week-3/bram-week-3-01.webp",
