@@ -91,7 +91,7 @@ const closedGuardianNames = puppies
 const routeExpectations = [
   {
     route: "/",
-    requiredText: ["red ranch dogs", "available puppies", "apply"],
+    requiredText: ["red ranch dogs", "available puppies", "micro chocolate bernedoodle", "f1b-style mini goldendoodle", "bram", "atticus", "apply"],
     requiredSelectors: [".premium-header", "main", ".premium-footer"],
     homeLitterCheck: {
       label: litters.some((litter) => normalize(litter.status) === "current litter") ? "Current Litters" : "Upcoming Litters",
@@ -106,11 +106,17 @@ const routeExpectations = [
   ].map((state) => ({ route: `/?fixture=${state.fixture}`, requiredSelectors: ["main"], homeLitterCheck: state })),
   {
     route: "/puppies/available",
-    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", "atticus"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "lulu + bram"],
+    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", "atticus", "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "lulu + bram"],
     forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
     requiredSelectors: featuredAvailablePuppies.length ? [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"] : [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
     finderNavCheck: { mode: "available", history: !featuredAvailablePuppies.length },
     previewCaptionCheck: !featuredAvailablePuppies.length
+  },
+  {
+    route: "/puppies/available?breed=bernedoodle-puppies",
+    requiredText: ["find your puppy", "choose a breed", "bram", "october", "hugo poe", "salem"],
+    requiredSelectors: [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"],
+    finderNavCheck: { mode: "available", selectedBreed: "bernedoodle-puppies" }
   },
   {
     route: "/puppies/available?fixture=populated",
@@ -136,7 +142,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=bernedoodle-puppies",
-    requiredText: ["current litters", "kylie + ranger", "puppies born", "september 22, 2026", "november 14-15, 2026"],
+    requiredText: ["current litters", "kylie + ranger", "4 available", "september 22, 2026", "november 14-15, 2026"],
     forbiddenText: ["pregnancy confirmed", "no current litters are listed right now."],
     requiredSelectors: [".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "bernedoodle-puppies" },
@@ -184,18 +190,18 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "7 available", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "available in salado, texas", "ask about a beatrix puppy", "about this litter", "week 2", "weekly photo gallery"],
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "7 available", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 2", "weekly photo gallery"],
     forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
-    requiredSelectors: [".litter-detail-hero", ".beatrix-buyer-intro img", ".beatrix-inquiry-section form", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
+    requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ".beatrix-inquiry-section form", ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "7 available", expectedPuppies: 9 }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
-    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "puppies born", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 3", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
+    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "4 available", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 3", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
     forbiddenText: ["around 25 lbs", "confirmed pregnant", "estimated birth", "september 20-21, 2026", "november 15-16, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: {
-      expectedStatus: "Puppies born",
+      expectedStatus: "4 available",
       expectedPuppies: 6,
       expectedDescriptor: "Multigen Micro Bernedoodles",
       expectedSize: "~25 lbs",
@@ -238,7 +244,7 @@ const routeExpectations = [
     })),
   {
     route: "/puppies/goldendoodle-puppies",
-    requiredText: ["goldendoodle", "how big will they get", "how to compare goldendoodle puppies", "most red ranch goldendoodles are multigen"],
+    requiredText: ["goldendoodle", "atticus", "how big will they get", "how to compare goldendoodle puppies", "most red ranch goldendoodles are multigen"],
     requiredSelectors: [".breed-program-card", ".breed-size-guide-asset", ".breed-priority-section"]
   },
   {
@@ -248,7 +254,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/bernedoodle-puppies",
-    requiredText: ["bernedoodle", "how big will they get", "how to compare bernedoodle puppies"],
+    requiredText: ["bernedoodle", "bram", "how big will they get", "how to compare bernedoodle puppies"],
     requiredSelectors: [".breed-program-card", ".breed-size-guide-asset img[src*='bernedoodle-size-guide']", ".breed-priority-section"]
   },
   {

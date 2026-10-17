@@ -12392,41 +12392,7 @@ summary {
   justify-content: center;
 }
 
-.beatrix-buyer-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(18px, 3vw, 40px);
-  align-items: center;
-  max-width: 1160px;
-  margin: 0 auto 24px;
-  padding: 0 20px;
-}
-
-.beatrix-buyer-intro img {
-  width: 100%;
-  max-height: 380px;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-}
-
-.beatrix-buyer-intro h2 {
-  margin: 8px 0;
-  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2rem, 5vw, 3.8rem);
-  line-height: 1;
-}
-
-.beatrix-buyer-intro .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .beatrix-inquiry-section { max-width: 760px; margin-inline: auto; scroll-margin-top: 24px; }
-.beatrix-parent-section { max-width: 980px; margin-inline: auto; }
-
-@media (max-width: 640px) {
-  .beatrix-buyer-intro { grid-template-columns: 1fr; gap: 12px; padding: 0 16px; }
-  .beatrix-buyer-intro img { max-height: 250px; aspect-ratio: 16 / 10; }
-  .beatrix-buyer-intro h2 { font-size: 2.2rem; }
-  .beatrix-buyer-intro .actions .button { flex: 1 1 145px; }
-}
 
 .testimonial-feature {
   display: block;

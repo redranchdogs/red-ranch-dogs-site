@@ -4213,20 +4213,6 @@ function LitterPage({ litter }) {
           <span className="status-badge litter-detail-status">{litterStatusLabel}</span>
         </div>
       </section>
-      {isBeatrixOffer && availablePuppies.length > 0 && (
-        <section className="beatrix-buyer-intro" aria-label="Beatrix available puppy offer">
-          <img src={availablePuppies[0].mainPhoto} alt={`${availablePuppies[0].name}, available Beatrix and Enzo puppy`} loading="eager" />
-          <div>
-            <p className="eyebrow">Available in Salado, Texas</p>
-            <h2>{availablePuppies.length} Mini Goldendoodle puppies looking for families</h2>
-            <p>Born September 28, 2026 · 25–35 lbs expected adult weight · $2,800 · Planned go-home November 19–21, 2026</p>
-            <div className="actions">
-              <a className="button primary" href="#beatrix-puppies">Meet the puppies</a>
-              <a className="button secondary" href="#beatrix-inquiry">Ask about this litter</a>
-            </div>
-          </div>
-        </section>
-      )}
       <section className="litter-detail-overview">
         <dl className="litter-primary-facts">
           {!isArchived && <div className="litter-primary-fact litter-primary-fact-emphasis"><dt>Price</dt><dd>{litter.priceRange}</dd></div>}
@@ -4234,7 +4220,7 @@ function LitterPage({ litter }) {
           <div className="litter-primary-fact"><dt>{birthLabel}</dt><dd>{displayBirthDate}</dd></div>
           {!isArchived && <div className="litter-primary-fact"><dt>{goHomeLabel}</dt><dd>{displayGoHomeDate}</dd></div>}
         </dl>
-        {!isBeatrixOffer && <article className="litter-pairing-card">
+        <article className="litter-pairing-card">
           {hasParentPairing ? (
             <figure className="litter-parent-portraits" aria-label={`${litter.name} parent pairing`}>
               <Link href={`/parents/${mama.slug}`} className="litter-parent-portrait-link" aria-label={`View ${mama.name}, mama profile`}>
@@ -4251,7 +4237,7 @@ function LitterPage({ litter }) {
           ) : (
             <ImagePlaceholder label="Litter pairing photo" tall />
           )}
-        </article>}
+        </article>
       </section>
       {hasAboutSection && (
         <section className="content-section litter-about-section">
@@ -4324,17 +4310,6 @@ function LitterPage({ litter }) {
               <p>Mini Goldendoodles · 25–35 lbs expected adult weight · $2,800 · Planned go-home November 19–21, 2026 · Salado, Texas</p>
               <LeadForm key={applicationQueryValue("interest") || "litter"} formType="contact" title="Quick puppy inquiry" buyerInquiry={{ litter, puppies: availablePuppies.slice() }} />
               <Link href={`/apply?litter=${encodeURIComponent(litter.slug)}`} className="inline-link">Ready for the full application? Apply for this litter</Link>
-            </section>
-          )}
-          {isBeatrixOffer && hasParentPairing && (
-            <section className="content-section beatrix-parent-section">
-              <h2>Meet the parents</h2>
-              <figure className="litter-parent-portraits" aria-label={`${litter.name} parent pairing`}>
-                {[mama, stud].map((parent) => <Link href={`/parents/${parent.slug}`} className="litter-parent-portrait-link" key={parent.slug}>
-                  <img src={parent.mainPhoto} alt={parent.name} loading="eager" />
-                  <figcaption><strong>{parent.name}</strong></figcaption>
-                </Link>)}
-              </figure>
             </section>
           )}
           {(!isArchived || gallery.length > 0) && <section className="content-section litter-gallery-section">
