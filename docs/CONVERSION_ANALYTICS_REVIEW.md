@@ -16,6 +16,8 @@ This is the lightweight analytics contract for the public Red Ranch Dogs website
 | `form_submit_error` | Form lifecycle | Behavior signal only |
 | `form_submit_success` | Form lifecycle | Match to Lead Queue by submissionId |
 | `form_validation_error` | Form lifecycle | Behavior signal only |
+| `puppy_buyer_application_success` | Form lifecycle | Behavior signal only |
+| `puppy_buyer_inquiry_success` | Form lifecycle | Behavior signal only |
 | `social_google_reviews_click` | Navigation click | Behavior signal only |
 | `social_instagram_click` | Navigation click | Behavior signal only |
 | `view_application_waitlist_click` | Navigation click | Behavior signal only |
