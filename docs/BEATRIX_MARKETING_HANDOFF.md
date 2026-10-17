@@ -17,6 +17,7 @@
 
 ## Verification and release
 
-- Local: content validation, source and buyer-flow checks, form contract, GA4 contract, application journey, form API/security tests, lint, build, and 47 public routes at two viewport sizes passed. At 390 px, the current Atticus photo loaded above the fold, the seven-puppy offer and actions were visible, the `interest=atticus` inquiry preselected Atticus, and horizontal overflow was absent.
+- Local: content validation, source and buyer-flow checks, form contract, GA4 contract, application journey, form API/security tests, lint, build, and 47 public routes at two viewport sizes passed. At 390 px, the current Atticus photo loaded above the fold, the seven-puppy offer and actions were visible, the `interest=atticus` inquiry preselected Atticus, and horizontal overflow was absent. A two-visit browser check retained first-touch Google/GCLID and last-touch Instagram/WBRAID values. No live buyer form was submitted.
+- Preview: Vercel preview for commit `23575b5` is READY and the Beatrix page was read back at the preview URL with seven available choices, Wells/Darcy reserved, and the short form present.
 - Website Hub sheet mirror: **pending**. Local source data changed after the prior sheet review; the bridge environment is unavailable in this checkout. `check:publish-ready` correctly remains blocked until a reviewed, scoped mirror or documented exception.
 - Release status: **prepared locally; not live**. Update this line only after production deployment and live readback.
