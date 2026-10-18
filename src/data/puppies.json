@@ -3761,7 +3761,7 @@
     "stud": "Ranger",
     "gender": "Female",
     "collarColor": "Purple",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "~25 lbs",
     "birthDate": "September 22, 2026",
@@ -3794,7 +3794,7 @@
       }
     ],
     "description": "Salem is a female Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
-    "availabilityNote": "Salem is available for an approved family.",
+    "availabilityNote": "Salem is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
