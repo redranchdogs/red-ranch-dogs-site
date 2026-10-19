@@ -37,10 +37,10 @@ const browserBreeds = [
   { slug: "bernedoodle-puppies", name: "Bernedoodle" },
 ];
 
-function browserRoute(mode, breed) {
-  const records = (mode === "current" ? currentLitters : plannedLitters)
+function browserRoute(mode, breed, { allCurrentEmptyFixture = false } = {}) {
+  const records = (allCurrentEmptyFixture ? [] : mode === "current" ? currentLitters : plannedLitters)
     .filter((litter) => litter.breedSlug === breed.slug);
-  const allCurrentEmpty = mode === "current" && currentLitters.length === 0;
+  const allCurrentEmpty = mode === "current" && (allCurrentEmptyFixture || currentLitters.length === 0);
   const sameBreedUpcoming = plannedLitters.some((litter) => litter.breedSlug === breed.slug);
   const publicUpcomingBreeds = [...new Set(plannedLitters.map((litter) => litter.breedSlug))];
   const emptyHrefs = allCurrentEmpty
@@ -51,8 +51,8 @@ function browserRoute(mode, breed) {
     : ["/process/application-and-waitlist"];
 
   return {
-    route: `/puppies/${mode === "current" ? "current-litters" : "upcoming-litters"}?breed=${breed.slug}`,
-    label: `${mode === "current" ? "Current" : "Upcoming"} ${breed.name} Litters`,
+    route: `/puppies/${mode === "current" ? "current-litters" : "upcoming-litters"}?breed=${breed.slug}${allCurrentEmptyFixture ? "&fixture=all-current-empty" : ""}`,
+    label: `${mode === "current" ? "Current" : "Upcoming"} ${breed.name} Litters${allCurrentEmptyFixture ? " (all empty fixture)" : ""}`,
     requiredText: records.length
       ? records.map((litter) => litter.name)
       : [allCurrentEmpty ? "No current litters are listed right now." : `No ${mode} ${breed.name} litters are listed right now.`],
@@ -61,12 +61,13 @@ function browserRoute(mode, breed) {
       `#litter-panel-${mode}`,
       records.length ? ".litter-browser-list .litter-browser-card" : ".litter-browser-empty",
     ],
-    browser: { mode, breed, records, emptyHrefs },
+    browser: { mode, breed, records, emptyHrefs, allCurrentEmpty, allCurrentEmptyFixture },
   };
 }
 
 const litterBrowserRoutes = ["current", "upcoming"]
   .flatMap((mode) => browserBreeds.map((breed) => browserRoute(mode, breed)));
+litterBrowserRoutes.push(browserRoute("current", browserBreeds[0], { allCurrentEmptyFixture: true }));
 
 const currentLitterDetails = currentLitters.slice(0, 2).map((litter, index) => {
   const litterPuppies = puppiesByLitter.get(litter.slug) || [];
@@ -78,7 +79,8 @@ const currentLitterDetails = currentLitters.slice(0, 2).map((litter, index) => {
     label: index ? "Additional Current Litter Detail" : "Current Litter Detail",
     requiredText: [litterName],
     selectors: [
-      ".litter-summary-panel",
+      ".litter-detail-overview .litter-primary-facts",
+      ".litter-detail-overview .litter-pairing-card",
       ...(litterPuppies.length ? [".litter-puppy-list .puppy-card"] : []),
       ...(hasGallery ? [".litter-gallery-section img"] : []),
     ],
@@ -241,7 +243,7 @@ async function auditRoute(page, routeConfig) {
   if (consoleErrors.length) warnings.push(`Console errors: ${consoleErrors.slice(0, 3).join("; ")}`);
 
   if (routeConfig.browser) {
-    const { mode, breed, records, emptyHrefs } = routeConfig.browser;
+    const { mode, breed, records, emptyHrefs, allCurrentEmpty, allCurrentEmptyFixture } = routeConfig.browser;
     const panel = page.locator(`#litter-panel-${mode}`);
     const selectedTab = page.locator(`#litter-tab-${mode}-${breed.slug}`);
     const cardLinks = await panel.locator(".litter-browser-card-action").evaluateAll((links) =>
@@ -256,19 +258,28 @@ async function auditRoute(page, routeConfig) {
       blockers.push(`Visible litter links differ from public ${breed.name} ${mode} records: ${cardLinks.join(", ") || "none"}.`);
     }
     if (!records.length) {
-      const action = panel.locator(".litter-browser-empty-link");
-      const actionHref = await action.getAttribute("href");
+      const actionSelector = allCurrentEmpty ? ".litter-browser-empty-link" : ".litter-browser-next-link";
+      const otherActionSelector = allCurrentEmpty ? ".litter-browser-next-link" : ".litter-browser-empty-link";
+      const action = panel.locator(actionSelector);
+      const actionCount = await action.count();
+      if (actionCount !== 1 || await visibleCount(page, `#litter-panel-${mode} ${actionSelector}`) !== 1 ||
+          await panel.locator(otherActionSelector).count() !== 0) {
+        blockers.push(`Empty-state action must use ${actionSelector} only.`);
+      }
+      const actionHref = actionCount === 1 ? await action.getAttribute("href") : null;
       if (!emptyHrefs.includes(actionHref)) {
         blockers.push(`Empty-state destination ${actionHref || "missing"} is not an applicable public route: ${emptyHrefs.join(", ")}.`);
       }
     }
 
-    const nextBreed = browserBreeds[(browserBreeds.findIndex((item) => item.slug === breed.slug) + 1) % browserBreeds.length];
-    await page.locator(`#litter-tab-${mode}-${nextBreed.slug}`).click();
-    const nextUrl = `${baseUrl}/puppies/${mode === "current" ? "current-litters" : "upcoming-litters"}?breed=${nextBreed.slug}`;
-    if (page.url() !== nextUrl ||
-        await page.locator(`#litter-tab-${mode}-${nextBreed.slug}`).getAttribute("aria-selected") !== "true") {
-      blockers.push(`Breed tab did not navigate to ${nextBreed.name}.`);
+    if (!allCurrentEmptyFixture) {
+      const nextBreed = browserBreeds[(browserBreeds.findIndex((item) => item.slug === breed.slug) + 1) % browserBreeds.length];
+      await page.locator(`#litter-tab-${mode}-${nextBreed.slug}`).click();
+      const nextUrl = `${baseUrl}/puppies/${mode === "current" ? "current-litters" : "upcoming-litters"}?breed=${nextBreed.slug}`;
+      if (page.url() !== nextUrl ||
+          await page.locator(`#litter-tab-${mode}-${nextBreed.slug}`).getAttribute("aria-selected") !== "true") {
+        blockers.push(`Breed tab did not navigate to ${nextBreed.name}.`);
+      }
     }
   }
 
