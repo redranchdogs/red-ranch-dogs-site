@@ -1,6 +1,6 @@
 # Website QA Agent Report
 
-Generated: 6/28/2026, 2:54:34 PM Central
+Generated: 10/19/2026, 6:19:23 PM Central
 
 Owner app: **Website**
 Agent: **Website QA Agent**
@@ -8,7 +8,7 @@ Permission level: **read_only**
 
 This report is a local, read-only Website QA Agent pass. It inspects repository files and the latest generated review docs. It does not write to Google Sheets, Google Drive, Vercel, DNS, env vars, CRM, Breeding Ops, or live website data.
 
-Status: **PASS**
+Status: **FAIL**
 
 ## Guardrail Alignment
 
@@ -16,36 +16,36 @@ Status: **PASS**
 | --- | --- |
 | AGENTS.md exists | PASS |
 | AGENTS.md references shared control docs | PASS |
-| Website QA Agent is registered | PASS |
-| Data matrix preserves website ownership boundary | PASS |
-| Approval matrix covers website publishing | PASS |
-| Infrastructure baseline requires agent audit logs | PASS |
-| Operating model says no silent writes | PASS |
+| Website QA Agent is registered | FAIL |
+| Data matrix preserves website ownership boundary | FAIL |
+| Approval matrix covers website publishing | FAIL |
+| Infrastructure baseline requires agent audit logs | FAIL |
+| Operating model says no silent writes | FAIL |
 
 ## Public Site QA Snapshot
 
 | Area | Result |
 | --- | ---: |
-| Sitemap routes | 131 |
-| Known static/dynamic routes | 181 |
+| Sitemap routes | 160 |
+| Known static/dynamic routes | 208 |
 | Internal links | 65 |
-| Redirects | 81 |
+| Redirects | 78 |
 | Host canonical redirects | 2 |
-| Missing sitemap routes | 0 |
-| Missing internal links | 0 |
+| Missing sitemap routes | 2 |
+| Missing internal links | 1 |
 
 ## Public Data Snapshot
 
 | Public display category | Count |
 | --- | ---: |
-| Available puppies | 12 |
+| Available puppies | 9 |
 | Waitlist matching puppies | 0 |
-| Reserved puppies | 29 |
-| Current litters | 5 |
-| Planned litters | 3 |
-| Previous litter records | 13 |
-| Public parent profiles | 29 |
-| Public waitlist rows | 17 |
+| Reserved puppies | 53 |
+| Current litters | 2 |
+| Planned litters | 2 |
+| Previous litter records | 19 |
+| Public parent profiles | 31 |
+| Public waitlist rows | 19 |
 
 ## Forms And Attribution
 
@@ -67,11 +67,16 @@ Important boundary: form submissions and analytics events are website intake/beh
 
 ## Blockers
 
-- None flagged.
+- Agent Registry does not include Website QA Agent.
+- Data Access Matrix does not identify website public-content ownership.
+- Sitemap routes missing from known app/data routes: /litters/beatrix-enzo-planned-2026/past-puppies, /litters/reece-wyatt-summer-2026/past-puppies
+- Internal links missing routes or redirects: /agreements/red-ranch-dogs-puppy-purchase-agreement-2026-09-17.pdf
 
 ## Warnings
 
-- None flagged.
+- Infrastructure baseline audit-log section was not found.
+- Operating model no-silent-writes language was not found.
+- Weekly Ecosystem Brief spec may not include the Website section.
 
 ## Recommended Next Moves
 
