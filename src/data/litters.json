@@ -250,7 +250,7 @@
     "expectedColors": "Warm apricot and red possibilities",
     "expectedCoatTraits": "Silky-soft wavy to curly, lower-shedding coat possibilities",
     "priceRange": "$2,800",
-    "availabilitySummary": "Week 2 photos and Week 3 puppy videos are here. Seven Beatrix and Enzo puppies are available, and two are reserved.",
+    "availabilitySummary": "Week 3 photos and videos are here. Seven Beatrix and Enzo puppies are available, and two are reserved.",
     "availabilityNote": "Puppies were born September 28, 2026, with planned go-home November 19-21, 2026. Seven puppies are available for approved families. Wells and Darcy are reserved.",
     "aboutTitle": "Beatrix and Enzo's second Goldendoodle litter has arrived.",
     "aboutThisLitter": [
@@ -284,34 +284,17 @@
       "bronte",
       "louisa"
     ],
-    "weeklyUpdateStatus": "Week 2 photos and Week 3 puppy videos are live. Seven puppies are available for approved families.",
+    "weeklyUpdateStatus": "Week 3 photos and videos are live. Seven puppies are available for approved families.",
     "weeklyUpdateGallery": [
-      "/images/puppies/beatrix-2026-week-2/atticus-week-2-01.webp",
-      "/images/puppies/beatrix-2026-week-2/atticus-week-2-02.webp",
-      "/images/puppies/beatrix-2026-week-2/atticus-week-2-03.webp",
-      "/images/puppies/beatrix-2026-week-2/twain-week-2-01.webp",
-      "/images/puppies/beatrix-2026-week-2/twain-week-2-02.webp",
-      "/images/puppies/beatrix-2026-week-2/twain-week-2-03.webp",
-      "/images/puppies/beatrix-2026-week-2/wells-week-2-01.webp",
-      "/images/puppies/beatrix-2026-week-2/wells-week-2-02.webp",
-      "/images/puppies/beatrix-2026-week-2/wells-week-2-03.webp",
-      "/images/puppies/beatrix-2026-week-2/edith-week-2-01.webp",
-      "/images/puppies/beatrix-2026-week-2/edith-week-2-02.webp",
-      "/images/puppies/beatrix-2026-week-2/edith-week-2-03.webp",
-      "/images/puppies/beatrix-2026-week-2/darcy-week-2-01.webp",
-      "/images/puppies/beatrix-2026-week-2/darcy-week-2-02.webp",
-      "/images/puppies/beatrix-2026-week-2/darcy-week-2-03.webp",
-      "/images/puppies/beatrix-2026-week-2/dickens-week-2-01.webp",
-      "/images/puppies/beatrix-2026-week-2/dickens-week-2-02.webp",
-      "/images/puppies/beatrix-2026-week-2/dickens-week-2-03.webp",
-      "/images/puppies/beatrix-2026-week-2/austen-week-2-01.webp",
-      "/images/puppies/beatrix-2026-week-2/austen-week-2-02.webp",
-      "/images/puppies/beatrix-2026-week-2/austen-week-2-03.webp",
-      "/images/puppies/beatrix-2026-week-2/bronte-week-2-01.webp",
-      "/images/puppies/beatrix-2026-week-2/bronte-week-2-02.webp",
-      "/images/puppies/beatrix-2026-week-2/louisa-week-2-01.webp",
-      "/images/puppies/beatrix-2026-week-2/louisa-week-2-02.webp",
-      "/images/puppies/beatrix-2026-week-2/louisa-week-2-03.webp"
+      "/images/puppies/beatrix-2026-week-3/atticus-week-3-01.webp",
+      "/images/puppies/beatrix-2026-week-3/twain-week-3-01.webp",
+      "/images/puppies/beatrix-2026-week-3/wells-week-3-01.webp",
+      "/images/puppies/beatrix-2026-week-3/edith-week-3-01.webp",
+      "/images/puppies/beatrix-2026-week-3/darcy-week-3-01.webp",
+      "/images/puppies/beatrix-2026-week-3/dickens-week-3-01.webp",
+      "/images/puppies/beatrix-2026-week-3/austen-week-3-01.webp",
+      "/images/puppies/beatrix-2026-week-3/bronte-week-3-01.webp",
+      "/images/puppies/beatrix-2026-week-3/louisa-week-3-01.webp"
     ],
     "quickNote": "Puppies arrived September 28, 2026. Planned go-home is November 19-21, 2026.",
     "pastPuppyGallery": {
@@ -328,7 +311,7 @@
     },
     "birthConfirmed": true,
     "publicListingStage": "puppy-profiles-live",
-    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Photos"
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Beatrix + Enzo / Week 3 / Photos"
   },
   {
     "slug": "lulu-bram-fall-2026",
