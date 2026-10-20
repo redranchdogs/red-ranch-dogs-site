@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 10/17/2026, 5:14:11 PM Central
+Generated: 10/20/2026, 5:43:19 PM Central
 
 Status: **PASS**
 
@@ -125,10 +125,10 @@ Routes with warnings: 2
 | /puppies/bronte | 200 | Brontë | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 84 | Brontë | 1 | https://www.redranchdogs.com/puppies/bronte |
 | /puppies/louisa | 200 | Louisa | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 84 | Louisa | 1 | https://www.redranchdogs.com/puppies/louisa |
 | /litters/georgia-waylon-may-2026 | 200 | Georgia + Waylon | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 99 | Georgia + Waylon | 1 | https://www.redranchdogs.com/litters/georgia-waylon-may-2026 |
-| /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs | 108 | Beatrix + Enzo | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026 |
+| /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs | 115 | Beatrix + Enzo | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026 |
 | /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs | 71 | Lulu + Bram | 1 | https://www.redranchdogs.com/litters/lulu-bram-fall-2026 |
 | /litters/reece-wyatt-summer-2026 | 200 | Reece + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 71 | Reece + Wyatt | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026 |
-| /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 90 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
+| /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 84 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
 | /litters/evie-waylon-october-2026 | 200 | Evie + Waylon | Petite Mini Goldendoodle Litter | Red Ranch Dogs | 115 | Evie + Waylon | 1 | https://www.redranchdogs.com/litters/evie-waylon-october-2026 |
 | /litters/beatrix-enzo-planned-2026/past-puppies | 200 | Past Puppies From Beatrix + Enzo | Red Ranch Dogs | 101 | See Their Previous Puppies | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026/past-puppies |
 | /litters/reece-wyatt-summer-2026/past-puppies | 200 | Past Puppies From Reece + Wyatt | Red Ranch Dogs | 100 | See How Their Puppies Are Growing | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026/past-puppies |
