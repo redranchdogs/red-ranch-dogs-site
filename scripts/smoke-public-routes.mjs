@@ -191,7 +191,7 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "7 available", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 2", "weekly photo gallery"],
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "7 available", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 3", "weekly photo gallery"],
     forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ".beatrix-inquiry-section form", ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "7 available", expectedPuppies: 9 }
@@ -216,7 +216,7 @@ const routeExpectations = [
   })),
   ...["atticus", "twain", "wells", "edith", "darcy", "dickens", "austen", "bronte", "louisa"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: ["beatrix + enzo", puppies.find((puppy) => puppy.slug === slug).status, "week 2", "september 28, 2026", "november 19-21, 2026"],
+    requiredText: ["beatrix + enzo", puppies.find((puppy) => puppy.slug === slug).status, "week 3", "september 28, 2026", "november 19-21, 2026"],
     forbiddenText: ["this litter is currently reserved"],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),

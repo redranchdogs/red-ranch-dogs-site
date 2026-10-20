@@ -4,8 +4,8 @@ import path from "node:path";
 const root = process.cwd();
 const publicRoot = path.join(root, "public");
 const maxReferencedImageBytes = 400 * 1024;
-// Includes preserved photo history plus the optimized Kylie Week 2 round.
-const maxTotalReferencedImageBytes = 85 * 1024 * 1024;
+// Includes preserved photo history plus Kylie Week 4 and Beatrix Week 3 media.
+const maxTotalReferencedImageBytes = 87 * 1024 * 1024;
 const warningImageBytes = 250 * 1024;
 const referencedImages = new Set();
 
