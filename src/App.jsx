@@ -5196,18 +5196,16 @@ function LitterBrowserEmptyState({ mode, breed, allCurrentEmpty = false }) {
 }
 
 function LitterBrowser({ mode }) {
-  const developmentFixture = import.meta.env.DEV
-    ? new window.URLSearchParams(window.location.search).get("fixture")
-    : "";
-  const litters = mode === "current" && developmentFixture === "all-current-empty"
-    ? []
-    : mode === "current" ? currentLitterProfiles : plannedLitterProfiles;
+  const litters = mode === "current" ? currentLitterProfiles : plannedLitterProfiles;
   const defaultBreedSlug = litters[0]?.breedSlug || litterBrowserBreeds[0].slug;
   const [selectedBreedSlug, setSelectedBreedSlug] = useState(() => litterBrowserSlugFromUrl(defaultBreedSlug));
   const tabRefs = useRef([]);
   const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || litterBrowserBreeds[0];
   const selectedLitters = litters.filter((litter) => litter.breedSlug === selectedBreed.slug);
-  const allCurrentEmpty = mode === "current" && litters.length === 0;
+  const allCurrentEmpty = mode === "current" && currentLitterProfiles.length === 0;
+  const developmentFixture = import.meta.env.DEV
+    ? new window.URLSearchParams(window.location.search).get("fixture")
+    : "";
 
   useEffect(() => {
     const syncSelection = () => setSelectedBreedSlug(litterBrowserSlugFromUrl(defaultBreedSlug));
