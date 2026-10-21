@@ -3613,7 +3613,7 @@
     "stud": "Ranger",
     "gender": "Male",
     "collarColor": "Blue",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "~25 lbs",
     "birthDate": "September 22, 2026",
@@ -3656,7 +3656,7 @@
       }
     ],
     "description": "Bram is a male Multigen Micro Bernedoodle puppy from Kylie and Ranger's litter.",
-    "availabilityNote": "Bram is available for an approved family.",
+    "availabilityNote": "Bram is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
