@@ -91,7 +91,7 @@ const closedGuardianNames = puppies
 const routeExpectations = [
   {
     route: "/",
-    requiredText: ["red ranch dogs", "available puppies", "micro chocolate bernedoodle", "f1b-style mini goldendoodle", "bram", "atticus", "apply"],
+    requiredText: ["red ranch dogs", "available puppies", "multigen micro bernedoodle", "f1b-style mini goldendoodle", "hugo poe", "atticus", "apply"],
     requiredSelectors: [".premium-header", "main", ".premium-footer"],
     homeLitterCheck: {
       label: litters.some((litter) => normalize(litter.status) === "current litter") ? "Current Litters" : "Upcoming Litters",
@@ -114,8 +114,8 @@ const routeExpectations = [
   },
   {
     route: "/puppies/available?breed=bernedoodle-puppies",
-    requiredText: ["find your puppy", "choose a breed", "bram", "hugo poe"],
-    forbiddenText: ["salem"],
+    requiredText: ["find your puppy", "choose a breed", "hugo poe"],
+    forbiddenText: ["bram", "salem"],
     requiredSelectors: [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"],
     finderNavCheck: { mode: "available", selectedBreed: "bernedoodle-puppies" }
   },
@@ -143,7 +143,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=bernedoodle-puppies",
-    requiredText: ["current litters", "kylie + ranger", "2 available", "september 22, 2026", "november 14-15, 2026"],
+    requiredText: ["current litters", "kylie + ranger", "1 available", "september 22, 2026", "november 14-15, 2026"],
     forbiddenText: ["pregnancy confirmed", "no current litters are listed right now."],
     requiredSelectors: [".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "bernedoodle-puppies" },
@@ -198,11 +198,11 @@ const routeExpectations = [
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
-    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "2 available", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 4", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
+    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "1 available", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 4", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
     forbiddenText: ["around 25 lbs", "confirmed pregnant", "estimated birth", "september 20-21, 2026", "november 15-16, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: {
-      expectedStatus: "2 available",
+      expectedStatus: "1 available",
       expectedPuppies: 6,
       expectedDescriptor: "Multigen Micro Bernedoodles",
       expectedSize: "~25 lbs",
@@ -255,7 +255,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/bernedoodle-puppies",
-    requiredText: ["bernedoodle", "bram", "how big will they get", "how to compare bernedoodle puppies"],
+    requiredText: ["bernedoodle", "hugo poe", "how big will they get", "how to compare bernedoodle puppies"],
     requiredSelectors: [".breed-program-card", ".breed-size-guide-asset img[src*='bernedoodle-size-guide']", ".breed-priority-section"]
   },
   {
