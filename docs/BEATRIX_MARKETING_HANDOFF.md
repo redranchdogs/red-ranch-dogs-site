@@ -1,5 +1,9 @@
 # Beatrix puppy buyer handoff
 
+## October 21 reservation update
+
+Louisa is Reserved following the saved CRM reservation. The six available Beatrix puppies are Atticus, Twain, Edith, Dickens, Austen, and Brontë; Wells, Darcy, and Louisa are reserved. Public price, size, and litter go-home dates are unchanged. The earlier availability and release counts below are historical snapshots, not current inventory. Source and exact Sheet readbacks are recorded in `red-ranch-ecosystem-architect/private-runs.nosync/website-louisa-reserved-20261021/`.
+
 ## Destination and offer
 
 - Advertising destination: https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026
