@@ -1,17 +1,16 @@
 # Sheet Sync Review
-Generated: 10/22/2026, 5:25:41 PM Central
+Generated: 10/22/2026, 5:40:46 PM Central
 Status: **PASS**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary
 | Sheet | Website rows | Live rows | Missing columns | Missing rows | Extra rows | Cell mismatches |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Puppy Tracker | 62 | 62 | 0 | 0 | 0 | 0 |
-| Litters | 14 | 14 | 0 | 0 | 0 | 0 |
+| Litters | 15 | 15 | 0 | 0 | 0 | 0 |
 | Previous Litters | 21 | 21 | 0 | 0 | 0 | 0 |
 | Parent Dogs | 35 | 35 | 0 | 0 | 0 | 0 |
 ## Reviewed Legacy Mirror Omissions (deferred repair)
 Only exact frozen parent records, physical cells, expected URLs and existing blank mirror values qualify. Changed/new records and every other field remain strict. No source Sheet cells are repaired by this audit.
-- Parent Dogs: birdie M2; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: honey M3; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: lulu M4; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: phoebe M5; existing blank Embark mirror retained for separately approved repair.
@@ -31,7 +30,6 @@ Only exact frozen parent records, physical cells, expected URLs and existing bla
 - Parent Dogs: garth-brooks M20; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: hank-williams M21; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: beau M22; existing blank Embark mirror retained for separately approved repair.
-- Parent Dogs: waylon-jennings M23; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: sundance M24; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: enzo M25; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: butch-cassidy M26; existing blank Embark mirror retained for separately approved repair.
