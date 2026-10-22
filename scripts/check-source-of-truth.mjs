@@ -214,12 +214,17 @@ litters.filter(isPublicRecord).forEach((litter) => {
   const confirmedBirthDate = Date.parse(litter.birthDate || "");
   const bornAwaitingProfiles = litter.birthConfirmed === true
     && litter.publicListingStage === "awaiting-puppy-profiles"
-    && /^(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$/.test(litter.birthDate || "")
-    && Number.isFinite(confirmedBirthDate)
-    && confirmedBirthDate <= Date.now()
+    && (litter.birthDate === "Date to be confirmed" || (
+      /^(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$/.test(litter.birthDate || "")
+      && Number.isFinite(confirmedBirthDate) && confirmedBirthDate <= Date.now()
+    ))
     && litter.featuredAvailable === false
     && (litter.puppySlugs || []).length === 0
     && statuses.size === 0;
+
+  if (litter.birthConfirmed === true && /\b(?:expecting|pregnant)\b|\bpregnancy\s+(?:is\s+)?(?:not\s+(?:yet\s+)?confirmed|unconfirmed)\b|\bawaiting pregnancy confirmation\b/i.test(`${timingText} ${availabilityText} ${(litter.aboutThisLitter || []).join(" ")}`)) {
+    blockers.push(`${litterSlug} confirms birth but still uses pregnancy/expecting copy.`);
+  }
 
   if (litter.featuredAvailable === true && availableCount === 0) {
     blockers.push(

@@ -2,13 +2,6 @@
   "approvedBase": "dcbfa7b6c4599f6d6bb02d9c0076c901153f43dd",
   "entries": [
     {
-      "slug": "birdie",
-      "cell": "M2",
-      "expected": "https://my.embarkvet.com/dog/queens",
-      "actual": "",
-      "sourceRecordSha256": "8ffec1f13e5f7d8f3cc8612823568da4a019862da8d5087bb7ee5a1d478f4a69"
-    },
-    {
       "slug": "honey",
       "cell": "M3",
       "expected": "https://my.embarkvet.com/dog/honey4054",
@@ -140,13 +133,6 @@
       "expected": "https://my.embarkvet.com/dog/beau2093",
       "actual": "",
       "sourceRecordSha256": "f5c57a54e6f515f5d26a65168dbdc181dcf2e65721ed9992560f8e306f3ebde2"
-    },
-    {
-      "slug": "waylon-jennings",
-      "cell": "M23",
-      "expected": "https://my.embarkvet.com/dog/waylonjennings23",
-      "actual": "",
-      "sourceRecordSha256": "d6b50a30abd8de299db6b1e09f421b4a22bd92ab7f8870f0f5ef2a2112661d00"
     },
     {
       "slug": "sundance",

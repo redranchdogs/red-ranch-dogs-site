@@ -2,6 +2,7 @@ import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "re
 import FAQItem from "./FAQItem.jsx";
 import { hasActiveGallery } from "./gallerySession.js";
 import { containTabFocus } from "./focus.js";
+import { compareUpcomingLitters } from "./upcomingLitterOrder.js";
 import { track } from "@vercel/analytics";
 import { trackGa4Event, trackGa4PageView } from "./ga4.js";
 import { submitFormPayload } from "./formSubmission.js";
@@ -3445,15 +3446,7 @@ const currentLitterProfiles = publicLitterProfiles
   .sort((first, second) => sortableLitterDate(first.goHomeDate || first.goHome) - sortableLitterDate(second.goHomeDate || second.goHome));
 const plannedLitterProfiles = publicLitterProfiles
   .filter(isPlannedLitter)
-  .sort((first, second) => {
-    const displayOrder = ["beatrix-enzo-planned-2026", "lulu-bram-fall-2026", "evie-waylon-october-2026"];
-    const priority = (litter) => {
-      const index = displayOrder.indexOf(litter.slug);
-      return index < 0 ? Number.POSITIVE_INFINITY : index;
-    };
-    const priorityDifference = priority(first) - priority(second);
-    return priorityDifference || sortableLitterDate(first.expectedTiming || first.delivery || first.goHomeDate || first.goHome) - sortableLitterDate(second.expectedTiming || second.delivery || second.goHomeDate || second.goHome);
-  });
+  .sort(compareUpcomingLitters);
 const plannedLitterBreedGroups = [
   {
     slug: "goldendoodle-puppies",

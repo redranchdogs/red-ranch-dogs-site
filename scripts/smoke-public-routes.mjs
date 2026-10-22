@@ -163,7 +163,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
-    expectedLitterOrder: ["Lulu + Bram", "Evie + Waylon"],
+    expectedLitterOrder: ["Lulu + Bram", "Evie + Waylon", "Birdie + Waylon"],
     requiredText: ["upcoming litters", "choose a breed", "lulu + bram", "evie + waylon", "petite mini goldendoodle", "early december 2026"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
@@ -183,6 +183,13 @@ const routeExpectations = [
     forbiddenText: ["puppies born", "waitlist matching", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Pregnancy confirmed", expectedPuppies: 0, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
+  },
+  {
+    route: "/litters/birdie-waylon-final-2026",
+    requiredText: ["birdie + waylon", "puppies born", "birth date", "date to be confirmed", "to be announced"],
+    forbiddenText: ["pregnancy confirmed", "estimated birth", "expecting", "7 puppies"],
+    requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure"],
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Goldendoodles", expectedSize: "To be announced", testParentBack: true }
   },
   {
     route: "/parents/evie-nicks",
