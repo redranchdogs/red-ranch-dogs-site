@@ -135,7 +135,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    requiredText: ["current litters", "beatrix + enzo", "7 available", "september 28, 2026", "november 19-21, 2026"],
+    requiredText: ["current litters", "beatrix + enzo", "6 available", "september 28, 2026", "november 19-21, 2026"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
@@ -191,10 +191,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "7 available", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 3", "weekly photo gallery"],
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "6 available", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 3", "weekly photo gallery"],
     forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ".beatrix-inquiry-section form", ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "7 available", expectedPuppies: 9 }
+    litterDetailCheck: { expectedStatus: "6 available", expectedPuppies: 9 }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
