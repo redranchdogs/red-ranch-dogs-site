@@ -17,7 +17,8 @@ function isUnchangedDeferredLink(job, mismatch, liveValues) {
   const record = parentRecords.find((parent) => parent.slug === mismatch.key);
   if (!baseline || !record) return false;
   const row = Number(baseline.cell.slice(1)) - 1;
-  return baseline.cell.startsWith("M") && liveValues[row]?.[0] === baseline.slug
+  return baseline.cell.startsWith("M") && liveValues[0]?.[12] === "healthTestingLinks"
+    && String(liveValues[row]?.[12] ?? "") === baseline.actual && liveValues[row]?.[0] === baseline.slug
     && mismatch.expected === baseline.expected && mismatch.actual === baseline.actual && baseline.actual === ""
     && createHash("sha256").update(JSON.stringify(record)).digest("hex") === baseline.sourceRecordSha256;
 }
