@@ -1,0 +1,15 @@
+# Birdie + Waylon final litter
+
+Prepared for the already authorized scoped publication, October 22, 2026. Base production: `97aa1cfa6e6e559d6a709a8c75cdd81d3a393eac`.
+
+New route: `/litters/birdie-waylon-final-2026`, under Upcoming Goldendoodles. Existing spring litter and puppy records are preserved. Adam confirms this final litter has arrived. An exact current birth date/count was not verified by the bounded Breeding Ops review; the old reproductive forecast is not adopted as an actual birth date. Public display says Puppies born / Date to be confirmed; size, price and go-home are to be announced.
+
+About copy: “Birdie is one of our sweetest F1 Goldendoodle mamas. She has given us incredible puppies, each so special, and we are especially excited to celebrate her final litter with Waylon.” The projected puppy mix is approximately 58% Poodle / 42% Golden Retriever, clearly labeled as an expected average with individual variation.
+
+Public Embark sources verified without overlays: Birdie https://my.embarkvet.com/dog/queens (pet ac830fb1-15a3-4b49-822e-8a7360c731f3), Golden Retriever 51.9%, Small Poodle 43%, Standard Poodle 5.1%; Waylon Jennings https://my.embarkvet.com/dog/waylonjennings23 (pet 75256030-9acb-448f-8201-45d88cd0e044), Small Poodle 67.6%, Golden Retriever 32.4%. Half each gives 57.85% Poodle / 42.15% Golden Retriever. Existing original parent photos are reused.
+
+Upcoming ordering now uses birth dates/estimated birth dates ascending, supports prefixed day ranges, keeps stable ties and unknowns last, and never uses go-home timing as birth timing. It removes hardcoded upcoming priority only; current/available ordering is unchanged. Goldendoodle order is Lulu + Bram, Evie + Waylon, then Birdie + Waylon. The source guard reuses the existing explicit awaiting-puppy-profiles stage, accepts the honest unknown birth-date label only with confirmed birth/no puppy listings/no availability claims, and rejects contradictory pregnancy copy. Focused ordering cases and six complete source-guard fixtures passed, including rejection of unconfirmed delivery, missing stage, contradictory pregnancy copy, future dates and unverified availability.
+
+Exact Sheet changes: Parent Dogs M2/O2 and M23/O23, preserving all existing related litters and notes; new Litters A16:AA16, preserving AB notes. Fresh full rows matched preimages; one write per book, immediate full-row values/format/notes/validation readback passed. Only two URL cells gained Google's automatic hyperlink metadata. No clinical, CRM or customer writes. Birdie/Waylon are removed from the deferred mirror baseline because their exact cells are now corrected; the other 28 entries remain frozen and untouched.
+
+Evidence: `red-ranch-ecosystem-architect/private-runs.nosync/website-birdie-waylon-20261022/`, including exact plan, unobstructed source screenshots/AX, before/fresh/write/after Sheet records, source guard cases and mobile preview. Sylvee + Rooster and all reservations/buyer quality fixes are preserved.
