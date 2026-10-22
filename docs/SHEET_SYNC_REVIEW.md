@@ -1,5 +1,5 @@
 # Sheet Sync Review
-Generated: 10/22/2026, 5:24:51 PM Central
+Generated: 10/22/2026, 5:25:41 PM Central
 Status: **PASS**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary
@@ -9,8 +9,6 @@ This is a read-only comparison between website-generated sheet exports and the l
 | Litters | 14 | 14 | 0 | 0 | 0 | 0 |
 | Previous Litters | 21 | 21 | 0 | 0 | 0 | 0 |
 | Parent Dogs | 35 | 35 | 0 | 0 | 0 | 0 |
-## Items To Fix
-- None.
 ## Reviewed Legacy Mirror Omissions (deferred repair)
 Only exact frozen parent records, physical cells, expected URLs and existing blank mirror values qualify. Changed/new records and every other field remain strict. No source Sheet cells are repaired by this audit.
 - Parent Dogs: birdie M2; existing blank Embark mirror retained for separately approved repair.
@@ -43,5 +41,7 @@ Only exact frozen parent records, physical cells, expected URLs and existing bla
 - Parent Dogs: wyatt-earp M30; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: bodhe M31; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: bram M32; existing blank Embark mirror retained for separately approved repair.
+## Items To Fix
+- None.
 ## Recommended Fix
 No sheet sync fixes are needed right now.
