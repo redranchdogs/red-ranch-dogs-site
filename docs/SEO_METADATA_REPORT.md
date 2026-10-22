@@ -1,10 +1,10 @@
 # SEO Metadata Report
 
-Generated: 10/21/2026, 9:43:32 PM Central
+Generated: 10/22/2026, 6:12:50 PM Central
 
 Status: **PASS**
 
-Sitemap routes checked: 160
+Sitemap routes checked: 165
 Routes with blockers: 0
 Routes with warnings: 2
 
@@ -130,6 +130,9 @@ Routes with warnings: 2
 | /litters/reece-wyatt-summer-2026 | 200 | Reece + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 71 | Reece + Wyatt | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026 |
 | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 84 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
 | /litters/evie-waylon-october-2026 | 200 | Evie + Waylon | Petite Mini Goldendoodle Litter | Red Ranch Dogs | 115 | Evie + Waylon | 1 | https://www.redranchdogs.com/litters/evie-waylon-october-2026 |
+| /litters/sylvee-rooster-2026 | 200 | Sylvee + Rooster | Bernedoodle Litter | Red Ranch Dogs | 116 | Sylvee + Rooster | 1 | https://www.redranchdogs.com/litters/sylvee-rooster-2026 |
+| /litters/birdie-waylon-final-2026 | 200 | Birdie + Waylon | Goldendoodle Litter | Red Ranch Dogs | 91 | Birdie + Waylon | 1 | https://www.redranchdogs.com/litters/birdie-waylon-final-2026 |
+| /litters/maisie-wyatt-2026 | 200 | Maisie + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 125 | Maisie + Wyatt | 1 | https://www.redranchdogs.com/litters/maisie-wyatt-2026 |
 | /litters/beatrix-enzo-planned-2026/past-puppies | 200 | Past Puppies From Beatrix + Enzo | Red Ranch Dogs | 101 | See Their Previous Puppies | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026/past-puppies |
 | /litters/reece-wyatt-summer-2026/past-puppies | 200 | Past Puppies From Reece + Wyatt | Red Ranch Dogs | 100 | See How Their Puppies Are Growing | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026/past-puppies |
 | /parents/birdie | 200 | Birdie | Parent Dog | Red Ranch Dogs | 72 | Birdie | 1 | https://www.redranchdogs.com/parents/birdie |
@@ -163,6 +166,8 @@ Routes with warnings: 2
 | /parents/wyatt-earp | 200 | Wyatt Earp | Parent Dog | Red Ranch Dogs | 92 | Wyatt Earp | 1 | https://www.redranchdogs.com/parents/wyatt-earp |
 | /parents/bodhe | 200 | Bodhe | Parent Dog | Red Ranch Dogs | 72 | Bodhe | 1 | https://www.redranchdogs.com/parents/bodhe |
 | /parents/evie-nicks | 200 | Evie Nicks | Parent Dog | Red Ranch Dogs | 115 | Evie Nicks | 1 | https://www.redranchdogs.com/parents/evie-nicks |
+| /parents/rooster | 200 | Rooster | Parent Dog | Red Ranch Dogs | 125 | Rooster | 1 | https://www.redranchdogs.com/parents/rooster |
+| /parents/maisie | 200 | Maisie | Parent Dog | Red Ranch Dogs | 86 | Maisie | 1 | https://www.redranchdogs.com/parents/maisie |
 | /reece-wyatt-summer-2026 | 200 | Reece + Wyatt 2026 | Previous Litter | Red Ranch Dogs | 88 | Reece + Wyatt 2026 | 1 | https://www.redranchdogs.com/reece-wyatt-summer-2026 |
 | /faye-sundance-may-2026 | 200 | Faye + Sundance 2026 | Previous Litter | Red Ranch Dogs | 102 | Faye + Sundance 2026 | 1 | https://www.redranchdogs.com/faye-sundance-may-2026 |
 | /georgia-waylon-may-2026 | 200 | Georgia + Waylon 2026 | Previous Litter | Red Ranch Dogs | 101 | Georgia + Waylon 2026 | 1 | https://www.redranchdogs.com/georgia-waylon-may-2026 |

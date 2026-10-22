@@ -1,14 +1,14 @@
 # Sheet Sync Review
-Generated: 10/22/2026, 5:47:46 PM Central
+Generated: 10/22/2026, 6:10:47 PM Central
 Status: **PASS**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary
 | Sheet | Website rows | Live rows | Missing columns | Missing rows | Extra rows | Cell mismatches |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Puppy Tracker | 62 | 62 | 0 | 0 | 0 | 0 |
-| Litters | 15 | 15 | 0 | 0 | 0 | 0 |
+| Litters | 16 | 16 | 0 | 0 | 0 | 0 |
 | Previous Litters | 21 | 21 | 0 | 0 | 0 | 0 |
-| Parent Dogs | 35 | 35 | 0 | 0 | 0 | 0 |
+| Parent Dogs | 36 | 36 | 0 | 0 | 0 | 0 |
 ## Reviewed Legacy Mirror Omissions (deferred repair)
 Only exact frozen parent records, physical cells, expected URLs and existing blank mirror values qualify. Changed/new records and every other field remain strict. No source Sheet cells are repaired by this audit.
 - Parent Dogs: honey M3; existing blank Embark mirror retained for separately approved repair.
@@ -36,7 +36,6 @@ Only exact frozen parent records, physical cells, expected URLs and existing bla
 - Parent Dogs: knox M27; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: robert-redford M28; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: johnny-cash M29; existing blank Embark mirror retained for separately approved repair.
-- Parent Dogs: wyatt-earp M30; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: bodhe M31; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: bram M32; existing blank Embark mirror retained for separately approved repair.
 ## Items To Fix
