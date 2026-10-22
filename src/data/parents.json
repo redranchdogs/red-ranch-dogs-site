@@ -742,7 +742,8 @@
     "relatedLitters": [
       "penny-wyatt-spring-2026",
       "winnie-wyatt-spring-2026",
-      "reece-wyatt-summer-2026"
+      "reece-wyatt-summer-2026",
+      "maisie-wyatt-2026"
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Wyatt Earp",
     "description": "Tiny toy Poodle stud with a confident, affectionate temperament for select Cavapoo pairings.",
@@ -868,5 +869,28 @@
     ],
     "photoFolderHint": "Outside Studs / Rooster",
     "description": "Rooster is a 28-pound Mini Bernedoodle outside stud from Utah Doodles, paired with Sylvee for an upcoming Bernedoodle litter."
+  },
+  {
+    "slug": "maisie",
+    "name": "Maisie",
+    "visibility": "public",
+    "role": "mama",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1 Cavapoo",
+    "weight": "To be confirmed",
+    "color": "To be confirmed",
+    "coat": "Soft, silky coat",
+    "status": "Active",
+    "mainPhoto": "/images/dams/maisie-red-ranch-dogs.png",
+    "photos": [
+      "/images/dams/maisie-red-ranch-dogs.png"
+    ],
+    "healthTestingLinks": [],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "maisie-wyatt-2026"
+    ],
+    "photoFolderHint": "Original Dog Breeder Pro parent portrait",
+    "description": "Maisie is an F1 Cavapoo mama with a silky-soft coat and a gentle, affectionate nature."
   }
 ]

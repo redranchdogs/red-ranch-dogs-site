@@ -856,5 +856,43 @@
     "weeklyUpdateStatus": "Puppies have arrived; more details will follow.",
     "weeklyUpdateGallery": [],
     "publicListingStage": "awaiting-puppy-profiles"
+  },
+  {
+    "slug": "maisie-wyatt-2026",
+    "name": "Maisie + Wyatt",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "pregnancyConfirmed": false,
+    "featuredAvailable": false,
+    "litterNumber": "",
+    "mamaSlug": "maisie",
+    "mama": "Maisie",
+    "studSlug": "wyatt-earp",
+    "stud": "Wyatt Earp",
+    "breedSlug": "cavapoo-puppies",
+    "breed": "F1B Micro Cavapoo",
+    "birthDate": "Estimated December 2026",
+    "goHomeDate": "Estimated February 2027",
+    "expectedSize": "To be announced",
+    "expectedTiming": "Estimated December 2026; breeding planned",
+    "expectedColors": "",
+    "expectedCoatTraits": "",
+    "priceRange": "To be announced",
+    "availabilitySummary": "We are planning to pair Maisie with Wyatt Earp for F1B Micro Cavapoos. Breeding has not yet taken place; timing is tentative.",
+    "availabilityNote": "Join the Cavapoo waitlist for breeding and timing updates. Puppy availability will be shared as the pairing progresses.",
+    "aboutTitle": "A sweet pairing with silky-soft charm",
+    "aboutThisLitter": [
+      "Maisie\u2019s silky-soft coat and gentle, affectionate nature make her such a joy to be around. We\u2019re excited to pair her with Wyatt Earp, our proven toy Poodle stud, whose puppies have brought so much sweetness to their families.",
+      "Maisie is in heat, and this breeding is planned. She has not yet been mated, and pregnancy is not confirmed. Current planning estimates point to a December 2026 birth and February 2027 go-home. Timing is tentative and will be updated after breeding. Expected puppy size and pricing will be shared once confirmed."
+    ],
+    "aboutHighlights": [
+      "F1B Micro Cavapoos",
+      "Breeding planned",
+      "Pregnancy not confirmed"
+    ],
+    "puppySlugs": [],
+    "photoFolderHint": "",
+    "weeklyUpdateStatus": "Breeding planned. Timing is tentative and will be updated after breeding.",
+    "weeklyUpdateGallery": []
   }
 ]

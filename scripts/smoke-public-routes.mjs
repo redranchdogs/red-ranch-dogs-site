@@ -171,11 +171,24 @@ const routeExpectations = [
   },
   {
     route: "/puppies/upcoming-litters?breed=cavapoo-puppies",
-    requiredText: ["choose a breed", "no upcoming cavapoo litters are listed right now.", "browse goldendoodles", "browse bernedoodles", "see the cavapoo waitlist process"],
-    forbiddenText: ["beatrix + enzo", "kylie + ranger"],
-    requiredSelectors: [".litter-browser", ".litter-browser-empty"],
+    expectedLitterOrder: ["Maisie + Wyatt"],
+    requiredText: ["choose a breed", "maisie + wyatt", "f1b micro cavapoo", "planning"],
+    forbiddenText: ["no upcoming cavapoo litters are listed right now.", "beatrix + enzo", "kylie + ranger", "pregnancy confirmed"],
+    requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" },
     finderNavCheck: { mode: "upcoming", selectedBreed: "cavapoo-puppies" }
+  },
+  {
+    route: "/litters/maisie-wyatt-2026",
+    requiredText: ["maisie + wyatt", "f1b micro cavapoos", "planning", "estimated birth", "estimated go-home", "join the waitlist"],
+    forbiddenText: ["pregnancy confirmed", "puppies born", "6 available"],
+    requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
+    litterDetailCheck: { expectedStatus: "Planning", expectedPuppies: 0, expectedDescriptor: "F1B Micro Cavapoos", expectedSize: "To be announced", testParentBack: true }
+  },
+  {
+    route: "/parents/maisie",
+    requiredText: ["maisie", "f1 cavapoo", "silky", "maisie + wyatt"],
+    requiredSelectors: ["main"]
   },
   {
     route: "/litters/evie-waylon-october-2026",
