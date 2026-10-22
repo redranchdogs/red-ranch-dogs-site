@@ -4308,7 +4308,7 @@ function LitterPage({ litter }) {
               <p className="eyebrow">Start with a question</p>
               <h2>Ask about a Beatrix puppy</h2>
               <p>Mini Goldendoodles · 25–35 lbs expected adult weight · $2,800 · Planned go-home November 19–21, 2026 · Salado, Texas</p>
-              <LeadForm key={applicationQueryValue("interest") || "litter"} formType="contact" title="Quick puppy inquiry" buyerInquiry={{ litter, puppies: availablePuppies.slice() }} />
+              <LeadForm key={litter.slug} formType="contact" title="Quick puppy inquiry" buyerInquiry={{ litter, puppies: availablePuppies.slice() }} />
               <Link href={`/apply?litter=${encodeURIComponent(litter.slug)}`} className="inline-link">Ready for the full application? Apply for this litter</Link>
             </section>
           )}
@@ -4344,7 +4344,7 @@ function LitterPage({ litter }) {
       )}
       {!isPlannedLitter(litter) && primaryAction}
       <StickyMobileCta
-        primaryHref="/apply"
+        primaryHref={isArchived ? "/apply" : `/apply?litter=${encodeURIComponent(litter.slug)}`}
         primaryLabel="Apply for a Puppy"
         secondaryHref={availablePuppies.length ? "/puppies/available" : brand.sms}
         secondaryLabel={availablePuppies.length ? "Available" : "Text Us"}
@@ -7437,7 +7437,16 @@ function ApplicationFields({ applicationInterest = null }) {
 }
 
 function ContactFields({ buyerInquiry = null }) {
-  const requestedPuppy = applicationQueryValue("interest");
+  const [requestedPuppy, setRequestedPuppy] = useState(() => applicationQueryValue("interest"));
+  const isBuyerInquiry = Boolean(buyerInquiry);
+  useEffect(() => {
+    if (!isBuyerInquiry) return undefined;
+    // Puppy links on this page only change the query. Keep the selected puppy
+    // in step with navigation while preserving the family's other answers.
+    const onInterestChange = () => setRequestedPuppy(applicationQueryValue("interest"));
+    window.addEventListener("popstate", onInterestChange);
+    return () => window.removeEventListener("popstate", onInterestChange);
+  }, [isBuyerInquiry]);
   const selectedPuppy = buyerInquiry?.puppies.some((puppy) => puppy.slug === requestedPuppy) ? requestedPuppy : "";
   if (buyerInquiry) return (
     <div className="field-grid">
@@ -7449,7 +7458,7 @@ function ContactFields({ buyerInquiry = null }) {
       <label>Email<input name="email" type="email" required autoComplete="email" /></label>
       <label>Phone<input name="phone" required autoComplete="tel" inputMode="tel" /></label>
       <label>Which puppy interests you?
-        <select name="puppySlug" defaultValue={selectedPuppy} aria-label="Puppy of interest">
+        <select key={requestedPuppy} name="puppySlug" defaultValue={selectedPuppy} aria-label="Puppy of interest">
           <option value="">The litter in general</option>
           {buyerInquiry.puppies.map((puppy) => <option value={puppy.slug} key={puppy.slug}>{puppy.name}</option>)}
         </select>
@@ -7902,7 +7911,7 @@ function LeadForm({ formType, title, compact = false, newsletterOnly = false, gu
       eventContext.submissionId = payload.submissionId;
       trackSiteEvent("form_submit_success", eventContext);
       if (buyerInquiry) trackSiteEvent("puppy_buyer_inquiry_success", eventContext);
-      if (formType === "application" && (applicationInterest?.puppySlug || applicationInterest?.litterSlug)) {
+      if (formType === "application") {
         trackSiteEvent("puppy_buyer_application_success", eventContext);
       }
       formElement.reset();

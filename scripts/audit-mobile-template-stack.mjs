@@ -61,7 +61,7 @@ function browserRoute(mode, breed) {
       `#litter-panel-${mode}`,
       records.length ? ".litter-browser-list .litter-browser-card" : ".litter-browser-empty",
     ],
-    browser: { mode, breed, records, emptyHrefs },
+    browser: { mode, breed, records, emptyHrefs, allCurrentEmpty },
   };
 }
 
@@ -78,7 +78,9 @@ const currentLitterDetails = currentLitters.slice(0, 2).map((litter, index) => {
     label: index ? "Additional Current Litter Detail" : "Current Litter Detail",
     requiredText: [litterName],
     selectors: [
-      ".litter-summary-panel",
+      ".litter-detail-overview",
+      ".litter-detail-overview .litter-primary-facts",
+      ".litter-detail-overview .litter-pairing-card",
       ...(litterPuppies.length ? [".litter-puppy-list .puppy-card"] : []),
       ...(hasGallery ? [".litter-gallery-section img"] : []),
     ],
@@ -241,7 +243,7 @@ async function auditRoute(page, routeConfig) {
   if (consoleErrors.length) warnings.push(`Console errors: ${consoleErrors.slice(0, 3).join("; ")}`);
 
   if (routeConfig.browser) {
-    const { mode, breed, records, emptyHrefs } = routeConfig.browser;
+    const { mode, breed, records, emptyHrefs, allCurrentEmpty } = routeConfig.browser;
     const panel = page.locator(`#litter-panel-${mode}`);
     const selectedTab = page.locator(`#litter-tab-${mode}-${breed.slug}`);
     const cardLinks = await panel.locator(".litter-browser-card-action").evaluateAll((links) =>
@@ -256,8 +258,13 @@ async function auditRoute(page, routeConfig) {
       blockers.push(`Visible litter links differ from public ${breed.name} ${mode} records: ${cardLinks.join(", ") || "none"}.`);
     }
     if (!records.length) {
-      const action = panel.locator(".litter-browser-empty-link");
-      const actionHref = await action.getAttribute("href");
+      const actionSelector = allCurrentEmpty ? ".litter-browser-empty-link" : ".litter-browser-next-link";
+      const action = panel.locator(actionSelector);
+      const actionCount = await action.count();
+      if (actionCount !== 1 || await visibleCount(page, `#litter-panel-${mode} ${actionSelector}`) !== 1) {
+        blockers.push(`Expected one visible empty-state action ${actionSelector}; found ${actionCount}.`);
+      }
+      const actionHref = actionCount === 1 ? await action.getAttribute("href") : null;
       if (!emptyHrefs.includes(actionHref)) {
         blockers.push(`Empty-state destination ${actionHref || "missing"} is not an applicable public route: ${emptyHrefs.join(", ")}.`);
       }
