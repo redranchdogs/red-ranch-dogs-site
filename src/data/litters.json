@@ -811,5 +811,50 @@
       "Projected puppies: 32.7% Bernese Mountain Dog",
       "Expected pairing average; individual puppies may vary"
     ]
+  },
+  {
+    "slug": "birdie-waylon-final-2026",
+    "name": "Birdie + Waylon",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "birthConfirmed": true,
+    "featuredAvailable": false,
+    "litterNumber": "Final litter",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "birthDate": "Date to be confirmed",
+    "goHomeDate": "To be announced",
+    "expectedSize": "To be announced",
+    "expectedTiming": "Puppies have arrived",
+    "expectedColors": "",
+    "expectedCoatTraits": "",
+    "priceRange": "To be announced",
+    "availabilitySummary": "Birdie and Waylon\u2019s puppies have arrived. We\u2019re excited to celebrate Birdie\u2019s final litter.",
+    "availabilityNote": "Puppy details, availability and go-home information will be shared as they are confirmed.",
+    "aboutTitle": "Celebrating Birdie\u2019s final litter",
+    "aboutThisLitter": [
+      "Birdie is one of our sweetest F1 Goldendoodle mamas. She has given us incredible puppies, each so special, and we are especially excited to celebrate her final litter with Waylon.",
+      "Based on both parents\u2019 verified Embark breed results, the puppies\u2019 projected breed mix averages approximately 58% Poodle and 42% Golden Retriever. This is an expected average for the pairing; individual puppies\u2019 breed percentages can vary.",
+      "Birdie and Waylon\u2019s puppies have arrived. We will share puppy details, availability, pricing, expected size and go-home information as they are confirmed."
+    ],
+    "geneticMakeup": [
+      "Projected puppies: approximately 58% Poodle",
+      "Projected puppies: approximately 42% Golden Retriever",
+      "Expected pairing average; individual puppies may vary"
+    ],
+    "aboutHighlights": [
+      "Puppies have arrived",
+      "Birdie\u2019s final litter",
+      "Parent Embark profiles available"
+    ],
+    "puppySlugs": [],
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Birdie + Waylon final litter",
+    "weeklyUpdateStatus": "Puppies have arrived; more details will follow.",
+    "weeklyUpdateGallery": [],
+    "publicListingStage": "awaiting-puppy-profiles"
   }
 ]
