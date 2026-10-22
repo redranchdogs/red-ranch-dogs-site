@@ -257,7 +257,7 @@ function list(value = []) {
 
 function links(value = []) {
   if (!Array.isArray(value)) return value || "";
-  return value.map((link) => [link.label, link.url].filter(Boolean).join(": ")).join(" | ");
+  return value.map((link) => typeof link === "string" ? link : [link.label, link.url].filter(Boolean).join(": ")).join(" | ");
 }
 
 function nameImageList(value = []) {
