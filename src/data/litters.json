@@ -766,5 +766,50 @@
     "photoFolderHint": "Website Hub / Weekly Media Drops / Upcoming Litters / Evie + Waylon",
     "weeklyUpdateStatus": "Expected litter; puppy photos will follow after birth.",
     "weeklyUpdateGallery": []
+  },
+  {
+    "slug": "sylvee-rooster-2026",
+    "name": "Sylvee + Rooster",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "pregnancyConfirmed": false,
+    "featuredAvailable": false,
+    "litterNumber": "",
+    "mamaSlug": "sylvee",
+    "mama": "Sylvee",
+    "studSlug": "rooster",
+    "stud": "Rooster",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Bernedoodle",
+    "birthDate": "Timing to be announced",
+    "goHomeDate": "Timing to be announced",
+    "expectedSize": "To be announced",
+    "expectedTiming": "Bred; awaiting pregnancy confirmation",
+    "expectedColors": "",
+    "expectedCoatTraits": "",
+    "priceRange": "To be announced",
+    "availabilitySummary": "Sylvee has been bred to Rooster, an outside Mini Bernedoodle stud from Utah Doodles. Pregnancy is not yet confirmed.",
+    "availabilityNote": "Join the Bernedoodle waitlist for pregnancy and timing updates. Puppy availability will be shared as this pairing progresses.",
+    "aboutTitle": "A sweet, confident Bernedoodle pairing",
+    "aboutThisLitter": [
+      "Sylvee is truly one of the sweetest cuddle bugs among our mamas. Rooster is a confident, well-established stud, and we\u2019re so excited about this pairing.",
+      "Based on both parents\u2019 Embark breed results, the puppies\u2019 projected breed mix is 67.3% Poodle and 32.7% Bernese Mountain Dog. This is an expected average for the pairing; individual puppies\u2019 breed percentages can vary.",
+      "Sylvee has been bred to Rooster from Utah Doodles. Pregnancy is not yet confirmed. Birth and go-home timing, expected puppy size, and pricing will be shared once confirmed."
+    ],
+    "aboutHighlights": [
+      "Breeding completed",
+      "Pregnancy not yet confirmed",
+      "Outside stud from Utah Doodles",
+      "Parent Embark profiles available"
+    ],
+    "puppySlugs": [],
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Upcoming Litters / Sylvee + Rooster",
+    "weeklyUpdateStatus": "Bred; awaiting pregnancy confirmation. Timing updates will follow.",
+    "weeklyUpdateGallery": [],
+    "geneticMakeup": [
+      "Projected puppies: 67.3% Poodle",
+      "Projected puppies: 32.7% Bernese Mountain Dog",
+      "Expected pairing average; individual puppies may vary"
+    ]
   }
 ]

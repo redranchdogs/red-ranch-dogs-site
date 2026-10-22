@@ -339,7 +339,9 @@
       "https://my.embarkvet.com/dog/sylvee5"
     ],
     "geneticTestingLinks": [],
-    "relatedLitters": [],
+    "relatedLitters": [
+      "sylvee-rooster-2026"
+    ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Sylvee",
     "description": "F1b Bernedoodle mama with a gentle, people-oriented personality."
   },
@@ -839,5 +841,30 @@
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Mamas / Evie Nicks",
     "description": "Evie Nicks is a multigenerational Goldendoodle with a gentle, affectionate nature and a calm, friendly temperament."
+  },
+  {
+    "slug": "rooster",
+    "name": "Rooster",
+    "visibility": "public",
+    "role": "stud",
+    "breedSlug": "bernedoodle-puppies",
+    "breed": "Mini Bernedoodle",
+    "weight": "28 lbs",
+    "color": "Tri-color",
+    "coat": "To be confirmed",
+    "status": "Outside Stud",
+    "mainPhoto": "/images/studs/rooster-outside-stud-red-ranch-dogs.webp",
+    "photos": [
+      "/images/studs/rooster-outside-stud-red-ranch-dogs.webp"
+    ],
+    "healthTestingLinks": [
+      "https://my.embarkvet.com/dog/roosterutahdoodle"
+    ],
+    "geneticTestingLinks": [],
+    "relatedLitters": [
+      "sylvee-rooster-2026"
+    ],
+    "photoFolderHint": "Outside Studs / Rooster",
+    "description": "Rooster is a 28-pound Mini Bernedoodle outside stud from Utah Doodles, paired with Sylvee for an upcoming Bernedoodle litter."
   }
 ]
