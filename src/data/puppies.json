@@ -4330,7 +4330,7 @@
     "stud": "Enzo",
     "gender": "Female",
     "collarColor": "Yellow",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4363,7 +4363,7 @@
       }
     ],
     "description": "Louisa is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Louisa is available for an approved family.",
+    "availabilityNote": "Louisa is reserved and is no longer available.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   }
 ]
