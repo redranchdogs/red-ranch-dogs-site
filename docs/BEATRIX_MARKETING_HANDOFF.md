@@ -1,5 +1,9 @@
 # Beatrix puppy buyer handoff
 
+## October 22 buyer journey corrections (prepared)
+
+The quality-pass preview corrects same-page puppy inquiry selection and preserves entered contact details and questions when visitors change puppies or use Back. The mobile litter Apply button now carries the same litter identifier as the main button. `puppy_buyer_application_success` covers every successful puppy application, including general and breed-only applications; available breed/litter/puppy identifiers remain optional and no identifiers are invented. Event names, CRM routing, attribution fields, duplicate prevention, and the parent-led litter template are unchanged. These corrections are prepared pending the production release decision. See `WEBSITE_QUALITY_PASS_2026-10-22.md`.
+
 ## October 21 reservation update
 
 Louisa is Reserved following the saved CRM reservation. The six available Beatrix puppies are Atticus, Twain, Edith, Dickens, Austen, and Brontë; Wells, Darcy, and Louisa are reserved. Public price, size, and litter go-home dates are unchanged. The earlier availability and release counts below are historical snapshots, not current inventory. Source and exact Sheet readbacks are recorded in `red-ranch-ecosystem-architect/private-runs.nosync/website-louisa-reserved-20261021/`.
