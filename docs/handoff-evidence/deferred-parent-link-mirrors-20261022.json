@@ -177,13 +177,6 @@
       "sourceRecordSha256": "e8562669e85f5d53e2a7378ff003bfe08aabd7591216461ae2408ca9e001e063"
     },
     {
-      "slug": "wyatt-earp",
-      "cell": "M30",
-      "expected": "https://my.embarkvet.com/dog/wyattearp26",
-      "actual": "",
-      "sourceRecordSha256": "292c3a0c2f768f810a6f947b476dd863c08bbdc44f72e16dbd4ddfd42e124d1e"
-    },
-    {
       "slug": "bodhe",
       "cell": "M31",
       "expected": "https://my.embarkvet.com/dog/bodhe",
