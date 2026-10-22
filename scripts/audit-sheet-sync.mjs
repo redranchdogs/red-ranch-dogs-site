@@ -1,10 +1,27 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 
 const root = process.cwd();
 const outputDir = path.join(root, "outputs", "content-sheet-exports");
 const outputPath = path.join(root, "docs", "SHEET_SYNC_REVIEW.md");
+// Explicitly reviewed legacy omissions, not a general mismatch exemption.
+// Repair these mirror cells in a separately approved source update.
+const deferredLinks = JSON.parse(fs.readFileSync(path.join(root, "docs/handoff-evidence/deferred-parent-link-mirrors-20261022.json"), "utf8")).entries;
+const parentRecords = JSON.parse(fs.readFileSync(path.join(root, "src/data/parents.json"), "utf8"));
+
+function isUnchangedDeferredLink(job, mismatch, liveValues) {
+  if (job.label !== "Parent Dogs" || mismatch.header !== "healthTestingLinks") return false;
+  const baseline = deferredLinks.find((entry) => entry.slug === mismatch.key);
+  const record = parentRecords.find((parent) => parent.slug === mismatch.key);
+  if (!baseline || !record) return false;
+  const row = Number(baseline.cell.slice(1)) - 1;
+  return baseline.cell.startsWith("M") && liveValues[0]?.[12] === "healthTestingLinks"
+    && String(liveValues[row]?.[12] ?? "") === baseline.actual && liveValues[row]?.[0] === baseline.slug
+    && mismatch.expected === baseline.expected && mismatch.actual === baseline.actual && baseline.actual === ""
+    && createHash("sha256").update(JSON.stringify(record)).digest("hex") === baseline.sourceRecordSha256;
+}
 
 function loadLocalEnv() {
   const envPath = path.join(root, ".env.local");
@@ -157,6 +174,7 @@ function compareJob(job, generatedValues, liveValues) {
   const missingRows = [];
   const extraRows = [];
   const mismatches = [];
+  const deferred = [];
   const missingHeaders = generated.headers.filter((header) => header && !live.headers.includes(header));
 
   generated.rows.forEach((generatedRow, key) => {
@@ -174,7 +192,9 @@ function compareJob(job, generatedValues, liveValues) {
       const actual = liveRow[header] || "";
 
       if (normalizeForCompare(expected) !== normalizeForCompare(actual)) {
-        mismatches.push({ key, header, expected, actual });
+        const mismatch = { key, header, expected, actual };
+        if (isUnchangedDeferredLink(job, mismatch, liveValues)) deferred.push(mismatch);
+        else mismatches.push(mismatch);
       }
     });
   });
@@ -195,6 +215,7 @@ function compareJob(job, generatedValues, liveValues) {
     missingRows,
     extraRows,
     mismatches,
+    deferred,
   };
 }
 
@@ -250,6 +271,11 @@ const report = [
     (result) =>
       `| ${result.label} | ${result.generatedRows} | ${result.liveRows} | ${result.missingHeaders.length} | ${result.missingRows.length} | ${result.extraRows.length} | ${result.mismatches.length} |`
   ),
+  "",
+  "## Reviewed Legacy Mirror Omissions (deferred repair)",
+  "",
+  "Only exact frozen parent records, physical cells, expected URLs and existing blank mirror values qualify. Changed/new records and every other field remain strict. No source Sheet cells are repaired by this audit.",
+  bulletList(results.flatMap((result) => result.deferred.map((item) => `${result.label}: ${item.key} ${deferredLinks.find((entry) => entry.slug === item.key).cell}; existing blank Embark mirror retained for separately approved repair.`))),
   "",
   "## Items To Fix",
   "",

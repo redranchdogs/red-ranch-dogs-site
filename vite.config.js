@@ -66,6 +66,12 @@ export default defineConfig({
           minSize: 20 * 1024,
           groups: [
             {
+              name: "content-data",
+              test: /src[\\/]data[\\/].*\.json$/,
+              minSize: 0,
+              priority: 5
+            },
+            {
               name: "react-vendor",
               test: /node_modules[\\/](react|react-dom)[\\/]/,
               priority: 30
