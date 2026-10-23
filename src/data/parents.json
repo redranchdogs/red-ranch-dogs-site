@@ -885,7 +885,9 @@
     "photos": [
       "/images/dams/maisie-red-ranch-dogs.png"
     ],
-    "healthTestingLinks": [],
+    "healthTestingLinks": [
+      "https://my.embarkvet.com/dog/maisie1791"
+    ],
     "geneticTestingLinks": [],
     "relatedLitters": [
       "maisie-wyatt-2026"
