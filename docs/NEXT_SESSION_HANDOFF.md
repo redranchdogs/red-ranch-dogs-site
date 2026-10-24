@@ -1,5 +1,19 @@
 # Next Session Handoff
 
+## October 24, 2026 all public litter projected mixes live
+
+Latest verified production986087c04b454fe2a9eeb2fa673c1bd876e3f2b6, Verceldpl_GRdVCvgV5qLeWbibysem2F2GHhnn READYbothdomains. FinalEvie-inclusivecandidate4968a840a978187cc1e702c88d14aca1773eaad5 passedCI40141371031; productiontreeidentical. Oneproductionrelease only. PreEvieea79a75 passedCI40140993654 butwasneverpromoted; no manualCIrerun/cancel.
+
+All7publishedcurrent/upcomingpairingsnowhavequalifiedprojectedpuppymix withindividualvariation: Beatrix+Enzo72.25Poodle/27.75Golden; Kylie+Ranger63.9Poodle/36.1Bernese; Lulu+Bram71.2Poodle/28.8Golden; Evie+Waylon62Poodle/38Golden; Sylvee+Rooster67.3Poodle/32.7Bernese; Birdie+Waylonapproximately58Poodle/42Golden(exact57.85/42.15); Maisie+Wyatt75Poodle/25Cavalier. Last3acceptedrecordsuntouched. Enzocurrentreport94.5Poodle5.5Golden correctedold96claiminrelatedparent/legacyvisibleentries, allotheralleletokenspreserved. Beatrix/Lulupercentagehighlightsmatchtheirnewprecisevalues.
+
+Evieexactreport https://my.embarkvet.com/dog/evienicks recoveredbyRootfromexistingauthorizedRedRanchEmbarkaccount withpublicPeppermint89/Eviealiasbridge. Report49.4SmallPoodle7Standard43.6Golden, plusWaylon67.6Poodle32.4Golden gives62/38. Breedsourcegapresolved; no invented percentages or newhealthclearances. Allsourcefractions/links/existingvsfinalvaluesin docs/LITTER_PROJECTED_MIX_AUDIT_2026-10-24.md.
+
+OnlyParentDogsM25(EnzoexistingURLmirror) andM35(EviexactURL) writtenonceeachunderseparateadmittedfreshfullrowpreimages/immediatemetadatareadbacks. M25notreplayed. NoLitterSheetwrite, noApp/forms/analytics/clinical/CRM/Drive/waitlist/reservation/status/timing/price/size/photochanges. OnlyrepairedEnzoexceptionremoved;26otherfrozenomissionsunchanged,nohashrefresh/waiver. ParentexportdiffonlynewEviereportURL; Litterexportbyteidentical. Data-onlycommitsseparatefromlegacyJS/guardandgenerateddocs.
+
+Focusedlocalgatesandexactcandidatehealthpassed. Live7detailsx1440/390mix+variation/facts/status/photos/zerooverflow,3affectedlistingroutes,Enzostudlisting94.5/no96andEvieparentreportlinkpassed. RootindependentlyverifiedliveEvieandacceptedevidence. MainautomaticfollowupCI notclaimedcomplete. Alltasklocksreleased. FouradditionalnonpublicBarncyclesandWinnielegacyActivediscrepancyreportedseparately; no newlisting. All5signedcurrentBarnlitterscovered. ExistingLulu/Evie pregnancy/datecopyisstaleagainstownerbirth/currentevidence andrequiresseparateexactlifecycle reconciliation; Rootexplicitlyprohibitedsilentlyexpandingthispercentagepatch. Do not alterclinical/publicvisibility fromthesehandoffnotes.
+
+ProtectedreceiptSHA1f0fe037a34de5b35e7dcbe39856f039b0705a5b1d90038ceccf25cb29f0e074 +MANIFEST: red-ranch-ecosystem-architect/private-runs.nosync/website-litter-mixes-20261024/. Includesallreportproof,RootEvieidentity/ancestry,everypairingmath,sourcebefore/fresh/request/result/after,CONTINUITY_PROOF_FINAL,live-all-seven-qa,cleanmobilecaptures. Releaseworktree /tmp/rrd-louisa-reserved-20261021 branchcodex/current-upcoming-mixes-main-20261024, localcompletiondocs may beaheadproduction. Originaldirtycheckoutandoldpendingstudbranchpreserved. This is completionevidence, notfuturewriteauthority.
+
 Last updated: September 16, 2026, 9:06 PM Central.
 
 Use this file when starting a fresh Codex session to reduce RAM pressure without losing project context.
