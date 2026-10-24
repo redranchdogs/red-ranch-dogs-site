@@ -837,7 +837,9 @@
     "photos": [
       "/images/dams/evie-nicks.webp"
     ],
-    "healthTestingLinks": [],
+    "healthTestingLinks": [
+      "https://my.embarkvet.com/dog/evienicks"
+    ],
     "geneticTestingLinks": [],
     "relatedLitters": [
       "evie-waylon-october-2026"

@@ -758,6 +758,7 @@
     "aboutTitle": "Sweet hearts. Beautiful coats.",
     "aboutThisLitter": [
       "Evie and Waylon are the kind of dogs who make you want to linger a little longer: sweet, affectionate, and happiest close to the people they love. That warmth is at the heart of this pairing. We are looking forward to puppies with their own little personalities and the same lovely potential for companionship that makes their parents so special to us.",
+      "Based on both parents\u2019 verified Embark breed results, the puppies\u2019 projected breed mix is 62% Poodle and 38% Golden Retriever. This is an expected average for the pairing; individual puppies\u2019 breed percentages can vary.",
       "Their coats are another reason we are excited. Picture soft, furnished faces, rich red tones, and the possibility of pretty white accents like Evie's red abstract markings. With straight-to-gently-wavy coats expected, this pairing offers a beautiful take on the classic Goldendoodle look. Each puppy's shade, markings, and coat will be its own, and we cannot wait to watch those details emerge.",
       "We choose pairings with more than looks in mind. Both parents have verified furnishings associated with lighter shedding, and Waylon's Embark result supports light shedding as well. These are thoughtful coat qualities for families exploring an allergy-friendly companion, while individual allergy compatibility can vary. Most of all, we love the sweet dogs behind this litter and the possibilities they bring."
     ],
@@ -771,7 +772,12 @@
     "puppySlugs": [],
     "photoFolderHint": "Website Hub / Weekly Media Drops / Upcoming Litters / Evie + Waylon",
     "weeklyUpdateStatus": "Expected litter; puppy photos will follow after birth.",
-    "weeklyUpdateGallery": []
+    "weeklyUpdateGallery": [],
+    "geneticMakeup": [
+      "Projected puppies: 62% Poodle",
+      "Projected puppies: 38% Golden Retriever",
+      "Expected pairing average; individual puppies may vary"
+    ]
   },
   {
     "slug": "sylvee-rooster-2026",
