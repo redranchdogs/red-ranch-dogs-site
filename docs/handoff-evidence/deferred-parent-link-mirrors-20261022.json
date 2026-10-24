@@ -142,13 +142,6 @@
       "sourceRecordSha256": "8efbed8525ed6d8b12408bbf0d3e5bfbfea58454d0607fe37a53f22113020770"
     },
     {
-      "slug": "enzo",
-      "cell": "M25",
-      "expected": "https://my.embarkvet.com/dog/redranchdogsenzo",
-      "actual": "",
-      "sourceRecordSha256": "799e4656c36ef8ff082d6980e4274ae7d4cf2d7804b59a7d07127d076cefe53d"
-    },
-    {
       "slug": "butch-cassidy",
       "cell": "M26",
       "expected": "https://my.embarkvet.com/dog/butchcassidy8",
