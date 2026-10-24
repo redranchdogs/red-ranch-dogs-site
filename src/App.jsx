@@ -2765,7 +2765,7 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
       <div className="litter-card-body">
         <div className="litter-card-heading">
           <div className="card-kicker-row">
-            <p className="eyebrow">{litter.status || "Litter"}</p>
+            <p className="eyebrow">{litter.birthConfirmed && plannedLitter ? "Upcoming Litter" : litter.status || "Litter"}</p>
             <span className="status-badge">{puppyCountLabel}</span>
           </div>
           <h2>{litter.name}</h2>
