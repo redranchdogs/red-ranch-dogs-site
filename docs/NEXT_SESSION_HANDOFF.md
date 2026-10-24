@@ -1,3 +1,15 @@
+## Lulu and Evie births live verified, October 24, 2026
+
+Production `189c4fbac2be2d41bd394bc3755f2f4b53134101`, Vercel `dpl_3vyLpEMpPBhNNztDFMATvmWkJKig` READY on both public domains. Final candidate `b974a2c5a79627e98561b7a2cba673c1807f4f5e` passed exact CI `40143336613`; production tree matches. Normal candidate-to-main merge and push, one production release. Prior `b94689b` was never promoted; normal workflow concurrency auto-cancelled it after a necessary category-label correction, with no manual cancellation or rerun.
+
+Adam confirmed litter birth dates: Lulu + Bram October 9, 2026; Evie + Waylon October 11, 2026. Both now use existing birthConfirmed/awaiting-puppy-profiles support, retain Upcoming placement and original parent-photo template, and show Puppies born / Birth Date across details and cards. Stale pregnancy, due-any-day and estimated-birth copy removed. Breed cards use Upcoming Litter category for born staged litters. Go-home estimates, prices, sizes, photos, puppy availability/assignments/reservations and qualified71.2/28.8 +62/38 mixes preserved. No clinical/CRM writes, new puppy counts or form submissions.
+
+Only Litters M13/P13/T13/U13/X13 and M14/P14/T14/U14/X14 written once after Root reviewed exact preimages/plan. Fresh full-header/row comparison and immediate full metadata readback passed. Initial row7 lookup was Winnie and excluded before any write; board history corrected. Exact10 operation is consumed, do not replay. All26 frozen parent mirror omissions and unrelated source records preserved. Sheet review and publish readiness passed.
+
+Focused local gates passed; final exact candidate CI passed. Live two details/About + UpcomingGold and Goldendoodle breed cards verified at1440/390 with correct dates/status/order/category, original parent images, preserved offer/mix facts and zero overflow. All locks released, public Evie tab retained for Adam. No pending implementation or release action. Root independent acceptance is tracked in Root's scope evidence.
+
+Protected evidence: `red-ranch-ecosystem-architect/private-runs.nosync/website-lulu-evie-birth-20261024/`, receipt SHA256 `ca99db85261f0af58552234557492bc5a800bc60a12c3e4b5dbaba06794d511b` and MANIFEST. Active worktree `/tmp/rrd-louisa-reserved-20261021`, branch `codex/lulu-evie-born-main-20261024`; completion documentation may be ahead of production. Original dirty checkout and unpublished outside-stud work preserved. These completion notes are not future write authority.
+
 # Next Session Handoff
 
 ## October 24, 2026 all public litter projected mixes live
