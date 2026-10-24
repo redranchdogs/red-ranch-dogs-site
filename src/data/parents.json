@@ -602,7 +602,7 @@
     ],
     "photoFolderHint": "Website Hub / Photos / Parents / Studs / Enzo",
     "description": "Micro Goldendoodle stud with a compact frame and soft coat traits.",
-    "genetics": "ee KBky aya BB Ssp +/- FF; 10:0 Red Intensity; 96% Poodle"
+    "genetics": "ee KBky aya BB Ssp +/- FF; 10:0 Red Intensity; 94.5% Poodle"
   },
   {
     "slug": "butch-cassidy",
@@ -837,7 +837,9 @@
     "photos": [
       "/images/dams/evie-nicks.webp"
     ],
-    "healthTestingLinks": [],
+    "healthTestingLinks": [
+      "https://my.embarkvet.com/dog/evienicks"
+    ],
     "geneticTestingLinks": [],
     "relatedLitters": [
       "evie-waylon-october-2026"

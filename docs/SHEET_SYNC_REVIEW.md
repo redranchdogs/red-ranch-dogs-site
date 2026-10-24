@@ -1,5 +1,5 @@
 # Sheet Sync Review
-Generated: 10/22/2026, 7:11:48 PM Central
+Generated: 10/24/2026, 6:05:50 PM Central
 Status: **PASS**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary
@@ -31,7 +31,6 @@ Only exact frozen parent records, physical cells, expected URLs and existing bla
 - Parent Dogs: hank-williams M21; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: beau M22; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: sundance M24; existing blank Embark mirror retained for separately approved repair.
-- Parent Dogs: enzo M25; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: butch-cassidy M26; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: knox M27; existing blank Embark mirror retained for separately approved repair.
 - Parent Dogs: robert-redford M28; existing blank Embark mirror retained for separately approved repair.
