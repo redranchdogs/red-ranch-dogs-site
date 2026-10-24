@@ -164,7 +164,7 @@ const routeExpectations = [
   {
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
     expectedLitterOrder: ["Lulu + Bram", "Evie + Waylon", "Birdie + Waylon"],
-    requiredText: ["upcoming litters", "choose a breed", "lulu + bram", "evie + waylon", "petite mini goldendoodle", "early december 2026", "puppies born", "birth date", "october 9, 2026", "october 11, 2026"],
+    requiredText: ["upcoming litters", "choose a breed", "lulu + bram", "evie + waylon", "petite mini goldendoodle", "early december 2026", "puppies born", "birth date", "october 9, 2026", "october 11, 2026", "october 21, 2026"],
     forbiddenText: ["pregnancy confirmed", "due any day", "expected early october", "october 11-16"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
@@ -207,8 +207,8 @@ const routeExpectations = [
   },
   {
     route: "/litters/birdie-waylon-final-2026",
-    requiredText: ["birdie + waylon", "puppies born", "birth date", "date to be confirmed", "to be announced"],
-    forbiddenText: ["pregnancy confirmed", "estimated birth", "expecting", "7 puppies"],
+    requiredText: ["birdie + waylon", "puppies born", "birth date", "october 21, 2026", "to be announced"],
+    forbiddenText: ["pregnancy confirmed", "estimated birth", "expecting", "date to be confirmed", "7 puppies"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure"],
     litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Goldendoodles", expectedSize: "To be announced", testParentBack: true }
   },
