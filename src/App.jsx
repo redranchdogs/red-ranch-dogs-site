@@ -2775,7 +2775,7 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
         <dl className="details compact-details litter-card-facts">
           <div><dt>Mama</dt><dd>{litter.mama || "Mama to be announced"}</dd></div>
           <div><dt>Stud</dt><dd>{litter.stud || "Stud to be announced"}</dd></div>
-          <div><dt>{plannedLitter ? "Expected Birth" : "Timing"}</dt><dd>{plannedLitter ? delivery : litter.expectedTiming || delivery}</dd></div>
+          <div><dt>{litter.birthConfirmed ? "Birth Date" : plannedLitter ? "Expected Birth" : "Timing"}</dt><dd>{litter.birthConfirmed || plannedLitter ? delivery : litter.expectedTiming || delivery}</dd></div>
           <div><dt>{plannedLitter ? "Estimated Go Home" : "Go Home"}</dt><dd>{goHome}</dd></div>
           <div><dt>Size</dt><dd>{size}</dd></div>
           {price && <div><dt>Price</dt><dd>{price}</dd></div>}
@@ -5152,7 +5152,7 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
         </div>
         {litter.availabilitySummary && <p>{litter.availabilitySummary}</p>}
         <dl className="litter-browser-facts">
-          {timing && <div><dt>{litter.birthConfirmed ? "Born" : isPlannedLitter(litter) ? "Expected" : "Timing"}</dt><dd>{timing}</dd></div>}
+          {timing && <div><dt>{litter.birthConfirmed ? "Birth Date" : isPlannedLitter(litter) ? "Expected" : "Timing"}</dt><dd>{timing}</dd></div>}
           {goHome && <div><dt>Go home</dt><dd>{goHome}</dd></div>}
         </dl>
         <Link href={route} className="button primary litter-browser-card-action">View litter</Link>

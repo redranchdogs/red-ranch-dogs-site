@@ -164,7 +164,8 @@ const routeExpectations = [
   {
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
     expectedLitterOrder: ["Lulu + Bram", "Evie + Waylon", "Birdie + Waylon"],
-    requiredText: ["upcoming litters", "choose a breed", "lulu + bram", "evie + waylon", "petite mini goldendoodle", "early december 2026"],
+    requiredText: ["upcoming litters", "choose a breed", "lulu + bram", "evie + waylon", "petite mini goldendoodle", "early december 2026", "puppies born", "birth date", "october 9, 2026", "october 11, 2026"],
+    forbiddenText: ["pregnancy confirmed", "due any day", "expected early october", "october 11-16"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
     finderNavCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" }
@@ -191,11 +192,18 @@ const routeExpectations = [
     requiredSelectors: ["main"]
   },
   {
-    route: "/litters/evie-waylon-october-2026",
-    requiredText: ["evie + waylon", "petite mini goldendoodles", "pregnancy confirmed", "$3,200", "~20 lbs", "estimated birth", "october 11-16, 2026", "estimated go-home", "early december 2026", "join the waitlist"],
-    forbiddenText: ["puppies born", "waitlist matching", "fully reserved"],
+    route: "/litters/lulu-bram-fall-2026",
+    requiredText: ["lulu + bram", "multigen micro goldendoodles", "puppies born", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "estimated go-home", "early december 2026", "join the waitlist"],
+    forbiddenText: ["pregnancy confirmed", "confirmed pregnant", "estimated birth", "expected early october", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "Pregnancy confirmed", expectedPuppies: 0, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
+  },
+  {
+    route: "/litters/evie-waylon-october-2026",
+    requiredText: ["evie + waylon", "petite mini goldendoodles", "puppies born", "$3,200", "~20 lbs", "birth date", "october 11, 2026", "estimated go-home", "early december 2026", "join the waitlist"],
+    forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "waitlist matching", "fully reserved"],
+    requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
   },
   {
     route: "/litters/birdie-waylon-final-2026",
