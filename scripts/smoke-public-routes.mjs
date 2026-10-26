@@ -284,7 +284,8 @@ const routeExpectations = [
   },
   {
     route: "/puppies/bernedoodle-puppies",
-    requiredText: ["bernedoodle", "no bernedoodle puppies are listed as available right now", "how big will they get", "how to compare bernedoodle puppies"],
+    requiredText: ["bernedoodle", "we do not have available puppies for this breed right now", "how big will they get", "how to compare bernedoodle puppies"],
+    forbiddenText: ["hugo poe"],
     requiredSelectors: [".breed-program-card", ".breed-size-guide-asset img[src*='bernedoodle-size-guide']", ".breed-priority-section"]
   },
   {
