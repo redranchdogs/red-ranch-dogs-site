@@ -493,7 +493,7 @@
     "name": "Kylie + Ranger",
     "visibility": "public",
     "status": "Current Litter",
-    "featuredAvailable": true,
+    "featuredAvailable": false,
     "pregnancyConfirmed": true,
     "litterNumber": "Kylie repeat",
     "mamaSlug": "kylie",
