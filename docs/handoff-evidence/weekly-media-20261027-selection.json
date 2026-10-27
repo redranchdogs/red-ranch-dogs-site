@@ -1,0 +1,2821 @@
+{
+  "schema": "website-weekly-media-local-stage/v1",
+  "date": "2026-10-27",
+  "stage": "PREPARED_GATE_PASSED",
+  "base": "bcb3b860296a487fa6af1a0de98bfdef81772695",
+  "videoGate": {
+    "state": "PASSED",
+    "publicPlayable": 26,
+    "total": 26,
+    "evidence": "Marketing existing Posy ID playback verified22:04UTC; Root independently reconciled latest26uniqueIDs/full manifest; no new uploads/retries byWebsite."
+  },
+  "newProfileStatusBasis": "Adam owner-reported no Lulu/Evie placements; waitlist matching planned. Fresh CRM read does not establish public availability/priority.",
+  "identities": [
+    {
+      "puppySlug": "october",
+      "publicName": "October",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-black-47dcf157-66fb-4399-9764-3c2ac62aa89d",
+      "ownerLitterId": "litter-kylie-ranger-1790120515065",
+      "litterSlug": "kylie-ranger-late-summer-2026",
+      "collar": "Black",
+      "sex": "Male",
+      "status": "Reserved",
+      "videoSourceId": "19MT1TQT-Bm7-Tx5vlAlMmBF-EY7GVn_p",
+      "youtubeId": "0IJkEce6nvw",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/0IJkEce6nvw",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7294.jpg",
+      "visualSignature": "Narrow white muzzle/chest; gray bow; chocolate phantom face matching October clip.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "bram",
+      "publicName": "Bram",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-blue-a8710299-12e4-424b-8910-4b8c4ea021a1",
+      "ownerLitterId": "litter-kylie-ranger-1790120515065",
+      "litterSlug": "kylie-ranger-late-summer-2026",
+      "collar": "Blue",
+      "sex": "Male",
+      "status": "Reserved",
+      "videoSourceId": "1zJpDUnYc62nCMuVMiVOllWAY2VYkoLx0",
+      "youtubeId": "Ob9OxVZPrZg",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/Ob9OxVZPrZg",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7306.jpg",
+      "visualSignature": "Broad white blaze and muzzle; blue collar/bow; brown ears and tan forelegs.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "hugo-poe",
+      "publicName": "Hugo Poe",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-green-bdc8aeee-abfb-4de8-b202-1c6ffc7477eb",
+      "ownerLitterId": "litter-kylie-ranger-1790120515065",
+      "litterSlug": "kylie-ranger-late-summer-2026",
+      "collar": "Green",
+      "sex": "Male",
+      "status": "Reserved",
+      "videoSourceId": "1QimCLaxSQb-XyrwQvIL8SBoC4vCWdAfX",
+      "youtubeId": "-ok1KJkAGGg",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/-ok1KJkAGGg",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7318.jpg",
+      "visualSignature": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "ophelia-shadow",
+      "publicName": "Ophelia Shadow",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-blue-1f4dc683-3b59-4be2-a694-bb94d7e8b0d7",
+      "ownerLitterId": "litter-kylie-ranger-1790120515065",
+      "litterSlug": "kylie-ranger-late-summer-2026",
+      "collar": "Pink",
+      "sex": "Female",
+      "status": "Reserved",
+      "videoSourceId": "1jOfZrN0ZwBH-4XEtv9Q3BVGThQRc6q4V",
+      "youtubeId": "ntpLBahpLFc",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/ntpLBahpLFc",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7345.jpg",
+      "visualSignature": "Pink collar/head bow; narrow white face blaze and muzzle; small white chest; dark chocolate legs.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "salem",
+      "publicName": "Salem",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-purple-42e1a6af-2972-411b-8748-c52d4ef13974",
+      "ownerLitterId": "litter-kylie-ranger-1790120515065",
+      "litterSlug": "kylie-ranger-late-summer-2026",
+      "collar": "Purple",
+      "sex": "Female",
+      "status": "Reserved",
+      "videoSourceId": "1dsIkD5_W2v1Xnv7u2EoT2sBk938-GD4N",
+      "youtubeId": "BhF3siduDqg",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/BhF3siduDqg",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7367.jpg",
+      "visualSignature": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "raven",
+      "publicName": "Raven",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-red-85300caf-f9c2-464f-8e32-5fe5dc7df7da",
+      "ownerLitterId": "litter-kylie-ranger-1790120515065",
+      "litterSlug": "kylie-ranger-late-summer-2026",
+      "collar": "Red",
+      "sex": "Female",
+      "status": "Reserved",
+      "videoSourceId": "1zg4IPkUt5Ig-ttBTrG4aW5uMtKdBKBZ7",
+      "youtubeId": "99aXK_HUmWc",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/99aXK_HUmWc",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7386.jpg",
+      "visualSignature": "Red collar/red head bow; thin broken white forehead line and muzzle, chocolate phantom eyebrows.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "atticus",
+      "publicName": "Atticus",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-blue-a2c1df7c-63c5-4aa7-95cd-5b9514f55ca2",
+      "ownerLitterId": "litter-plan-beatrix-enzo-open-2026-06",
+      "litterSlug": "beatrix-enzo-planned-2026",
+      "collar": "Blue",
+      "sex": "Male",
+      "status": "Available",
+      "videoSourceId": "1Lt8yI0kWCiKaK55s65wGVRb7-y5mHtLK",
+      "youtubeId": "B-3uEpabmyk",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/B-3uEpabmyk",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7606.jpg",
+      "visualSignature": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "twain",
+      "publicName": "Twain",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-d-blue-580ffa3e-eccb-491c-8bb0-daad03656f22",
+      "ownerLitterId": "litter-plan-beatrix-enzo-open-2026-06",
+      "litterSlug": "beatrix-enzo-planned-2026",
+      "collar": "D. Blue",
+      "sex": "Male",
+      "status": "Available",
+      "videoSourceId": "12a6Tp-Pym3CLPIJTN_Fea-PxRTL7HyY5",
+      "youtubeId": "nFZsfcGCxhM",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/nFZsfcGCxhM",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7617.jpg",
+      "visualSignature": "Dark blue bow/collar; mostly white body and muzzle with tan ear/eye patches.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "wells",
+      "publicName": "Wells",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-gray-e96374c7-938f-4180-952d-32fa4b4af96d",
+      "ownerLitterId": "litter-plan-beatrix-enzo-open-2026-06",
+      "litterSlug": "beatrix-enzo-planned-2026",
+      "collar": "Gray",
+      "sex": "Male",
+      "status": "Reserved",
+      "videoSourceId": "1adZ2KhtF75M_-rRGTHRtq6go5ZxwBFFn",
+      "youtubeId": "hliqR2CGAHo",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/hliqR2CGAHo",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7625.jpg",
+      "visualSignature": "Gray collar/bow; curly red coat, white muzzle bridge/forehead dash and white toes.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "edith",
+      "publicName": "Edith",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-maroon-d83f3900-e0ed-4199-894c-051513a41cfc",
+      "ownerLitterId": "litter-plan-beatrix-enzo-open-2026-06",
+      "litterSlug": "beatrix-enzo-planned-2026",
+      "collar": "Maroon",
+      "sex": "Female",
+      "status": "Available",
+      "videoSourceId": "1tBaXkWOp08E7BK_Z3qfPbwUNuD5BP_2k",
+      "youtubeId": "IqqY1sthL3A",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/IqqY1sthL3A",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7639.jpg",
+      "visualSignature": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "darcy",
+      "publicName": "Darcy",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-mint-4725d07a-5b88-498d-bae1-3121fe9e724c",
+      "ownerLitterId": "litter-plan-beatrix-enzo-open-2026-06",
+      "litterSlug": "beatrix-enzo-planned-2026",
+      "collar": "Mint",
+      "sex": "Male",
+      "status": "Reserved",
+      "videoSourceId": "11NFuuNk2kfCELTdBvY6t2k2bec-ad0VA",
+      "youtubeId": "19Sjd-PxYzg",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/19Sjd-PxYzg",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7650.jpg",
+      "visualSignature": "Mint collar/bow; white curly forehead/muzzle/body with reddish curly ears and body patches.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "austen",
+      "publicName": "Austen",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-pink-ff7b9f5e-2129-4f10-82cb-2982343a08d5",
+      "ownerLitterId": "litter-plan-beatrix-enzo-open-2026-06",
+      "litterSlug": "beatrix-enzo-planned-2026",
+      "collar": "Pink",
+      "sex": "Female",
+      "status": "Available",
+      "videoSourceId": "1fnU18FtjtOvW16FXz3Ov-jxPENVCtbkz",
+      "youtubeId": "jHQyVjtbtKI",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/jHQyVjtbtKI",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7662.jpg",
+      "visualSignature": "Pink collar/head bow; off-center white forehead blaze, reddish eye/ear patches and white body.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "bronte",
+      "publicName": "Brontë",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-purple-821e34bb-cd0f-4a40-80a3-7378dc26f3ef",
+      "ownerLitterId": "litter-plan-beatrix-enzo-open-2026-06",
+      "litterSlug": "beatrix-enzo-planned-2026",
+      "collar": "Purple",
+      "sex": "Female",
+      "status": "Reserved",
+      "videoSourceId": "16r1H40wZaHynUa2ZKKIrKLQ7519IZThd",
+      "youtubeId": "ygewU2sqdvA",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/ygewU2sqdvA",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7670.jpg",
+      "visualSignature": "Purple collar, green head bow; red curly face with tiny pale forehead dash and white chest/toes.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "dickens",
+      "publicName": "Dickens",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-orange-69a3e134-24f5-4a90-927f-0dcd2e91b50f",
+      "ownerLitterId": "litter-plan-beatrix-enzo-open-2026-06",
+      "litterSlug": "beatrix-enzo-planned-2026",
+      "collar": "Orange",
+      "sex": "Male",
+      "status": "Available",
+      "videoSourceId": "1feHk7b7GwmBQpYRUqgYThUWNm9fXbThE",
+      "youtubeId": "LBfEDe6O6xE",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/LBfEDe6O6xE",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7683.jpg",
+      "visualSignature": "Orange collar, cream neck bow; curly red face, small pale forehead/chest marks and white toes.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "louisa",
+      "publicName": "Louisa",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-yellow-186b6e84-b201-4ebd-b34e-c9bf39f7134b",
+      "ownerLitterId": "litter-plan-beatrix-enzo-open-2026-06",
+      "litterSlug": "beatrix-enzo-planned-2026",
+      "collar": "Yellow",
+      "sex": "Female",
+      "status": "Reserved",
+      "videoSourceId": "1jYFuJH5toXVfgwN8gnsefJvIdO20PXmP",
+      "youtubeId": "veV9sWa9aGs",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/veV9sWa9aGs",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7691.jpg",
+      "visualSignature": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "moriarty",
+      "publicName": "Moriarty",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-black-a7ac40d0-3707-4ddd-aa90-118352b2341b",
+      "ownerLitterId": "litter-evie-nicks-waylon-jennings-1791731274700",
+      "litterSlug": "evie-waylon-october-2026",
+      "collar": "Black",
+      "sex": "Male",
+      "status": "Waitlist Matching",
+      "videoSourceId": "16E-bFMjYd9bpaXy724j4kFr43RoSLio6",
+      "youtubeId": "LUm37RunFZI",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/LUm37RunFZI",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7396.jpg",
+      "visualSignature": "Black collar/gray neck bow; solid red face and coat without white forehead blaze.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "sherlock",
+      "publicName": "Sherlock",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-blue-505fb7ef-3ef5-40d2-93d7-833d54e007d9",
+      "ownerLitterId": "litter-evie-nicks-waylon-jennings-1791731274700",
+      "litterSlug": "evie-waylon-october-2026",
+      "collar": "Blue",
+      "sex": "Male",
+      "status": "Waitlist Matching",
+      "videoSourceId": "1EQSXRZ3fU96hWnG2y7BXqjD-_gkhuso7",
+      "youtubeId": "kWiYnOfiX_g",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/kWiYnOfiX_g",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7409.jpg",
+      "visualSignature": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "watson",
+      "publicName": "Watson",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-green-d66d3bbd-2cb5-4534-b6e1-b1a4f9175689",
+      "ownerLitterId": "litter-evie-nicks-waylon-jennings-1791731274700",
+      "litterSlug": "evie-waylon-october-2026",
+      "collar": "Green",
+      "sex": "Male",
+      "status": "Waitlist Matching",
+      "videoSourceId": "1QJ4BDOKkRR-cQhBVWINimtOUEgpUA1sr",
+      "youtubeId": "J9o5IAZ9pbA",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/J9o5IAZ9pbA",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7426.jpg",
+      "visualSignature": "Green collar/bow; white forehead cap narrowing to a faint line and small white muzzle/chin.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "evie-orange-collar-boy",
+      "publicName": "Orange Collar Boy",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-orange-01f3d815-0add-4d01-b163-6bd9732013cf",
+      "ownerLitterId": "litter-evie-nicks-waylon-jennings-1791731274700",
+      "litterSlug": "evie-waylon-october-2026",
+      "collar": "Orange",
+      "sex": "Male",
+      "status": "Waitlist Matching",
+      "videoSourceId": "1nY4GKzBRkPYJQX67yT37bUzptQ_GGecv",
+      "youtubeId": "QW2Tiltbj3U",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/QW2Tiltbj3U",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7433.jpg",
+      "visualSignature": "Orange collar/gray neck bow; medium white forehead-to-muzzle blaze, red ears and white feet.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Descriptive interim label approved for LOCAL preparation only. Official owner name remains unknown; Moran not adopted.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "nancy",
+      "publicName": "Nancy",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-pink-158cc3a5-34ca-4407-80fa-d0ca477087ad",
+      "ownerLitterId": "litter-evie-nicks-waylon-jennings-1791731274700",
+      "litterSlug": "evie-waylon-october-2026",
+      "collar": "Pink",
+      "sex": "Female",
+      "status": "Waitlist Matching",
+      "videoSourceId": "1-nclFrSbB7OjtVTFxis0Z0WY-6r3NuZc",
+      "youtubeId": "nmJVNmUjXUw",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/nmJVNmUjXUw",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7440.jpg",
+      "visualSignature": "Pink collar/head bow; mostly red face with small pale forehead cap, white chin/chest and toes.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Preserve owner-record Nancy; no Nancy Drew name extension.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "agatha",
+      "publicName": "Agatha",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-purple-673e1b51-d615-4790-bf1e-6fdf0972c405",
+      "ownerLitterId": "litter-evie-nicks-waylon-jennings-1791731274700",
+      "litterSlug": "evie-waylon-october-2026",
+      "collar": "Purple",
+      "sex": "Female",
+      "status": "Waitlist Matching",
+      "videoSourceId": "1W65d_D7pgi2BnVRgtyrUJdfv50Z6ABW-",
+      "youtubeId": "XEddQ1IeBJs",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/XEddQ1IeBJs",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7447.jpg",
+      "visualSignature": "Purple collar/pale green head bow; wide white forehead cap and muzzle/chin with red eye patches.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "columbo",
+      "publicName": "Columbo",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-red-c08d2ca9-e9ae-4393-9aef-a5679ce3edc3",
+      "ownerLitterId": "litter-evie-nicks-waylon-jennings-1791731274700",
+      "litterSlug": "evie-waylon-october-2026",
+      "collar": "Red",
+      "sex": "Male",
+      "status": "Waitlist Matching",
+      "videoSourceId": "1WigZyXxVtrtoa2QWn1Bb8YqcQyvGlyVA",
+      "youtubeId": "j0x2ioRMcB4",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/j0x2ioRMcB4",
+      "videoState": "Published; public playback verified on bounded follow-up Oct27 21:42-21:43Z",
+      "photoMarker": "IMG_7455.jpg",
+      "visualSignature": "Red collar/neck bow; white forehead-to-muzzle blaze and white paws; speckled pink/black nose.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "penn",
+      "publicName": "Penn",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-blue-e00ea5d2-0a53-46ea-a204-6b3529206fab",
+      "ownerLitterId": "litter-plan-lulu-bram-bred-2026-08",
+      "litterSlug": "lulu-bram-fall-2026",
+      "collar": "Blue",
+      "sex": "Male",
+      "status": "Waitlist Matching",
+      "videoSourceId": "13_6bIsAVglobF99KM4oB5jbqMy7yu8eN",
+      "youtubeId": "WwF7KF6NS6o",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/WwF7KF6NS6o",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7476.jpg",
+      "visualSignature": "Light blue collar/neck bow; white forehead blaze and muzzle/chest, red ears and body.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "dottie",
+      "publicName": "Dottie",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-hot-pink-a2f003f2-75f1-42ce-9a47-7194d4ce1fc0",
+      "ownerLitterId": "litter-plan-lulu-bram-bred-2026-08",
+      "litterSlug": "lulu-bram-fall-2026",
+      "collar": "Hot Pink",
+      "sex": "Female",
+      "status": "Waitlist Matching",
+      "videoSourceId": "1RUVBOig7jrc8x4AXlhlYPNmuvAPArCEN",
+      "youtubeId": "RmtXE6zRMRM",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/RmtXE6zRMRM",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7528.jpg",
+      "visualSignature": "Hot pink collar/head bow; predominantly red face with tiny pale forehead/chin and white toes.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "posy",
+      "publicName": "Posy",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-maroon-9396801c-ebd7-44b8-8053-2da564a332e7",
+      "ownerLitterId": "litter-plan-lulu-bram-bred-2026-08",
+      "litterSlug": "lulu-bram-fall-2026",
+      "collar": "Maroon",
+      "sex": "Female",
+      "status": "Waitlist Matching",
+      "videoSourceId": "1rncHBHaLoswh3a9mX8z6qGQKWgdP4wnT",
+      "youtubeId": "A_ma4ireCYo",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/A_ma4ireCYo",
+      "videoState": "Published; public playback ERROR persists on bounded follow-up; creator preview plays",
+      "photoMarker": "IMG_7573.jpg",
+      "visualSignature": "Maroon collar/head bow; white forehead blaze and muzzle, red ear/eye patches; pink-black nose.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    },
+    {
+      "puppySlug": "merryweather",
+      "publicName": "Merryweather",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-white-af438d8f-2b58-4ce8-a720-d6fd2babcf00",
+      "ownerLitterId": "litter-plan-lulu-bram-bred-2026-08",
+      "litterSlug": "lulu-bram-fall-2026",
+      "collar": "White",
+      "sex": "Female",
+      "status": "Waitlist Matching",
+      "videoSourceId": "1gyh2Ioiv4x-IL6TJsw5dpUjsiMzycnje",
+      "youtubeId": "yySxcotdSNA",
+      "youtubeShortUrl": "https://www.youtube.com/shorts/yySxcotdSNA",
+      "videoState": "Published; public playback verified 720x1280 readyState4 advancing currentTime paused=false no error",
+      "photoMarker": "IMG_7593.jpg",
+      "visualSignature": "White collar, green head bow; broad white forehead blaze and muzzle, red ears/eye patches.",
+      "identityBasis": "Each portrait visually checked against mapped same-session video by face/chest markings, coat, bow outfit and collar; marker close-ups are supporting evidence, not ordering-based assignment.",
+      "nameDecision": "Retain owner/public name; do not adopt spoken aliases.",
+      "idFreshness": "Retained Oct26 owner ID associated to current CRM by litter/collar/sex; no fresh CRM ID verification claimed."
+    }
+  ],
+  "selectedPhotos": [
+    {
+      "id": "1TTjSaMPaV5T4mYx1mtgf0nacgvx4VTOm",
+      "name": "IMG_7298.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 8066893,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7298.jpg",
+      "sha256": "eb4c4460ed37e19119e140de32eeafc9f6bafe9eedeacce206e51ddedfe81f79",
+      "status": "downloaded_verified",
+      "puppySlug": "october",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-black-47dcf157-66fb-4399-9764-3c2ac62aa89d",
+      "target": "/images/puppies/kylie-2026-week-5/october-week-5-01.webp",
+      "bytes": 94738,
+      "selectionReason": "Narrow white muzzle/chest; gray bow; chocolate phantom face matching October clip."
+    },
+    {
+      "id": "1waptTpcZiAQWcvBI-Qhu9FEH2cSFhZrc",
+      "name": "IMG_7300.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 8948249,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7300.jpg",
+      "sha256": "d5235e015f8df44738a9b4039a26b64117fa1adc0f3fbb4985ad91dc0abdee9d",
+      "status": "downloaded_verified",
+      "puppySlug": "october",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-black-47dcf157-66fb-4399-9764-3c2ac62aa89d",
+      "target": "/images/puppies/kylie-2026-week-5/october-week-5-02.webp",
+      "bytes": 90336,
+      "selectionReason": "Narrow white muzzle/chest; gray bow; chocolate phantom face matching October clip."
+    },
+    {
+      "id": "1d5wFOs5TPQ4sf7skM8a6Lm3tAUdlcUzs",
+      "name": "IMG_7305.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 8331317,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7305.jpg",
+      "sha256": "f12d8961b0fe7ebd6c1819f0d981fc530ad43fd6d5a2fa915821a4fa043de427",
+      "status": "downloaded_verified",
+      "puppySlug": "october",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-black-47dcf157-66fb-4399-9764-3c2ac62aa89d",
+      "target": "/images/puppies/kylie-2026-week-5/october-week-5-03.webp",
+      "bytes": 99670,
+      "selectionReason": "Narrow white muzzle/chest; gray bow; chocolate phantom face matching October clip."
+    },
+    {
+      "id": "1IIXsaHDlKjv56HVhHHP-RF957fMIviJt",
+      "name": "IMG_7314.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 7465459,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7314.jpg",
+      "sha256": "d6dd1157be6e127f95fb575e027486d55d326a05519d43633f3d192ba3ba0641",
+      "status": "downloaded_verified",
+      "puppySlug": "bram",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-blue-a8710299-12e4-424b-8910-4b8c4ea021a1",
+      "target": "/images/puppies/kylie-2026-week-5/bram-week-5-01.webp",
+      "bytes": 88184,
+      "selectionReason": "Broad white blaze and muzzle; blue collar/bow; brown ears and tan forelegs."
+    },
+    {
+      "id": "1jpanQcNL3JkhAlEGbW9Or69JM7Yqo0En",
+      "name": "IMG_7312.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 8184258,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7312.jpg",
+      "sha256": "09fc1d8201f63393093b4242026982d41a83208752cd740d93a9f330e0f2bc0a",
+      "status": "downloaded_verified",
+      "puppySlug": "bram",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-blue-a8710299-12e4-424b-8910-4b8c4ea021a1",
+      "target": "/images/puppies/kylie-2026-week-5/bram-week-5-02.webp",
+      "bytes": 85634,
+      "selectionReason": "Broad white blaze and muzzle; blue collar/bow; brown ears and tan forelegs."
+    },
+    {
+      "id": "1R2_X3pMLN3suyy7bK1eR9wxiEivEUor7",
+      "name": "IMG_7317.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 7272942,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7317.jpg",
+      "sha256": "3c1485f164a7c3c6684d9ff001a83ed662d105fce93149e66e56be0187de707a",
+      "status": "downloaded_verified",
+      "puppySlug": "bram",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-blue-a8710299-12e4-424b-8910-4b8c4ea021a1",
+      "target": "/images/puppies/kylie-2026-week-5/bram-week-5-03.webp",
+      "bytes": 94472,
+      "selectionReason": "Broad white blaze and muzzle; blue collar/bow; brown ears and tan forelegs."
+    },
+    {
+      "id": "1VozAj0d_V6sMq9To-Q-46HqMsRHa2CqL",
+      "name": "IMG_7334.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 7010090,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7334.jpg",
+      "sha256": "a3acfdfb1407a434c40eb646b3137325ec4a6824dc2d66699cb51211240fcea5",
+      "status": "downloaded_verified",
+      "puppySlug": "hugo-poe",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-green-bdc8aeee-abfb-4de8-b202-1c6ffc7477eb",
+      "target": "/images/puppies/kylie-2026-week-5/hugo-poe-week-5-01.webp",
+      "bytes": 89202,
+      "selectionReason": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes."
+    },
+    {
+      "id": "1GYPk6Xpq0umREGQDXLfgo9ZXzAbyw9XE",
+      "name": "IMG_7330.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 8216284,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7330.jpg",
+      "sha256": "303f76adb007ba2f5a4bbd24b0b33803ab36b3f514232465d10c979579cd1c18",
+      "status": "downloaded_verified",
+      "puppySlug": "hugo-poe",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-green-bdc8aeee-abfb-4de8-b202-1c6ffc7477eb",
+      "target": "/images/puppies/kylie-2026-week-5/hugo-poe-week-5-02.webp",
+      "bytes": 87844,
+      "selectionReason": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes."
+    },
+    {
+      "id": "1yRUO2d1RyDZd57GMSL6bpcU_O30JJjD-",
+      "name": "IMG_7339.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 8897747,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7339.jpg",
+      "sha256": "430863f2ffbe440e917a91e6f80c10883e9fb4b8a4d36190604d2614f9808191",
+      "status": "downloaded_verified",
+      "puppySlug": "hugo-poe",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-green-bdc8aeee-abfb-4de8-b202-1c6ffc7477eb",
+      "target": "/images/puppies/kylie-2026-week-5/hugo-poe-week-5-03.webp",
+      "bytes": 89948,
+      "selectionReason": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes."
+    },
+    {
+      "id": "1PGTBLGbY4Yf3fCH05pu3vfjK03FARTJO",
+      "name": "IMG_7354.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 9551932,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7354.jpg",
+      "sha256": "c05bb074d900a8ffa8909fb361c3d12f3de4f29d94a021c57c51e0e5995b679c",
+      "status": "downloaded_verified",
+      "puppySlug": "ophelia-shadow",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-blue-1f4dc683-3b59-4be2-a694-bb94d7e8b0d7",
+      "target": "/images/puppies/kylie-2026-week-5/ophelia-shadow-week-5-01.webp",
+      "bytes": 107076,
+      "selectionReason": "Pink collar/head bow; narrow white face blaze and muzzle; small white chest; dark chocolate legs."
+    },
+    {
+      "id": "1q1kov2IFhsD0hur_HL0k64piOrkI_9H3",
+      "name": "IMG_7350.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 9466312,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7350.jpg",
+      "sha256": "a0896dc298e4e4ca4290b5768b219f26644f231c3ad5cff6a7412dc45f14086b",
+      "status": "downloaded_verified",
+      "puppySlug": "ophelia-shadow",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-blue-1f4dc683-3b59-4be2-a694-bb94d7e8b0d7",
+      "target": "/images/puppies/kylie-2026-week-5/ophelia-shadow-week-5-02.webp",
+      "bytes": 103694,
+      "selectionReason": "Pink collar/head bow; narrow white face blaze and muzzle; small white chest; dark chocolate legs."
+    },
+    {
+      "id": "17Sr1D2d1WNbKrgufdk5ZE4nooGeghZ6n",
+      "name": "IMG_7348.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 9313679,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7348.jpg",
+      "sha256": "8751092765ac89b1c27705488b164f1ff3d95315f2819b41dc16013706673688",
+      "status": "downloaded_verified",
+      "puppySlug": "ophelia-shadow",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-blue-1f4dc683-3b59-4be2-a694-bb94d7e8b0d7",
+      "target": "/images/puppies/kylie-2026-week-5/ophelia-shadow-week-5-03.webp",
+      "bytes": 97998,
+      "selectionReason": "Pink collar/head bow; narrow white face blaze and muzzle; small white chest; dark chocolate legs."
+    },
+    {
+      "id": "1F0Fr4zWZfK66H9ongnxl7zIXrv0KC8xL",
+      "name": "IMG_7370.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 9100991,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7370.jpg",
+      "sha256": "60c9c5275b16d20c2beb1be1aacd184542479cfd3579ee88a47ddba520601a55",
+      "status": "downloaded_verified",
+      "puppySlug": "salem",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-purple-42e1a6af-2972-411b-8748-c52d4ef13974",
+      "target": "/images/puppies/kylie-2026-week-5/salem-week-5-01.webp",
+      "bytes": 89292,
+      "selectionReason": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest."
+    },
+    {
+      "id": "1LqgyoNQn1agvd5qmTfDLQggzkVWOUvKz",
+      "name": "IMG_7369.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 9037480,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7369.jpg",
+      "sha256": "8b930287b04bade0bee4d660b1fb51d210f735f68db494b3a5434d83f9924a20",
+      "status": "downloaded_verified",
+      "puppySlug": "salem",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-purple-42e1a6af-2972-411b-8748-c52d4ef13974",
+      "target": "/images/puppies/kylie-2026-week-5/salem-week-5-02.webp",
+      "bytes": 83794,
+      "selectionReason": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest."
+    },
+    {
+      "id": "1yie9zLG_TLfbATSMrrGI4O6NtcxPspTW",
+      "name": "IMG_7385.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 8882990,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7385.jpg",
+      "sha256": "98f5e9418bdc39d2acce9b1acd956ba52dd203f4acbbd7eda56c8311814a179f",
+      "status": "downloaded_verified",
+      "puppySlug": "salem",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-purple-42e1a6af-2972-411b-8748-c52d4ef13974",
+      "target": "/images/puppies/kylie-2026-week-5/salem-week-5-03.webp",
+      "bytes": 83838,
+      "selectionReason": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest."
+    },
+    {
+      "id": "1QsespWexnFF_bmJZcWxlWtO8uakMicTT",
+      "name": "IMG_7395.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 9501914,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7395.jpg",
+      "sha256": "b49fdaa08d077d6d1dff8a88b1efc14d5d3796491c14b0866ef16761eff3cf49",
+      "status": "downloaded_verified",
+      "puppySlug": "raven",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-red-85300caf-f9c2-464f-8e32-5fe5dc7df7da",
+      "target": "/images/puppies/kylie-2026-week-5/raven-week-5-01.webp",
+      "bytes": 100516,
+      "selectionReason": "Red collar/red head bow; thin broken white forehead line and muzzle, chocolate phantom eyebrows."
+    },
+    {
+      "id": "1HDnuVB10ga-1szYZbUKrKK0xkN-IZgFK",
+      "name": "IMG_7389.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 8901944,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7389.jpg",
+      "sha256": "dd30603617ee162877cc5bc62986f3fdc1c4080780c227ab023dd8feab52c515",
+      "status": "downloaded_verified",
+      "puppySlug": "raven",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-red-85300caf-f9c2-464f-8e32-5fe5dc7df7da",
+      "target": "/images/puppies/kylie-2026-week-5/raven-week-5-02.webp",
+      "bytes": 108452,
+      "selectionReason": "Red collar/red head bow; thin broken white forehead line and muzzle, chocolate phantom eyebrows."
+    },
+    {
+      "id": "10yyWC3GIMp3jTzeYJghXDhCm3W8RzRL3",
+      "name": "IMG_7392.jpg",
+      "litter": "kylie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1BVAIFDNrKO6KmjPitPbsogfD5PoWFmfm"
+      ],
+      "size": 9723459,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/kylie/IMG_7392.jpg",
+      "sha256": "f45d0894e2f2085868a2bde4da7dc5d48f4dbb32fe21509bf76a73240a09f206",
+      "status": "downloaded_verified",
+      "puppySlug": "raven",
+      "ownerPuppyId": "puppy-litter-kylie-ranger-1790120515065-red-85300caf-f9c2-464f-8e32-5fe5dc7df7da",
+      "target": "/images/puppies/kylie-2026-week-5/raven-week-5-03.webp",
+      "bytes": 101924,
+      "selectionReason": "Red collar/red head bow; thin broken white forehead line and muzzle, chocolate phantom eyebrows."
+    },
+    {
+      "id": "1EfsDt9foAAEgvUBLBXvDRU5JvpGRHUJL",
+      "name": "IMG_7607.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13234100,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7607.jpg",
+      "sha256": "dddb9d480b76015b2c24a8f7d5176c430fe4dd703a1b97e4cee7c5702cf953b4",
+      "status": "downloaded_verified",
+      "puppySlug": "atticus",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-blue-a2c1df7c-63c5-4aa7-95cd-5b9514f55ca2",
+      "target": "/images/puppies/beatrix-2026-week-4/atticus-week-4-01.webp",
+      "bytes": 85048,
+      "selectionReason": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears."
+    },
+    {
+      "id": "1MBA-zQEEVCxMl30dAf6sKPiRYVWXR_T3",
+      "name": "IMG_7612.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13863296,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7612.jpg",
+      "sha256": "d0a6bfdfffdc40a11bb8a84e9591d91550e61390f5dada563986ef4fcb36237d",
+      "status": "downloaded_verified",
+      "puppySlug": "atticus",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-blue-a2c1df7c-63c5-4aa7-95cd-5b9514f55ca2",
+      "target": "/images/puppies/beatrix-2026-week-4/atticus-week-4-02.webp",
+      "bytes": 89206,
+      "selectionReason": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears."
+    },
+    {
+      "id": "1SmLCO3DAaoFe5Tux46vIlgxRvCZmTQYG",
+      "name": "IMG_7616.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13397266,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7616.jpg",
+      "sha256": "41bdcaa9d821ee963e076cb3d1038f9c56c8cb66a1c7cfc3eaa2172fc5991993",
+      "status": "downloaded_verified",
+      "puppySlug": "atticus",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-blue-a2c1df7c-63c5-4aa7-95cd-5b9514f55ca2",
+      "target": "/images/puppies/beatrix-2026-week-4/atticus-week-4-03.webp",
+      "bytes": 84602,
+      "selectionReason": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears."
+    },
+    {
+      "id": "1cr1Qx6fvB4KM9yfwfAwyBd9c3eS6w1ex",
+      "name": "IMG_7621.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13838984,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7621.jpg",
+      "sha256": "0b9307129c29acb031bbd64dfc4e909a3fe02f41cb7286c73884fae8c19cf190",
+      "status": "downloaded_verified",
+      "puppySlug": "twain",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-d-blue-580ffa3e-eccb-491c-8bb0-daad03656f22",
+      "target": "/images/puppies/beatrix-2026-week-4/twain-week-4-01.webp",
+      "bytes": 103326,
+      "selectionReason": "Dark blue bow/collar; mostly white body and muzzle with tan ear/eye patches."
+    },
+    {
+      "id": "1HEJD3qzZ3_zKNXR9KUQPaa4XWdVg6MqI",
+      "name": "IMG_7620.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 12718494,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7620.jpg",
+      "sha256": "1dfc6f75020d955d453e0efafec1b310ca3bb8ae4ec741a989a1ea48dd074529",
+      "status": "downloaded_verified",
+      "puppySlug": "twain",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-d-blue-580ffa3e-eccb-491c-8bb0-daad03656f22",
+      "target": "/images/puppies/beatrix-2026-week-4/twain-week-4-02.webp",
+      "bytes": 73620,
+      "selectionReason": "Dark blue bow/collar; mostly white body and muzzle with tan ear/eye patches."
+    },
+    {
+      "id": "13B5zfOm82SRj_8GiRK6_JbloSnvHE6h5",
+      "name": "IMG_7623.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13912416,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7623.jpg",
+      "sha256": "608cc23486217a9441b9f4a1654ac7e7b6fd46f7b9c51d16de9681e7ec7cddfa",
+      "status": "downloaded_verified",
+      "puppySlug": "twain",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-d-blue-580ffa3e-eccb-491c-8bb0-daad03656f22",
+      "target": "/images/puppies/beatrix-2026-week-4/twain-week-4-03.webp",
+      "bytes": 108654,
+      "selectionReason": "Dark blue bow/collar; mostly white body and muzzle with tan ear/eye patches."
+    },
+    {
+      "id": "17TpZbhrMe85OzFvQVz4QM1AfaCWLaKk0",
+      "name": "IMG_7636.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13988348,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7636.jpg",
+      "sha256": "db4477601e97d5d099fc659f099de194533ac9e1fc876bb140129f32da6077ac",
+      "status": "downloaded_verified",
+      "puppySlug": "wells",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-gray-e96374c7-938f-4180-952d-32fa4b4af96d",
+      "target": "/images/puppies/beatrix-2026-week-4/wells-week-4-01.webp",
+      "bytes": 101482,
+      "selectionReason": "Gray collar/bow; curly red coat, white muzzle bridge/forehead dash and white toes."
+    },
+    {
+      "id": "1qjFRCU5wSAAbRynkHm6XC9G4n0CTb8q8",
+      "name": "IMG_7631.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 15437020,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7631.jpg",
+      "sha256": "9133534ba6b335bca92a38a9b50e801fb6199ea25d8f0f45c6a358d022cc6424",
+      "status": "downloaded_verified",
+      "puppySlug": "wells",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-gray-e96374c7-938f-4180-952d-32fa4b4af96d",
+      "target": "/images/puppies/beatrix-2026-week-4/wells-week-4-02.webp",
+      "bytes": 99704,
+      "selectionReason": "Gray collar/bow; curly red coat, white muzzle bridge/forehead dash and white toes."
+    },
+    {
+      "id": "172r0m6Mq69f6AgMNHpKSMHW1vclYs5j8",
+      "name": "IMG_7637.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 14181082,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7637.jpg",
+      "sha256": "1ad019ef61b0265a39aabcbe88ece29b36a8dfe9400b3ef2b5f727f6982b9f8e",
+      "status": "downloaded_verified",
+      "puppySlug": "wells",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-gray-e96374c7-938f-4180-952d-32fa4b4af96d",
+      "target": "/images/puppies/beatrix-2026-week-4/wells-week-4-03.webp",
+      "bytes": 106118,
+      "selectionReason": "Gray collar/bow; curly red coat, white muzzle bridge/forehead dash and white toes."
+    },
+    {
+      "id": "10whKiIxr-ADbT2DQY6yOm7zxsAFS16p9",
+      "name": "IMG_7644.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13826932,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7644.jpg",
+      "sha256": "469a19ee6f46af09c9c2dcd514e046e12a92fc91adb67b8ad016f8e69f69bb32",
+      "status": "downloaded_verified",
+      "puppySlug": "edith",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-maroon-d83f3900-e0ed-4199-894c-051513a41cfc",
+      "target": "/images/puppies/beatrix-2026-week-4/edith-week-4-01.webp",
+      "bytes": 78746,
+      "selectionReason": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches."
+    },
+    {
+      "id": "115u4ErOA4a8Gn8AqnzPBq082V0JSkpoI",
+      "name": "IMG_7646.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13805277,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7646.jpg",
+      "sha256": "771d0fdbb483206f8c8b74f1961b7acd1efc5036eff99ff1fcf41ac93b44c12b",
+      "status": "downloaded_verified",
+      "puppySlug": "edith",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-maroon-d83f3900-e0ed-4199-894c-051513a41cfc",
+      "target": "/images/puppies/beatrix-2026-week-4/edith-week-4-02.webp",
+      "bytes": 90178,
+      "selectionReason": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches."
+    },
+    {
+      "id": "1E1ycLDSluGDy0nA7_kIAKc96mQN4RD2Z",
+      "name": "IMG_7648.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 11764262,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7648.jpg",
+      "sha256": "6fe8976f93804739ae845ef949b4daa9cfa166c070a380391f68a2a4ae18d50f",
+      "status": "downloaded_verified",
+      "puppySlug": "edith",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-maroon-d83f3900-e0ed-4199-894c-051513a41cfc",
+      "target": "/images/puppies/beatrix-2026-week-4/edith-week-4-03.webp",
+      "bytes": 78196,
+      "selectionReason": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches."
+    },
+    {
+      "id": "1m9_bxKbg_uju2vPJXhMKvdqqUXXSlv70",
+      "name": "IMG_7658.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 10317750,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7658.jpg",
+      "sha256": "c88fbc3ed54012910d96d45ac473ee698f8c6f4964a639f2fd788d8113ba52cc",
+      "status": "downloaded_verified",
+      "puppySlug": "darcy",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-mint-4725d07a-5b88-498d-bae1-3121fe9e724c",
+      "target": "/images/puppies/beatrix-2026-week-4/darcy-week-4-01.webp",
+      "bytes": 70956,
+      "selectionReason": "Mint collar/bow; white curly forehead/muzzle/body with reddish curly ears and body patches."
+    },
+    {
+      "id": "1W7py23lEfN_2_OVhPEFr887j3W2C42Ll",
+      "name": "IMG_7656.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 10872194,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7656.jpg",
+      "sha256": "0dad94267d0502a9ded6a17152df78ea63c92eb657229a782f633f82cf5d0e9d",
+      "status": "downloaded_verified",
+      "puppySlug": "darcy",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-mint-4725d07a-5b88-498d-bae1-3121fe9e724c",
+      "target": "/images/puppies/beatrix-2026-week-4/darcy-week-4-02.webp",
+      "bytes": 72974,
+      "selectionReason": "Mint collar/bow; white curly forehead/muzzle/body with reddish curly ears and body patches."
+    },
+    {
+      "id": "1r9o7BLvqRZIWA93Z6Y3kO7IO-DoERf_Z",
+      "name": "IMG_7660.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 12789522,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7660.jpg",
+      "sha256": "66cd28bfb9509cd1454f2b79b8b4911fb2081c2d13f0dbaf3c24ebb14a598829",
+      "status": "downloaded_verified",
+      "puppySlug": "darcy",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-mint-4725d07a-5b88-498d-bae1-3121fe9e724c",
+      "target": "/images/puppies/beatrix-2026-week-4/darcy-week-4-03.webp",
+      "bytes": 73708,
+      "selectionReason": "Mint collar/bow; white curly forehead/muzzle/body with reddish curly ears and body patches."
+    },
+    {
+      "id": "1JdXbz1OBDPW32k8wIvebp3fy7xSeW9xl",
+      "name": "IMG_7667.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 11092982,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7667.jpg",
+      "sha256": "d7cc6136d0f4fd699928636b6a89b42d813d3a52b19eafb3ec843e7291ac0001",
+      "status": "downloaded_verified",
+      "puppySlug": "austen",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-pink-ff7b9f5e-2129-4f10-82cb-2982343a08d5",
+      "target": "/images/puppies/beatrix-2026-week-4/austen-week-4-01.webp",
+      "bytes": 79904,
+      "selectionReason": "Pink collar/head bow; off-center white forehead blaze, reddish eye/ear patches and white body."
+    },
+    {
+      "id": "11ZoqtzxnKecbuQEAiL_LADDynWOxT9LD",
+      "name": "IMG_7665.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13311211,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7665.jpg",
+      "sha256": "bed47d33e23974e276b170170cf2f8ece96d1b1e4577cf3b25275dba55589531",
+      "status": "downloaded_verified",
+      "puppySlug": "austen",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-pink-ff7b9f5e-2129-4f10-82cb-2982343a08d5",
+      "target": "/images/puppies/beatrix-2026-week-4/austen-week-4-02.webp",
+      "bytes": 73980,
+      "selectionReason": "Pink collar/head bow; off-center white forehead blaze, reddish eye/ear patches and white body."
+    },
+    {
+      "id": "1j2f85r9N_rGXTJEuT_bjXyL0Wu4djZlf",
+      "name": "IMG_7677.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 15647663,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7677.jpg",
+      "sha256": "b8b5f5b35d1fdd4dd250291b4cf9be379ed668d133626dc756588c0957faba39",
+      "status": "downloaded_verified",
+      "puppySlug": "bronte",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-purple-821e34bb-cd0f-4a40-80a3-7378dc26f3ef",
+      "target": "/images/puppies/beatrix-2026-week-4/bronte-week-4-01.webp",
+      "bytes": 126868,
+      "selectionReason": "Purple collar, green head bow; red curly face with tiny pale forehead dash and white chest/toes."
+    },
+    {
+      "id": "1LjmCt9nP6Egm8zuZq3VhUAlUL0ZdZFP5",
+      "name": "IMG_7673.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 14947324,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7673.jpg",
+      "sha256": "e28cf9d0c682802757a9c3bb555fd3240bb7ed874e76c993523b6ca5873e1c85",
+      "status": "downloaded_verified",
+      "puppySlug": "bronte",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-purple-821e34bb-cd0f-4a40-80a3-7378dc26f3ef",
+      "target": "/images/puppies/beatrix-2026-week-4/bronte-week-4-02.webp",
+      "bytes": 113740,
+      "selectionReason": "Purple collar, green head bow; red curly face with tiny pale forehead dash and white chest/toes."
+    },
+    {
+      "id": "1IGbzg3L7prsPUnApX1JSw_kMDcR2WIaA",
+      "name": "IMG_7675.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 15536750,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7675.jpg",
+      "sha256": "4a424a4e66c522ca4948322a144640c167564be98c0b3072381a88f9c508733c",
+      "status": "downloaded_verified",
+      "puppySlug": "bronte",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-purple-821e34bb-cd0f-4a40-80a3-7378dc26f3ef",
+      "target": "/images/puppies/beatrix-2026-week-4/bronte-week-4-03.webp",
+      "bytes": 126504,
+      "selectionReason": "Purple collar, green head bow; red curly face with tiny pale forehead dash and white chest/toes."
+    },
+    {
+      "id": "1I3_iw6GbA2E8QwGzYmsgGKyREpZz08-W",
+      "name": "IMG_7685.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13681981,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7685.jpg",
+      "sha256": "632d29cbc3c83ebc135a9e99153dc71a1deee433aefdcbbc2cfe5a5992220a5f",
+      "status": "downloaded_verified",
+      "puppySlug": "dickens",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-orange-69a3e134-24f5-4a90-927f-0dcd2e91b50f",
+      "target": "/images/puppies/beatrix-2026-week-4/dickens-week-4-01.webp",
+      "bytes": 101810,
+      "selectionReason": "Orange collar, cream neck bow; curly red face, small pale forehead/chest marks and white toes."
+    },
+    {
+      "id": "159cVOZIBaVXEqNzu6oq1Fzr7CbOW-wmB",
+      "name": "IMG_7687.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 14537034,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7687.jpg",
+      "sha256": "f3242e026da9fe877b11044412e803be46308f1a2c258d831b30744d689b1bc0",
+      "status": "downloaded_verified",
+      "puppySlug": "dickens",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-orange-69a3e134-24f5-4a90-927f-0dcd2e91b50f",
+      "target": "/images/puppies/beatrix-2026-week-4/dickens-week-4-02.webp",
+      "bytes": 109880,
+      "selectionReason": "Orange collar, cream neck bow; curly red face, small pale forehead/chest marks and white toes."
+    },
+    {
+      "id": "1k01HpWb6Fdd_u9k6HF8zOdz4fzV_I_t_",
+      "name": "IMG_7692.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 14467375,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7692.jpg",
+      "sha256": "dc7941961e67ead6ced4dea744b7ee5a0ba90b5b1e0b40ee955b1cc91099b939",
+      "status": "downloaded_verified",
+      "puppySlug": "louisa",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-yellow-186b6e84-b201-4ebd-b34e-c9bf39f7134b",
+      "target": "/images/puppies/beatrix-2026-week-4/louisa-week-4-01.webp",
+      "bytes": 105888,
+      "selectionReason": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes."
+    },
+    {
+      "id": "1fRur_BZtkM8XJflVaIelbYeNb7SYsI_z",
+      "name": "IMG_7695.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 13447615,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7695.jpg",
+      "sha256": "3f15f16faa26c5d51f5a225f61be19a334321db8ac9b9a02216215299405894e",
+      "status": "downloaded_verified",
+      "puppySlug": "louisa",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-yellow-186b6e84-b201-4ebd-b34e-c9bf39f7134b",
+      "target": "/images/puppies/beatrix-2026-week-4/louisa-week-4-02.webp",
+      "bytes": 112426,
+      "selectionReason": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes."
+    },
+    {
+      "id": "1lQV-4PA6SmER1lPkCsN36qaN3o6rvc_r",
+      "name": "IMG_7701.jpg",
+      "litter": "beatrix",
+      "mime": "image/jpeg",
+      "parent": [
+        "1Zvot4UE0Qor7T3cbcGEwMSjlYnRxcVxU"
+      ],
+      "size": 14341499,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/beatrix/IMG_7701.jpg",
+      "sha256": "d24c595875bcf6b4ea19eee8e58f05b9afa166a9dfd2404b1a93d388fb8981e7",
+      "status": "downloaded_verified",
+      "puppySlug": "louisa",
+      "ownerPuppyId": "puppy-litter-plan-beatrix-enzo-open-2026-06-yellow-186b6e84-b201-4ebd-b34e-c9bf39f7134b",
+      "target": "/images/puppies/beatrix-2026-week-4/louisa-week-4-03.webp",
+      "bytes": 111202,
+      "selectionReason": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes."
+    },
+    {
+      "id": "1E3HCAf3vB8tpZICf_ShzCcNSic1AG06R",
+      "name": "IMG_7404.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 13704301,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7404.jpg",
+      "sha256": "87dcb0a904c68db3da9829da427fef5a9fd8d8dac51652cce52b4d1597b97e3b",
+      "status": "downloaded_verified",
+      "puppySlug": "moriarty",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-black-a7ac40d0-3707-4ddd-aa90-118352b2341b",
+      "target": "/images/puppies/evie-2026-week-2/moriarty-week-2-01.webp",
+      "bytes": 102690,
+      "selectionReason": "Black collar/gray neck bow; solid red face and coat without white forehead blaze."
+    },
+    {
+      "id": "1zhhSClX9g8Kxp4zqDX3rHpoG_ENyobtg",
+      "name": "IMG_7400.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 13204645,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7400.jpg",
+      "sha256": "51b6ba4645e8cc2aebef7a2bc16cb1513008cb27bafd19d1130071f2dcef75eb",
+      "status": "downloaded_verified",
+      "puppySlug": "moriarty",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-black-a7ac40d0-3707-4ddd-aa90-118352b2341b",
+      "target": "/images/puppies/evie-2026-week-2/moriarty-week-2-02.webp",
+      "bytes": 85788,
+      "selectionReason": "Black collar/gray neck bow; solid red face and coat without white forehead blaze."
+    },
+    {
+      "id": "12sivvYDL9KlXokxEH3bp7avbUG3VnNH1",
+      "name": "IMG_7402.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 13742085,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7402.jpg",
+      "sha256": "aa502d18590ec390d639f35b7e89150954d2439e900908e426dc9e6ffca7665e",
+      "status": "downloaded_verified",
+      "puppySlug": "moriarty",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-black-a7ac40d0-3707-4ddd-aa90-118352b2341b",
+      "target": "/images/puppies/evie-2026-week-2/moriarty-week-2-03.webp",
+      "bytes": 96324,
+      "selectionReason": "Black collar/gray neck bow; solid red face and coat without white forehead blaze."
+    },
+    {
+      "id": "1piWx3KxNeH1_hs1UyNQWqbyfO9etUMoz",
+      "name": "IMG_7417.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 13599127,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7417.jpg",
+      "sha256": "c32b6d6a63f449e5198c0af817f8897a878f27966e7f52acf4c33bf872020f41",
+      "status": "downloaded_verified",
+      "puppySlug": "sherlock",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-blue-505fb7ef-3ef5-40d2-93d7-833d54e007d9",
+      "target": "/images/puppies/evie-2026-week-2/sherlock-week-2-01.webp",
+      "bytes": 78858,
+      "selectionReason": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws."
+    },
+    {
+      "id": "147ryld9PgKqneMNYLUwwtHhiVEyHfHjP",
+      "name": "IMG_7413.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 13975110,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7413.jpg",
+      "sha256": "618d11f02ba30057d0dbc7aa0d59fe8f7871827442536576a0cf97c83ee11935",
+      "status": "downloaded_verified",
+      "puppySlug": "sherlock",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-blue-505fb7ef-3ef5-40d2-93d7-833d54e007d9",
+      "target": "/images/puppies/evie-2026-week-2/sherlock-week-2-02.webp",
+      "bytes": 84900,
+      "selectionReason": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws."
+    },
+    {
+      "id": "1qfsRHedFcd0dhRk49w1SIjXUvF5EFymk",
+      "name": "IMG_7425.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 11514503,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7425.jpg",
+      "sha256": "d9c3724326130e8c551dab0c0f689a38322f9e0cb366eb034ff194a29f5b9ab9",
+      "status": "downloaded_verified",
+      "puppySlug": "sherlock",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-blue-505fb7ef-3ef5-40d2-93d7-833d54e007d9",
+      "target": "/images/puppies/evie-2026-week-2/sherlock-week-2-03.webp",
+      "bytes": 71136,
+      "selectionReason": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws."
+    },
+    {
+      "id": "1dP58hJ9BD9nlgCTJVVY8Z58hwto4ngom",
+      "name": "IMG_7430.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 14257831,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7430.jpg",
+      "sha256": "115175178c4191c80079cdd974ae18a938048a8857f069499fb4af2a30b4e84a",
+      "status": "downloaded_verified",
+      "puppySlug": "watson",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-green-d66d3bbd-2cb5-4534-b6e1-b1a4f9175689",
+      "target": "/images/puppies/evie-2026-week-2/watson-week-2-01.webp",
+      "bytes": 95046,
+      "selectionReason": "Green collar/bow; white forehead cap narrowing to a faint line and small white muzzle/chin."
+    },
+    {
+      "id": "12AV2cpZ-aCpsy9pZL5diWqTkhN4yyWNj",
+      "name": "IMG_7432.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 14341837,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7432.jpg",
+      "sha256": "4f4f32e649d08e578eb46337d99c86e2370ae094432f87e34e6f34076c9e5ae2",
+      "status": "downloaded_verified",
+      "puppySlug": "watson",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-green-d66d3bbd-2cb5-4534-b6e1-b1a4f9175689",
+      "target": "/images/puppies/evie-2026-week-2/watson-week-2-02.webp",
+      "bytes": 92986,
+      "selectionReason": "Green collar/bow; white forehead cap narrowing to a faint line and small white muzzle/chin."
+    },
+    {
+      "id": "1u4MZE8jWRLNQEoqTms4F27G7EcHtYohB",
+      "name": "IMG_7434.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 14015611,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7434.jpg",
+      "sha256": "4aca969f85ac068da87124935758da9fba4f01294de21130d10126f0a1f6734c",
+      "status": "downloaded_verified",
+      "puppySlug": "evie-orange-collar-boy",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-orange-01f3d815-0add-4d01-b163-6bd9732013cf",
+      "target": "/images/puppies/evie-2026-week-2/evie-orange-collar-boy-week-2-01.webp",
+      "bytes": 87300,
+      "selectionReason": "Orange collar/gray neck bow; medium white forehead-to-muzzle blaze, red ears and white feet."
+    },
+    {
+      "id": "1C8xyCmiQL-SPAj_IjSXKVqV-ERxnZVjG",
+      "name": "IMG_7435.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 11758082,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7435.jpg",
+      "sha256": "9f5ee25a7c1b28e2d44603cdbcbaf62b4f34f20729263fa656c2340f775496ac",
+      "status": "downloaded_verified",
+      "puppySlug": "evie-orange-collar-boy",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-orange-01f3d815-0add-4d01-b163-6bd9732013cf",
+      "target": "/images/puppies/evie-2026-week-2/evie-orange-collar-boy-week-2-02.webp",
+      "bytes": 81688,
+      "selectionReason": "Orange collar/gray neck bow; medium white forehead-to-muzzle blaze, red ears and white feet."
+    },
+    {
+      "id": "1lLmmtyt_ChvCLpRNrNUzBd8vDID9C5Qx",
+      "name": "IMG_7446.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 14301834,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7446.jpg",
+      "sha256": "81630b823e968e600046c0aa8c6db410e30b7604ee137d988a06157ea67bcd18",
+      "status": "downloaded_verified",
+      "puppySlug": "nancy",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-pink-158cc3a5-34ca-4407-80fa-d0ca477087ad",
+      "target": "/images/puppies/evie-2026-week-2/nancy-week-2-01.webp",
+      "bytes": 94288,
+      "selectionReason": "Pink collar/head bow; mostly red face with small pale forehead cap, white chin/chest and toes."
+    },
+    {
+      "id": "14jLE1d9T_tyCSZzXSZic280LkPgudWob",
+      "name": "IMG_7442.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 13951346,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7442.jpg",
+      "sha256": "7e2f49867acdf6c8c96a2f56457b1074046177fd351a4716809639318aad5914",
+      "status": "downloaded_verified",
+      "puppySlug": "nancy",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-pink-158cc3a5-34ca-4407-80fa-d0ca477087ad",
+      "target": "/images/puppies/evie-2026-week-2/nancy-week-2-02.webp",
+      "bytes": 96612,
+      "selectionReason": "Pink collar/head bow; mostly red face with small pale forehead cap, white chin/chest and toes."
+    },
+    {
+      "id": "1gJmQTYYPyug2ABj7ItSHbN1QE5iI_TCW",
+      "name": "IMG_7444.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 14461909,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7444.jpg",
+      "sha256": "acea982a609c0c523b7add800330c32c0ce41c4d67472637ab04318191ff5106",
+      "status": "downloaded_verified",
+      "puppySlug": "nancy",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-pink-158cc3a5-34ca-4407-80fa-d0ca477087ad",
+      "target": "/images/puppies/evie-2026-week-2/nancy-week-2-03.webp",
+      "bytes": 102284,
+      "selectionReason": "Pink collar/head bow; mostly red face with small pale forehead cap, white chin/chest and toes."
+    },
+    {
+      "id": "14twfwqKZ0TgXemCwpA4lzwPkgaac9qsq",
+      "name": "IMG_7452.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 13226700,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7452.jpg",
+      "sha256": "36873fb58a6059b96ee6d1c789af2536e0db066b5bdb9d3fd36293f5bebd3b2c",
+      "status": "downloaded_verified",
+      "puppySlug": "agatha",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-purple-673e1b51-d615-4790-bf1e-6fdf0972c405",
+      "target": "/images/puppies/evie-2026-week-2/agatha-week-2-01.webp",
+      "bytes": 75876,
+      "selectionReason": "Purple collar/pale green head bow; wide white forehead cap and muzzle/chin with red eye patches."
+    },
+    {
+      "id": "1Lr7_N6Aj_ok-6-Jg2XTx61NOTtRZikOh",
+      "name": "IMG_7449.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 13308667,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7449.jpg",
+      "sha256": "53458501d7444ad265135ade88a18935b0c2a6cfaf89f0263eda872d640f3b72",
+      "status": "downloaded_verified",
+      "puppySlug": "agatha",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-purple-673e1b51-d615-4790-bf1e-6fdf0972c405",
+      "target": "/images/puppies/evie-2026-week-2/agatha-week-2-02.webp",
+      "bytes": 80150,
+      "selectionReason": "Purple collar/pale green head bow; wide white forehead cap and muzzle/chin with red eye patches."
+    },
+    {
+      "id": "1rrjrb6eyDsdQDw6qdznyQ9Ea87BdQ6KO",
+      "name": "IMG_7472.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 13788120,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7472.jpg",
+      "sha256": "5c3b107038de44d88f04076137c2485cbebbc2fe8f67171737dbdf2178387b72",
+      "status": "downloaded_verified",
+      "puppySlug": "columbo",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-red-c08d2ca9-e9ae-4393-9aef-a5679ce3edc3",
+      "target": "/images/puppies/evie-2026-week-2/columbo-week-2-01.webp",
+      "bytes": 81676,
+      "selectionReason": "Red collar/neck bow; white forehead-to-muzzle blaze and white paws; speckled pink/black nose."
+    },
+    {
+      "id": "17nJY4mcBFWncuqLWuIhwrd0vBg_3kEBD",
+      "name": "IMG_7461.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 11376700,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7461.jpg",
+      "sha256": "1ab75efee1fd83b452071ed8fffa9fab78c2c1badb6259f771d60773300c9959",
+      "status": "downloaded_verified",
+      "puppySlug": "columbo",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-red-c08d2ca9-e9ae-4393-9aef-a5679ce3edc3",
+      "target": "/images/puppies/evie-2026-week-2/columbo-week-2-02.webp",
+      "bytes": 83306,
+      "selectionReason": "Red collar/neck bow; white forehead-to-muzzle blaze and white paws; speckled pink/black nose."
+    },
+    {
+      "id": "1WO5XUQz3N8Nr_wlKuu3tgsQKWxBpek_3",
+      "name": "IMG_7474.jpg",
+      "litter": "evie",
+      "mime": "image/jpeg",
+      "parent": [
+        "1SJD-6w98SFiRG7TigBcs_V1s5QCVi_Az"
+      ],
+      "size": 11634384,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/evie/IMG_7474.jpg",
+      "sha256": "038759189e55ca78537dba8d45869c1721f49d78d0b8327c1d8453d32cf39370",
+      "status": "downloaded_verified",
+      "puppySlug": "columbo",
+      "ownerPuppyId": "puppy-litter-evie-nicks-waylon-jennings-1791731274700-red-c08d2ca9-e9ae-4393-9aef-a5679ce3edc3",
+      "target": "/images/puppies/evie-2026-week-2/columbo-week-2-03.webp",
+      "bytes": 97866,
+      "selectionReason": "Red collar/neck bow; white forehead-to-muzzle blaze and white paws; speckled pink/black nose."
+    },
+    {
+      "id": "1wBYe837RsFyOp-1Rdtb5ru7Q6ToMFHEG",
+      "name": "IMG_7495.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 14857958,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7495.jpg",
+      "sha256": "9063a5aa5e9cb0faea13b1c280a3534dda479c1004b7436fbca857b4133a2ecf",
+      "status": "downloaded_verified",
+      "puppySlug": "penn",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-blue-e00ea5d2-0a53-46ea-a204-6b3529206fab",
+      "target": "/images/puppies/lulu-2026-week-2/penn-week-2-01.webp",
+      "bytes": 97154,
+      "selectionReason": "Light blue collar/neck bow; white forehead blaze and muzzle/chest, red ears and body."
+    },
+    {
+      "id": "18swfyDzbdsq64Lr_t0fwAPtM0piEJ-Kq",
+      "name": "IMG_7478.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 14146808,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7478.jpg",
+      "sha256": "897ecbc6342a83e8f4422930de6ac655dd76653407314b1a1d0a4497005e555e",
+      "status": "downloaded_verified",
+      "puppySlug": "penn",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-blue-e00ea5d2-0a53-46ea-a204-6b3529206fab",
+      "target": "/images/puppies/lulu-2026-week-2/penn-week-2-02.webp",
+      "bytes": 83682,
+      "selectionReason": "Light blue collar/neck bow; white forehead blaze and muzzle/chest, red ears and body."
+    },
+    {
+      "id": "1NAKfvglqY5xcEcrNwosSMfK-vXG9ElB3",
+      "name": "IMG_7480.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 13552531,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7480.jpg",
+      "sha256": "5fcc7421591e916e1fe4c2e53f3e2c9f56112bee5b015b905fd414ad581bae36",
+      "status": "downloaded_verified",
+      "puppySlug": "penn",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-blue-e00ea5d2-0a53-46ea-a204-6b3529206fab",
+      "target": "/images/puppies/lulu-2026-week-2/penn-week-2-03.webp",
+      "bytes": 96826,
+      "selectionReason": "Light blue collar/neck bow; white forehead blaze and muzzle/chest, red ears and body."
+    },
+    {
+      "id": "1SCtoqWegvGVyRsUvFo34zjSsK03Z5WZn",
+      "name": "IMG_7533.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 11438978,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7533.jpg",
+      "sha256": "4c45cc744004a30e523ef7035273ac02f816b6981eb53b72eadc670adbf831d0",
+      "status": "downloaded_verified",
+      "puppySlug": "dottie",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-hot-pink-a2f003f2-75f1-42ce-9a47-7194d4ce1fc0",
+      "target": "/images/puppies/lulu-2026-week-2/dottie-week-2-01.webp",
+      "bytes": 89080,
+      "selectionReason": "Hot pink collar/head bow; predominantly red face with tiny pale forehead/chin and white toes."
+    },
+    {
+      "id": "1ZEcso9wnxW8Y1RE5dzHrojtPMdFJBI6Z",
+      "name": "IMG_7562.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 13925212,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7562.jpg",
+      "sha256": "a8e5105a0d4aa4df27f96bda2e44285d5bdd23c9b359f241915866b025dde57c",
+      "status": "downloaded_verified",
+      "puppySlug": "dottie",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-hot-pink-a2f003f2-75f1-42ce-9a47-7194d4ce1fc0",
+      "target": "/images/puppies/lulu-2026-week-2/dottie-week-2-02.webp",
+      "bytes": 103734,
+      "selectionReason": "Hot pink collar/head bow; predominantly red face with tiny pale forehead/chin and white toes."
+    },
+    {
+      "id": "1-1f320r47Ol2vxxwHPsSHLg57yfrIo-I",
+      "name": "IMG_7568.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 14028057,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7568.jpg",
+      "sha256": "1f5f591860d5012299563854ec7cd28d693a65e6af73350a5b3ee5000678f6f0",
+      "status": "downloaded_verified",
+      "puppySlug": "dottie",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-hot-pink-a2f003f2-75f1-42ce-9a47-7194d4ce1fc0",
+      "target": "/images/puppies/lulu-2026-week-2/dottie-week-2-03.webp",
+      "bytes": 75612,
+      "selectionReason": "Hot pink collar/head bow; predominantly red face with tiny pale forehead/chin and white toes."
+    },
+    {
+      "id": "1MNnr0YRo9HfnsC16v4kD25v0Loqc6UGL",
+      "name": "IMG_7586.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 12251334,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7586.jpg",
+      "sha256": "391b1e6a818d8231ec4dfa7c1bd107927b32c4d61a9cbddb11e11acfe80f9bb5",
+      "status": "downloaded_verified",
+      "puppySlug": "posy",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-maroon-9396801c-ebd7-44b8-8053-2da564a332e7",
+      "target": "/images/puppies/lulu-2026-week-2/posy-week-2-01.webp",
+      "bytes": 86746,
+      "selectionReason": "Maroon collar/head bow; white forehead blaze and muzzle, red ear/eye patches; pink-black nose."
+    },
+    {
+      "id": "1Wd6_pVIJ-4yZayxXfmclMEd9QVqstCKZ",
+      "name": "IMG_7578.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 9030011,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7578.jpg",
+      "sha256": "745bc788b7fd57bb6d6d984356ea0fb931c892f5c3000204955e39988087df29",
+      "status": "downloaded_verified",
+      "puppySlug": "posy",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-maroon-9396801c-ebd7-44b8-8053-2da564a332e7",
+      "target": "/images/puppies/lulu-2026-week-2/posy-week-2-02.webp",
+      "bytes": 64974,
+      "selectionReason": "Maroon collar/head bow; white forehead blaze and muzzle, red ear/eye patches; pink-black nose."
+    },
+    {
+      "id": "1DByB2X7jSVX_BLyaJ6lPRdYbYOC1q8dj",
+      "name": "IMG_7590.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 13873548,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7590.jpg",
+      "sha256": "21b721709d9c6df4781b2b60fcbdd4db2b89784b855c80989dcb927fd092719d",
+      "status": "downloaded_verified",
+      "puppySlug": "posy",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-maroon-9396801c-ebd7-44b8-8053-2da564a332e7",
+      "target": "/images/puppies/lulu-2026-week-2/posy-week-2-03.webp",
+      "bytes": 65858,
+      "selectionReason": "Maroon collar/head bow; white forehead blaze and muzzle, red ear/eye patches; pink-black nose."
+    },
+    {
+      "id": "1AMpfZKKzhuMUCZ3Mk8GcQ36kNQMJSMdf",
+      "name": "IMG_7600.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 14299618,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7600.jpg",
+      "sha256": "d314d025f98bd901271ae8c78eb70f823154448e02c63d17e5d5052184be1a7c",
+      "status": "downloaded_verified",
+      "puppySlug": "merryweather",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-white-af438d8f-2b58-4ce8-a720-d6fd2babcf00",
+      "target": "/images/puppies/lulu-2026-week-2/merryweather-week-2-01.webp",
+      "bytes": 93646,
+      "selectionReason": "White collar, green head bow; broad white forehead blaze and muzzle, red ears/eye patches."
+    },
+    {
+      "id": "16H8nMieQhdDPAQmAetAKBNln4WJT-XTG",
+      "name": "IMG_7602.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 11685773,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7602.jpg",
+      "sha256": "eaed21e1a5c5a6c4dec0e247407c29814f268f719f4723e6361d33fb34f463b8",
+      "status": "downloaded_verified",
+      "puppySlug": "merryweather",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-white-af438d8f-2b58-4ce8-a720-d6fd2babcf00",
+      "target": "/images/puppies/lulu-2026-week-2/merryweather-week-2-02.webp",
+      "bytes": 85896,
+      "selectionReason": "White collar, green head bow; broad white forehead blaze and muzzle, red ears/eye patches."
+    },
+    {
+      "id": "1uJS2PfoQe2uRDD9N9NmmrBld-tF6Yh8r",
+      "name": "IMG_7605.jpg",
+      "litter": "lulu",
+      "mime": "image/jpeg",
+      "parent": [
+        "1ufz7ZVknRztynyK-uCIVi6fQVyPi7QOP"
+      ],
+      "size": 13607571,
+      "path": "/tmp/rrd-weekly-media-20261027-originals/lulu/IMG_7605.jpg",
+      "sha256": "5328731978af54452bfee18f69448bfdd5c124704986d7ea2079440af9a71eb9",
+      "status": "downloaded_verified",
+      "puppySlug": "merryweather",
+      "ownerPuppyId": "puppy-litter-plan-lulu-bram-bred-2026-08-white-af438d8f-2b58-4ce8-a720-d6fd2babcf00",
+      "target": "/images/puppies/lulu-2026-week-2/merryweather-week-2-03.webp",
+      "bytes": 85098,
+      "selectionReason": "White collar, green head bow; broad white forehead blaze and muzzle, red ears/eye patches."
+    }
+  ],
+  "allSourceDispositions": [
+    {
+      "id": "1o0ff_8AIUGXabLwey6uvs31313vKNC5R",
+      "name": "IMG_7295.jpg",
+      "litter": "kylie",
+      "puppySlug": "october",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Narrow white muzzle/chest; gray bow; chocolate phantom face matching October clip."
+    },
+    {
+      "id": "1TTjSaMPaV5T4mYx1mtgf0nacgvx4VTOm",
+      "name": "IMG_7298.jpg",
+      "litter": "kylie",
+      "puppySlug": "october",
+      "disposition": "selected public portrait",
+      "visualSignature": "Narrow white muzzle/chest; gray bow; chocolate phantom face matching October clip."
+    },
+    {
+      "id": "1waptTpcZiAQWcvBI-Qhu9FEH2cSFhZrc",
+      "name": "IMG_7300.jpg",
+      "litter": "kylie",
+      "puppySlug": "october",
+      "disposition": "selected public portrait",
+      "visualSignature": "Narrow white muzzle/chest; gray bow; chocolate phantom face matching October clip."
+    },
+    {
+      "id": "1d5wFOs5TPQ4sf7skM8a6Lm3tAUdlcUzs",
+      "name": "IMG_7305.jpg",
+      "litter": "kylie",
+      "puppySlug": "october",
+      "disposition": "selected public portrait",
+      "visualSignature": "Narrow white muzzle/chest; gray bow; chocolate phantom face matching October clip."
+    },
+    {
+      "id": "15q7Z9Yo1HP7EEB5XYuNZvnEo0t9tHTjI",
+      "name": "IMG_7294.jpg",
+      "litter": "kylie",
+      "puppySlug": "october",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Narrow white muzzle/chest; gray bow; chocolate phantom face matching October clip."
+    },
+    {
+      "id": "1jpanQcNL3JkhAlEGbW9Or69JM7Yqo0En",
+      "name": "IMG_7312.jpg",
+      "litter": "kylie",
+      "puppySlug": "bram",
+      "disposition": "selected public portrait",
+      "visualSignature": "Broad white blaze and muzzle; blue collar/bow; brown ears and tan forelegs."
+    },
+    {
+      "id": "1IIXsaHDlKjv56HVhHHP-RF957fMIviJt",
+      "name": "IMG_7314.jpg",
+      "litter": "kylie",
+      "puppySlug": "bram",
+      "disposition": "selected public portrait",
+      "visualSignature": "Broad white blaze and muzzle; blue collar/bow; brown ears and tan forelegs."
+    },
+    {
+      "id": "1R2_X3pMLN3suyy7bK1eR9wxiEivEUor7",
+      "name": "IMG_7317.jpg",
+      "litter": "kylie",
+      "puppySlug": "bram",
+      "disposition": "selected public portrait",
+      "visualSignature": "Broad white blaze and muzzle; blue collar/bow; brown ears and tan forelegs."
+    },
+    {
+      "id": "1NYf8W6hU2-U62aTXBJ9HcGFzweCKWzTg",
+      "name": "IMG_7306.jpg",
+      "litter": "kylie",
+      "puppySlug": "bram",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Broad white blaze and muzzle; blue collar/bow; brown ears and tan forelegs."
+    },
+    {
+      "id": "1lRmMssMCNsQtlc6E8RAOL85IlC0oMDCR",
+      "name": "IMG_7322.jpg",
+      "litter": "kylie",
+      "puppySlug": "hugo-poe",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes."
+    },
+    {
+      "id": "1Q-KgDgenrU4MXyaA5uqmupe8B6iig47n",
+      "name": "IMG_7326.jpg",
+      "litter": "kylie",
+      "puppySlug": "hugo-poe",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes."
+    },
+    {
+      "id": "1GYPk6Xpq0umREGQDXLfgo9ZXzAbyw9XE",
+      "name": "IMG_7330.jpg",
+      "litter": "kylie",
+      "puppySlug": "hugo-poe",
+      "disposition": "selected public portrait",
+      "visualSignature": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes."
+    },
+    {
+      "id": "1VozAj0d_V6sMq9To-Q-46HqMsRHa2CqL",
+      "name": "IMG_7334.jpg",
+      "litter": "kylie",
+      "puppySlug": "hugo-poe",
+      "disposition": "selected public portrait",
+      "visualSignature": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes."
+    },
+    {
+      "id": "1yRUO2d1RyDZd57GMSL6bpcU_O30JJjD-",
+      "name": "IMG_7339.jpg",
+      "litter": "kylie",
+      "puppySlug": "hugo-poe",
+      "disposition": "selected public portrait",
+      "visualSignature": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes."
+    },
+    {
+      "id": "15B98cINPzgIuT28q-lwrdpHPGnIoZR7c",
+      "name": "IMG_7318.jpg",
+      "litter": "kylie",
+      "puppySlug": "hugo-poe",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Broad white facial blaze and pink-speckled nose; green collar/bow; white chest and rear toes."
+    },
+    {
+      "id": "17Sr1D2d1WNbKrgufdk5ZE4nooGeghZ6n",
+      "name": "IMG_7348.jpg",
+      "litter": "kylie",
+      "puppySlug": "ophelia-shadow",
+      "disposition": "selected public portrait",
+      "visualSignature": "Pink collar/head bow; narrow white face blaze and muzzle; small white chest; dark chocolate legs."
+    },
+    {
+      "id": "1-8PxOUe6xYXm-_Jy44Yr_Lp8p4Rb4Yv0",
+      "name": "IMG_7349.jpg",
+      "litter": "kylie",
+      "puppySlug": "ophelia-shadow",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Pink collar/head bow; narrow white face blaze and muzzle; small white chest; dark chocolate legs."
+    },
+    {
+      "id": "1q1kov2IFhsD0hur_HL0k64piOrkI_9H3",
+      "name": "IMG_7350.jpg",
+      "litter": "kylie",
+      "puppySlug": "ophelia-shadow",
+      "disposition": "selected public portrait",
+      "visualSignature": "Pink collar/head bow; narrow white face blaze and muzzle; small white chest; dark chocolate legs."
+    },
+    {
+      "id": "1PGTBLGbY4Yf3fCH05pu3vfjK03FARTJO",
+      "name": "IMG_7354.jpg",
+      "litter": "kylie",
+      "puppySlug": "ophelia-shadow",
+      "disposition": "selected public portrait",
+      "visualSignature": "Pink collar/head bow; narrow white face blaze and muzzle; small white chest; dark chocolate legs."
+    },
+    {
+      "id": "1avfYDBpC-pJbuHvKH3kxt6nuEhwj_8zc",
+      "name": "IMG_7345.jpg",
+      "litter": "kylie",
+      "puppySlug": "ophelia-shadow",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Pink collar/head bow; narrow white face blaze and muzzle; small white chest; dark chocolate legs."
+    },
+    {
+      "id": "1LqgyoNQn1agvd5qmTfDLQggzkVWOUvKz",
+      "name": "IMG_7369.jpg",
+      "litter": "kylie",
+      "puppySlug": "salem",
+      "disposition": "selected public portrait",
+      "visualSignature": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest."
+    },
+    {
+      "id": "1F0Fr4zWZfK66H9ongnxl7zIXrv0KC8xL",
+      "name": "IMG_7370.jpg",
+      "litter": "kylie",
+      "puppySlug": "salem",
+      "disposition": "selected public portrait",
+      "visualSignature": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest."
+    },
+    {
+      "id": "1TwPKChhckhrK9zCzlatFZ0bpuJsRSMb3",
+      "name": "IMG_7378.jpg",
+      "litter": "kylie",
+      "puppySlug": "salem",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest."
+    },
+    {
+      "id": "1g49HdqQ0R7vuo03nlZXvMZywY6FOUkg6",
+      "name": "IMG_7382.jpg",
+      "litter": "kylie",
+      "puppySlug": "salem",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest."
+    },
+    {
+      "id": "1yie9zLG_TLfbATSMrrGI4O6NtcxPspTW",
+      "name": "IMG_7385.jpg",
+      "litter": "kylie",
+      "puppySlug": "salem",
+      "disposition": "selected public portrait",
+      "visualSignature": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest."
+    },
+    {
+      "id": "1efOUKvutdq3urrmx-XMXg0ZKqV_NVAEt",
+      "name": "IMG_7367.jpg",
+      "litter": "kylie",
+      "puppySlug": "salem",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Purple collar, cream head bow; broad white blaze with dark eye patches; white chest."
+    },
+    {
+      "id": "1HDnuVB10ga-1szYZbUKrKK0xkN-IZgFK",
+      "name": "IMG_7389.jpg",
+      "litter": "kylie",
+      "puppySlug": "raven",
+      "disposition": "selected public portrait",
+      "visualSignature": "Red collar/red head bow; thin broken white forehead line and muzzle, chocolate phantom eyebrows."
+    },
+    {
+      "id": "10yyWC3GIMp3jTzeYJghXDhCm3W8RzRL3",
+      "name": "IMG_7392.jpg",
+      "litter": "kylie",
+      "puppySlug": "raven",
+      "disposition": "selected public portrait",
+      "visualSignature": "Red collar/red head bow; thin broken white forehead line and muzzle, chocolate phantom eyebrows."
+    },
+    {
+      "id": "1_7KQYPqfqJOZl2nWusgbdP6fXf1BNeE8",
+      "name": "IMG_7393.jpg",
+      "litter": "kylie",
+      "puppySlug": "raven",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Red collar/red head bow; thin broken white forehead line and muzzle, chocolate phantom eyebrows."
+    },
+    {
+      "id": "1QsespWexnFF_bmJZcWxlWtO8uakMicTT",
+      "name": "IMG_7395.jpg",
+      "litter": "kylie",
+      "puppySlug": "raven",
+      "disposition": "selected public portrait",
+      "visualSignature": "Red collar/red head bow; thin broken white forehead line and muzzle, chocolate phantom eyebrows."
+    },
+    {
+      "id": "1_ZXg4Jl7rn9_id59SxNSR2eMSuB0N6XH",
+      "name": "IMG_7386.jpg",
+      "litter": "kylie",
+      "puppySlug": "raven",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Red collar/red head bow; thin broken white forehead line and muzzle, chocolate phantom eyebrows."
+    },
+    {
+      "id": "1EfsDt9foAAEgvUBLBXvDRU5JvpGRHUJL",
+      "name": "IMG_7607.jpg",
+      "litter": "beatrix",
+      "puppySlug": "atticus",
+      "disposition": "selected public portrait",
+      "visualSignature": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears."
+    },
+    {
+      "id": "1pyMtwiSPCxM8P8CTFnevagTx2iSRRzy3",
+      "name": "IMG_7610.jpg",
+      "litter": "beatrix",
+      "puppySlug": "atticus",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears."
+    },
+    {
+      "id": "1MBA-zQEEVCxMl30dAf6sKPiRYVWXR_T3",
+      "name": "IMG_7612.jpg",
+      "litter": "beatrix",
+      "puppySlug": "atticus",
+      "disposition": "selected public portrait",
+      "visualSignature": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears."
+    },
+    {
+      "id": "1rFZggvgDo1YgYqdL7r9XdDjTocQHBWSa",
+      "name": "IMG_7614.jpg",
+      "litter": "beatrix",
+      "puppySlug": "atticus",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears."
+    },
+    {
+      "id": "1SmLCO3DAaoFe5Tux46vIlgxRvCZmTQYG",
+      "name": "IMG_7616.jpg",
+      "litter": "beatrix",
+      "puppySlug": "atticus",
+      "disposition": "selected public portrait",
+      "visualSignature": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears."
+    },
+    {
+      "id": "1vYHvnE_iyhwFsuX0Gz-792wQ8jI9ZdmC",
+      "name": "IMG_7606.jpg",
+      "litter": "beatrix",
+      "puppySlug": "atticus",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Light blue collar/bow; white curly body and central face; apricot eye patches/ears."
+    },
+    {
+      "id": "1HEJD3qzZ3_zKNXR9KUQPaa4XWdVg6MqI",
+      "name": "IMG_7620.jpg",
+      "litter": "beatrix",
+      "puppySlug": "twain",
+      "disposition": "selected public portrait",
+      "visualSignature": "Dark blue bow/collar; mostly white body and muzzle with tan ear/eye patches."
+    },
+    {
+      "id": "1cr1Qx6fvB4KM9yfwfAwyBd9c3eS6w1ex",
+      "name": "IMG_7621.jpg",
+      "litter": "beatrix",
+      "puppySlug": "twain",
+      "disposition": "selected public portrait",
+      "visualSignature": "Dark blue bow/collar; mostly white body and muzzle with tan ear/eye patches."
+    },
+    {
+      "id": "13B5zfOm82SRj_8GiRK6_JbloSnvHE6h5",
+      "name": "IMG_7623.jpg",
+      "litter": "beatrix",
+      "puppySlug": "twain",
+      "disposition": "selected public portrait",
+      "visualSignature": "Dark blue bow/collar; mostly white body and muzzle with tan ear/eye patches."
+    },
+    {
+      "id": "1aVMWDjdzuPkws5EoavW3ZeGx7XGmujvh",
+      "name": "IMG_7617.jpg",
+      "litter": "beatrix",
+      "puppySlug": "twain",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Dark blue bow/collar; mostly white body and muzzle with tan ear/eye patches."
+    },
+    {
+      "id": "1qjFRCU5wSAAbRynkHm6XC9G4n0CTb8q8",
+      "name": "IMG_7631.jpg",
+      "litter": "beatrix",
+      "puppySlug": "wells",
+      "disposition": "selected public portrait",
+      "visualSignature": "Gray collar/bow; curly red coat, white muzzle bridge/forehead dash and white toes."
+    },
+    {
+      "id": "17TpZbhrMe85OzFvQVz4QM1AfaCWLaKk0",
+      "name": "IMG_7636.jpg",
+      "litter": "beatrix",
+      "puppySlug": "wells",
+      "disposition": "selected public portrait",
+      "visualSignature": "Gray collar/bow; curly red coat, white muzzle bridge/forehead dash and white toes."
+    },
+    {
+      "id": "172r0m6Mq69f6AgMNHpKSMHW1vclYs5j8",
+      "name": "IMG_7637.jpg",
+      "litter": "beatrix",
+      "puppySlug": "wells",
+      "disposition": "selected public portrait",
+      "visualSignature": "Gray collar/bow; curly red coat, white muzzle bridge/forehead dash and white toes."
+    },
+    {
+      "id": "1NoSTWMRT8dn9oMYXDC20-z3hjOxrFEIU",
+      "name": "IMG_7625.jpg",
+      "litter": "beatrix",
+      "puppySlug": "wells",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Gray collar/bow; curly red coat, white muzzle bridge/forehead dash and white toes."
+    },
+    {
+      "id": "1le3NkBYiRVzns3bg8MQ7XIC__RNJlC54",
+      "name": "IMG_7642.jpg",
+      "litter": "beatrix",
+      "puppySlug": "edith",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches."
+    },
+    {
+      "id": "10whKiIxr-ADbT2DQY6yOm7zxsAFS16p9",
+      "name": "IMG_7644.jpg",
+      "litter": "beatrix",
+      "puppySlug": "edith",
+      "disposition": "selected public portrait",
+      "visualSignature": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches."
+    },
+    {
+      "id": "115u4ErOA4a8Gn8AqnzPBq082V0JSkpoI",
+      "name": "IMG_7646.jpg",
+      "litter": "beatrix",
+      "puppySlug": "edith",
+      "disposition": "selected public portrait",
+      "visualSignature": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches."
+    },
+    {
+      "id": "1E1ycLDSluGDy0nA7_kIAKc96mQN4RD2Z",
+      "name": "IMG_7648.jpg",
+      "litter": "beatrix",
+      "puppySlug": "edith",
+      "disposition": "selected public portrait",
+      "visualSignature": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches."
+    },
+    {
+      "id": "1Ih34RMESDuoTRfaZGizQxpELLbjlsMO5",
+      "name": "IMG_7649.jpg",
+      "litter": "beatrix",
+      "puppySlug": "edith",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches."
+    },
+    {
+      "id": "1k7hua85ZJPYtj_qyzvtl2j1iMDaU79K9",
+      "name": "IMG_7639.jpg",
+      "litter": "beatrix",
+      "puppySlug": "edith",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Maroon collar/red head bow; straight white blaze, white chest/body and tan ears/eye patches."
+    },
+    {
+      "id": "1W7py23lEfN_2_OVhPEFr887j3W2C42Ll",
+      "name": "IMG_7656.jpg",
+      "litter": "beatrix",
+      "puppySlug": "darcy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Mint collar/bow; white curly forehead/muzzle/body with reddish curly ears and body patches."
+    },
+    {
+      "id": "1m9_bxKbg_uju2vPJXhMKvdqqUXXSlv70",
+      "name": "IMG_7658.jpg",
+      "litter": "beatrix",
+      "puppySlug": "darcy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Mint collar/bow; white curly forehead/muzzle/body with reddish curly ears and body patches."
+    },
+    {
+      "id": "1r9o7BLvqRZIWA93Z6Y3kO7IO-DoERf_Z",
+      "name": "IMG_7660.jpg",
+      "litter": "beatrix",
+      "puppySlug": "darcy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Mint collar/bow; white curly forehead/muzzle/body with reddish curly ears and body patches."
+    },
+    {
+      "id": "1W4E6WpsDNu3YHa4zXjUY-vmCdHhvb1HX",
+      "name": "IMG_7650.jpg",
+      "litter": "beatrix",
+      "puppySlug": "darcy",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Mint collar/bow; white curly forehead/muzzle/body with reddish curly ears and body patches."
+    },
+    {
+      "id": "11ZoqtzxnKecbuQEAiL_LADDynWOxT9LD",
+      "name": "IMG_7665.jpg",
+      "litter": "beatrix",
+      "puppySlug": "austen",
+      "disposition": "selected public portrait",
+      "visualSignature": "Pink collar/head bow; off-center white forehead blaze, reddish eye/ear patches and white body."
+    },
+    {
+      "id": "1JdXbz1OBDPW32k8wIvebp3fy7xSeW9xl",
+      "name": "IMG_7667.jpg",
+      "litter": "beatrix",
+      "puppySlug": "austen",
+      "disposition": "selected public portrait",
+      "visualSignature": "Pink collar/head bow; off-center white forehead blaze, reddish eye/ear patches and white body."
+    },
+    {
+      "id": "1KWim9pe8Lx3_SAxISnehzFdpv--xp2f9",
+      "name": "IMG_7662.jpg",
+      "litter": "beatrix",
+      "puppySlug": "austen",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Pink collar/head bow; off-center white forehead blaze, reddish eye/ear patches and white body."
+    },
+    {
+      "id": "1LjmCt9nP6Egm8zuZq3VhUAlUL0ZdZFP5",
+      "name": "IMG_7673.jpg",
+      "litter": "beatrix",
+      "puppySlug": "bronte",
+      "disposition": "selected public portrait",
+      "visualSignature": "Purple collar, green head bow; red curly face with tiny pale forehead dash and white chest/toes."
+    },
+    {
+      "id": "1IGbzg3L7prsPUnApX1JSw_kMDcR2WIaA",
+      "name": "IMG_7675.jpg",
+      "litter": "beatrix",
+      "puppySlug": "bronte",
+      "disposition": "selected public portrait",
+      "visualSignature": "Purple collar, green head bow; red curly face with tiny pale forehead dash and white chest/toes."
+    },
+    {
+      "id": "1j2f85r9N_rGXTJEuT_bjXyL0Wu4djZlf",
+      "name": "IMG_7677.jpg",
+      "litter": "beatrix",
+      "puppySlug": "bronte",
+      "disposition": "selected public portrait",
+      "visualSignature": "Purple collar, green head bow; red curly face with tiny pale forehead dash and white chest/toes."
+    },
+    {
+      "id": "1AR3R-6TVCYYTjIdTkXty4opvkC91wB2i",
+      "name": "IMG_7670.jpg",
+      "litter": "beatrix",
+      "puppySlug": "bronte",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Purple collar, green head bow; red curly face with tiny pale forehead dash and white chest/toes."
+    },
+    {
+      "id": "1I3_iw6GbA2E8QwGzYmsgGKyREpZz08-W",
+      "name": "IMG_7685.jpg",
+      "litter": "beatrix",
+      "puppySlug": "dickens",
+      "disposition": "selected public portrait",
+      "visualSignature": "Orange collar, cream neck bow; curly red face, small pale forehead/chest marks and white toes."
+    },
+    {
+      "id": "159cVOZIBaVXEqNzu6oq1Fzr7CbOW-wmB",
+      "name": "IMG_7687.jpg",
+      "litter": "beatrix",
+      "puppySlug": "dickens",
+      "disposition": "selected public portrait",
+      "visualSignature": "Orange collar, cream neck bow; curly red face, small pale forehead/chest marks and white toes."
+    },
+    {
+      "id": "18W6Om3REG1T48AtvEw4zmkGrWetIQTBV",
+      "name": "IMG_7683.jpg",
+      "litter": "beatrix",
+      "puppySlug": "dickens",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Orange collar, cream neck bow; curly red face, small pale forehead/chest marks and white toes."
+    },
+    {
+      "id": "1k01HpWb6Fdd_u9k6HF8zOdz4fzV_I_t_",
+      "name": "IMG_7692.jpg",
+      "litter": "beatrix",
+      "puppySlug": "louisa",
+      "disposition": "selected public portrait",
+      "visualSignature": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes."
+    },
+    {
+      "id": "1fRur_BZtkM8XJflVaIelbYeNb7SYsI_z",
+      "name": "IMG_7695.jpg",
+      "litter": "beatrix",
+      "puppySlug": "louisa",
+      "disposition": "selected public portrait",
+      "visualSignature": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes."
+    },
+    {
+      "id": "1joNjASAm6ZnQACATmHMpTk8TkddQPJBJ",
+      "name": "IMG_7696.jpg",
+      "litter": "beatrix",
+      "puppySlug": "louisa",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes."
+    },
+    {
+      "id": "1zDwk8xtFJLp-eUVohd9TX9bvv31kn6iv",
+      "name": "IMG_7699.jpg",
+      "litter": "beatrix",
+      "puppySlug": "louisa",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes."
+    },
+    {
+      "id": "1lQV-4PA6SmER1lPkCsN36qaN3o6rvc_r",
+      "name": "IMG_7701.jpg",
+      "litter": "beatrix",
+      "puppySlug": "louisa",
+      "disposition": "selected public portrait",
+      "visualSignature": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes."
+    },
+    {
+      "id": "1O3k3Qj2hHdTXb9kHSnb08hCdUQtWk6gi",
+      "name": "IMG_7691.jpg",
+      "litter": "beatrix",
+      "puppySlug": "louisa",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Yellow collar/tan head bow; curly red face with no central white blaze; small pale chest/toes."
+    },
+    {
+      "id": "1zhhSClX9g8Kxp4zqDX3rHpoG_ENyobtg",
+      "name": "IMG_7400.jpg",
+      "litter": "evie",
+      "puppySlug": "moriarty",
+      "disposition": "selected public portrait",
+      "visualSignature": "Black collar/gray neck bow; solid red face and coat without white forehead blaze."
+    },
+    {
+      "id": "12sivvYDL9KlXokxEH3bp7avbUG3VnNH1",
+      "name": "IMG_7402.jpg",
+      "litter": "evie",
+      "puppySlug": "moriarty",
+      "disposition": "selected public portrait",
+      "visualSignature": "Black collar/gray neck bow; solid red face and coat without white forehead blaze."
+    },
+    {
+      "id": "1E3HCAf3vB8tpZICf_ShzCcNSic1AG06R",
+      "name": "IMG_7404.jpg",
+      "litter": "evie",
+      "puppySlug": "moriarty",
+      "disposition": "selected public portrait",
+      "visualSignature": "Black collar/gray neck bow; solid red face and coat without white forehead blaze."
+    },
+    {
+      "id": "1jfbWq0KfyQ3P1kSQDWx7Po6y2_mE1uOm",
+      "name": "IMG_7396.jpg",
+      "litter": "evie",
+      "puppySlug": "moriarty",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Black collar/gray neck bow; solid red face and coat without white forehead blaze."
+    },
+    {
+      "id": "147ryld9PgKqneMNYLUwwtHhiVEyHfHjP",
+      "name": "IMG_7413.jpg",
+      "litter": "evie",
+      "puppySlug": "sherlock",
+      "disposition": "selected public portrait",
+      "visualSignature": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws."
+    },
+    {
+      "id": "1cDvnRWvS25sHbPoBIe82UTWgqDvRCaTO",
+      "name": "IMG_7415.jpg",
+      "litter": "evie",
+      "puppySlug": "sherlock",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws."
+    },
+    {
+      "id": "1piWx3KxNeH1_hs1UyNQWqbyfO9etUMoz",
+      "name": "IMG_7417.jpg",
+      "litter": "evie",
+      "puppySlug": "sherlock",
+      "disposition": "selected public portrait",
+      "visualSignature": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws."
+    },
+    {
+      "id": "1cPfEY95avfEseZz31JcwfnTB4a62VI2p",
+      "name": "IMG_7418.jpg",
+      "litter": "evie",
+      "puppySlug": "sherlock",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws."
+    },
+    {
+      "id": "1qfsRHedFcd0dhRk49w1SIjXUvF5EFymk",
+      "name": "IMG_7425.jpg",
+      "litter": "evie",
+      "puppySlug": "sherlock",
+      "disposition": "selected public portrait",
+      "visualSignature": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws."
+    },
+    {
+      "id": "1u6T3akkzXuAXjNX8koKDpSsPQAsMuEJW",
+      "name": "IMG_7409.jpg",
+      "litter": "evie",
+      "puppySlug": "sherlock",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Blue collar/gray neck bow; broad white blaze tapering between eyes, white muzzle and paws."
+    },
+    {
+      "id": "1dP58hJ9BD9nlgCTJVVY8Z58hwto4ngom",
+      "name": "IMG_7430.jpg",
+      "litter": "evie",
+      "puppySlug": "watson",
+      "disposition": "selected public portrait",
+      "visualSignature": "Green collar/bow; white forehead cap narrowing to a faint line and small white muzzle/chin."
+    },
+    {
+      "id": "12AV2cpZ-aCpsy9pZL5diWqTkhN4yyWNj",
+      "name": "IMG_7432.jpg",
+      "litter": "evie",
+      "puppySlug": "watson",
+      "disposition": "selected public portrait",
+      "visualSignature": "Green collar/bow; white forehead cap narrowing to a faint line and small white muzzle/chin."
+    },
+    {
+      "id": "1bu-0896GBRDhfzon6xEl-QTus8SpqeTi",
+      "name": "IMG_7426.jpg",
+      "litter": "evie",
+      "puppySlug": "watson",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Green collar/bow; white forehead cap narrowing to a faint line and small white muzzle/chin."
+    },
+    {
+      "id": "1u4MZE8jWRLNQEoqTms4F27G7EcHtYohB",
+      "name": "IMG_7434.jpg",
+      "litter": "evie",
+      "puppySlug": "evie-orange-collar-boy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Orange collar/gray neck bow; medium white forehead-to-muzzle blaze, red ears and white feet."
+    },
+    {
+      "id": "1C8xyCmiQL-SPAj_IjSXKVqV-ERxnZVjG",
+      "name": "IMG_7435.jpg",
+      "litter": "evie",
+      "puppySlug": "evie-orange-collar-boy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Orange collar/gray neck bow; medium white forehead-to-muzzle blaze, red ears and white feet."
+    },
+    {
+      "id": "1FgqJjOSkjiUV3rI9dqwIBH56MWXDDPMf",
+      "name": "IMG_7436.jpg",
+      "litter": "evie",
+      "puppySlug": "evie-orange-collar-boy",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Orange collar/gray neck bow; medium white forehead-to-muzzle blaze, red ears and white feet."
+    },
+    {
+      "id": "14Bfv-8WeswlcM-L7QsC2-2Ds7XGdRuz0",
+      "name": "IMG_7433.jpg",
+      "litter": "evie",
+      "puppySlug": "evie-orange-collar-boy",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Orange collar/gray neck bow; medium white forehead-to-muzzle blaze, red ears and white feet."
+    },
+    {
+      "id": "1-q4zdR2A_8VZsBGVssB2Osv-BLKkoPGi",
+      "name": "IMG_7441.jpg",
+      "litter": "evie",
+      "puppySlug": "nancy",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Pink collar/head bow; mostly red face with small pale forehead cap, white chin/chest and toes."
+    },
+    {
+      "id": "14jLE1d9T_tyCSZzXSZic280LkPgudWob",
+      "name": "IMG_7442.jpg",
+      "litter": "evie",
+      "puppySlug": "nancy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Pink collar/head bow; mostly red face with small pale forehead cap, white chin/chest and toes."
+    },
+    {
+      "id": "1gJmQTYYPyug2ABj7ItSHbN1QE5iI_TCW",
+      "name": "IMG_7444.jpg",
+      "litter": "evie",
+      "puppySlug": "nancy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Pink collar/head bow; mostly red face with small pale forehead cap, white chin/chest and toes."
+    },
+    {
+      "id": "1lLmmtyt_ChvCLpRNrNUzBd8vDID9C5Qx",
+      "name": "IMG_7446.jpg",
+      "litter": "evie",
+      "puppySlug": "nancy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Pink collar/head bow; mostly red face with small pale forehead cap, white chin/chest and toes."
+    },
+    {
+      "id": "11xtMUDZn6EjFniUjNQcMB8j97Z7dyJv0",
+      "name": "IMG_7440.jpg",
+      "litter": "evie",
+      "puppySlug": "nancy",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Pink collar/head bow; mostly red face with small pale forehead cap, white chin/chest and toes."
+    },
+    {
+      "id": "1Lr7_N6Aj_ok-6-Jg2XTx61NOTtRZikOh",
+      "name": "IMG_7449.jpg",
+      "litter": "evie",
+      "puppySlug": "agatha",
+      "disposition": "selected public portrait",
+      "visualSignature": "Purple collar/pale green head bow; wide white forehead cap and muzzle/chin with red eye patches."
+    },
+    {
+      "id": "14twfwqKZ0TgXemCwpA4lzwPkgaac9qsq",
+      "name": "IMG_7452.jpg",
+      "litter": "evie",
+      "puppySlug": "agatha",
+      "disposition": "selected public portrait",
+      "visualSignature": "Purple collar/pale green head bow; wide white forehead cap and muzzle/chin with red eye patches."
+    },
+    {
+      "id": "1njrx09sItDG7QNNSgN8HLUVnedPQE7qc",
+      "name": "IMG_7447.jpg",
+      "litter": "evie",
+      "puppySlug": "agatha",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Purple collar/pale green head bow; wide white forehead cap and muzzle/chin with red eye patches."
+    },
+    {
+      "id": "17nJY4mcBFWncuqLWuIhwrd0vBg_3kEBD",
+      "name": "IMG_7461.jpg",
+      "litter": "evie",
+      "puppySlug": "columbo",
+      "disposition": "selected public portrait",
+      "visualSignature": "Red collar/neck bow; white forehead-to-muzzle blaze and white paws; speckled pink/black nose."
+    },
+    {
+      "id": "1yXl4NGWRpo_I52ernppG_KpBzGHvXgGv",
+      "name": "IMG_7469.jpg",
+      "litter": "evie",
+      "puppySlug": "columbo",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Red collar/neck bow; white forehead-to-muzzle blaze and white paws; speckled pink/black nose."
+    },
+    {
+      "id": "1rrjrb6eyDsdQDw6qdznyQ9Ea87BdQ6KO",
+      "name": "IMG_7472.jpg",
+      "litter": "evie",
+      "puppySlug": "columbo",
+      "disposition": "selected public portrait",
+      "visualSignature": "Red collar/neck bow; white forehead-to-muzzle blaze and white paws; speckled pink/black nose."
+    },
+    {
+      "id": "1WO5XUQz3N8Nr_wlKuu3tgsQKWxBpek_3",
+      "name": "IMG_7474.jpg",
+      "litter": "evie",
+      "puppySlug": "columbo",
+      "disposition": "selected public portrait",
+      "visualSignature": "Red collar/neck bow; white forehead-to-muzzle blaze and white paws; speckled pink/black nose."
+    },
+    {
+      "id": "1mCNKeNeV2hJBX7sU6egyPhKs8UBircBp",
+      "name": "IMG_7455.jpg",
+      "litter": "evie",
+      "puppySlug": "columbo",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Red collar/neck bow; white forehead-to-muzzle blaze and white paws; speckled pink/black nose."
+    },
+    {
+      "id": "18swfyDzbdsq64Lr_t0fwAPtM0piEJ-Kq",
+      "name": "IMG_7478.jpg",
+      "litter": "lulu",
+      "puppySlug": "penn",
+      "disposition": "selected public portrait",
+      "visualSignature": "Light blue collar/neck bow; white forehead blaze and muzzle/chest, red ears and body."
+    },
+    {
+      "id": "1NAKfvglqY5xcEcrNwosSMfK-vXG9ElB3",
+      "name": "IMG_7480.jpg",
+      "litter": "lulu",
+      "puppySlug": "penn",
+      "disposition": "selected public portrait",
+      "visualSignature": "Light blue collar/neck bow; white forehead blaze and muzzle/chest, red ears and body."
+    },
+    {
+      "id": "1wBYe837RsFyOp-1Rdtb5ru7Q6ToMFHEG",
+      "name": "IMG_7495.jpg",
+      "litter": "lulu",
+      "puppySlug": "penn",
+      "disposition": "selected public portrait",
+      "visualSignature": "Light blue collar/neck bow; white forehead blaze and muzzle/chest, red ears and body."
+    },
+    {
+      "id": "1MSh1V3VqrTgklf9zQhXnB_fA7PIJ5B-u",
+      "name": "IMG_7513.jpg",
+      "litter": "lulu",
+      "puppySlug": "penn",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Light blue collar/neck bow; white forehead blaze and muzzle/chest, red ears and body."
+    },
+    {
+      "id": "1m_oT_YEa0mML03QmRlGzPaawps8pWGWA",
+      "name": "IMG_7476.jpg",
+      "litter": "lulu",
+      "puppySlug": "penn",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Light blue collar/neck bow; white forehead blaze and muzzle/chest, red ears and body."
+    },
+    {
+      "id": "1SCtoqWegvGVyRsUvFo34zjSsK03Z5WZn",
+      "name": "IMG_7533.jpg",
+      "litter": "lulu",
+      "puppySlug": "dottie",
+      "disposition": "selected public portrait",
+      "visualSignature": "Hot pink collar/head bow; predominantly red face with tiny pale forehead/chin and white toes."
+    },
+    {
+      "id": "1ZEcso9wnxW8Y1RE5dzHrojtPMdFJBI6Z",
+      "name": "IMG_7562.jpg",
+      "litter": "lulu",
+      "puppySlug": "dottie",
+      "disposition": "selected public portrait",
+      "visualSignature": "Hot pink collar/head bow; predominantly red face with tiny pale forehead/chin and white toes."
+    },
+    {
+      "id": "1-1f320r47Ol2vxxwHPsSHLg57yfrIo-I",
+      "name": "IMG_7568.jpg",
+      "litter": "lulu",
+      "puppySlug": "dottie",
+      "disposition": "selected public portrait",
+      "visualSignature": "Hot pink collar/head bow; predominantly red face with tiny pale forehead/chin and white toes."
+    },
+    {
+      "id": "1YMYsKRpWE_1vl-0bnBfeoWkcPifdC5pB",
+      "name": "IMG_7572.jpg",
+      "litter": "lulu",
+      "puppySlug": "dottie",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Hot pink collar/head bow; predominantly red face with tiny pale forehead/chin and white toes."
+    },
+    {
+      "id": "1AUrkR7ntYFZROfxgrZ5djPpRTUaeGIWG",
+      "name": "IMG_7528.jpg",
+      "litter": "lulu",
+      "puppySlug": "dottie",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Hot pink collar/head bow; predominantly red face with tiny pale forehead/chin and white toes."
+    },
+    {
+      "id": "1Wd6_pVIJ-4yZayxXfmclMEd9QVqstCKZ",
+      "name": "IMG_7578.jpg",
+      "litter": "lulu",
+      "puppySlug": "posy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Maroon collar/head bow; white forehead blaze and muzzle, red ear/eye patches; pink-black nose."
+    },
+    {
+      "id": "1jjST9aVSYLotxlDKIuFqiRmqm8EX8duE",
+      "name": "IMG_7580.jpg",
+      "litter": "lulu",
+      "puppySlug": "posy",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "Maroon collar/head bow; white forehead blaze and muzzle, red ear/eye patches; pink-black nose."
+    },
+    {
+      "id": "1MNnr0YRo9HfnsC16v4kD25v0Loqc6UGL",
+      "name": "IMG_7586.jpg",
+      "litter": "lulu",
+      "puppySlug": "posy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Maroon collar/head bow; white forehead blaze and muzzle, red ear/eye patches; pink-black nose."
+    },
+    {
+      "id": "1DByB2X7jSVX_BLyaJ6lPRdYbYOC1q8dj",
+      "name": "IMG_7590.jpg",
+      "litter": "lulu",
+      "puppySlug": "posy",
+      "disposition": "selected public portrait",
+      "visualSignature": "Maroon collar/head bow; white forehead blaze and muzzle, red ear/eye patches; pink-black nose."
+    },
+    {
+      "id": "1_vkahxP7HCGN_Ch4zYngwb6FoCf4vOXa",
+      "name": "IMG_7573.jpg",
+      "litter": "lulu",
+      "puppySlug": "posy",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "Maroon collar/head bow; white forehead blaze and muzzle, red ear/eye patches; pink-black nose."
+    },
+    {
+      "id": "1AMpfZKKzhuMUCZ3Mk8GcQ36kNQMJSMdf",
+      "name": "IMG_7600.jpg",
+      "litter": "lulu",
+      "puppySlug": "merryweather",
+      "disposition": "selected public portrait",
+      "visualSignature": "White collar, green head bow; broad white forehead blaze and muzzle, red ears/eye patches."
+    },
+    {
+      "id": "1--genh08QsW_6YJ7tT8l5L-QBEULkSEA",
+      "name": "IMG_7601.jpg",
+      "litter": "lulu",
+      "puppySlug": "merryweather",
+      "disposition": "reviewed alternate, retained original",
+      "visualSignature": "White collar, green head bow; broad white forehead blaze and muzzle, red ears/eye patches."
+    },
+    {
+      "id": "16H8nMieQhdDPAQmAetAKBNln4WJT-XTG",
+      "name": "IMG_7602.jpg",
+      "litter": "lulu",
+      "puppySlug": "merryweather",
+      "disposition": "selected public portrait",
+      "visualSignature": "White collar, green head bow; broad white forehead blaze and muzzle, red ears/eye patches."
+    },
+    {
+      "id": "1uJS2PfoQe2uRDD9N9NmmrBld-tF6Yh8r",
+      "name": "IMG_7605.jpg",
+      "litter": "lulu",
+      "puppySlug": "merryweather",
+      "disposition": "selected public portrait",
+      "visualSignature": "White collar, green head bow; broad white forehead blaze and muzzle, red ears/eye patches."
+    },
+    {
+      "id": "1B4qEbMwkf5xgqORT9KjNuXC_TFUwbXc_",
+      "name": "IMG_7593.jpg",
+      "litter": "lulu",
+      "puppySlug": "merryweather",
+      "disposition": "identity-only collar close-up",
+      "visualSignature": "White collar, green head bow; broad white forehead blaze and muzzle, red ears/eye patches."
+    }
+  ],
+  "counts": {
+    "originals": 121,
+    "portraitsSelected": 73,
+    "oldPuppiesUpdated": 15,
+    "newWaitlistMatchingProfiles": 11,
+    "currentLitters": 4,
+    "availableBefore": [
+      "atticus",
+      "twain",
+      "edith",
+      "dickens",
+      "austen"
+    ],
+    "availableAfter": [
+      "atticus",
+      "twain",
+      "edith",
+      "dickens",
+      "austen"
+    ]
+  },
+  "unresolved": [
+    "Orange Collar Boy remains descriptive interim label, no official owner name asserted; Root authorizes honest descriptive public label",
+    "Broader waitlist priority/public eligibility not established; new11remain Waitlist Matching",
+    "Stable IDs retained fromOct26 owner snapshot, not freshly verified IDs inCRM"
+  ]
+}
