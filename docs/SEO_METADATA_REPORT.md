@@ -1,10 +1,10 @@
 # SEO Metadata Report
 
-Generated: 10/22/2026, 7:13:52 PM Central
+Generated: 10/27/2026, 5:09:46 PM Central
 
 Status: **PASS**
 
-Sitemap routes checked: 165
+Sitemap routes checked: 176
 Routes with blockers: 0
 Routes with warnings: 2
 
@@ -124,12 +124,23 @@ Routes with warnings: 2
 | /puppies/austen | 200 | Austen | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 84 | Austen | 1 | https://www.redranchdogs.com/puppies/austen |
 | /puppies/bronte | 200 | Brontë | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 84 | Brontë | 1 | https://www.redranchdogs.com/puppies/bronte |
 | /puppies/louisa | 200 | Louisa | F1B-style Mini Goldendoodle Puppy | Red Ranch Dogs | 84 | Louisa | 1 | https://www.redranchdogs.com/puppies/louisa |
+| /puppies/moriarty | 200 | Moriarty | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 80 | Moriarty | 1 | https://www.redranchdogs.com/puppies/moriarty |
+| /puppies/sherlock | 200 | Sherlock | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 80 | Sherlock | 1 | https://www.redranchdogs.com/puppies/sherlock |
+| /puppies/watson | 200 | Watson | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 78 | Watson | 1 | https://www.redranchdogs.com/puppies/watson |
+| /puppies/evie-orange-collar-boy | 200 | Orange Collar Boy | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 89 | Orange Collar Boy | 1 | https://www.redranchdogs.com/puppies/evie-orange-collar-boy |
+| /puppies/nancy | 200 | Nancy | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 79 | Nancy | 1 | https://www.redranchdogs.com/puppies/nancy |
+| /puppies/agatha | 200 | Agatha | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 80 | Agatha | 1 | https://www.redranchdogs.com/puppies/agatha |
+| /puppies/columbo | 200 | Columbo | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 79 | Columbo | 1 | https://www.redranchdogs.com/puppies/columbo |
+| /puppies/penn | 200 | Penn | Multigen Micro Goldendoodle Puppy | Red Ranch Dogs | 77 | Penn | 1 | https://www.redranchdogs.com/puppies/penn |
+| /puppies/dottie | 200 | Dottie | Multigen Micro Goldendoodle Puppy | Red Ranch Dogs | 81 | Dottie | 1 | https://www.redranchdogs.com/puppies/dottie |
+| /puppies/posy | 200 | Posy | Multigen Micro Goldendoodle Puppy | Red Ranch Dogs | 79 | Posy | 1 | https://www.redranchdogs.com/puppies/posy |
+| /puppies/merryweather | 200 | Merryweather | Multigen Micro Goldendoodle Puppy | Red Ranch Dogs | 87 | Merryweather | 1 | https://www.redranchdogs.com/puppies/merryweather |
 | /litters/georgia-waylon-may-2026 | 200 | Georgia + Waylon | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 99 | Georgia + Waylon | 1 | https://www.redranchdogs.com/litters/georgia-waylon-may-2026 |
-| /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs | 102 | Beatrix + Enzo | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026 |
-| /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs | 71 | Lulu + Bram | 1 | https://www.redranchdogs.com/litters/lulu-bram-fall-2026 |
+| /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs | 84 | Beatrix + Enzo | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026 |
+| /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs | 100 | Lulu + Bram | 1 | https://www.redranchdogs.com/litters/lulu-bram-fall-2026 |
 | /litters/reece-wyatt-summer-2026 | 200 | Reece + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 71 | Reece + Wyatt | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026 |
 | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 84 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
-| /litters/evie-waylon-october-2026 | 200 | Evie + Waylon | Petite Mini Goldendoodle Litter | Red Ranch Dogs | 115 | Evie + Waylon | 1 | https://www.redranchdogs.com/litters/evie-waylon-october-2026 |
+| /litters/evie-waylon-october-2026 | 200 | Evie + Waylon | Petite Mini Goldendoodle Litter | Red Ranch Dogs | 100 | Evie + Waylon | 1 | https://www.redranchdogs.com/litters/evie-waylon-october-2026 |
 | /litters/sylvee-rooster-2026 | 200 | Sylvee + Rooster | Bernedoodle Litter | Red Ranch Dogs | 116 | Sylvee + Rooster | 1 | https://www.redranchdogs.com/litters/sylvee-rooster-2026 |
 | /litters/birdie-waylon-final-2026 | 200 | Birdie + Waylon | Goldendoodle Litter | Red Ranch Dogs | 91 | Birdie + Waylon | 1 | https://www.redranchdogs.com/litters/birdie-waylon-final-2026 |
 | /litters/maisie-wyatt-2026 | 200 | Maisie + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 125 | Maisie + Wyatt | 1 | https://www.redranchdogs.com/litters/maisie-wyatt-2026 |
