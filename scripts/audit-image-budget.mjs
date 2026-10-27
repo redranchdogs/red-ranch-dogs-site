@@ -4,8 +4,9 @@ import path from "node:path";
 const root = process.cwd();
 const publicRoot = path.join(root, "public");
 const maxReferencedImageBytes = 400 * 1024;
-// Includes preserved photo history plus Kylie Week 4 and Beatrix Week 3 media.
-const maxTotalReferencedImageBytes = 87 * 1024 * 1024;
+// Preserves all earlier media; adds 73 optimized portraits (6.4 MiB) for
+// Kylie Week 5, Beatrix Week 4, and Lulu/Evie Week 2. Per-image limit stays 400 KiB.
+const maxTotalReferencedImageBytes = 94 * 1024 * 1024;
 const warningImageBytes = 250 * 1024;
 const referencedImages = new Set();
 

@@ -4135,8 +4135,8 @@ function LitterPage({ litter }) {
       }
       : waitlistMatchingPuppies.length
       ? {
-          copy: "Puppies not marked Available are not open to reserve publicly. Apply and we will help you understand future timing for this breed.",
-          primaryLabel: "Apply for a Future Litter"
+          copy: `Family selections proceed through the ${waitlistName} waitlist. Individual availability is confirmed after matching. Apply to join the waitlist or ask about this litter.`,
+          primaryLabel: "Join the Waitlist"
         }
       : isPlannedLitter(litter) && isLitterWaitlistFull
         ? {
