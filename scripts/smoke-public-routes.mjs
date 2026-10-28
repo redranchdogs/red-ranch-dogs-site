@@ -194,14 +194,14 @@ const routeExpectations = [
   },
   {
     route: "/litters/lulu-bram-fall-2026",
-    requiredText: ["lulu + bram", "multigen micro goldendoodles", "waitlist matching", "week 2", "penn", "dottie", "posy", "merryweather", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "estimated go-home", "early december 2026", "join the waitlist"],
+    requiredText: ["lulu + bram", "multigen micro goldendoodles", "waitlist matching", "week 2", "penn", "dottie", "posy", "merryweather", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "go-home", "december 1-4, 2026", "join the waitlist"],
     forbiddenText: ["pregnancy confirmed", "confirmed pregnant", "estimated birth", "expected early october", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Waitlist matching", expectedPuppies: 4, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
   },
   {
     route: "/litters/evie-waylon-october-2026",
-    requiredText: ["evie + waylon", "petite mini goldendoodles", "waitlist matching", "week 2", "orange collar boy", "nancy", "$3,200", "~20 lbs", "birth date", "october 11, 2026", "estimated go-home", "early december 2026", "join the waitlist"],
+    requiredText: ["evie + waylon", "petite mini goldendoodles", "waitlist matching", "week 2", "orange collar boy", "nancy", "$3,200", "~20 lbs", "birth date", "october 11, 2026", "go-home", "december 3-5, 2026", "join the waitlist"],
     forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "moran", "nancy drew", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Waitlist matching", expectedPuppies: 7, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
