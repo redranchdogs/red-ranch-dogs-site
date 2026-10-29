@@ -941,5 +941,51 @@
       "Projected puppies: 25% Cavalier King Charles Spaniel",
       "Expected pairing average; individual puppies may vary"
     ]
+  },
+  {
+    "slug": "daisy-waylon-october-2026",
+    "name": "Daisy + Waylon",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "birthConfirmed": true,
+    "featuredAvailable": false,
+    "litterNumber": "",
+    "mamaSlug": "daisy",
+    "mama": "Daisy",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "birthDate": "October 24, 2026",
+    "goHomeDate": "To be announced",
+    "expectedSize": "To be announced",
+    "expectedTiming": "Puppies born October 24, 2026",
+    "expectedColors": "Apricot and red possibilities",
+    "expectedCoatTraits": "Wavy coats and furnished faces are possible; individual coats vary",
+    "priceRange": "To be announced",
+    "availabilitySummary": "Daisy and Waylon’s puppies have arrived. More details will be shared as they are confirmed.",
+    "availabilityNote": "Puppy details, availability, pricing, size and go-home information will be shared as they are confirmed.",
+    "aboutTitle": "A sweet pairing with a little extra sunshine",
+    "aboutThisLitter": [
+      "Daisy has a warm, people-focused personality that makes her easy to love. Paired with Waylon Jennings, a small Goldendoodle stud, she brings together two of our charming companions for a litter we are excited to watch grow.",
+      "Based on the parents’ verified Embark breed results, this pairing’s projected average is 57.55% Poodle and 42.45% Golden Retriever. Individual puppies can inherit different proportions.",
+      "Both parents’ reports describe apricot or red pigmentation and wavy coats. Their puppies may have warm shades and furnished faces, with each puppy’s coat and markings developing individually.",
+      "The puppies arrived October 24, 2026. We will share their details, availability, pricing, expected size and go-home plans as those are confirmed."
+    ],
+    "geneticMakeup": [
+      "Projected pairing average: 57.55% Poodle",
+      "Projected pairing average: 42.45% Golden Retriever",
+      "Individual puppies may vary"
+    ],
+    "aboutHighlights": [
+      "People-focused Daisy and Waylon Jennings",
+      "Apricot and red coat possibilities",
+      "Parent Embark profiles available"
+    ],
+    "puppySlugs": [],
+    "photoFolderHint": "",
+    "weeklyUpdateStatus": "Puppies have arrived; more details will follow.",
+    "weeklyUpdateGallery": [],
+    "publicListingStage": "awaiting-puppy-profiles"
   }
 ]
