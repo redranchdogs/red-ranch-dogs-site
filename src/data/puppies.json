@@ -4155,7 +4155,7 @@
     "stud": "Enzo",
     "gender": "Female",
     "collarColor": "Maroon",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4197,7 +4197,7 @@
       }
     ],
     "description": "Edith is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Edith is available for an approved family.",
+    "availabilityNote": "Edith is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
