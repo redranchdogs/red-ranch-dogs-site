@@ -1,10 +1,10 @@
 # SEO Metadata Report
 
-Generated: 10/27/2026, 5:09:46 PM Central
+Generated: 10/29/2026, 4:57:32 PM Central
 
 Status: **PASS**
 
-Sitemap routes checked: 176
+Sitemap routes checked: 177
 Routes with blockers: 0
 Routes with warnings: 2
 
@@ -144,6 +144,7 @@ Routes with warnings: 2
 | /litters/sylvee-rooster-2026 | 200 | Sylvee + Rooster | Bernedoodle Litter | Red Ranch Dogs | 116 | Sylvee + Rooster | 1 | https://www.redranchdogs.com/litters/sylvee-rooster-2026 |
 | /litters/birdie-waylon-final-2026 | 200 | Birdie + Waylon | Goldendoodle Litter | Red Ranch Dogs | 91 | Birdie + Waylon | 1 | https://www.redranchdogs.com/litters/birdie-waylon-final-2026 |
 | /litters/maisie-wyatt-2026 | 200 | Maisie + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 125 | Maisie + Wyatt | 1 | https://www.redranchdogs.com/litters/maisie-wyatt-2026 |
+| /litters/daisy-waylon-october-2026 | 200 | Daisy + Waylon | Goldendoodle Litter | Red Ranch Dogs | 91 | Daisy + Waylon | 1 | https://www.redranchdogs.com/litters/daisy-waylon-october-2026 |
 | /litters/beatrix-enzo-planned-2026/past-puppies | 200 | Past Puppies From Beatrix + Enzo | Red Ranch Dogs | 101 | See Their Previous Puppies | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026/past-puppies |
 | /litters/reece-wyatt-summer-2026/past-puppies | 200 | Past Puppies From Reece + Wyatt | Red Ranch Dogs | 100 | See How Their Puppies Are Growing | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026/past-puppies |
 | /parents/birdie | 200 | Birdie | Parent Dog | Red Ranch Dogs | 72 | Birdie | 1 | https://www.redranchdogs.com/parents/birdie |
