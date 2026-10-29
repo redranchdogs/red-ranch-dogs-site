@@ -258,7 +258,7 @@ const routeExpectations = [
   })),
   ...["penn", "dottie", "posy", "merryweather", "moriarty", "sherlock", "watson", "evie-orange-collar-boy", "nancy", "agatha", "columbo"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, "Waitlist Matching", "week 2", "join waitlist"],
+    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", "join waitlist"],
     forbiddenText: ["moran", "nancy drew", "reserve this puppy"],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
