@@ -164,8 +164,8 @@ const routeExpectations = [
   },
   {
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
-    expectedLitterOrder: ["Birdie + Waylon"],
-    requiredText: ["upcoming litters", "choose a breed", "birdie + waylon", "puppies born", "birth date", "october 21, 2026"],
+    expectedLitterOrder: ["Birdie + Waylon", "Daisy + Waylon"],
+    requiredText: ["upcoming litters", "choose a breed", "birdie + waylon", "daisy + waylon", "puppies born", "birth date", "october 21, 2026", "october 24, 2026"],
     forbiddenText: ["lulu + bram", "evie + waylon", "pregnancy confirmed", "due any day", "expected early october", "october 11-16"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
@@ -205,6 +205,13 @@ const routeExpectations = [
     forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "moran", "nancy drew", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Waitlist matching", expectedPuppies: 7, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
+  },
+  {
+    route: "/litters/daisy-waylon-october-2026",
+    requiredText: ["daisy + waylon", "puppies born", "birth date", "october 24, 2026", "to be announced", "join the waitlist"],
+    forbiddenText: ["pregnancy confirmed", "estimated birth", "fully reserved"],
+    requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure"],
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Goldendoodles", expectedSize: "To be announced", testParentBack: true }
   },
   {
     route: "/litters/birdie-waylon-final-2026",
