@@ -211,7 +211,7 @@ const routeExpectations = [
     requiredText: ["daisy + waylon", "puppies born", "birth date", "october 24, 2026", "to be announced", "join the waitlist"],
     forbiddenText: ["pregnancy confirmed", "estimated birth", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure"],
-    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Goldendoodles", expectedSize: "To be announced", testParentBack: true }
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Goldendoodles", expectedSize: "To be announced", testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
   },
   {
     route: "/litters/birdie-waylon-final-2026",
@@ -780,6 +780,9 @@ async function auditRoute(context, config, viewportName) {
       if (await disclosure.count()) {
         await disclosure.locator("summary").click();
         if (!(await disclosure.getAttribute("open")) && !(await disclosure.evaluate((element) => element.open))) failures.push("About this litter accordion did not open.");
+        for (const expectedText of config.litterDetailCheck.expectedAboutText || []) {
+          if (!(await disclosure.innerText()).includes(expectedText)) failures.push(`Missing litter description text: ${expectedText}.`);
+        }
       }
 
       if (config.litterDetailCheck.archive) {
