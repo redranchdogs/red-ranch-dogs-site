@@ -4335,7 +4335,7 @@
     "stud": "Enzo",
     "gender": "Female",
     "collarColor": "Pink",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4375,7 +4375,7 @@
       }
     ],
     "description": "Austen is a female F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Austen is available for an approved family.",
+    "availabilityNote": "Austen is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
