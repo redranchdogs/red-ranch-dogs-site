@@ -4950,7 +4950,7 @@
     "stud": "Bram",
     "gender": "Female",
     "collarColor": "White",
-    "status": "Waitlist Matching",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-15 lbs",
     "birthDate": "October 9, 2026",
@@ -4974,7 +4974,7 @@
       }
     ],
     "description": "Merryweather is a female Multigen Micro Goldendoodle from Lulu + Bram's litter.",
-    "availabilityNote": "Family selections will proceed through the Goldendoodle waitlist. Individual availability will be confirmed after matching.",
+    "availabilityNote": "Merryweather is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   }
 ]
