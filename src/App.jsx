@@ -4290,6 +4290,12 @@ function LitterPage({ litter }) {
         </section>
       )}
       {isPlannedLitter(litter) && primaryAction}
+      {isPlannedLitter(litter) && litter.birthConfirmed && litter.weeklyUpdateStatus?.startsWith("Named puppies:") && (
+        <section className="content-section narrow">
+          <SectionHeader eyebrow="Puppies" title="Meet the puppies" />
+          <p>{litter.weeklyUpdateStatus}</p>
+        </section>
+      )}
       {!isPlannedLitter(litter) && (
         <>
           {!isArchived && <section className="card-list litter-puppy-list" id={isBeatrixOffer ? "beatrix-puppies" : undefined}>
