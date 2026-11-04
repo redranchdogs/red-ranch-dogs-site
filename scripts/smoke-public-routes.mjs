@@ -234,7 +234,7 @@ const routeExpectations = [
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
-    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "reserved", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 5", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
+    requiredText: ["kylie + ranger", "multigen micro bernedoodles", "reserved", "$4,500", "~25 lbs", "birth date", "september 22, 2026", "november 14-15, 2026", "week 6", "october", "bram", "hugo poe", "ophelia shadow", "salem", "raven"],
     forbiddenText: ["around 25 lbs", "confirmed pregnant", "estimated birth", "september 20-21, 2026", "november 15-16, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: {
@@ -247,7 +247,7 @@ const routeExpectations = [
   },
   ...["october", "bram", "hugo-poe", "ophelia-shadow", "salem", "raven"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: ["kylie + ranger", puppies.find((puppy) => puppy.slug === slug).status, "week 5", "week 4", "september 22, 2026", "november 14-15, 2026"],
+    requiredText: ["kylie + ranger", puppies.find((puppy) => puppy.slug === slug).status, "week 6", "week 5", "week 4", "september 22, 2026", "november 14-15, 2026"],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
   })),
   ...["atticus", "twain", "wells", "edith", "darcy", "dickens", "austen", "bronte", "louisa"].map((slug) => ({
