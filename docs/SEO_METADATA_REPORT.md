@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 11/4/2026, 9:42:55 AM Central
+Generated: 11/4/2026, 3:11:05 PM Central
 
 Status: **PASS**
 
@@ -136,7 +136,7 @@ Routes with warnings: 2
 | /puppies/posy | 200 | Posy | Multigen Micro Goldendoodle Puppy | Red Ranch Dogs | 79 | Posy | 1 | https://www.redranchdogs.com/puppies/posy |
 | /puppies/merryweather | 200 | Merryweather | Multigen Micro Goldendoodle Puppy | Red Ranch Dogs | 87 | Merryweather | 1 | https://www.redranchdogs.com/puppies/merryweather |
 | /litters/georgia-waylon-may-2026 | 200 | Georgia + Waylon | Multigen Mini Goldendoodle Litter | Red Ranch Dogs | 99 | Georgia + Waylon | 1 | https://www.redranchdogs.com/litters/georgia-waylon-may-2026 |
-| /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs | 84 | Beatrix + Enzo | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026 |
+| /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs | 73 | Beatrix + Enzo | 1 | https://www.redranchdogs.com/litters/beatrix-enzo-planned-2026 |
 | /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs | 100 | Lulu + Bram | 1 | https://www.redranchdogs.com/litters/lulu-bram-fall-2026 |
 | /litters/reece-wyatt-summer-2026 | 200 | Reece + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 71 | Reece + Wyatt | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026 |
 | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 84 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
