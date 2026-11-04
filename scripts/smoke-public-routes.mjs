@@ -208,14 +208,14 @@ const routeExpectations = [
   },
   {
     route: "/litters/daisy-waylon-october-2026",
-    requiredText: ["daisy + waylon", "puppies born", "birth date", "october 24, 2026", "december 17-19, 2026", "to be announced", "join the waitlist", "cindy lou", "betty lou", "grinch"],
+    requiredText: ["daisy + waylon", "puppies born", "birth date", "october 24, 2026", "december 17-19, 2026", "$3,200", "to be announced", "join the waitlist", "cindy lou", "betty lou", "grinch"],
     forbiddenText: ["pregnancy confirmed", "estimated birth", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure"],
     litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Goldendoodles", expectedSize: "To be announced", testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
   },
   {
     route: "/litters/birdie-waylon-final-2026",
-    requiredText: ["birdie + waylon", "puppies born", "birth date", "october 21, 2026", "to be announced", "fredrich", "marmee", "laurie"],
+    requiredText: ["birdie + waylon", "puppies born", "birth date", "october 21, 2026", "$3,200", "to be announced", "fredrich", "marmee", "laurie"],
     forbiddenText: ["pregnancy confirmed", "estimated birth", "expecting", "date to be confirmed", "7 puppies"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure"],
     litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Goldendoodles", expectedSize: "To be announced", testParentBack: true }
