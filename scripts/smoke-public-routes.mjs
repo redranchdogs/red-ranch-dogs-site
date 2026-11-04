@@ -201,8 +201,8 @@ const routeExpectations = [
   },
   {
     route: "/litters/evie-waylon-october-2026",
-    requiredText: ["evie + waylon", "petite mini goldendoodles", "waitlist matching", "week 2", "orange collar boy", "nancy", "$3,200", "~20 lbs", "birth date", "october 11, 2026", "go-home", "december 3-5, 2026", "join the waitlist"],
-    forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "moran", "nancy drew", "fully reserved"],
+    requiredText: ["evie + waylon", "petite mini goldendoodles", "waitlist matching", "week 2", "moran", "nancy", "$3,200", "~20 lbs", "birth date", "october 11, 2026", "go-home", "december 3-5, 2026", "join the waitlist"],
+    forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "orange collar boy", "nancy drew", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Waitlist matching", expectedPuppies: 7, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
   },
@@ -259,7 +259,7 @@ const routeExpectations = [
   ...["penn", "dottie", "posy", "merryweather", "moriarty", "sherlock", "watson", "evie-orange-collar-boy", "nancy", "agatha", "columbo"].map((slug) => ({
     route: `/puppies/${slug}`,
     requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", "join waitlist"],
-    forbiddenText: ["moran", "nancy drew", "reserve this puppy"],
+    forbiddenText: ["nancy drew", "reserve this puppy", ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
   {

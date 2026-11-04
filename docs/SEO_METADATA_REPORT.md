@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 11/3/2026, 1:54:08 PM Central
+Generated: 11/4/2026, 9:42:55 AM Central
 
 Status: **PASS**
 
@@ -127,7 +127,7 @@ Routes with warnings: 2
 | /puppies/moriarty | 200 | Moriarty | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 80 | Moriarty | 1 | https://www.redranchdogs.com/puppies/moriarty |
 | /puppies/sherlock | 200 | Sherlock | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 80 | Sherlock | 1 | https://www.redranchdogs.com/puppies/sherlock |
 | /puppies/watson | 200 | Watson | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 78 | Watson | 1 | https://www.redranchdogs.com/puppies/watson |
-| /puppies/evie-orange-collar-boy | 200 | Orange Collar Boy | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 89 | Orange Collar Boy | 1 | https://www.redranchdogs.com/puppies/evie-orange-collar-boy |
+| /puppies/evie-orange-collar-boy | 200 | Moran | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 77 | Moran | 1 | https://www.redranchdogs.com/puppies/evie-orange-collar-boy |
 | /puppies/nancy | 200 | Nancy | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 79 | Nancy | 1 | https://www.redranchdogs.com/puppies/nancy |
 | /puppies/agatha | 200 | Agatha | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 80 | Agatha | 1 | https://www.redranchdogs.com/puppies/agatha |
 | /puppies/columbo | 200 | Columbo | Petite Mini Goldendoodle Puppy | Red Ranch Dogs | 79 | Columbo | 1 | https://www.redranchdogs.com/puppies/columbo |
