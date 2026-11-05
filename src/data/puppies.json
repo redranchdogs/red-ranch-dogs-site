@@ -4763,7 +4763,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Green",
-    "status": "Waitlist Matching",
+    "status": "Matched",
     "sizeCategory": "Petite Mini",
     "estimatedAdultWeight": "~20 lbs",
     "birthDate": "October 11, 2026",
@@ -4797,7 +4797,7 @@
       }
     ],
     "description": "Watson is a male Petite Mini Goldendoodle from Evie + Waylon's litter.",
-    "availabilityNote": "Family selections will proceed through the Goldendoodle waitlist. Individual availability will be confirmed after matching.",
+    "availabilityNote": "Watson has been matched with a family.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
