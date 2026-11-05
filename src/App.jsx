@@ -4296,6 +4296,12 @@ function LitterPage({ litter }) {
           <p>{litter.weeklyUpdateStatus}</p>
         </section>
       )}
+      {isPlannedLitter(litter) && litter.birthConfirmed && gallery.length > 0 && (
+        <section className="content-section litter-gallery-section">
+          <SectionHeader eyebrow="Updates" title="Weekly photo gallery" copy="Follow this litter as the puppies grow, with new photos added along the way." />
+          <LitterImageGallery images={gallery} puppies={puppies} label={`${litter.name} weekly update`} />
+        </section>
+      )}
       {!isPlannedLitter(litter) && (
         <>
           {!isArchived && <section className="card-list litter-puppy-list" id={isBeatrixOffer ? "beatrix-puppies" : undefined}>
