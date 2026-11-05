@@ -65,6 +65,14 @@
       "show_publicly": "Yes"
     },
     {
+      "breed": "Goldendoodle",
+      "position": 9,
+      "display_name": "Michelle W.",
+      "status": "Fulfilled",
+      "show_publicly": "No",
+      "public_notes": ""
+    },
+    {
       "breed": "Cavapoo",
       "position": 1,
       "display_name": "Constance R.",
@@ -82,8 +90,8 @@
       "breed": "Cavapoo",
       "position": 3,
       "display_name": "Michelle W.",
-      "status": "Active",
-      "show_publicly": "Yes"
+      "status": "Moved",
+      "show_publicly": "No"
     },
     {
       "breed": "Cavapoo",
