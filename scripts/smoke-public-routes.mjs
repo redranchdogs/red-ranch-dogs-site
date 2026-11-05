@@ -194,7 +194,7 @@ const routeExpectations = [
   },
   {
     route: "/litters/lulu-bram-fall-2026",
-    requiredText: ["lulu + bram", "multigen micro goldendoodles", "waitlist matching", "week 2", "penn", "dottie", "posy", "merryweather", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "go-home", "december 1-4, 2026", "join the waitlist"],
+    requiredText: ["lulu + bram", "multigen micro goldendoodles", "waitlist matching", "week 3", "penn", "dottie", "posy", "merryweather", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "go-home", "december 1-4, 2026", "join the waitlist"],
     forbiddenText: ["pregnancy confirmed", "confirmed pregnant", "estimated birth", "expected early october", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Waitlist matching", expectedPuppies: 4, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
