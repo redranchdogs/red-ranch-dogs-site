@@ -182,10 +182,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/maisie-wyatt-2026",
-    requiredText: ["maisie + wyatt", "f1b micro cavapoos", "planning", "estimated birth", "estimated go-home", "join the waitlist"],
+    requiredText: ["maisie + wyatt", "f1b micro cavapoos", "planning", "estimated birth", "estimated go-home", "timing to be announced", "join the waitlist"],
     forbiddenText: ["pregnancy confirmed", "puppies born", "6 available"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "Planning", expectedPuppies: 0, expectedDescriptor: "F1B Micro Cavapoos", expectedSize: "To be announced", testParentBack: true }
+    litterDetailCheck: { expectedStatus: "Planning", expectedPuppies: 0, expectedDescriptor: "F1B Micro Cavapoos", expectedSize: "To be announced", testParentBack: true, expectedAboutText: ["Maisie has been bred to Wyatt Earp", "Pregnancy is not yet confirmed"] }
   },
   {
     route: "/parents/maisie",
