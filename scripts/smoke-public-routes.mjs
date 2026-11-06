@@ -194,10 +194,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/lulu-bram-fall-2026",
-    requiredText: ["lulu + bram", "multigen micro goldendoodles", "waitlist matching", "week 3", "penn", "dottie", "posy", "merryweather", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "go-home", "december 1-4, 2026", "join the waitlist"],
+    requiredText: ["lulu + bram", "multigen micro goldendoodles", "2 available", "week 3", "penn", "dottie", "posy", "merryweather", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "go-home", "december 1-4, 2026", "apply for a puppy"],
     forbiddenText: ["pregnancy confirmed", "confirmed pregnant", "estimated birth", "expected early october", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "Waitlist matching", expectedPuppies: 4, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
+    litterDetailCheck: { expectedStatus: "2 available", expectedPuppies: 4, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
   },
   {
     route: "/litters/evie-waylon-october-2026",
@@ -258,7 +258,7 @@ const routeExpectations = [
   })),
   ...["penn", "dottie", "posy", "merryweather", "moriarty", "sherlock", "watson", "evie-orange-collar-boy", "nancy", "agatha", "columbo"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", "join waitlist"],
+    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", ...(["penn", "posy"].includes(slug) ? [`reserve ${slug}`] : ["join waitlist"])],
     forbiddenText: ["nancy drew", "reserve this puppy", ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
