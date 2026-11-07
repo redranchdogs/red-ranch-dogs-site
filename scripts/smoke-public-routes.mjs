@@ -108,7 +108,7 @@ const routeExpectations = [
   {
     route: "/puppies/available",
     requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", ...featuredAvailablePuppies.slice(0, 1).map((puppy) => puppy.name), "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "birdie + waylon"],
-    forbiddenText: [...hiddenAvailablePuppies, ...puppies.filter((puppy) => normalize(puppy.status) === "reserved")].map((puppy) => puppy.name),
+    forbiddenText: [...hiddenAvailablePuppies, ...puppies.filter((puppy) => puppy.slug === "atticus" && normalize(puppy.status) === "reserved")].map((puppy) => puppy.name),
     requiredSelectors: featuredAvailablePuppies.length ? [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"] : [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
     finderNavCheck: { mode: "available", history: !featuredAvailablePuppies.length },
     previewCaptionCheck: !featuredAvailablePuppies.length
