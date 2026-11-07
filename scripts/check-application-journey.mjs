@@ -117,8 +117,8 @@ try {
 
   await page.goto(`${baseUrl}/litters/beatrix-enzo-planned-2026`, { waitUntil: "networkidle" });
   const inquiryForm = page.locator('#beatrix-inquiry form[data-form-type="contact"]');
-  await page.getByRole("link", { name: "Ask about Atticus", exact: true }).click();
-  await waitForInquiryPuppy(page, "atticus");
+  assert((await page.getByRole("link", { name: "Ask about Atticus", exact: true }).count()) === 0, "Reserved Atticus must not have an available-puppy inquiry CTA.");
+  await waitForInquiryPuppy(page, "");
   await inquiryForm.locator('input[name="name"]').fill("Inquiry Draft Test");
   await inquiryForm.locator('textarea[name="message"]').fill("Please tell me about this puppy's personality.");
   await page.getByRole("link", { name: "Ask about Twain", exact: true }).click();
@@ -126,9 +126,9 @@ try {
   assert((await inquiryForm.locator('input[name="name"]').inputValue()) === "Inquiry Draft Test", "Changing puppy interest must preserve the inquiry name.");
   assert((await inquiryForm.locator('textarea[name="message"]').inputValue()) === "Please tell me about this puppy's personality.", "Changing puppy interest must preserve the inquiry message.");
   await page.goBack();
-  await waitForInquiryPuppy(page, "atticus");
-  assert((await inquiryForm.locator('input[name="name"]').inputValue()) === "Inquiry Draft Test", "Back to the previous puppy must preserve the inquiry name.");
-  assert((await inquiryForm.locator('textarea[name="message"]').inputValue()) === "Please tell me about this puppy's personality.", "Back to the previous puppy must preserve the inquiry message.");
+  await waitForInquiryPuppy(page, "");
+  assert((await inquiryForm.locator('input[name="name"]').inputValue()) === "Inquiry Draft Test", "Back to the general litter interest must preserve the inquiry name.");
+  assert((await inquiryForm.locator('textarea[name="message"]').inputValue()) === "Please tell me about this puppy's personality.", "Back to the general litter interest must preserve the inquiry message.");
   const litterApply = page.locator(".litter-primary-cta-section a.button.primary");
   assert((await litterApply.getAttribute("href")) === "/apply?litter=beatrix-enzo-planned-2026", "Litter Apply must carry the verified litter slug.");
   const stickyLitterApply = page.locator(".sticky-mobile-cta a.button.primary");
