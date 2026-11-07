@@ -91,7 +91,7 @@ const closedGuardianNames = puppies
 const routeExpectations = [
   {
     route: "/",
-    requiredText: ["red ranch dogs", "available puppies", "f1b-style mini goldendoodle", "atticus", "apply"],
+    requiredText: ["red ranch dogs", "available puppies", "f1b-style mini goldendoodle", ...featuredAvailablePuppies.slice(0, 1).map((puppy) => puppy.name), "apply"],
     forbiddenText: ["hugo poe"],
     requiredSelectors: [".premium-header", "main", ".premium-footer"],
     homeLitterCheck: {
@@ -107,8 +107,8 @@ const routeExpectations = [
   ].map((state) => ({ route: `/?fixture=${state.fixture}`, requiredSelectors: ["main"], homeLitterCheck: state })),
   {
     route: "/puppies/available",
-    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", "atticus", "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "birdie + waylon"],
-    forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
+    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", ...featuredAvailablePuppies.slice(0, 1).map((puppy) => puppy.name), "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "birdie + waylon"],
+    forbiddenText: [...hiddenAvailablePuppies, ...puppies.filter((puppy) => normalize(puppy.status) === "reserved")].map((puppy) => puppy.name),
     requiredSelectors: featuredAvailablePuppies.length ? [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"] : [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
     finderNavCheck: { mode: "available", history: !featuredAvailablePuppies.length },
     previewCaptionCheck: !featuredAvailablePuppies.length
@@ -287,7 +287,7 @@ const routeExpectations = [
     })),
   {
     route: "/puppies/goldendoodle-puppies",
-    requiredText: ["goldendoodle", "atticus", "how big will they get", "how to compare goldendoodle puppies", "most red ranch goldendoodles are multigen"],
+    requiredText: ["goldendoodle", ...featuredAvailablePuppies.filter((puppy) => puppy.breedSlug === "goldendoodle-puppies").slice(0, 1).map((puppy) => puppy.name), "how big will they get", "how to compare goldendoodle puppies", "most red ranch goldendoodles are multigen"],
     requiredSelectors: [".breed-program-card", ".breed-size-guide-asset", ".breed-priority-section"]
   },
   {
