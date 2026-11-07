@@ -80,6 +80,7 @@ const litters = readJson("src/data/litters.json").filter(isPublicRecord);
 const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
+const beatrixAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026").length} available`;
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
 const openGuardianNames = puppies
   .filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open")
@@ -91,7 +92,7 @@ const closedGuardianNames = puppies
 const routeExpectations = [
   {
     route: "/",
-    requiredText: ["red ranch dogs", "available puppies", "f1b-style mini goldendoodle", "atticus", "apply"],
+    requiredText: ["red ranch dogs", "available puppies", "f1b-style mini goldendoodle", ...featuredAvailablePuppies.slice(0, 1).map((puppy) => puppy.name), "apply"],
     forbiddenText: ["hugo poe"],
     requiredSelectors: [".premium-header", "main", ".premium-footer"],
     homeLitterCheck: {
@@ -107,8 +108,8 @@ const routeExpectations = [
   ].map((state) => ({ route: `/?fixture=${state.fixture}`, requiredSelectors: ["main"], homeLitterCheck: state })),
   {
     route: "/puppies/available",
-    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", "atticus", "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "birdie + waylon"],
-    forbiddenText: hiddenAvailablePuppies.map((puppy) => puppy.name),
+    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", ...featuredAvailablePuppies.slice(0, 1).map((puppy) => puppy.name), "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "birdie + waylon"],
+    forbiddenText: [...hiddenAvailablePuppies, ...puppies.filter((puppy) => puppy.slug === "atticus" && normalize(puppy.status) === "reserved")].map((puppy) => puppy.name),
     requiredSelectors: featuredAvailablePuppies.length ? [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"] : [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
     finderNavCheck: { mode: "available", history: !featuredAvailablePuppies.length },
     previewCaptionCheck: !featuredAvailablePuppies.length
@@ -227,10 +228,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "2 available", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 5", "weekly photo gallery"],
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", beatrixAvailabilityLabel, "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 5", "weekly photo gallery"],
     forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ".beatrix-inquiry-section form", ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "2 available", expectedPuppies: 9 }
+    litterDetailCheck: { expectedStatus: beatrixAvailabilityLabel, expectedPuppies: 9 }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
@@ -287,7 +288,7 @@ const routeExpectations = [
     })),
   {
     route: "/puppies/goldendoodle-puppies",
-    requiredText: ["goldendoodle", "atticus", "how big will they get", "how to compare goldendoodle puppies", "most red ranch goldendoodles are multigen"],
+    requiredText: ["goldendoodle", ...featuredAvailablePuppies.filter((puppy) => puppy.breedSlug === "goldendoodle-puppies").slice(0, 1).map((puppy) => puppy.name), "how big will they get", "how to compare goldendoodle puppies", "most red ranch goldendoodles are multigen"],
     requiredSelectors: [".breed-program-card", ".breed-size-guide-asset", ".breed-priority-section"]
   },
   {
