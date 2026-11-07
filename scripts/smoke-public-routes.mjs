@@ -80,6 +80,7 @@ const litters = readJson("src/data/litters.json").filter(isPublicRecord);
 const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
+const beatrixAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026").length} available`;
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
 const openGuardianNames = puppies
   .filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open")
@@ -227,10 +228,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "2 available", "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 5", "weekly photo gallery"],
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", beatrixAvailabilityLabel, "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 5", "weekly photo gallery"],
     forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ".beatrix-inquiry-section form", ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "2 available", expectedPuppies: 9 }
+    litterDetailCheck: { expectedStatus: beatrixAvailabilityLabel, expectedPuppies: 9 }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
