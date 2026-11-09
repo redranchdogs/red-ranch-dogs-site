@@ -5137,7 +5137,7 @@
     "stud": "Bram",
     "gender": "Female",
     "collarColor": "Maroon",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Micro",
     "estimatedAdultWeight": "10-15 lbs",
     "birthDate": "October 9, 2026",
@@ -5172,7 +5172,7 @@
       }
     ],
     "description": "Posy is a female Multigen Micro Goldendoodle from Lulu + Bram's litter.",
-    "availabilityNote": "Posy is available for an approved family.",
+    "availabilityNote": "Posy is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
