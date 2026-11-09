@@ -8,6 +8,7 @@ import { trackGa4Event, trackGa4PageView } from "./ga4.js";
 import { submitFormPayload } from "./formSubmission.js";
 import {
   ArrowRight,
+  ArrowUpRight,
   Camera,
   CheckCircle2,
   ChevronDown,
@@ -6245,20 +6246,25 @@ function ApplicationInterestHero({ interest }) {
   return (
     <section className={`application-reserve-hero${interest.photo ? "" : " without-photo"}`} aria-labelledby="application-reserve-title">
       {interest.photo && <img src={interest.photo} alt="" loading="eager" />}
-      <div>
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 id="application-reserve-title">{interest.title}</h1>
-        {interest.detail && <p>{interest.detail}</p>}
-        {interest.price && <p className="application-puppy-price">Puppy price: <strong>{interest.price}</strong></p>}
-        {interest.litterHref && (
-          <div className="application-litter-link">
-            <a href={interest.litterHref} className="button small secondary" target="_blank" rel="noreferrer" aria-label={`View ${interest.litterName} litter (opens in a new tab)`}>
-              View {interest.litterName} litter <ArrowRight size={16} aria-hidden="true" />
-            </a>
-          </div>
-        )}
-        <Link href="/process/how-it-works" className="application-inline-link">New to our process? How it works <ArrowRight size={16} /></Link>
+      <div className="application-interest-summary">
+        <div className="application-interest-heading">
+          <p className="eyebrow">{eyebrow}</p>
+          <h1 id="application-reserve-title">{interest.title}</h1>
+        </div>
+        <div className="application-interest-details">
+          {interest.detail && <p>{interest.detail}</p>}
+          {interest.price && <p className="application-puppy-price"><span>Puppy price</span><strong>{interest.price}</strong></p>}
+        </div>
       </div>
+      <nav className="application-interest-links" aria-label="Before you apply">
+        {interest.litterHref && (
+          <a href={interest.litterHref} className="application-litter-link" target="_blank" rel="noreferrer" aria-label={`View litter details ${interest.litterName} (opens in a new tab)`}>
+            <span><span className="application-link-label">View litter details</span><span className="application-link-detail">{interest.litterName}</span></span>
+            <ArrowUpRight size={20} aria-hidden="true" />
+          </a>
+        )}
+        <Link href="/process/how-it-works" className="application-inline-link"><span>How our application process works</span><ArrowRight size={18} aria-hidden="true" /></Link>
+      </nav>
     </section>
   );
 }

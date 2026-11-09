@@ -320,8 +320,8 @@ const routeExpectations = [
   },
   ...featuredAvailablePuppies.map((puppy) => ({
     route: `/apply?interest=${puppy.slug}`,
-    requiredText: [`Apply for ${puppy.name}`, puppy.price, `View ${litterBySlug.get(puppy.litterSlug).name} litter`].filter(Boolean),
-    requiredSelectors: [".application-reserve-hero", ".application-puppy-price", ".application-litter-link a", ".lead-form"],
+    requiredText: [`Apply for ${puppy.name}`, puppy.price, "View litter details", litterBySlug.get(puppy.litterSlug).name].filter(Boolean),
+    requiredSelectors: [".application-reserve-hero", ".application-puppy-price", ".application-litter-link", ".lead-form"],
     applicationInterestCheck: puppy
   })),
   {
@@ -516,9 +516,9 @@ async function auditRoute(context, config, viewportName) {
     if (config.applicationInterestCheck) {
       const puppy = config.applicationInterestCheck;
       const hero = page.locator(".application-reserve-hero");
-      const price = await hero.locator(".application-puppy-price").innerText();
-      if (price !== `Puppy price: ${puppy.price}`) failures.push(`Incorrect puppy price: ${price}`);
-      const litterLink = hero.locator(".application-litter-link a");
+      const price = await hero.locator(".application-puppy-price strong").innerText();
+      if (price !== puppy.price) failures.push(`Incorrect puppy price: ${price}`);
+      const litterLink = hero.locator(".application-litter-link");
       if (await litterLink.getAttribute("href") !== `/litters/${puppy.litterSlug}`) failures.push("Application litter link has the wrong destination.");
       if (await litterLink.getAttribute("target") !== "_blank") failures.push("Litter details must open separately to preserve the application.");
       if (await page.locator("input[name='specificInterest']:not([type='checkbox'])").inputValue() !== [puppy.name, puppy.breed, puppy.litter].filter(Boolean).join(" - ")) failures.push("Selected puppy was not preserved in the application.");
