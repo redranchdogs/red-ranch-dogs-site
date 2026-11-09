@@ -81,6 +81,7 @@ const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
 const beatrixAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026").length} available`;
+const luluAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "lulu-bram-fall-2026").length} available`;
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
 const openGuardianNames = puppies
   .filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open")
@@ -109,7 +110,7 @@ const routeExpectations = [
   {
     route: "/puppies/available",
     requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", ...featuredAvailablePuppies.slice(0, 1).map((puppy) => puppy.name), "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "birdie + waylon"],
-    forbiddenText: [...hiddenAvailablePuppies, ...puppies.filter((puppy) => puppy.slug === "atticus" && normalize(puppy.status) === "reserved")].map((puppy) => puppy.name),
+    forbiddenText: [...hiddenAvailablePuppies, ...puppies.filter((puppy) => ["atticus", "posy"].includes(puppy.slug) && normalize(puppy.status) === "reserved")].map((puppy) => puppy.name),
     requiredSelectors: featuredAvailablePuppies.length ? [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"] : [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
     finderNavCheck: { mode: "available", history: !featuredAvailablePuppies.length },
     previewCaptionCheck: !featuredAvailablePuppies.length
@@ -137,7 +138,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    requiredText: ["current litters", "beatrix + enzo", "lulu + bram", "evie + waylon", "waitlist matching", "2 available", "september 28, 2026", "november 19-21, 2026"],
+    requiredText: ["current litters", "beatrix + enzo", "lulu + bram", "evie + waylon", "waitlist matching", luluAvailabilityLabel, "september 28, 2026", "november 19-21, 2026"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
@@ -195,10 +196,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/lulu-bram-fall-2026",
-    requiredText: ["lulu + bram", "multigen micro goldendoodles", "2 available", "week 3", "penn", "dottie", "posy", "merryweather", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "go-home", "december 1-4, 2026", "apply for a puppy"],
+    requiredText: ["lulu + bram", "multigen micro goldendoodles", luluAvailabilityLabel, "week 3", "penn", "dottie", "posy", "merryweather", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "go-home", "december 1-4, 2026", "apply for a puppy"],
     forbiddenText: ["pregnancy confirmed", "confirmed pregnant", "estimated birth", "expected early october", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "2 available", expectedPuppies: 4, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
+    litterDetailCheck: { expectedStatus: luluAvailabilityLabel, expectedPuppies: 4, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
   },
   {
     route: "/litters/evie-waylon-october-2026",
@@ -259,8 +260,8 @@ const routeExpectations = [
   })),
   ...["penn", "dottie", "posy", "merryweather", "moriarty", "sherlock", "watson", "evie-orange-collar-boy", "nancy", "agatha", "columbo"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", ...(["penn", "posy"].includes(slug) ? [`reserve ${slug}`] : ["join waitlist"])],
-    forbiddenText: ["nancy drew", "reserve this puppy", ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
+    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) === "available" ? [`reserve ${slug}`] : ["join waitlist"])],
+    forbiddenText: ["nancy drew", "reserve this puppy", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) !== "available" ? [`reserve ${slug}`] : []), ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
   {
