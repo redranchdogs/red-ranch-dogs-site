@@ -318,6 +318,17 @@ const routeExpectations = [
     requiredText: ["puppy application", "you do not need to choose a puppy or litter before applying", "contact info", "puppy interest", "review and send"],
     requiredSelectors: [".application-page-hero", ".application-form-note", ".application-form-sections", ".lead-form"]
   },
+  ...featuredAvailablePuppies.map((puppy) => ({
+    route: `/apply?interest=${puppy.slug}`,
+    requiredText: [`Apply for ${puppy.name}`, puppy.price, `View ${litterBySlug.get(puppy.litterSlug).name} litter`].filter(Boolean),
+    requiredSelectors: [".application-reserve-hero", ".application-puppy-price", ".application-litter-link a", ".lead-form"],
+    applicationInterestCheck: puppy
+  })),
+  {
+    route: "/apply?interest=not-a-public-puppy",
+    requiredText: ["puppy application", "you do not need to choose a puppy or litter before applying"],
+    requiredSelectors: [".application-page-hero", ".lead-form"]
+  },
   {
     route: "/contact",
     requiredText: ["contact us", "send us a note", "preferred reply", "what can we help with"],
@@ -500,6 +511,29 @@ async function auditRoute(context, config, viewportName) {
     for (const selector of config.requiredSelectors || []) {
       const count = await visibleCount(page, selector);
       if (count < 1) failures.push(`Missing visible selector: ${selector}`);
+    }
+
+    if (config.applicationInterestCheck) {
+      const puppy = config.applicationInterestCheck;
+      const hero = page.locator(".application-reserve-hero");
+      const price = await hero.locator(".application-puppy-price").innerText();
+      if (price !== `Puppy price: ${puppy.price}`) failures.push(`Incorrect puppy price: ${price}`);
+      const litterLink = hero.locator(".application-litter-link a");
+      if (await litterLink.getAttribute("href") !== `/litters/${puppy.litterSlug}`) failures.push("Application litter link has the wrong destination.");
+      if (await litterLink.getAttribute("target") !== "_blank") failures.push("Litter details must open separately to preserve the application.");
+      if (await page.locator("input[name='specificInterest']:not([type='checkbox'])").inputValue() !== [puppy.name, puppy.breed, puppy.litter].filter(Boolean).join(" - ")) failures.push("Selected puppy was not preserved in the application.");
+
+      // Browsing litter details must not discard an application already in progress.
+      await page.locator("input[name='name']").fill("Local QA draft");
+      const [litterPage] = await Promise.all([page.waitForEvent("popup"), litterLink.click()]);
+      try {
+        await litterPage.waitForLoadState("domcontentloaded");
+        await litterPage.locator(".litter-detail-hero").waitFor({ state: "visible" });
+        if (new globalThis.URL(litterPage.url()).pathname !== `/litters/${puppy.litterSlug}`) failures.push("Litter link opened the wrong page.");
+      } finally {
+        await litterPage.close();
+      }
+      if (await page.locator("input[name='name']").inputValue() !== "Local QA draft") failures.push("Opening litter details discarded the application draft.");
     }
 
     if (config.expectedLitterOrder) {

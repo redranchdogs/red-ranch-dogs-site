@@ -6193,11 +6193,15 @@ function applicationLitterFromUrl() {
 function applicationInterestContext() {
   const puppy = applicationPuppyFromUrl();
   if (puppy) {
+    const litter = publicLitterProfiles.find((item) => item.slug === puppy.litterSlug);
     return {
       breed: applicationBreedInterest(puppy.breedSlug, puppy.breed),
       breedSlug: puppy.breedSlug,
       litterSlug: puppy.litterSlug,
       puppySlug: puppy.slug,
+      price: puppy.price,
+      litterName: litter?.name,
+      litterHref: litter ? `/litters/${litter.slug}` : "",
       detail: [puppy.breed, puppy.litter].filter(Boolean).join(" - "),
       label: [puppy.name, puppy.breed, puppy.litter].filter(Boolean).join(" - "),
       name: puppy.name,
@@ -6245,6 +6249,14 @@ function ApplicationInterestHero({ interest }) {
         <p className="eyebrow">{eyebrow}</p>
         <h1 id="application-reserve-title">{interest.title}</h1>
         {interest.detail && <p>{interest.detail}</p>}
+        {interest.price && <p className="application-puppy-price">Puppy price: <strong>{interest.price}</strong></p>}
+        {interest.litterHref && (
+          <div className="application-litter-link">
+            <a href={interest.litterHref} className="button small secondary" target="_blank" rel="noreferrer" aria-label={`View ${interest.litterName} litter (opens in a new tab)`}>
+              View {interest.litterName} litter <ArrowRight size={16} aria-hidden="true" />
+            </a>
+          </div>
+        )}
         <Link href="/process/how-it-works" className="application-inline-link">New to our process? How it works <ArrowRight size={16} /></Link>
       </div>
     </section>
