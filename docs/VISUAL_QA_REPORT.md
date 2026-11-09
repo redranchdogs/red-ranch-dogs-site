@@ -1,11 +1,11 @@
 # Visual QA Report
 
-Generated: 10/7/2026, 6:38:59 PM Central
+Generated: 11/9/2026, 5:52:39 PM Central
 
 Status: **PASS**
 
-Routes checked: 23
-Viewport checks: 46
+Routes checked: 26
+Viewport checks: 52
 
 ## Blockers
 
@@ -34,7 +34,10 @@ Viewport checks: 46
 | mobile | /contact | 200 | Contact Red Ranch Dogs | Salado, Texas |
 | mobile | /guardian-program/application | 200 | Guardian Application | Red Ranch Dogs |
 | mobile | /stud-services/our-studs | 200 | Our Studs | Red Ranch Dogs |
+| mobile | /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs |
+| mobile | /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs |
 | mobile | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs |
+| mobile | /litters/evie-waylon-october-2026 | 200 | Evie + Waylon | Petite Mini Goldendoodle Litter | Red Ranch Dogs |
 | mobile | /parents/birdie | 200 | Birdie | Parent Dog | Red Ranch Dogs |
 | mobile | /parents/honey | 200 | Honey | Parent Dog | Red Ranch Dogs |
 | mobile | /parents/ginny | 200 | Ginny | Parent Dog | Red Ranch Dogs |
@@ -57,7 +60,10 @@ Viewport checks: 46
 | desktop | /contact | 200 | Contact Red Ranch Dogs | Salado, Texas |
 | desktop | /guardian-program/application | 200 | Guardian Application | Red Ranch Dogs |
 | desktop | /stud-services/our-studs | 200 | Our Studs | Red Ranch Dogs |
+| desktop | /litters/beatrix-enzo-planned-2026 | 200 | Beatrix + Enzo | F1B-Style Goldendoodle Litter | Red Ranch Dogs |
+| desktop | /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs |
 | desktop | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs |
+| desktop | /litters/evie-waylon-october-2026 | 200 | Evie + Waylon | Petite Mini Goldendoodle Litter | Red Ranch Dogs |
 | desktop | /parents/birdie | 200 | Birdie | Parent Dog | Red Ranch Dogs |
 | desktop | /parents/honey | 200 | Honey | Parent Dog | Red Ranch Dogs |
 | desktop | /parents/ginny | 200 | Ginny | Parent Dog | Red Ranch Dogs |
