@@ -2771,6 +2771,19 @@ h3 {
   line-height: 1.35;
 }
 
+/* Keep the existing public price and litter easy to find before applying. */
+.application-reserve-hero .application-puppy-price {
+  color: var(--ink);
+}
+
+.application-puppy-price strong {
+  font-size: 1.25rem;
+}
+
+.application-litter-link {
+  margin-top: 12px;
+}
+
 .application-inline-link {
   display: inline-flex;
   align-items: center;
