@@ -2725,9 +2725,11 @@ h3 {
 }
 
 .application-reserve-hero {
+  width: min(820px, calc(100% - 32px));
   display: grid;
   grid-template-columns: minmax(96px, 160px) minmax(0, 1fr);
-  gap: clamp(14px, 3vw, 26px);
+  column-gap: clamp(20px, 3vw, 28px);
+  row-gap: 20px;
   align-items: center;
   padding: clamp(14px, 3vw, 24px);
   background: var(--warm-paper);
@@ -2761,7 +2763,9 @@ h3 {
 }
 
 .application-reserve-hero h1 {
-  font-size: clamp(3.1rem, 11vw, 5.5rem);
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 1;
+  text-wrap: balance;
 }
 
 .application-reserve-hero p:not(.eyebrow),
@@ -2771,30 +2775,94 @@ h3 {
   line-height: 1.35;
 }
 
-/* Keep the existing public price and litter easy to find before applying. */
+/* Give the puppy summary and supporting links their own clear hierarchy. */
+.application-interest-summary {
+  min-width: 0;
+}
+
 .application-reserve-hero .application-puppy-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-top: 16px;
   color: var(--ink);
 }
 
+.application-puppy-price span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 .application-puppy-price strong {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.application-interest-links {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px 24px;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
 }
 
 .application-litter-link {
-  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+  padding: 12px 16px;
+  color: var(--brand-red);
+  background: transparent;
+  border: 1px solid var(--brand-red);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background 160ms ease;
+}
+
+.application-litter-link:hover {
+  background: var(--soft-tan);
+}
+
+.application-link-label,
+.application-link-detail {
+  display: block;
+  line-height: 1.4;
+}
+
+.application-link-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.application-link-detail {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
 
 .application-inline-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 12px;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 0;
   color: var(--brand-red);
-  font-size: 0.86rem;
-  font-weight: 900;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.5;
   text-decoration: underline;
   text-underline-offset: 4px;
-  text-transform: uppercase;
+}
+
+.application-interest-links svg {
+  flex: 0 0 auto;
 }
 
 .application-intro-panel {
@@ -5647,22 +5715,46 @@ summary {
   }
 
   .application-reserve-hero {
-    grid-template-columns: 116px minmax(0, 1fr);
-    gap: 12px;
-    padding: 12px;
+    grid-template-columns: minmax(88px, 28%) minmax(0, 1fr);
+    column-gap: 16px;
+    row-gap: 18px;
+    padding: 18px;
+    align-items: start;
   }
 
   .application-reserve-hero h1 {
-    font-size: clamp(2.7rem, 12vw, 3.7rem);
+    font-size: clamp(2.15rem, 8.5vw, 3rem);
+    line-height: 1.02;
+  }
+
+  .application-reserve-hero .eyebrow {
+    margin-bottom: 6px;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
   }
 
   .application-reserve-hero p:not(.eyebrow) {
-    font-size: 0.92rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .application-reserve-hero .application-puppy-price {
+    gap: 2px 8px;
+    margin-top: 12px;
+  }
+
+  .application-puppy-price strong {
+    font-size: 1.3rem;
+  }
+
+  .application-interest-links {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding-top: 16px;
   }
 
   .application-inline-link {
-    margin-top: 9px;
-    font-size: 0.76rem;
+    font-size: 0.82rem;
   }
 
   .application-intro-panel {
@@ -13458,4 +13550,19 @@ summary {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   pointer-events: none;
+}
+
+/* On the smallest phones, details use the full card width below the portrait. */
+@media (max-width: 360px) {
+  .application-reserve-hero:not(.without-photo) .application-interest-summary {
+    display: contents;
+  }
+
+  .application-reserve-hero:not(.without-photo) .application-interest-details {
+    grid-column: 1 / -1;
+  }
+
+  .application-reserve-hero:not(.without-photo) .application-interest-details > p:first-child {
+    margin-top: 0;
+  }
 }
