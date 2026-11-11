@@ -1,12 +1,12 @@
 # Sheet Sync Review
-Generated: 11/10/2026, 8:05:40 PM Central
+Generated: 11/10/2026, 8:38:04 PM Central
 Status: **PASS**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary
 | Sheet | Website rows | Live rows | Missing columns | Missing rows | Extra rows | Cell mismatches |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Puppy Tracker | 73 | 73 | 0 | 0 | 0 | 0 |
-| Litters | 17 | 17 | 0 | 0 | 0 | 0 |
+| Litters | 18 | 18 | 0 | 0 | 0 | 0 |
 | Previous Litters | 21 | 21 | 0 | 0 | 0 | 0 |
 | Parent Dogs | 36 | 36 | 0 | 0 | 0 | 0 |
 ## Reviewed Legacy Mirror Omissions (deferred repair)

@@ -1,6 +1,6 @@
 # Public Safety Review
 
-Generated: 11/9/2026, 5:52:04 PM Central
+Generated: 11/10/2026, 8:37:55 PM Central
 
 This scanner looks for public-facing workflow notes, private contact details, raw Google workspace links, and old pricing artifacts in structured website data.
 
