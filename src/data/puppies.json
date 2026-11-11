@@ -4108,7 +4108,7 @@
     "stud": "Enzo",
     "gender": "Male",
     "collarColor": "D. Blue",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Mini",
     "estimatedAdultWeight": "25-35 lbs",
     "birthDate": "September 28, 2026",
@@ -4180,7 +4180,7 @@
       }
     ],
     "description": "Twain is a male F1B-style Mini Goldendoodle from Beatrix and Enzo's litter.",
-    "availabilityNote": "Twain is available for an approved family.",
+    "availabilityNote": "Twain is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
