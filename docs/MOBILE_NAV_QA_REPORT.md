@@ -1,6 +1,6 @@
 # Mobile Nav QA Report
 
-Generated: 11/9/2026, 5:52:57 PM Central
+Generated: 11/10/2026, 9:19:01 PM Central
 
 Status: **PASS**
 
@@ -19,6 +19,8 @@ This audit opens buyer-critical routes at a phone viewport, scrolls down the pag
 | Route | Status | Title |
 | --- | ---: | --- |
 | / | 200 | Red Ranch Dogs | Goldendoodle, Cavapoo & Bernedoodle Puppies in Texas |
+| /puppy-guide | 200 | Puppy Guide | Red Ranch Dogs |
+| /puppy-guide/new-puppy-checklist | 200 | Your new-puppy checklist | Red Ranch Dogs |
 | /puppies/current-litters | 200 | Current Doodle Litters in Texas | Red Ranch Dogs |
 | /puppies/available | 200 | Available Puppies in Texas | Red Ranch Dogs |
 | /birdie-waylon-spring-2026 | 200 | Birdie + Waylon 2026 | Previous Litter | Red Ranch Dogs |

@@ -1,10 +1,10 @@
 # SEO Metadata Report
 
-Generated: 11/10/2026, 9:01:53 PM Central
+Generated: 11/10/2026, 9:22:55 PM Central
 
 Status: **PASS**
 
-Sitemap routes checked: 178
+Sitemap routes checked: 182
 Routes with blockers: 0
 Routes with warnings: 2
 
@@ -64,6 +64,10 @@ Routes with warnings: 2
 | /previous-litters-bernedoodles | 200 | Previous Litters Bernedoodles | Red Ranch Dogs | 121 | Bernedoodle pairings | 1 | https://www.redranchdogs.com/previous-litters-bernedoodles |
 | /previous-litters-cavapoos | 200 | Previous Litters Cavapoos | Red Ranch Dogs | 117 | Cavapoo pairings | 1 | https://www.redranchdogs.com/previous-litters-cavapoos |
 | /stop-the-marking | 200 | Stop Indoor Marking Guide | Red Ranch Dogs | 115 | Stop Indoor Marking | 1 | https://www.redranchdogs.com/stop-the-marking |
+| /puppy-guide | 200 | Puppy Guide | Red Ranch Dogs | 148 | A good start.A life together. | 1 | https://www.redranchdogs.com/puppy-guide |
+| /puppy-guide/goldendoodle-cavapoo-or-bernedoodle | 200 | Goldendoodle, Cavapoo or Bernedoodle? | Red Ranch Dogs | 136 | Goldendoodle, Cavapoo or Bernedoodle? | 1 | https://www.redranchdogs.com/puppy-guide/goldendoodle-cavapoo-or-bernedoodle |
+| /puppy-guide/micro-and-mini-doodle-size-estimates | 200 | Micro & mini: a guide to size estimates | Red Ranch Dogs | 137 | Micro & mini: a guide to size estimates | 1 | https://www.redranchdogs.com/puppy-guide/micro-and-mini-doodle-size-estimates |
+| /puppy-guide/new-puppy-checklist | 200 | Your new-puppy checklist | Red Ranch Dogs | 143 | Your new-puppy checklist | 1 | https://www.redranchdogs.com/puppy-guide/new-puppy-checklist |
 | /puppies/goldendoodle-puppies | 200 | Goldendoodle Puppies in Texas | Red Ranch Dogs | 129 | Goldendoodle Puppies | 1 | https://www.redranchdogs.com/puppies/goldendoodle-puppies |
 | /puppies/cavapoo-puppies | 200 | Cavapoo Puppies in Texas | Red Ranch Dogs | 124 | Cavapoo Puppies | 1 | https://www.redranchdogs.com/puppies/cavapoo-puppies |
 | /puppies/bernedoodle-puppies | 200 | Bernedoodle Puppies in Texas | Red Ranch Dogs | 128 | Bernedoodle Puppies | 1 | https://www.redranchdogs.com/puppies/bernedoodle-puppies |

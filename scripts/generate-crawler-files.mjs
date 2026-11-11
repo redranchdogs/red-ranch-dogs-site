@@ -1,3 +1,4 @@
+import { guidePath, guideArticles, articlePath } from "../src/data/puppyGuide.js";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -92,6 +93,8 @@ const staticRoutes = [
 
 const routes = uniqueRoutes([
   ...staticRoutes,
+  guidePath,
+  ...guideArticles.map(articlePath),
   ...breedProfiles.map((breed) => breed.route),
   ...puppies.map((puppy) => `/puppies/${puppy.slug}`),
   ...litters.map((litter) => `/litters/${litter.slug}`),
@@ -137,6 +140,7 @@ Apply: ${siteOrigin}/apply
 - Puppy Application and Waitlist: ${siteOrigin}/process/application-and-waitlist
 - How the Puppy Process Works: ${siteOrigin}/process/how-it-works
 - Pricing: ${siteOrigin}/process/pricing
+- Puppy Guide: ${siteOrigin}${guidePath}
 - FAQ: ${siteOrigin}/process/faq
 - What Comes With Your Puppy: ${siteOrigin}/puppies/what-comes-with-your-puppy
 - Coat Traits: ${siteOrigin}/puppies/coat-traits
@@ -193,6 +197,10 @@ ${sectionList(
   breedProfiles,
   (breed) => `- ${breed.pluralName}: ${routeUrl(breed.route)}. ${breed.intro || ""}`
 )}
+
+## Puppy Guide
+
+${guideArticles.map((article) => `- [${article.title}](${siteOrigin}${articlePath(article)}): ${article.description}`).join("\n")}
 
 ## Current Litters
 

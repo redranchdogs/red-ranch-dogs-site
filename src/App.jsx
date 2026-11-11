@@ -1,5 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import FAQItem from "./FAQItem.jsx";
+import { PuppyGuideHome, PuppyGuideArticle } from "./PuppyGuide.jsx";
+import { guidePath, guideMeta, articleForPath, guideSchema } from "./data/puppyGuide.js";
 import { hasActiveGallery } from "./gallerySession.js";
 import { containTabFocus } from "./focus.js";
 import { compareUpcomingLitters } from "./upcomingLitterOrder.js";
@@ -260,6 +262,7 @@ const localGeo = {
 };
 
 const architectureSeo = {
+  "/puppy-guide": guideMeta,
   "/puppies": {
     title: "Puppies | Red Ranch Dogs",
     description: "Browse Red Ranch Dogs puppy availability, upcoming litters, breed pages, and puppy care resources."
@@ -591,6 +594,7 @@ const clientRedirects = Object.fromEntries([
 function isKnownPublicPath(path) {
   return Boolean(
     architectureSeo[path] ||
+      articleForPath(path) ||
       staticSeo[path] ||
       breedProfiles.some((item) => item.route === path) ||
       publicPuppyProfiles.some((item) => `/puppies/${item.slug}` === path) ||
@@ -608,6 +612,8 @@ function isKnownPublicPath(path) {
 }
 
 function seoFor(path) {
+  const article = articleForPath(path);
+  if (article) return { title: `${article.title} | Red Ranch Dogs`, description: article.description };
   if (architectureSeo[path]) return architectureSeo[path];
   const breed = breedProfiles.find((item) => item.route === path);
   if (breed) {
@@ -735,6 +741,7 @@ function upsertJsonLd(id, data) {
 }
 
 const breadcrumbLabels = {
+  "puppy-guide": "Puppy Guide",
   puppies: "Puppies",
   available: "Available Puppies",
   "current-litters": "Current Litters",
@@ -785,6 +792,8 @@ function titleCaseSlug(slug) {
 }
 
 function recordTitleForPath(path) {
+  const article = articleForPath(path);
+  if (article) return article.title;
   const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
   if (puppy) return puppy.name;
   const galleryLitter = litterForPastPuppyGalleryPath(path);
@@ -857,6 +866,8 @@ function teamPersonSchema(member) {
 }
 
 function socialImageFor(path) {
+  const article = articleForPath(path);
+  if (article) return `${siteOrigin}${article.image}`;
   const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
   if (puppy?.mainPhoto) return absoluteUrl(puppy.mainPhoto);
 
@@ -875,6 +886,8 @@ function socialImageFor(path) {
 }
 
 function socialImageAltFor(path, meta) {
+  const article = articleForPath(path);
+  if (article) return article.imageAlt;
   const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
   if (puppy?.name) return `${puppy.name}, a ${puppy.breed} puppy at Red Ranch Dogs`;
 
@@ -1025,6 +1038,7 @@ function itemListSchemaForPath(path) {
 }
 
 function pageSpecificSchemaForPath(path) {
+  if (path === guidePath || articleForPath(path)) return guideSchema(articleForPath(path));
   const canonical = `${siteOrigin}${path === "/" ? "/" : path}`;
 
   if (path.startsWith("/stud-services")) {
@@ -1272,6 +1286,8 @@ function structuredDataFor(path) {
 }
 
 function applySeo(path) {
+  // Replace build-time guide schema with the client route graph on navigation.
+  document.getElementById("puppy-guide-static-schema")?.remove();
   const meta = seoFor(path);
   const canonical = `${siteOrigin}${path === "/" ? "/" : path}`;
   const socialImage = socialImageFor(path);
@@ -1288,7 +1304,7 @@ function applySeo(path) {
   upsertMeta('meta[property="og:title"]', "meta", { property: "og:title", content: meta.title });
   upsertMeta('meta[property="og:description"]', "meta", { property: "og:description", content: meta.description });
   upsertMeta('meta[property="og:url"]', "meta", { property: "og:url", content: canonical });
-  upsertMeta('meta[property="og:type"]', "meta", { property: "og:type", content: "website" });
+  upsertMeta('meta[property="og:type"]', "meta", { property: "og:type", content: articleForPath(path) ? "article" : "website" });
   upsertMeta('meta[property="og:site_name"]', "meta", { property: "og:site_name", content: "Red Ranch Dogs" });
   upsertMeta('meta[property="og:locale"]', "meta", { property: "og:locale", content: "en_US" });
   upsertMeta('meta[property="og:image"]', "meta", { property: "og:image", content: socialImage });
@@ -1334,12 +1350,16 @@ const primaryNav = [
     links: navGroups.find((group) => group.label === "Getting Your Puppy").links
   },
   {
-    label: "Learn",
-    href: "/process/faq",
+    label: "Resources",
+    href: "/puppy-guide",
     links: [
+      { label: "Puppy Guide / Blog", href: "/puppy-guide" },
+      { label: "Guardian Family Program", href: "/guardian-program" },
+      { label: "Guardian Application", href: "/guardian-program/application" },
+      { label: "Frequently Asked Questions", href: "/process/faq" },
       { label: "Coat Traits", href: "/puppies/coat-traits" },
       { label: "Doodle Generations", href: "/puppies/doodle-generations" },
-      { label: "FAQ", href: "/process/faq" }
+      { label: "Contact Us", href: "/contact" }
     ]
   },
   {
@@ -1349,16 +1369,6 @@ const primaryNav = [
       { label: "Our Studs", href: "/stud-services/our-studs" },
       { label: "Reproductive Services", href: "/stud-services/reproductive-services" },
       { label: "Reproductive Education", href: "/stud-services/reproductive-education" }
-    ]
-  },
-  {
-    label: "Guardian Program",
-    href: "/guardian-program",
-    links: [
-      { label: "Guardian Program Overview", href: "/guardian-program" },
-      { label: "Guardian Application", href: "/guardian-program/application" },
-      { label: "Current Guardian Opportunities", href: "/guardian-program/current-guardian-opportunities" },
-      { label: "FAQ", href: "/guardian-program/faq" }
     ]
   },
   {
@@ -1507,7 +1517,7 @@ function Header() {
   const toggleMenuGroup = (label) => {
     setOpenGroup((value) => (value === label ? null : label));
   };
-  const isActive = (item) => currentPath === item.href || (item.href !== "/" && currentPath.startsWith(`${item.href}/`));
+  const isActive = (item) => currentPath === item.href || (item.href !== "/" && currentPath.startsWith(`${item.href}/`)) || item.links?.some((link) => currentPath === link.href);
 
   return (
     <header className={`premium-header ${scrolled ? "scrolled" : ""}`}>
@@ -7295,7 +7305,8 @@ function ApplicationFields({ applicationInterest = null }) {
             <div className="application-form-links" aria-label="Helpful application links">
               <Link href="/process/pricing">Pricing</Link>
               <Link href="/process/how-it-works">How it works</Link>
-              <Link href="/process/faq">FAQ</Link>
+              <Link href="/puppy-guide">Puppy Guide</Link>
+            <Link href="/process/faq">FAQ</Link>
             </div>
           </>
         )}
@@ -8061,6 +8072,7 @@ function Footer() {
           <div className="footer-link-row">
             <Link href="/apply">Apply</Link>
             <Link href="/process/pricing">Pricing</Link>
+            <Link href="/puppy-guide">Puppy Guide</Link>
             <Link href="/process/faq">FAQ</Link>
             <Link href="/contact">Contact</Link>
             <Link href="/privacy">Privacy</Link>
@@ -8227,6 +8239,7 @@ export default function App() {
     const routes = {
       "/": <HomePage />,
       "/home-maple": <HomePage />,
+      "/puppy-guide": <Layout><PuppyGuideHome Link={Link} /></Layout>,
       "/puppies": <PuppiesOverviewPage />,
       "/puppies/available": <AvailablePuppiesPage />,
       "/puppies/current-litters": <CurrentLittersPage />,
@@ -8295,6 +8308,8 @@ export default function App() {
     };
 
     if (routes[path]) return routes[path];
+    const guideArticle = articleForPath(path);
+    if (guideArticle) return <Layout><PuppyGuideArticle article={guideArticle} Link={Link} /></Layout>;
     const puppy = publicPuppyProfiles.find((item) => `/puppies/${item.slug}` === path);
     if (puppy) return <PuppyDetailPage puppy={puppy} />;
     const galleryLitter = litterForPastPuppyGalleryPath(path);

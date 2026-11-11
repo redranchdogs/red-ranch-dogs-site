@@ -73,12 +73,16 @@ export const navGroups = [
     ]
   },
   {
-    label: "Learn",
-    href: "/process/faq",
+    label: "Resources",
+    href: "/puppy-guide",
     links: [
+      { label: "Puppy Guide / Blog", href: "/puppy-guide" },
+      { label: "Guardian Family Program", href: "/guardian-program" },
+      { label: "Guardian Application", href: "/guardian-program/application" },
+      { label: "Frequently Asked Questions", href: "/process/faq" },
       { label: "Coat Traits", href: "/puppies/coat-traits" },
       { label: "Doodle Generations", href: "/puppies/doodle-generations" },
-      { label: "FAQ", href: "/process/faq" }
+      { label: "Contact Us", href: "/contact" }
     ]
   },
   {
@@ -88,16 +92,6 @@ export const navGroups = [
       { label: "Our Studs", href: "/stud-services/our-studs" },
       { label: "Reproductive Services", href: "/stud-services/reproductive-services" },
       { label: "Reproductive Education", href: "/stud-services/reproductive-education" }
-    ]
-  },
-  {
-    label: "Guardian Program",
-    href: "/guardian-program",
-    links: [
-      { label: "Guardian Program Overview", href: "/guardian-program" },
-      { label: "Guardian Application", href: "/guardian-program/application" },
-      { label: "Guardian Opportunities", href: "/guardian-program" },
-      { label: "Guardian FAQ", href: "/guardian-program/faq" }
     ]
   },
   {

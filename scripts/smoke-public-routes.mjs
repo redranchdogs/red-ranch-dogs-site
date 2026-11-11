@@ -1,3 +1,4 @@
+import { guidePath, guideArticles, articlePath } from "../src/data/puppyGuide.js";
 import fs from "node:fs";
 import { createHash } from "node:crypto";
 import { spawn } from "node:child_process";
@@ -92,6 +93,8 @@ const closedGuardianNames = puppies
   .map((puppy) => puppy.name);
 
 const routeExpectations = [
+  { route: guidePath, requiredText: ["a good start", "choosing your puppy", "bringing puppy home", "care & training"], requiredSelectors: [".guide-card", ".guide-topics"] },
+  ...guideArticles.map((article) => ({ route: articlePath(article), requiredText: [article.title, "sources & further reading", article.takeaway], requiredSelectors: [".guide-contents", ".guide-article-body"] })),
   {
     route: "/",
     requiredText: ["red ranch dogs", "available puppies", "f1b-style mini goldendoodle", ...featuredAvailablePuppies.map((puppy) => puppy.name), "apply"],
