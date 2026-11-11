@@ -13566,3 +13566,11 @@ summary {
     margin-top: 0;
   }
 }
+
+/* November 10 approved portraits: preserve the full frame in every photo tile. */
+.home-ready-puppy-photo img[src^="/images/puppies/2026-11-10/"],
+.image-gallery img[src^="/images/puppies/2026-11-10/"],
+.litter-gallery-section .litter-image-gallery img[src^="/images/puppies/2026-11-10/"] {
+  object-fit: contain;
+  object-position: 50% 50%;
+}
