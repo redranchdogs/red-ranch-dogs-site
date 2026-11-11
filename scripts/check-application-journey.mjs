@@ -1,4 +1,5 @@
 import { spawn } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { setTimeout as delay } from "node:timers/promises";
 import { chromium } from "playwright";
 
@@ -116,19 +117,36 @@ try {
   assert((await page.locator('input[name="specificInterest"]').first().inputValue()).startsWith("Georgia + Waylon"), "A previous litter should remain an editable style reference.");
 
   await page.goto(`${baseUrl}/litters/beatrix-enzo-planned-2026`, { waitUntil: "networkidle" });
+  const puppyRecords = JSON.parse(readFileSync(new URL("../src/data/puppies.json", import.meta.url), "utf8"));
+  const beatrixPuppies = puppyRecords.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026" && puppy.visibility === "public");
+  assert(beatrixPuppies.length > 0 && beatrixPuppies.every((puppy) => puppy.status === "Reserved"), "This test expects the current Beatrix litter to be fully reserved.");
+  for (const puppy of beatrixPuppies) {
+    assert((await page.getByRole("link", { name: `Ask about ${puppy.name}`, exact: true }).count()) === 0, `Reserved ${puppy.name} must not have an available-puppy inquiry CTA.`);
+  }
+  assert((await page.locator("#beatrix-inquiry").count()) === 0, "A fully reserved Beatrix litter must not show an available-puppy inquiry form.");
+
+  // A browser-only fixture exercises selection and history without changing public data.
+  const fixturePuppy = { ...beatrixPuppies[0], slug: "journey-fixture", name: "Journey Fixture", status: "Available" };
+  await page.route("**/src/data/puppies.json*", (route) => route.fulfill({
+    status: 200,
+    contentType: "application/javascript",
+    body: `export default ${JSON.stringify([...puppyRecords, fixturePuppy])};`
+  }));
+  await page.reload({ waitUntil: "networkidle" });
   const inquiryForm = page.locator('#beatrix-inquiry form[data-form-type="contact"]');
   assert((await page.getByRole("link", { name: "Ask about Atticus", exact: true }).count()) === 0, "Reserved Atticus must not have an available-puppy inquiry CTA.");
   await waitForInquiryPuppy(page, "");
   await inquiryForm.locator('input[name="name"]').fill("Inquiry Draft Test");
   await inquiryForm.locator('textarea[name="message"]').fill("Please tell me about this puppy's personality.");
-  await page.getByRole("link", { name: "Ask about Twain", exact: true }).click();
-  await waitForInquiryPuppy(page, "twain");
+  await page.getByRole("link", { name: "Ask about Journey Fixture", exact: true }).click();
+  await waitForInquiryPuppy(page, "journey-fixture");
   assert((await inquiryForm.locator('input[name="name"]').inputValue()) === "Inquiry Draft Test", "Changing puppy interest must preserve the inquiry name.");
   assert((await inquiryForm.locator('textarea[name="message"]').inputValue()) === "Please tell me about this puppy's personality.", "Changing puppy interest must preserve the inquiry message.");
   await page.goBack();
   await waitForInquiryPuppy(page, "");
   assert((await inquiryForm.locator('input[name="name"]').inputValue()) === "Inquiry Draft Test", "Back to the general litter interest must preserve the inquiry name.");
   assert((await inquiryForm.locator('textarea[name="message"]').inputValue()) === "Please tell me about this puppy's personality.", "Back to the general litter interest must preserve the inquiry message.");
+  await page.unroute("**/src/data/puppies.json*");
   const litterApply = page.locator(".litter-primary-cta-section a.button.primary");
   assert((await litterApply.getAttribute("href")) === "/apply?litter=beatrix-enzo-planned-2026", "Litter Apply must carry the verified litter slug.");
   const stickyLitterApply = page.locator(".sticky-mobile-cta a.button.primary");
