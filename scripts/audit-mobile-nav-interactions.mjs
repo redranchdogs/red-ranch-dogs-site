@@ -10,6 +10,8 @@ const port = Number(process.env.MOBILE_NAV_QA_PORT || 5204);
 const baseUrl = `http://127.0.0.1:${port}`;
 const routes = [
   "/",
+  "/puppy-guide",
+  "/puppy-guide/new-puppy-checklist",
   "/puppies/current-litters",
   "/puppies/available",
   "/birdie-waylon-spring-2026",
@@ -96,9 +98,9 @@ async function auditRoute(page, route) {
     href: link.getAttribute("href"),
     label: link.textContent.trim(),
   })));
-  const learnTrigger = page.locator(".mobile-menu-trigger", { hasText: "Learn" });
-  await learnTrigger.click();
-  const learnLinks = await page.locator("#mobile-nav-learn a").allTextContents();
+  const resourcesTrigger = page.locator(".mobile-menu-trigger", { hasText: "Resources" });
+  await resourcesTrigger.click();
+  const resourceLinks = await page.locator("#mobile-nav-resources a").allTextContents();
   await page.locator(".premium-menu-button").click();
   const isClosed = await page.locator(".premium-menu-button").getAttribute("aria-expanded");
 
@@ -127,8 +129,8 @@ async function auditRoute(page, route) {
   if (puppyJourneySignature !== expectedPuppyJourneySignature) {
     blockers.push(`Getting Your Puppy submenu changed unexpectedly: ${puppyJourneySignature || "missing"}.`);
   }
-  if (learnLinks.join("|") !== "Coat Traits|Doodle Generations|FAQ") {
-    blockers.push(`Learn submenu changed unexpectedly: ${learnLinks.join(" | ") || "missing"}.`);
+  if (resourceLinks.join("|") !== "Puppy Guide / Blog|Guardian Family Program|Guardian Application|Frequently Asked Questions|Coat Traits|Doodle Generations|Contact Us") {
+    blockers.push(`Resources submenu changed unexpectedly: ${resourceLinks.join(" | ") || "missing"}.`);
   }
   if (isClosed !== "false") warnings.push("Menu button did not return aria-expanded=false after close tap.");
   if (pageErrors.length) blockers.push(`Page errors: ${pageErrors.slice(0, 3).join("; ")}`);

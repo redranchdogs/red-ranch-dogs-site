@@ -1,3 +1,4 @@
+import { guidePath, guideMeta, guideArticles, articlePath, articleForPath, guideSchema } from "../src/data/puppyGuide.js";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -64,6 +65,8 @@ const parents = readJson("src/data/parents.json").filter(isPublic);
 const previousLitters = readJson("src/data/previousLitters.json").filter(isPublic);
 
 const staticMeta = new Map([
+  [guidePath, [guideMeta.title, guideMeta.description]],
+  ...guideArticles.map((article) => [articlePath(article), [`${article.title} | Red Ranch Dogs`, article.description]]),
   ["/", ["Red Ranch Dogs | Country Raised Doodles", "Country-raised Goldendoodle, Cavapoo, and Bernedoodle puppies from Red Ranch Dogs in Salado, Texas."]],
   ["/puppies", ["Puppies | Red Ranch Dogs", "Browse available puppies, current litters, upcoming pairings, previous litters, and breed pages from Red Ranch Dogs."]],
   ["/puppies/available", ["Available Puppies | Red Ranch Dogs", "See Red Ranch Dogs puppies currently available to reserve, with breed and litter details kept current."]],
@@ -179,6 +182,9 @@ function applyMeta(html, route) {
   const escapedTitle = escapeAttribute(title);
   const escapedDescription = escapeAttribute(description);
   const escapedCanonical = escapeAttribute(canonical);
+  const article = articleForPath(route);
+  const image = article ? `${siteOrigin}${article.image}` : logoImage;
+  const imageAlt = article?.imageAlt || logoAlt;
 
   let output = html;
   output = output.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeText(title)}</title>`);
@@ -187,15 +193,22 @@ function applyMeta(html, route) {
   output = upsertTag(output, /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:title" content="${escapedTitle}" />`);
   output = upsertTag(output, /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:description" content="${escapedDescription}" />`);
   output = upsertTag(output, /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${escapedCanonical}" />`);
-  output = upsertTag(output, /<meta\s+property="og:type"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:type" content="website" />`);
-  output = upsertTag(output, /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image" content="${logoImage}" />`);
-  output = upsertTag(output, /<meta\s+property="og:image:secure_url"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image:secure_url" content="${logoImage}" />`);
-  output = upsertTag(output, /<meta\s+property="og:image:alt"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image:alt" content="${logoAlt}" />`);
+  output = upsertTag(output, /<meta\s+property="og:type"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:type" content="${article ? "article" : "website"}" />`);
+  output = upsertTag(output, /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image" content="${image}" />`);
+  output = upsertTag(output, /<meta\s+property="og:image:secure_url"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image:secure_url" content="${image}" />`);
+  output = upsertTag(output, /<meta\s+property="og:image:alt"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image:alt" content="${escapeAttribute(imageAlt)}" />`);
   output = upsertTag(output, /<meta\s+name="twitter:card"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:card" content="summary_large_image" />`);
   output = upsertTag(output, /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${escapedTitle}" />`);
   output = upsertTag(output, /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${escapedDescription}" />`);
-  output = upsertTag(output, /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${logoImage}" />`);
-  output = upsertTag(output, /<meta\s+name="twitter:image:alt"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:image:alt" content="${logoAlt}" />`);
+  output = upsertTag(output, /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${image}" />`);
+  output = upsertTag(output, /<meta\s+name="twitter:image:alt"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:image:alt" content="${escapeAttribute(imageAlt)}" />`);
+  if (route === guidePath || article) {
+    const schema = JSON.stringify({ "@context": "https://schema.org", ...guideSchema(article) }).replace(/</g, "\\u003c");
+    output = output.replace("</head>", `<script type="application/ld+json" id="puppy-guide-static-schema">${schema}</script></head>`);
+    const link = (item) => `<a href="${escapeAttribute(item.href)}">${escapeText(item.label)}</a>`;
+    const articleHtml = article ? `<nav><a href="${guidePath}">Puppy Guide</a></nav><article><h1>${escapeText(article.title)}</h1><p>${escapeText(article.subtitle)}</p><p>${escapeText(article.intro)}</p>${article.sections.map((section) => `<section id="${section.id}"><h2>${escapeText(section.title)}</h2>${(section.paragraphs || []).map((text) => `<p>${escapeText(text)}</p>`).join("")}${section.items ? `<ul>${section.items.map((text) => `<li>${escapeText(text)}</li>`).join("")}</ul>` : ""}${(section.links || []).map(link).join(" · ")}</section>`).join("")}<p>${escapeText(article.takeaway)}</p><h2>Sources &amp; further reading</h2><ul>${article.sources.map((source) => `<li>${link(source)}</li>`).join("")}</ul><p>General education, not individualized veterinary advice. Ask your veterinarian about your puppy’s health, nutrition and care.</p></article>` : `<h1>Puppy Guide</h1><p>${escapeText(guideMeta.description)}</p><h2>Choosing Your Puppy</h2><h2>Bringing Puppy Home</h2><h2>Care &amp; Training</h2>${guideArticles.map((item) => `<article><h2><a href="${articlePath(item)}">${escapeText(item.title)}</a></h2><p>${escapeText(item.description)}</p></article>`).join("")}`;
+    output = output.replace('<div id="root"></div>', `<div id="root"><main class="puppy-guide guide-article-header">${articleHtml}</main></div>`);
+  }
   return output;
 }
 

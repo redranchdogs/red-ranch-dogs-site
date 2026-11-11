@@ -1,3 +1,4 @@
+import { guidePath, guideArticles, articlePath } from "../src/data/puppyGuide.js";
 import fs from "node:fs";
 
 const read = (path) => fs.readFileSync(path, "utf8");
@@ -11,7 +12,7 @@ const puppies = readJson("src/data/puppies.json");
 const litters = readJson("src/data/litters.json");
 const previousLitters = readJson("src/data/previousLitters.json");
 const parents = readJson("src/data/parents.json");
-const siteData = `${app}\n${data}`;
+const siteData = `${app}\n${data}\n${read("src/PuppyGuide.jsx")}\n${read("src/data/puppyGuide.js")}`;
 
 const urls = [...sitemap.matchAll(/<loc>https:\/\/www\.redranchdogs\.com([^<]+)<\/loc>/g)].map((match) => match[1]);
 const duplicates = urls.filter((url, index) => urls.indexOf(url) !== index);
@@ -46,6 +47,8 @@ const previousLitterArchiveRoutes = new Set(
     .map((group) => `/previous-litters-${group.toLowerCase()}`)
 );
 const dynamicRoutes = new Set([
+  guidePath,
+  ...guideArticles.map(articlePath),
   ...puppies.filter(isPublicRecord).map(routeFor("puppies")).filter(Boolean),
   ...litters.filter(isPublicRecord).map(routeFor("litters")).filter(Boolean),
   ...litters
