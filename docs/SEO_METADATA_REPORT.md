@@ -1,6 +1,6 @@
 # SEO Metadata Report
 
-Generated: 11/10/2026, 8:40:30 PM Central
+Generated: 11/10/2026, 8:50:25 PM Central
 
 Status: **PASS**
 
@@ -140,7 +140,7 @@ Routes with warnings: 2
 | /litters/lulu-bram-fall-2026 | 200 | Lulu + Bram | Multigen Micro Goldendoodle Litter | Red Ranch Dogs | 65 | Lulu + Bram | 1 | https://www.redranchdogs.com/litters/lulu-bram-fall-2026 |
 | /litters/reece-wyatt-summer-2026 | 200 | Reece + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 71 | Reece + Wyatt | 1 | https://www.redranchdogs.com/litters/reece-wyatt-summer-2026 |
 | /litters/kylie-ranger-late-summer-2026 | 200 | Kylie + Ranger | Multigen Micro Bernedoodle Litter | Red Ranch Dogs | 73 | Kylie + Ranger | 1 | https://www.redranchdogs.com/litters/kylie-ranger-late-summer-2026 |
-| /litters/evie-waylon-october-2026 | 200 | Evie + Waylon | Petite Mini Goldendoodle Litter | Red Ranch Dogs | 89 | Evie + Waylon | 1 | https://www.redranchdogs.com/litters/evie-waylon-october-2026 |
+| /litters/evie-waylon-october-2026 | 200 | Evie + Waylon | Petite Mini Goldendoodle Litter | Red Ranch Dogs | 67 | Evie + Waylon | 1 | https://www.redranchdogs.com/litters/evie-waylon-october-2026 |
 | /litters/sylvee-rooster-2026 | 200 | Sylvee + Rooster | Bernedoodle Litter | Red Ranch Dogs | 116 | Sylvee + Rooster | 1 | https://www.redranchdogs.com/litters/sylvee-rooster-2026 |
 | /litters/birdie-waylon-final-2026 | 200 | Birdie + Waylon | Goldendoodle Litter | Red Ranch Dogs | 91 | Birdie + Waylon | 1 | https://www.redranchdogs.com/litters/birdie-waylon-final-2026 |
 | /litters/maisie-wyatt-2026 | 200 | Maisie + Wyatt | F1B Micro Cavapoo Litter | Red Ranch Dogs | 90 | Maisie + Wyatt | 1 | https://www.redranchdogs.com/litters/maisie-wyatt-2026 |
