@@ -82,6 +82,7 @@ const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
 const beatrixAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026").length} available`;
 const luluAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "lulu-bram-fall-2026").length} available`;
+const evieAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "evie-waylon-october-2026").length} available`;
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
 const openGuardianNames = puppies
   .filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open")
@@ -93,7 +94,7 @@ const closedGuardianNames = puppies
 const routeExpectations = [
   {
     route: "/",
-    requiredText: ["red ranch dogs", "available puppies", "f1b-style mini goldendoodle", ...featuredAvailablePuppies.slice(0, 1).map((puppy) => puppy.name), "apply"],
+    requiredText: ["red ranch dogs", "available puppies", "f1b-style mini goldendoodle", ...featuredAvailablePuppies.map((puppy) => puppy.name), "apply"],
     forbiddenText: ["hugo poe"],
     requiredSelectors: [".premium-header", "main", ".premium-footer"],
     homeLitterCheck: {
@@ -109,7 +110,7 @@ const routeExpectations = [
   ].map((state) => ({ route: `/?fixture=${state.fixture}`, requiredSelectors: ["main"], homeLitterCheck: state })),
   {
     route: "/puppies/available",
-    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", ...featuredAvailablePuppies.slice(0, 1).map((puppy) => puppy.name), "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "birdie + waylon"],
+    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", ...featuredAvailablePuppies.map((puppy) => puppy.name), "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "birdie + waylon"],
     forbiddenText: [...hiddenAvailablePuppies, ...puppies.filter((puppy) => ["atticus", "posy"].includes(puppy.slug) && normalize(puppy.status) === "reserved")].map((puppy) => puppy.name),
     requiredSelectors: featuredAvailablePuppies.length ? [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"] : [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
     finderNavCheck: { mode: "available", history: !featuredAvailablePuppies.length },
@@ -138,7 +139,7 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    requiredText: ["current litters", "beatrix + enzo", "lulu + bram", "evie + waylon", "waitlist matching", luluAvailabilityLabel, "september 28, 2026", "november 19-21, 2026"],
+    requiredText: ["current litters", "beatrix + enzo", "lulu + bram", "evie + waylon", evieAvailabilityLabel, luluAvailabilityLabel, "september 28, 2026", "november 19-21, 2026"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
@@ -203,10 +204,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/evie-waylon-october-2026",
-    requiredText: ["evie + waylon", "petite mini goldendoodles", "waitlist matching", "week 4", "moran", "nancy", "$3,200", "~20 lbs", "birth date", "october 11, 2026", "go-home", "december 3-5, 2026", "join the waitlist"],
+    requiredText: ["evie + waylon", "petite mini goldendoodles", evieAvailabilityLabel, "week 4", "moran", "nancy", "$3,200", "~20 lbs", "birth date", "october 11, 2026", "go-home", "december 3-5, 2026", "apply for a puppy"],
     forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "orange collar boy", "nancy drew", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "Waitlist matching", expectedPuppies: 7, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
+    litterDetailCheck: { expectedStatus: evieAvailabilityLabel, expectedPuppies: 7, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
   },
   {
     route: "/litters/whitley-waylon-november-2026",
@@ -267,8 +268,8 @@ const routeExpectations = [
   })),
   ...["penn", "dottie", "posy", "merryweather", "moriarty", "sherlock", "watson", "evie-orange-collar-boy", "nancy", "agatha", "columbo"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) === "available" ? [`reserve ${slug}`] : ["join waitlist"])],
-    forbiddenText: ["nancy drew", "reserve this puppy", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) !== "available" ? [`reserve ${slug}`] : []), ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
+    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) === "available" ? [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`] : ["join waitlist"])],
+    forbiddenText: ["nancy drew", "reserve this puppy", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) !== "available" ? [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`] : []), ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
   {
