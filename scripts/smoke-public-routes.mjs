@@ -211,10 +211,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/whitley-waylon-november-2026",
-    requiredText: ["whitley + waylon", "multigen mini goldendoodles", "puppies born", "birth date", "november 8, 2026", "estimated go-home", "january 1-3, 2027", "to be announced", "join the waitlist"],
-    forbiddenText: ["pregnancy confirmed", "estimated birth", "fully reserved", "$3,200", "25-30 lbs"],
+    requiredText: ["whitley + waylon", "multigen mini goldendoodles", "puppies born", "birth date", "november 8, 2026", "estimated go-home", "january 1-3, 2027", "$3,200", "~25 lbs", "join the waitlist"],
+    forbiddenText: ["pregnancy confirmed", "estimated birth", "fully reserved", "to be announced", "25-30 lbs"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Multigen Mini Goldendoodles", expectedSize: "To be announced", testParentBack: true, expectedAboutText: ["57.6% Poodle", "42.4% Golden Retriever", "Individual puppies can inherit different proportions"] }
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Multigen Mini Goldendoodles", expectedSize: "~25 lbs", testParentBack: true, expectedAboutText: ["57.6% Poodle", "42.4% Golden Retriever", "Individual puppies can inherit different proportions"] }
   },
   {
     route: "/litters/daisy-waylon-october-2026",
