@@ -211,7 +211,7 @@ const routeExpectations = [
   },
   {
     route: "/litters/whitley-waylon-november-2026",
-    requiredText: ["whitley + waylon", "multigen mini goldendoodles", "puppies born", "birth date", "november 8, 2026", "estimated go-home", "january 1-3, 2027", "$3,200", "~25 lbs", "join the waitlist"],
+    requiredText: ["whitley + waylon", "multigen mini goldendoodles", "puppies born", "birth date", "november 8, 2026", "estimated go-home", "december 30, 2026 - january 1, 2027", "new year's litter", "$3,200", "~25 lbs", "join the waitlist"],
     forbiddenText: ["pregnancy confirmed", "estimated birth", "fully reserved", "to be announced", "25-30 lbs"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Multigen Mini Goldendoodles", expectedSize: "~25 lbs", testParentBack: true, expectedAboutText: ["57.6% Poodle", "42.4% Golden Retriever", "Individual puppies can inherit different proportions"] }
@@ -599,6 +599,18 @@ async function auditRoute(context, config, viewportName) {
     for (const ribbon of reservationRibbons) {
       if (ribbon.count !== Number(Boolean(ribbon.expected))) failures.push(`Wrong reserved ribbon visibility for ${ribbon.name}.`);
       if (ribbon.expected && (ribbon.text !== "Reserved" || !ribbon.insidePhoto || !ribbon.legible)) failures.push(`Reserved photo ribbon is missing, clipped, or too small for ${ribbon.name}.`);
+    }
+
+    if (config.route === "/") {
+      const homePrices = await page.locator(".home-ready-puppy-card").evaluateAll((cards) => cards.map((card) => ({
+        name: card.querySelector("h3")?.textContent?.trim(),
+        price: card.querySelector(".home-ready-puppy-price")?.textContent?.trim(),
+        priceFollowsName: card.querySelector("h3")?.nextElementSibling?.classList.contains("home-ready-puppy-price")
+      })));
+      for (const puppy of featuredAvailablePuppies) {
+        const card = homePrices.find((item) => item.name === puppy.name);
+        if (!card || card.price !== puppy.price || !card.priceFollowsName) failures.push(`Homepage price is missing, misplaced, or differs from the individual record for ${puppy.name}.`);
+      }
     }
 
     if (config.homeLitterCheck) {

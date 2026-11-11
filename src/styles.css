@@ -12488,6 +12488,14 @@ summary {
   text-transform: uppercase;
 }
 
+/* Keep each homepage price prominent and directly below the puppy name. */
+.home-ready-puppy-body p.home-ready-puppy-price {
+  color: var(--premium-ink);
+  font-size: 0.96rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
 .home-ready-puppy-meta {
   color: var(--premium-ink);
   font-weight: 800;
