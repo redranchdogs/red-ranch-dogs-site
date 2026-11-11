@@ -233,7 +233,7 @@
     "name": "Beatrix + Enzo",
     "visibility": "public",
     "status": "Current Litter",
-    "featuredAvailable": true,
+    "featuredAvailable": false,
     "pregnancyConfirmed": true,
     "litterNumber": "Second pairing",
     "mamaSlug": "beatrix",
