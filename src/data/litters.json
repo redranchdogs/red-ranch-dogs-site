@@ -1016,5 +1016,52 @@
       "/images/puppies/2026-11-10/daisy/max-week-2-img-8755.webp"
     ],
     "publicListingStage": "awaiting-puppy-profiles"
+  },
+  {
+    "slug": "whitley-waylon-november-2026",
+    "name": "Whitley + Waylon",
+    "visibility": "public",
+    "status": "Planned Litter",
+    "birthConfirmed": true,
+    "publicListingStage": "awaiting-puppy-profiles",
+    "featuredAvailable": false,
+    "litterNumber": "",
+    "mamaSlug": "whitley",
+    "mama": "Whitley",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Multigen Mini Goldendoodle",
+    "birthDate": "November 8, 2026",
+    "goHomeDate": "Estimated January 1-3, 2027",
+    "expectedSize": "To be announced",
+    "expectedTiming": "Puppies born November 8, 2026",
+    "expectedColors": "Warm red and red abstract possibilities",
+    "expectedCoatTraits": "Individual coats and markings will be shared as the puppies grow",
+    "priceRange": "To be announced",
+    "availabilitySummary": "Whitley and Waylon’s puppies arrived November 8, 2026, with estimated go-home January 1-3, 2027.",
+    "availabilityNote": "Join the Goldendoodle waitlist for this litter. Individual puppy details and availability will be shared as they are confirmed.",
+    "aboutTitle": "A super-sweet mama and a new beginning",
+    "aboutThisLitter": [
+      "Whitley is a super-sweet Goldendoodle mama with a gentle, affectionate personality. Her soft red coat and warm expression are easy to love, but her sweetness is what makes her so special. She and Waylon Jennings welcomed their puppies on November 8, 2026.",
+      "Whitley is an F1 Goldendoodle weighing about 34 pounds. Waylon is our 19-pound Multigen Mini Goldendoodle stud, known for his sweet, confident nature. Their parent photos and individual profiles are here so you can get to know both dogs behind this pairing.",
+      "Based on both parents’ verified Embark breed results, this pairing’s projected average is 57.6% Poodle and 42.4% Golden Retriever. Whitley’s result is 47.6% Poodle and 52.4% Golden Retriever; Waylon’s is 67.6% Poodle and 32.4% Golden Retriever. These percentages describe the expected average for the pairing, not a DNA result for each puppy. Individual puppies can inherit different proportions.",
+      "The puppies’ estimated go-home window is January 1-3, 2027, depending on their readiness. This litter is listed with our upcoming litters while individual puppy profiles are being prepared. We will share puppy details, expected adult size and availability as they are confirmed."
+    ],
+    "geneticMakeup": [
+      "Projected pairing average: 57.6% Poodle",
+      "Projected pairing average: 42.4% Golden Retriever",
+      "Based on both parents’ Embark results; individual puppies may vary"
+    ],
+    "aboutHighlights": [
+      "Super-sweet, affectionate Whitley",
+      "Born November 8, 2026",
+      "Estimated go-home January 1-3, 2027",
+      "Both parent Embark profiles available"
+    ],
+    "puppySlugs": [],
+    "photoFolderHint": "",
+    "weeklyUpdateStatus": "Puppies arrived November 8, 2026. Individual puppy profiles and updates will follow.",
+    "weeklyUpdateGallery": []
   }
 ]
