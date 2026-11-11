@@ -81,7 +81,10 @@ const litters = readJson("src/data/litters.json").filter(isPublicRecord);
 const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
-const beatrixAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026").length} available`;
+const beatrixPuppies = puppies.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026");
+const beatrixAvailableCount = beatrixPuppies.filter((puppy) => normalize(puppy.status) === "available").length;
+const beatrixFullyReserved = beatrixPuppies.length > 0 && beatrixPuppies.every((puppy) => ["reserved", "matched"].includes(normalize(puppy.status)));
+const beatrixAvailabilityLabel = beatrixFullyReserved ? "Reserved" : `${beatrixAvailableCount} available`;
 const luluAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "lulu-bram-fall-2026").length} available`;
 const evieAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "evie-waylon-october-2026").length} available`;
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
@@ -97,7 +100,7 @@ const routeExpectations = [
   ...guideArticles.map((article) => ({ route: articlePath(article), requiredText: [article.title, "sources & further reading", article.takeaway], requiredSelectors: [".guide-contents", ".guide-article-body"] })),
   {
     route: "/",
-    requiredText: ["red ranch dogs", "available puppies", "f1b-style mini goldendoodle", ...featuredAvailablePuppies.map((puppy) => puppy.name), "apply"],
+    requiredText: ["red ranch dogs", "available puppies", ...featuredAvailablePuppies.map((puppy) => puppy.name), "apply"],
     forbiddenText: ["hugo poe"],
     requiredSelectors: [".premium-header", "main", ".premium-footer"],
     homeLitterCheck: {
@@ -240,9 +243,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", beatrixAvailabilityLabel, "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", "ask about a beatrix puppy", "about this litter", "week 5", "weekly photo gallery"],
-    forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026"],
-    requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ".beatrix-inquiry-section form", ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", beatrixAvailabilityLabel, "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", ...(beatrixAvailableCount ? ["ask about a beatrix puppy"] : []), "about this litter", "week 5", "weekly photo gallery"],
+    forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026", ...(!beatrixAvailableCount ? ["ask about a beatrix puppy"] : [])],
+    requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ...(beatrixAvailableCount ? [".beatrix-inquiry-section form"] : []), ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
+    forbiddenSelectors: beatrixAvailableCount ? [] : [".beatrix-inquiry-section form"],
     litterDetailCheck: { expectedStatus: beatrixAvailabilityLabel, expectedPuppies: 9 }
   },
   {
@@ -523,6 +527,9 @@ async function auditRoute(context, config, viewportName) {
       const count = await visibleCount(page, selector);
       if (count < 1) failures.push(`Missing visible selector: ${selector}`);
     }
+    for (const selector of config.forbiddenSelectors || []) {
+      if (await page.locator(selector).count()) failures.push(`Unexpected selector: ${selector}`);
+    }
 
     if (config.applicationInterestCheck) {
       const puppy = config.applicationInterestCheck;
@@ -608,12 +615,21 @@ async function auditRoute(context, config, viewportName) {
       const homePrices = await page.locator(".home-ready-puppy-card").evaluateAll((cards) => cards.map((card) => ({
         name: card.querySelector("h3")?.textContent?.trim(),
         price: card.querySelector(".home-ready-puppy-price")?.textContent?.trim(),
+        breed: card.querySelector(".home-ready-puppy-meta")?.textContent?.trim(),
         priceFollowsName: card.querySelector("h3")?.nextElementSibling?.classList.contains("home-ready-puppy-price")
       })));
       for (const puppy of featuredAvailablePuppies) {
         const card = homePrices.find((item) => item.name === puppy.name);
         if (!card || card.price !== puppy.price || !card.priceFollowsName) failures.push(`Homepage price is missing, misplaced, or differs from the individual record for ${puppy.name}.`);
+        const expectedBreed = puppy.slug === "bram" ? "Micro Chocolate Bernedoodle" : puppy.breed;
+        if (!card || card.breed !== expectedBreed) failures.push(`Homepage breed is missing or incorrect for ${puppy.name}.`);
       }
+      for (const card of homePrices) if (!featuredAvailablePuppies.some((puppy) => puppy.name === card.name)) failures.push(`Unexpected puppy in homepage available cards: ${card.name}.`);
+    }
+
+    if (config.route === "/puppies/available") {
+      const cardNames = await page.locator(".available-puppy-card figcaption").allTextContents();
+      for (const name of cardNames) if (!featuredAvailablePuppies.some((puppy) => puppy.name === name.trim())) failures.push(`Unexpected puppy in available listing: ${name.trim()}.`);
     }
 
     if (config.homeLitterCheck) {
