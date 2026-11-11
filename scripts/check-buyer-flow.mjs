@@ -218,8 +218,11 @@ if (!app.includes('source: "home_ready_strip"') || !app.includes('trackSiteEvent
 }
 
 const homeReadyStripSource = app.match(/function HomeReadySoonStrip\([^)]*\) \{[\s\S]*?\n\}/)?.[0] || "";
-if (homeReadyStripSource && /\b(price|previousPrice|markdown|strikethrough)\b/i.test(homeReadyStripSource)) {
-  blockers.push("Homepage ready strip must not render prices, markdowns, or discount fields.");
+if (homeReadyStripSource && !homeReadyStripSource.includes('className="home-ready-puppy-price">{puppy.price}</p>')) {
+  blockers.push("Homepage ready strip must display the current price from the puppy record.");
+}
+if (homeReadyStripSource && /\b(previousPrice|markdown|strikethrough)\b/i.test(homeReadyStripSource)) {
+  blockers.push("Homepage ready strip must not render markdowns or discount fields.");
 }
 
 if (!/function HomePage\(\)[\s\S]*?const readyPuppies = featuredAvailablePuppies\(\);[\s\S]*?<HomeHero browseAction=\{browseAction\} \/>[\s\S]*?<HomeReadySoonStrip readyPuppies=\{readyPuppies\} browseAction=\{browseAction\} \/>/.test(app)) {

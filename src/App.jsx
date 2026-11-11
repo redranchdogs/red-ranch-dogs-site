@@ -1998,6 +1998,7 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
                 </Link>
                 <div className="home-ready-puppy-body">
                   <h3>{puppy.name}</h3>
+                  {puppy.price && <p className="home-ready-puppy-price">{puppy.price}</p>}
                   <p className="home-ready-puppy-meta">{breedLabel}</p>
                   <p>{[litterName, puppy.estimatedAdultWeight || puppy.size, gender].filter(Boolean).join(" • ")}</p>
                   <Link
