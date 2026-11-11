@@ -748,7 +748,7 @@
     "name": "Evie + Waylon",
     "visibility": "public",
     "status": "Current Litter",
-    "featuredAvailable": false,
+    "featuredAvailable": true,
     "litterNumber": "",
     "mamaSlug": "evie-nicks",
     "mama": "Evie Nicks",
@@ -763,8 +763,8 @@
     "expectedColors": "Deep red and red chocolate possibilities",
     "expectedCoatTraits": "Expected straight, low-shedding coats with allergy-friendly possibilities",
     "priceRange": "$3,200",
-    "availabilitySummary": "Week 4 photos are here. Family selections will proceed through the Goldendoodle waitlist.",
-    "availabilityNote": "Family selections will proceed through the Goldendoodle waitlist. Individual availability will be confirmed after matching.",
+    "availabilitySummary": "Sherlock, Moran, and Columbo are available. Week 4 photos are here.",
+    "availabilityNote": "Sherlock, Moran, and Columbo are available for approved families. Moriarty, Watson, Nancy, and Agatha are reserved or matched.",
     "aboutTitle": "Sweet hearts. Beautiful coats.",
     "aboutThisLitter": [
       "Evie and Waylon are the kind of dogs who make you want to linger a little longer: sweet, affectionate, and happiest close to the people they love. That warmth is at the heart of this pairing. Their puppies arrived October 11, 2026. We are excited to watch their little personalities grow, with the same lovely potential for companionship that makes their parents so special to us.",
@@ -789,7 +789,7 @@
       "columbo"
     ],
     "photoFolderHint": "https://drive.google.com/drive/folders/1hGrJxs_r_nbpVwwRkQnctIVm05xFi3c6",
-    "weeklyUpdateStatus": "Week 4 photos are here. Family selections are pending through the Goldendoodle waitlist.",
+    "weeklyUpdateStatus": "Week 4 photos are here. Sherlock, Moran, and Columbo are available for approved families.",
     "weeklyUpdateGallery": [
       "/images/puppies/2026-11-10/evie/moriarty-week-4-img-8642.webp",
       "/images/puppies/2026-11-10/evie/sherlock-week-4-img-8653.webp",
