@@ -4741,7 +4741,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Blue",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Petite Mini",
     "estimatedAdultWeight": "~20 lbs",
     "birthDate": "October 11, 2026",
@@ -4781,7 +4781,7 @@
       }
     ],
     "description": "Sherlock is a male Petite Mini Goldendoodle from Evie + Waylon's litter.",
-    "availabilityNote": "Sherlock is available for an approved family.",
+    "availabilityNote": "Sherlock is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
