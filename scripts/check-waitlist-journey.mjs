@@ -90,7 +90,7 @@ try {
   assert.equal(await page.locator(".process-status-strip").count(), 1, "Verified empty feed may show zero counts");
   assert.equal(await page.getByRole("alert").count(), 0, "Empty success must not imply failure");
   await page.goto(origin);
-  await page.getByText("Explore upcoming litters or join the waitlist.", { exact: true }).waitFor();
+  await page.getByRole("link", { name: "Current Litters", exact: true }).first().waitFor();
   assert(!(await page.locator("main").innerText()).includes("All current puppies have families"));
   console.log("Waitlist journey PASS: no stale rows/counts/date during loading, HTTP/network/malformed/timeout errors, retry then verified rows, empty success, neutral homepage. All external requests blocked; no writes.");
 } finally {

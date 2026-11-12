@@ -214,10 +214,10 @@ async function runBrowserContract() {
     await waitForEventCount(page, "cta_text_click", 1);
 
     await page.evaluate(() => {
-      window.history.pushState({}, "", "/puppies/upcoming-litters?breed=goldendoodle-puppies");
+      window.history.pushState({}, "", "/puppies/current-litters?breed=goldendoodle-puppies");
       window.dispatchEvent(new PopStateEvent("popstate"));
     });
-    await page.waitForURL(`${baseUrl}/puppies/upcoming-litters?breed=goldendoodle-puppies`, { timeout: 8000 });
+    await page.waitForURL(`${baseUrl}/puppies/current-litters?breed=goldendoodle-puppies`, { timeout: 8000 });
     await waitForEventCount(page, "page_view", 6);
     await clickFirstVisible(page, ".litter-browser-card-action");
     await page.waitForFunction(() => window.location.pathname.startsWith("/litters/"), {}, { timeout: 8000 });
