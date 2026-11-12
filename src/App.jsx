@@ -54,6 +54,7 @@ import {
 import breedProfiles from "./data/breeds.json";
 import puppyProfiles from "./data/puppies.json";
 import litterProfiles from "./data/litters.json";
+import { resolveImageReferences } from "./imageVersions.js";
 import parentProfiles from "./data/parents.json";
 import testimonialProfiles from "./data/testimonials.json";
 import faqProfiles from "./data/faqs.json";
@@ -3405,8 +3406,8 @@ function publicRecords(records = []) {
   return records.filter((record) => !["hidden", "private"].includes(normalizedStatus(record?.visibility || "public")));
 }
 
-const publicPuppyProfiles = publicRecords(puppyProfiles);
-const publicLitterProfiles = publicRecords(litterProfiles);
+const publicPuppyProfiles = resolveImageReferences(publicRecords(puppyProfiles));
+const publicLitterProfiles = resolveImageReferences(publicRecords(litterProfiles));
 const publicParentProfiles = publicRecords(parentProfiles);
 const puppyData = publicPuppyProfiles;
 const litterProfileBySlug = new Map(publicLitterProfiles.map((litter) => [litter.slug, litter]));
