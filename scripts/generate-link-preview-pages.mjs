@@ -1,4 +1,5 @@
 import { guidePath, guideMeta, guideArticles, articlePath, articleForPath, guideSchema } from "../src/data/puppyGuide.js";
+import { resolveImageUrl } from "../src/imageVersions.js";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -183,7 +184,7 @@ function applyMeta(html, route) {
   const escapedDescription = escapeAttribute(description);
   const escapedCanonical = escapeAttribute(canonical);
   const article = articleForPath(route);
-  const image = article ? `${siteOrigin}${article.image}` : logoImage;
+  const image = article ? `${siteOrigin}${resolveImageUrl(article.image)}` : logoImage;
   const imageAlt = article?.imageAlt || logoAlt;
 
   let output = html;
