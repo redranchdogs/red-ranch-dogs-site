@@ -1,5 +1,5 @@
 # Sheet Sync Review
-Generated: 11/12/2026, 2:25:28 PM Central
+Generated: 11/12/2026, 2:53:52 PM Central
 Status: **PASS**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary
@@ -41,3 +41,11 @@ Only exact frozen parent records, physical cells, expected URLs and existing bla
 - None.
 ## Recommended Fix
 No sheet sync fixes are needed right now.
+
+## Scoped Public Waitlist Verification
+
+Final source reads completed 2026-11-12T20:53:26.662Z. All four canonical datasets and Public Waitlist exactly match their verified postwrite source snapshots.
+
+Public Waitlist row 2 retains Goldendoodle, position 1, Elise M.; status is Fulfilled and show_publicly is No. Every other source row is unchanged. Anna A. remains unchanged. Public Goldendoodle order remains Sara N. (2), Erin F. (4), Katie A. (5), Anna A. (10). No re-ranking occurred.
+
+Against production baseline 60d03cb, bundled waitlist.json differs only in Elise status Active to Fulfilled and show_publicly Yes to No. Legacy snapshot timestamp and all other bundled rows are unchanged. This is a scoped correction, not a whole-file synchronization: the historical bundled snapshot differs from the current source table beyond this request.
