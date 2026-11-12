@@ -145,8 +145,8 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    expectedLitterOrder: ["Beatrix + Enzo", "Lulu + Bram", "Evie + Waylon", "Daisy + Waylon"],
-    requiredText: ["current litters", "beatrix + enzo", "lulu + bram", "evie + waylon", "daisy + waylon", "december 17-19, 2026", evieAvailabilityLabel, luluAvailabilityLabel, "september 28, 2026", "november 19-21, 2026"],
+    expectedLitterOrder: ["Beatrix + Enzo", "Lulu + Bram", "Evie + Waylon", "Birdie + Waylon", "Daisy + Waylon", "Whitley + Waylon"],
+    requiredText: ["current litters", "beatrix + enzo", "lulu + bram", "evie + waylon", "birdie + waylon", "daisy + waylon", "whitley + waylon", "december 12-14, 2026", "december 17-19, 2026", "december 30, 2026 - january 1, 2027", evieAvailabilityLabel, luluAvailabilityLabel, "september 28, 2026", "november 19-21, 2026"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
@@ -174,10 +174,10 @@ const routeExpectations = [
   },
   {
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
-    expectedLitterOrder: ["Birdie + Waylon", "Whitley + Waylon"],
-    requiredText: ["upcoming litters", "choose a breed", "birdie + waylon", "whitley + waylon", "puppies born", "birth date", "october 21, 2026", "december 12-14, 2026"],
-    forbiddenText: ["lulu + bram", "evie + waylon", "daisy + waylon", "pregnancy confirmed", "due any day", "expected early october", "october 11-16"],
-    requiredSelectors: [".litter-browser", ".litter-browser-card"],
+    expectedLitterOrder: [],
+    requiredText: ["upcoming litters", "choose a breed", "no upcoming goldendoodle litters are listed right now."],
+    forbiddenText: ["lulu + bram", "evie + waylon", "birdie + waylon", "daisy + waylon", "whitley + waylon", "pregnancy confirmed", "due any day", "expected early october", "october 11-16"],
+    requiredSelectors: [".litter-browser", ".litter-browser-empty"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
     finderNavCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" }
   },
@@ -218,10 +218,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/whitley-waylon-november-2026",
-    requiredText: ["whitley + waylon", "multigen mini goldendoodles", "puppies born", "birth date", "november 8, 2026", "estimated go-home", "december 30, 2026 - january 1, 2027", "new year's litter", "$3,200", "~25 lbs", "join the waitlist"],
-    forbiddenText: ["pregnancy confirmed", "estimated birth", "fully reserved", "to be announced", "25-30 lbs"],
+    requiredText: ["whitley + waylon", "multigen mini goldendoodles", "puppies born", "birth date", "november 8, 2026", "estimated go-home", "december 30, 2026 - january 1, 2027", "new year's litter", "$3,200", "25-30 lbs", "join the waitlist"],
+    forbiddenText: ["pregnancy confirmed", "estimated birth", "fully reserved", "to be announced", "~25 lbs"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Multigen Mini Goldendoodles", expectedSize: "~25 lbs", testParentBack: true, expectedAboutText: ["57.6% Poodle", "42.4% Golden Retriever", "Individual puppies can inherit different proportions"] }
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Multigen Mini Goldendoodles", expectedSize: "25-30 lbs", testParentBack: true, expectedAboutText: ["57.6% Poodle", "42.4% Golden Retriever", "Individual puppies can inherit different proportions", "listed with our current litters", "estimated adult weight of 25-30 pounds"] }
   },
   {
     route: "/litters/daisy-waylon-october-2026",
@@ -784,7 +784,7 @@ async function auditRoute(context, config, viewportName) {
       if (previewResults.length !== 2) failures.push(`Expected two preview figures, found ${previewResults.length}.`);
       if (previewResults[0]?.caption) failures.push("Current Litters illustration should not show a historical puppy caption.");
       if (previewResults[0]?.imagePositions?.[0] !== "50% 30%") failures.push(`Unexpected Current Litters puppy focal point: ${previewResults[0]?.imagePositions?.[0] || "missing"}.`);
-      if (previewResults[1]?.caption !== "Birdie + Waylon") failures.push(`Unexpected upcoming pairing caption: ${previewResults[1]?.caption || "missing"}.`);
+      if (previewResults[1]?.caption !== "Sylvee + Rooster") failures.push(`Unexpected upcoming pairing caption: ${previewResults[1]?.caption || "missing"}.`);
 
       for (const result of previewResults) {
         if (!result.imagesLoaded) failures.push(`Preview image did not load for ${result.caption || "Current Litters illustration"}.`);
