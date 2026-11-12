@@ -18,7 +18,7 @@ export const imageVersions = Object.freeze({
 });
 
 export function resolveImageUrl(value) {
-  return typeof value === "string" ? imageVersions[value] || value : value;
+  return typeof value === "string" && Object.hasOwn(imageVersions, value) ? imageVersions[value] : value;
 }
 
 export function resolveImageReferences(value) {
