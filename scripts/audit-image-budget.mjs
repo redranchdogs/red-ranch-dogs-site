@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { resolveImageUrl } from "../src/imageVersions.js";
 
 const root = process.cwd();
 const publicRoot = path.join(root, "public");
@@ -43,7 +44,7 @@ function normalizePublicImage(value) {
 }
 
 function collectImage(value) {
-  const imagePath = normalizePublicImage(value);
+  const imagePath = normalizePublicImage(resolveImageUrl(value));
   if (imagePath) referencedImages.add(imagePath);
 }
 

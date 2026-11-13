@@ -1,5 +1,8 @@
 // Logical image paths remain stable for source sheets; these aliases avoid stale browser caches.
 export const imageVersions = Object.freeze({
+  "/images/previous-litters/birdie-waylon-jennings.webp": "/images/previous-litters/birdie-waylon-jennings-vd1857c611808.webp",
+  "/images/studs/waylon-jennings-mini-goldendoodle-stud-red-ranch-dogs.jpg": "/images/studs/waylon-jennings-red-ranch-dogs-v08e2c6544597.webp",
+  "/images/studs/waylon-jennings-red-ranch-dogs.webp": "/images/studs/waylon-jennings-red-ranch-dogs-v08e2c6544597.webp",
   "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8804.webp": "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8804-v7275460802a8.webp",
   "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8805.webp": "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8805-vea135463a706.webp",
   "/images/puppies/2026-11-10/evie/columbo-week-4-img-8688.webp": "/images/puppies/2026-11-10/evie/columbo-week-4-img-8688-veb6c0218f0ee.webp",

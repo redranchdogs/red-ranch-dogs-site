@@ -47,27 +47,31 @@ import {
   navGroups,
   parentDogs,
   previousLitterArchiveGroups,
-  previousLitterDetails,
+  previousLitterDetails as previousLitterData,
   priceGroups,
   puppyIncludedSections,
   reproductiveSections,
   reviews,
   stopMarkingGuide,
   studCatalog,
-  studDetails,
+  studDetails as studDetailData,
   teamMembers
 } from "./data/siteData.js";
 import breedProfiles from "./data/breeds.json";
 import puppyProfiles from "./data/puppies.json";
 import litterProfiles from "./data/litters.json";
 import { resolveImageReferences } from "./imageVersions.js";
-import parentProfiles from "./data/parents.json";
+import parentProfileData from "./data/parents.json";
 import testimonialProfiles from "./data/testimonials.json";
 import faqProfiles from "./data/faqs.json";
 import pricingProfiles from "./data/pricing.json";
 import teamProfiles from "./data/team.json";
 
 import GalleryViewer from "./GalleryViewer.jsx";
+
+const parentProfiles = resolveImageReferences(parentProfileData);
+const studDetails = resolveImageReferences(studDetailData);
+const previousLitterDetails = resolveImageReferences(previousLitterData);
 
 function pathNow() {
   return window.location.pathname.replace(/\/$/, "") || "/";
@@ -4390,7 +4394,8 @@ function ParentDetailPage({ parent }) {
   const breed = breedProfiles.find((item) => item.slug === parent.breedSlug);
   const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
   const familyRole = parent.role === "stud" ? "stud" : "mama";
-  const gallery = parent.photos?.length ? parent.photos : parent.mainPhoto ? [parent.mainPhoto] : [];
+  const parentGallery = parent.photos?.length ? parent.photos : parent.mainPhoto ? [parent.mainPhoto] : [];
+  const gallery = parent.slug === "waylon-jennings" ? [...new Set(parentGallery)] : parentGallery;
 
   return (
     <Layout>
