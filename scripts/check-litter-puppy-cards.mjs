@@ -119,8 +119,15 @@ try {
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false, `${litter.slug}: no page overflow ${width}px`);
       if (expected.length > 1) {
         const cards = page.locator(".litter-puppy-profile");
-        const a = await cards.nth(0).boundingBox(), b = await cards.nth(1).boundingBox();
-        assert(width <= 760 ? b.y > a.y : Math.abs(a.y - b.y) < 1, "One column on phones, two on larger screens");
+        // Both viewport-relative rects must come from the same frame: the
+        // site's smooth scroll can move between separate boundingBox awaits.
+        const layout = await cards.evaluateAll((elements) => ({
+          columns: window.getComputedStyle(elements[0].parentElement).gridTemplateColumns,
+          rects: elements.slice(0, 2).map((element) => element.getBoundingClientRect().toJSON())
+        }));
+        const [a, b] = layout.rects;
+        assert(width <= 760 ? b.y > a.y : Math.abs(a.y - b.y) < 1,
+          `One column on phones, two on larger screens: ${litter.slug} at ${width}px, ${JSON.stringify(layout)}`);
       }
     }
     await page.close();
