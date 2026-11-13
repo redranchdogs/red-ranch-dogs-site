@@ -1,7 +1,10 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import FAQItem from "./FAQItem.jsx";
 import PuppyDetailCard from "./PuppyDetailCard.jsx";
-import LitterPuppyCard from "./LitterPuppyCard.jsx";
+import PuppyListingCard from "./PuppyListingCard.jsx";
+import PuppyStatusBar from "./PuppyStatusBar.jsx";
+import { publicPuppyLitterHref, publicParentProfileHref } from "./publicProfileLinks.js";
+import { litterPuppyStatus } from "./litterPuppyStatus.js";
 import { PuppyGuideHome, PuppyGuideArticle } from "./PuppyGuide.jsx";
 import { guidePath, guideMeta, articleForPath, guideSchema } from "./data/puppyGuide.js";
 import { hasActiveGallery } from "./gallerySession.js";
@@ -1420,6 +1423,7 @@ function AccordionNav({ item, currentPath, onNavigate, index, openGroup, onToggl
       <Link
         href={item.href}
         className={`mobile-menu-link ${currentPath === item.href ? "active" : ""}`}
+        aria-current={currentPath === item.href ? "page" : undefined}
         onClick={onNavigate}
         style={{ "--item-index": index }}
       >
@@ -1445,6 +1449,7 @@ function AccordionNav({ item, currentPath, onNavigate, index, openGroup, onToggl
           <Link
             href={link.href}
             className={currentPath === link.href ? "active" : undefined}
+            aria-current={currentPath === link.href ? "page" : undefined}
             key={`${item.label}-${link.label}-${link.href}`}
             onClick={onNavigate}
           >
@@ -1546,13 +1551,14 @@ function Header() {
             <Link
               href={item.href}
               className={isActive(item) ? "active" : undefined}
+              aria-current={currentPath === item.href ? "page" : undefined}
             >
               {item.label}
             </Link>
             {item.links && (
               <div className="premium-desktop-menu">
                 {item.links.map((link) => (
-                  <Link href={link.href} key={link.href}>
+                  <Link href={link.href} aria-current={currentPath === link.href ? "page" : undefined} key={link.href}>
                     {link.label}
                   </Link>
                 ))}
@@ -2003,6 +2009,7 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
 
             return (
               <article className="home-ready-puppy-card" key={puppy.slug || puppy.name}>
+                <PuppyStatusBar status={puppy.status} />
                 <Link href={puppy.slug ? `/puppies/${puppy.slug}` : "/puppies/available"} className="home-ready-puppy-photo">
                   {photo ? (
                     <img src={photo} alt={`${puppy.name} - ${puppy.breed}`} loading="lazy" decoding="async" />
@@ -2495,7 +2502,7 @@ function PuppyCard({ puppy, variant = "default" }) {
   const displayStatus = puppyDisplayStatus(status);
   const isAvailable = isAvailablePuppy(puppy);
   const route = puppy.slug ? `/puppies/${puppy.slug}` : puppy.litterHref;
-  const litterRoute = puppy.litterSlug ? `/litters/${puppy.litterSlug}` : puppy.litterHref;
+  const litterRoute = publicPuppyLitterHref(puppy, publicLitterProfiles, previousLitterDetails);
   const photo = puppy.mainPhoto || puppy.image;
   const litterName = puppy.litter || puppy.litterName || "Litter to be announced";
   const goHome = puppy.goHomeDate || puppy.goHome || "Go-home timing to be announced";
@@ -2511,7 +2518,6 @@ function PuppyCard({ puppy, variant = "default" }) {
   const showAvailabilityNote = puppy.availabilityNote && !isLitterVariant && !isWaitlistMatchingPuppy(puppy);
   const videoHref = puppyVideoUrl(puppy);
   const videoLabel = puppyVideoLabel(puppy);
-  const HeadingTag = isDetailVariant ? "h1" : "h2";
   if (isDetailVariant) {
     return <PuppyDetailCard
       puppy={puppy} breed={breed} gender={gender} status={status}
@@ -2525,101 +2531,18 @@ function PuppyCard({ puppy, variant = "default" }) {
       litterRoute={litterRoute} videoHref={videoHref} videoLabel={videoLabel} Link={Link}
     />;
   }
-  if (isLitterVariant) {
-    return <LitterPuppyCard
-      puppy={puppy} breed={breed} gender={gender} photo={photo}
-      goHome={goHome} weight={weight} price={price} route={route}
-      inquiryHref={isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" ? `/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry` : ""}
-      videoHref={videoHref} videoLabel={videoLabel} Link={Link}
-    />;
-  }
-  const cardClasses = [
-    "puppy-card",
-    "animal-card",
-    isLitterVariant ? "litter-puppy-card" : "",
-    isAvailableVariant ? "available-puppy-card" : "",
-    isDetailVariant ? "detail-puppy-card" : ""
-  ].filter(Boolean).join(" ");
-  const puppyFacts = isLitterVariant
-    ? [
-        ["Gender", gender],
-        puppy.collarColor && ["Collar", puppy.collarColor],
-        ["Go Home", goHome],
-        ["Adult Weight", weight],
-        price && ["Price", price]
-      ].filter(Boolean)
-    : isAvailableVariant
-      ? [
-          ["Breed", breed],
-          ["Litter", litterName],
-          ["Gender", gender],
-          ["Go Home", goHome],
-          ["Adult Weight", weight],
-          price && ["Price", price]
-        ].filter(Boolean)
-    : isDetailVariant
-      ? [
-          ["Litter", litterName],
-          ["Gender", gender],
-          puppy.collarColor && ["Collar", puppy.collarColor],
-          birthDate && ["Birth Date", birthDate],
-          ["Go Home", goHome],
-          ["Adult Weight", weight],
-          price && ["Price", price]
-        ].filter(Boolean)
-    : [
-        ["Litter", litterName],
-        ["Gender", gender],
-        puppy.collarColor && ["Collar", puppy.collarColor],
-        birthDate && ["Birth Date", birthDate],
-        ["Go Home", goHome],
-        ["Adult Weight", weight],
-        price && ["Price", price]
-      ].filter(Boolean);
-
-  return (
-    <article className={cardClasses}>
-      <figure className="puppy-photo-frame">
-        {photo ? (
-          <img src={photo} alt={`${puppy.name} - ${breed}`} loading="lazy" />
-        ) : (
-          <ImagePlaceholder label="Available puppy photo" />
-        )}
-        {isReservedPuppy(puppy) && <span className="puppy-reserved-ribbon" aria-hidden="true">Reserved</span>}
-        <figcaption>{puppy.name}</figcaption>
-      </figure>
-      <div className="puppy-card-body">
-        <div className="card-kicker-row">
-          <p className="eyebrow">{breed}</p>
-          <span className={`status-badge status-${status.toLowerCase().replace(/\W+/g, "-")}`}>{displayStatus}</span>
-        </div>
-        <HeadingTag>{puppy.name}</HeadingTag>
-        {showPuppyNote && <p className="puppy-card-note">{puppyNote}</p>}
-        <dl className="details compact-details">
-          {puppyFacts.map(([label, value]) => (
-            <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
-          ))}
-        </dl>
-        {showAvailabilityNote && <p className="small-note">{puppy.availabilityNote}</p>}
-        {isAvailableVariant || isDetailVariant ? (
-          <div className="puppy-card-actions">
-            <Link href={isAvailable ? puppyApplyHref(puppy) : "/apply"} className="button small">
-              {isAvailable ? `Reserve ${puppy.name}` : "Join Waitlist"}
-            </Link>
-            {isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" && <Link href={`/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry`} className="button small secondary">Ask about {puppy.name}</Link>}
-            {litterRoute && <Link href={litterRoute} className="button small secondary">View Litter</Link>}
-            {videoHref && <a href={videoHref} className="button small secondary puppy-video-link" target="_blank" rel="noreferrer">{videoLabel}</a>}
-          </div>
-        ) : route && (
-          <div className="puppy-card-actions">
-            <Link href={route} className="button small">View Puppy</Link>
-            {isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" && <Link href={`/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry`} className="button small secondary">Ask about {puppy.name}</Link>}
-            {videoHref && <a href={videoHref} className="button small secondary puppy-video-link" target="_blank" rel="noreferrer">{videoLabel}</a>}
-          </div>
-        )}
-      </div>
-    </article>
-  );
+  return <PuppyListingCard
+    puppy={puppy} breed={breed} gender={gender} photo={photo}
+    goHome={goHome} weight={weight} price={price} variant={variant}
+    birthDate={variant === "default" ? birthDate : ""}
+    primaryHref={isAvailableVariant ? (isAvailable ? puppyApplyHref(puppy) : "/apply") : route}
+    primaryLabel={isAvailableVariant ? (isAvailable ? `Reserve ${puppy.name}` : "Join Waitlist") : isLitterVariant ? `View ${puppy.name}` : "View Puppy"}
+    litterName={litterName} litterRoute={isAvailableVariant ? litterRoute : ""}
+    puppyNote={showPuppyNote ? puppyNote : ""}
+    availabilityNote={showAvailabilityNote ? puppy.availabilityNote : ""}
+    inquiryHref={isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" ? `/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry` : ""}
+    videoHref={videoHref} videoLabel={videoLabel} Link={Link}
+  />;
 }
 
 function ProcessStepCards({ steps, className = "" }) {
@@ -3236,7 +3159,7 @@ function ProcessPageTemplate({ eyebrow = "Getting Your Puppy", title, copy, stat
 }
 
 function ParentCard({ parent }) {
-  const hasPublicProfile = parent.visibility !== "private";
+  const profileHref = publicParentProfileHref(parent, publicParentProfiles);
   const roleLabel = parent.role === "stud" ? "Stud" : "Mama";
   const publicRelatedCount = (parent.relatedLitters || []).filter((slug) => publicLitterProfiles.some((litter) => litter.slug === slug)).length;
   const program = breedProfiles.find((breed) => breed.slug === parent.breedSlug);
@@ -3271,8 +3194,8 @@ function ParentCard({ parent }) {
           {parent.status && <span>{parent.status}</span>}
           {publicRelatedCount ? <span>{publicRelatedCount} related litter{publicRelatedCount === 1 ? "" : "s"}</span> : null}
         </div>
-        {hasPublicProfile ? (
-          <Link href={`/parents/${parent.slug}`} className="button small secondary parent-profile-link">View profile</Link>
+        {profileHref ? (
+          <Link href={profileHref} className="button small secondary parent-profile-link">View profile</Link>
         ) : (
           <p className="small-note">Profile details are shared for this pairing only.</p>
         )}
@@ -3374,7 +3297,7 @@ function ParentDirectoryNav() {
   return (
     <nav className="parent-directory-nav" aria-label="Parent dog categories">
       {links.map(([label, href]) => (
-        <Link href={href} className={currentPath === href ? "active" : undefined} key={href}>
+        <Link href={href} className={currentPath === href ? "active" : undefined} aria-current={currentPath === href ? "page" : undefined} key={href}>
           {label}
         </Link>
       ))}
@@ -3548,7 +3471,7 @@ const statusMatches = (puppy, status) => normalizedStatus(puppy?.status) === nor
 const isAvailablePuppy = (puppy) => statusMatches(puppy, "available");
 const isReservedPuppy = (puppy) => ["reserved", "matched"].includes(normalizedStatus(puppy?.status));
 const isWaitlistMatchingPuppy = (puppy) => statusMatches(puppy, "waitlist matching");
-const puppyDisplayStatus = (status = "") => normalizedStatus(status) === "pending" ? "Reserved" : status;
+const puppyDisplayStatus = (status = "") => litterPuppyStatus(status).label;
 const litterDateSortValue = (litter) => sortableLitterDate(litter?.goHomeDate || litter?.goHome || litter?.birthDate || "");
 const noAvailabilityTitle = "Explore our upcoming litters";
 const featuredAvailablePuppies = () => puppyData
@@ -4062,7 +3985,7 @@ function BreedPageTemplate({ breed }) {
           </ul>
         </article>
       </section>
-      <section className="card-list">
+      <section className="card-list breed-puppy-card-list">
         <SectionHeader eyebrow="Available Puppies" title={`Available ${breed.name} puppies`} copy="Only puppies truly open for an approved family appear here. Reserved puppies stay on their litter pages." />
         {availableBreedPuppies.length ? availableBreedPuppies.map((puppy) => <PuppyCard puppy={puppy} key={puppy.slug || puppy.name} />) : <p className="small-note">We do not have available puppies for this breed right now. <Link href="/process/application-and-waitlist">See how the waitlist works</Link> or follow current litters for the newest updates.</p>}
       </section>
@@ -4077,6 +4000,7 @@ function BreedPageTemplate({ breed }) {
 }
 
 function PuppyDetailPage({ puppy }) {
+  const litterHref = publicPuppyLitterHref(puppy, publicLitterProfiles, previousLitterDetails);
   const weeklyPhotoGroups = puppy.weeklyPhotos || [];
   const weeklyPhotoSet = new Set(weeklyPhotoGroups.flatMap((group) => group.photos || []));
   const extraPhotos = (puppy.photos || []).filter((photo) => photo && !weeklyPhotoSet.has(photo));
@@ -4130,10 +4054,21 @@ function PuppyDetailPage({ puppy }) {
       <StickyMobileCta
         primaryHref={isAvailablePuppy(puppy) ? puppyApplyHref(puppy) : "/apply"}
         primaryLabel={isAvailablePuppy(puppy) ? "Reserve Puppy" : "Join Waitlist"}
-        secondaryHref={puppy.litterSlug ? `/litters/${puppy.litterSlug}` : "/puppies/current-litters"}
-        secondaryLabel="View Litter"
+        secondaryHref={litterHref || "/puppies/current-litters"}
+        secondaryLabel={litterHref ? "View Litter" : "Browse Litters"}
       />
     </Layout>
+  );
+}
+
+function LitterParentPortrait({ parent, role, litterName }) {
+  const href = publicParentProfileHref(parent, publicParentProfiles);
+  const Wrapper = href ? Link : "div";
+  return (
+    <Wrapper {...(href ? { href, "aria-label": `View ${parent.name}, ${role.toLowerCase()} profile` } : {})} className={`litter-parent-portrait${href ? " litter-parent-portrait-link" : ""}`}>
+      <img src={parent.mainPhoto} alt={`${parent.name} - ${role.toLowerCase()} for ${litterName}`} loading="eager" />
+      <span className="litter-parent-caption"><strong>{parent.name}</strong><span>· {role}</span></span>
+    </Wrapper>
   );
 }
 
@@ -4273,16 +4208,10 @@ function LitterPage({ litter }) {
         </dl>
         <article className="litter-pairing-card">
           {hasParentPairing ? (
-            <figure className="litter-parent-portraits" aria-label={`${litter.name} parent pairing`}>
-              <Link href={`/parents/${mama.slug}`} className="litter-parent-portrait-link" aria-label={`View ${mama.name}, mama profile`}>
-                <img src={mama.mainPhoto} alt={`${mama.name} - mama for ${litter.name}`} loading="eager" />
-                <figcaption><strong>{mama.name}</strong><span>· Mama</span></figcaption>
-              </Link>
-              <Link href={`/parents/${stud.slug}`} className="litter-parent-portrait-link" aria-label={`View ${stud.name}, sire profile`}>
-                <img src={stud.mainPhoto} alt={`${stud.name} - sire for ${litter.name}`} loading="eager" />
-                <figcaption><strong>{stud.name}</strong><span>· Sire</span></figcaption>
-              </Link>
-            </figure>
+            <div className="litter-parent-portraits" role="group" aria-label={`${litter.name} parent pairing`}>
+              <LitterParentPortrait parent={mama} role="Mama" litterName={litter.name} />
+              <LitterParentPortrait parent={stud} role="Sire" litterName={litter.name} />
+            </div>
           ) : fallbackLitterImage ? (
             <img className="litter-feature-photo" src={fallbackLitterImage} alt={`${litter.name} parent pairing`} loading="eager" />
           ) : (

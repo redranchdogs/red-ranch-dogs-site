@@ -81,7 +81,7 @@ const currentLitterDetails = currentLitters.slice(0, 2).map((litter, index) => {
       ".litter-detail-overview",
       ".litter-detail-overview .litter-primary-facts",
       ".litter-detail-overview .litter-pairing-card",
-      ...(litterPuppies.length ? [".litter-puppy-list .puppy-card"] : []),
+      ...(litterPuppies.length ? [".litter-puppy-list .litter-puppy-card"] : []),
       ...(hasGallery ? [".litter-gallery-section img"] : []),
     ],
   };
@@ -94,7 +94,7 @@ const puppyDetails = currentPuppies
     route: `/puppies/${puppy.slug}`,
     label: index ? "Additional Puppy Detail With Weekly Photos" : "Puppy Detail With Weekly Photos",
     requiredText: [puppy.name],
-    selectors: [".puppy-detail-section .puppy-card", ".puppy-weekly-photo-section img"],
+    selectors: [".puppy-detail-section .puppy-profile-card", ".puppy-weekly-photo-section img"],
   }));
 
 const routes = [...litterBrowserRoutes, ...currentLitterDetails, ...puppyDetails];

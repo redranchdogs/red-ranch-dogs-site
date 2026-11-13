@@ -79,6 +79,7 @@ async function launchBrowser() {
 
 const puppies = readJson("src/data/puppies.json").filter(isPublicRecord);
 const litters = readJson("src/data/litters.json").filter(isPublicRecord);
+const publicParents = readJson("src/data/parents.json").filter(isPublicRecord);
 const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
@@ -604,26 +605,22 @@ async function auditRoute(context, config, viewportName) {
       if (agreementHash !== "184c1a2186ab4a4a6e655b30bc0172c9a209e4c14497ab2d2e754a31562aa729") failures.push(`Unexpected health guarantee PDF hash: ${agreementHash}`);
     }
 
-    const reservationRibbons = await page.locator(".puppy-card").evaluateAll((cards) => cards.map((card) => {
-      const status = card.querySelector(".status-badge");
-      const ribbons = card.querySelectorAll(".puppy-reserved-ribbon");
-      const expected = status?.classList.contains("status-reserved") || status?.classList.contains("status-matched");
-      const ribbon = ribbons[0];
-      const frame = card.querySelector(".puppy-photo-frame");
-      const r = ribbon?.getBoundingClientRect();
-      const f = frame?.getBoundingClientRect();
+    const puppyListingChecks = await page.locator(".puppy-listing-card,.home-ready-puppy-card").evaluateAll((cards) => cards.map((card) => {
+      const banner = card.querySelector(".litter-puppy-status");
+      const photo = card.querySelector(".litter-puppy-portrait,.home-ready-puppy-photo");
+      const b = banner?.getBoundingClientRect(), p = photo?.getBoundingClientRect();
       return {
-        name: card.querySelector("figcaption")?.textContent,
-        expected,
-        count: ribbons.length,
-        text: ribbon?.textContent,
-        insidePhoto: r && f && r.left >= f.left - 1 && r.right <= f.right + 1 && r.top >= f.top && r.bottom <= f.bottom,
-        legible: r && r.height >= 44 && Number.parseFloat(window.getComputedStyle(ribbon).fontSize) >= 16
+        name: card.querySelector("h2,h3")?.textContent,
+        status: banner?.textContent?.trim(),
+        color: banner && window.getComputedStyle(banner).backgroundColor,
+        separate: b && p && Math.abs(b.bottom - p.top) < 1 && Math.abs(b.width - p.width) < 1,
+        overlayCount: card.querySelectorAll(".puppy-reserved-ribbon,.status-badge,figcaption").length
       };
     }));
-    for (const ribbon of reservationRibbons) {
-      if (ribbon.count !== Number(Boolean(ribbon.expected))) failures.push(`Wrong reserved ribbon visibility for ${ribbon.name}.`);
-      if (ribbon.expected && (ribbon.text !== "Reserved" || !ribbon.insidePhoto || !ribbon.legible)) failures.push(`Reserved photo ribbon is missing, clipped, or too small for ${ribbon.name}.`);
+    for (const check of puppyListingChecks) {
+      if (!check.status || !check.separate || check.overlayCount) failures.push(`Puppy status must be a separate full-width top row: ${check.name}.`);
+      if (check.status === "Available" && check.color !== "rgb(43, 86, 61)") failures.push(`Available status should be green: ${check.name}.`);
+      if (check.status === "Reserved" && check.color !== "rgb(148, 31, 23)") failures.push(`Reserved status should be red: ${check.name}.`);
     }
 
     if (config.route === "/") {
@@ -643,7 +640,7 @@ async function auditRoute(context, config, viewportName) {
     }
 
     if (config.route === "/puppies/available") {
-      const cardNames = await page.locator(".available-puppy-card figcaption").allTextContents();
+      const cardNames = await page.locator(".available-puppy-card h2").allTextContents();
       for (const name of cardNames) if (!featuredAvailablePuppies.some((puppy) => puppy.name === name.trim())) failures.push(`Unexpected puppy in available listing: ${name.trim()}.`);
     }
 
@@ -856,7 +853,7 @@ async function auditRoute(context, config, viewportName) {
         if (await video.count() !== 1 || await video.getAttribute("href") !== puppy.youtube_short_url) failures.push(`Wrong or missing video link for ${puppy.name}.`);
       }
 
-      const portraitChecks = await page.locator(".litter-parent-portrait-link").evaluateAll((links) => links.map((link) => {
+      const portraitChecks = await page.locator(".litter-parent-portrait").evaluateAll((links) => links.map((link) => {
         const image = link.querySelector("img");
         return {
           href: link.getAttribute("href") || "",
@@ -864,9 +861,12 @@ async function auditRoute(context, config, viewportName) {
           objectFit: image ? window.getComputedStyle(image).objectFit : "missing"
         };
       }));
-      if (portraitChecks.length !== 2) failures.push(`Expected two linked parent portraits, found ${portraitChecks.length}.`);
+      if (portraitChecks.length !== 2) failures.push(`Expected two parent portraits, found ${portraitChecks.length}.`);
+      const sourceLitter = litters.find((litter) => config.route === `/litters/${litter.slug}`);
+      const expectedParentLinks = sourceLitter ? [sourceLitter.mamaSlug, sourceLitter.studSlug].filter((slug) => publicParents.some((parent) => parent.slug === slug)).map((slug) => `/parents/${slug}`) : [];
+      if (sourceLitter && JSON.stringify(portraitChecks.map((portrait) => portrait.href).filter(Boolean).sort()) !== JSON.stringify(expectedParentLinks.sort())) failures.push("Parent portraits must link only to public profiles.");
       for (const portrait of portraitChecks) {
-        if (!portrait.href.startsWith("/parents/")) failures.push(`Unexpected parent portrait link: ${portrait.href || "missing"}.`);
+        if (portrait.href && !publicParents.some((parent) => portrait.href === `/parents/${parent.slug}`)) failures.push(`Unexpected parent portrait link: ${portrait.href || "missing"}.`);
         if (!portrait.imageLoaded) failures.push(`Parent portrait did not load for ${portrait.href || "unknown parent"}.`);
         if (portrait.objectFit !== "contain") failures.push(`Parent portrait should preserve the full original image for ${portrait.href || "unknown parent"}.`);
       }

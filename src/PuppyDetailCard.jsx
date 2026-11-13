@@ -1,4 +1,5 @@
 import { ArrowRight, CirclePlay } from "lucide-react";
+import { litterPuppyStatus } from "./litterPuppyStatus.js";
 
 // Presentation only: availability, destinations, notes, and photos are resolved
 // by PuppyCard so the profile keeps the same source-of-truth and buyer flow.
@@ -8,6 +9,7 @@ export default function PuppyDetailCard({
   primaryHref, primaryLabel, inquiryHref, litterRoute, videoHref,
   videoLabel, Link
 }) {
+  const { tone } = litterPuppyStatus(status);
   return (
     <article className="detail-puppy-card puppy-profile-card">
       <figure className="puppy-profile-photo">
@@ -18,7 +20,7 @@ export default function PuppyDetailCard({
             Photo coming soon
           </div>
         )}
-        <figcaption className={`puppy-profile-status status-${status.toLowerCase().replace(/\W+/g, "-")}`}>
+        <figcaption className={`puppy-profile-status is-${tone}`}>
           <span aria-hidden="true" />{displayStatus}
         </figcaption>
       </figure>
