@@ -5,6 +5,7 @@ import { guidePath, guideMeta, articleForPath, guideSchema } from "./data/puppyG
 import { hasActiveGallery } from "./gallerySession.js";
 import { containTabFocus } from "./focus.js";
 import { compareUpcomingLitters } from "./upcomingLitterOrder.js";
+import { litterCardAvailability } from "./litterCardAvailability.js";
 import { track } from "@vercel/analytics";
 import { trackGa4Event, trackGa4PageView } from "./ga4.js";
 import { submitFormPayload } from "./formSubmission.js";
@@ -2736,6 +2737,16 @@ function currentLitterHrefForPastLitter(href) {
   return litter?.slug ? `/litters/${litter.slug}` : "";
 }
 
+function LitterAvailabilityBanner({ availability }) {
+  return (
+    <div className={`litter-availability-banner is-${availability.tone}`}>
+      {availability.tone === "reserved" && <CheckCircle2 aria-hidden="true" size={21} />}
+      {availability.tone === "available" && <span className="availability-dot" aria-hidden="true" />}
+      <span>{availability.label}</span>
+    </div>
+  );
+}
+
 function LitterCard({ litter, showAvailabilityNote = true }) {
   const route = litter.slug ? `/litters/${litter.slug}` : litter.href;
   const pastLitterHrefs = pastLitterHrefsFor(litter);
@@ -2750,15 +2761,14 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
   const litterPuppies = puppiesForLitter(litter);
-  const litterReservedPuppies = litterPuppies.filter(isReservedPuppy);
-  const isFullyReservedLitter = litterPuppies.length > 0 && litterReservedPuppies.length === litterPuppies.length;
-  const puppyCountLabel = litterAvailabilityLabel(litter, litterPuppies);
+  const availability = litterCardAvailability(litter, litterPuppies, litterAvailabilityLabel(litter, litterPuppies));
   const cardAvailabilityNote = showAvailabilityNote && !isCurrentLitter(litter) ? litter.availabilityNote : "";
-  const actionLabel = isCurrentLitter(litter) && isFullyReservedLitter ? "View Updates" : isCurrentLitter(litter) ? "View Litter" : "View Pairing";
+  const actionLabel = isCurrentLitter(litter) && availability.tone === "reserved" ? "View Litter Updates" : isCurrentLitter(litter) ? "View Litter" : "View Pairing";
   const plannedLitter = isPlannedLitter(litter);
 
   return (
-    <article className="litter-card animal-card">
+    <article className={`litter-card animal-card has-availability-banner is-${availability.tone}`}>
+      <LitterAvailabilityBanner availability={availability} />
       {hasPairingPhotos ? (
         <figure className="pairing-photo-grid" aria-label={`${litter.name} parent pairing`}>
           <div>
@@ -2777,13 +2787,11 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
       )}
       <div className="litter-card-body">
         <div className="litter-card-heading">
-          <div className="card-kicker-row">
+          {!isCurrentLitter(litter) && <div className="card-kicker-row">
             <p className="eyebrow">{litter.birthConfirmed && plannedLitter ? "Upcoming Litter" : litter.status || "Litter"}</p>
-            <span className="status-badge">{puppyCountLabel}</span>
-          </div>
+          </div>}
           <h2>{litter.name}</h2>
           <h3>{litter.breed}</h3>
-          {litter.availabilitySummary && <p>{litter.availabilitySummary}</p>}
         </div>
         <dl className="details compact-details litter-card-facts">
           <div><dt>Mama</dt><dd>{litter.mama || "Mama to be announced"}</dd></div>
@@ -5149,13 +5157,17 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const image = litter.parentPairingImage || litter.image || litter.weeklyUpdateGallery?.[0];
   const litterPuppies = puppiesForLitter(litter);
+  const availability = availabilityOverride === "Reserved"
+    ? { label: "Fully reserved", tone: "reserved" }
+    : litterCardAvailability(litter, litterPuppies, litterAvailabilityLabel(litter, litterPuppies));
   const timing = litter.birthConfirmed ? litter.birthDate : isPlannedLitter(litter)
     ? litter.expectedTiming || litter.delivery || litter.birthDate
     : litter.expectedTiming || litter.birthDate;
   const goHome = litter.goHomeDate || litter.goHome;
 
   return (
-    <article className="litter-browser-card">
+    <article className={`litter-browser-card has-availability-banner is-${availability.tone}`}>
+      <LitterAvailabilityBanner availability={availability} />
       {mama?.mainPhoto && stud?.mainPhoto ? (
         <figure className="litter-browser-pairing" aria-label={`${litter.name} parent pairing`}>
           <div><img src={mama.mainPhoto} alt={`${mama.name}, mama for ${litter.name}`} loading="lazy" style={{ "--litter-image-position": litterBrowserParentFocalPoints[mama.slug] || "50% 35%" }} /><figcaption>{mama.name}</figcaption></div>
@@ -5167,20 +5179,18 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
         <ImagePlaceholder label="Litter photo" />
       )}
       <div className="litter-browser-card-body">
-        <div className="litter-browser-card-status">
+        {!isCurrentLitter(litter) && <div className="litter-browser-card-status">
           <span>{litter.birthConfirmed && isPlannedLitter(litter) ? "Upcoming Litter" : litter.status || "Litter"}</span>
-          <span>{availabilityOverride || litterAvailabilityLabel(litter, litterPuppies)}</span>
-        </div>
+        </div>}
         <div>
           <h2>{litter.name}</h2>
           <p className="litter-browser-breed">{litter.breed}</p>
         </div>
-        {litter.availabilitySummary && <p>{litter.availabilitySummary}</p>}
         <dl className="litter-browser-facts">
           {timing && <div><dt>{litter.birthConfirmed ? "Birth Date" : isPlannedLitter(litter) ? "Expected" : "Timing"}</dt><dd>{timing}</dd></div>}
           {goHome && <div><dt>Go home</dt><dd>{goHome}</dd></div>}
         </dl>
-        <Link href={route} className="button primary litter-browser-card-action">View litter</Link>
+        <Link href={route} className="button primary litter-browser-card-action">{availability.tone === "reserved" ? "View litter updates" : "View litter"}</Link>
       </div>
     </article>
   );

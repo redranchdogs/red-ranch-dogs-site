@@ -1,7 +1,7 @@
 # Sheet Sync Review
-Generated: 11/13/2026, 8:43:25 AM Central
+Generated: 11/13/2026, 10:00:37 AM Central
 Status: **PASS**
-This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
+This is a read-only comparison between website-generated sheet exports and fresh Website Hub connector reads on November 13, 2026. It does not write to Google Sheets.
 ## Sheet Summary
 | Sheet | Website rows | Live rows | Missing columns | Missing rows | Extra rows | Cell mismatches |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
