@@ -9,9 +9,12 @@ import { imageVersions, resolveImageReferences, resolveImageUrl } from "../src/i
 
 const entries = Object.entries(imageVersions);
 const ids = [8603, 8607, 8609, 8614, 8615, 8620, 8630, 8634, 8667, 8669, 8688, 8691, 8693, 8696, 8698, 8747, 8749, 8789, 8790, 8793, 8804, 8805];
-assert.equal(entries.length, 22);
-assert.deepEqual(entries.map(([source]) => Number(source.match(/img-(\d+)\.webp$/)?.[1])).sort((a, b) => a - b), ids);
-const sourceData = ["puppies", "litters"].map((name) => JSON.parse(readFileSync(`src/data/${name}.json`, "utf8")));
+assert.equal(entries.length, 25);
+const collageFallback = "/images/previous-litters/birdie-waylon-jennings.webp";
+const legacyWaylon = "/images/studs/waylon-jennings-mini-goldendoodle-stud-red-ranch-dogs.jpg";
+const puppyEntries = entries.filter(([source]) => source.startsWith("/images/puppies/"));
+assert.deepEqual(puppyEntries.map(([source]) => Number(source.match(/img-(\d+)\.webp$/)?.[1])).sort((a, b) => a - b), ids);
+const sourceData = ["puppies", "litters", "parents", "previousLitters"].map((name) => JSON.parse(readFileSync(`src/data/${name}.json`, "utf8")));
 const sourceText = JSON.stringify(sourceData);
 const resolvedText = JSON.stringify(resolveImageReferences(sourceData));
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -19,11 +22,11 @@ for (const [source, alias] of entries) {
   assert(sourceText.includes(source), `Canonical path must be referenced: ${source}`);
   assert(!resolvedText.includes(source), `Rendered data must use the alias: ${source}`);
   assert(resolvedText.includes(alias), `Missing rendered alias: ${alias}`);
-  const canonical = readFileSync(path.join("public", source));
+  const canonical = readFileSync(path.join("public", source === legacyWaylon ? "/images/studs/waylon-jennings-red-ranch-dogs.webp" : source));
   const versioned = readFileSync(path.join("public", alias));
   assert.deepEqual(versioned, canonical, `Canonical and versioned image bytes differ: ${source}`);
   assert(alias.endsWith(`-v${hash(canonical).slice(0, 12)}.webp`), `Alias must identify its content: ${alias}`);
-  assert.deepEqual(readFileSync(path.join("dist", source)), canonical, `Built canonical image differs: ${source}`);
+  assert.deepEqual(readFileSync(path.join("dist", source)), readFileSync(path.join("public", source)), `Built canonical image differs: ${source}`);
   assert.deepEqual(readFileSync(path.join("dist", alias)), canonical, `Built versioned image differs: ${alias}`);
 }
 // Previously published aliases must keep their original bytes for cached bundles.
@@ -70,7 +73,7 @@ try {
   }
   assert(ready, "Image version preview server did not become ready.");
   browser = await chromium.launch({ headless: true });
-  const routes = ["/puppies/columbo", "/puppies/merryweather", "/puppies/posy", "/puppies/evie-orange-collar-boy", "/litters/birdie-waylon-final-2026", "/litters/daisy-waylon-october-2026"];
+  const routes = ["/puppies/columbo", "/puppies/merryweather", "/puppies/posy", "/puppies/evie-orange-collar-boy", "/litters/birdie-waylon-final-2026", "/litters/daisy-waylon-october-2026", "/parents/waylon-jennings", "/parents/studs", "/georgia-waylon-may-2026", "/whitley-waylon-april-2026", "/birdie-waylon-spring-2026", "/birdie-waylon-jennings"];
   for (const width of [390, 1440]) {
     const page = await browser.newPage({ viewport: { width, height: 844 } });
     const found = new Set();
@@ -83,7 +86,12 @@ try {
         if (sources.includes(alias)) found.add(alias);
       }
     }
-    assert.equal(found.size, entries.length, `Every approved alias must render at ${width}px.`);
+    // The historical collage is a preserved fallback; archive pages prefer separate parent portraits.
+    assert.equal(found.size, new Set(entries.filter(([source]) => source !== collageFallback).map(([, alias]) => alias)).size, `Every approved alias must render at ${width}px.`);
+    await page.goto(`${base}/birdie-waylon-jennings`);
+    assert(await page.locator(`img[src="${imageVersions["/images/studs/waylon-jennings-red-ranch-dogs.webp"]}"]`).count(), "Historical pairing must show the new individual Waylon portrait.");
+    await page.goto(`${base}/parents/waylon-jennings`);
+    assert.equal(await page.locator(".parent-gallery-section img").count(), 1, "Waylon gallery must not duplicate the replacement portrait.");
     await page.goto(`${base}/puppies/twain`);
     await page.locator("main").waitFor();
     assert(await page.locator(`img[src="${unchanged}"]`).count(), "Twain's unchanged primary image must render.");
@@ -98,4 +106,4 @@ try {
     if (server.exitCode === null) server.kill("SIGKILL");
   }
 }
-console.log("Image versions passed: 22 mappings, canonical/alias/build bytes, mobile and desktop rendered URLs, unchanged Twain, and generated link previews.");
+console.log("Image versions passed: 25 mappings, canonical/alias/build bytes, mobile and desktop rendered URLs, unchanged Twain, and generated link previews.");
