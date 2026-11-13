@@ -5,7 +5,7 @@ import { guidePath, guideMeta, articleForPath, guideSchema } from "./data/puppyG
 import { hasActiveGallery } from "./gallerySession.js";
 import { containTabFocus } from "./focus.js";
 import { compareUpcomingLitters } from "./upcomingLitterOrder.js";
-import { litterCardAvailability } from "./litterCardAvailability.js";
+import { litterCardAvailability, litterCardPrice } from "./litterCardAvailability.js";
 import { track } from "@vercel/analytics";
 import { trackGa4Event, trackGa4PageView } from "./ga4.js";
 import { submitFormPayload } from "./formSubmission.js";
@@ -2747,6 +2747,16 @@ function LitterAvailabilityBanner({ availability }) {
   );
 }
 
+function LitterCardPrice({ price }) {
+  if (!price) return null;
+  return (
+    <div className={`litter-card-price${price.isRange ? " is-range" : ""}`}>
+      <span>{price.label}</span>
+      <strong>{price.value}</strong>
+    </div>
+  );
+}
+
 function LitterCard({ litter, showAvailabilityNote = true }) {
   const route = litter.slug ? `/litters/${litter.slug}` : litter.href;
   const pastLitterHrefs = pastLitterHrefsFor(litter);
@@ -2755,13 +2765,13 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
   const delivery = litter.birthDate || litter.delivery || "Timing to be announced";
   const goHome = litter.goHomeDate || litter.goHome || "Go-home timing to be announced";
   const size = litter.expectedSize || litter.size || "Estimate to be announced";
-  const price = litter.priceRange || litter.price;
   const image = litter.parentPairingImage || litter.image || litter.weeklyUpdateGallery?.[0];
   const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
   const hasPairingPhotos = mama?.mainPhoto && stud?.mainPhoto;
   const litterPuppies = puppiesForLitter(litter);
   const availability = litterCardAvailability(litter, litterPuppies, litterAvailabilityLabel(litter, litterPuppies));
+  const price = litterCardPrice(litter, litterPuppies);
   const cardAvailabilityNote = showAvailabilityNote && !isCurrentLitter(litter) ? litter.availabilityNote : "";
   const actionLabel = isCurrentLitter(litter) && availability.tone === "reserved" ? "View Litter Updates" : isCurrentLitter(litter) ? "View Litter" : "View Pairing";
   const plannedLitter = isPlannedLitter(litter);
@@ -2790,8 +2800,13 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
           {!isCurrentLitter(litter) && <div className="card-kicker-row">
             <p className="eyebrow">{litter.birthConfirmed && plannedLitter ? "Upcoming Litter" : litter.status || "Litter"}</p>
           </div>}
-          <h2>{litter.name}</h2>
-          <h3>{litter.breed}</h3>
+          <div className={`litter-price-heading${price ? " has-price" : ""}`}>
+            <div className="litter-price-heading-text">
+              <h2>{litter.name}</h2>
+              <h3>{litter.breed}</h3>
+            </div>
+            <LitterCardPrice price={price} />
+          </div>
         </div>
         <dl className="details compact-details litter-card-facts">
           <div><dt>Mama</dt><dd>{litter.mama || "Mama to be announced"}</dd></div>
@@ -2799,7 +2814,6 @@ function LitterCard({ litter, showAvailabilityNote = true }) {
           <div><dt>{litter.birthConfirmed ? "Birth Date" : plannedLitter ? "Expected Birth" : "Timing"}</dt><dd>{litter.birthConfirmed || plannedLitter ? delivery : litter.expectedTiming || delivery}</dd></div>
           <div><dt>{plannedLitter ? "Estimated Go Home" : "Go Home"}</dt><dd>{goHome}</dd></div>
           <div><dt>Size</dt><dd>{size}</dd></div>
-          {price && <div><dt>Price</dt><dd>{price}</dd></div>}
         </dl>
         {(litter.expectedColors || litter.expectedCoatTraits || litter.coloring || litter.coat) && (
           <div className="litter-preview-notes">
@@ -5164,6 +5178,7 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
     ? litter.expectedTiming || litter.delivery || litter.birthDate
     : litter.expectedTiming || litter.birthDate;
   const goHome = litter.goHomeDate || litter.goHome;
+  const price = availability.tone === "available" ? litterCardPrice(litter, litterPuppies) : null;
 
   return (
     <article className={`litter-browser-card has-availability-banner is-${availability.tone}`}>
@@ -5182,9 +5197,12 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
         {!isCurrentLitter(litter) && <div className="litter-browser-card-status">
           <span>{litter.birthConfirmed && isPlannedLitter(litter) ? "Upcoming Litter" : litter.status || "Litter"}</span>
         </div>}
-        <div>
-          <h2>{litter.name}</h2>
-          <p className="litter-browser-breed">{litter.breed}</p>
+        <div className={`litter-price-heading${price ? " has-price" : ""}`}>
+          <div className="litter-price-heading-text">
+            <h2>{litter.name}</h2>
+            <p className="litter-browser-breed">{litter.breed}</p>
+          </div>
+          <LitterCardPrice price={price} />
         </div>
         <dl className="litter-browser-facts">
           {timing && <div><dt>{litter.birthConfirmed ? "Birth Date" : isPlannedLitter(litter) ? "Expected" : "Timing"}</dt><dd>{timing}</dd></div>}
