@@ -225,10 +225,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/daisy-waylon-october-2026",
-    requiredText: ["daisy + waylon", "puppies born", "birth date", "october 24, 2026", "december 17-19, 2026", "$3,200", "~25 lbs", "join the waitlist", "cindy lou", "betty lou", "grinch"],
+    requiredText: ["daisy + waylon", "puppies born", "birth date", "october 24, 2026", "december 17-19, 2026", "$3,200", "~25 lbs", "join the waitlist", "max", "cindy lou", "martha may", "donna lou", "betty lou", "grinch", "availability to be confirmed"],
     forbiddenText: ["to be announced", "available now", "pregnancy confirmed", "estimated birth", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-image-gallery"],
-    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Goldendoodles", expectedSize: "~25 lbs", expectedGalleryImages: 11, testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 6, expectedDescriptor: "Goldendoodles", expectedSize: "~25 lbs", expectedGalleryImages: 11, testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
   },
   {
     route: "/litters/birdie-waylon-final-2026",
@@ -283,6 +283,12 @@ const routeExpectations = [
   ...["birdie-laurie", "birdie-jo", "birdie-fredrich", "birdie-meg", "birdie-beth", "birdie-amy", "birdie-marmee"].map((slug) => ({
     route: `/puppies/${slug}`,
     requiredText: [puppies.find((puppy) => puppy.slug === slug).name, "birdie + waylon", "availability to be confirmed", "week 2", "join waitlist"],
+    forbiddenText: [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`, "reserve this puppy"],
+    requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
+  })),
+  ...["daisy-max", "daisy-cindy-lou", "daisy-martha-may", "daisy-donna-lou", "daisy-grinch", "daisy-betty-lou"].map((slug) => ({
+    route: `/puppies/${slug}`,
+    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, "daisy + waylon", "availability to be confirmed", "week 2", "join waitlist"],
     forbiddenText: [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`, "reserve this puppy"],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
   })),
