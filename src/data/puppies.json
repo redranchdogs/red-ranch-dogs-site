@@ -5609,5 +5609,231 @@
     "description": "Marmee is a female Goldendoodle from Birdie + Waylon’s litter.",
     "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "daisy-max",
+    "name": "Max",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "daisy-waylon-october-2026",
+    "litter": "Daisy + Waylon",
+    "mamaSlug": "daisy",
+    "mama": "Daisy",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Male",
+    "collarColor": "Blue",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "Around 25 lbs",
+    "birthDate": "October 24, 2026",
+    "goHomeDate": "December 17-19, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/daisy/max-week-2-img-8755.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/daisy/max-week-2-img-8755.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG",
+        "photos": [
+          "/images/puppies/2026-11-10/daisy/max-week-2-img-8755.webp"
+        ]
+      }
+    ],
+    "description": "Max is a male Goldendoodle from Daisy + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "daisy-cindy-lou",
+    "name": "Cindy Lou",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "daisy-waylon-october-2026",
+    "litter": "Daisy + Waylon",
+    "mamaSlug": "daisy",
+    "mama": "Daisy",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Female",
+    "collarColor": "Pink",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "Around 25 lbs",
+    "birthDate": "October 24, 2026",
+    "goHomeDate": "December 17-19, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/daisy/cindy-lou-week-2-img-8763.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/daisy/cindy-lou-week-2-img-8763.webp",
+      "/images/puppies/2026-11-10/daisy/cindy-lou-week-2-img-8762.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG",
+        "photos": [
+          "/images/puppies/2026-11-10/daisy/cindy-lou-week-2-img-8763.webp",
+          "/images/puppies/2026-11-10/daisy/cindy-lou-week-2-img-8762.webp"
+        ]
+      }
+    ],
+    "description": "Cindy Lou is a female Goldendoodle from Daisy + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "daisy-martha-may",
+    "name": "Martha May",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "daisy-waylon-october-2026",
+    "litter": "Daisy + Waylon",
+    "mamaSlug": "daisy",
+    "mama": "Daisy",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Female",
+    "collarColor": "Purple",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "Around 25 lbs",
+    "birthDate": "October 24, 2026",
+    "goHomeDate": "December 17-19, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/daisy/martha-may-week-2-img-8769.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/daisy/martha-may-week-2-img-8769.webp",
+      "/images/puppies/2026-11-10/daisy/martha-may-week-2-img-8768.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG",
+        "photos": [
+          "/images/puppies/2026-11-10/daisy/martha-may-week-2-img-8769.webp",
+          "/images/puppies/2026-11-10/daisy/martha-may-week-2-img-8768.webp"
+        ]
+      }
+    ],
+    "description": "Martha May is a female Goldendoodle from Daisy + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "daisy-donna-lou",
+    "name": "Donna Lou",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "daisy-waylon-october-2026",
+    "litter": "Daisy + Waylon",
+    "mamaSlug": "daisy",
+    "mama": "Daisy",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Female",
+    "collarColor": "White",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "Around 25 lbs",
+    "birthDate": "October 24, 2026",
+    "goHomeDate": "December 17-19, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/daisy/donna-lou-week-2-img-8785.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/daisy/donna-lou-week-2-img-8785.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG",
+        "photos": [
+          "/images/puppies/2026-11-10/daisy/donna-lou-week-2-img-8785.webp"
+        ]
+      }
+    ],
+    "description": "Donna Lou is a female Goldendoodle from Daisy + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "daisy-grinch",
+    "name": "Grinch",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "daisy-waylon-october-2026",
+    "litter": "Daisy + Waylon",
+    "mamaSlug": "daisy",
+    "mama": "Daisy",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Male",
+    "collarColor": "Green",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "Around 25 lbs",
+    "birthDate": "October 24, 2026",
+    "goHomeDate": "December 17-19, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/daisy/grinch-week-2-img-8790.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/daisy/grinch-week-2-img-8790.webp",
+      "/images/puppies/2026-11-10/daisy/grinch-week-2-img-8789.webp",
+      "/images/puppies/2026-11-10/daisy/grinch-week-2-img-8793.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG",
+        "photos": [
+          "/images/puppies/2026-11-10/daisy/grinch-week-2-img-8790.webp",
+          "/images/puppies/2026-11-10/daisy/grinch-week-2-img-8789.webp",
+          "/images/puppies/2026-11-10/daisy/grinch-week-2-img-8793.webp"
+        ]
+      }
+    ],
+    "description": "Grinch is a male Goldendoodle from Daisy + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "daisy-betty-lou",
+    "name": "Betty Lou",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "daisy-waylon-october-2026",
+    "litter": "Daisy + Waylon",
+    "mamaSlug": "daisy",
+    "mama": "Daisy",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Female",
+    "collarColor": "Yellow",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "Around 25 lbs",
+    "birthDate": "October 24, 2026",
+    "goHomeDate": "December 17-19, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8805.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8805.webp",
+      "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8804.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG",
+        "photos": [
+          "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8805.webp",
+          "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8804.webp"
+        ]
+      }
+    ],
+    "description": "Betty Lou is a female Goldendoodle from Daisy + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
   }
 ]

@@ -988,14 +988,14 @@
     "expectedColors": "Apricot and red possibilities",
     "expectedCoatTraits": "Wavy coats and furnished faces are possible; individual coats vary",
     "priceRange": "$3,200",
-    "availabilitySummary": "Daisy and Waylon’s puppies have arrived. More details will be shared as they are confirmed.",
-    "availabilityNote": "Puppy details and availability will be shared as they are confirmed.",
+    "availabilitySummary": "Daisy and Waylon’s puppies have arrived. Meet the puppies in their individual profiles below.",
+    "availabilityNote": "Explore the individual puppy profiles below. Contact Red Ranch Dogs to confirm availability.",
     "aboutTitle": "A sweet pairing with a little extra sunshine",
     "aboutThisLitter": [
       "Daisy has a warm, people-focused personality that makes her easy to love. Paired with Waylon Jennings, a small Goldendoodle stud, she brings together two of our charming companions for a litter we are excited to watch grow.",
       "Based on the parents’ verified Embark breed results, this pairing’s projected average is 57.55% Poodle and 42.45% Golden Retriever. Individual puppies can inherit different proportions.",
       "Both parents’ reports describe apricot or red pigmentation and wavy coats. Their puppies may have warm shades and furnished faces, with each puppy’s coat and markings developing individually.",
-      "The puppies arrived October 24, 2026, and are expected to go home December 17-19, 2026. Their expected adult size is around 25 pounds. We will share puppy details and availability as they are confirmed."
+      "The puppies arrived October 24, 2026, and are expected to go home December 17-19, 2026. Their expected adult size is around 25 pounds. Explore the individual puppy profiles below. Availability will be shared as it is confirmed."
     ],
     "geneticMakeup": [
       "Projected pairing average: 57.55% Poodle",
@@ -1007,9 +1007,16 @@
       "Apricot and red coat possibilities",
       "Parent Embark profiles available"
     ],
-    "puppySlugs": [],
+    "puppySlugs": [
+      "daisy-max",
+      "daisy-cindy-lou",
+      "daisy-martha-may",
+      "daisy-donna-lou",
+      "daisy-grinch",
+      "daisy-betty-lou"
+    ],
     "photoFolderHint": "https://drive.google.com/drive/folders/1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG",
-    "weeklyUpdateStatus": "Named puppies: Max, Grinch, Cindy Lou, Martha May, Donna Lou, and Betty Lou. Week 2 photos are here. Puppy availability will be shared as confirmed.",
+    "weeklyUpdateStatus": "Meet Max, Cindy Lou, Martha May, Donna Lou, Grinch, and Betty Lou. Week 2 photos are here. Puppy availability will be shared as confirmed.",
     "weeklyUpdateGallery": [
       "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8805.webp",
       "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8804.webp",
@@ -1023,7 +1030,7 @@
       "/images/puppies/2026-11-10/daisy/martha-may-week-2-img-8768.webp",
       "/images/puppies/2026-11-10/daisy/max-week-2-img-8755.webp"
     ],
-    "publicListingStage": "awaiting-puppy-profiles"
+    "publicListingStage": "puppy-profiles-live"
   },
   {
     "slug": "whitley-waylon-november-2026",
