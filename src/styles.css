@@ -9526,6 +9526,70 @@ summary {
   justify-self: start;
 }
 
+/* A single full-width availability signal replaces the small, competing pills. */
+.has-availability-banner {
+  overflow: hidden;
+  row-gap: 15px;
+}
+
+.litter-availability-banner {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 14px 16px;
+  margin: -16px -16px 0;
+  color: var(--warm-paper);
+  background: var(--brand-red);
+  font-size: clamp(1.15rem, 2.3vw, 1.45rem);
+  font-weight: 900;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+}
+
+.litter-card > .litter-availability-banner {
+  margin: -18px -18px 0;
+}
+
+@media (max-width: 980px) {
+  .litter-card > .litter-availability-banner {
+    margin: -12px -12px 0;
+  }
+}
+
+.litter-availability-banner svg,
+.availability-dot {
+  flex: 0 0 auto;
+}
+
+.availability-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.litter-availability-banner.is-available {
+  background: #46563d;
+}
+
+.litter-availability-banner.is-neutral {
+  background: #e9e0d2;
+  color: #554737;
+}
+
+.is-reserved .litter-browser-card-action,
+.litter-card.is-reserved .litter-card-actions .button.small:first-child {
+  background: transparent;
+  color: var(--brand-red-dark);
+  border-color: rgba(148, 31, 23, 0.65);
+  box-shadow: none;
+}
+
 .litter-browser-empty {
   display: grid;
   justify-items: start;
@@ -9833,6 +9897,20 @@ summary {
     width: 100%;
   }
 
+  .litter-browser-card > .litter-availability-banner {
+    margin: -11px -11px 0;
+    font-size: clamp(1.1rem, 5.2vw, 1.35rem);
+  }
+
+  .litter-card > .litter-availability-banner {
+    margin: -12px -12px 0;
+    font-size: clamp(1.1rem, 5.2vw, 1.35rem);
+  }
+
+  .litter-card.has-availability-banner {
+    row-gap: 12px;
+  }
+
   .litter-browser-empty-link.button {
     width: 100%;
   }
@@ -9897,7 +9975,11 @@ summary {
   }
 
   .litter-browser-facts {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .litter-browser-facts dd {
+    font-size: clamp(0.78rem, 3.5vw, 0.92rem);
   }
 
   .puppy-finder-route-nav a {

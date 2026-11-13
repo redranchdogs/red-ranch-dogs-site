@@ -1,3 +1,4 @@
+import { litterCardAvailability } from "../src/litterCardAvailability.js";
 import { guidePath, guideArticles, articlePath } from "../src/data/puppyGuide.js";
 import fs from "node:fs";
 import { createHash } from "node:crypto";
@@ -87,6 +88,7 @@ const beatrixFullyReserved = beatrixPuppies.length > 0 && beatrixPuppies.every((
 const beatrixAvailabilityLabel = beatrixFullyReserved ? "Reserved" : `${beatrixAvailableCount} available`;
 const luluAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "lulu-bram-fall-2026").length} available`;
 const evieAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "evie-waylon-october-2026").length} available`;
+const litterCardLabel = (slug) => litterCardAvailability(litterBySlug.get(slug), puppies.filter((puppy) => puppy.litterSlug === slug)).label;
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
 const openGuardianNames = puppies
   .filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open")
@@ -146,7 +148,7 @@ const routeExpectations = [
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
     expectedLitterOrder: ["Beatrix + Enzo", "Lulu + Bram", "Evie + Waylon", "Birdie + Waylon", "Daisy + Waylon", "Whitley + Waylon"],
-    requiredText: ["current litters", "beatrix + enzo", "lulu + bram", "evie + waylon", "birdie + waylon", "daisy + waylon", "whitley + waylon", "december 12-14, 2026", "december 17-19, 2026", "december 30, 2026 - january 1, 2027", evieAvailabilityLabel, luluAvailabilityLabel, "september 28, 2026", "november 19-21, 2026"],
+    requiredText: ["current litters", "beatrix + enzo", "lulu + bram", "evie + waylon", "birdie + waylon", "daisy + waylon", "whitley + waylon", "december 12-14, 2026", "december 17-19, 2026", "december 30, 2026 - january 1, 2027", litterCardLabel("evie-waylon-october-2026"), litterCardLabel("lulu-bram-fall-2026"), litterCardLabel("beatrix-enzo-planned-2026"), litterCardLabel("birdie-waylon-final-2026"), "september 28, 2026", "november 19-21, 2026"],
     forbiddenText: ["winnie + wyatt"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
