@@ -101,3 +101,11 @@
 @media (prefers-reduced-motion: reduce) { .guide-card-image img, .guide-topic { transition: none; } }
 @media print { .premium-header, .premium-footer, .guide-contents, .guide-reading, .guide-cta { display: none; } .guide-article-layout { display: block; padding: 0; max-width: none; } .guide-article-photo { max-height: 220px; } .guide-article-body > section { break-inside: avoid; } }
 .puppy-guide .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* Editorial layouts retain their reading rhythm and share the ranch UI tokens. */
+.guide-card { border-color: var(--line); border-radius: var(--card-radius); background: var(--paper); box-shadow: var(--card-shadow); overflow: hidden; }
+.guide-hero-photo img, .guide-article-photo { border-radius: var(--card-radius); }
+.guide-more, .guide-takeaway, .guide-photo-note { border-radius: var(--card-radius); }
+.puppy-guide .button { min-height: 48px; border-radius: var(--radius-sm); white-space: normal; text-align: center; }
+.guide-read-link, .guide-contact, .guide-all-link, .guide-related-links a, .guide-section-heading > a, .guide-contents nav a { min-height: 44px; display: flex; align-items: center; }
+.puppy-guide a:focus-visible { outline: 3px solid var(--brand-red); outline-offset: 4px; border-radius: var(--radius-sm); }

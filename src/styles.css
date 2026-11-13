@@ -29,6 +29,12 @@
   --premium-ink: #1f1d19;
   --premium-muted: #62594d;
   --premium-line: rgba(95, 69, 45, 0.18);
+  --status-available: #2b563d;
+  --status-reserved: var(--brand-red);
+  --status-neutral: #e8e2d8;
+  --status-neutral-ink: #534b43;
+  --card-radius: 12px;
+  --card-shadow: 0 6px 20px rgba(55, 35, 20, 0.04);
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -3598,35 +3604,6 @@ textarea {
   text-transform: uppercase;
 }
 
-.puppy-card {
-  grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.08fr);
-  gap: 22px;
-  align-items: stretch;
-}
-
-.puppy-card-body {
-  display: grid;
-  align-content: start;
-  gap: 10px;
-  min-width: 0;
-}
-
-.puppy-card-body h1,
-.puppy-card-body h2 {
-  margin: 0;
-  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: clamp(2.6rem, 4.5vw, 4rem);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: 0;
-}
-
-.puppy-card-note {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
 .puppy-card-actions {
   display: flex;
   flex-wrap: wrap;
@@ -3653,37 +3630,6 @@ textarea {
   align-items: stretch;
 }
 
-.available-puppy-card .puppy-photo-frame {
-  width: 100%;
-  min-width: 0;
-  aspect-ratio: 4 / 5;
-  min-height: 420px;
-  background: var(--line);
-}
-
-.available-puppy-card .puppy-photo-frame img,
-.available-puppy-card .puppy-photo-frame .image-placeholder {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  object-fit: contain;
-}
-
-.available-puppy-card .puppy-card-body {
-  gap: 9px;
-}
-
-.available-puppy-card .puppy-card-body h2 {
-  font-size: clamp(2.35rem, 4vw, 3.5rem);
-}
-
-.available-puppy-card .puppy-card-note {
-  max-width: 62ch;
-  font-size: 0.96rem;
-  line-height: 1.42;
-}
-
 .available-puppy-card .compact-details {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 4px 0;
@@ -3692,23 +3638,6 @@ textarea {
 .available-puppy-card .small-note {
   margin: 0;
   font-size: 0.9rem;
-}
-
-.available-puppy-card .puppy-card-actions {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
-  gap: 8px;
-}
-
-.available-puppy-card .puppy-card-actions .button {
-  min-height: 44px;
-  padding-inline: 10px;
-  font-size: 0.78rem;
-}
-
-.available-puppy-card .puppy-card-actions .puppy-video-link,
-.detail-puppy-card .puppy-card-actions .puppy-video-link {
-  grid-column: 1 / -1;
 }
 
 .litter-puppy-list {
@@ -3731,36 +3660,6 @@ textarea {
   align-items: stretch;
 }
 
-.detail-puppy-card .puppy-photo-frame {
-  width: 100%;
-  min-width: 0;
-  aspect-ratio: 4 / 5;
-  min-height: 430px;
-  background: var(--line);
-}
-
-.detail-puppy-card .puppy-photo-frame img,
-.detail-puppy-card .puppy-photo-frame .image-placeholder {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  object-fit: contain;
-}
-
-.detail-puppy-card .puppy-card-body {
-  gap: 9px;
-}
-
-.detail-puppy-card .puppy-card-body h1 {
-  font-size: clamp(2.45rem, 4.2vw, 3.6rem);
-}
-
-.detail-puppy-card .puppy-card-note {
-  font-size: 0.96rem;
-  line-height: 1.42;
-}
-
 .detail-puppy-card .compact-details {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 4px 0;
@@ -3769,18 +3668,6 @@ textarea {
 .detail-puppy-card .small-note {
   margin: 0;
   font-size: 0.9rem;
-}
-
-.detail-puppy-card .puppy-card-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.detail-puppy-card .puppy-card-actions .button {
-  min-height: 44px;
-  padding-inline: 10px;
-  font-size: 0.78rem;
 }
 
 .puppy-weekly-photo-section {
@@ -4391,36 +4278,6 @@ textarea {
   gap: 20px;
   padding: 14px;
   align-items: stretch;
-}
-
-.litter-puppy-card .puppy-photo-frame {
-  width: 100%;
-  min-width: 0;
-  aspect-ratio: 4 / 5;
-  min-height: 420px;
-  background: var(--line);
-}
-
-.litter-puppy-card .puppy-photo-frame img,
-.litter-puppy-card .puppy-photo-frame .image-placeholder {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  object-fit: contain;
-}
-
-.litter-puppy-card .puppy-card-body {
-  gap: 8px;
-}
-
-.litter-puppy-card .puppy-card-body h2 {
-  font-size: clamp(2.25rem, 4vw, 3.35rem);
-}
-
-.litter-puppy-card .puppy-card-note {
-  font-size: 0.95rem;
-  line-height: 1.4;
 }
 
 .litter-puppy-card .compact-details {
@@ -7493,42 +7350,6 @@ summary {
   line-height: 1.42;
 }
 
-.puppy-photo-frame {
-  position: relative;
-  min-height: 280px;
-  margin: 0;
-  overflow: hidden;
-  background: var(--line);
-}
-
-.puppy-photo-frame img,
-.puppy-photo-frame .image-placeholder {
-  width: 100%;
-  height: 100%;
-  min-height: 280px;
-  object-fit: cover;
-}
-
-.puppy-photo-frame figcaption {
-  position: absolute;
-  right: 14px;
-  bottom: 14px;
-  left: 14px;
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  max-width: calc(100% - 28px);
-  min-height: 38px;
-  padding: 0 14px;
-  color: var(--paper);
-  background: rgba(36, 31, 28, 0.78);
-  border: 1px solid rgba(255, 250, 242, 0.34);
-  border-radius: 999px;
-  font-family: "Bebas Neue", Impact, Arial Narrow, sans-serif;
-  font-size: 1.35rem;
-  letter-spacing: 0.02em;
-}
-
 .image-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -8289,12 +8110,6 @@ summary {
     grid-template-columns: 1fr;
   }
 
-  .puppy-photo-frame,
-  .puppy-photo-frame img,
-  .puppy-photo-frame .image-placeholder {
-    min-height: 260px;
-  }
-
   .pairing-photo-grid,
   .pairing-photo-grid div,
   .pairing-photo-grid img {
@@ -8512,27 +8327,6 @@ summary {
     padding: 10px;
   }
 
-  .litter-puppy-card .puppy-photo-frame,
-  .litter-puppy-card .puppy-photo-frame img,
-  .litter-puppy-card .puppy-photo-frame .image-placeholder {
-    aspect-ratio: auto;
-    min-height: min(86vw, 380px);
-  }
-
-  .litter-puppy-card .puppy-card-body {
-    gap: 7px;
-    padding: 2px 2px 4px;
-  }
-
-  .litter-puppy-card .puppy-card-body h2 {
-    font-size: clamp(2.15rem, 9vw, 2.75rem);
-  }
-
-  .litter-puppy-card .puppy-card-note {
-    font-size: 0.9rem;
-    line-height: 1.35;
-  }
-
   .litter-puppy-card .compact-details {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0 8px;
@@ -8555,27 +8349,6 @@ summary {
     padding: 10px;
   }
 
-  .detail-puppy-card .puppy-photo-frame,
-  .detail-puppy-card .puppy-photo-frame img,
-  .detail-puppy-card .puppy-photo-frame .image-placeholder {
-    aspect-ratio: auto;
-    min-height: min(86vw, 380px);
-  }
-
-  .detail-puppy-card .puppy-card-body {
-    gap: 7px;
-    padding: 2px 2px 4px;
-  }
-
-  .detail-puppy-card .puppy-card-body h1 {
-    font-size: clamp(2.15rem, 9vw, 2.85rem);
-  }
-
-  .detail-puppy-card .puppy-card-note {
-    font-size: 0.9rem;
-    line-height: 1.35;
-  }
-
   .detail-puppy-card .compact-details {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 10px;
@@ -8583,10 +8356,6 @@ summary {
 
   .detail-puppy-card .compact-details div {
     padding: 6px 0;
-  }
-
-  .detail-puppy-card .puppy-card-actions {
-    grid-template-columns: 1fr 0.72fr;
   }
 
   .puppy-weekly-photo-section {
@@ -10789,25 +10558,6 @@ summary {
     padding: 10px;
   }
 
-  .available-puppy-card .puppy-photo-frame {
-    aspect-ratio: auto;
-    min-height: min(86vw, 380px);
-  }
-
-  .available-puppy-card .puppy-card-body {
-    gap: 7px;
-    padding: 2px 2px 4px;
-  }
-
-  .available-puppy-card .puppy-card-body h2 {
-    font-size: clamp(2.15rem, 9vw, 2.85rem);
-  }
-
-  .available-puppy-card .puppy-card-note {
-    font-size: 0.9rem;
-    line-height: 1.35;
-  }
-
   .available-puppy-card .compact-details {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 10px;
@@ -10815,10 +10565,6 @@ summary {
 
   .available-puppy-card .compact-details div {
     padding: 6px 0;
-  }
-
-  .available-puppy-card .puppy-card-actions {
-    grid-template-columns: 1fr 0.72fr;
   }
 
   .process-step-cards {
@@ -13137,14 +12883,14 @@ summary {
   margin: 0;
 }
 
-.litter-parent-portrait-link {
+.litter-parent-portrait {
   display: grid;
   min-width: 0;
   color: var(--ink);
   text-decoration: none;
 }
 
-.litter-parent-portrait-link img {
+.litter-parent-portrait img {
   display: block;
   width: 100%;
   aspect-ratio: 2 / 3;
@@ -13153,7 +12899,7 @@ summary {
   background: var(--soft-tan);
 }
 
-.litter-parent-portrait-link figcaption {
+.litter-parent-caption {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
@@ -13164,12 +12910,12 @@ summary {
   text-align: center;
 }
 
-.litter-parent-portrait-link strong {
+.litter-parent-portrait strong {
   font-weight: 900;
 }
 
-.litter-parent-portrait-link:hover figcaption strong,
-.litter-parent-portrait-link:focus-visible figcaption strong {
+.litter-parent-portrait-link:hover .litter-parent-caption strong,
+.litter-parent-portrait-link:focus-visible .litter-parent-caption strong {
   color: var(--brand-red);
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -13319,7 +13065,7 @@ summary {
     gap: 6px;
   }
 
-  .litter-parent-portrait-link figcaption {
+  .litter-parent-caption {
     gap: 4px;
     padding-top: 10px;
     font-size: 0.95rem;
@@ -13684,26 +13430,6 @@ summary {
 
 
 /* Keep reservation status unmistakable while leaving the puppy's face clear. */
-.puppy-reserved-ribbon {
-  position: absolute;
-  z-index: 1;
-  top: 16px;
-  left: 0;
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 10px 28px 10px 16px;
-  color: #fff;
-  background: var(--brand-red);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 50%, 100% 100%, 0 100%);
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  pointer-events: none;
-}
 
 /* On the smallest phones, details use the full card width below the portrait. */
 @media (max-width: 360px) {
@@ -13805,9 +13531,9 @@ summary {
   background: var(--premium-muted);
 }
 
-.puppy-profile-status.status-available > span {
-  background: var(--brand-red);
-}
+.puppy-profile-status.is-available > span { background: var(--status-available); }
+.puppy-profile-status.is-reserved > span { background: var(--status-reserved); }
+.puppy-profile-status.is-neutral > span { background: var(--status-neutral-ink); }
 
 .puppy-profile-body {
   display: flex;
@@ -13962,7 +13688,7 @@ summary {
 .litter-puppy-list > .section-header,
 .litter-puppy-list > .small-note { grid-column: 1 / -1; }
 
-.litter-puppy-card.litter-puppy-profile {
+.puppy-listing-card.litter-puppy-profile {
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -13971,9 +13697,9 @@ summary {
   overflow: hidden;
   overflow-wrap: anywhere;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--card-radius);
   background: var(--paper);
-  box-shadow: 0 6px 20px rgba(55, 35, 20, 0.04);
+  box-shadow: var(--card-shadow);
 }
 .litter-puppy-profile .sr-only {
   position: absolute;
@@ -14000,9 +13726,9 @@ summary {
   text-align: center;
   text-transform: uppercase;
 }
-.litter-puppy-status.is-available { background: #2b563d; }
-.litter-puppy-status.is-reserved { background: var(--brand-red); }
-.litter-puppy-status.is-neutral { color: #534b43; background: #e8e2d8; letter-spacing: 0.04em; }
+.litter-puppy-status.is-available { background: var(--status-available); }
+.litter-puppy-status.is-reserved { background: var(--status-reserved); }
+.litter-puppy-status.is-neutral { color: var(--status-neutral-ink); background: var(--status-neutral); letter-spacing: 0.04em; }
 .litter-puppy-portrait { flex-shrink: 0; min-width: 0; margin: 0; background: var(--cream); }
 .litter-puppy-portrait img {
   /* Reserve portrait space while lazy-loading; the real ratio wins on load. */
@@ -14053,3 +13779,65 @@ summary {
   .litter-puppy-list { grid-template-columns: minmax(0, 1fr); }
   .litter-puppy-body { padding: 20px; }
 }
+
+/* Reuse the same listing card on Available Puppies and litter pages. */
+.available-puppy-card-list,
+.breed-puppy-card-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 22px;
+}
+.puppy-listing-facts { display: grid; gap: 12px; }
+.puppy-listing-facts > div { display: grid; grid-template-columns: 78px minmax(0, 1fr); align-items: baseline; gap: 12px; }
+.puppy-listing-facts dt { margin: 0; }
+.puppy-listing-facts dd { font-size: 1rem; }
+.puppy-listing-notes { display: grid; gap: 8px; margin: 0 0 16px; }
+.puppy-listing-notes p { margin: 0; color: var(--premium-muted); font-size: 0.9rem; line-height: 1.5; }
+.puppy-listing-secondary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2px 20px; }
+.puppy-listing-secondary > :only-child { margin-inline: auto; }
+.puppy-listing-secondary .puppy-listing-litter-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; min-width: 0; max-width: 100%; color: var(--brand-red-dark); font-size: 0.9rem; line-height: 1.4; text-decoration: none; text-underline-offset: 4px; }
+@media (max-width: 760px) {
+  .available-puppy-card-list,
+  .breed-puppy-card-list { grid-template-columns: minmax(0, 1fr); }
+}
+
+.breed-puppy-card-list > .section-header,
+.breed-puppy-card-list > .small-note { grid-column: 1 / -1; }
+
+/* Compact home previews share the listing status, full photo, paper and actions. */
+.home-ready-puppy-card {
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--paper);
+  box-shadow: var(--card-shadow);
+}
+.home-ready-puppy-photo img {
+  aspect-ratio: auto 2 / 3;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  object-fit: contain;
+}
+.home-ready-puppy-body { padding: 18px; gap: 8px; }
+.home-ready-puppy-body h3 { font-size: clamp(2rem, 3vw, 2.7rem); }
+.home-ready-puppy-body p.home-ready-puppy-price { font-size: 1.2rem; }
+.home-ready-puppy-body .home-ready-puppy-meta { font-weight: 500; line-height: 1.45; }
+.home-ready-puppy-body .button { width: 100%; min-height: 48px; border: 1px solid var(--brand-red); border-radius: var(--radius-sm); background: var(--brand-red); color: #fff; white-space: normal; text-align: center; }
+.home-ready-puppy-body .button:hover { background: var(--brand-red-dark); border-color: var(--brand-red-dark); }
+.home-ready-puppy-card a:focus-visible { outline: 3px solid var(--brand-red); outline-offset: -4px; }
+@media (min-width: 760px) {
+  .home-ready-puppy-row { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+}
+
+/* Directory cards share the same calm surface without changing their content. */
+.parent-profile-card.text-card {
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--paper);
+  box-shadow: var(--card-shadow);
+}
+.parent-profile-card .parent-profile-link { min-height: 48px; border-radius: var(--radius-sm); }
+.parent-directory-nav a:focus-visible,
+.litter-parent-portrait-link:focus-visible { outline: 3px solid var(--brand-red); outline-offset: 4px; }
