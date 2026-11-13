@@ -232,10 +232,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/birdie-waylon-final-2026",
-    requiredText: ["birdie + waylon", "puppies born", "birth date", "october 21, 2026", "december 12-14, 2026", "$3,200", "20-25 lbs", "fredrich", "marmee", "laurie"],
+    requiredText: ["birdie + waylon", "puppies born", "birth date", "october 21, 2026", "december 12-14, 2026", "$3,200", "20-25 lbs", "fredrich", "marmee", "laurie", "jo", "meg", "beth", "amy", "availability to be confirmed"],
     forbiddenText: ["to be announced", "available now", "pregnancy confirmed", "estimated birth", "expecting", "date to be confirmed", "7 puppies"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-image-gallery"],
-    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 0, expectedDescriptor: "Goldendoodles", expectedSize: "20-25 lbs", expectedGalleryImages: 16, testParentBack: true }
+    litterDetailCheck: { expectedStatus: "Puppies born", expectedPuppies: 7, expectedDescriptor: "Goldendoodles", expectedSize: "20-25 lbs", expectedGalleryImages: 16, testParentBack: true }
   },
   {
     route: "/parents/evie-nicks",
@@ -279,6 +279,12 @@ const routeExpectations = [
     requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) === "available" ? [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`] : ["join waitlist"])],
     forbiddenText: ["nancy drew", "reserve this puppy", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) !== "available" ? [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`] : []), ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
+  })),
+  ...["birdie-laurie", "birdie-jo", "birdie-fredrich", "birdie-meg", "birdie-beth", "birdie-amy", "birdie-marmee"].map((slug) => ({
+    route: `/puppies/${slug}`,
+    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, "birdie + waylon", "availability to be confirmed", "week 2", "join waitlist"],
+    forbiddenText: [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`, "reserve this puppy"],
+    requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
   })),
   {
     route: "/litters/georgia-waylon-may-2026",
