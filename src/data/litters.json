@@ -875,12 +875,12 @@
     "expectedCoatTraits": "",
     "priceRange": "$3,200",
     "availabilitySummary": "Birdie and Waylon’s puppies have arrived. We’re excited to celebrate Birdie’s final litter.",
-    "availabilityNote": "Puppy details and availability will be shared as they are confirmed.",
+    "availabilityNote": "Explore the individual puppy profiles below. Contact Red Ranch Dogs to confirm availability.",
     "aboutTitle": "Celebrating Birdie’s final litter",
     "aboutThisLitter": [
       "Birdie is one of our sweetest F1 Goldendoodle mamas. She has given us incredible puppies, each so special, and we are especially excited to celebrate her final litter with Waylon.",
       "Based on both parents’ verified Embark breed results, the puppies’ projected breed mix averages approximately 58% Poodle and 42% Golden Retriever. This is an expected average for the pairing; individual puppies’ breed percentages can vary.",
-      "Birdie and Waylon’s puppies arrived October 21, 2026, and are expected to go home December 12-14, 2026. Their expected adult size is 20-25 pounds. We will share puppy details and availability as they are confirmed."
+      "Birdie and Waylon’s puppies arrived October 21, 2026, and are expected to go home December 12-14, 2026. Their expected adult size is 20-25 pounds. Explore the individual puppy profiles below. Availability will be shared as it is confirmed."
     ],
     "geneticMakeup": [
       "Projected puppies: approximately 58% Poodle",
@@ -892,9 +892,17 @@
       "Birdie’s final litter",
       "Parent Embark profiles available"
     ],
-    "puppySlugs": [],
+    "puppySlugs": [
+      "birdie-laurie",
+      "birdie-jo",
+      "birdie-fredrich",
+      "birdie-meg",
+      "birdie-beth",
+      "birdie-amy",
+      "birdie-marmee"
+    ],
     "photoFolderHint": "https://drive.google.com/drive/folders/19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r-",
-    "weeklyUpdateStatus": "Named puppies: Laurie, Fredrich, Jo, Beth, Amy, Marmee, and Meg. One puppy is not yet named. Week 2 photos are here. Puppy availability will be shared as confirmed.",
+    "weeklyUpdateStatus": "Meet Laurie, Fredrich, Jo, Beth, Amy, Marmee, and Meg. Week 2 photos are here. Puppy availability will be shared as confirmed.",
     "weeklyUpdateGallery": [
       "/images/puppies/2026-11-10/birdie/amy-week-2-img-8738.webp",
       "/images/puppies/2026-11-10/birdie/amy-week-2-img-8734.webp",
@@ -913,7 +921,7 @@
       "/images/puppies/2026-11-10/birdie/meg-week-2-img-8720.webp",
       "/images/puppies/2026-11-10/birdie/meg-week-2-img-8721.webp"
     ],
-    "publicListingStage": "awaiting-puppy-profiles"
+    "publicListingStage": "puppy-profiles-live"
   },
   {
     "slug": "maisie-wyatt-2026",

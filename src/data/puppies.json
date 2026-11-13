@@ -5339,5 +5339,275 @@
     "description": "Merryweather is a female Multigen Micro Goldendoodle from Lulu + Bram's litter.",
     "availabilityNote": "Merryweather is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "birdie-laurie",
+    "name": "Laurie",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "birdie-waylon-final-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Male",
+    "collarColor": "Blue",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "October 21, 2026",
+    "goHomeDate": "December 12-14, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/birdie/laurie-week-2-img-8698.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/birdie/laurie-week-2-img-8698.webp",
+      "/images/puppies/2026-11-10/birdie/laurie-week-2-img-8696.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r-",
+        "photos": [
+          "/images/puppies/2026-11-10/birdie/laurie-week-2-img-8698.webp",
+          "/images/puppies/2026-11-10/birdie/laurie-week-2-img-8696.webp"
+        ]
+      }
+    ],
+    "description": "Laurie is a male Goldendoodle from Birdie + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "birdie-jo",
+    "name": "Jo",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "birdie-waylon-final-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Female",
+    "collarColor": "Pink",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "October 21, 2026",
+    "goHomeDate": "December 12-14, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/birdie/jo-week-2-img-8705.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/birdie/jo-week-2-img-8705.webp",
+      "/images/puppies/2026-11-10/birdie/jo-week-2-img-8704.webp",
+      "/images/puppies/2026-11-10/birdie/jo-week-2-img-8708.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r-",
+        "photos": [
+          "/images/puppies/2026-11-10/birdie/jo-week-2-img-8705.webp",
+          "/images/puppies/2026-11-10/birdie/jo-week-2-img-8704.webp",
+          "/images/puppies/2026-11-10/birdie/jo-week-2-img-8708.webp"
+        ]
+      }
+    ],
+    "description": "Jo is a female Goldendoodle from Birdie + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "birdie-fredrich",
+    "name": "Fredrich",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "birdie-waylon-final-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Male",
+    "collarColor": "Mint",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "October 21, 2026",
+    "goHomeDate": "December 12-14, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/birdie/fredrich-week-2-img-8714.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/birdie/fredrich-week-2-img-8714.webp",
+      "/images/puppies/2026-11-10/birdie/fredrich-week-2-img-8712.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r-",
+        "photos": [
+          "/images/puppies/2026-11-10/birdie/fredrich-week-2-img-8714.webp",
+          "/images/puppies/2026-11-10/birdie/fredrich-week-2-img-8712.webp"
+        ]
+      }
+    ],
+    "description": "Fredrich is a male Goldendoodle from Birdie + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "birdie-meg",
+    "name": "Meg",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "birdie-waylon-final-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Female",
+    "collarColor": "Yellow",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "October 21, 2026",
+    "goHomeDate": "December 12-14, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/birdie/meg-week-2-img-8720.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/birdie/meg-week-2-img-8720.webp",
+      "/images/puppies/2026-11-10/birdie/meg-week-2-img-8721.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r-",
+        "photos": [
+          "/images/puppies/2026-11-10/birdie/meg-week-2-img-8720.webp",
+          "/images/puppies/2026-11-10/birdie/meg-week-2-img-8721.webp"
+        ]
+      }
+    ],
+    "description": "Meg is a female Goldendoodle from Birdie + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "birdie-beth",
+    "name": "Beth",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "birdie-waylon-final-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Female",
+    "collarColor": "Purple",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "October 21, 2026",
+    "goHomeDate": "December 12-14, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/birdie/beth-week-2-img-8729.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/birdie/beth-week-2-img-8729.webp",
+      "/images/puppies/2026-11-10/birdie/beth-week-2-img-8727.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r-",
+        "photos": [
+          "/images/puppies/2026-11-10/birdie/beth-week-2-img-8729.webp",
+          "/images/puppies/2026-11-10/birdie/beth-week-2-img-8727.webp"
+        ]
+      }
+    ],
+    "description": "Beth is a female Goldendoodle from Birdie + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "birdie-amy",
+    "name": "Amy",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "birdie-waylon-final-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Female",
+    "collarColor": "Red",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "October 21, 2026",
+    "goHomeDate": "December 12-14, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/birdie/amy-week-2-img-8738.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/birdie/amy-week-2-img-8738.webp",
+      "/images/puppies/2026-11-10/birdie/amy-week-2-img-8734.webp",
+      "/images/puppies/2026-11-10/birdie/amy-week-2-img-8740.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r-",
+        "photos": [
+          "/images/puppies/2026-11-10/birdie/amy-week-2-img-8738.webp",
+          "/images/puppies/2026-11-10/birdie/amy-week-2-img-8734.webp",
+          "/images/puppies/2026-11-10/birdie/amy-week-2-img-8740.webp"
+        ]
+      }
+    ],
+    "description": "Amy is a female Goldendoodle from Birdie + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
+  },
+  {
+    "slug": "birdie-marmee",
+    "name": "Marmee",
+    "visibility": "public",
+    "breedSlug": "goldendoodle-puppies",
+    "breed": "Goldendoodle",
+    "litterSlug": "birdie-waylon-final-2026",
+    "litter": "Birdie + Waylon",
+    "mamaSlug": "birdie",
+    "mama": "Birdie",
+    "studSlug": "waylon-jennings",
+    "stud": "Waylon Jennings",
+    "gender": "Female",
+    "collarColor": "White",
+    "status": "Availability to be confirmed",
+    "estimatedAdultWeight": "20-25 lbs",
+    "birthDate": "October 21, 2026",
+    "goHomeDate": "December 12-14, 2026",
+    "price": "$3,200",
+    "mainPhoto": "/images/puppies/2026-11-10/birdie/marmee-week-2-img-8749.webp",
+    "photos": [
+      "/images/puppies/2026-11-10/birdie/marmee-week-2-img-8749.webp",
+      "/images/puppies/2026-11-10/birdie/marmee-week-2-img-8747.webp"
+    ],
+    "weeklyPhotos": [
+      {
+        "week": "Week 2",
+        "folderHint": "https://drive.google.com/drive/folders/19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r-",
+        "photos": [
+          "/images/puppies/2026-11-10/birdie/marmee-week-2-img-8749.webp",
+          "/images/puppies/2026-11-10/birdie/marmee-week-2-img-8747.webp"
+        ]
+      }
+    ],
+    "description": "Marmee is a female Goldendoodle from Birdie + Waylon’s litter.",
+    "availabilityNote": "Contact Red Ranch Dogs to confirm this puppy’s availability.",
+    "personalityNote": "Personality notes will be updated as this puppy grows."
   }
 ]
