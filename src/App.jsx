@@ -1,6 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import FAQItem from "./FAQItem.jsx";
 import PuppyDetailCard from "./PuppyDetailCard.jsx";
+import LitterPuppyCard from "./LitterPuppyCard.jsx";
 import { PuppyGuideHome, PuppyGuideArticle } from "./PuppyGuide.jsx";
 import { guidePath, guideMeta, articleForPath, guideSchema } from "./data/puppyGuide.js";
 import { hasActiveGallery } from "./gallerySession.js";
@@ -2522,6 +2523,14 @@ function PuppyCard({ puppy, variant = "default" }) {
       primaryLabel={isAvailable ? `Reserve ${puppy.name}` : "Join Waitlist"}
       inquiryHref={isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" ? `/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry` : ""}
       litterRoute={litterRoute} videoHref={videoHref} videoLabel={videoLabel} Link={Link}
+    />;
+  }
+  if (isLitterVariant) {
+    return <LitterPuppyCard
+      puppy={puppy} breed={breed} gender={gender} photo={photo}
+      goHome={goHome} weight={weight} price={price} route={route}
+      inquiryHref={isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" ? `/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry` : ""}
+      videoHref={videoHref} videoLabel={videoLabel} Link={Link}
     />;
   }
   const cardClasses = [
