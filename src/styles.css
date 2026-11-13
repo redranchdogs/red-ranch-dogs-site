@@ -13727,3 +13727,229 @@ summary {
   object-fit: contain;
   object-position: 50% 50%;
 }
+
+/* Puppy profiles: an image-led, quieter detail card. Listing cards are unchanged. */
+.puppy-profile-card {
+  display: grid;
+  overflow-wrap: anywhere;
+  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 38px);
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+  box-shadow: 0 8px 22px rgba(55, 35, 20, 0.045);
+}
+
+.puppy-profile-card .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.puppy-profile-photo {
+  position: relative;
+  align-self: start;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 9px;
+  background: var(--cream);
+}
+
+.puppy-profile-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 680px;
+  object-fit: contain;
+}
+
+.puppy-profile-photo-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 340px;
+  padding: 28px;
+  color: var(--muted);
+}
+
+.puppy-profile-status {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  max-width: calc(100% - 32px);
+  padding: 9px 14px;
+  border: 1px solid rgba(95, 69, 45, 0.14);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.puppy-profile-status > span {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--premium-muted);
+}
+
+.puppy-profile-status.status-available > span {
+  background: var(--brand-red);
+}
+
+.puppy-profile-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 20px 18px 20px 0;
+}
+
+.puppy-profile-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
+.puppy-profile-title-row h1 {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 4.4rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.puppy-profile-price {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.puppy-profile-breed {
+  margin: 12px 0 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.puppy-profile-summary {
+  margin: 5px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.puppy-profile-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 22px;
+  margin: 24px 0 0;
+}
+
+.puppy-profile-facts > div { min-width: 0; }
+
+.puppy-profile-facts dt {
+  margin: 0 0 6px;
+  color: var(--premium-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.puppy-profile-facts dd {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.puppy-profile-facts .puppy-profile-timing {
+  grid-column: 1 / -1;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.puppy-profile-timing dd { font-size: 1.15rem; font-weight: 700; }
+.puppy-profile-facts .puppy-profile-collar { grid-column: 1 / -1; margin-top: -8px; }
+.puppy-profile-collar dd { color: var(--premium-muted); font-size: 0.9rem; }
+
+.puppy-profile-notes { display: grid; gap: 10px; margin-top: 22px; }
+.puppy-profile-notes p { margin: 0; color: var(--premium-muted); font-size: 0.94rem; line-height: 1.5; }
+.puppy-profile-actions { display: grid; gap: 10px; margin-top: 22px; }
+
+.puppy-profile-actions .puppy-profile-primary {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 18px;
+  border-radius: 7px;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.puppy-profile-primary svg { flex-shrink: 0; }
+
+.puppy-profile-secondary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px 18px;
+}
+
+.puppy-profile-secondary a,
+.puppy-profile-inquiry {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--brand-red-dark);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.puppy-profile-secondary a:hover,
+.puppy-profile-inquiry:hover { text-decoration: underline; }
+.puppy-profile-secondary svg,
+.puppy-profile-inquiry svg { flex-shrink: 0; }
+.puppy-profile-actions a:focus-visible { outline: 3px solid var(--brand-red); outline-offset: 4px; }
+
+@media (max-width: 760px) {
+  .puppy-detail-section { width: min(520px, calc(100% - 28px)); padding-top: 20px; }
+  .puppy-profile-card { grid-template-columns: 1fr; gap: 0; padding: 8px; border-radius: 14px; }
+  .puppy-profile-photo img { max-height: none; }
+  .puppy-profile-body { padding: 22px 12px 8px; }
+  .puppy-profile-title-row h1 { font-size: clamp(3rem, 13vw, 4rem); }
+  .puppy-profile-price { font-size: clamp(1.3rem, 6vw, 1.7rem); }
+  .puppy-profile-facts { gap: 16px; }
+  .puppy-profile-status { bottom: 14px; left: 14px; max-width: calc(100% - 28px); }
+}
