@@ -3509,6 +3509,7 @@ const litterAvailabilityLabel = (litter, litterPuppies = puppiesForLitter(litter
   if (availableCount) return `${availableCount} available`;
   if (waitlistCount) return "Waitlist matching";
   if (litterPuppies.length && reservedCount === litterPuppies.length) return "Reserved";
+  if (isCurrentLitter(litter) && litter?.litterAvailabilityConfirmed) return "Puppies available";
   if (litter?.birthConfirmed) return "Puppies born";
   if (litter?.pregnancyConfirmed && isPlannedLitter(litter)) return "Pregnancy confirmed";
   if (!isCurrentLitter(litter)) return "Planning";
@@ -4146,6 +4147,11 @@ function LitterPage({ litter }) {
               ? "Picking opportunities depend on availability."
               : "Join the waitlist and we will share timing, pregnancy confirmation, and availability updates as this pairing progresses.",
             primaryLabel: "Join the Waitlist"
+          }
+      : isCurrentLitter(litter) && puppies.length === 0 && litter.litterAvailabilityConfirmed
+        ? {
+            copy: "Puppies are available. Individual profiles are being prepared; apply or ask us about this litter.",
+            primaryLabel: "Apply for a Puppy"
           }
       : isCurrentLitter(litter) && puppies.length === 0
         ? {
@@ -5088,6 +5094,9 @@ function AvailablePuppiesPage() {
     personalityNote: "Illustrative local fixture for layout verification only.",
     status: "Available"
   }] : featuredAvailablePuppies();
+  const otherAvailableLitters = currentLitterProfiles.filter((litter) =>
+    litter.availableDisplayMode === "current-litters" && puppiesForLitter(litter).some(isAvailablePuppy)
+  );
 
   return (
     <BuyerPageTemplate
@@ -5097,6 +5106,15 @@ function AvailablePuppiesPage() {
       heroClassName="compact-page-hero buyer-page-hero litter-browser-hero puppy-finder-hero"
     >
       <AvailablePuppyBrowser puppies={availableNow} />
+      {otherAvailableLitters.length > 0 && (
+        <section className="content-section narrow">
+          <h2>More available puppies</h2>
+          <p>Meet more available puppies on their current litter pages.</p>
+          <div className="actions">
+            {otherAvailableLitters.map((litter) => <Link className="button secondary" href={`/litters/${litter.slug}`} key={litter.slug}>{litter.name}</Link>)}
+          </div>
+        </section>
+      )}
       {availableNow.length > 0 && (
           <CTASection
             title="Ready to ask about a puppy?"
@@ -6342,7 +6360,7 @@ function WaitlistPage() {
             </article>
           ))}
         </div>
-        {lastUpdated && <p className="waitlist-updated small-note">Last updated {lastUpdated}.</p>}
+        {lastUpdated && <p className="waitlist-updated small-note">Feed retrieved {lastUpdated}.</p>}
       </section>
       <section className="tile-grid four priority-grid waitlist-policy-grid process-card-grid process-note-grid">
         {waitlistPolicies.map(([title, copy]) => (
