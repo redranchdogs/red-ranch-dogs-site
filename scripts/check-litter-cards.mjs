@@ -9,6 +9,8 @@ const current = { status: "Current Litter", birthConfirmed: true };
 const puppiesWith = (...statuses) => statuses.map((status) => ({ status }));
 const cases = [
   [current, [], "", "Availability pending", "neutral"],
+  [{ ...current, litterAvailabilityConfirmed: true }, [], "", "Puppies available", "available"],
+  [{ ...current, litterAvailabilityConfirmed: true }, puppiesWith("Reserved"), "", "Fully reserved", "reserved"],
   [current, puppiesWith("Reserved", "Matched"), "", "Fully reserved", "reserved"],
   [current, puppiesWith("Reserved", "Availability to be confirmed"), "", "Availability pending", "neutral"],
   [current, puppiesWith("Pending"), "", "Availability pending", "neutral"],
@@ -29,6 +31,7 @@ const priced = (status, price) => ({ status, price });
 const exactPrice = (value) => ({ label: "Puppy price", value, isRange: false });
 const priceCases = [
   [current, [], null],
+  [{ ...current, litterAvailabilityConfirmed: true, priceRange: "$3,200" }, [], null],
   [current, [priced("Available", "$4,500")], exactPrice("$4,500")],
   [current, [priced(" available ", "$3200.00"), priced("Available", "$3,200")], exactPrice("$3,200")],
   [current, [priced("Available", "$2,800"), priced("Available", "$3,200")], { label: "Price range", value: "$2,800–$3,200", isRange: true }],

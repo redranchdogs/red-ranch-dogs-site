@@ -59,7 +59,7 @@ const SHEETS = {
       estimated_adult_weight: puppy.estimatedAdultWeight,
       price: puppy.price,
       availability_status: puppy.status,
-      display_on_available_puppies: normalizedStatus(puppy.status) === "available" ? "Yes" : "No",
+      display_on_available_puppies: shouldDisplayOnHomepage(puppy) ? "Yes" : "No",
       display_on_homepage: shouldDisplayOnHomepage(puppy) ? "Yes" : "No",
       matched_family_display: puppy.matchedFamilyDisplay || "",
       main_photo_file: fileName(puppy.mainPhoto),

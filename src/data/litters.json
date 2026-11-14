@@ -875,12 +875,12 @@
     "expectedCoatTraits": "",
     "priceRange": "$3,200",
     "availabilitySummary": "Birdie and Waylon’s puppies have arrived. We’re excited to celebrate Birdie’s final litter.",
-    "availabilityNote": "Explore the individual puppy profiles below. Contact Red Ranch Dogs to confirm availability.",
+    "availabilityNote": "Puppies are available. Explore their profiles below or contact us for details.",
     "aboutTitle": "Celebrating Birdie’s final litter",
     "aboutThisLitter": [
       "Birdie is one of our sweetest F1 Goldendoodle mamas. She has given us incredible puppies, each so special, and we are especially excited to celebrate her final litter with Waylon.",
       "Based on both parents’ verified Embark breed results, the puppies’ projected breed mix averages approximately 58% Poodle and 42% Golden Retriever. This is an expected average for the pairing; individual puppies’ breed percentages can vary.",
-      "Birdie and Waylon’s puppies arrived October 21, 2026, and are expected to go home December 12-14, 2026. Their expected adult size is 20-25 pounds. Explore the individual puppy profiles below. Availability will be shared as it is confirmed."
+      "Birdie and Waylon’s puppies arrived October 21, 2026, and are expected to go home December 12-14, 2026. Their expected adult size is 20-25 pounds. Explore the individual puppy profiles below. Puppies are available."
     ],
     "geneticMakeup": [
       "Projected puppies: approximately 58% Poodle",
@@ -902,7 +902,7 @@
       "birdie-marmee"
     ],
     "photoFolderHint": "https://drive.google.com/drive/folders/19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r-",
-    "weeklyUpdateStatus": "Meet Laurie, Fredrich, Jo, Beth, Amy, Marmee, and Meg. Week 2 photos are here. Puppy availability will be shared as confirmed.",
+    "weeklyUpdateStatus": "Meet Laurie, Fredrich, Jo, Beth, Amy, Marmee, and Meg. Week 2 photos are here. Puppies are available.",
     "weeklyUpdateGallery": [
       "/images/puppies/2026-11-10/birdie/amy-week-2-img-8738.webp",
       "/images/puppies/2026-11-10/birdie/amy-week-2-img-8734.webp",
@@ -921,7 +921,8 @@
       "/images/puppies/2026-11-10/birdie/meg-week-2-img-8720.webp",
       "/images/puppies/2026-11-10/birdie/meg-week-2-img-8721.webp"
     ],
-    "publicListingStage": "puppy-profiles-live"
+    "publicListingStage": "puppy-profiles-live",
+    "availableDisplayMode": "current-litters"
   },
   {
     "slug": "maisie-wyatt-2026",
@@ -989,13 +990,13 @@
     "expectedCoatTraits": "Wavy coats and furnished faces are possible; individual coats vary",
     "priceRange": "$3,200",
     "availabilitySummary": "Daisy and Waylon’s puppies have arrived. Meet the puppies in their individual profiles below.",
-    "availabilityNote": "Explore the individual puppy profiles below. Contact Red Ranch Dogs to confirm availability.",
+    "availabilityNote": "Puppies are available. Explore their profiles below or contact us for details.",
     "aboutTitle": "A sweet pairing with a little extra sunshine",
     "aboutThisLitter": [
       "Daisy has a warm, people-focused personality that makes her easy to love. Paired with Waylon Jennings, a small Goldendoodle stud, she brings together two of our charming companions for a litter we are excited to watch grow.",
       "Based on the parents’ verified Embark breed results, this pairing’s projected average is 57.55% Poodle and 42.45% Golden Retriever. Individual puppies can inherit different proportions.",
       "Both parents’ reports describe apricot or red pigmentation and wavy coats. Their puppies may have warm shades and furnished faces, with each puppy’s coat and markings developing individually.",
-      "The puppies arrived October 24, 2026, and are expected to go home December 17-19, 2026. Their expected adult size is around 25 pounds. Explore the individual puppy profiles below. Availability will be shared as it is confirmed."
+      "The puppies arrived October 24, 2026, and are expected to go home December 17-19, 2026. Their expected adult size is around 25 pounds. Explore the individual puppy profiles below. Puppies are available."
     ],
     "geneticMakeup": [
       "Projected pairing average: 57.55% Poodle",
@@ -1016,7 +1017,7 @@
       "daisy-betty-lou"
     ],
     "photoFolderHint": "https://drive.google.com/drive/folders/1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG",
-    "weeklyUpdateStatus": "Meet Max, Cindy Lou, Martha May, Donna Lou, Grinch, and Betty Lou. Week 2 photos are here. Puppy availability will be shared as confirmed.",
+    "weeklyUpdateStatus": "Meet Max, Cindy Lou, Martha May, Donna Lou, Grinch, and Betty Lou. Week 2 photos are here. Puppies are available.",
     "weeklyUpdateGallery": [
       "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8805.webp",
       "/images/puppies/2026-11-10/daisy/betty-lou-week-2-img-8804.webp",
@@ -1030,7 +1031,8 @@
       "/images/puppies/2026-11-10/daisy/martha-may-week-2-img-8768.webp",
       "/images/puppies/2026-11-10/daisy/max-week-2-img-8755.webp"
     ],
-    "publicListingStage": "puppy-profiles-live"
+    "publicListingStage": "puppy-profiles-live",
+    "availableDisplayMode": "current-litters"
   },
   {
     "slug": "whitley-waylon-november-2026",
@@ -1055,13 +1057,14 @@
     "expectedCoatTraits": "Individual coats and markings will be shared as the puppies grow",
     "priceRange": "$3,200",
     "availabilitySummary": "Meet Whitley and Waylon’s New Year's Litter, born November 8, 2026, with estimated go-home December 30, 2026 - January 1, 2027.",
-    "availabilityNote": "Join the Goldendoodle waitlist for this litter. Individual puppy details and availability will be shared as they are confirmed.",
+    "availabilityNote": "Puppies are available. Contact us about this litter while individual puppy profiles are being prepared.",
+    "litterAvailabilityConfirmed": true,
     "aboutTitle": "New Year's Litter",
     "aboutThisLitter": [
       "Whitley is a super-sweet Goldendoodle mama with a gentle, affectionate personality. Her soft red coat and warm expression are easy to love, but her sweetness is what makes her so special. She and Waylon Jennings welcomed their puppies on November 8, 2026.",
       "Whitley is an F1 Goldendoodle weighing about 34 pounds. Waylon is our 19-pound Multigen Mini Goldendoodle stud, known for his sweet, confident nature. Their parent photos and individual profiles are here so you can get to know both dogs behind this pairing.",
       "Based on both parents’ verified Embark breed results, this pairing’s projected average is 57.6% Poodle and 42.4% Golden Retriever. Whitley’s result is 47.6% Poodle and 52.4% Golden Retriever; Waylon’s is 67.6% Poodle and 32.4% Golden Retriever. These percentages describe the expected average for the pairing, not a DNA result for each puppy. Individual puppies can inherit different proportions.",
-      "The puppies’ estimated go-home window is December 30, 2026 - January 1, 2027, depending on their readiness. This litter is listed with our current litters while individual puppy profiles are being prepared. The puppies are priced at $3,200, with an estimated adult weight of 25-30 pounds. We will share individual puppy details and availability as they are confirmed."
+      "The puppies’ estimated go-home window is December 30, 2026 - January 1, 2027, depending on their readiness. This litter is listed with our current litters while individual puppy profiles are being prepared. The puppies are priced at $3,200, with an estimated adult weight of 25-30 pounds. Puppies are available, and individual puppy profiles will be shared as they are prepared."
     ],
     "geneticMakeup": [
       "Projected pairing average: 57.6% Poodle",

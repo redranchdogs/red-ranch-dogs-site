@@ -222,6 +222,10 @@ litters.filter(isPublicRecord).forEach((litter) => {
     && (litter.puppySlugs || []).length === 0
     && statuses.size === 0;
 
+  if (litter.availableDisplayMode && (litter.availableDisplayMode !== "current-litters" || !statusText.includes("current") || litter.featuredAvailable !== false || availableCount === 0)) {
+    blockers.push(`${litterSlug} has an invalid current-litter-only availability display configuration.`);
+  }
+
   if (litter.birthConfirmed === true && /\b(?:expecting|pregnant)\b|\bpregnancy\s+(?:is\s+)?(?:not\s+(?:yet\s+)?confirmed|unconfirmed)\b|\bawaiting pregnancy confirmation\b/i.test(`${timingText} ${availabilityText} ${(litter.aboutThisLitter || []).join(" ")}`)) {
     blockers.push(`${litterSlug} confirms birth but still uses pregnancy/expecting copy.`);
   }
@@ -232,13 +236,17 @@ litters.filter(isPublicRecord).forEach((litter) => {
     );
   }
 
-  if (litter.featuredAvailable !== true && availableCount > 0) {
+  if (litter.featuredAvailable !== true && availableCount > 0 && litter.availableDisplayMode !== "current-litters") {
     blockers.push(
       `${litter.litterName || litterSlug} has ${availableCount} public Available ${availableCount === 1 ? "puppy" : "puppies"}, but featuredAvailable is not true.`
     );
   }
 
-  if (availableCount === 0 && textIncludesAvailabilityClaim(availabilityText)) {
+  if (litter.litterAvailabilityConfirmed && (!bornAwaitingProfiles || !statusText.includes("current"))) {
+    blockers.push(`${litterSlug} has an invalid litter-level availability confirmation.`);
+  }
+
+  if (availableCount === 0 && textIncludesAvailabilityClaim(availabilityText) && !(bornAwaitingProfiles && statusText.includes("current") && litter.litterAvailabilityConfirmed === true)) {
     blockers.push(
       `${litter.litterName || litterSlug} claims public availability, but no public puppy in puppies.json is Available.`
     );

@@ -28,6 +28,7 @@ function hasWeekPath(publicPath, week) {
 
 const puppies = readJson("src/data/puppies.json");
 const litters = readJson("src/data/litters.json");
+const parents = readJson("src/data/parents.json");
 const puppyBySlug = new Map(puppies.map((puppy) => [puppy.slug, puppy]));
 const currentLitters = litters.filter((litter) => normalize(litter.status) === "current litter");
 
@@ -48,11 +49,26 @@ for (const litter of currentLitters) {
     .map((slug) => puppyBySlug.get(slug))
     .filter(Boolean);
 
+  const awaitingProfiles = litter.birthConfirmed === true
+    && litter.publicListingStage === "awaiting-puppy-profiles";
+  const linkedPuppies = puppies.filter((puppy) => puppy.litterSlug === litter.slug);
+  if (awaitingProfiles && ((litter.puppySlugs || []).length || linkedPuppies.length)) {
+    addError(`Current litter ${litter.slug} is awaiting profiles but has a partial puppy roster.`);
+  }
+
   if (!litter.puppySlugs?.length) {
     const currentWeek = String(litter.weeklyUpdateStatus || "").match(/Week\s+\d+/i)?.[0] || "";
 
     if (!litter.weeklyUpdateGallery?.length) {
-      addError(`Current litter ${litter.slug} has no puppy profiles or weeklyUpdateGallery.`);
+      const parentPhotosReady = [litter.mamaSlug, litter.studSlug].every((slug) => {
+        const parent = parents.find((item) => item.slug === slug && normalize(item.visibility || "public") === "public");
+        return parent && publicPathExists(parent.mainPhoto);
+      });
+      if (awaitingProfiles && Array.isArray(litter.puppySlugs) && linkedPuppies.length === 0 && parentPhotosReady) {
+        addWarning(`Current litter ${litter.slug} is awaiting individual profiles and media; both public parent photos are present.`);
+      } else {
+        addError(`Current litter ${litter.slug} has no puppy profiles or weeklyUpdateGallery.`);
+      }
     }
 
     for (const galleryPhoto of litter.weeklyUpdateGallery || []) {

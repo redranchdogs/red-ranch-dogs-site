@@ -10,6 +10,9 @@ export function litterCardAvailability(litter, puppies = [], fallbackLabel = "")
   if (puppies.some((puppy) => normalize(puppy.status) === "waitlist matching")) {
     return { label: "Waitlist matching", tone: "neutral" };
   }
+  if (status.includes("current") && litter?.birthConfirmed && litter?.litterAvailabilityConfirmed && puppies.length === 0) {
+    return { label: "Puppies available", tone: "available" };
+  }
   const expectedProfiles = Array.isArray(litter?.puppySlugs) ? litter.puppySlugs : [];
   const profilesComplete = expectedProfiles.every((slug) => puppies.some((puppy) => puppy.slug === slug));
   if (puppies.length && profilesComplete && puppies.every((puppy) => ["reserved", "matched"].includes(normalize(puppy.status)))) {
@@ -26,6 +29,7 @@ export function litterCardAvailability(litter, puppies = [], fallbackLabel = "")
 export function litterCardPrice(litter, puppies = []) {
   if (litterCardAvailability(litter, puppies).tone !== "available") return null;
   const available = puppies.filter((puppy) => normalize(puppy.status) === "available");
+  if (!available.length) return null;
   const prices = available.map((puppy) => {
     const value = String(puppy.price ?? "").trim();
     if (!/^\$(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{2})?$/.test(value)) return null;
