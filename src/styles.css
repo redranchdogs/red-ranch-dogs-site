@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Franklin:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;600&family=Libre+Franklin:wght@400;500;600;700;800;900&display=swap");
 
 :root {
   --clay: #9f1f18;
@@ -413,6 +413,12 @@ body.menu-locked {
   pointer-events: none;
 }
 
+.hero-image-frame picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .hero-image-frame img {
   display: block;
   width: 100%;
@@ -420,6 +426,42 @@ body.menu-locked {
   min-height: inherit;
   object-fit: cover;
   object-position: 50% 42%;
+}
+
+.home-thanksgiving-greeting {
+  position: absolute;
+  z-index: 1;
+  top: 5%;
+  right: 4%;
+  display: grid;
+  justify-items: center;
+  color: #fff8e8;
+  font-family: "Caveat", "Bradley Hand", cursive;
+  font-size: clamp(1.125rem, 3.4vw, 1.65rem);
+  font-weight: 500;
+  line-height: 0.95;
+  text-shadow: 0 1px 3px rgba(27, 23, 16, 0.65);
+  pointer-events: none;
+}
+
+.home-thanksgiving-first {
+  display: flex;
+  align-items: center;
+  gap: 0.08em;
+}
+
+.home-thanksgiving-leaf,
+.home-thanksgiving-paw {
+  width: 0.85em;
+  height: 0.85em;
+  color: #e4a23f;
+}
+
+.home-thanksgiving-paw {
+  width: 0.57em;
+  height: 0.57em;
+  fill: currentColor;
+  stroke-width: 1.5;
 }
 
 @keyframes placeholder-sheen {

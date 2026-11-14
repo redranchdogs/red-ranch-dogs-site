@@ -1755,16 +1755,25 @@ function HomeHero({ browseAction }) {
         </div>
         {browseAction.showUpcoming && <Link href="/puppies/upcoming-litters" className="home-upcoming-link">Upcoming Litters <ArrowRight size={15} aria-hidden="true" /></Link>}
       </div>
-      <picture className="hero-image-frame">
-        <source srcSet={homeHeroImage.mobileSrc} media="(max-width: 760px)" />
-        <img
-          src={homeHeroImage.src}
-          alt={homeHeroImage.alt}
-          width="1365"
-          height="2048"
-          decoding="async"
-        />
-      </picture>
+      <div className="hero-image-frame">
+        <picture>
+          <source srcSet={homeHeroImage.mobileSrc} media="(max-width: 760px)" />
+          <img
+            src={homeHeroImage.src}
+            alt={homeHeroImage.alt}
+            width="1365"
+            height="2048"
+            decoding="async"
+          />
+        </picture>
+        <div className="home-thanksgiving-greeting">
+          <span className="home-thanksgiving-first">Happy
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="home-thanksgiving-leaf" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21V9m0 12-4 2m4-2 4 2M12 3l2 5 3-3-.3 4.1 4-1.2-2.4 3.6 3 1.4-4.1 1.1.6 3.4-3.2-1.4L12 20l-2.6-4-3.2 1.4.6-3.4-4.1-1.1 3-1.4-2.4-3.6 4 1.2L7 5l3 3 2-5Z" /></svg>
+            <PawPrint aria-hidden="true" className="home-thanksgiving-paw" />
+          </span>
+          <span>Thanksgiving</span>
+        </div>
+      </div>
     </section>
   );
 }
