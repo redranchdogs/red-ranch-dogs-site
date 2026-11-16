@@ -4861,7 +4861,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Orange",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Petite Mini",
     "estimatedAdultWeight": "~20 lbs",
     "birthDate": "October 11, 2026",
@@ -4900,7 +4900,7 @@
       }
     ],
     "description": "Moran is a male Petite Mini Goldendoodle from Evie + Waylon's litter.",
-    "availabilityNote": "Moran is available for an approved family.",
+    "availabilityNote": "Moran is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
