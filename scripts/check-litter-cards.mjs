@@ -144,6 +144,10 @@ try {
     // change the source records or intercept a production response.
     for (const scenario of ["range", "missing-price", "fully-reserved"]) {
       const fixture = JSON.parse(preimages[0]);
+      if (scenario !== "fully-reserved") {
+        const syntheticPuppy = fixture.find((item) => item.slug === "evie-orange-collar-boy");
+        syntheticPuppy.status = "Available";
+      }
       for (const puppy of fixture.filter((item) => item.litterSlug === "evie-waylon-october-2026" && item.status === "Available")) {
         if (scenario === "range" && puppy.name === "Moran") puppy.price = "$2,800";
         if (scenario === "missing-price" && puppy.name === "Moran") puppy.price = "";
