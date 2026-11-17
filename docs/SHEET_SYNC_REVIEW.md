@@ -1,5 +1,5 @@
 # Sheet Sync Review
-Generated: 11/15/2026, 8:41:11 PM Central
+Generated: 11/17/2026, 8:47:49 AM Central
 Status: **PASS**
 This is a read-only comparison between website-generated sheet exports and the live Website Hub sheets. It does not write to Google Sheets.
 ## Sheet Summary
@@ -7,7 +7,7 @@ This is a read-only comparison between website-generated sheet exports and the l
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Puppy Tracker | 86 | 86 | 0 | 0 | 0 | 0 |
 | Litters | 18 | 18 | 0 | 0 | 0 | 0 |
-| Previous Litters | 21 | 21 | 0 | 0 | 0 | 0 |
+| Previous Litters | 22 | 22 | 0 | 0 | 0 | 0 |
 | Parent Dogs | 36 | 36 | 0 | 0 | 0 | 0 |
 ## Reviewed Legacy Mirror Omissions (deferred repair)
 Only exact frozen parent records, physical cells, expected URLs and existing blank mirror values qualify. Changed/new records and every other field remain strict. No source Sheet cells are repaired by this audit.

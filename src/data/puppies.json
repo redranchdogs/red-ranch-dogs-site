@@ -5042,7 +5042,7 @@
     "stud": "Waylon Jennings",
     "gender": "Male",
     "collarColor": "Red",
-    "status": "Available",
+    "status": "Reserved",
     "sizeCategory": "Petite Mini",
     "estimatedAdultWeight": "~20 lbs",
     "birthDate": "October 11, 2026",
@@ -5084,7 +5084,7 @@
       }
     ],
     "description": "Columbo is a male Petite Mini Goldendoodle from Evie + Waylon's litter.",
-    "availabilityNote": "Columbo is available for an approved family.",
+    "availabilityNote": "Columbo is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {

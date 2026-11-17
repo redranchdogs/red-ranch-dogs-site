@@ -112,7 +112,7 @@ try {
     await page.goBack();
     await page.getByRole("tab", { name: "Bernedoodles", exact: true }).click();
     await page.getByRole("tab", { name: "Bernedoodles", exact: true }).click();
-    assert.equal((await page.locator(".litter-availability-banner").innerText()).toLowerCase(), "fully reserved");
+    assert.equal(await page.getByRole("heading", { name: "No current Bernedoodle litters are listed right now.", exact: true }).count(), 1);
     await page.goBack();
     assert.equal(await page.locator(".litter-browser-card").count(), expected.length, "Back restores the prior selected breed.");
     await page.goto(`${base}/puppies/upcoming-litters?breed=cavapoo-puppies`);
@@ -147,6 +147,7 @@ try {
       if (scenario !== "fully-reserved") {
         const syntheticPuppy = fixture.find((item) => item.slug === "evie-orange-collar-boy");
         syntheticPuppy.status = "Available";
+        fixture.find((puppy) => puppy.slug === "columbo").status = "Available";
       }
       for (const puppy of fixture.filter((item) => item.litterSlug === "evie-waylon-october-2026" && item.status === "Available")) {
         if (scenario === "range" && puppy.name === "Moran") puppy.price = "$2,800";

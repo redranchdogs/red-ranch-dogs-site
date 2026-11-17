@@ -88,7 +88,8 @@ const beatrixAvailableCount = beatrixPuppies.filter((puppy) => normalize(puppy.s
 const beatrixFullyReserved = beatrixPuppies.length > 0 && beatrixPuppies.every((puppy) => ["reserved", "matched"].includes(normalize(puppy.status)));
 const beatrixAvailabilityLabel = beatrixFullyReserved ? "Reserved" : `${beatrixAvailableCount} available`;
 const luluAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "lulu-bram-fall-2026").length} available`;
-const evieAvailabilityLabel = `${availablePuppies.filter((puppy) => puppy.litterSlug === "evie-waylon-october-2026").length} available`;
+const eviePuppies = puppies.filter((puppy) => puppy.litterSlug === "evie-waylon-october-2026");
+const evieAvailabilityLabel = eviePuppies.length && eviePuppies.every((puppy) => ["reserved", "matched"].includes(normalize(puppy.status))) ? "Reserved" : `${eviePuppies.filter((puppy) => normalize(puppy.status) === "available").length} available`;
 const litterCardLabel = (slug) => litterCardAvailability(litterBySlug.get(slug), puppies.filter((puppy) => puppy.litterSlug === slug)).label;
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
 const openGuardianNames = puppies
@@ -157,9 +158,9 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=bernedoodle-puppies",
-    requiredText: ["current litters", "kylie + ranger", "reserved", "september 22, 2026", "november 14-15, 2026"],
-    forbiddenText: ["pregnancy confirmed", "no current litters are listed right now."],
-    requiredSelectors: [".litter-browser-card"],
+    requiredText: ["current litters", "no current bernedoodle litters are listed right now"],
+    forbiddenText: ["kylie + ranger", "pregnancy confirmed"],
+    requiredSelectors: [".litter-browser-empty"],
     litterBrowserCheck: { mode: "current", selectedBreed: "bernedoodle-puppies" },
     finderNavCheck: { mode: "current", selectedBreed: "bernedoodle-puppies" }
   },
@@ -215,7 +216,7 @@ const routeExpectations = [
   {
     route: "/litters/evie-waylon-october-2026",
     requiredText: ["evie + waylon", "petite mini goldendoodles", evieAvailabilityLabel, "week 4", "moran", "nancy", "$3,200", "~20 lbs", "birth date", "october 11, 2026", "go-home", "december 3-5, 2026", "apply for a puppy"],
-    forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "orange collar boy", "nancy drew", "fully reserved"],
+    forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "orange collar boy", "nancy drew"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: evieAvailabilityLabel, expectedPuppies: 7, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
   },
@@ -259,8 +260,10 @@ const routeExpectations = [
     forbiddenText: ["around 25 lbs", "confirmed pregnant", "estimated birth", "september 20-21, 2026", "november 15-16, 2026"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: {
-      expectedStatus: "Reserved",
+      expectedStatus: "Previous litter",
       expectedPuppies: 6,
+      archive: true,
+      allowArchivedPuppies: true,
       expectedDescriptor: "Multigen Micro Bernedoodles",
       expectedSize: "~25 lbs",
       requireSingleLinePrimary: true
@@ -817,7 +820,7 @@ async function auditRoute(context, config, viewportName) {
       }
 
       if (config.litterDetailCheck.expectedSize) {
-        const size = (await page.locator(".litter-primary-fact-emphasis dd").nth(1).textContent())?.trim();
+        const size = (await page.locator(".litter-primary-fact-emphasis dd").nth(config.litterDetailCheck.archive ? 0 : 1).textContent())?.trim();
         if (size !== config.litterDetailCheck.expectedSize) failures.push(`Unexpected litter size display: ${size || "missing"}.`);
       }
 
@@ -883,7 +886,7 @@ async function auditRoute(context, config, viewportName) {
       if (config.litterDetailCheck.archive) {
         const factLabels = await page.locator(".litter-primary-facts dt").allTextContents();
         if (factLabels.some((label) => /price|go-home/i.test(label))) failures.push("Archive still shows current price or go-home facts.");
-        if (await page.locator(".litter-puppy-list").count()) failures.push("Archive still shows an active puppy list.");
+        if (!config.litterDetailCheck.allowArchivedPuppies && await page.locator(".litter-puppy-list").count()) failures.push("Archive still shows an active puppy list.");
         if (!(await disclosure.getByText("Historical pairing notes", { exact: true }).isVisible())) failures.push("Archive historical context is missing.");
         const archiveApply = page.locator(".litter-primary-cta-section").getByRole("link", { name: "Apply for a Future Litter", exact: true });
         if (!(await archiveApply.isVisible()) || await archiveApply.getAttribute("href") !== "/apply") failures.push("Archive must offer a general future-litter application.");

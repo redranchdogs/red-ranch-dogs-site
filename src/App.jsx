@@ -4310,8 +4310,8 @@ function LitterPage({ litter }) {
       )}
       {!isPlannedLitter(litter) && (
         <>
-          {!isArchived && <section className="card-list litter-puppy-list" id={isBeatrixOffer ? "beatrix-puppies" : undefined}>
-            <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy="Weekly photos and compact puppy details are updated here as the litter grows." />
+          {(!isArchived || litter.slug === "kylie-ranger-late-summer-2026") && <section className="card-list litter-puppy-list" id={isBeatrixOffer ? "beatrix-puppies" : undefined}>
+            <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy={isArchived ? "Meet the puppies from this litter and explore their photos." : "Weekly photos and compact puppy details are updated here as the litter grows."} />
             {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
           </section>}
           {isBeatrixOffer && availablePuppies.length > 0 && (
@@ -5227,7 +5227,7 @@ function LitterBrowserEmptyState({ mode, breed, allCurrentEmpty = false }) {
 
 function LitterBrowser({ mode }) {
   const litters = mode === "current" ? currentLitterProfiles : plannedLitterProfiles;
-  const defaultBreedSlug = litters[0]?.breedSlug || litterBrowserBreeds[0].slug;
+  const defaultBreedSlug = "goldendoodle-puppies";
   const [selectedBreedSlug, setSelectedBreedSlug] = useState(() => litterBrowserSlugFromUrl(defaultBreedSlug));
   const tabRefs = useRef([]);
   const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || litterBrowserBreeds[0];
