@@ -168,6 +168,10 @@ litters.forEach((litter) => {
     addError(`Litter ${litter.slug} featuredAvailable must be a boolean when present.`);
   }
 
+  if ("litterPriceConfirmed" in litter && typeof litter.litterPriceConfirmed !== "boolean") {
+    addError(`Litter ${litter.slug} litterPriceConfirmed must be a boolean when present.`);
+  }
+
   if ("pregnancyConfirmed" in litter && typeof litter.pregnancyConfirmed !== "boolean") {
     addError(`Litter ${litter.slug} pregnancyConfirmed must be a boolean when present.`);
   }

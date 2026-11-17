@@ -32,6 +32,10 @@ const exactPrice = (value) => ({ label: "Puppy price", value, isRange: false });
 const priceCases = [
   [current, [], null],
   [{ ...current, litterAvailabilityConfirmed: true, priceRange: "$3,200" }, [], null],
+  [{ ...current, litterAvailabilityConfirmed: true, litterPriceConfirmed: true, priceRange: "$3,200" }, [], { label: "Litter price", value: "$3,200", isRange: false }],
+  [{ ...current, litterPriceConfirmed: true, priceRange: "$3,200" }, [], null],
+  [{ ...current, litterAvailabilityConfirmed: true, litterPriceConfirmed: true, priceRange: "From $3,200" }, [], null],
+  [{ ...current, litterAvailabilityConfirmed: true, litterPriceConfirmed: true, priceRange: "$3,200" }, [priced("Available", "")], null],
   [current, [priced("Available", "$4,500")], exactPrice("$4,500")],
   [current, [priced(" available ", "$3200.00"), priced("Available", "$3,200")], exactPrice("$3,200")],
   [current, [priced("Available", "$2,800"), priced("Available", "$3,200")], { label: "Price range", value: "$2,800–$3,200", isRange: true }],
