@@ -320,7 +320,7 @@
     "name": "Lulu + Bram",
     "visibility": "public",
     "status": "Current Litter",
-    "featuredAvailable": true,
+    "featuredAvailable": false,
     "litterNumber": "First pairing",
     "mamaSlug": "lulu",
     "mama": "Lulu",
@@ -335,8 +335,8 @@
     "expectedColors": "Deep red, red abstract, caramel, and red-chocolate possibilities",
     "expectedCoatTraits": "Silky-soft straight to wavy, low-shedding coat possibilities",
     "priceRange": "$4,500",
-    "availabilitySummary": "Penn is available for an approved family. Week 4 photos are here.",
-    "availabilityNote": "Penn is available. Dottie, Posy, and Merryweather are reserved.",
+    "availabilitySummary": "All puppies are reserved. Week 4 photos are here.",
+    "availabilityNote": "All puppies in this litter are reserved.",
     "aboutTitle": "Lulu and Bram's first Micro Goldendoodle puppies have arrived.",
     "aboutThisLitter": [
       "Lulu's first multigen Micro Goldendoodle litter with outside stud Bram arrived October 9, 2026, bringing together two small Goldendoodles selected for beautiful coats and affectionate family temperaments.",
@@ -368,7 +368,7 @@
       "merryweather"
     ],
     "photoFolderHint": "https://drive.google.com/drive/folders/1KTP_-4hp2CsDuA2OVSiD-bXJpgjNJuwW",
-    "weeklyUpdateStatus": "Week 4 photos are here. Penn is available for an approved family.",
+    "weeklyUpdateStatus": "Week 4 photos are here. All puppies are reserved.",
     "weeklyUpdateGallery": [
       "/images/puppies/2026-11-10/lulu/penn-week-4-img-8579.webp",
       "/images/puppies/2026-11-10/lulu/dottie-week-4-img-8594.webp",
