@@ -1384,5 +1384,78 @@
       "2 Weeks Old",
       "1 Week Old"
     ]
+  },
+  {
+    "href": "/kylie-ranger-late-summer-2026",
+    "visibility": "public",
+    "name": "Kylie + Ranger 2026",
+    "group": "Bernedoodles",
+    "breed": "Multigen Micro Bernedoodle",
+    "image": "/images/litters/kylie-ranger-parent-pairing-red-ranch-dogs.webp",
+    "facts": [
+      [
+        "Born",
+        "September 22, 2026"
+      ],
+      [
+        "Go Home",
+        "November 14-15, 2026"
+      ],
+      [
+        "Size",
+        "Around 25 lbs"
+      ]
+    ],
+    "parents": "Kylie + Ranger",
+    "parentPhotos": [
+      {
+        "name": "Kylie",
+        "image": "/images/dams/kylie-red-ranch-dogs.webp",
+        "href": "/parents/kylie"
+      },
+      {
+        "name": "Ranger",
+        "image": "/images/studs/ranger-bernedoodle-stud-red-ranch-dogs.webp",
+        "href": "/parents/ranger-outside-stud"
+      }
+    ],
+    "puppies": [
+      "October",
+      "Bram",
+      "Hugo Poe",
+      "Ophelia Shadow",
+      "Salem",
+      "Raven"
+    ],
+    "puppyPhotos": [
+      {
+        "name": "October",
+        "image": "/images/puppies/kylie-2026-week-6/october-week-6-01.webp"
+      },
+      {
+        "name": "Bram",
+        "image": "/images/puppies/kylie-2026-week-6/bram-week-6-01.webp"
+      },
+      {
+        "name": "Hugo Poe",
+        "image": "/images/puppies/kylie-2026-week-6/hugo-poe-week-6-01.webp"
+      },
+      {
+        "name": "Ophelia Shadow",
+        "image": "/images/puppies/kylie-2026-week-6/ophelia-shadow-week-6-01.webp"
+      },
+      {
+        "name": "Salem",
+        "image": "/images/puppies/kylie-2026-week-6/salem-week-6-01.webp"
+      },
+      {
+        "name": "Raven",
+        "image": "/images/puppies/kylie-2026-week-6/raven-week-6-01.webp"
+      }
+    ],
+    "milestones": [
+      "Week 6 Photos"
+    ],
+    "photoFolderHint": "Website Hub / Weekly Media Drops / Current Litters / Kylie + Ranger / Week 6 / Photos / Edited Photos"
   }
 ]
