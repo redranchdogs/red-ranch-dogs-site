@@ -23,9 +23,10 @@ const errors = [];
 let browser;
 let checks = 0;
 async function visit(page, route) {
+  if (process.env.CI) console.log(`Checking ${route}`);
   await page.goto(`${base}${route}`);
   await page.locator("h1").waitFor();
-  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => Promise.race([document.fonts.ready, new Promise((_, reject) => window.setTimeout(() => reject(new Error("Timed out loading page fonts")), 15000))]));
   assert.equal(await page.locator("h1").count(), 1, `${route}: one page title`);
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false, `${route}: no horizontal page overflow`);
   assert.equal(await page.getByRole("heading", { name: /get you back on track/i }).count(), 0, `${route}: real page, not fallback`);
@@ -34,7 +35,7 @@ async function visit(page, route) {
 async function fullPhoto(card, selector, puppy) {
   const img = card.locator(selector);
   await img.scrollIntoViewIfNeeded();
-  await img.evaluate((el) => el.decode());
+  await img.evaluate((el) => Promise.race([el.decode(), new Promise((_, reject) => window.setTimeout(() => reject(new Error("Timed out decoding puppy photo")), 15000))]));
   assert.equal(new URL(await img.getAttribute("src"), base).pathname, new URL(resolveImageUrl(puppy.mainPhoto || puppy.image), base).pathname);
   const frame = await img.evaluate((el) => {
     const r = el.getBoundingClientRect(), b = el.closest("article").querySelector(".litter-puppy-status").getBoundingClientRect();
@@ -56,6 +57,7 @@ try {
   }
   browser = await chromium.launch({ headless: true });
   for (const width of [320, 390, 430, 768, 980, 981, 1440]) {
+    console.log(`Checking site cohesion at ${width}px.`);
     const page = await browser.newPage({ viewport: { width, height: 900 } });
     page.on("pageerror", (e) => errors.push(e.message));
     await visit(page, "/");
@@ -116,7 +118,7 @@ try {
       const isPublicParent = parents.some((p) => p.slug === slug);
       assert.equal(await portrait.evaluate((el) => el.tagName), isPublicParent ? "A" : "DIV");
       assert.equal(await portrait.getAttribute("href"), isPublicParent ? `/parents/${slug}` : null);
-      await portrait.locator("img").evaluate((el) => el.decode());
+      await portrait.locator("img").evaluate((el) => Promise.race([el.decode(), new Promise((_, reject) => window.setTimeout(() => reject(new Error("Timed out decoding parent portrait")), 15000))]));
     }
   }
   const archiveHrefs = [...new Set(puppies.filter((p) => !litters.some((l) => l.slug === p.litterSlug)).map((p) => `/${p.litterSlug}`).filter((href) => archives.some((a) => a.href === href)))];
