@@ -39,11 +39,11 @@ async function fullPhoto(card, selector, puppy) {
   assert.equal(new URL(await img.getAttribute("src"), base).pathname, new URL(resolveImageUrl(puppy.mainPhoto || puppy.image), base).pathname);
   const frame = await img.evaluate((el) => {
     const r = el.getBoundingClientRect(), b = el.closest("article").querySelector(".litter-puppy-status").getBoundingClientRect();
-    return { ratio: r.width / r.height, natural: el.naturalWidth / el.naturalHeight, gap: r.top - b.bottom, fit: window.getComputedStyle(el).objectFit, bar: b.height };
+    return { ratio: r.width / r.height, natural: el.naturalWidth / el.naturalHeight, gap: r.top - b.top, fit: window.getComputedStyle(el).objectFit, bar: b.height };
   });
   assert(Math.abs(frame.ratio - frame.natural) < .005, `${puppy.slug}: unaltered photo ratio`);
   assert.equal(frame.fit, "contain");
-  assert(Math.abs(frame.gap) < 1 && frame.bar <= 38, "Slim status uses its own row, not photo space");
+  assert(Math.abs(frame.gap) < 1 && frame.bar <= 38, "Slim status overlays the top of the photo");
 }
 async function cardSurface(card) {
   assert.equal(await card.evaluate((el) => window.getComputedStyle(el).borderRadius), "12px");

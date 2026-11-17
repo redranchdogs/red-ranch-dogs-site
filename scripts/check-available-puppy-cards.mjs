@@ -34,7 +34,7 @@ async function checkCard(page, puppy, width) {
   const status = card.locator(".litter-puppy-status");
   assert.equal((await status.innerText()).toLowerCase(), "available");
   assert.equal(await status.evaluate((el) => window.getComputedStyle(el).backgroundColor), "rgb(43, 86, 61)");
-  assert.equal(await card.locator("figcaption,.status-badge,.puppy-reserved-ribbon").count(), 0, "No photo/name overlays or duplicate status");
+  assert.equal(await card.locator("figcaption,.status-badge,.puppy-reserved-ribbon").count(), 0, "No legacy badges or duplicate status");
   const image = puppy.mainPhoto || puppy.image;
   if (image) {
     const img = card.locator(".litter-puppy-portrait img");
@@ -43,10 +43,10 @@ async function checkCard(page, puppy, width) {
     assert.equal(new URL(await img.getAttribute("src"), base).pathname, new URL(resolveImageUrl(image), base).pathname);
     const frame = await img.evaluate((el) => {
       const box = el.getBoundingClientRect(), banner = el.closest("article").querySelector(".litter-puppy-status").getBoundingClientRect();
-      return { ratio: box.width / box.height, original: el.naturalWidth / el.naturalHeight, gap: box.top - banner.bottom, bannerHeight: banner.height, bannerWidth: banner.width, imageWidth: box.width, fit: window.getComputedStyle(el).objectFit };
+      return { ratio: box.width / box.height, original: el.naturalWidth / el.naturalHeight, gap: box.top - banner.top, bannerHeight: banner.height, bannerWidth: banner.width, imageWidth: box.width, fit: window.getComputedStyle(el).objectFit };
     });
     assert(Math.abs(frame.ratio - frame.original) < 0.005, "Full natural photo ratio");
-    assert(Math.abs(frame.gap) < 1 && Math.abs(frame.bannerWidth - frame.imageWidth) < 1 && frame.bannerHeight <= 38, "Slim separate full-width status block");
+    assert(Math.abs(frame.gap) < 1 && Math.abs(frame.bannerWidth - frame.imageWidth) < 1 && frame.bannerHeight <= 38, "Slim full-width status overlay");
     assert.equal(frame.fit, "contain");
   } else assert.equal(await card.locator(".litter-puppy-photo-placeholder").count(), 1);
   const text = await card.innerText();

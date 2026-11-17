@@ -14,8 +14,8 @@ export default function PuppyListingCard({
   const variantClass = variant === "available" ? "available-puppy-card" : variant === "litter" ? "litter-puppy-card" : "breed-puppy-card";
   return (
     <article className={`puppy-listing-card ${variantClass} litter-puppy-profile is-${tone}`}>
-      <PuppyStatusBar status={puppy.status} />
       <figure className="litter-puppy-portrait">
+        <PuppyStatusBar status={puppy.status} />
         {photo ? <img src={photo} alt={`${puppy.name} - ${breed}`} loading="lazy" /> : (
           <div className="litter-puppy-photo-placeholder" role="img" aria-label={`${puppy.name} puppy photo coming soon`}>Photo coming soon</div>
         )}

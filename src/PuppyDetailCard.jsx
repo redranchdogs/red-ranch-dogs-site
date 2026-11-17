@@ -1,18 +1,18 @@
 import { ArrowRight, CirclePlay } from "lucide-react";
-import { litterPuppyStatus } from "./litterPuppyStatus.js";
+import PuppyStatusBar from "./PuppyStatusBar.jsx";
 
 // Presentation only: availability, destinations, notes, and photos are resolved
 // by PuppyCard so the profile keeps the same source-of-truth and buyer flow.
 export default function PuppyDetailCard({
-  puppy, breed, gender, status, displayStatus, photo, litterName,
+  puppy, breed, gender, status, photo, litterName,
   goHome, weight, birthDate, price, puppyNote, availabilityNote,
   primaryHref, primaryLabel, inquiryHref, litterRoute, videoHref,
   videoLabel, Link
 }) {
-  const { tone } = litterPuppyStatus(status);
   return (
     <article className="detail-puppy-card puppy-profile-card">
       <figure className="puppy-profile-photo">
+        <PuppyStatusBar status={status} />
         {photo ? (
           <img src={photo} alt={`${puppy.name} - ${breed}`} />
         ) : (
@@ -20,9 +20,6 @@ export default function PuppyDetailCard({
             Photo coming soon
           </div>
         )}
-        <figcaption className={`puppy-profile-status is-${tone}`}>
-          <span aria-hidden="true" />{displayStatus}
-        </figcaption>
       </figure>
       <div className="puppy-profile-body">
         <header className="puppy-profile-heading">
