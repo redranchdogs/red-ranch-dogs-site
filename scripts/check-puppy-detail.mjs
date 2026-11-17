@@ -54,7 +54,7 @@ try {
       const status = puppy.status || "Status to be announced";
       const normalized = status.trim().toLowerCase();
       const isAvailable = normalized === "available";
-      assert.equal(await card.locator("figcaption").innerText(), ["reserved", "matched"].includes(normalized) ? "Reserved" : normalized === "available" ? "Available" : status);
+      assert.equal(await card.locator(".litter-puppy-status").textContent(), ["reserved", "matched"].includes(normalized) ? "Reserved" : normalized === "available" ? "Available" : status);
       assert.equal(await card.locator(".puppy-profile-primary").innerText(), isAvailable ? `RESERVE ${puppy.name.toUpperCase()}` : "JOIN WAITLIST");
       assert.equal(await card.locator(".puppy-profile-primary").getAttribute("href"), isAvailable ? `/apply?interest=${encodeURIComponent(puppy.slug)}` : "/apply");
       const photo = puppy.mainPhoto || puppy.image;
@@ -77,13 +77,13 @@ try {
       assert.equal(await litterLink.count(), expectedLitter ? 1 : 0);
       if (expectedLitter) assert.equal(await litterLink.getAttribute("href"), expectedLitter);
       assert.equal(await page.locator(".sticky-mobile-cta a").last().getAttribute("href"), expectedLitter || "/puppies/current-litters");
-      assert.equal(await card.locator(".puppy-profile-status > span").evaluate((el) => window.getComputedStyle(el).backgroundColor), isAvailable ? "rgb(43, 86, 61)" : ["reserved", "matched"].includes(normalized) ? "rgb(148, 31, 23)" : "rgb(83, 75, 67)", "Consistent truthful status colors");
+      assert.equal(await card.locator(".litter-puppy-status").evaluate((el) => window.getComputedStyle(el).backgroundColor), isAvailable ? "rgb(43, 86, 61)" : ["reserved", "matched"].includes(normalized) ? "rgb(148, 31, 23)" : "rgb(232, 226, 216)", "Consistent truthful status colors");
       const note = puppy.personalityNote || puppy.description || "";
       const text = await card.innerText();
       if (note && !/personality notes (will|are)/i.test(note)) assert(text.includes(note), "Preserve personality note");
       if (puppy.availabilityNote && normalized !== "waitlist matching") assert(text.includes(puppy.availabilityNote), "Preserve availability note");
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false, `${puppy.slug}: page overflow ${width}`);
-      assert.equal(await card.locator("h1,.puppy-profile-price,dd,.puppy-profile-status,.puppy-profile-primary").evaluateAll((els) => els.every((el) => el.scrollWidth <= el.clientWidth + 1)), true, `${puppy.slug}: clipped text ${width}`);
+      assert.equal(await card.locator("h1,.puppy-profile-price,dd,.litter-puppy-status,.puppy-profile-primary").evaluateAll((els) => els.every((el) => el.scrollWidth <= el.clientWidth + 1)), true, `${puppy.slug}: clipped text ${width}`);
       for (const link of await card.locator("a").all()) assert((await link.boundingBox()).height >= 44, "44px action targets");
       if (screenshotDir && [390, 1440].includes(width) && ["penn", "sherlock"].includes(puppy.slug)) await card.screenshot({ path: `${screenshotDir}/${puppy.slug}-${width}.png` });
       checked += 1;

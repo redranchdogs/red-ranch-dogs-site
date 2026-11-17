@@ -61,12 +61,12 @@ async function checkCard(page, puppy, width, screenshot = false) {
       const rect = el.getBoundingClientRect();
       const figure = el.parentElement.getBoundingClientRect();
       const status = el.closest("article").querySelector(".litter-puppy-status").getBoundingClientRect();
-      return { width: rect.width, height: rect.height, natural: el.naturalWidth / el.naturalHeight, fit: window.getComputedStyle(el).objectFit, figureWidth: figure.width, gap: rect.top - status.bottom };
+      return { width: rect.width, height: rect.height, natural: el.naturalWidth / el.naturalHeight, fit: window.getComputedStyle(el).objectFit, figureWidth: figure.width, gap: rect.top - status.top };
     });
     assert.equal(geometry.fit, "contain");
     assert(Math.abs(geometry.width / geometry.height - geometry.natural) < 0.005, `${puppy.slug}: full natural image ratio, ${width}px`);
     assert(Math.abs(geometry.width - geometry.figureWidth) < 1, "Photo occupies the full card width");
-    assert(Math.abs(geometry.gap) < 1, "Status is separate, directly above, never overlapping photo");
+    assert(Math.abs(geometry.gap) < 1, "Status overlays the top edge of the photo");
   } else assert.equal(await card.locator(".litter-puppy-photo-placeholder").count(), 1);
   const { bounds, statusBounds } = await card.evaluate((el) => ({
     bounds: el.getBoundingClientRect().toJSON(),

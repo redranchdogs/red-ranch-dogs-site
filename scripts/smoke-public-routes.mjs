@@ -609,20 +609,20 @@ async function auditRoute(context, config, viewportName) {
       if (agreementHash !== "184c1a2186ab4a4a6e655b30bc0172c9a209e4c14497ab2d2e754a31562aa729") failures.push(`Unexpected health guarantee PDF hash: ${agreementHash}`);
     }
 
-    const puppyListingChecks = await page.locator(".puppy-listing-card,.home-ready-puppy-card").evaluateAll((cards) => cards.map((card) => {
+    const puppyListingChecks = await page.locator(".puppy-listing-card,.home-ready-puppy-card,.puppy-profile-card").evaluateAll((cards) => cards.map((card) => {
       const banner = card.querySelector(".litter-puppy-status");
-      const photo = card.querySelector(".litter-puppy-portrait,.home-ready-puppy-photo");
+      const photo = card.querySelector(".litter-puppy-portrait,.home-ready-puppy-photo,.puppy-profile-photo");
       const b = banner?.getBoundingClientRect(), p = photo?.getBoundingClientRect();
       return {
         name: card.querySelector("h2,h3")?.textContent,
         status: banner?.textContent?.trim(),
         color: banner && window.getComputedStyle(banner).backgroundColor,
-        separate: b && p && Math.abs(b.bottom - p.top) < 1 && Math.abs(b.width - p.width) < 1,
+        overlay: b && p && photo.contains(banner) && Math.abs(b.top - p.top) < 1 && Math.abs(b.width - p.width) < 1 && b.height <= 38,
         overlayCount: card.querySelectorAll(".puppy-reserved-ribbon,.status-badge,figcaption").length
       };
     }));
     for (const check of puppyListingChecks) {
-      if (!check.status || !check.separate || check.overlayCount) failures.push(`Puppy status must be a separate full-width top row: ${check.name}.`);
+      if (!check.status || !check.overlay || check.overlayCount) failures.push(`Puppy status must be a slim full-width photo overlay: ${check.name}.`);
       if (check.status === "Available" && check.color !== "rgb(43, 86, 61)") failures.push(`Available status should be green: ${check.name}.`);
       if (check.status === "Reserved" && check.color !== "rgb(148, 31, 23)") failures.push(`Reserved status should be red: ${check.name}.`);
     }

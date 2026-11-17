@@ -4,7 +4,6 @@ import PuppyDetailCard from "./PuppyDetailCard.jsx";
 import PuppyListingCard from "./PuppyListingCard.jsx";
 import PuppyStatusBar from "./PuppyStatusBar.jsx";
 import { publicPuppyLitterHref, publicParentProfileHref } from "./publicProfileLinks.js";
-import { litterPuppyStatus } from "./litterPuppyStatus.js";
 import { PuppyGuideHome, PuppyGuideArticle } from "./PuppyGuide.jsx";
 import { guidePath, guideMeta, articleForPath, guideSchema } from "./data/puppyGuide.js";
 import { hasActiveGallery } from "./gallerySession.js";
@@ -2022,8 +2021,8 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
 
             return (
               <article className="home-ready-puppy-card" key={puppy.slug || puppy.name}>
-                <PuppyStatusBar status={puppy.status} />
                 <Link href={puppy.slug ? `/puppies/${puppy.slug}` : "/puppies/available"} className="home-ready-puppy-photo">
+                  <PuppyStatusBar status={puppy.status} />
                   {photo ? (
                     <img src={photo} alt={`${puppy.name} - ${puppy.breed}`} loading="lazy" decoding="async" />
                   ) : (
@@ -2512,7 +2511,6 @@ function PuppyCard({ puppy, variant = "default" }) {
   const breed = puppy.breed || "Breed to be announced";
   const gender = puppy.gender || puppy.sex || "To be announced";
   const status = puppy.status || "Status to be announced";
-  const displayStatus = puppyDisplayStatus(status);
   const isAvailable = isAvailablePuppy(puppy);
   const route = puppy.slug ? `/puppies/${puppy.slug}` : puppy.litterHref;
   const litterRoute = publicPuppyLitterHref(puppy, publicLitterProfiles, previousLitterDetails);
@@ -2534,7 +2532,7 @@ function PuppyCard({ puppy, variant = "default" }) {
   if (isDetailVariant) {
     return <PuppyDetailCard
       puppy={puppy} breed={breed} gender={gender} status={status}
-      displayStatus={displayStatus} photo={photo} litterName={litterName}
+      photo={photo} litterName={litterName}
       goHome={goHome} weight={weight} birthDate={birthDate} price={price}
       puppyNote={showPuppyNote ? puppyNote : ""}
       availabilityNote={showAvailabilityNote ? puppy.availabilityNote : ""}
@@ -3484,7 +3482,6 @@ const statusMatches = (puppy, status) => normalizedStatus(puppy?.status) === nor
 const isAvailablePuppy = (puppy) => statusMatches(puppy, "available");
 const isReservedPuppy = (puppy) => ["reserved", "matched"].includes(normalizedStatus(puppy?.status));
 const isWaitlistMatchingPuppy = (puppy) => statusMatches(puppy, "waitlist matching");
-const puppyDisplayStatus = (status = "") => litterPuppyStatus(status).label;
 const litterDateSortValue = (litter) => sortableLitterDate(litter?.goHomeDate || litter?.goHome || litter?.birthDate || "");
 const noAvailabilityTitle = "Explore our upcoming litters";
 const featuredAvailablePuppies = () => puppyData
