@@ -859,7 +859,7 @@
     "visibility": "public",
     "status": "Current Litter",
     "birthConfirmed": true,
-    "featuredAvailable": false,
+    "featuredAvailable": true,
     "litterNumber": "",
     "mamaSlug": "birdie",
     "mama": "Birdie",
@@ -921,8 +921,7 @@
       "/images/puppies/2026-11-10/birdie/meg-week-2-img-8720.webp",
       "/images/puppies/2026-11-10/birdie/meg-week-2-img-8721.webp"
     ],
-    "publicListingStage": "puppy-profiles-live",
-    "availableDisplayMode": "current-litters"
+    "publicListingStage": "puppy-profiles-live"
   },
   {
     "slug": "maisie-wyatt-2026",
