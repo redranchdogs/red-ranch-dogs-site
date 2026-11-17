@@ -1080,6 +1080,7 @@
     "photoFolderHint": "",
     "weeklyUpdateStatus": "Puppies arrived November 8, 2026. Individual puppy profiles and updates will follow.",
     "weeklyUpdateGallery": [],
-    "theme": "New Year's Litter"
+    "theme": "New Year's Litter",
+    "litterPriceConfirmed": true
   }
 ]
