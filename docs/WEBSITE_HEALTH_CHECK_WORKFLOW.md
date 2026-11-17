@@ -316,3 +316,7 @@ npm run health:weekly
 ```
 
 Do not schedule the daily or weekly runs until Adam explicitly approves the automation schedule and destination for reports.
+
+## Available puppy display
+
+Adam's default preference is to show verified available puppy cards on the homepage as well as the Available Puppies page. Honor an explicit exception for a litter or puppy, and preserve reservations and family assignments. Check the current owner records and public display status before making availability changes.
