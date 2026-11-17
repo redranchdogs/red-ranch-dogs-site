@@ -24,14 +24,16 @@ export function litterCardAvailability(litter, puppies = [], fallbackLabel = "")
   return { label: fallbackLabel || "Planning", tone: "neutral" };
 }
 
-// Only prices of currently available puppies are actionable. Never substitute a
-// litter's historical/estimated price or infer a missing puppy price.
+// Show individual available-puppy prices, or an explicitly confirmed litter
+// price before individual profiles exist. Never infer missing puppy prices.
 export function litterCardPrice(litter, puppies = []) {
   if (litterCardAvailability(litter, puppies).tone !== "available") return null;
   const available = puppies.filter((puppy) => normalize(puppy.status) === "available");
-  if (!available.length) return null;
-  const prices = available.map((puppy) => {
-    const value = String(puppy.price ?? "").trim();
+  const confirmedLitterPrice = puppies.length === 0 && litter?.litterPriceConfirmed === true;
+  if (!available.length && !confirmedLitterPrice) return null;
+  const values = confirmedLitterPrice ? [litter.priceRange] : available.map((puppy) => puppy.price);
+  const prices = values.map((price) => {
+    const value = String(price ?? "").trim();
     if (!/^\$(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{2})?$/.test(value)) return null;
     const amount = Number(value.slice(1).replaceAll(",", ""));
     return Number.isFinite(amount) && amount > 0 ? amount : null;
@@ -43,6 +45,6 @@ export function litterCardPrice(litter, puppies = []) {
     style: "currency", currency: "USD", minimumFractionDigits: Number.isInteger(amount) ? 0 : 2
   }).format(amount);
   return min === max
-    ? { label: "Puppy price", value: format(min), isRange: false }
+    ? { label: confirmedLitterPrice ? "Litter price" : "Puppy price", value: format(min), isRange: false }
     : { label: "Price range", value: `${format(min)}–${format(max)}`, isRange: true };
 }

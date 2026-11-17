@@ -92,18 +92,20 @@ try {
   }
   // Navigation only. Do not submit any application or production form.
   const page = await browser.newPage({ viewport: { width: 390, height: 900 } });
-  await page.goto(`${base}/puppies/penn`);
+  const selectedPuppy = puppies.find((puppy) => String(puppy.status || "").trim().toLowerCase() === "available");
+  assert(selectedPuppy, "An available puppy is needed for navigation coverage");
+  await page.goto(`${base}/puppies/${selectedPuppy.slug}`);
   const card = page.locator(".puppy-profile-card");
   await card.locator(".puppy-profile-primary").click();
-  await page.waitForURL(/\/apply\?interest=penn$/);
+  await page.waitForURL(`${base}/apply?interest=${encodeURIComponent(selectedPuppy.slug)}`);
   await page.goBack();
   await card.waitFor();
   await card.getByRole("link", { name: "View Litter", exact: true }).click();
-  await page.waitForURL(/\/litters\/lulu-bram-fall-2026$/);
+  await page.waitForURL(`**/litters/${selectedPuppy.litterSlug}`);
   await page.goBack();
   await card.waitFor();
   await page.goForward();
-  await page.waitForURL(/\/litters\/lulu-bram-fall-2026$/);
+  await page.waitForURL(`**/litters/${selectedPuppy.litterSlug}`);
   assert.deepEqual(errors, []);
   assert(fs.readFileSync(dataFile).equals(before), "Test never modifies puppy source data");
   console.log(`Puppy detail QA passed: ${checked} route/viewport checks, ${puppies.length} public profiles, ${sampled.length} representative profiles at 320–1440px, full-frame real photos, preserved statuses/details/links, Reserve/View Litter and Back/Forward verified. No form submissions.`);

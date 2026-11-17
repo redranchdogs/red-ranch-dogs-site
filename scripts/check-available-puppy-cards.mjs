@@ -102,8 +102,8 @@ try {
   if (server) {
     for (const scenario of ["long-and-missing", "none-available"]) {
       const fixture = JSON.parse(before[0]);
-      const penn = fixture.find((p) => p.slug === "penn");
-      if (scenario === "long-and-missing") Object.assign(penn, { name: "Penn with a very long puppy name for responsive layout", mainPhoto: "", image: "", collarColor: "A long descriptive collar color", goHomeDate: "Timing to be confirmed with the family after the next update", youtube_video_url: "https://example.com/not-approved" });
+      const fixturePuppy = fixture.find((p) => p.slug === puppies[0].slug);
+      if (scenario === "long-and-missing") Object.assign(fixturePuppy, { name: "A puppy with a very long name for responsive layout", mainPhoto: "", image: "", collarColor: "A long descriptive collar color", goHomeDate: "Timing to be confirmed with the family after the next update", youtube_video_url: "https://example.com/not-approved" });
       else fixture.filter((p) => String(p.status).trim().toLowerCase() === "available").forEach((p) => { p.status = "Availability to be confirmed"; });
       for (const width of [320, 768]) {
         const page = await newPage(width);
@@ -113,7 +113,7 @@ try {
         if (scenario === "none-available") {
           assert.equal(await page.locator(".available-puppy-card").count(), 0);
           assert.equal(await page.locator(".available-empty-hub").count(), 1);
-        } else await checkCard(page, fixture.find((puppy) => puppy.slug === "penn"), width);
+        } else await checkCard(page, fixturePuppy, width);
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false);
         await page.close();
       }
@@ -121,14 +121,15 @@ try {
   }
   const page = await newPage(390);
   await page.goto(`${base}/puppies/available`);
-  const penn = puppies.find((p) => p.slug === "penn");
-  await cardFor(page, penn).locator(".litter-puppy-primary").click();
-  await page.waitForURL(/\/apply\?interest=penn$/);
+  const selectedPuppy = puppies[0];
+  assert(selectedPuppy, "An available puppy is needed for navigation coverage");
+  await cardFor(page, selectedPuppy).locator(".litter-puppy-primary").click();
+  await page.waitForURL(`${base}/apply?interest=${encodeURIComponent(selectedPuppy.slug)}`);
   await page.goBack();
-  await cardFor(page, penn).getByRole("link", { name: "View Litter", exact: true }).click();
-  await page.waitForURL(/\/litters\/lulu-bram-fall-2026$/);
+  await cardFor(page, selectedPuppy).getByRole("link", { name: "View Litter", exact: true }).click();
+  await page.waitForURL(`**/litters/${selectedPuppy.litterSlug}`);
   await page.goBack();
-  await cardFor(page, penn).waitFor();
+  await cardFor(page, selectedPuppy).waitFor();
   assert.deepEqual(errors, []);
   sourceFiles.forEach((file, index) => assert(fs.readFileSync(file).equals(before[index]), "No source data changes"));
   console.log(`Available puppy cards passed: ${checked} card/viewport checks, 320–1440px, full original photos, one green status, exact facts/notes, Reserve/View Litter/video actions, repeated breed tabs and Back/Forward, keyboard navigation, safe empty/long/missing states. No form submissions.`);
