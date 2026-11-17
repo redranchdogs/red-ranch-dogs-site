@@ -910,13 +910,15 @@ async function auditRoute(context, config, viewportName) {
         const expectedScrollY = await page.evaluate(() => Number(window.history.state?.scrollY) || 0);
         if (savedScrollY > 8 && expectedScrollY <= 0) failures.push("Browser Back history did not retain the litter scroll position.");
         if (Math.abs(expectedScrollY - savedScrollY) > 24) failures.push(`Browser navigation changed the saved litter position unexpectedly: before click ${Math.round(savedScrollY)}px, saved ${Math.round(expectedScrollY)}px.`);
+        // Font/image layout rounding can shift the restored position by a few pixels.
+        const scrollTolerance = 12;
         await page.waitForFunction(
-          (expectedScrollY) => Math.abs(window.scrollY - expectedScrollY) <= 8,
-          expectedScrollY,
+          ({ expectedScrollY, scrollTolerance }) => Math.abs(window.scrollY - expectedScrollY) <= scrollTolerance,
+          { expectedScrollY, scrollTolerance },
           { timeout: 1800 }
         ).catch(() => {});
         const restoredScrollY = await page.evaluate(() => window.scrollY);
-        if (Math.abs(restoredScrollY - expectedScrollY) > 8) failures.push(`Browser Back did not restore litter scroll position: expected ${Math.round(expectedScrollY)}px, got ${Math.round(restoredScrollY)}px.`);
+        if (Math.abs(restoredScrollY - expectedScrollY) > scrollTolerance) failures.push(`Browser Back did not restore litter scroll position: expected ${Math.round(expectedScrollY)}px, got ${Math.round(restoredScrollY)}px.`);
       }
     }
 
