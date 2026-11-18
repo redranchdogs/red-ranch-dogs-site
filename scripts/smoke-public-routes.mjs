@@ -847,11 +847,14 @@ async function auditRoute(context, config, viewportName) {
       const puppyCards = await page.locator(".litter-puppy-card").count();
       if (puppyCards !== config.litterDetailCheck.expectedPuppies) failures.push(`Expected ${config.litterDetailCheck.expectedPuppies} litter puppy cards, found ${puppyCards}.`);
 
-      const expectedVideos = config.litterDetailCheck.archive && !config.litterDetailCheck.allowArchivedPuppies ? [] : puppies.filter((puppy) => config.route === `/litters/${puppy.litterSlug}` && puppy.youtube_short_url);
-      for (const puppy of expectedVideos) {
+      const cardPuppies = config.litterDetailCheck.expectedPuppies > 0
+        ? puppies.filter((puppy) => config.route === `/litters/${puppy.litterSlug}`)
+        : [];
+      for (const puppy of cardPuppies.filter((item) => item.youtube_short_url)) {
         const card = page.locator(".litter-puppy-card").filter({ has: page.getByRole("heading", { name: puppy.name, exact: true }) });
         const video = card.locator(".puppy-video-link");
-        if (await video.count() !== 1 || await video.getAttribute("href") !== puppy.youtube_short_url) failures.push(`Wrong or missing video link for ${puppy.name}.`);
+        const expectedUrl = new URL(puppy.youtube_video_url || puppy.youtubeVideoUrl || puppy.videoUrl || puppy.youtube_short_url).href;
+        if (await video.count() !== 1 || await video.getAttribute("href") !== expectedUrl) failures.push(`Wrong or missing video link for ${puppy.name}.`);
       }
 
       const portraitChecks = await page.locator(".litter-parent-portrait").evaluateAll((links) => links.map((link) => {
