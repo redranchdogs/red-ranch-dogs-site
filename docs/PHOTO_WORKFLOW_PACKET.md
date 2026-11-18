@@ -1,6 +1,6 @@
 # Photo Workflow Packet
 
-Generated: 11/18/2026, 1:08:35 PM Central
+Generated: 11/18/2026, 1:42:20 PM Central
 
 This is the working packet for weekly puppy media, parent photo cleanup, and previous-litter media backfill. It is intentionally internal: it describes Google Drive paths and matching rules so the public website can stay clean.
 
@@ -37,7 +37,6 @@ This is the working packet for weekly puppy media, parent photo cleanup, and pre
 
 | Litter | Latest website photos | Next photo upload folder | Puppies | Website statuses |
 | --- | --- | --- | --- | --- |
-| Beatrix + Enzo | Week 6 | https: / drive.google.com / drive / folders / 1Xjt9eHEDRn5mAxw-P7qKuF_f31bg-JJh / Week 7 / Photos | 9 | 9 Reserved |
 | Birdie + Waylon | Week 2 | https: / drive.google.com / drive / folders / 19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r- / Week 3 / Photos | 7 | 6 Available, 1 Reserved |
 | Daisy + Waylon | Week 2 | https: / drive.google.com / drive / folders / 1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG / Week 3 / Photos | 6 | 6 Available |
 | Whitley + Waylon | Not started | _No folder hint_ | 0 | No public puppies yet |
