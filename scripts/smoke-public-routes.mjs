@@ -3,6 +3,7 @@ import { guidePath, guideArticles, articlePath } from "../src/data/puppyGuide.js
 import fs from "node:fs";
 import { createHash } from "node:crypto";
 import { spawn } from "node:child_process";
+import { URL } from "node:url";
 import { setTimeout as delay } from "node:timers/promises";
 import { chromium } from "playwright";
 
@@ -85,14 +86,6 @@ const publicParents = readJson("src/data/parents.json").filter(isPublicRecord);
 const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
-const beatrixPuppies = puppies.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026");
-const beatrixAvailableCount = beatrixPuppies.filter((puppy) => normalize(puppy.status) === "available").length;
-const beatrixFullyReserved = beatrixPuppies.length > 0 && beatrixPuppies.every((puppy) => ["reserved", "matched"].includes(normalize(puppy.status)));
-const beatrixAvailabilityLabel = beatrixFullyReserved ? "Reserved" : `${beatrixAvailableCount} available`;
-const luluPuppies = puppies.filter((puppy) => puppy.litterSlug === "lulu-bram-fall-2026");
-const luluAvailabilityLabel = luluPuppies.length && luluPuppies.every((puppy) => ["reserved", "matched"].includes(normalize(puppy.status))) ? "Reserved" : `${luluPuppies.filter((puppy) => normalize(puppy.status) === "available").length} available`;
-const eviePuppies = puppies.filter((puppy) => puppy.litterSlug === "evie-waylon-october-2026");
-const evieAvailabilityLabel = eviePuppies.length && eviePuppies.every((puppy) => ["reserved", "matched"].includes(normalize(puppy.status))) ? "Reserved" : `${eviePuppies.filter((puppy) => normalize(puppy.status) === "available").length} available`;
 const litterCardLabel = (slug) => litterCardAvailability(litterBySlug.get(slug), puppies.filter((puppy) => puppy.litterSlug === slug)).label;
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
 const openGuardianNames = puppies
@@ -152,9 +145,9 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    expectedLitterOrder: ["Beatrix + Enzo", "Lulu + Bram", "Evie + Waylon", "Birdie + Waylon", "Daisy + Waylon", "Whitley + Waylon"],
-    requiredText: ["current litters", "beatrix + enzo", "lulu + bram", "evie + waylon", "birdie + waylon", "daisy + waylon", "whitley + waylon", "december 12-14, 2026", "december 17-19, 2026", "december 30, 2026 - january 1, 2027", litterCardLabel("evie-waylon-october-2026"), litterCardLabel("lulu-bram-fall-2026"), litterCardLabel("beatrix-enzo-planned-2026"), litterCardLabel("birdie-waylon-final-2026"), "september 28, 2026", "november 19-21, 2026"],
-    forbiddenText: ["winnie + wyatt"],
+    expectedLitterOrder: ["Birdie + Waylon", "Daisy + Waylon", "Whitley + Waylon"],
+    requiredText: ["current litters", "birdie + waylon", "daisy + waylon", "whitley + waylon", "december 12-14, 2026", "december 17-19, 2026", "december 30, 2026 - january 1, 2027", litterCardLabel("birdie-waylon-final-2026")],
+    forbiddenText: ["winnie + wyatt", "lulu + bram", "evie + waylon", "beatrix + enzo"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
     finderNavCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" }
@@ -211,17 +204,17 @@ const routeExpectations = [
   },
   {
     route: "/litters/lulu-bram-fall-2026",
-    requiredText: ["lulu + bram", "multigen micro goldendoodles", luluAvailabilityLabel, "week 4", "penn", "dottie", "posy", "merryweather", "$4,500", "10-15 lbs", "birth date", "october 9, 2026", "go-home", "december 1-4, 2026", "apply for a puppy"],
+    requiredText: ["lulu + bram", "multigen micro goldendoodles", "Previous litter", "week 4", "penn", "dottie", "posy", "merryweather", "10-15 lbs", "birth date", "october 9, 2026", "apply for a future litter"],
     forbiddenText: ["pregnancy confirmed", "confirmed pregnant", "estimated birth", "expected early october"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: luluAvailabilityLabel, expectedPuppies: 4, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 4, archive: true, allowArchivedPuppies: true, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
   },
   {
     route: "/litters/evie-waylon-october-2026",
-    requiredText: ["evie + waylon", "petite mini goldendoodles", evieAvailabilityLabel, "week 4", "moran", "nancy", "$3,200", "~20 lbs", "birth date", "october 11, 2026", "go-home", "december 3-5, 2026", "apply for a puppy"],
+    requiredText: ["evie + waylon", "petite mini goldendoodles", "Previous litter", "week 4", "moran", "nancy", "~20 lbs", "birth date", "october 11, 2026", "apply for a future litter"],
     forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "orange collar boy", "nancy drew"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    litterDetailCheck: { expectedStatus: evieAvailabilityLabel, expectedPuppies: 7, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 7, archive: true, allowArchivedPuppies: true, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
   },
   {
     route: "/litters/whitley-waylon-november-2026",
@@ -251,11 +244,11 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", beatrixAvailabilityLabel, "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", ...(beatrixAvailableCount ? ["ask about a beatrix puppy"] : []), "about this litter", "week 5", "weekly photo gallery"],
-    forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026", ...(!beatrixAvailableCount ? ["ask about a beatrix puppy"] : [])],
-    requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ...(beatrixAvailableCount ? [".beatrix-inquiry-section form"] : []), ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    forbiddenSelectors: beatrixAvailableCount ? [] : [".beatrix-inquiry-section form"],
-    litterDetailCheck: { expectedStatus: beatrixAvailabilityLabel, expectedPuppies: 9 }
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "previous litter", "25-35 lbs", "birth date", "september 28, 2026", "about this litter", "week 5", "photo gallery"],
+    forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026", "ask about a beatrix puppy"],
+    requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
+    forbiddenSelectors: [".beatrix-inquiry-section form"],
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 9, expectedGalleryImages: 9, archive: true, allowArchivedPuppies: true }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
@@ -308,13 +301,13 @@ const routeExpectations = [
     route: "/litters/georgia-waylon-may-2026",
     requiredText: ["georgia + waylon", "previous litter", "birth date"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
-    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0, archive: true, historyHref: "/georgia-waylon-may-2026" }
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 5, archive: true, allowArchivedPuppies: true, historyHref: "/georgia-waylon-may-2026" }
   },
   {
     route: "/litters/reece-wyatt-summer-2026",
     requiredText: ["reece + wyatt", "previous litter", "birth date"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
-    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0, archive: true, historyHref: "/reece-wyatt-summer-2026" }
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 6, archive: true, allowArchivedPuppies: true, historyHref: "/reece-wyatt-summer-2026" }
   },
   ...litters
     .filter((litter) => litter.pastPuppyGallery?.images?.length)
@@ -855,11 +848,14 @@ async function auditRoute(context, config, viewportName) {
       const puppyCards = await page.locator(".litter-puppy-card").count();
       if (puppyCards !== config.litterDetailCheck.expectedPuppies) failures.push(`Expected ${config.litterDetailCheck.expectedPuppies} litter puppy cards, found ${puppyCards}.`);
 
-      const expectedVideos = config.litterDetailCheck.archive ? [] : puppies.filter((puppy) => config.route === `/litters/${puppy.litterSlug}` && puppy.youtube_short_url);
-      for (const puppy of expectedVideos) {
+      const cardPuppies = config.litterDetailCheck.expectedPuppies > 0
+        ? puppies.filter((puppy) => config.route === `/litters/${puppy.litterSlug}`)
+        : [];
+      for (const puppy of cardPuppies.filter((item) => item.youtube_short_url)) {
         const card = page.locator(".litter-puppy-card").filter({ has: page.getByRole("heading", { name: puppy.name, exact: true }) });
         const video = card.locator(".puppy-video-link");
-        if (await video.count() !== 1 || await video.getAttribute("href") !== puppy.youtube_short_url) failures.push(`Wrong or missing video link for ${puppy.name}.`);
+        const expectedUrl = new URL(puppy.youtube_video_url || puppy.youtubeVideoUrl || puppy.videoUrl || puppy.youtube_short_url).href;
+        if (await video.count() !== 1 || await video.getAttribute("href") !== expectedUrl) failures.push(`Wrong or missing video link for ${puppy.name}.`);
       }
 
       const portraitChecks = await page.locator(".litter-parent-portrait").evaluateAll((links) => links.map((link) => {

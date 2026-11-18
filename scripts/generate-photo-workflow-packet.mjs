@@ -175,11 +175,14 @@ const currentLitterRows = currentLitters.map((litter) => {
   };
 });
 
-const puppyChecklist = currentLitters.flatMap((litter) => {
+const photoUpdateLitters = litters.filter((litter) => isCurrentLitter(litter) ||
+  (normalize(litter.status) === "previous litter" && litter.archivePuppyProfiles));
+const puppyChecklist = photoUpdateLitters.flatMap((litter) => {
   const litterPuppies = puppiesByLitter.get(litter.slug) || [];
   const latest = latestWeek(litter, litterPuppies);
   const next = nextWeekLabel(latest);
-  const nextFolder = folderForWeek(litter.photoFolderHint, next);
+  const nextFolder = isCurrentLitter(litter) ? folderForWeek(litter.photoFolderHint, next) :
+    `Weekly Media Drops → ${litter.name} → ${next} / Photos (verify the litter folder)`;
 
   return litterPuppies.map((puppy) => {
     const hasMainPhoto = Boolean(puppy.mainPhoto && publicPathExists(puppy.mainPhoto));
@@ -198,7 +201,7 @@ const puppyChecklist = currentLitters.flatMap((litter) => {
     ].join(" ");
 
     return {
-      taskType: "current-puppy-photo",
+      taskType: isCurrentLitter(litter) ? "current-puppy-photo" : "previous-puppy-photo",
       litter,
       puppy,
       weekLabel: next,
@@ -369,7 +372,7 @@ This is the working packet for weekly puppy media, parent photo cleanup, and pre
 
 ## Standard Weekly Media Runbook
 
-1. Confirm the Drive path: \`Website Hub / Weekly Media Drops / Current Litters / Mama LitterNumber + Stud / Week N / Photos\`.
+1. Confirm the Drive path: \`Website Hub / Weekly Media Drops / Current Litters or Previous Litters / Mama LitterNumber + Stud / Week N / Photos\`.
 2. Confirm the sibling \`Videos\` folder exists, even when there are no public videos yet.
 3. Build or review a collar map from the photo set before selecting public images.
 4. Copy selected images into the matching \`public/images/puppies/.../\` folder with website-safe file names.
@@ -396,6 +399,8 @@ ${table(
 )}
 
 ## Puppy Matching Checklist
+
+Includes previous litters with live puppy profiles. Locate their week folder in Weekly Media Drops and keep all older photo weeks.
 
 ${table(
   puppyChecklist,

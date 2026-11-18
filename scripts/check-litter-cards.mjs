@@ -109,10 +109,10 @@ try {
       await page.locator(".litter-browser-card").first().screenshot({ path: `${process.env.LITTER_CARDS_SCREENSHOT_DIR}/reserved-${width}.png` });
       await page.locator(".litter-browser-card.is-available").first().screenshot({ path: `${process.env.LITTER_CARDS_SCREENSHOT_DIR}/available-${width}.png` });
     }
-    const reservedLink = page.getByRole("link", { name: "View litter updates", exact: true }).first();
-    assert.equal(await reservedLink.getAttribute("href"), "/litters/beatrix-enzo-planned-2026");
-    await reservedLink.click();
-    await page.waitForURL("**/litters/beatrix-enzo-planned-2026");
+    const currentLink = page.locator(".litter-browser-card").filter({ has: page.getByRole("heading", { name: "Birdie + Waylon", exact: true }) }).getByRole("link", { name: "View litter", exact: true });
+    assert.equal(await currentLink.getAttribute("href"), "/litters/birdie-waylon-final-2026");
+    await currentLink.click();
+    await page.waitForURL("**/litters/birdie-waylon-final-2026");
     await page.goBack();
     await page.getByRole("tab", { name: "Bernedoodles", exact: true }).click();
     await page.getByRole("tab", { name: "Bernedoodles", exact: true }).click();
@@ -146,6 +146,8 @@ try {
   if (server) {
     // Test alternate prices/statuses via a local-only response fixture. Never
     // change the source records or intercept a production response.
+    const litterFixture = JSON.parse(preimages[1]);
+    litterFixture.find((litter) => litter.slug === "evie-waylon-october-2026").status = "Current Litter";
     for (const scenario of ["range", "missing-price", "fully-reserved"]) {
       const fixture = JSON.parse(preimages[0]);
       if (scenario !== "fully-reserved") {
@@ -162,6 +164,9 @@ try {
         const page = await browser.newPage({ viewport: { width, height: 900 } });
         await page.route(`${base}/src/data/puppies.json*`, (route) => route.fulfill({
           contentType: "application/javascript", body: `export default ${JSON.stringify(fixture)};`
+        }));
+        await page.route(`${base}/src/data/litters.json*`, (route) => route.fulfill({
+          contentType: "application/javascript", body: `export default ${JSON.stringify(litterFixture)};`
         }));
         await page.goto(`${base}/puppies/current-litters?breed=goldendoodle-puppies`);
         const card = page.locator(".litter-browser-card").filter({ has: page.getByRole("heading", { name: "Evie + Waylon", exact: true }) });
