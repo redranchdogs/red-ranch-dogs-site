@@ -78,6 +78,8 @@ async function launchBrowser() {
 }
 
 const puppies = readJson("src/data/puppies.json").filter(isPublicRecord);
+const birdiePuppies = puppies.filter((puppy) => puppy.litterSlug === "birdie-waylon-final-2026");
+const birdieAvailableLabel = `${birdiePuppies.filter((puppy) => normalize(puppy.status) === "available").length} available`;
 const litters = readJson("src/data/litters.json").filter(isPublicRecord);
 const publicParents = readJson("src/data/parents.json").filter(isPublicRecord);
 const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
@@ -237,10 +239,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/birdie-waylon-final-2026",
-    requiredText: ["birdie + waylon", "7 available", "birth date", "october 21, 2026", "december 12-14, 2026", "$3,200", "20-25 lbs", "fredrich", "marmee", "laurie", "jo", "meg", "beth", "amy"],
+    requiredText: ["birdie + waylon", birdieAvailableLabel, "birth date", "october 21, 2026", "december 12-14, 2026", "$3,200", "20-25 lbs", "fredrich", "marmee", "laurie", "jo", "meg", "beth", "amy"],
     forbiddenText: ["to be announced", "available now", "pregnancy confirmed", "estimated birth", "expecting", "date to be confirmed", "7 puppies"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-image-gallery"],
-    litterDetailCheck: { expectedStatus: "7 available", expectedPuppies: 7, expectedDescriptor: "Goldendoodles", expectedSize: "20-25 lbs", expectedGalleryImages: 16, testParentBack: true }
+    litterDetailCheck: { expectedStatus: birdieAvailableLabel, expectedPuppies: birdiePuppies.length, expectedDescriptor: "Goldendoodles", expectedSize: "20-25 lbs", expectedGalleryImages: 16, testParentBack: true }
   },
   {
     route: "/parents/evie-nicks",
@@ -287,7 +289,7 @@ const routeExpectations = [
     forbiddenText: ["nancy drew", "reserve this puppy", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) !== "available" ? [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`] : []), ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
-  ...puppies.filter((puppy) => puppy.litterSlug === "birdie-waylon-final-2026").map((puppy) => {
+  ...birdiePuppies.map((puppy) => {
     const available = normalize(puppy.status) === "available";
     return {
       route: `/puppies/${puppy.slug}`,
