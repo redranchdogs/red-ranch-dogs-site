@@ -3,6 +3,7 @@ import { guidePath, guideArticles, articlePath } from "../src/data/puppyGuide.js
 import fs from "node:fs";
 import { createHash } from "node:crypto";
 import { spawn } from "node:child_process";
+import { URL } from "node:url";
 import { setTimeout as delay } from "node:timers/promises";
 import { chromium } from "playwright";
 
