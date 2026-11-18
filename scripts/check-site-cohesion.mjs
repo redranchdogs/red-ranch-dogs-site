@@ -35,7 +35,14 @@ async function visit(page, route) {
 async function fullPhoto(card, selector, puppy) {
   const img = card.locator(selector);
   await img.scrollIntoViewIfNeeded();
-  await img.evaluate((el) => Promise.race([el.decode(), new Promise((_, reject) => window.setTimeout(() => reject(new Error("Timed out decoding puppy photo")), 15000))]));
+  await img.evaluate((el) => {
+    // Read the real image without waiting for Chromium's lazy-load scheduling.
+    el.loading = "eager";
+    return Promise.race([
+      el.decode(),
+      new Promise((_, reject) => window.setTimeout(() => reject(new Error(`Timed out decoding ${el.getAttribute("src")}`)), 15000))
+    ]);
+  });
   assert.equal(new URL(await img.getAttribute("src"), base).pathname, new URL(resolveImageUrl(puppy.mainPhoto || puppy.image), base).pathname);
   const frame = await img.evaluate((el) => {
     const r = el.getBoundingClientRect(), b = el.closest("article").querySelector(".litter-puppy-status").getBoundingClientRect();
