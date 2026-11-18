@@ -1,6 +1,6 @@
 # Photo Workflow Packet
 
-Generated: 11/18/2026, 1:42:20 PM Central
+Generated: 11/18/2026, 2:31:39 PM Central
 
 This is the working packet for weekly puppy media, parent photo cleanup, and previous-litter media backfill. It is intentionally internal: it describes Google Drive paths and matching rules so the public website can stay clean.
 
@@ -37,7 +37,7 @@ This is the working packet for weekly puppy media, parent photo cleanup, and pre
 
 | Litter | Latest website photos | Next photo upload folder | Puppies | Website statuses |
 | --- | --- | --- | --- | --- |
-| Birdie + Waylon | Week 2 | https: / drive.google.com / drive / folders / 19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r- / Week 3 / Photos | 7 | 6 Available, 1 Reserved |
+| Birdie + Waylon | Week 3 | https: / drive.google.com / drive / folders / 19RqcMv9OAR8okpgvRo6IaGeLaQUUK6r- / Week 4 / Photos | 7 | 6 Available, 1 Reserved |
 | Daisy + Waylon | Week 2 | https: / drive.google.com / drive / folders / 1XrvHH-bgM3Gmn32ZASqQOM87LtzeUJdG / Week 3 / Photos | 6 | 6 Available |
 | Whitley + Waylon | Not started | _No folder hint_ | 0 | No public puppies yet |
 
@@ -56,24 +56,24 @@ Includes previous litters with live puppy profiles. Locate their week folder in 
 | Beatrix + Enzo | Austen | Pink | Reserved | Add Week 7 weekly group | `austen-f1b-style-mini-goldendoodle-puppy-beatrix-enzo-week-7-red-ranch-dogs.jpg` |
 | Beatrix + Enzo | Brontë | Purple | Reserved | Add Week 7 weekly group | `bronte-f1b-style-mini-goldendoodle-puppy-beatrix-enzo-week-7-red-ranch-dogs.jpg` |
 | Beatrix + Enzo | Louisa | Yellow | Reserved | Add Week 7 weekly group | `louisa-f1b-style-mini-goldendoodle-puppy-beatrix-enzo-week-7-red-ranch-dogs.jpg` |
-| Lulu + Bram | Penn | Blue | Reserved | Add Week 5 weekly group | `penn-multigen-micro-goldendoodle-puppy-lulu-bram-week-5-red-ranch-dogs.jpg` |
-| Lulu + Bram | Dottie | Hot Pink | Reserved | Add Week 5 weekly group | `dottie-multigen-micro-goldendoodle-puppy-lulu-bram-week-5-red-ranch-dogs.jpg` |
-| Lulu + Bram | Posy | Maroon | Reserved | Add Week 5 weekly group | `posy-multigen-micro-goldendoodle-puppy-lulu-bram-week-5-red-ranch-dogs.jpg` |
-| Lulu + Bram | Merryweather | White | Reserved | Add Week 5 weekly group | `merryweather-multigen-micro-goldendoodle-puppy-lulu-bram-week-5-red-ranch-dogs.jpg` |
-| Evie + Waylon | Moriarty | Black | Reserved | Add Week 5 weekly group | `moriarty-petite-mini-goldendoodle-puppy-evie-waylon-week-5-red-ranch-dogs.jpg` |
-| Evie + Waylon | Sherlock | Blue | Reserved | Add Week 5 weekly group | `sherlock-petite-mini-goldendoodle-puppy-evie-waylon-week-5-red-ranch-dogs.jpg` |
-| Evie + Waylon | Watson | Green | Matched | Add Week 5 weekly group | `watson-petite-mini-goldendoodle-puppy-evie-waylon-week-5-red-ranch-dogs.jpg` |
-| Evie + Waylon | Moran | Orange | Reserved | Add Week 5 weekly group | `evie-orange-collar-boy-petite-mini-goldendoodle-puppy-evie-waylon-week-5-red-ranch-dogs.jpg` |
-| Evie + Waylon | Nancy | Pink | Reserved | Add Week 5 weekly group | `nancy-petite-mini-goldendoodle-puppy-evie-waylon-week-5-red-ranch-dogs.jpg` |
-| Evie + Waylon | Agatha | Purple | Reserved | Add Week 5 weekly group | `agatha-petite-mini-goldendoodle-puppy-evie-waylon-week-5-red-ranch-dogs.jpg` |
-| Evie + Waylon | Columbo | Red | Reserved | Add Week 5 weekly group | `columbo-petite-mini-goldendoodle-puppy-evie-waylon-week-5-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Laurie | Blue | Available | Add Week 3 weekly group | `birdie-laurie-goldendoodle-puppy-birdie-waylon-week-3-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Jo | Pink | Reserved | Add Week 3 weekly group | `birdie-jo-goldendoodle-puppy-birdie-waylon-week-3-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Fredrich | Mint | Available | Add Week 3 weekly group | `birdie-fredrich-goldendoodle-puppy-birdie-waylon-week-3-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Meg | Yellow | Available | Add Week 3 weekly group | `birdie-meg-goldendoodle-puppy-birdie-waylon-week-3-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Beth | Purple | Available | Add Week 3 weekly group | `birdie-beth-goldendoodle-puppy-birdie-waylon-week-3-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Amy | Red | Available | Add Week 3 weekly group | `birdie-amy-goldendoodle-puppy-birdie-waylon-week-3-red-ranch-dogs.jpg` |
-| Birdie + Waylon | Marmee | White | Available | Add Week 3 weekly group | `birdie-marmee-goldendoodle-puppy-birdie-waylon-week-3-red-ranch-dogs.jpg` |
+| Lulu + Bram | Penn | Blue | Reserved | Add Week 6 weekly group | `penn-multigen-micro-goldendoodle-puppy-lulu-bram-week-6-red-ranch-dogs.jpg` |
+| Lulu + Bram | Dottie | Hot Pink | Reserved | Add Week 6 weekly group | `dottie-multigen-micro-goldendoodle-puppy-lulu-bram-week-6-red-ranch-dogs.jpg` |
+| Lulu + Bram | Posy | Maroon | Reserved | Add Week 6 weekly group | `posy-multigen-micro-goldendoodle-puppy-lulu-bram-week-6-red-ranch-dogs.jpg` |
+| Lulu + Bram | Merryweather | White | Reserved | Add Week 6 weekly group | `merryweather-multigen-micro-goldendoodle-puppy-lulu-bram-week-6-red-ranch-dogs.jpg` |
+| Evie + Waylon | Moriarty | Black | Reserved | Add Week 6 weekly group | `moriarty-petite-mini-goldendoodle-puppy-evie-waylon-week-6-red-ranch-dogs.jpg` |
+| Evie + Waylon | Sherlock | Blue | Reserved | Add Week 6 weekly group | `sherlock-petite-mini-goldendoodle-puppy-evie-waylon-week-6-red-ranch-dogs.jpg` |
+| Evie + Waylon | Watson | Green | Matched | Add Week 6 weekly group | `watson-petite-mini-goldendoodle-puppy-evie-waylon-week-6-red-ranch-dogs.jpg` |
+| Evie + Waylon | Moran | Orange | Reserved | Add Week 6 weekly group | `evie-orange-collar-boy-petite-mini-goldendoodle-puppy-evie-waylon-week-6-red-ranch-dogs.jpg` |
+| Evie + Waylon | Nancy | Pink | Reserved | Add Week 6 weekly group | `nancy-petite-mini-goldendoodle-puppy-evie-waylon-week-6-red-ranch-dogs.jpg` |
+| Evie + Waylon | Agatha | Purple | Reserved | Add Week 6 weekly group | `agatha-petite-mini-goldendoodle-puppy-evie-waylon-week-6-red-ranch-dogs.jpg` |
+| Evie + Waylon | Columbo | Red | Reserved | Add Week 6 weekly group | `columbo-petite-mini-goldendoodle-puppy-evie-waylon-week-6-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Laurie | Blue | Available | Add Week 4 weekly group | `birdie-laurie-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Jo | Pink | Reserved | Add Week 4 weekly group | `birdie-jo-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Fredrich | Mint | Available | Add Week 4 weekly group | `birdie-fredrich-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Meg | Yellow | Available | Add Week 4 weekly group | `birdie-meg-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Beth | Purple | Available | Add Week 4 weekly group | `birdie-beth-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Amy | Red | Available | Add Week 4 weekly group | `birdie-amy-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg` |
+| Birdie + Waylon | Marmee | White | Available | Add Week 4 weekly group | `birdie-marmee-goldendoodle-puppy-birdie-waylon-week-4-red-ranch-dogs.jpg` |
 | Daisy + Waylon | Max | Blue | Available | Add Week 3 weekly group | `daisy-max-goldendoodle-puppy-daisy-waylon-week-3-red-ranch-dogs.jpg` |
 | Daisy + Waylon | Cindy Lou | Pink | Available | Add Week 3 weekly group | `daisy-cindy-lou-goldendoodle-puppy-daisy-waylon-week-3-red-ranch-dogs.jpg` |
 | Daisy + Waylon | Martha May | Purple | Available | Add Week 3 weekly group | `daisy-martha-may-goldendoodle-puppy-daisy-waylon-week-3-red-ranch-dogs.jpg` |
