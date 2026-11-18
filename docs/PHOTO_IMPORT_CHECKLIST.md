@@ -1,8 +1,8 @@
 # Weekly Media Import Checklist
 
-Generated: 6/10/2026, 4:04:22 PM Central
+Generated: 11/18/2026, 1:06:21 PM Central
 
-Use this after a current-litter media drop is uploaded. This is intentionally operational: it keeps the website, Website Hub sheets, and publishing flow in the same order every time.
+Use this after a current- or previous-litter media drop is uploaded. This is intentionally operational: it keeps the website, Website Hub sheets, and publishing flow in the same order every time.
 
 The latest rehearsal packet is available at `docs/PHOTO_DAY_REHEARSAL.md`.
 
@@ -22,7 +22,7 @@ The latest rehearsal packet is available at `docs/PHOTO_DAY_REHEARSAL.md`.
 1. Add or update each puppy's `mainPhoto` only when the chosen image should become the card/profile image.
 2. Add the new week under each puppy's `weeklyPhotos`.
 3. Add or update the litter-level `weeklyUpdateGallery` only with images that represent the litter as a whole.
-4. Update the litter's `weeklyUpdateStatus` so the current litter page names the latest photo round.
+4. Update the litter's `weeklyUpdateStatus` so the litter page names the latest photo round.
 5. Keep status wording stable: `Available`, `Waitlist Matching`, or `Reserved`.
 6. If puppy, litter, parent, or previous-litter content changed, run the matching Google Sheet sync before publish review.
 
