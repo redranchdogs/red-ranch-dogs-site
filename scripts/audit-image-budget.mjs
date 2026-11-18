@@ -11,6 +11,8 @@ const maxTotalReferencedImageBytes = 98 * 1024 * 1024;
 const optionCPhotoPrefix = "/images/puppies/2026-11-18-option-c/";
 const maxOptionCPhotoBytes = 600 * 1024;
 const maxOptionCBatchBytes = 18 * 1024 * 1024;
+const daisyWeek3Prefix = `${optionCPhotoPrefix}daisy/`;
+const maxDaisyWeek3Bytes = 6 * 1024 * 1024;
 const warningImageBytes = 250 * 1024;
 const referencedImages = new Set();
 
@@ -100,6 +102,7 @@ const tooLarge = [];
 const warnings = [];
 let totalBytes = 0;
 let optionCBytes = 0;
+let daisyWeek3Bytes = 0;
 
 for (const imagePath of [...referencedImages].sort()) {
   const localPath = path.join(publicRoot, imagePath.replace(/^\//, ""));
@@ -109,8 +112,10 @@ for (const imagePath of [...referencedImages].sort()) {
   }
 
   const bytes = fs.statSync(localPath).size;
-  const isOptionCPhoto = imagePath.startsWith(optionCPhotoPrefix);
-  if (isOptionCPhoto) optionCBytes += bytes;
+  const isDaisyWeek3Photo = imagePath.startsWith(daisyWeek3Prefix);
+  const isOptionCPhoto = !isDaisyWeek3Photo && imagePath.startsWith(optionCPhotoPrefix);
+  if (isDaisyWeek3Photo) daisyWeek3Bytes += bytes;
+  else if (isOptionCPhoto) optionCBytes += bytes;
   else totalBytes += bytes;
   if (bytes > (isOptionCPhoto ? maxOptionCPhotoBytes : maxReferencedImageBytes)) {
     tooLarge.push(`${imagePath} (${formatBytes(bytes)})`);
@@ -144,4 +149,9 @@ if (optionCBytes > maxOptionCBatchBytes) {
   process.exit(1);
 }
 
-console.log(`Referenced image budget passed: ${referencedImages.size} images, ${formatBytes(totalBytes + optionCBytes)} total, including ${formatBytes(optionCBytes)} in the approved Option C batch.`);
+if (daisyWeek3Bytes > maxDaisyWeek3Bytes) {
+  console.error(`Daisy Week 3 photos total ${formatBytes(daisyWeek3Bytes)}, over the ${formatBytes(maxDaisyWeek3Bytes)} limit.`);
+  process.exit(1);
+}
+
+console.log(`Referenced image budget passed: ${referencedImages.size} images, ${formatBytes(totalBytes + optionCBytes + daisyWeek3Bytes)} total, including ${formatBytes(optionCBytes)} in the original Option C batch and ${formatBytes(daisyWeek3Bytes)} in Daisy Week 3.`);

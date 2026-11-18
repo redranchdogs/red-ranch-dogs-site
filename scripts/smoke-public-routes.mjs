@@ -225,10 +225,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/daisy-waylon-october-2026",
-    requiredText: ["daisy + waylon", "6 available", "birth date", "october 24, 2026", "december 17-19, 2026", "$3,200", "~25 lbs", "max", "cindy lou", "martha may", "donna lou", "betty lou", "grinch"],
+    requiredText: ["daisy + waylon", "6 available", "week 3", "birth date", "october 24, 2026", "december 17-19, 2026", "$3,200", "~25 lbs", "max", "cindy lou", "martha may", "donna lou", "betty lou", "grinch"],
     forbiddenText: ["to be announced", "available now", "pregnancy confirmed", "estimated birth", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-image-gallery"],
-    litterDetailCheck: { expectedStatus: "6 available", expectedPuppies: 6, expectedDescriptor: "Goldendoodles", expectedSize: "~25 lbs", expectedGalleryImages: 11, testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
+    litterDetailCheck: { expectedStatus: "6 available", expectedPuppies: 6, expectedDescriptor: "Goldendoodles", expectedSize: "~25 lbs", expectedGalleryImages: 17, testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
   },
   {
     route: "/litters/birdie-waylon-final-2026",
