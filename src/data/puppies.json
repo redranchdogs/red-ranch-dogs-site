@@ -5392,7 +5392,7 @@
     "stud": "Waylon Jennings",
     "gender": "Female",
     "collarColor": "Pink",
-    "status": "Available",
+    "status": "Reserved",
     "estimatedAdultWeight": "20-25 lbs",
     "birthDate": "October 21, 2026",
     "goHomeDate": "December 12-14, 2026",
@@ -5415,7 +5415,7 @@
       }
     ],
     "description": "Jo is a female Goldendoodle from Birdie + Waylon’s litter.",
-    "availabilityNote": "Available. Contact Red Ranch Dogs for details.",
+    "availabilityNote": "Jo is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows."
   },
   {
