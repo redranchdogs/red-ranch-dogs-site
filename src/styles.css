@@ -12837,6 +12837,24 @@ summary {
   text-align: center;
 }
 
+.litter-theme-card {
+  display: grid;
+  gap: 3px;
+  width: fit-content;
+  max-width: calc(100% - 28px);
+  margin: 10px auto 14px;
+  padding: 9px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.litter-theme-card .eyebrow { margin: 0; }
+.litter-theme-card strong { font-size: 1.05rem; line-height: 1.3; }
+.litter-detail-title-block .litter-theme-card { margin-bottom: 0; }
+
 .litter-detail-title-block h1 {
   max-width: 100%;
   margin: 0;

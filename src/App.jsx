@@ -2968,7 +2968,6 @@ function PreviousLitterCard({ litter, href }) {
           </div>
           <h2>{litter.name}</h2>
           <h3>{litter.breed}</h3>
-          {litter.theme && <p>{litter.theme}</p>}
         </div>
         <div className="previous-litter-card-summary" aria-label={`${litter.name} archive summary`}>
           <span>{date}</span>
@@ -4083,6 +4082,17 @@ function LitterParentPortrait({ parent, role, litterName }) {
   );
 }
 
+function LitterThemeCard({ theme }) {
+  if (!theme?.trim()) return null;
+
+  return (
+    <div className="litter-theme-card">
+      <span className="eyebrow">Litter theme</span>
+      <strong>{theme}</strong>
+    </div>
+  );
+}
+
 function LitterPage({ litter }) {
   const isBeatrixOffer = litter.slug === "beatrix-enzo-planned-2026";
   const isArchived = /previous/i.test(litter.status || "");
@@ -4129,7 +4139,7 @@ function LitterPage({ litter }) {
   const detailBackLabel = isPlannedLitter(litter) ? "Upcoming litters" : isCurrentLitter(litter) ? "Current litters" : "Previous litters";
   const aboutPreview = isArchived ? `Pairing details for ${litter.name}.` : litter.litterNumber
     ? `${litter.litterNumber} of ${litter.mama} and ${litter.stud}.`
-    : litter.aboutTitle || litter.availabilitySummary || `Pairing details for ${litter.name}.`;
+    : (litter.aboutTitle === litter.theme && litter.theme ? "" : litter.aboutTitle || litter.availabilitySummary) || `Pairing details for ${litter.name}.`;
   const litterCta = isArchived
     ? { copy: "This is a previous litter. Explore upcoming litters or apply for a future pairing.", primaryLabel: "Apply for a Future Litter" }
     : availablePuppies.length
@@ -4213,6 +4223,7 @@ function LitterPage({ litter }) {
           <h1>{litter.name}</h1>
           <p>{litterDescriptor}</p>
           <span className="status-badge litter-detail-status">{litterStatusLabel}</span>
+          <LitterThemeCard theme={litter.theme} />
         </div>
       </section>
       <section className="litter-detail-overview">
@@ -4247,7 +4258,7 @@ function LitterPage({ litter }) {
             </summary>
             <div className="litter-about-panel">
               <div className="litter-about-copy">
-                <h2>{litter.aboutTitle || `${litter.name} details`}</h2>
+                <h2>{litter.aboutTitle !== litter.theme && litter.aboutTitle ? litter.aboutTitle : `${litter.name} details`}</h2>
                 {isArchived && <p className="eyebrow">Historical pairing notes</p>}
                 {aboutParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 {isArchived && litter.previousLitterHref && previousLitterDetails[litter.previousLitterHref] && (
@@ -5555,6 +5566,7 @@ function PreviousLitterDetailPage({ litter, href }) {
   return (
     <Layout>
       <PageHero eyebrow="Previous Litter" title={litter.name} copy={litter.breed} />
+      <LitterThemeCard theme={litter.theme} />
       <section className="previous-litter-detail-shell">
         <article className="previous-litter-feature-card group-panel">
           <PreviousLitterPairingMedia litter={litter} large />
@@ -5587,7 +5599,7 @@ function PreviousLitterDetailPage({ litter, href }) {
       <section className="content-section previous-puppy-section">
         <SectionHeader
           eyebrow="Puppies"
-          title={litter.theme || "Puppies from this litter"}
+          title="Puppies from this litter"
           copy={
             hasWeeklyPuppyPhotos
               ? "These galleries show the puppies from this previous litter as they grew."
@@ -5656,6 +5668,7 @@ function LitterDetailPage({ litter }) {
   return (
     <Layout>
       <PageHero eyebrow="Litter Detail" title={litter.name} copy={litter.breed} image={litter.image} />
+      <LitterThemeCard theme={litter.theme} />
       <section className="content-section">
         <article className="group-panel">
           <h2>Overview</h2>
@@ -5681,7 +5694,7 @@ function LitterDetailPage({ litter }) {
       </section>
       {litter.puppies.length > 0 && (
         <section className="content-section">
-          <h2>{litter.theme || "Puppies"}</h2>
+          <h2>Puppies</h2>
           <div className="tile-grid">
             {litter.puppies.map(([name, sex, collar]) => (
               <article className="text-card" key={name}>
