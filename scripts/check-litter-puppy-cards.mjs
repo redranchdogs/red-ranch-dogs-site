@@ -135,6 +135,8 @@ try {
   // Local-only edge cases: no fixtures or interceptions against production.
   if (server) {
     const fixture = JSON.parse(before[0]);
+    const fixtureLitters = JSON.parse(before[1]);
+    fixtureLitters.find((litter) => litter.slug === "beatrix-enzo-planned-2026").status = "Current Litter";
     const targets = fixture.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026");
     for (let i = 0; i < targets.length; i += 1) targets[i].status = statusCases[i % statusCases.length][0];
     Object.assign(targets[0], { name: "A very long puppy name for responsive layout testing", collarColor: "A long descriptive collar color", goHomeDate: "Timing to be confirmed with the family after the next update" });
@@ -143,6 +145,7 @@ try {
     for (const width of [320, 390, 768, 1440]) {
       const page = await pageFor(width);
       await page.route(`${base}/src/data/puppies.json*`, (route) => route.fulfill({ contentType: "application/javascript", body: `export default ${JSON.stringify(fixture)};` }));
+      await page.route(`${base}/src/data/litters.json*`, (route) => route.fulfill({ contentType: "application/javascript", body: `export default ${JSON.stringify(fixtureLitters)};` }));
       await page.goto(`${base}/litters/beatrix-enzo-planned-2026`);
       await page.locator(".litter-puppy-profile").first().waitFor();
       await page.evaluate(() => document.fonts.ready);
@@ -171,7 +174,7 @@ try {
   for (const litter of litters.filter((item) => item.status !== "Current Litter")) {
     await page.goto(`${base}/litters/${litter.slug}`);
     await page.locator("h1").waitFor();
-    const expectedArchivedCards = (litter.archivePuppyProfiles || litter.slug === "kylie-ranger-late-summer-2026") ? litter.puppySlugs.length : 0;
+    const expectedArchivedCards = litter.status === "Previous Litter" ? puppies.filter((puppy) => puppy.litterSlug === litter.slug).length : 0;
     assert.equal(await page.locator(".litter-puppy-profile").count(), expectedArchivedCards, "Archives with puppy profiles keep their cards");
   }
   assert.deepEqual(errors, [], "No runtime or React warnings");

@@ -85,10 +85,6 @@ const publicParents = readJson("src/data/parents.json").filter(isPublicRecord);
 const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
-const beatrixPuppies = puppies.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026");
-const beatrixAvailableCount = beatrixPuppies.filter((puppy) => normalize(puppy.status) === "available").length;
-const beatrixFullyReserved = beatrixPuppies.length > 0 && beatrixPuppies.every((puppy) => ["reserved", "matched"].includes(normalize(puppy.status)));
-const beatrixAvailabilityLabel = beatrixFullyReserved ? "Reserved" : `${beatrixAvailableCount} available`;
 const litterCardLabel = (slug) => litterCardAvailability(litterBySlug.get(slug), puppies.filter((puppy) => puppy.litterSlug === slug)).label;
 const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
 const openGuardianNames = puppies
@@ -148,9 +144,9 @@ const routeExpectations = [
   },
   {
     route: "/puppies/current-litters?breed=goldendoodle-puppies",
-    expectedLitterOrder: ["Beatrix + Enzo", "Birdie + Waylon", "Daisy + Waylon", "Whitley + Waylon"],
-    requiredText: ["current litters", "beatrix + enzo", "birdie + waylon", "daisy + waylon", "whitley + waylon", "december 12-14, 2026", "december 17-19, 2026", "december 30, 2026 - january 1, 2027", litterCardLabel("beatrix-enzo-planned-2026"), litterCardLabel("birdie-waylon-final-2026"), "september 28, 2026", "november 19-21, 2026"],
-    forbiddenText: ["winnie + wyatt", "lulu + bram", "evie + waylon"],
+    expectedLitterOrder: ["Birdie + Waylon", "Daisy + Waylon", "Whitley + Waylon"],
+    requiredText: ["current litters", "birdie + waylon", "daisy + waylon", "whitley + waylon", "december 12-14, 2026", "december 17-19, 2026", "december 30, 2026 - january 1, 2027", litterCardLabel("birdie-waylon-final-2026")],
+    forbiddenText: ["winnie + wyatt", "lulu + bram", "evie + waylon", "beatrix + enzo"],
     requiredSelectors: [".litter-browser", ".litter-browser-card"],
     litterBrowserCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" },
     finderNavCheck: { mode: "current", selectedBreed: "goldendoodle-puppies" }
@@ -247,11 +243,11 @@ const routeExpectations = [
   },
   {
     route: "/litters/beatrix-enzo-planned-2026",
-    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", beatrixAvailabilityLabel, "$2,800", "25-35 lbs", "birth date", "september 28, 2026", "november 19-21, 2026", "go-home", ...(beatrixAvailableCount ? ["ask about a beatrix puppy"] : []), "about this litter", "week 5", "weekly photo gallery"],
-    forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026", ...(!beatrixAvailableCount ? ["ask about a beatrix puppy"] : [])],
-    requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ...(beatrixAvailableCount ? [".beatrix-inquiry-section form"] : []), ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
-    forbiddenSelectors: beatrixAvailableCount ? [] : [".beatrix-inquiry-section form"],
-    litterDetailCheck: { expectedStatus: beatrixAvailabilityLabel, expectedPuppies: 9 }
+    requiredText: ["beatrix + enzo", "f1b-style mini goldendoodles", "previous litter", "25-35 lbs", "birth date", "september 28, 2026", "about this litter", "week 5", "photo gallery"],
+    forbiddenText: ["at a glance", "confirmed pregnant", "estimated birth", "september 29, 2026", "november 23-24, 2026", "ask about a beatrix puppy"],
+    requiredSelectors: [".litter-detail-hero", ".litter-pairing-card .litter-parent-portraits", ".litter-primary-facts", ".litter-about-disclosure", ".litter-primary-cta-section"],
+    forbiddenSelectors: [".beatrix-inquiry-section form"],
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 9, expectedGalleryImages: 9, archive: true, allowArchivedPuppies: true }
   },
   {
     route: "/litters/kylie-ranger-late-summer-2026",
@@ -304,13 +300,13 @@ const routeExpectations = [
     route: "/litters/georgia-waylon-may-2026",
     requiredText: ["georgia + waylon", "previous litter", "birth date"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
-    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0, archive: true, historyHref: "/georgia-waylon-may-2026" }
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 5, archive: true, allowArchivedPuppies: true, historyHref: "/georgia-waylon-may-2026" }
   },
   {
     route: "/litters/reece-wyatt-summer-2026",
     requiredText: ["reece + wyatt", "previous litter", "birth date"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure"],
-    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 0, archive: true, historyHref: "/reece-wyatt-summer-2026" }
+    litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 6, archive: true, allowArchivedPuppies: true, historyHref: "/reece-wyatt-summer-2026" }
   },
   ...litters
     .filter((litter) => litter.pastPuppyGallery?.images?.length)

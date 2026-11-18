@@ -120,13 +120,23 @@ try {
   await page.goto(`${baseUrl}/litters/beatrix-enzo-planned-2026`, { waitUntil: "networkidle" });
   const puppyRecords = JSON.parse(readFileSync(new URL("../src/data/puppies.json", import.meta.url), "utf8"));
   const beatrixPuppies = puppyRecords.filter((puppy) => puppy.litterSlug === "beatrix-enzo-planned-2026" && puppy.visibility === "public");
-  assert(beatrixPuppies.length > 0 && beatrixPuppies.every((puppy) => puppy.status === "Reserved"), "This test expects the current Beatrix litter to be fully reserved.");
+  assert(beatrixPuppies.length > 0 && beatrixPuppies.every((puppy) => puppy.status === "Reserved"), "This test expects the Beatrix litter to be fully reserved.");
   for (const puppy of beatrixPuppies) {
     assert((await page.getByRole("link", { name: `Ask about ${puppy.name}`, exact: true }).count()) === 0, `Reserved ${puppy.name} must not have an available-puppy inquiry CTA.`);
   }
   assert((await page.locator("#beatrix-inquiry").count()) === 0, "A fully reserved Beatrix litter must not show an available-puppy inquiry form.");
 
-  // A browser-only fixture exercises selection and history without changing public data.
+  assert((await page.locator(".litter-detail-status").textContent()) === "Previous litter", "Archived Beatrix must say Previous litter.");
+  assert((await page.locator(".litter-primary-cta-section a.button.primary").getAttribute("href")) === "/apply", "Archived Beatrix must use the general application.");
+
+  // Browser-only fixtures exercise the open-litter flow without changing public data.
+  const litterFixture = JSON.parse(readFileSync(new URL("../src/data/litters.json", import.meta.url), "utf8"));
+  litterFixture.find((litter) => litter.slug === "beatrix-enzo-planned-2026").status = "Current Litter";
+  await page.route("**/src/data/litters.json*", (route) => route.fulfill({
+    status: 200,
+    contentType: "application/javascript",
+    body: `export default ${JSON.stringify(litterFixture)};`
+  }));
   const fixturePuppy = { ...beatrixPuppies[0], slug: "journey-fixture", name: "Journey Fixture", status: "Available" };
   await page.route("**/src/data/puppies.json*", (route) => route.fulfill({
     status: 200,

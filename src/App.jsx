@@ -2399,12 +2399,12 @@ function puppyNameForGalleryImage(image = "", puppies = []) {
   return matchedPuppy?.name || "";
 }
 
-function LitterImageGallery({ images: gallery = [], puppies = [], label = "Litter photo" }) {
+function LitterImageGallery({ images: gallery = [], puppies = [], photoNames, label = "Litter photo" }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const openerRef = useRef(null);
   const items = useMemo(
     () => gallery.map((image, index) => {
-      const puppyName = puppyNameForGalleryImage(image, puppies);
+      const puppyName = photoNames?.[index] || puppyNameForGalleryImage(image, puppies);
       return {
         src: image,
         alt: puppyName ? `${puppyName} - ${label}` : `${label} ${index + 1}`,
@@ -2412,7 +2412,7 @@ function LitterImageGallery({ images: gallery = [], puppies = [], label = "Litte
         puppyName
       };
     }),
-    [gallery, label, puppies]
+    [gallery, label, puppies, photoNames]
   );
 
   const closeLightbox = ({ restoreFocus = true } = {}) => {
@@ -4094,8 +4094,8 @@ function LitterThemeCard({ theme }) {
 }
 
 function LitterPage({ litter }) {
-  const isBeatrixOffer = litter.slug === "beatrix-enzo-planned-2026";
-  const isArchived = /previous/i.test(litter.status || "");
+  const isArchived = isPreviousLitter(litter);
+  const isBeatrixOffer = !isArchived && litter.slug === "beatrix-enzo-planned-2026";
   const puppies = puppyData.filter((puppy) => puppy.litterSlug === litter.slug);
   const mama = parentProfiles.find((parent) => parent.slug === litter.mamaSlug);
   const stud = parentProfiles.find((parent) => parent.slug === litter.studSlug);
@@ -4318,7 +4318,7 @@ function LitterPage({ litter }) {
       )}
       {!isPlannedLitter(litter) && (
         <>
-          {(!isArchived || litter.archivePuppyProfiles || litter.slug === "kylie-ranger-late-summer-2026") && <section className="card-list litter-puppy-list" id={isBeatrixOffer ? "beatrix-puppies" : undefined}>
+          {(!isArchived || puppies.length > 0) && <section className="card-list litter-puppy-list" id={isBeatrixOffer ? "beatrix-puppies" : undefined}>
             <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy={isArchived ? "Meet the puppies from this litter and explore their photos." : "Weekly photos and compact puppy details are updated here as the litter grows."} />
             {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
           </section>}
@@ -5560,8 +5560,23 @@ function PreviousLitterDetailPage({ litter, href }) {
   const archiveHref = archiveHrefForPreviousLitter(href);
   const puppyPhotos = litter.puppyPhotos || [];
   const weeklyPuppyPhotos = litter.weeklyPuppyPhotos || [];
-  const hasPuppyPhotos = puppyPhotos.length > 0;
-  const hasWeeklyPuppyPhotos = weeklyPuppyPhotos.some((group) => group.photos?.length);
+  const legacySlug = href === "/honey-bram" ? "honey-bram-spring-2026" : href.slice(1);
+  const linkedLitter = publicLitterProfiles.find((item) => isPreviousLitter(item) &&
+    (item.slug === legacySlug || item.previousLitterHref === href));
+  const profiles = publicPuppyProfiles.filter((puppy) =>
+    (linkedLitter && puppy.litterSlug === linkedLitter.slug) ||
+    publicPuppyLitterHref(puppy, publicLitterProfiles, previousLitterDetails) === href);
+  const historicalPhotos = weeklyPuppyPhotos.flatMap((week) => week.photos || []);
+  const roster = new Map();
+  for (const name of [
+    ...(litter.puppies || []),
+    ...puppyPhotos.map((photo) => photo.name),
+    ...historicalPhotos.map((photo) => photo.name),
+    ...profiles.map((puppy) => puppy.name)
+  ]) {
+    if (name && !roster.has(normalizedStatus(name))) roster.set(normalizedStatus(name), name);
+  }
+  const hasWeeklyPuppyPhotos = historicalPhotos.length > 0;
 
   return (
     <Layout>
@@ -5597,60 +5612,42 @@ function PreviousLitterDetailPage({ litter, href }) {
         </article>
       </section>
       <section className="content-section previous-puppy-section">
-        <SectionHeader
-          eyebrow="Puppies"
-          title="Puppies from this litter"
-          copy={
-            hasWeeklyPuppyPhotos
-              ? "These galleries show the puppies from this previous litter as they grew."
-              : hasPuppyPhotos
-                ? "These photos show the puppies from this previous litter so families can see the look and style this pairing produced."
-              : "These names show the puppy theme from this pairing so families can understand the look and style of previous Red Ranch Dogs litters."
-          }
-        />
-        {hasWeeklyPuppyPhotos ? (
-          <div className="previous-weekly-photo-list">
-            {weeklyPuppyPhotos.map((group) => (
-              <article className="previous-weekly-photo-group group-panel" key={group.week}>
-                <div className="previous-weekly-photo-heading">
-                  <p className="eyebrow">{group.week}</p>
-                  <h3>{group.week} gallery</h3>
-                </div>
-                <div className="previous-puppy-photo-grid previous-weekly-photo-grid">
-                  {(group.photos || []).map((puppy, index) => (
-                    <article className="previous-puppy-photo-card previous-weekly-photo-card" key={`${group.week}-${puppy.name}-${puppy.image}-${index}`}>
-                      <figure>
-                        <img src={puppy.image} alt={`${puppy.name} from ${litter.name} ${group.week}`} loading="lazy" />
-                        <figcaption>{puppy.name}</figcaption>
-                      </figure>
-                    </article>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : hasPuppyPhotos ? (
+        <SectionHeader eyebrow="Puppies" title="Puppies from this litter" />
+        {roster.size ? (
           <div className="previous-puppy-photo-grid">
-            {puppyPhotos.map((puppy) => (
-              <article className="previous-puppy-photo-card" key={puppy.name}>
-                <img src={puppy.image} alt={`${puppy.name} from ${litter.name}`} loading="lazy" />
-                <div>
-                  <h3>{puppy.name}</h3>
-                  {puppy.note && <p>{puppy.note}</p>}
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : litter.puppies.length > 0 ? (
-          <div className="previous-puppy-grid">
-            {litter.puppies.map((name) => (
-              <article className="previous-puppy-chip" key={name}>
-                <h3>{name}</h3>
-              </article>
-            ))}
+            {[...roster].map(([key, name]) => {
+              const profile = profiles.find((puppy) => normalizedStatus(puppy.name) === key);
+              const archivedPhoto = puppyPhotos.find((photo) => normalizedStatus(photo.name) === key);
+              const photo = archivedPhoto?.image || profile?.mainPhoto || profile?.image ||
+                historicalPhotos.find((item) => normalizedStatus(item.name) === key)?.image;
+
+              return (
+                <article className="previous-puppy-photo-card" key={key}>
+                  {photo && <img src={photo} alt={`${name} from ${litter.name}`} loading="lazy" />}
+                  <div>
+                    <h3>{name}</h3>
+                    {profile && <p>{[profile.gender || profile.sex, profile.breed, profile.collarColor && `${profile.collarColor} collar`].filter(Boolean).join(" · ")}</p>}
+                    {archivedPhoto?.note && <p>{archivedPhoto.note}</p>}
+                    {profile?.slug && <Link href={`/puppies/${profile.slug}`} className="inline-link">View {name}</Link>}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         ) : (
           <p className="small-note">Individual puppy names are not shown for this past litter.</p>
+        )}
+        {hasWeeklyPuppyPhotos && (
+          <div className="previous-weekly-photo-list">
+            {weeklyPuppyPhotos.filter((group) => group.photos?.length).map((group) => (
+              <article className="previous-weekly-photo-group group-panel" key={group.week}>
+                <div className="previous-weekly-photo-heading">
+                  <h3>{group.week} gallery</h3>
+                </div>
+                <LitterImageGallery images={group.photos.map((photo) => photo.image)} photoNames={group.photos.map((photo) => photo.name)} label={`${litter.name} ${group.week} photo`} />
+              </article>
+            ))}
+          </div>
         )}
       </section>
       <CTASection

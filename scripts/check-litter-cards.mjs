@@ -109,10 +109,10 @@ try {
       await page.locator(".litter-browser-card").first().screenshot({ path: `${process.env.LITTER_CARDS_SCREENSHOT_DIR}/reserved-${width}.png` });
       await page.locator(".litter-browser-card.is-available").first().screenshot({ path: `${process.env.LITTER_CARDS_SCREENSHOT_DIR}/available-${width}.png` });
     }
-    const reservedLink = page.getByRole("link", { name: "View litter updates", exact: true }).first();
-    assert.equal(await reservedLink.getAttribute("href"), "/litters/beatrix-enzo-planned-2026");
-    await reservedLink.click();
-    await page.waitForURL("**/litters/beatrix-enzo-planned-2026");
+    const currentLink = page.locator(".litter-browser-card").filter({ has: page.getByRole("heading", { name: "Birdie + Waylon", exact: true }) }).getByRole("link", { name: "View litter", exact: true });
+    assert.equal(await currentLink.getAttribute("href"), "/litters/birdie-waylon-final-2026");
+    await currentLink.click();
+    await page.waitForURL("**/litters/birdie-waylon-final-2026");
     await page.goBack();
     await page.getByRole("tab", { name: "Bernedoodles", exact: true }).click();
     await page.getByRole("tab", { name: "Bernedoodles", exact: true }).click();

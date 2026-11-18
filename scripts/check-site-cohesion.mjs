@@ -121,7 +121,7 @@ try {
       await portrait.locator("img").evaluate((el) => Promise.race([el.decode(), new Promise((_, reject) => window.setTimeout(() => reject(new Error("Timed out decoding parent portrait")), 15000))]));
     }
   }
-  const movedLitters = ["lulu-bram-fall-2026", "evie-waylon-october-2026"];
+  const movedLitters = ["lulu-bram-fall-2026", "evie-waylon-october-2026", "beatrix-enzo-planned-2026"];
   for (const route of ["/puppies/previous-litters", "/previous-litters-goldendoodles"]) {
     await visit(page, route);
     if (route === "/puppies/previous-litters") {
@@ -146,7 +146,30 @@ try {
   }
   const archiveHrefs = [...new Set(puppies.filter((p) => !litters.some((l) => l.slug === p.litterSlug)).map((p) => `/${p.litterSlug}`).filter((href) => archives.some((a) => a.href === href)))];
   assert.equal(archiveHrefs.length, 5, "Regression covers all five repaired archives");
-  for (const href of archiveHrefs) await visit(page, href);
+  for (const archive of archives) {
+    await visit(page, archive.href);
+    const rawNames = [...(archive.puppies || []), ...(archive.puppyPhotos || []).map(({ name }) => name),
+      ...(archive.weeklyPuppyPhotos || []).flatMap(({ photos }) => photos.map(({ name }) => name))];
+    const archiveCards = page.locator(".previous-puppy-section .previous-puppy-photo-card");
+    assert.equal(await archiveCards.count(), new Set(rawNames.map((name) => name.trim().toLowerCase())).size, `${archive.href}: full archive roster`);
+    for (const name of new Set(rawNames)) {
+      assert.equal(await archiveCards.getByRole("heading", { name, exact: true }).count(), 1);
+    }
+    const expectedWeeklyPhotos = (archive.weeklyPuppyPhotos || []).reduce((total, group) => total + group.photos.length, 0);
+    assert.equal(await page.locator(".previous-weekly-photo-list .gallery-photo-button").count(), expectedWeeklyPhotos);
+  }
+  await visit(page, "/whitley-waylon-april-2026");
+  const minnow = page.locator(".previous-puppy-photo-card").getByRole("link", { name: "View Minnow", exact: true });
+  const minnowHref = await minnow.getAttribute("href");
+  await minnow.click();
+  await page.waitForURL(`**${minnowHref}`);
+  assert((await page.locator(".puppy-weekly-photo-group").count()) > 0, "Archived puppy links retain photo history");
+  await page.goBack();
+  const weeklyPhoto = page.locator(".previous-weekly-photo-list .gallery-photo-button").first();
+  await weeklyPhoto.click();
+  await page.getByRole("dialog").waitFor();
+  await page.keyboard.press("Escape");
+  await page.getByRole("dialog").waitFor({ state: "hidden" });
   await visit(page, "/parents/mamas");
   await page.getByRole("navigation", { name: "Parent dog categories" }).getByRole("link", { name: "Studs", exact: true }).click();
   await page.waitForURL("**/parents/studs");
