@@ -287,12 +287,15 @@ const routeExpectations = [
     forbiddenText: ["nancy drew", "reserve this puppy", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) !== "available" ? [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`] : []), ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
-  ...["birdie-laurie", "birdie-jo", "birdie-fredrich", "birdie-meg", "birdie-beth", "birdie-amy", "birdie-marmee"].map((slug) => ({
-    route: `/puppies/${slug}`,
-    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, "birdie + waylon", "available", "week 2", `reserve ${puppies.find((puppy) => puppy.slug === slug).name}`],
-    forbiddenText: ["availability to be confirmed", "reserve this puppy"],
-    requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
-  })),
+  ...puppies.filter((puppy) => puppy.litterSlug === "birdie-waylon-final-2026").map((puppy) => {
+    const available = normalize(puppy.status) === "available";
+    return {
+      route: `/puppies/${puppy.slug}`,
+      requiredText: [puppy.name, "birdie + waylon", puppy.status, "week 2", available ? `reserve ${puppy.name}` : "join waitlist"],
+      forbiddenText: ["availability to be confirmed", "reserve this puppy", ...(!available ? [`reserve ${puppy.name}`] : [])],
+      requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
+    };
+  }),
   ...["daisy-max", "daisy-cindy-lou", "daisy-martha-may", "daisy-donna-lou", "daisy-grinch", "daisy-betty-lou"].map((slug) => ({
     route: `/puppies/${slug}`,
     requiredText: [puppies.find((puppy) => puppy.slug === slug).name, "daisy + waylon", "available", "week 2", `reserve ${puppies.find((puppy) => puppy.slug === slug).name}`],
