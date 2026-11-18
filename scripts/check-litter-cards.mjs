@@ -146,6 +146,8 @@ try {
   if (server) {
     // Test alternate prices/statuses via a local-only response fixture. Never
     // change the source records or intercept a production response.
+    const litterFixture = JSON.parse(preimages[1]);
+    litterFixture.find((litter) => litter.slug === "evie-waylon-october-2026").status = "Current Litter";
     for (const scenario of ["range", "missing-price", "fully-reserved"]) {
       const fixture = JSON.parse(preimages[0]);
       if (scenario !== "fully-reserved") {
@@ -162,6 +164,9 @@ try {
         const page = await browser.newPage({ viewport: { width, height: 900 } });
         await page.route(`${base}/src/data/puppies.json*`, (route) => route.fulfill({
           contentType: "application/javascript", body: `export default ${JSON.stringify(fixture)};`
+        }));
+        await page.route(`${base}/src/data/litters.json*`, (route) => route.fulfill({
+          contentType: "application/javascript", body: `export default ${JSON.stringify(litterFixture)};`
         }));
         await page.goto(`${base}/puppies/current-litters?breed=goldendoodle-puppies`);
         const card = page.locator(".litter-browser-card").filter({ has: page.getByRole("heading", { name: "Evie + Waylon", exact: true }) });

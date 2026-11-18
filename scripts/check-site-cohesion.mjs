@@ -121,6 +121,17 @@ try {
       await portrait.locator("img").evaluate((el) => Promise.race([el.decode(), new Promise((_, reject) => window.setTimeout(() => reject(new Error("Timed out decoding parent portrait")), 15000))]));
     }
   }
+  const movedLitters = ["lulu-bram-fall-2026", "evie-waylon-october-2026"];
+  for (const route of ["/puppies/previous-litters", "/previous-litters-goldendoodles"]) {
+    await visit(page, route);
+    if (route === "/puppies/previous-litters") {
+      await page.getByRole("button", { name: "Goldendoodles", exact: true }).click();
+    }
+    for (const slug of movedLitters) {
+      const href = `/litters/${slug}`;
+      assert.equal(await page.locator(`.previous-litter-card a[href="${href}"]`).count(), 1, `${route}: one archive link to ${href}`);
+    }
+  }
   const archiveHrefs = [...new Set(puppies.filter((p) => !litters.some((l) => l.slug === p.litterSlug)).map((p) => `/${p.litterSlug}`).filter((href) => archives.some((a) => a.href === href)))];
   assert.equal(archiveHrefs.length, 5, "Regression covers all five repaired archives");
   for (const href of archiveHrefs) await visit(page, href);

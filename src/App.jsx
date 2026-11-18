@@ -4307,7 +4307,7 @@ function LitterPage({ litter }) {
       )}
       {!isPlannedLitter(litter) && (
         <>
-          {(!isArchived || litter.slug === "kylie-ranger-late-summer-2026") && <section className="card-list litter-puppy-list" id={isBeatrixOffer ? "beatrix-puppies" : undefined}>
+          {(!isArchived || litter.archivePuppyProfiles || litter.slug === "kylie-ranger-late-summer-2026") && <section className="card-list litter-puppy-list" id={isBeatrixOffer ? "beatrix-puppies" : undefined}>
             <SectionHeader eyebrow={currentWeek || "Puppies"} title="Puppies from this litter" copy={isArchived ? "Meet the puppies from this litter and explore their photos." : "Weekly photos and compact puppy details are updated here as the litter grows."} />
             {puppies.length ? puppies.map((puppy) => <PuppyCard puppy={puppy} variant="litter" key={puppy.slug || puppy.name} />) : <p className="small-note">Puppy profiles for this litter will appear here when they are ready to share.</p>}
           </section>}
@@ -5435,6 +5435,38 @@ function PreviousLitterBreedAccordionGroup({ archive, isOpen, litters, onToggle 
   );
 }
 
+function previousLitterCards(archive) {
+  const group = archive.title.replace("Previous Litters ", "");
+  const activeArchives = publicLitterProfiles
+    .filter((litter) => isPreviousLitter(litter) && litter.archivePuppyProfiles &&
+      litter.breedSlug === `${idSafe(group).replace(/s$/, "")}-puppies`)
+    .sort((first, second) => sortableLitterDate(second.birthDate) - sortableLitterDate(first.birthDate))
+    .map((litter) => {
+      const puppies = puppiesForLitter(litter);
+      return {
+        href: `/litters/${litter.slug}`,
+        litter: {
+          name: litter.name,
+          group,
+          breed: litter.breed,
+          parents: `${litter.mama} + ${litter.stud}`,
+          image: litter.parentPairingImage || litter.image,
+          facts: [["Born", litter.birthDate], ["Size", litter.expectedSize], ["Coat", litter.expectedCoatTraits]].filter(([, value]) => value),
+          parentPhotos: [litter.mamaSlug, litter.studSlug]
+            .map((slug) => publicParentProfiles.find((parent) => parent.slug === slug))
+            .filter(Boolean)
+            .map((parent) => ({ name: parent.name, image: parent.mainPhoto, href: publicParentProfileHref(parent, publicParentProfiles) })),
+          puppies: puppies.map((puppy) => puppy.name),
+          puppyPhotos: puppies.filter((puppy) => puppy.mainPhoto).map((puppy) => ({ name: puppy.name, image: puppy.mainPhoto }))
+        }
+      };
+    });
+  const historicalArchives = archive.litters
+    .map((href) => ({ href, litter: previousLitterDetails[href] }))
+    .filter(({ litter }) => Boolean(litter));
+  return [...activeArchives, ...historicalArchives];
+}
+
 function PreviousLittersPage() {
   const [openBreedSlug, setOpenBreedSlug] = useState("");
   const publicArchives = publicPreviousLitterArchivePaths
@@ -5455,9 +5487,7 @@ function PreviousLittersPage() {
       />
       <section className="previous-litter-breed-groups listing-content-section">
         {publicArchives.map((archive) => {
-          const litters = archive.litters
-            .map((href) => ({ href, litter: previousLitterDetails[href] }))
-            .filter(({ litter }) => Boolean(litter));
+          const litters = previousLitterCards(archive);
           const slug = idSafe(archive.title.replace("Previous Litters ", ""));
 
           return (
@@ -5483,9 +5513,7 @@ function PreviousLittersPage() {
 }
 
 function PreviousLitterArchivePage({ archive }) {
-  const litters = archive.litters
-    .map((href) => ({ href, litter: previousLitterDetails[href] }))
-    .filter(({ litter }) => Boolean(litter));
+  const litters = previousLitterCards(archive);
   const archiveBreed = archive.title.replace("Previous Litters ", "");
   const pairingBreed = archiveBreed.replace(/s$/, "");
 

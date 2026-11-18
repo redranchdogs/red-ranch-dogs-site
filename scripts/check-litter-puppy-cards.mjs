@@ -171,8 +171,8 @@ try {
   for (const litter of litters.filter((item) => item.status !== "Current Litter")) {
     await page.goto(`${base}/litters/${litter.slug}`);
     await page.locator("h1").waitFor();
-    const expectedArchivedCards = litter.slug === "kylie-ranger-late-summer-2026" ? litter.puppySlugs.length : 0;
-    assert.equal(await page.locator(".litter-puppy-profile").count(), expectedArchivedCards, "Archived Kylie puppy profiles remain accessible; other planned/archive pages stay unchanged");
+    const expectedArchivedCards = (litter.archivePuppyProfiles || litter.slug === "kylie-ranger-late-summer-2026") ? litter.puppySlugs.length : 0;
+    assert.equal(await page.locator(".litter-puppy-profile").count(), expectedArchivedCards, "Archives with puppy profiles keep their cards");
   }
   assert.deepEqual(errors, [], "No runtime or React warnings");
   files.forEach((file, index) => assert(fs.readFileSync(file).equals(before[index]), "Source data unchanged"));
