@@ -13514,6 +13514,13 @@ summary {
   object-position: 50% 50%;
 }
 
+/* Approved Option C JPEGs have intentionally different crop ratios. */
+.image-gallery img[src^="/images/puppies/2026-11-18-option-c/"],
+.litter-gallery-section .litter-image-gallery img[src^="/images/puppies/2026-11-18-option-c/"] {
+  object-fit: contain;
+  object-position: center;
+}
+
 /* Puppy profiles: an image-led, quieter detail card. Listing cards are unchanged. */
 .puppy-profile-card {
   display: grid;

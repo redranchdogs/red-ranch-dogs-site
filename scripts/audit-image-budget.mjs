@@ -8,6 +8,9 @@ const maxReferencedImageBytes = 400 * 1024;
 // Preserve earlier media while adding the Lulu, Evie, Birdie, and Daisy portraits.
 // The per-image limit remains 400 KiB; the total budget increases by 1 MiB.
 const maxTotalReferencedImageBytes = 98 * 1024 * 1024;
+const optionCPhotoPrefix = "/images/puppies/2026-11-18-option-c/";
+const maxOptionCPhotoBytes = 600 * 1024;
+const maxOptionCBatchBytes = 18 * 1024 * 1024;
 const warningImageBytes = 250 * 1024;
 const referencedImages = new Set();
 
@@ -96,6 +99,7 @@ const missing = [];
 const tooLarge = [];
 const warnings = [];
 let totalBytes = 0;
+let optionCBytes = 0;
 
 for (const imagePath of [...referencedImages].sort()) {
   const localPath = path.join(publicRoot, imagePath.replace(/^\//, ""));
@@ -105,8 +109,10 @@ for (const imagePath of [...referencedImages].sort()) {
   }
 
   const bytes = fs.statSync(localPath).size;
-  totalBytes += bytes;
-  if (bytes > maxReferencedImageBytes) {
+  const isOptionCPhoto = imagePath.startsWith(optionCPhotoPrefix);
+  if (isOptionCPhoto) optionCBytes += bytes;
+  else totalBytes += bytes;
+  if (bytes > (isOptionCPhoto ? maxOptionCPhotoBytes : maxReferencedImageBytes)) {
     tooLarge.push(`${imagePath} (${formatBytes(bytes)})`);
   } else if (bytes > warningImageBytes) {
     warnings.push(`${imagePath} (${formatBytes(bytes)})`);
@@ -121,7 +127,7 @@ if (warnings.length) {
 if (missing.length || tooLarge.length) {
   const sections = [];
   if (missing.length) sections.push(`Missing referenced images:\n${missing.map((item) => `- ${item}`).join("\n")}`);
-  if (tooLarge.length) sections.push(`Referenced images over ${formatBytes(maxReferencedImageBytes)}:\n${tooLarge.map((item) => `- ${item}`).join("\n")}`);
+  if (tooLarge.length) sections.push(`Referenced images over their per-file limit:\n${tooLarge.map((item) => `- ${item}`).join("\n")}`);
   console.error(sections.join("\n\n"));
   process.exit(1);
 }
@@ -133,4 +139,9 @@ if (totalBytes > maxTotalReferencedImageBytes) {
   process.exit(1);
 }
 
-console.log(`Referenced image budget passed: ${referencedImages.size} images, ${formatBytes(totalBytes)} total referenced image weight.`);
+if (optionCBytes > maxOptionCBatchBytes) {
+  console.error(`Option C batch is ${formatBytes(optionCBytes)}, over its ${formatBytes(maxOptionCBatchBytes)} limit.`);
+  process.exit(1);
+}
+
+console.log(`Referenced image budget passed: ${referencedImages.size} images, ${formatBytes(totalBytes + optionCBytes)} total, including ${formatBytes(optionCBytes)} in the approved Option C batch.`);
