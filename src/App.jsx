@@ -2047,6 +2047,7 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
                   >
                     {`Reserve ${puppy.name}`}
                   </Link>
+                  {puppyVideoUrl(puppy) && <a href={puppyVideoUrl(puppy)} className="button small secondary puppy-video-link" target="_blank" rel="noreferrer">Watch video</a>}
                 </div>
               </article>
             );
