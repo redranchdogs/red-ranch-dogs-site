@@ -81,6 +81,8 @@ async function launchBrowser() {
 const puppies = readJson("src/data/puppies.json").filter(isPublicRecord);
 const birdiePuppies = puppies.filter((puppy) => puppy.litterSlug === "birdie-waylon-final-2026");
 const birdieAvailableLabel = `${birdiePuppies.filter((puppy) => normalize(puppy.status) === "available").length} available`;
+const daisyPuppies = puppies.filter((puppy) => puppy.litterSlug === "daisy-waylon-october-2026");
+const daisyAvailableLabel = `${daisyPuppies.filter((puppy) => normalize(puppy.status) === "available").length} available`;
 const litters = readJson("src/data/litters.json").filter(isPublicRecord);
 const publicParents = readJson("src/data/parents.json").filter(isPublicRecord);
 const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
@@ -225,10 +227,10 @@ const routeExpectations = [
   },
   {
     route: "/litters/daisy-waylon-october-2026",
-    requiredText: ["daisy + waylon", "6 available", "week 3", "birth date", "october 24, 2026", "december 17-19, 2026", "$3,200", "~25 lbs", "max", "cindy lou", "martha may", "donna lou", "betty lou", "grinch"],
+    requiredText: ["daisy + waylon", daisyAvailableLabel, "week 3", "birth date", "october 24, 2026", "december 17-19, 2026", "$3,200", "~25 lbs", "max", "cindy lou", "martha may", "donna lou", "betty lou", "grinch"],
     forbiddenText: ["to be announced", "available now", "pregnancy confirmed", "estimated birth", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-image-gallery"],
-    litterDetailCheck: { expectedStatus: "6 available", expectedPuppies: 6, expectedDescriptor: "Goldendoodles", expectedSize: "~25 lbs", expectedGalleryImages: 17, testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
+    litterDetailCheck: { expectedStatus: daisyAvailableLabel, expectedPuppies: daisyPuppies.length, expectedDescriptor: "Goldendoodles", expectedSize: "~25 lbs", expectedGalleryImages: 17, testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
   },
   {
     route: "/litters/birdie-waylon-final-2026",
@@ -291,12 +293,15 @@ const routeExpectations = [
       requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
     };
   }),
-  ...["daisy-max", "daisy-cindy-lou", "daisy-martha-may", "daisy-donna-lou", "daisy-grinch", "daisy-betty-lou"].map((slug) => ({
-    route: `/puppies/${slug}`,
-    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, "daisy + waylon", "available", "week 2", `reserve ${puppies.find((puppy) => puppy.slug === slug).name}`],
-    forbiddenText: ["availability to be confirmed", "reserve this puppy"],
-    requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
-  })),
+  ...daisyPuppies.map((puppy) => {
+    const available = normalize(puppy.status) === "available";
+    return {
+      route: `/puppies/${puppy.slug}`,
+      requiredText: [puppy.name, "daisy + waylon", puppy.status, "week 2", available ? `reserve ${puppy.name}` : "join waitlist"],
+      forbiddenText: ["availability to be confirmed", "reserve this puppy", ...(!available ? [`reserve ${puppy.name}`] : [])],
+      requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
+    };
+  }),
   {
     route: "/litters/georgia-waylon-may-2026",
     requiredText: ["georgia + waylon", "previous litter", "birth date"],
