@@ -76,6 +76,75 @@ export const guideArticles = [
       { label: "AVSAB: Puppy Socialization Position Statement", href: "https://avsab.org/wp-content/uploads/2019/01/Puppy-Socialization-Position-Statement-FINAL.pdf" },
       { label: "AVSAB: Humane Training Position Statements", href: "https://avsab.org/resources/position-statements/" }
     ]
+  },
+  {
+    slug: "what-to-ask-on-a-puppy-video-call",
+    category: "Choosing Your Puppy",
+    title: "What to ask on a puppy video call",
+    subtitle: "A few questions to keep beside your phone",
+    description: "See a puppy in a familiar setting, ask about everyday behavior and health records, and plan your follow-up with the breeder.",
+    intro: "A cute picture starts the conversation. On a video call, you get to see an ordinary moment and talk about how that puppy might fit into your home. Keep a little space in your notes for what you saw and any questions you want to come back to.",
+    image: "/images/home/red-ranch-dogs-home-lifestyle-puppies.jpg",
+    imageAlt: "Four curly-coated puppies held side by side at Red Ranch Dogs",
+    readTime: "3 min read",
+    sections: [
+      {
+        id: "watch-an-ordinary-moment",
+        title: "Can I watch for a minute?",
+        paragraphs: [
+          "If the puppy is awake, ask the breeder to set the phone low so you can see the floor where the puppy usually plays. A familiar person or a favorite toy is plenty. Give the puppy a minute to sniff, play or settle. There’s no need to pose the puppy or make a sudden noise to see what happens.",
+          "If you catch a nap, let the puppy sleep. Ask for a short clip later. Age, a recent meal, a busy morning or an unfamiliar room can all shape what you see. A few minutes on camera can’t tell you how big the puppy will grow, what their adult temperament will be or whether they’re healthy."
+        ]
+      },
+      {
+        id: "ask-about-daily-life",
+        title: "What’s a normal day like for this puppy?",
+        paragraphs: [
+          "A puppy curled up beside someone might have just spent twenty minutes playing. The person who was there can fill you in. These are the questions I’d keep handy."
+        ],
+        items: [
+          "“What does this puppy do after play winds down?”",
+          "“How do they respond to everyday handling?”",
+          "“What does a normal day here look like?”",
+          "“What have you noticed several times, not just today?”"
+        ]
+      },
+      {
+        id: "talk-about-your-home",
+        title: "Tell the breeder about a Tuesday at your house",
+        paragraphs: [
+          "Mention when people leave for work, when the kids come in, whether another pet lives there, and where the puppy could settle for a nap. A detail like “our older dog likes a quiet afternoon” gives the breeder something concrete to ask you about.",
+          "If it’s convenient, ask to see a parent on the call or in a recent photo or video. You might ask, “How big are the parents now, and what size do you estimate for this puppy?” Ask which traits the breeder has observed in these dogs and which are still estimates for the pairing."
+        ],
+        links: [{ label: "Meet our parent dogs", href: "/parents" }]
+      },
+      {
+        id: "ask-for-the-records",
+        title: "Which records can I review?",
+        paragraphs: [
+          "Ask, “What health records come home with us, and which tests were done on the parents?” For the puppy, ask for the exam record and the dates of vaccinations and deworming. For each parent, ask to see the screening results and which dog each report belongs to.",
+          "Bring the puppy’s records to your first veterinary visit. Your veterinarian can use that history and the disease risks where you live to help you choose early outings and ways to socialize your puppy. A video call gives you a chance to ask questions. Health records and a veterinary exam help answer questions the camera can’t."
+        ]
+      },
+      {
+        id: "before-you-hang-up",
+        title: "What do we need to follow up on?",
+        paragraphs: [
+          "Before you hang up, read back the things you’re waiting on. Agree on who will send the records and written terms, and when you’ll talk again. If something is still on your mind, ask for the detail or clip that would help.",
+          "If you’re discussing pickup, ask which dates and transport options are available. Write down the food the puppy eats, when they last go outside in the evening and what usually helps them settle. Those little details come in handy on the first night home."
+        ],
+        links: [
+          { label: "Review pickup and delivery", href: "/process/pickup-and-delivery" },
+          { label: "Use the new-puppy checklist", href: "/puppy-guide/new-puppy-checklist" },
+          { label: "Ask Red Ranch a question", href: "/contact" }
+        ]
+      }
+    ],
+    takeaway: "When you look back at your notes, you should be able to picture one ordinary day with this puppy and know who to ask about anything that’s still unclear.",
+    sources: [
+      { label: "American Veterinary Medical Association · Selecting a pet dog", href: "https://www.avma.org/resources/pet-owners/petcare/selecting-pet-dog" },
+      { label: "American Kennel Club · Tips for Finding and Working With a Responsible Breeder", href: "https://www.akc.org/expert-advice/lifestyle/9-tips-finding-working-responsible-breeder/" }
+    ]
   }
 ];
 export const articlePath = (article) => `${guidePath}/${article.slug}`;

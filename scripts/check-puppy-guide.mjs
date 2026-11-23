@@ -5,7 +5,15 @@ import { guidePath, guideArticles, articlePath } from "../src/data/puppyGuide.js
 const sitemap = fs.readFileSync("public/sitemap.xml", "utf8");
 const app = fs.readFileSync("src/App.jsx", "utf8");
 const records = ["puppies", "litters", "parents", "previousLitters"];
-assert.equal(guideArticles.length, 3, "The initial guide has three complete articles");
+const requiredSlugs = [
+  "goldendoodle-cavapoo-or-bernedoodle",
+  "micro-and-mini-doodle-size-estimates",
+  "new-puppy-checklist",
+  "what-to-ask-on-a-puppy-video-call"
+];
+for (const slug of requiredSlugs) {
+  assert.ok(guideArticles.some((article) => article.slug === slug), `Published guide retained: ${slug}`);
+}
 assert.equal(new Set(guideArticles.map((article) => article.slug)).size, guideArticles.length, "Unique article routes");
 for (const route of [guidePath, ...guideArticles.map(articlePath)]) {
   assert.ok(sitemap.includes(`https://www.redranchdogs.com${route}</loc>`), `${route} is in sitemap`);
@@ -36,4 +44,4 @@ assert.ok(nav.includes('label: "Resources"'));
 assert.ok(!nav.includes('label: "Learn"'));
 for (const route of [guidePath, "/guardian-program", "/guardian-program/application", "/process/faq", "/contact", "/puppies/available", "/puppies/upcoming-litters"]) assert.ok(nav.includes(`href: "${route}"`), `Navigation retains ${route}`);
 for (const name of records) assert.ok(fs.existsSync(`src/data/${name}.json`));
-console.log("Puppy Guide: 4 static routes, full article HTML, sources, photos, schema, internal links and Resources navigation passed.");
+console.log(`Puppy Guide: ${guideArticles.length + 1} static routes, full article HTML, sources, photos, schema, internal links and Resources navigation passed.`);
