@@ -7,7 +7,7 @@ import PuppyStatusBar from "./PuppyStatusBar.jsx";
 export default function PuppyListingCard({
   puppy, breed, gender, photo, goHome, weight, price,
   variant = "litter", primaryHref, primaryLabel, inquiryHref, videoHref, videoLabel,
-  litterName, litterRoute, birthDate, puppyNote, availabilityNote, Link
+  litterName, litterRoute, profileHref, birthDate, puppyNote, availabilityNote, Link
 }) {
   const { tone } = litterPuppyStatus(puppy.status);
   const showLitterFacts = variant !== "litter";
@@ -23,7 +23,7 @@ export default function PuppyListingCard({
       <div className="litter-puppy-body">
         <header>
           <div className="litter-puppy-title-row">
-            <h2>{puppy.name}</h2>
+            <h2>{profileHref ? <Link href={profileHref}>{puppy.name}</Link> : puppy.name}</h2>
             {price && <p className="litter-puppy-price"><span className="sr-only">Price: </span>{price}</p>}
           </div>
           <p className="litter-puppy-breed">{breed}</p>
@@ -48,7 +48,7 @@ export default function PuppyListingCard({
           {inquiryHref && <Link href={inquiryHref} className="litter-puppy-inquiry">Ask about {puppy.name}<ArrowRight size={18} aria-hidden="true" /></Link>}
           {(litterRoute || videoHref) && <div className="puppy-listing-secondary">
             {litterRoute && <Link href={litterRoute} className="puppy-listing-litter-link">View Litter<ArrowRight size={18} aria-hidden="true" /></Link>}
-            {videoHref && <a href={videoHref} className="puppy-video-link" target="_blank" rel="noreferrer"><CirclePlay size={19} aria-hidden="true" />{videoLabel}</a>}
+            {videoHref && <a href={videoHref} className="puppy-video-link" target="_blank" rel="noreferrer"><CirclePlay size={19} aria-hidden="true" />{videoLabel}{profileHref && <span className="sr-only"> of {puppy.name}</span>}</a>}
           </div>}
         </div>
       </div>

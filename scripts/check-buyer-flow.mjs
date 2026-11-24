@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { listsAvailablePuppies } from "../src/litterCardAvailability.js";
 
 const root = process.cwd();
 const blockers = [];
@@ -76,6 +77,7 @@ const availablePuppies = publicPuppies.filter((puppy) => normalize(puppy.status)
 const publicLitters = litters.filter(isPublicRecord);
 const publicLitterBySlug = new Map(publicLitters.map((litter) => [litter.slug, litter]));
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => publicLitterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
+const listedPuppies = availablePuppies.filter((puppy) => listsAvailablePuppies(publicLitterBySlug.get(puppy.litterSlug)));
 const unsortedCurrentLitters = publicLitters.filter((litter) => normalize(litter.status).includes("current"));
 const currentLitters = publicLitters
   .filter((litter) => normalize(litter.status).includes("current"))
@@ -197,16 +199,16 @@ if (availablePuppies.some((puppy) => /\b(waitlist|pending|matching|pick first)\b
   blockers.push("Available puppies must not carry waitlist or pending language in availabilityNote.");
 }
 
-if (featuredAvailablePuppies.length === 0 && !/Explore our upcoming litters|No (public )?puppies are available right now/.test(app)) {
-  blockers.push("Available Puppies needs the zero-availability empty state when no featured puppies are Available.");
+if (listedPuppies.length === 0 && !/Explore our upcoming litters|No (public )?puppies are available right now/.test(app)) {
+  blockers.push("Available Puppies needs the empty state when no puppies are available to list.");
 }
 
-if (featuredAvailablePuppies.length > 0 && !app.includes("These puppies are looking for their families now")) {
-  blockers.push("Available Puppies copy should use the new featured-litter front-window language.");
+if (listedPuppies.length > 0 && !app.includes("These puppies are looking for their families now")) {
+  blockers.push("Available Puppies should describe the puppies currently listed.");
 }
 
-if (!app.includes("featuredAvailablePuppies()")) {
-  blockers.push("Available Puppies page should use featuredAvailable litters as the merchandising filter.");
+if (!/function AvailablePuppiesPage\(\)[\s\S]*?\}\] : listedAvailablePuppies\(\);/.test(app)) {
+  blockers.push("Available Puppies should list available public profiles from litters approved for display.");
 }
 
 if (featuredAvailablePuppies.length > 0 && !app.includes("<h2>Available puppies</h2>")) {

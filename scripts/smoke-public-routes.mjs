@@ -1,4 +1,4 @@
-import { litterCardAvailability } from "../src/litterCardAvailability.js";
+import { listsAvailablePuppies, litterCardAvailability } from "../src/litterCardAvailability.js";
 import { guidePath, guideArticles, articlePath } from "../src/data/puppyGuide.js";
 import fs from "node:fs";
 import { createHash } from "node:crypto";
@@ -89,7 +89,9 @@ const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
 const litterCardLabel = (slug) => litterCardAvailability(litterBySlug.get(slug), puppies.filter((puppy) => puppy.litterSlug === slug)).label;
-const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
+const listedAvailablePuppies = availablePuppies.filter((puppy) => listsAvailablePuppies(litterBySlug.get(puppy.litterSlug)));
+const defaultListedBreed = ["goldendoodle-puppies", "cavapoo-puppies", "bernedoodle-puppies"].find((slug) => listedAvailablePuppies.some((puppy) => puppy.breedSlug === slug));
+const defaultListedPuppies = listedAvailablePuppies.filter((puppy) => puppy.breedSlug === defaultListedBreed);
 const openGuardianNames = puppies
   .filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open")
   .map((puppy) => puppy.name);
@@ -118,11 +120,10 @@ const routeExpectations = [
   ].map((state) => ({ route: `/?fixture=${state.fixture}`, requiredSelectors: ["main"], homeLitterCheck: state })),
   {
     route: "/puppies/available",
-    requiredText: featuredAvailablePuppies.length ? ["find your puppy", "choose a breed", ...featuredAvailablePuppies.map((puppy) => puppy.name), "bernedoodles", "more available puppies", "birdie + waylon", "daisy + waylon"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore", "birdie + waylon"],
-    forbiddenText: [...hiddenAvailablePuppies, ...puppies.filter((puppy) => ["atticus", "posy"].includes(puppy.slug) && normalize(puppy.status) === "reserved")].map((puppy) => puppy.name),
-    requiredSelectors: featuredAvailablePuppies.length ? [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"] : [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
-    finderNavCheck: { mode: "available", history: !featuredAvailablePuppies.length },
-    previewCaptionCheck: !featuredAvailablePuppies.length
+    requiredText: listedAvailablePuppies.length ? ["find your puppy", "choose a breed", ...defaultListedPuppies.map((puppy) => puppy.name), "bernedoodles"] : ["find your puppy", "choose a breed", "no puppies are listed as available right now", "two ways to explore"],
+    requiredSelectors: listedAvailablePuppies.length ? [".puppy-finder-route-nav", ".available-puppy-browser", ".available-puppy-card"] : [".puppy-finder-route-nav", ".available-empty-hub", ".available-empty-path-card"],
+    finderNavCheck: { mode: "available", history: !listedAvailablePuppies.length },
+    previewCaptionCheck: !listedAvailablePuppies.length
   },
   {
     route: "/puppies/available?breed=bernedoodle-puppies",
@@ -177,7 +178,7 @@ const routeExpectations = [
   {
     route: "/puppies/upcoming-litters?breed=goldendoodle-puppies",
     expectedLitterOrder: [],
-    requiredText: ["upcoming litters", "choose a breed", "no upcoming goldendoodle litters are listed right now."],
+    requiredText: ["upcoming litters", "choose a breed", "no upcoming goldendoodle litters are listed right now.", "view current goldendoodle litters"],
     forbiddenText: ["lulu + bram", "evie + waylon", "birdie + waylon", "daisy + waylon", "whitley + waylon", "pregnancy confirmed", "due any day", "expected early october", "october 11-16"],
     requiredSelectors: [".litter-browser", ".litter-browser-empty"],
     litterBrowserCheck: { mode: "upcoming", selectedBreed: "goldendoodle-puppies" },
@@ -280,16 +281,16 @@ const routeExpectations = [
   })),
   ...["penn", "dottie", "posy", "merryweather", "moriarty", "sherlock", "watson", "evie-orange-collar-boy", "nancy", "agatha", "columbo"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) === "available" ? [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`] : ["join waitlist"])],
-    forbiddenText: ["nancy drew", "reserve this puppy", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) !== "available" ? [`reserve ${puppies.find((puppy) => puppy.slug === slug).name}`] : []), ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
+    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) === "available" ? [`apply for ${puppies.find((puppy) => puppy.slug === slug).name}`] : ["join waitlist"])],
+    forbiddenText: ["nancy drew", "reserve this puppy", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) !== "available" ? [`apply for ${puppies.find((puppy) => puppy.slug === slug).name}`] : []), ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
   ...birdiePuppies.map((puppy) => {
     const available = normalize(puppy.status) === "available";
     return {
       route: `/puppies/${puppy.slug}`,
-      requiredText: [puppy.name, "birdie + waylon", puppy.status, "week 3", "week 2", available ? `reserve ${puppy.name}` : "join waitlist"],
-      forbiddenText: ["availability to be confirmed", "reserve this puppy", ...(!available ? [`reserve ${puppy.name}`] : [])],
+      requiredText: [puppy.name, "birdie + waylon", puppy.status, "week 3", "week 2", available ? `apply for ${puppy.name}` : "join waitlist"],
+      forbiddenText: ["availability to be confirmed", "reserve this puppy", ...(!available ? [`apply for ${puppy.name}`] : [])],
       requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
     };
   }),
@@ -297,8 +298,8 @@ const routeExpectations = [
     const available = normalize(puppy.status) === "available";
     return {
       route: `/puppies/${puppy.slug}`,
-      requiredText: [puppy.name, "daisy + waylon", puppy.status, "week 2", available ? `reserve ${puppy.name}` : "join waitlist"],
-      forbiddenText: ["availability to be confirmed", "reserve this puppy", ...(!available ? [`reserve ${puppy.name}`] : [])],
+      requiredText: [puppy.name, "daisy + waylon", puppy.status, "week 2", available ? `apply for ${puppy.name}` : "join waitlist"],
+      forbiddenText: ["availability to be confirmed", "reserve this puppy", ...(!available ? [`apply for ${puppy.name}`] : [])],
       requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
     };
   }),
@@ -356,7 +357,7 @@ const routeExpectations = [
     requiredText: ["puppy application", "you do not need to choose a puppy or litter before applying", "contact info", "puppy interest", "review and send"],
     requiredSelectors: [".application-page-hero", ".application-form-note", ".application-form-sections", ".lead-form"]
   },
-  ...featuredAvailablePuppies.map((puppy) => ({
+  ...listedAvailablePuppies.map((puppy) => ({
     route: `/apply?interest=${puppy.slug}`,
     requiredText: [`Apply for ${puppy.name}`, puppy.price, "View litter details", litterBySlug.get(puppy.litterSlug).name].filter(Boolean),
     requiredSelectors: [".application-reserve-hero", ".application-puppy-price", ".application-litter-link", ".lead-form"],
@@ -647,12 +648,15 @@ async function auditRoute(context, config, viewportName) {
     }
 
     if (config.route === "/puppies/available") {
-      const cardNames = await page.locator(".available-puppy-card h2").allTextContents();
-      for (const name of cardNames) if (!featuredAvailablePuppies.some((puppy) => puppy.name === name.trim())) failures.push(`Unexpected puppy in available listing: ${name.trim()}.`);
+      const actual = await page.locator(".available-puppy-card h2 a").evaluateAll((links) => links.map((link) => link.getAttribute("href")).sort());
+      const expected = defaultListedPuppies.map((puppy) => `/puppies/${puppy.slug}`).sort();
+      if (JSON.stringify(actual) !== JSON.stringify(expected)) failures.push("Available cards must match the exact public, available profiles for the selected breed.");
     }
 
     if (config.homeLitterCheck) {
       const expected = config.homeLitterCheck;
+      const heroPrimary = page.locator(".hero-actions .button.primary");
+      if ((await heroPrimary.textContent()).trim() !== "See available puppies" || await heroPrimary.getAttribute("href") !== "/puppies/available") failures.push("The homepage primary action must lead to Available Now.");
       const heroBrowse = page.locator(".hero-actions").getByRole("link", { name: expected.label, exact: true });
       if (await heroBrowse.count() !== 1 || await heroBrowse.getAttribute("href") !== expected.href) failures.push("Homepage hero litter label/destination does not match current litter status.");
       const heroUpcoming = page.locator(".premium-hero-copy > .home-upcoming-link");
@@ -715,7 +719,7 @@ async function auditRoute(context, config, viewportName) {
     if (config.litterBrowserCheck) {
       const tabs = page.locator('.litter-browser-tabs [role="tab"]');
       const labels = await tabs.allTextContents();
-      const expectedLabels = ["Cavapoos", "Goldendoodles", "Bernedoodles"];
+      const expectedLabels = ["Goldendoodles", "Cavapoos", "Bernedoodles"];
       if (JSON.stringify(labels.map((label) => label.trim())) !== JSON.stringify(expectedLabels)) {
         failures.push(`Litter browser tabs are out of order or incomplete: ${labels.join(", ")}`);
       }
@@ -759,7 +763,8 @@ async function auditRoute(context, config, viewportName) {
       const availableHref = await finderLinks.nth(0).getAttribute("href");
       const currentHref = await finderLinks.nth(1).getAttribute("href");
       const upcomingHref = await finderLinks.nth(2).getAttribute("href");
-      if (availableHref !== "/puppies/available") failures.push(`Available Now link is not the real Available route: ${availableHref}`);
+      const selectedBreedSlug = await page.locator('[role="tab"][aria-selected="true"]').getAttribute("id").then((id) => id.match(/([a-z]+-puppies)$/)?.[1]);
+      if (availableHref !== `/puppies/available?breed=${selectedBreedSlug}`) failures.push(`Available Now does not preserve the selected breed: ${availableHref}`);
       if (!currentHref?.startsWith("/puppies/current-litters")) failures.push(`Current Litters link is not crawlable: ${currentHref}`);
       if (!upcomingHref?.startsWith("/puppies/upcoming-litters")) failures.push(`Upcoming Litters link is not crawlable: ${upcomingHref}`);
       if (config.finderNavCheck.selectedBreed && (!currentHref.includes(`breed=${config.finderNavCheck.selectedBreed}`) || !upcomingHref.includes(`breed=${config.finderNavCheck.selectedBreed}`))) {
@@ -773,7 +778,7 @@ async function auditRoute(context, config, viewportName) {
       if (config.finderNavCheck.history) {
         const originalUrl = page.url();
         await finderLinks.nth(1).click();
-        await page.waitForURL(/\/puppies\/current-litters\?breed=cavapoo-puppies$/);
+        await page.waitForURL((url) => url.pathname === "/puppies/current-litters" && url.searchParams.get("breed") === selectedBreedSlug);
         if (!(await page.title()).toLowerCase().includes("current")) failures.push("Find Your Puppy route switch did not update the page title.");
         await page.goBack({ waitUntil: "domcontentloaded" });
         if (page.url() !== originalUrl) failures.push("Browser Back did not restore Available Now.");
@@ -1115,7 +1120,7 @@ const failed = results.filter((result) => result.failures.length);
 
 console.log(`Public route smoke checked ${routeExpectations.length} routes across ${viewports.length} viewports plus mobile menu interaction.`);
 console.log(`Featured available puppies: ${featuredAvailablePuppies.map((puppy) => puppy.name).join(", ") || "none"}`);
-console.log(`Hidden public Available puppies: ${hiddenAvailablePuppies.map((puppy) => puppy.name).join(", ") || "none"}`);
+console.log(`Listed available puppies: ${listedAvailablePuppies.map((puppy) => puppy.name).join(", ") || "none"}`);
 console.log(`Open guardian opportunities: ${openGuardianNames.join(", ") || "none"}`);
 
 if (failed.length) {

@@ -9,7 +9,7 @@ import { guidePath, guideMeta, articleForPath, guideSchema } from "./data/puppyG
 import { hasActiveGallery } from "./gallerySession.js";
 import { containTabFocus } from "./focus.js";
 import { compareUpcomingLitters } from "./upcomingLitterOrder.js";
-import { litterCardAvailability, litterCardPrice } from "./litterCardAvailability.js";
+import { listsAvailablePuppies, litterCardAvailability, litterCardPrice } from "./litterCardAvailability.js";
 import { track } from "@vercel/analytics";
 import { trackGa4Event, trackGa4PageView } from "./ga4.js";
 import { submitFormPayload } from "./formSubmission.js";
@@ -993,7 +993,7 @@ function itemListSchemaForPath(path) {
 
   if (path === "/puppies/available") {
     name = "Available Red Ranch Dogs puppies";
-    records = featuredAvailablePuppies();
+    records = listedAvailablePuppies();
     getUrl = (item) => `${siteOrigin}/puppies/${item.slug}`;
     getImage = (item) => item.mainPhoto;
   } else if (path === "/puppies/current-litters") {
@@ -1745,8 +1745,8 @@ function HomeHero({ browseAction }) {
         </h1>
         <p>Lovingly raised in Central Texas.</p>
         <div className="actions hero-actions">
-          <Link href="/apply" className="button primary">
-            Apply for a Puppy
+          <Link href="/puppies/available" className="button primary">
+            See available puppies
           </Link>
           <Link href={browseAction.href} className="button secondary">
             {browseAction.label}
@@ -2045,7 +2045,7 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
                       });
                     }}
                   >
-                    {`Reserve ${puppy.name}`}
+                    {`Apply for ${puppy.name}`}
                   </Link>
                   {puppyVideoUrl(puppy) && <a href={puppyVideoUrl(puppy)} className="button small secondary puppy-video-link" target="_blank" rel="noreferrer">Watch video</a>}
                 </div>
@@ -2538,7 +2538,7 @@ function PuppyCard({ puppy, variant = "default" }) {
       puppyNote={showPuppyNote ? puppyNote : ""}
       availabilityNote={showAvailabilityNote ? puppy.availabilityNote : ""}
       primaryHref={isAvailable ? puppyApplyHref(puppy) : "/apply"}
-      primaryLabel={isAvailable ? `Reserve ${puppy.name}` : "Join Waitlist"}
+      primaryLabel={isAvailable ? `Apply for ${puppy.name}` : "Join Waitlist"}
       inquiryHref={isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" ? `/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry` : ""}
       litterRoute={litterRoute} videoHref={videoHref} videoLabel={videoLabel} Link={Link}
     />;
@@ -2548,7 +2548,8 @@ function PuppyCard({ puppy, variant = "default" }) {
     goHome={goHome} weight={weight} price={price} variant={variant}
     birthDate={variant === "default" ? birthDate : ""}
     primaryHref={isAvailableVariant ? (isAvailable ? puppyApplyHref(puppy) : "/apply") : route}
-    primaryLabel={isAvailableVariant ? (isAvailable ? `Reserve ${puppy.name}` : "Join Waitlist") : isLitterVariant ? `View ${puppy.name}` : "View Puppy"}
+    primaryLabel={isAvailableVariant ? (isAvailable ? `Apply for ${puppy.name}` : "Join Waitlist") : isLitterVariant ? `View ${puppy.name}` : "View Puppy"}
+    profileHref={isAvailableVariant && puppy.slug ? route : ""}
     litterName={litterName} litterRoute={isAvailableVariant ? litterRoute : ""}
     puppyNote={showPuppyNote ? puppyNote : ""}
     availabilityNote={showAvailabilityNote ? puppy.availabilityNote : ""}
@@ -3460,8 +3461,8 @@ const plannedLitterBreedGroups = [
   }
 ];
 const litterBrowserBreeds = [
-  { slug: "cavapoo-puppies", label: "Cavapoos", breedName: "Cavapoo" },
   { slug: "goldendoodle-puppies", label: "Goldendoodles", breedName: "Goldendoodle" },
+  { slug: "cavapoo-puppies", label: "Cavapoos", breedName: "Cavapoo" },
   { slug: "bernedoodle-puppies", label: "Bernedoodles", breedName: "Bernedoodle" }
 ];
 const litterBrowserParentFocalPoints = {
@@ -3484,11 +3485,8 @@ const isReservedPuppy = (puppy) => ["reserved", "matched"].includes(normalizedSt
 const isWaitlistMatchingPuppy = (puppy) => statusMatches(puppy, "waitlist matching");
 const litterDateSortValue = (litter) => sortableLitterDate(litter?.goHomeDate || litter?.goHome || litter?.birthDate || "");
 const noAvailabilityTitle = "Explore our upcoming litters";
-const featuredAvailablePuppies = () => puppyData
-  .filter((puppy) => {
-    const litter = litterProfileBySlug.get(puppy.litterSlug);
-    return isAvailablePuppy(puppy) && litter?.featuredAvailable === true;
-  })
+const listedAvailablePuppies = () => puppyData
+  .filter((puppy) => isAvailablePuppy(puppy) && listsAvailablePuppies(litterProfileBySlug.get(puppy.litterSlug)))
   .sort((first, second) => {
     const firstLitter = litterProfileBySlug.get(first.litterSlug);
     const secondLitter = litterProfileBySlug.get(second.litterSlug);
@@ -3499,6 +3497,9 @@ const featuredAvailablePuppies = () => puppyData
     if (firstLitterIndex !== secondLitterIndex) return firstLitterIndex - secondLitterIndex;
     return (first.name || "").localeCompare(second.name || "");
   });
+const featuredAvailablePuppies = () => listedAvailablePuppies().filter((puppy) =>
+  litterProfileBySlug.get(puppy.litterSlug).featuredAvailable === true
+);
 const pluralizeLitterBreed = (breed = "puppies") => {
   if (!breed || /s$/i.test(breed)) return breed || "puppies";
   if (/poo$/i.test(breed)) return `${breed}s`;
@@ -3564,7 +3565,7 @@ const pickupDeliveryCards = [
 const goHomeDayGuidanceCards = [
   {
     title: "Ride home",
-    copy: "For local pickup, your puppy can usually just sit on your lap for the ride home. Bring a small carrier only if your travel plan or comfort level needs one.",
+    copy: "For the ride home, use a secured travel carrier or a properly fitted car harness made for dogs. Set it up in your vehicle before pickup.",
     icon: HomeIcon
   },
   {
@@ -4025,6 +4026,13 @@ function PuppyDetailPage({ puppy }) {
     <Layout>
       <section className="card-list puppy-detail-section">
         <PuppyCard puppy={puppy} variant="detail" />
+        {isReservedPuppy(puppy) && (
+          <p className="small-note">
+            Already reserved?{" "}
+            <Link href={weeklyPhotoGroups.length ? "#weekly-photos" : litterHref || "/puppies/previous-litters"}>Photos</Link>
+            {" and "}<Link href="/process/pickup-and-delivery">pickup help</Link>
+          </p>
+        )}
       </section>
       {videoHref && (
         <section className="content-section puppy-video-section">
@@ -4033,7 +4041,7 @@ function PuppyDetailPage({ puppy }) {
         </section>
       )}
       {weeklyPhotoGroups.length > 0 && (
-        <section className="content-section puppy-weekly-photo-section">
+        <section className="content-section puppy-weekly-photo-section" id="weekly-photos">
           <SectionHeader
             eyebrow="Photo Updates"
             title={`${puppy.name}'s weekly photos`}
@@ -4064,7 +4072,7 @@ function PuppyDetailPage({ puppy }) {
       )}
       <StickyMobileCta
         primaryHref={isAvailablePuppy(puppy) ? puppyApplyHref(puppy) : "/apply"}
-        primaryLabel={isAvailablePuppy(puppy) ? "Reserve Puppy" : "Join Waitlist"}
+        primaryLabel={isAvailablePuppy(puppy) ? `Apply for ${puppy.name}` : "Join Waitlist"}
         secondaryHref={litterHref || "/puppies/current-litters"}
         secondaryLabel={litterHref ? "View Litter" : "Browse Litters"}
       />
@@ -4490,7 +4498,7 @@ function ParentDetailPage({ parent }) {
 
 function PuppiesOverviewPage() {
   const [openBreedSlug, setOpenBreedSlug] = useState("");
-  const availableNow = featuredAvailablePuppies();
+  const availableNow = listedAvailablePuppies();
   const currentBreedGroups = plannedLitterBreedGroups
     .map((group) => ({
       ...group,
@@ -4570,7 +4578,7 @@ function PuppiesOverviewPage() {
           <h2>{availableNow.length ? "Puppies are available now" : noAvailabilityTitle}</h2>
           <p>
             {availableNow.length
-              ? "Only the priority puppies looking for families soonest appear on the Available Puppies page."
+              ? "See each available puppy’s photos, litter, and go-home timing."
               : "When puppies are ready to reserve publicly, they will appear on the Available Puppies page."}
           </p>
           <div className="actions">
@@ -4731,8 +4739,9 @@ function PickupDeliveryPage() {
       heroClassName="streamlined-process-hero"
     >
       <StreamlinedProcessList items={pickupDeliveryCards} label="Pickup and delivery overview" />
-      <section className="content-section pickup-day-basics-section">
+      <section className="content-section pickup-day-basics-section" id="photos-and-pickup">
         <SectionHeader eyebrow="Pickup Day" title="Go-home basics" copy="The exact appointment details are confirmed by litter, but families can expect these same practical pickup reminders." />
+        <p>Looking for your puppy’s photos? Choose your litter from <Link href="/puppies/current-litters">current litters</Link> or the <Link href="/puppies/previous-litters">previous litter photo archives</Link>.</p>
         <CompactTextCardGrid columns="four" className="go-home-guidance-grid" items={goHomeDayGuidanceCards} />
       </section>
       <CTASection
@@ -4920,11 +4929,11 @@ function AboutOverviewPage() {
   );
 }
 
-function PuppyFinderRouteNav({ mode, breedSlug = "" }) {
+function PuppyFinderRouteNav({ mode, breedSlug = litterBrowserBreeds[0].slug }) {
   const links = [
-    { mode: "available", label: "Available Now", href: "/puppies/available" },
-    { mode: "current", label: "Current Litters", href: litterBrowserHref("current", breedSlug || litterBrowserBreeds[0].slug) },
-    { mode: "upcoming", label: "Upcoming Litters", href: litterBrowserHref("upcoming", breedSlug || litterBrowserBreeds[0].slug) }
+    { mode: "available", label: "Available Now", href: `/puppies/available?breed=${encodeURIComponent(breedSlug)}` },
+    { mode: "current", label: "Current Litters", href: litterBrowserHref("current", breedSlug) },
+    { mode: "upcoming", label: "Upcoming Litters", href: litterBrowserHref("upcoming", breedSlug) }
   ];
 
   return (
@@ -4990,22 +4999,16 @@ function OtherBreedActions({ mode, selectedBreed }) {
 }
 
 function AvailablePuppyBrowser({ puppies }) {
-  const defaultBreed = litterBrowserBreeds.find((breed) => puppies.some((puppy) => puppy.breedSlug === breed.slug)) || litterBrowserBreeds[0];
-  const requestedBreed = litterBrowserSlugFromUrl();
-  const hasRequestedBreed = new window.URLSearchParams(window.location.search).has("breed");
-  const [selectedBreedSlug, setSelectedBreedSlug] = useState(hasRequestedBreed ? requestedBreed : defaultBreed.slug);
+  const [selectedBreedSlug, setSelectedBreedSlug] = useState(() => litterBrowserSlugFromUrl());
   const tabRefs = useRef([]);
-  const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || defaultBreed;
+  const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || litterBrowserBreeds[0];
   const selectedPuppies = puppies.filter((puppy) => puppy.breedSlug === selectedBreed.slug);
 
   useEffect(() => {
-    const syncSelection = () => {
-      const params = new window.URLSearchParams(window.location.search);
-      setSelectedBreedSlug(params.has("breed") ? litterBrowserSlugFromUrl() : defaultBreed.slug);
-    };
+    const syncSelection = () => setSelectedBreedSlug(litterBrowserSlugFromUrl());
     window.addEventListener("popstate", syncSelection);
     return () => window.removeEventListener("popstate", syncSelection);
-  }, [defaultBreed.slug]);
+  }, []);
 
   const selectBreed = (slug, focus = false) => {
     if (slug === selectedBreedSlug) return;
@@ -5111,10 +5114,7 @@ function AvailablePuppiesPage() {
     availabilityNote: "Illustrative local fixture for layout verification only.",
     personalityNote: "Illustrative local fixture for layout verification only.",
     status: "Available"
-  }] : featuredAvailablePuppies();
-  const otherAvailableLitters = currentLitterProfiles.filter((litter) =>
-    litter.availableDisplayMode === "current-litters" && puppiesForLitter(litter).some(isAvailablePuppy)
-  );
+  }] : listedAvailablePuppies();
 
   return (
     <BuyerPageTemplate
@@ -5124,15 +5124,6 @@ function AvailablePuppiesPage() {
       heroClassName="compact-page-hero buyer-page-hero litter-browser-hero puppy-finder-hero"
     >
       <AvailablePuppyBrowser puppies={availableNow} />
-      {otherAvailableLitters.length > 0 && (
-        <section className="content-section narrow">
-          <h2>More available puppies</h2>
-          <p>Meet more available puppies on their current litter pages.</p>
-          <div className="actions">
-            {otherAvailableLitters.map((litter) => <Link className="button secondary" href={`/litters/${litter.slug}`} key={litter.slug}>{litter.name}</Link>)}
-          </div>
-        </section>
-      )}
       {availableNow.length > 0 && (
           <CTASection
             title="Ready to ask about a puppy?"
@@ -5210,6 +5201,7 @@ function LitterBrowseCard({ availabilityOverride = "", litter }) {
 function LitterBrowserEmptyState({ mode, breed, allCurrentEmpty = false }) {
   const hasUpcoming = plannedLitterProfiles.some((litter) => litter.breedSlug === breed.slug);
   const currentCanShowUpcoming = mode === "current" && hasUpcoming;
+  const upcomingCanShowCurrent = mode === "upcoming" && currentLitterProfiles.some((litter) => litter.breedSlug === breed.slug);
   const firstUpcomingBreedSlug = plannedLitterProfiles[0]?.breedSlug || breed.slug;
   const actionHref = allCurrentEmpty
     ? litterBrowserHref("upcoming", firstUpcomingBreedSlug)
@@ -5230,14 +5222,18 @@ function LitterBrowserEmptyState({ mode, breed, allCurrentEmpty = false }) {
         {allCurrentEmpty ? "View upcoming litters" : currentCanShowUpcoming ? `View upcoming ${breed.breedName} litters` : `See the ${breed.breedName} waitlist process`}
         {!allCurrentEmpty && <ChevronRight aria-hidden="true" size={18} />}
       </Link>
+      {upcomingCanShowCurrent && (
+        <Link href={litterBrowserHref("current", breed.slug)} className="litter-browser-next-link">
+          View current {breed.breedName} litters <ChevronRight aria-hidden="true" size={18} />
+        </Link>
+      )}
     </div>
   );
 }
 
 function LitterBrowser({ mode }) {
   const litters = mode === "current" ? currentLitterProfiles : plannedLitterProfiles;
-  const defaultBreedSlug = "goldendoodle-puppies";
-  const [selectedBreedSlug, setSelectedBreedSlug] = useState(() => litterBrowserSlugFromUrl(defaultBreedSlug));
+  const [selectedBreedSlug, setSelectedBreedSlug] = useState(() => litterBrowserSlugFromUrl());
   const tabRefs = useRef([]);
   const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || litterBrowserBreeds[0];
   const selectedLitters = litters.filter((litter) => litter.breedSlug === selectedBreed.slug);
@@ -5247,10 +5243,10 @@ function LitterBrowser({ mode }) {
     : "";
 
   useEffect(() => {
-    const syncSelection = () => setSelectedBreedSlug(litterBrowserSlugFromUrl(defaultBreedSlug));
+    const syncSelection = () => setSelectedBreedSlug(litterBrowserSlugFromUrl());
     window.addEventListener("popstate", syncSelection);
     return () => window.removeEventListener("popstate", syncSelection);
-  }, [defaultBreedSlug]);
+  }, []);
 
   const selectBreed = (slug, { focus = false } = {}) => {
     if (slug === selectedBreedSlug) return;
@@ -6345,6 +6341,7 @@ function ApplicationPage() {
         />
       )}
       <section className="form-shell" id="application-form">
+        <p>An application does not hold a puppy. We’ll confirm availability and go over the next steps with you before requesting a non-refundable $500 deposit.</p>
         <LeadForm formType="application" title="Application details" applicationInterest={interest} />
       </section>
     </Layout>
@@ -8117,6 +8114,7 @@ function Footer() {
             <Link href="/puppies/available">Available Puppies</Link>
             <Link href="/puppies/current-litters">Current Litters</Link>
             <Link href="/puppies/upcoming-litters">Upcoming Litters</Link>
+            <Link href="/process/pickup-and-delivery#photos-and-pickup">Already reserved? Photos and pickup help</Link>
           </div>
           <div className="footer-link-row">
             <Link href="/apply">Apply</Link>

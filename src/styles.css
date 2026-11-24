@@ -6721,6 +6721,12 @@ summary {
   }
 }
 
+@media (max-width: 360px) and (max-height: 600px) {
+  .premium-hero-copy {
+    padding-top: 50svh;
+  }
+}
+
 @media (min-width: 641px) {
   .premium-hero {
     width: min(1180px, calc(100% - clamp(48px, 7vw, 104px)));
@@ -13793,6 +13799,7 @@ summary {
 }
 .litter-puppy-body { min-width: 0; padding: clamp(20px, 2.3vw, 28px); }
 .litter-puppy-title-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 18px; }
+.available-puppy-card h2 a { display: inline-block; min-height: 44px; }
 .litter-puppy-title-row h2 {
   min-width: 0;
   margin: 0;

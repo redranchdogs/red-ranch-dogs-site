@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { listsAvailablePuppies } from "../src/litterCardAvailability.js";
 
 const root = process.cwd();
 const args = new Set(process.argv.slice(2));
@@ -101,8 +102,8 @@ const publicPuppies = puppies.filter(isPublicRecord);
 const publicLitters = litters.filter(isPublicRecord);
 const litterBySlug = new Map(publicLitters.map((litter) => [litter.slug, litter]));
 const availablePuppies = publicPuppies.filter((puppy) => normalize(puppy.status) === "available");
-const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
-const hiddenAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable !== true);
+const listedAvailablePuppies = availablePuppies.filter((puppy) => listsAvailablePuppies(litterBySlug.get(puppy.litterSlug)));
+const hiddenAvailablePuppies = availablePuppies.filter((puppy) => !listsAvailablePuppies(litterBySlug.get(puppy.litterSlug)));
 const guardianPuppies = publicPuppies.filter((puppy) => puppy.guardianOpportunity);
 const openGuardianPuppies = guardianPuppies.filter((puppy) => normalize(puppy.guardianOpportunity?.status) === "open");
 const closedGuardianPuppies = guardianPuppies.filter((puppy) => normalize(puppy.guardianOpportunity?.status) !== "open");
@@ -111,9 +112,8 @@ const warnings = [];
 const blockers = [];
 
 Object.entries(byLitter(hiddenAvailablePuppies)).forEach(([litterName, litterPuppies]) => {
-  const litter = litterBySlug.get(litterPuppies[0]?.litterSlug);
   warnings.push(
-    `${litterName}: ${names(litterPuppies)} ${litterPuppies.length === 1 ? "is" : "are"} public Available but hidden from /puppies/available because featuredAvailable is ${String(litter?.featuredAvailable)}.`
+    `${litterName}: ${names(litterPuppies)} ${litterPuppies.length === 1 ? "is" : "are"} public Available but their litter is not approved for listing on /puppies/available.`
   );
 });
 
@@ -138,7 +138,7 @@ guardianPuppies.forEach((puppy) => {
   }
 });
 
-const featuredRows = Object.entries(byLitter(featuredAvailablePuppies))
+const listedRows = Object.entries(byLitter(listedAvailablePuppies))
   .map(([litterName, litterPuppies]) => `| ${litterName} | ${litterPuppies.length} | ${names(litterPuppies)} |`)
   .join("\n");
 
@@ -175,8 +175,8 @@ This is a read-only website audit for public availability, guardian opportunitie
 ## Summary
 
 - Public Available puppy records: ${availablePuppies.length}
-- Featured on /puppies/available: ${featuredAvailablePuppies.length}
-- Public Available but not featured: ${hiddenAvailablePuppies.length}
+- Listed on /puppies/available: ${listedAvailablePuppies.length}
+- Public Available but not listed: ${hiddenAvailablePuppies.length}
 - Open guardian opportunities: ${openGuardianPuppies.length}
 - Closed guardian opportunity records: ${closedGuardianPuppies.length}
 
@@ -188,15 +188,15 @@ ${bulletList(blockers)}
 
 ${bulletList(warnings)}
 
-## Featured Available Puppies
+## Listed Available Puppies
 
 | Litter | Count | Puppies |
 | --- | ---: | --- |
-${featuredRows || "| None | 0 | |"}
+${listedRows || "| None | 0 | |"}
 
-## Public Available But Not Featured
+## Public Available But Not Listed
 
-These puppies are public and marked Available, but they will not appear on /puppies/available unless their litter has \`featuredAvailable: true\`.
+These puppies are public and marked Available but have no public litter approved for listing.
 
 | Litter | Count | featuredAvailable | Puppies |
 | --- | ---: | --- | --- |
@@ -219,7 +219,7 @@ ${currentLitterRows || "| None | | | 0 | |"}
 ## Recommended Use
 
 1. Run this before publishing puppy availability or guardian opportunity changes.
-2. If a puppy is truly available but should be merchandised publicly, confirm the litter should have \`featuredAvailable: true\`.
+2. Confirm the public litter’s display settings before listing an available puppy.
 3. If a guardian family is selected, set \`guardianOpportunity.status\` to \`closed\` before publishing.
 4. Run \`npm run validate:content\`, \`npm run check:source\`, and \`npm run check:buyer-flow\` before deploy review.
 `;
