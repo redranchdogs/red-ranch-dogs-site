@@ -74,10 +74,10 @@ try {
       assert.equal(await card.locator(".litter-puppy-status").innerText(), "AVAILABLE");
       await cardSurface(card);
       await fullPhoto(card, ".home-ready-puppy-photo img", puppy);
-      const reserve = card.getByRole("link", { name: `Reserve ${puppy.name}`, exact: true });
-      assert.equal(await reserve.getAttribute("href"), `/apply?interest=${encodeURIComponent(puppy.slug)}`);
-      assert((await reserve.boundingBox()).height >= 48);
-      assert.equal(await reserve.evaluate((el) => window.getComputedStyle(el).backgroundColor), "rgb(148, 31, 23)");
+      const apply = card.getByRole("link", { name: `Apply for ${puppy.name}`, exact: true });
+      assert.equal(await apply.getAttribute("href"), `/apply?interest=${encodeURIComponent(puppy.slug)}`);
+      assert((await apply.boundingBox()).height >= 48);
+      assert.equal(await apply.evaluate((el) => window.getComputedStyle(el).backgroundColor), "rgb(148, 31, 23)");
       assert.equal(await card.locator(".home-ready-puppy-photo").getAttribute("href"), `/puppies/${puppy.slug}`);
       assert.equal(await card.locator(".home-ready-puppy-price").innerText(), puppy.price);
     }

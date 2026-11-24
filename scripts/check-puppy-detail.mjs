@@ -55,7 +55,7 @@ try {
       const normalized = status.trim().toLowerCase();
       const isAvailable = normalized === "available";
       assert.equal(await card.locator(".litter-puppy-status").textContent(), ["reserved", "matched"].includes(normalized) ? "Reserved" : normalized === "available" ? "Available" : status);
-      assert.equal(await card.locator(".puppy-profile-primary").innerText(), isAvailable ? `RESERVE ${puppy.name.toUpperCase()}` : "JOIN WAITLIST");
+      assert.equal(await card.locator(".puppy-profile-primary").innerText(), isAvailable ? `APPLY FOR ${puppy.name.toUpperCase()}` : "JOIN WAITLIST");
       assert.equal(await card.locator(".puppy-profile-primary").getAttribute("href"), isAvailable ? `/apply?interest=${encodeURIComponent(puppy.slug)}` : "/apply");
       const photo = puppy.mainPhoto || puppy.image;
       if (photo) {
@@ -108,7 +108,7 @@ try {
   await page.waitForURL(`**/litters/${selectedPuppy.litterSlug}`);
   assert.deepEqual(errors, []);
   assert(fs.readFileSync(dataFile).equals(before), "Test never modifies puppy source data");
-  console.log(`Puppy detail QA passed: ${checked} route/viewport checks, ${puppies.length} public profiles, ${sampled.length} representative profiles at 320–1440px, full-frame real photos, preserved statuses/details/links, Reserve/View Litter and Back/Forward verified. No form submissions.`);
+  console.log(`Puppy detail QA passed: ${checked} route/viewport checks, ${puppies.length} public profiles, ${sampled.length} representative profiles at 320–1440px, full-frame real photos, preserved statuses/details/links, Apply/View Litter and Back/Forward verified. No form submissions.`);
 } finally {
   await browser?.close();
   server?.kill();

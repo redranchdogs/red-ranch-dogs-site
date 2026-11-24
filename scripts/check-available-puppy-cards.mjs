@@ -11,8 +11,9 @@ const before = sourceFiles.map((file) => fs.readFileSync(file));
 const allPuppies = JSON.parse(before[0]);
 const isPublic = (record) => !["private", "hidden"].includes(String(record.visibility || "public").trim().toLowerCase());
 const litters = JSON.parse(before[1]).filter(isPublic);
-const expectedPuppies = (records) => records.filter((puppy) => isPublic(puppy) && String(puppy.status).trim().toLowerCase() === "available" && litters.find((litter) => litter.slug === puppy.litterSlug)?.featuredAvailable === true);
-const puppies = expectedPuppies(allPuppies);
+const listedLitterSlugs = new Set(litters.filter((litter) => litter.featuredAvailable === true ||
+  (litter.status === "Current Litter" && litter.availableDisplayMode === "current-litters")).map((litter) => litter.slug));
+const puppies = allPuppies.filter((puppy) => isPublic(puppy) && String(puppy.status).trim().toLowerCase() === "available" && listedLitterSlugs.has(puppy.litterSlug));
 const port = Number(process.env.AVAILABLE_PUPPY_PORT || 5344);
 const base = process.env.AVAILABLE_PUPPY_BASE_URL || `http://127.0.0.1:${port}`;
 const server = process.env.AVAILABLE_PUPPY_BASE_URL ? null : spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], { stdio: "ignore" });
@@ -39,7 +40,14 @@ async function checkCard(page, puppy, width) {
   if (image) {
     const img = card.locator(".litter-puppy-portrait img");
     await img.scrollIntoViewIfNeeded();
-    await img.evaluate((el) => el.decode());
+    await img.evaluate(async (el) => {
+      el.loading = "eager";
+      if (!el.complete) await new Promise((resolve, reject) => {
+        el.addEventListener("load", resolve, { once: true });
+        el.addEventListener("error", () => reject(new Error(`Image failed to load: ${el.src}`)), { once: true });
+      });
+      await el.decode();
+    });
     assert.equal(new URL(await img.getAttribute("src"), base).pathname, new URL(resolveImageUrl(image), base).pathname);
     const frame = await img.evaluate((el) => {
       const box = el.getBoundingClientRect(), banner = el.closest("article").querySelector(".litter-puppy-status").getBoundingClientRect();
@@ -54,7 +62,8 @@ async function checkCard(page, puppy, width) {
   const note = puppy.personalityNote || puppy.description || "";
   if (note && !/personality notes (will|are)/i.test(note)) assert(text.includes(note));
   const primary = card.locator(".litter-puppy-primary");
-  assert.equal((await primary.innerText()).toLowerCase(), `reserve ${puppy.name}`.toLowerCase());
+  assert.equal(await card.locator("h2").getByRole("link", { name: puppy.name, exact: true }).getAttribute("href"), `/puppies/${puppy.slug}`);
+  assert.equal((await primary.innerText()).toLowerCase(), `apply for ${puppy.name}`.toLowerCase());
   assert.equal(await primary.getAttribute("href"), `/apply?interest=${encodeURIComponent(puppy.slug)}`);
   assert.equal(await primary.evaluate((el) => window.getComputedStyle(el).backgroundColor), "rgb(148, 31, 23)");
   assert.equal(await card.getByRole("link", { name: "View Litter", exact: true }).getAttribute("href"), puppy.litterSlug ? `/litters/${puppy.litterSlug}` : puppy.litterHref);
@@ -62,7 +71,10 @@ async function checkCard(page, puppy, width) {
   let safeVideo = "";
   try { const url = new URL(video); if (["youtube.com", "youtube-nocookie.com", "youtu.be"].includes(url.hostname.replace(/^www\./, ""))) safeVideo = url.href; } catch { /* No valid source video. */ }
   assert.equal(await card.locator(".puppy-video-link").count(), safeVideo ? 1 : 0);
-  if (safeVideo) assert.equal(await card.locator(".puppy-video-link").getAttribute("href"), safeVideo);
+  if (safeVideo) {
+    const label = puppy.featured_video_label || puppy.featuredVideoLabel || "Watch Video";
+    assert.equal(await card.getByRole("link", { name: `${label} of ${puppy.name}`, exact: true }).getAttribute("href"), safeVideo);
+  }
   assert.equal(await card.locator("h2,.litter-puppy-price,dd,.litter-puppy-primary").evaluateAll((els) => els.every((el) => el.scrollWidth <= el.clientWidth + 1)), true, `No clipped text at ${width}px`);
   for (const link of await card.locator("a").all()) assert((await link.boundingBox()).height >= 44, "Accessible action targets");
   if (screenshotDir && puppy.slug === "penn" && [390, 1440].includes(width)) await card.screenshot({ path: `${screenshotDir}/penn-${width}.png`, style: ".premium-header,.sticky-mobile-cta,.skip-link{visibility:hidden!important}" });
@@ -80,6 +92,10 @@ try {
     await page.goto(`${base}/puppies/available`);
     await page.locator(".available-puppy-browser").waitFor();
     await page.evaluate(() => document.fonts.ready);
+    const listedUrls = await page.locator('script[data-schema="red-ranch-dogs-schema"]').evaluate((el) =>
+      JSON.parse(el.textContent)["@graph"].find((entry) => entry["@type"] === "ItemList")?.itemListElement.map((item) => item.url) || []
+    );
+    assert.deepEqual(listedUrls.sort(), puppies.map((puppy) => `https://www.redranchdogs.com/puppies/${puppy.slug}`).sort(), "Structured availability matches every public listed profile");
     for (const puppy of puppies) await checkCard(page, puppy, width);
     assert.equal(await page.locator(".available-puppy-card").count(), puppies.length, "No reserved, unknown or private puppies listed");
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false);
@@ -96,15 +112,24 @@ try {
     assert.equal(await page.getByRole("tab", { name: "Cavapoos", exact: true }).getAttribute("aria-selected"), "true", "Repeated selection creates no extra history entry");
     await page.goForward();
     await gold.focus(); await page.keyboard.press("ArrowRight");
-    assert.equal(await page.getByRole("tab", { name: "Bernedoodles", exact: true }).getAttribute("aria-selected"), "true");
+    assert.equal(await page.getByRole("tab", { name: "Cavapoos", exact: true }).getAttribute("aria-selected"), "true");
     await page.close();
   }
   if (server) {
     for (const scenario of ["long-and-missing", "none-available"]) {
       const fixture = JSON.parse(before[0]);
       const fixturePuppy = fixture.find((p) => p.slug === puppies[0].slug);
-      if (scenario === "long-and-missing") Object.assign(fixturePuppy, { name: "A puppy with a very long name for responsive layout", mainPhoto: "", image: "", collarColor: "A long descriptive collar color", goHomeDate: "Timing to be confirmed with the family after the next update", youtube_video_url: "https://example.com/not-approved" });
-      else fixture.filter((p) => String(p.status).trim().toLowerCase() === "available").forEach((p) => { p.status = "Availability to be confirmed"; });
+      if (scenario === "long-and-missing") {
+        Object.assign(fixturePuppy, { name: "A puppy with a very long name for responsive layout", mainPhoto: "", image: "", collarColor: "A long descriptive collar color", goHomeDate: "Timing to be confirmed with the family after the next update", youtube_video_url: "https://example.com/not-approved" });
+        for (const [slug, overrides] of [
+          ["hidden-puppy", { visibility: "hidden" }],
+          ["private-puppy", { visibility: "private" }],
+          ["unlisted-litter", { litterSlug: "unlisted-fixture" }],
+          ["reserved-puppy", { status: "Reserved" }]
+        ]) fixture.push({ ...fixturePuppy, name: slug, slug, ...overrides });
+      } else {
+        fixture.filter((p) => String(p.status).trim().toLowerCase() === "available").forEach((p) => { p.status = "Availability to be confirmed"; });
+      }
       for (const width of [320, 768]) {
         const page = await newPage(width);
         await page.route(`${base}/src/data/puppies.json*`, (route) => route.fulfill({ contentType: "application/javascript", body: `export default ${JSON.stringify(fixture)};` }));
@@ -113,7 +138,10 @@ try {
         if (scenario === "none-available") {
           assert.equal(await page.locator(".available-puppy-card").count(), 0);
           assert.equal(await page.locator(".available-empty-hub").count(), 1);
-        } else await checkCard(page, fixturePuppy, width);
+        } else {
+          await checkCard(page, fixturePuppy, width);
+          assert.equal(await page.locator(".available-puppy-card").count(), puppies.length, "Hidden, private, reserved and unlisted profiles stay off Available Now");
+        }
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false);
         await page.close();
       }
@@ -123,6 +151,11 @@ try {
   await page.goto(`${base}/puppies/available`);
   const selectedPuppy = puppies[0];
   assert(selectedPuppy, "An available puppy is needed for navigation coverage");
+  await cardFor(page, selectedPuppy).locator("h2 a").click();
+  await page.waitForURL(`${base}/puppies/${selectedPuppy.slug}`);
+  assert.equal(await page.locator("h1").innerText(), selectedPuppy.name);
+  if (selectedPuppy.weeklyPhotos?.length) await page.locator(".puppy-weekly-photo-section").waitFor();
+  await page.goBack();
   await cardFor(page, selectedPuppy).locator(".litter-puppy-primary").click();
   await page.waitForURL(`${base}/apply?interest=${encodeURIComponent(selectedPuppy.slug)}`);
   await page.goBack();
@@ -132,7 +165,7 @@ try {
   await cardFor(page, selectedPuppy).waitFor();
   assert.deepEqual(errors, []);
   sourceFiles.forEach((file, index) => assert(fs.readFileSync(file).equals(before[index]), "No source data changes"));
-  console.log(`Available puppy cards passed: ${checked} card/viewport checks, 320–1440px, full original photos, one green status, exact facts/notes, Reserve/View Litter/video actions, repeated breed tabs and Back/Forward, keyboard navigation, safe empty/long/missing states. No form submissions.`);
+  console.log(`Available puppy cards passed: ${checked} card/viewport checks, 320–1440px, full original photos, one green status, exact facts/notes, profile/Apply/View Litter/video actions, structured inventory, repeated breed tabs and Back/Forward, keyboard navigation, safe empty/long/missing states. No form submissions.`);
 } finally {
   await browser?.close();
   if (server && server.exitCode === null) {
