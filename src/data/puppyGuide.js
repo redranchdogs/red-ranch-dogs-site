@@ -145,6 +145,72 @@ export const guideArticles = [
       { label: "American Veterinary Medical Association · Selecting a pet dog", href: "https://www.avma.org/resources/pet-owners/petcare/selecting-pet-dog" },
       { label: "American Kennel Club · Tips for Finding and Working With a Responsible Breeder", href: "https://www.akc.org/expert-advice/lifestyle/9-tips-finding-working-responsible-breeder/" }
     ]
+  },
+  {
+    slug: "what-happens-after-you-apply-for-a-puppy",
+    category: "Choosing Your Puppy",
+    title: "What happens after you apply for a puppy?",
+    subtitle: "You found a puppy you love. You sent in an application. What happens next?",
+    description: "What to expect when you apply for an available puppy or ask about an upcoming litter, from the first conversation to the deposit and pickup.",
+    intro: "An application starts a conversation with our team. It doesn't reserve a puppy or commit you to a deposit. Before you make a decision, we’ll help you check whether the puppy, the timing and the pickup plan are right for your family.",
+    image: "/images/home/red-ranch-dogs-goldendoodle-puppy-hero-900.jpeg",
+    imageAlt: "A brown puppy with white paws and a striped bow held in someone’s hands",
+    readTime: "2 min read",
+    showHealthNote: false,
+    sections: [
+      {
+        id: "if-you-have-a-puppy-in-mind",
+        title: "If you have a puppy in mind",
+        paragraphs: [
+          [
+            "Start on ", { label: "Available Now", href: "/puppies/available" },
+            ". Open the puppy’s page to see their photos and video when available, estimated adult size, price and go-home window. Then choose ",
+            { strong: "Apply for [puppy’s name]" }, ". The form carries the puppy’s name over for you."
+          ],
+          "Not sure between two? Tell us which puppies caught your eye and what life looks like at your house. We can share what we’re seeing as they grow and help you compare them. A short video is a snapshot, not a personality test. What we see over several days is more useful than one sleepy clip."
+        ]
+      },
+      {
+        id: "if-youre-looking-ahead",
+        title: "If you’re looking ahead",
+        paragraphs: [[
+          "If the breed, size or timing you want isn’t available today, look at our ",
+          { label: "upcoming litters", href: "/puppies/upcoming-litters" },
+          ". An upcoming litter is different from choosing a specific puppy who’s available now. Before birth, we don’t know how many puppies there will be or what the mix of boys and girls will be. Ask us about that litter’s waitlist and how puppy picking works before you decide."
+        ]]
+      },
+      {
+        id: "before-you-make-a-deposit",
+        title: "Before you make a deposit",
+        paragraphs: [
+          "We’ll confirm the puppy is still available and make sure the posted go-home window works for you. If you’re traveling or need a different pickup date, bring that up before you reserve. Don’t assume we can hold a puppy beyond the posted window.",
+          [
+            "The reservation deposit is ", { strong: "$500 and nonrefundable" },
+            ". We’ll share the payment instructions once we’ve confirmed the details with you. After we receive the deposit and confirm the reservation, we’ll start a group text with our team so you have one place for updates and pickup questions."
+          ]
+        ]
+      },
+      {
+        id: "get-ready-for-the-ride-home",
+        title: "Get ready for the ride home",
+        paragraphs: [
+          [
+            "Pickup is in ", { strong: "Salado, Texas" },
+            ". We’ll confirm your pickup details with you after you reserve. In the meantime, you can use our ",
+            { label: "new-puppy checklist", href: "/puppy-guide/new-puppy-checklist" },
+            " to get the basics ready without buying everything at once."
+          ],
+          [
+            { strong: "Next step:" }, " ", { label: "See available puppies", href: "/puppies/available" },
+            ". If a puppy catches your eye, apply from their page and tell us a little about your family."
+          ]
+        ]
+      }
+    ],
+    sources: [
+      { label: "Red Ranch Dogs · Application and waitlist", href: "https://www.redranchdogs.com/process/application-and-waitlist" },
+      { label: "Red Ranch Dogs · Pricing and deposits", href: "https://www.redranchdogs.com/process/pricing" }
+    ]
   }
 ];
 export const articlePath = (article) => `${guidePath}/${article.slug}`;

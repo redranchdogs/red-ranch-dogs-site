@@ -1464,8 +1464,7 @@ function AccordionNav({ item, currentPath, onNavigate, index, openGroup, onToggl
   );
 }
 
-function Header() {
-  const [open, setOpen] = useState(false);
+function Header({ open, setOpen }) {
   const [openGroup, setOpenGroup] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef(null);
@@ -1498,7 +1497,7 @@ function Header() {
     if (!open) return undefined;
 
     const focusTarget = mobileMenuRef.current?.querySelector("a[href], button:not([disabled])");
-    window.requestAnimationFrame(() => focusTarget?.focus());
+    const focusFrame = window.requestAnimationFrame(() => focusTarget?.focus());
 
     const onKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -1510,13 +1509,17 @@ function Header() {
     };
 
     const onResize = () => { if (window.innerWidth >= 1024) setOpen(false); };
+    const onNavigate = () => setOpen(false);
     window.addEventListener("resize", onResize);
+    window.addEventListener("popstate", onNavigate);
     document.addEventListener("keydown", onKeyDown);
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("popstate", onNavigate);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [open]);
+  }, [open, setOpen]);
 
   useEffect(() => {
     if (!open && wasOpenRef.current) {
@@ -1604,11 +1607,12 @@ function Header() {
 }
 
 function Layout({ children }) {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <Header />
-      <main className="site-main" id="main-content" tabIndex="-1">{children}</main>
+      <Header open={menuOpen} setOpen={setMenuOpen} />
+      <main className="site-main" id="main-content" tabIndex="-1" inert={menuOpen ? "" : undefined}>{children}</main>
       <Footer />
     </>
   );
@@ -2213,28 +2217,34 @@ function StickyMobileCtaLink({ href, className, children }) {
 }
 
 function StickyMobileCta({
-  primaryHref = "/apply",
-  primaryLabel = "Apply for a Puppy",
+  primaryHref,
+  primaryLabel,
   secondaryHref = brand.sms,
   secondaryLabel = "Text Us"
 }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
+    const updateVisibility = () => {
       const footer = document.querySelector(".premium-footer");
       const pastIntro = window.scrollY > 420;
       const nearFooter = footer ? footer.getBoundingClientRect().top < window.innerHeight + 80 : false;
       setVisible(pastIntro && !nearFooter);
     };
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    window.addEventListener("resize", updateVisibility);
+    window.addEventListener("pageshow", updateVisibility);
+    return () => {
+      window.removeEventListener("scroll", updateVisibility);
+      window.removeEventListener("resize", updateVisibility);
+      window.removeEventListener("pageshow", updateVisibility);
+    };
   }, []);
 
   return (
-    <div className={`sticky-mobile-cta ${visible ? "visible" : ""}`}>
+    <div className={`sticky-mobile-cta ${visible ? "visible" : ""}`} inert={visible ? undefined : ""}>
       <StickyMobileCtaLink href={primaryHref} className="button primary">{primaryLabel}</StickyMobileCtaLink>
       <StickyMobileCtaLink href={secondaryHref} className="button secondary">{secondaryLabel}</StickyMobileCtaLink>
     </div>
@@ -2255,7 +2265,7 @@ function HomePage() {
       <WaitlistSteps />
       <HomeTestimonials />
       <FinalCta />
-      <StickyMobileCta />
+      <StickyMobileCta primaryHref="/puppies/available" primaryLabel="See available puppies" />
     </Layout>
   );
 }
@@ -2508,6 +2518,16 @@ function puppyVideoLabel(puppy = {}) {
   return puppy.featured_video_label || puppy.featuredVideoLabel || "Watch Video";
 }
 
+function puppyProfileAction(puppy) {
+  if (isReservedPuppy(puppy)) {
+    return { primaryHref: "/process/pickup-and-delivery#photos-and-pickup", primaryLabel: "Photos and pickup help" };
+  }
+  if (isAvailablePuppy(puppy)) {
+    return { primaryHref: puppyApplyHref(puppy), primaryLabel: `Apply for ${puppy.name}` };
+  }
+  return { primaryHref: "/apply", primaryLabel: "Join Waitlist" };
+}
+
 function PuppyCard({ puppy, variant = "default" }) {
   const breed = puppy.breed || "Breed to be announced";
   const gender = puppy.gender || puppy.sex || "To be announced";
@@ -2537,8 +2557,7 @@ function PuppyCard({ puppy, variant = "default" }) {
       goHome={goHome} weight={weight} birthDate={birthDate} price={price}
       puppyNote={showPuppyNote ? puppyNote : ""}
       availabilityNote={showAvailabilityNote ? puppy.availabilityNote : ""}
-      primaryHref={isAvailable ? puppyApplyHref(puppy) : "/apply"}
-      primaryLabel={isAvailable ? `Apply for ${puppy.name}` : "Join Waitlist"}
+      {...puppyProfileAction(puppy)} showAvailableLink={isReservedPuppy(puppy)}
       inquiryHref={isAvailable && puppy.litterSlug === "beatrix-enzo-planned-2026" ? `/litters/${puppy.litterSlug}?interest=${encodeURIComponent(puppy.slug)}#beatrix-inquiry` : ""}
       litterRoute={litterRoute} videoHref={videoHref} videoLabel={videoLabel} Link={Link}
     />;
@@ -3551,8 +3570,8 @@ const faqStats = [
 ];
 
 const pricingTimingCards = [
-  ["Deposit", "A $500 non-refundable deposit joins the selected breed waitlist or reserves an available puppy. It applies toward the final puppy price."],
-  ["Final Payment", "Final payment is confirmed before pickup so each family knows the amount due and timing. Zelle is currently preferred."],
+  ["Deposit", "A $500 non-refundable deposit joins the selected breed waitlist or reserves an available puppy. It applies toward the final puppy price. For a $3,200 puppy, a $500 deposit leaves $2,700 to pay before any optional travel costs."],
+  ["Final Payment", "We confirm your final balance and due date in writing before pickup. Zelle is currently preferred."],
   ["Transportation", "Pickup, delivery, or flight nanny plans are coordinated by litter and family. Travel costs are separate from puppy pricing."]
 ];
 
@@ -4012,6 +4031,7 @@ function BreedPageTemplate({ breed }) {
 }
 
 function PuppyDetailPage({ puppy }) {
+  const reserved = isReservedPuppy(puppy);
   const litterHref = publicPuppyLitterHref(puppy, publicLitterProfiles, previousLitterDetails);
   const weeklyPhotoGroups = puppy.weeklyPhotos || [];
   const weeklyPhotoSet = new Set(weeklyPhotoGroups.flatMap((group) => group.photos || []));
@@ -4026,7 +4046,7 @@ function PuppyDetailPage({ puppy }) {
     <Layout>
       <section className="card-list puppy-detail-section">
         <PuppyCard puppy={puppy} variant="detail" />
-        {isReservedPuppy(puppy) && (
+        {reserved && (
           <p className="small-note">
             Already reserved?{" "}
             <Link href={weeklyPhotoGroups.length ? "#weekly-photos" : litterHref || "/puppies/previous-litters"}>Photos</Link>
@@ -4071,10 +4091,9 @@ function PuppyDetailPage({ puppy }) {
         </section>
       )}
       <StickyMobileCta
-        primaryHref={isAvailablePuppy(puppy) ? puppyApplyHref(puppy) : "/apply"}
-        primaryLabel={isAvailablePuppy(puppy) ? `Apply for ${puppy.name}` : "Join Waitlist"}
-        secondaryHref={litterHref || "/puppies/current-litters"}
-        secondaryLabel={litterHref ? "View Litter" : "Browse Litters"}
+        {...puppyProfileAction(puppy)}
+        secondaryHref={reserved ? "/puppies/available" : litterHref || "/puppies/current-litters"}
+        secondaryLabel={reserved ? "Available puppies" : litterHref ? "View Litter" : "Browse Litters"}
       />
     </Layout>
   );
@@ -5003,6 +5022,11 @@ function AvailablePuppyBrowser({ puppies }) {
   const tabRefs = useRef([]);
   const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || litterBrowserBreeds[0];
   const selectedPuppies = puppies.filter((puppy) => puppy.breedSlug === selectedBreed.slug);
+  const litterGroups = [...new Set(selectedPuppies.map((puppy) => puppy.litterSlug))].map((slug) => ({
+    id: `available-${slug}`,
+    litter: litterProfileBySlug.get(slug),
+    puppies: selectedPuppies.filter((puppy) => puppy.litterSlug === slug)
+  }));
 
   useEffect(() => {
     const syncSelection = () => setSelectedBreedSlug(litterBrowserSlugFromUrl());
@@ -5041,9 +5065,26 @@ function AvailablePuppyBrowser({ puppies }) {
       />
       <div aria-labelledby={`available-puppy-tab-${selectedBreed.slug}`} className="litter-browser-panel" id="available-puppy-panel" key={selectedBreed.slug} role="tabpanel">
         {!puppies.length ? <AvailablePuppyEmptyHub /> : selectedPuppies.length ? (
-          <div className="available-puppy-card-list">
-            {selectedPuppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />)}
-          </div>
+          <>
+            <nav className="available-litter-jumps" aria-labelledby="available-litter-jump-title">
+              <h2 id="available-litter-jump-title">Jump to a litter</h2>
+              {litterGroups.map(({ id, litter, puppies: groupPuppies }) => (
+                <a href={`#${id}`} key={id}>
+                  <strong>{litter.name}</strong>
+                  <span>{groupPuppies.length} available</span>
+                  {(litter.goHomeDate || litter.goHome) && <small>Go home {litter.goHomeDate || litter.goHome}</small>}
+                </a>
+              ))}
+            </nav>
+            {litterGroups.map(({ id, litter, puppies: groupPuppies }) => (
+              <section aria-labelledby={id} className="available-litter-group" key={id}>
+                <h2 id={id} tabIndex={-1}>{litter.name}</h2>
+                <div className="available-puppy-card-list">
+                  {groupPuppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />)}
+                </div>
+              </section>
+            ))}
+          </>
         ) : (
           <div className="litter-browser-empty">
             <h2>No {selectedBreed.breedName} puppies are listed as available right now.</h2>

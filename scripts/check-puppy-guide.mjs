@@ -9,7 +9,8 @@ const requiredSlugs = [
   "goldendoodle-cavapoo-or-bernedoodle",
   "micro-and-mini-doodle-size-estimates",
   "new-puppy-checklist",
-  "what-to-ask-on-a-puppy-video-call"
+  "what-to-ask-on-a-puppy-video-call",
+  "what-happens-after-you-apply-for-a-puppy"
 ];
 for (const slug of requiredSlugs) {
   assert.ok(guideArticles.some((article) => article.slug === slug), `Published guide retained: ${slug}`);
@@ -26,6 +27,7 @@ for (const route of [guidePath, ...guideArticles.map(articlePath)]) {
 for (const article of guideArticles) {
   const route = articlePath(article);
   const html = fs.readFileSync(`dist${route}/index.html`, "utf8");
+  const articleText = html.split("<article>")[1].split("</article>")[0].replace(/<[^>]+>/g, "");
   assert.ok(html.includes('property="og:type" content="article"'));
   assert.ok(html.includes(`property="og:image" content="https://www.redranchdogs.com${article.image}"`));
   assert.ok(fs.existsSync(`public${article.image}`), `Existing photo for ${article.slug}`);
@@ -33,8 +35,19 @@ for (const article of guideArticles) {
   assert.equal(new Set(article.sections.map((section) => section.id)).size, article.sections.length, "Unique section anchors");
   for (const section of article.sections) {
     assert.ok(html.includes(`id="${section.id}"`));
-    for (const text of [...(section.paragraphs || []), ...(section.items || [])]) {
-      assert.ok(html.includes(text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")), "Full article available without JavaScript");
+    for (const paragraph of [...(section.paragraphs || []), ...(section.items || [])]) {
+      const parts = Array.isArray(paragraph) ? paragraph : [paragraph];
+      const text = parts.map((part) => typeof part === "string" ? part : part.strong || part.label).join("");
+      const escapedText = text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+      assert.ok(articleText.includes(escapedText), "Full article available without JavaScript");
+      for (const part of parts) {
+        if (typeof part === "string") continue;
+        if (part.strong) assert.ok(html.includes(`<strong>${part.strong}</strong>`), `Visible emphasis: ${part.strong}`);
+        if (part.href) {
+          assert.ok(html.includes(`<a href="${part.href}">${part.label}</a>`), `Inline link: ${part.label}`);
+          assert.ok(sitemap.includes(`https://www.redranchdogs.com${part.href}</loc>`), `Valid inline link: ${part.href}`);
+        }
+      }
     }
     for (const link of section.links || []) assert.ok(sitemap.includes(`https://www.redranchdogs.com${link.href}</loc>`), `Valid article link ${link.href}`);
   }

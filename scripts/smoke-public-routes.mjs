@@ -24,6 +24,12 @@ function normalize(value = "") {
   return String(value || "").trim().toLowerCase();
 }
 
+function profileActionLabel(puppy) {
+  const status = normalize(puppy.status);
+  if (["reserved", "matched"].includes(status)) return "photos and pickup help";
+  return status === "available" ? `apply for ${puppy.name}` : "join waitlist";
+}
+
 function isPublicRecord(item = {}) {
   const visibility = normalize(item.visibility || "public");
   return visibility !== "hidden" && visibility !== "private";
@@ -101,7 +107,7 @@ const closedGuardianNames = puppies
 
 const routeExpectations = [
   { route: guidePath, requiredText: ["a good start", "choosing your puppy", "bringing puppy home", "care & training"], requiredSelectors: [".guide-card", ".guide-topics"] },
-  ...guideArticles.map((article) => ({ route: articlePath(article), requiredText: [article.title, "sources & further reading", article.takeaway], requiredSelectors: [".guide-contents", ".guide-article-body"] })),
+  ...guideArticles.map((article) => ({ route: articlePath(article), requiredText: [article.title, "sources & further reading", article.takeaway || article.intro], requiredSelectors: [".guide-contents", ".guide-article-body"] })),
   {
     route: "/",
     requiredText: ["red ranch dogs", "available puppies", ...featuredAvailablePuppies.map((puppy) => puppy.name), "apply"],
@@ -281,7 +287,7 @@ const routeExpectations = [
   })),
   ...["penn", "dottie", "posy", "merryweather", "moriarty", "sherlock", "watson", "evie-orange-collar-boy", "nancy", "agatha", "columbo"].map((slug) => ({
     route: `/puppies/${slug}`,
-    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) === "available" ? [`apply for ${puppies.find((puppy) => puppy.slug === slug).name}`] : ["join waitlist"])],
+    requiredText: [puppies.find((puppy) => puppy.slug === slug).name, puppies.find((puppy) => puppy.slug === slug).status, "week 2", profileActionLabel(puppies.find((puppy) => puppy.slug === slug))],
     forbiddenText: ["nancy drew", "reserve this puppy", ...(normalize(puppies.find((puppy) => puppy.slug === slug).status) !== "available" ? [`apply for ${puppies.find((puppy) => puppy.slug === slug).name}`] : []), ...(slug === "evie-orange-collar-boy" ? ["orange collar boy"] : ["moran"])],
     requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group", ".puppy-video-section"]
   })),
@@ -289,7 +295,7 @@ const routeExpectations = [
     const available = normalize(puppy.status) === "available";
     return {
       route: `/puppies/${puppy.slug}`,
-      requiredText: [puppy.name, "birdie + waylon", puppy.status, "week 3", "week 2", available ? `apply for ${puppy.name}` : "join waitlist"],
+      requiredText: [puppy.name, "birdie + waylon", puppy.status, "week 3", "week 2", profileActionLabel(puppy)],
       forbiddenText: ["availability to be confirmed", "reserve this puppy", ...(!available ? [`apply for ${puppy.name}`] : [])],
       requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
     };
@@ -298,7 +304,7 @@ const routeExpectations = [
     const available = normalize(puppy.status) === "available";
     return {
       route: `/puppies/${puppy.slug}`,
-      requiredText: [puppy.name, "daisy + waylon", puppy.status, "week 2", available ? `apply for ${puppy.name}` : "join waitlist"],
+      requiredText: [puppy.name, "daisy + waylon", puppy.status, "week 2", profileActionLabel(puppy)],
       forbiddenText: ["availability to be confirmed", "reserve this puppy", ...(!available ? [`apply for ${puppy.name}`] : [])],
       requiredSelectors: [".detail-puppy-card", ".puppy-weekly-photo-group"]
     };
@@ -648,7 +654,7 @@ async function auditRoute(context, config, viewportName) {
     }
 
     if (config.route === "/puppies/available") {
-      const actual = await page.locator(".available-puppy-card h2 a").evaluateAll((links) => links.map((link) => link.getAttribute("href")).sort());
+      const actual = await page.locator(".available-puppy-card h3 a").evaluateAll((links) => links.map((link) => link.getAttribute("href")).sort());
       const expected = defaultListedPuppies.map((puppy) => `/puppies/${puppy.slug}`).sort();
       if (JSON.stringify(actual) !== JSON.stringify(expected)) failures.push("Available cards must match the exact public, available profiles for the selected breed.");
     }

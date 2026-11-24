@@ -8,27 +8,43 @@ const reportPath = path.join(root, "docs", "MOBILE_CTA_REVIEW.md");
 const routeGoals = [
   {
     route: "/",
-    primary: "Join Waitlist / Apply",
+    primary: "See available puppies",
     secondary: "Text Us",
-    evidence: ["Join Waitlist", "Text Us", "StickyMobileCta"],
+    evidence: ['<StickyMobileCta primaryHref="/puppies/available" primaryLabel="See available puppies"', "Text Us"],
   },
   {
     route: "/puppies/available",
     primary: "Apply for a Puppy",
-    secondary: "View Current Litters",
-    evidence: ["No public puppies are available right now", "View Current Litters"],
+    secondary: "Browse current and upcoming litters",
+    evidence: [
+      '<PuppyFinderRouteNav mode="available"',
+      'primaryLabel="Apply for a Puppy"',
+      'className="available-puppy-path-cta"',
+      'className="available-empty-statement">No puppies are listed as available right now.',
+      'className="button primary available-empty-path-action">View current litters',
+      'className="button primary available-empty-path-action">View upcoming litters',
+    ],
   },
   {
     route: "/puppies/current-litters",
-    primary: "Apply for a Puppy",
-    secondary: "View Upcoming Litters",
-    evidence: ["Want help choosing a path?", "View Upcoming Litters"],
+    primary: "View litter",
+    secondary: "Upcoming Litters",
+    evidence: [
+      '<LitterBrowser mode="current" />',
+      'href={route} className="button primary litter-browser-card-action">',
+      '"View litter updates" : "View litter"',
+      'label: "Upcoming Litters", href: litterBrowserHref("upcoming", breedSlug)',
+    ],
   },
   {
     route: "/apply",
     primary: "Application form",
-    secondary: "Process context",
-    evidence: ["Application details", "Use the application for any starting point"],
+    secondary: "Application and reservation guidance",
+    evidence: [
+      '<LeadForm formType="application" title="Application details"',
+      'You can apply without choosing a specific litter.',
+      'An application does not hold a puppy.',
+    ],
   },
   {
     route: "/contact",
@@ -39,8 +55,12 @@ const routeGoals = [
   {
     route: "/guardian-program/application",
     primary: "Guardian Application",
-    secondary: "Guardian FAQ context",
-    evidence: ["Guardian Application", "Guardian Fit", "Family Fit"],
+    secondary: "Guardian family fit",
+    evidence: [
+      '<LeadForm formType="guardian" title="Guardian Application" guardianFields',
+      '<article className="group-panel guardian-before-apply">',
+      '<h2>Guardian family fit</h2>',
+    ],
   },
 ];
 
@@ -69,9 +89,9 @@ ${rows.map((row) => `| ${row.route} | ${row.primary} | ${row.secondary} | ${row.
 
 ## CTA Rules
 
-1. Home can carry the persistent mobile \`Join Waitlist\` and \`Text Us\` actions after the hero.
-2. Available Puppies should keep the buyer pointed to Apply or Current Litters when no public puppies are open.
-3. Current Litters should explain waitlist-first matching and keep Apply as the primary next step.
+1. Home offers \`See available puppies\` and \`Text Us\` after the hero.
+2. Available Puppies offers an application when puppies are listed and links to current and upcoming litters when the list is empty.
+3. Current Litters opens each litter’s details and keeps the selected breed when switching to Upcoming Litters.
 4. Form pages should not add distracting CTAs above the form.
 5. Contact pages should keep direct text/email options easy to find on mobile.
 `;
