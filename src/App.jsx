@@ -5022,11 +5022,16 @@ function AvailablePuppyBrowser({ puppies }) {
   const tabRefs = useRef([]);
   const selectedBreed = litterBrowserBreeds.find((breed) => breed.slug === selectedBreedSlug) || litterBrowserBreeds[0];
   const selectedPuppies = puppies.filter((puppy) => puppy.breedSlug === selectedBreed.slug);
-  const litterGroups = [...new Set(selectedPuppies.map((puppy) => puppy.litterSlug))].map((slug) => ({
-    id: `available-${slug}`,
-    litter: litterProfileBySlug.get(slug),
-    puppies: selectedPuppies.filter((puppy) => puppy.litterSlug === slug)
-  }));
+  const litterGroups = [...new Set(selectedPuppies.map((puppy) => puppy.litterSlug))].map((slug) => {
+    const litter = litterProfileBySlug.get(slug);
+    const puppies = selectedPuppies.filter((puppy) => puppy.litterSlug === slug);
+    return {
+      id: `available-${slug}`,
+      name: litter?.name || puppies[0].litter || "Puppies",
+      goHome: litter?.goHomeDate || litter?.goHome,
+      puppies
+    };
+  });
 
   useEffect(() => {
     const syncSelection = () => setSelectedBreedSlug(litterBrowserSlugFromUrl());
@@ -5068,17 +5073,17 @@ function AvailablePuppyBrowser({ puppies }) {
           <>
             <nav className="available-litter-jumps" aria-labelledby="available-litter-jump-title">
               <h2 id="available-litter-jump-title">Jump to a litter</h2>
-              {litterGroups.map(({ id, litter, puppies: groupPuppies }) => (
+              {litterGroups.map(({ id, name, goHome, puppies: groupPuppies }) => (
                 <a href={`#${id}`} key={id}>
-                  <strong>{litter.name}</strong>
+                  <strong>{name}</strong>
                   <span>{groupPuppies.length} available</span>
-                  {(litter.goHomeDate || litter.goHome) && <small>Go home {litter.goHomeDate || litter.goHome}</small>}
+                  {goHome && <small>Go home {goHome}</small>}
                 </a>
               ))}
             </nav>
-            {litterGroups.map(({ id, litter, puppies: groupPuppies }) => (
+            {litterGroups.map(({ id, name, puppies: groupPuppies }) => (
               <section aria-labelledby={id} className="available-litter-group" key={id}>
-                <h2 id={id} tabIndex={-1}>{litter.name}</h2>
+                <h2 id={id} tabIndex={-1}>{name}</h2>
                 <div className="available-puppy-card-list">
                   {groupPuppies.map((puppy) => <PuppyCard puppy={puppy} variant="available" key={puppy.slug || puppy.name} />)}
                 </div>
