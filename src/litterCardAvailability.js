@@ -1,5 +1,10 @@
 const normalize = (value) => String(value || "").trim().toLowerCase();
 
+export function listsAvailablePuppies(litter) {
+  return litter?.featuredAvailable === true ||
+    (litter?.availableDisplayMode === "current-litters" && normalize(litter.status) === "current litter");
+}
+
 // Presentation only. Source puppy statuses and the detail-page status rules stay unchanged.
 export function litterCardAvailability(litter, puppies = [], fallbackLabel = "") {
   const status = normalize(litter?.status);
