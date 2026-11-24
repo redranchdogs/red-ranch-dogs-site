@@ -11,6 +11,7 @@ export default function PuppyListingCard({
 }) {
   const { tone } = litterPuppyStatus(puppy.status);
   const showLitterFacts = variant !== "litter";
+  const NameHeading = variant === "available" ? "h3" : "h2";
   const variantClass = variant === "available" ? "available-puppy-card" : variant === "litter" ? "litter-puppy-card" : "breed-puppy-card";
   return (
     <article className={`puppy-listing-card ${variantClass} litter-puppy-profile is-${tone}`}>
@@ -23,7 +24,7 @@ export default function PuppyListingCard({
       <div className="litter-puppy-body">
         <header>
           <div className="litter-puppy-title-row">
-            <h2>{profileHref ? <Link href={profileHref}>{puppy.name}</Link> : puppy.name}</h2>
+            <NameHeading>{profileHref ? <Link href={profileHref}>{puppy.name}</Link> : puppy.name}</NameHeading>
             {price && <p className="litter-puppy-price"><span className="sr-only">Price: </span>{price}</p>}
           </div>
           <p className="litter-puppy-breed">{breed}</p>

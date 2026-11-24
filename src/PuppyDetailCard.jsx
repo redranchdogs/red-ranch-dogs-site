@@ -6,7 +6,7 @@ import PuppyStatusBar from "./PuppyStatusBar.jsx";
 export default function PuppyDetailCard({
   puppy, breed, gender, status, photo, litterName,
   goHome, weight, birthDate, price, puppyNote, availabilityNote,
-  primaryHref, primaryLabel, inquiryHref, litterRoute, videoHref,
+  primaryHref, primaryLabel, showAvailableLink, inquiryHref, litterRoute, videoHref,
   videoLabel, Link
 }) {
   return (
@@ -51,10 +51,11 @@ export default function PuppyDetailCard({
             {primaryLabel}<ArrowRight size={22} aria-hidden="true" />
           </Link>
           {inquiryHref && <Link href={inquiryHref} className="puppy-profile-inquiry">Ask about {puppy.name}<ArrowRight size={18} aria-hidden="true" /></Link>}
-          {(videoHref || litterRoute) && (
+          {(videoHref || litterRoute || showAvailableLink) && (
             <div className="puppy-profile-secondary">
               {videoHref && <a href={videoHref} target="_blank" rel="noreferrer"><CirclePlay size={20} aria-hidden="true" />{videoLabel}</a>}
               {litterRoute && <Link href={litterRoute}>View Litter<ArrowRight size={20} aria-hidden="true" /></Link>}
+              {showAvailableLink && <Link href="/puppies/available">See available puppies<ArrowRight size={20} aria-hidden="true" /></Link>}
             </div>
           )}
         </div>

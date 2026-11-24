@@ -33,6 +33,16 @@ if (screenshotDir) fs.mkdirSync(screenshotDir, { recursive: true });
 let browser;
 const errors = [];
 let checked = 0;
+async function assertStickyUnreachable(page, reason) {
+  const bar = page.locator(".sticky-mobile-cta");
+  await bar.waitFor({ state: "hidden" });
+  assert.equal(await bar.getByRole("link").count(), 0, `${reason}: hidden links are outside the accessibility tree`);
+  assert(await bar.locator("a").evaluateAll((links) => links.every((link) => {
+    link.focus({ preventScroll: true });
+    return document.activeElement !== link;
+  })), `${reason}: hidden links cannot take keyboard focus`);
+}
+
 try {
   for (let attempt = 0; attempt < 60; attempt += 1) {
     try { if ((await fetch(base)).ok) break; } catch { /* Wait for test server. */ }
@@ -40,8 +50,18 @@ try {
     await delay(250);
   }
   browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ serviceWorkers: "block" });
+  const allowedOrigin = new URL(base).origin;
+  await context.route("**/*", (route) => {
+    const url = new URL(route.request().url());
+    if (url.origin !== allowedOrigin || !["GET", "HEAD"].includes(route.request().method()) || /^\/(?:api|_vercel)\//.test(url.pathname)) {
+      return route.abort();
+    }
+    return route.continue();
+  });
   for (const width of [320, 390, 430, 768, 980, 981, 1440]) {
-    const page = await browser.newPage({ viewport: { width, height: 900 } });
+    const page = await context.newPage();
+    await page.setViewportSize({ width, height: 900 });
     page.on("pageerror", (error) => errors.push(error.message));
     const checkSet = width === 390 ? puppies : sampled;
     for (const puppy of checkSet) {
@@ -54,9 +74,18 @@ try {
       const status = puppy.status || "Status to be announced";
       const normalized = status.trim().toLowerCase();
       const isAvailable = normalized === "available";
+      const isReserved = ["reserved", "matched"].includes(normalized);
+      const primaryLabel = isReserved ? "Photos and pickup help" : isAvailable ? `Apply for ${puppy.name}` : "Join Waitlist";
+      const primaryHref = isReserved ? "/process/pickup-and-delivery#photos-and-pickup" : isAvailable ? `/apply?interest=${encodeURIComponent(puppy.slug)}` : "/apply";
       assert.equal(await card.locator(".litter-puppy-status").textContent(), ["reserved", "matched"].includes(normalized) ? "Reserved" : normalized === "available" ? "Available" : status);
-      assert.equal(await card.locator(".puppy-profile-primary").innerText(), isAvailable ? `APPLY FOR ${puppy.name.toUpperCase()}` : "JOIN WAITLIST");
-      assert.equal(await card.locator(".puppy-profile-primary").getAttribute("href"), isAvailable ? `/apply?interest=${encodeURIComponent(puppy.slug)}` : "/apply");
+      assert.equal(await card.locator(".puppy-profile-primary").textContent(), primaryLabel);
+      assert.equal(await card.locator(".puppy-profile-primary").getAttribute("href"), primaryHref);
+      assert.equal(await page.locator(".sticky-mobile-cta .primary").getAttribute("href"), primaryHref);
+      assert.equal(await page.locator(".sticky-mobile-cta .primary").textContent(), primaryLabel);
+      if (isReserved) {
+        assert.equal(await card.locator('a[href^="/apply"]').count(), 0, "Returning families do not enter the application");
+        assert.equal(await card.locator('a[href="/puppies/available"]').count(), 1, "Prospective family has a separate link");
+      }
       const photo = puppy.mainPhoto || puppy.image;
       if (photo) {
         const img = card.locator("img");
@@ -76,12 +105,13 @@ try {
       const litterLink = card.getByRole("link", { name: "View Litter", exact: true });
       assert.equal(await litterLink.count(), expectedLitter ? 1 : 0);
       if (expectedLitter) assert.equal(await litterLink.getAttribute("href"), expectedLitter);
-      assert.equal(await page.locator(".sticky-mobile-cta a").last().getAttribute("href"), expectedLitter || "/puppies/current-litters");
+      assert.equal(await page.locator(".sticky-mobile-cta a").last().getAttribute("href"), isReserved ? "/puppies/available" : expectedLitter || "/puppies/current-litters");
       assert.equal(await card.locator(".litter-puppy-status").evaluate((el) => window.getComputedStyle(el).backgroundColor), isAvailable ? "rgb(43, 86, 61)" : ["reserved", "matched"].includes(normalized) ? "rgb(148, 31, 23)" : "rgb(232, 226, 216)", "Consistent truthful status colors");
       const note = puppy.personalityNote || puppy.description || "";
       const text = await card.innerText();
       if (note && !/personality notes (will|are)/i.test(note)) assert(text.includes(note), "Preserve personality note");
-      if (puppy.availabilityNote && normalized !== "waitlist matching") assert(text.includes(puppy.availabilityNote), "Preserve availability note");
+      if (puppy.availabilityNote && normalized !== "waitlist matching") assert(text.includes(puppy.availabilityNote), `${puppy.slug}: preserve the approved availability note`);
+      if (isReserved) assert.doesNotMatch(text, /(?:^|\n)available\./i, `${puppy.slug}: reserved profile must not advertise the puppy as available`);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false, `${puppy.slug}: page overflow ${width}`);
       assert.equal(await card.locator("h1,.puppy-profile-price,dd,.litter-puppy-status,.puppy-profile-primary").evaluateAll((els) => els.every((el) => el.scrollWidth <= el.clientWidth + 1)), true, `${puppy.slug}: clipped text ${width}`);
       for (const link of await card.locator("a").all()) assert((await link.boundingBox()).height >= 44, "44px action targets");
@@ -91,7 +121,8 @@ try {
     await page.close();
   }
   // Navigation only. Do not submit any application or production form.
-  const page = await browser.newPage({ viewport: { width: 390, height: 900 } });
+  const page = await context.newPage();
+  await page.setViewportSize({ width: 390, height: 900 });
   const selectedPuppy = puppies.find((puppy) => String(puppy.status || "").trim().toLowerCase() === "available");
   assert(selectedPuppy, "An available puppy is needed for navigation coverage");
   await page.goto(`${base}/puppies/${selectedPuppy.slug}`);
@@ -106,9 +137,39 @@ try {
   await card.waitFor();
   await page.goForward();
   await page.waitForURL(`**/litters/${selectedPuppy.litterSlug}`);
+  await page.goto(base);
+  await page.locator(".sticky-mobile-cta").waitFor({ state: "attached" });
+  await assertStickyUnreachable(page, "Homepage intro");
+  await page.mouse.wheel(0, 650);
+  const sticky = page.locator(".sticky-mobile-cta");
+  const browse = sticky.getByRole("link", { name: "See available puppies", exact: true });
+  await browse.waitFor();
+  assert.equal(await browse.getAttribute("href"), "/puppies/available");
+  await browse.focus();
+  await page.keyboard.press("Tab");
+  assert(await sticky.locator(".secondary").evaluate((link) => link === document.activeElement), "Visible sticky admits normal Tab navigation");
+  const menuButton = page.locator(".premium-menu-button");
+  await menuButton.click();
+  await assertStickyUnreachable(page, "Open mobile menu");
+  await page.keyboard.press("Tab");
+  assert(await page.evaluate(() => !!document.activeElement.closest(".premium-header")), "Tab stays inside open mobile navigation");
+  await page.keyboard.press("Escape");
+  await browse.waitFor();
+  await browse.focus();
+  await page.keyboard.press("Enter");
+  await page.waitForURL(`${base}/puppies/available`);
+  await page.goBack();
+  await browse.waitFor();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await assertStickyUnreachable(page, "Desktop viewport");
+  await page.setViewportSize({ width: 390, height: 900 });
+  await browse.waitFor();
+  await page.keyboard.press("Control+End");
+  await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
+  await assertStickyUnreachable(page, "Footer");
   assert.deepEqual(errors, []);
   assert(fs.readFileSync(dataFile).equals(before), "Test never modifies puppy source data");
-  console.log(`Puppy detail QA passed: ${checked} route/viewport checks, ${puppies.length} public profiles, ${sampled.length} representative profiles at 320–1440px, full-frame real photos, preserved statuses/details/links, Apply/View Litter and Back/Forward verified. No form submissions.`);
+  console.log(`Puppy detail QA passed: ${checked} route/viewport checks, ${puppies.length} public profiles, ${sampled.length} representative profiles at 320–1440px, full-frame real photos, preserved statuses/details/links, reserved family help, keyboard navigation and hidden sticky controls verified. No form submissions.`);
 } finally {
   await browser?.close();
   server?.kill();

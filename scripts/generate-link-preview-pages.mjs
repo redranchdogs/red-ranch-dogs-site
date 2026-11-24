@@ -207,7 +207,15 @@ function applyMeta(html, route) {
     const schema = JSON.stringify({ "@context": "https://schema.org", ...guideSchema(article) }).replace(/</g, "\\u003c");
     output = output.replace("</head>", `<script type="application/ld+json" id="puppy-guide-static-schema">${schema}</script></head>`);
     const link = (item) => `<a href="${escapeAttribute(item.href)}">${escapeText(item.label)}</a>`;
-    const articleHtml = article ? `<nav><a href="${guidePath}">Puppy Guide</a></nav><article><h1>${escapeText(article.title)}</h1><p>${escapeText(article.subtitle)}</p><p>${escapeText(article.intro)}</p>${article.sections.map((section) => `<section id="${section.id}"><h2>${escapeText(section.title)}</h2>${(section.paragraphs || []).map((text) => `<p>${escapeText(text)}</p>`).join("")}${section.items ? `<ul>${section.items.map((text) => `<li>${escapeText(text)}</li>`).join("")}</ul>` : ""}${(section.links || []).map(link).join(" · ")}</section>`).join("")}<p>${escapeText(article.takeaway)}</p><h2>Sources &amp; further reading</h2><ul>${article.sources.map((source) => `<li>${link(source)}</li>`).join("")}</ul><p>General education, not individualized veterinary advice. Ask your veterinarian about your puppy’s health, nutrition and care.</p></article>` : `<h1>Puppy Guide</h1><p>${escapeText(guideMeta.description)}</p><h2>Choosing Your Puppy</h2><h2>Bringing Puppy Home</h2><h2>Care &amp; Training</h2>${guideArticles.map((item) => `<article><h2><a href="${articlePath(item)}">${escapeText(item.title)}</a></h2><p>${escapeText(item.description)}</p></article>`).join("")}`;
+    const paragraphHtml = (paragraph) => {
+      if (typeof paragraph === "string") return escapeText(paragraph);
+      return paragraph.map((part) => {
+        if (typeof part === "string") return escapeText(part);
+        if (part.strong) return `<strong>${escapeText(part.strong)}</strong>`;
+        return link(part);
+      }).join("");
+    };
+    const articleHtml = article ? `<nav><a href="${guidePath}">Puppy Guide</a></nav><article><h1>${escapeText(article.title)}</h1><p>${escapeText(article.subtitle)}</p><p>${escapeText(article.intro)}</p>${article.sections.map((section) => `<section id="${section.id}"><h2>${escapeText(section.title)}</h2>${(section.paragraphs || []).map((paragraph) => `<p>${paragraphHtml(paragraph)}</p>`).join("")}${section.items ? `<ul>${section.items.map((text) => `<li>${escapeText(text)}</li>`).join("")}</ul>` : ""}${(section.links || []).map(link).join(" · ")}</section>`).join("")}${article.takeaway ? `<p>${escapeText(article.takeaway)}</p>` : ""}<h2>Sources &amp; further reading</h2><ul>${article.sources.map((source) => `<li>${link(source)}</li>`).join("")}</ul>${article.showHealthNote !== false ? "<p>General education, not individualized veterinary advice. Ask your veterinarian about your puppy’s health, nutrition and care.</p>" : ""}</article>` : `<h1>Puppy Guide</h1><p>${escapeText(guideMeta.description)}</p><h2>Choosing Your Puppy</h2><h2>Bringing Puppy Home</h2><h2>Care &amp; Training</h2>${guideArticles.map((item) => `<article><h2><a href="${articlePath(item)}">${escapeText(item.title)}</a></h2><p>${escapeText(item.description)}</p></article>`).join("")}`;
     output = output.replace('<div id="root"></div>', `<div id="root"><main class="puppy-guide guide-article-header">${articleHtml}</main></div>`);
   }
   return output;
