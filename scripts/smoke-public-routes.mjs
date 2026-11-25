@@ -110,7 +110,7 @@ const routeExpectations = [
   ...guideArticles.map((article) => ({ route: articlePath(article), requiredText: [article.title, "sources & further reading", article.takeaway || article.intro], requiredSelectors: [".guide-contents", ".guide-article-body"] })),
   {
     route: "/",
-    requiredText: ["red ranch dogs", "available puppies", ...featuredAvailablePuppies.map((puppy) => puppy.name), "apply"],
+    requiredText: ["red ranch dogs", "available puppies", ...listedAvailablePuppies.map((puppy) => puppy.name), "apply"],
     forbiddenText: ["hugo poe"],
     requiredSelectors: [".premium-header", "main", ".premium-footer"],
     homeLitterCheck: {
@@ -642,15 +642,43 @@ async function auditRoute(context, config, viewportName) {
         name: card.querySelector("h3")?.textContent?.trim(),
         price: card.querySelector(".home-ready-puppy-price")?.textContent?.trim(),
         breed: card.querySelector(".home-ready-puppy-meta")?.textContent?.trim(),
+        profileHref: card.querySelector(".home-ready-puppy-photo")?.getAttribute("href"),
+        applyHref: card.querySelector(".home-ready-puppy-body a[href^='/apply']")?.getAttribute("href"),
+        status: card.querySelector(".litter-puppy-status")?.textContent?.trim(),
         priceFollowsName: card.querySelector("h3")?.nextElementSibling?.classList.contains("home-ready-puppy-price")
       })));
-      for (const puppy of featuredAvailablePuppies) {
+      for (const puppy of listedAvailablePuppies) {
         const card = homePrices.find((item) => item.name === puppy.name);
         if (!card || card.price !== puppy.price || !card.priceFollowsName) failures.push(`Homepage price is missing, misplaced, or differs from the individual record for ${puppy.name}.`);
         const expectedBreed = puppy.slug === "bram" ? "Micro Chocolate Bernedoodle" : puppy.breed;
         if (!card || card.breed !== expectedBreed) failures.push(`Homepage breed is missing or incorrect for ${puppy.name}.`);
       }
-      for (const card of homePrices) if (!featuredAvailablePuppies.some((puppy) => puppy.name === card.name)) failures.push(`Unexpected puppy in homepage available cards: ${card.name}.`);
+      const expectedProfiles = listedAvailablePuppies.map((puppy) => `/puppies/${puppy.slug}`).sort();
+      const actualProfiles = homePrices.map((card) => card.profileHref).sort();
+      if (JSON.stringify(actualProfiles) !== JSON.stringify(expectedProfiles)) failures.push("Homepage carousel membership differs from Available Now.");
+      for (const card of homePrices) {
+        const puppy = listedAvailablePuppies.find((item) => `/puppies/${item.slug}` === card.profileHref);
+        if (puppy && (card.applyHref !== `/apply?interest=${puppy.slug}` || card.status !== "Available")) {
+          failures.push(`Homepage carousel status or application link differs for ${puppy.name}.`);
+        }
+      }
+      if (homePrices.length) {
+        const carousel = page.getByRole("region", { name: "Available puppies" });
+        if (await carousel.count() !== 1) failures.push("Homepage carousel needs a labeled region.");
+        else {
+          const state = await carousel.evaluate((element) => ({
+            tabIndex: element.tabIndex,
+            overflowX: window.getComputedStyle(element).overflowX,
+            width: element.clientWidth,
+            contentWidth: element.scrollWidth
+          }));
+          if (state.tabIndex !== 0 || state.overflowX !== "auto") failures.push("Homepage carousel should support focus and horizontal scrolling.");
+          if (state.contentWidth > state.width + 2) {
+            await carousel.evaluate((element) => { element.scrollLeft = element.scrollWidth; });
+            if (!await carousel.evaluate((element) => element.scrollLeft > 0)) failures.push("Homepage carousel could not reach later cards.");
+          }
+        }
+      }
     }
 
     if (config.route === "/puppies/available") {
@@ -669,7 +697,7 @@ async function auditRoute(context, config, viewportName) {
       if (await heroUpcoming.count() !== Number(expected.showUpcoming)) failures.push("Homepage alternate Upcoming Litters link does not match available litter categories.");
       const breedBrowse = page.locator(".home-doodles-section").getByRole("link", { name: expected.label, exact: true });
       if (await breedBrowse.count() !== 1 || await breedBrowse.getAttribute("href") !== expected.href) failures.push("Homepage breed-section litter action differs from hero.");
-      if (!featuredAvailablePuppies.length) {
+      if (!listedAvailablePuppies.length) {
         const options = page.locator(".home-litter-options");
         const primary = options.getByRole("link", { name: expected.label, exact: true });
         if (await primary.count() !== 1 || await primary.getAttribute("href") !== expected.href) failures.push("Homepage lower litter action differs from hero.");

@@ -4,6 +4,7 @@ import { spawn } from "node:child_process";
 import { setTimeout as delay } from "node:timers/promises";
 import { URL } from "node:url";
 import { chromium } from "playwright";
+import { listsAvailablePuppies } from "../src/litterCardAvailability.js";
 import { resolveImageUrl } from "../src/imageVersions.js";
 import { guidePath, guideArticles, articlePath } from "../src/data/puppyGuide.js";
 
@@ -12,7 +13,7 @@ const sourceFiles = ["puppies", "litters", "parents", "previousLitters", "breeds
 const before = sourceFiles.map((file) => fs.readFileSync(file));
 const [puppies, litters, parents, archives, breeds] = before.map((data) => JSON.parse(data).filter(isPublic));
 const available = puppies.filter((p) => String(p.status).trim().toLowerCase() === "available");
-const featured = available.filter((p) => litters.find((l) => l.slug === p.litterSlug)?.featuredAvailable === true);
+const listed = available.filter((p) => listsAvailablePuppies(litters.find((l) => l.slug === p.litterSlug)));
 const parentRoutes = ["/parents", "/parents/mamas", "/parents/studs", "/parents/goldendoodle-parents", "/parents/cavapoo-parents", "/parents/bernedoodle-parents"];
 const port = Number(process.env.SITE_COHESION_PORT || 5352);
 const base = process.env.SITE_COHESION_BASE_URL || `http://127.0.0.1:${port}`;
@@ -68,8 +69,8 @@ try {
     const page = await browser.newPage({ viewport: { width, height: 900 } });
     page.on("pageerror", (e) => errors.push(e.message));
     await visit(page, "/");
-    assert.equal(await page.locator(".home-ready-puppy-card").count(), featured.length);
-    for (const puppy of featured) {
+    assert.equal(await page.locator(".home-ready-puppy-card").count(), listed.length);
+    for (const puppy of listed) {
       const card = page.locator(".home-ready-puppy-card").filter({ has: page.getByRole("heading", { name: puppy.name, exact: true }) });
       assert.equal(await card.locator(".litter-puppy-status").innerText(), "AVAILABLE");
       await cardSurface(card);

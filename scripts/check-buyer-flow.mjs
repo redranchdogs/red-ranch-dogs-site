@@ -76,7 +76,6 @@ const publicPuppies = puppies.filter(isPublicRecord);
 const availablePuppies = publicPuppies.filter((puppy) => normalize(puppy.status) === "available");
 const publicLitters = litters.filter(isPublicRecord);
 const publicLitterBySlug = new Map(publicLitters.map((litter) => [litter.slug, litter]));
-const featuredAvailablePuppies = availablePuppies.filter((puppy) => publicLitterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
 const listedPuppies = availablePuppies.filter((puppy) => listsAvailablePuppies(publicLitterBySlug.get(puppy.litterSlug)));
 const unsortedCurrentLitters = publicLitters.filter((litter) => normalize(litter.status).includes("current"));
 const currentLitters = publicLitters
@@ -211,8 +210,8 @@ if (!/function AvailablePuppiesPage\(\)[\s\S]*?\}\] : listedAvailablePuppies\(\)
   blockers.push("Available Puppies should list available public profiles from litters approved for display.");
 }
 
-if (featuredAvailablePuppies.length > 0 && !app.includes("<h2>Available puppies</h2>")) {
-  blockers.push("Homepage should feature the available-puppy strip when featured Available puppies exist.");
+if (listedPuppies.length > 0 && !app.includes("<h2>Available puppies</h2>")) {
+  blockers.push("Homepage should feature the available-puppy strip when listed available puppies exist.");
 }
 
 if (!app.includes('source: "home_ready_strip"') || !app.includes('trackSiteEvent("cta_reserve_click"')) {
@@ -227,8 +226,8 @@ if (homeReadyStripSource && /\b(previousPrice|markdown|strikethrough)\b/i.test(h
   blockers.push("Homepage ready strip must not render markdowns or discount fields.");
 }
 
-if (!/function HomePage\(\)[\s\S]*?const readyPuppies = featuredAvailablePuppies\(\);[\s\S]*?<HomeHero browseAction=\{browseAction\} \/>[\s\S]*?<HomeReadySoonStrip readyPuppies=\{readyPuppies\} browseAction=\{browseAction\} \/>/.test(app)) {
-  blockers.push("Homepage hero and availability strip should share one featured Available puppy result.");
+if (!/function HomePage\(\)[\s\S]*?const readyPuppies = listedAvailablePuppies\(\);[\s\S]*?<HomeHero browseAction=\{browseAction\} \/>[\s\S]*?<HomeReadySoonStrip readyPuppies=\{readyPuppies\} browseAction=\{browseAction\} \/>/.test(app)) {
+  blockers.push("Homepage carousel should use the same eligible puppies as Available Now.");
 }
 
 if (app.includes("Current litters may still be growing and matching with waitlist families first")) {
