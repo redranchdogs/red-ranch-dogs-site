@@ -2016,7 +2016,7 @@ function HomeReadySoonStrip({ readyPuppies, browseAction }) {
           <p className="premium-kicker">Meet the puppies</p>
           <h2>Available puppies</h2>
         </div>
-        <div className="home-ready-puppy-row" aria-label="Available puppies">
+        <div className="home-ready-puppy-row" role="region" aria-label="Available puppies" tabIndex={0}>
           {readyPuppies.map((puppy) => {
             const photo = puppy.mainPhoto || puppy.image;
             const gender = puppy.gender || puppy.sex || "Gender to be announced";
@@ -2252,7 +2252,7 @@ function StickyMobileCta({
 }
 
 function HomePage() {
-  const readyPuppies = featuredAvailablePuppies();
+  const readyPuppies = listedAvailablePuppies();
   const browseAction = homepageLitterBrowseAction();
 
   return (
@@ -3516,9 +3516,6 @@ const listedAvailablePuppies = () => puppyData
     if (firstLitterIndex !== secondLitterIndex) return firstLitterIndex - secondLitterIndex;
     return (first.name || "").localeCompare(second.name || "");
   });
-const featuredAvailablePuppies = () => listedAvailablePuppies().filter((puppy) =>
-  litterProfileBySlug.get(puppy.litterSlug).featuredAvailable === true
-);
 const pluralizeLitterBreed = (breed = "puppies") => {
   if (!breed || /s$/i.test(breed)) return breed || "puppies";
   if (/poo$/i.test(breed)) return `${breed}s`;

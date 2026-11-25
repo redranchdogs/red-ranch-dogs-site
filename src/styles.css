@@ -6463,14 +6463,16 @@ summary {
   }
 
   .home-ready-puppy-row {
-    grid-auto-columns: unset;
-    grid-auto-flow: initial;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-right: 0;
-    margin-left: 0;
-    padding-right: 0;
-    padding-left: 0;
-    overflow: visible;
+    grid-auto-columns: minmax(190px, calc((100% - 28px) / 3));
+    gap: 14px;
+    margin-inline: 0;
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+    scrollbar-width: thin;
+  }
+
+  .home-ready-puppy-row::-webkit-scrollbar {
+    display: block;
   }
 
   .home-ready-puppy-card {
@@ -6571,8 +6573,7 @@ summary {
 
 @media (min-width: 1024px) {
   .home-ready-puppy-row {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 14px;
+    grid-auto-columns: minmax(190px, calc((100% - 56px) / 5));
   }
 
   .home-ready-puppy-card {
@@ -12843,22 +12844,12 @@ summary {
 }
 
 @media (min-width: 760px) {
-  .home-ready-puppy-row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .home-ready-puppy-card {
     grid-template-columns: 1fr;
   }
 
   .home-ready-puppy-body {
     min-height: 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .home-ready-puppy-row {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
@@ -13932,10 +13923,6 @@ summary {
 .home-ready-puppy-body .button { width: 100%; min-height: 48px; border: 1px solid var(--brand-red); border-radius: var(--radius-sm); background: var(--brand-red); color: #fff; white-space: normal; text-align: center; }
 .home-ready-puppy-body .button:hover { background: var(--brand-red-dark); border-color: var(--brand-red-dark); }
 .home-ready-puppy-card a:focus-visible { outline: 3px solid var(--brand-red); outline-offset: -4px; }
-@media (min-width: 760px) {
-  .home-ready-puppy-row { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
-}
-
 /* Directory cards share the same calm surface without changing their content. */
 .parent-profile-card.text-card {
   border: 1px solid var(--line);
