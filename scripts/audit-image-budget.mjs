@@ -13,6 +13,10 @@ const maxOptionCPhotoBytes = 600 * 1024;
 const maxOptionCBatchBytes = 18 * 1024 * 1024;
 const daisyWeek3Prefix = `${optionCPhotoPrefix}daisy/`;
 const maxDaisyWeek3Bytes = 6 * 1024 * 1024;
+// A separate, fixed budget for the verified Nov 25 drop preserves the existing archive caps.
+const nov25PortraitPrefix = "/images/puppies/2026-11-25-weekly-portraits/";
+const maxNov25PortraitBytes = 250 * 1024;
+const maxNov25PortraitBatchBytes = 18 * 1024 * 1024;
 const warningImageBytes = 250 * 1024;
 const referencedImages = new Set();
 
@@ -103,6 +107,7 @@ const warnings = [];
 let totalBytes = 0;
 let optionCBytes = 0;
 let daisyWeek3Bytes = 0;
+let nov25PortraitBytes = 0;
 
 for (const imagePath of [...referencedImages].sort()) {
   const localPath = path.join(publicRoot, imagePath.replace(/^\//, ""));
@@ -114,10 +119,13 @@ for (const imagePath of [...referencedImages].sort()) {
   const bytes = fs.statSync(localPath).size;
   const isDaisyWeek3Photo = imagePath.startsWith(daisyWeek3Prefix);
   const isOptionCPhoto = !isDaisyWeek3Photo && imagePath.startsWith(optionCPhotoPrefix);
-  if (isDaisyWeek3Photo) daisyWeek3Bytes += bytes;
+  const isNov25Portrait = imagePath.startsWith(nov25PortraitPrefix);
+  if (isNov25Portrait) nov25PortraitBytes += bytes;
+  else if (isDaisyWeek3Photo) daisyWeek3Bytes += bytes;
   else if (isOptionCPhoto) optionCBytes += bytes;
   else totalBytes += bytes;
-  if (bytes > (isOptionCPhoto ? maxOptionCPhotoBytes : maxReferencedImageBytes)) {
+  const perFileLimit = isNov25Portrait ? maxNov25PortraitBytes : isOptionCPhoto ? maxOptionCPhotoBytes : maxReferencedImageBytes;
+  if (bytes > perFileLimit) {
     tooLarge.push(`${imagePath} (${formatBytes(bytes)})`);
   } else if (bytes > warningImageBytes) {
     warnings.push(`${imagePath} (${formatBytes(bytes)})`);
@@ -154,4 +162,9 @@ if (daisyWeek3Bytes > maxDaisyWeek3Bytes) {
   process.exit(1);
 }
 
-console.log(`Referenced image budget passed: ${referencedImages.size} images, ${formatBytes(totalBytes + optionCBytes + daisyWeek3Bytes)} total, including ${formatBytes(optionCBytes)} in the original Option C batch and ${formatBytes(daisyWeek3Bytes)} in Daisy Week 3.`);
+if (nov25PortraitBytes > maxNov25PortraitBatchBytes) {
+  console.error(`November 25 portraits total ${formatBytes(nov25PortraitBytes)}, over the ${formatBytes(maxNov25PortraitBatchBytes)} limit.`);
+  process.exit(1);
+}
+
+console.log(`Referenced image budget passed: ${referencedImages.size} images, ${formatBytes(totalBytes + optionCBytes + daisyWeek3Bytes + nov25PortraitBytes)} total, including ${formatBytes(optionCBytes)} in the original Option C batch and ${formatBytes(daisyWeek3Bytes)} in Daisy Week 3, and ${formatBytes(nov25PortraitBytes)} in the November 25 portraits.`);
