@@ -92,6 +92,8 @@ const daisyAvailableLabel = `${daisyPuppies.filter((puppy) => normalize(puppy.st
 const litters = readJson("src/data/litters.json").filter(isPublicRecord);
 const publicParents = readJson("src/data/parents.json").filter(isPublicRecord);
 const litterBySlug = new Map(litters.map((litter) => [litter.slug, litter]));
+const latestLitterWeek = (slug) => puppies.find((puppy) => puppy.litterSlug === slug)?.weeklyPhotos?.[0]?.week;
+const galleryCount = (slug) => litterBySlug.get(slug).weeklyUpdateGallery.length;
 const availablePuppies = puppies.filter((puppy) => normalize(puppy.status) === "available");
 const featuredAvailablePuppies = availablePuppies.filter((puppy) => litterBySlug.get(puppy.litterSlug)?.featuredAvailable === true);
 const litterCardLabel = (slug) => litterCardAvailability(litterBySlug.get(slug), puppies.filter((puppy) => puppy.litterSlug === slug)).label;
@@ -213,14 +215,14 @@ const routeExpectations = [
   },
   {
     route: "/litters/lulu-bram-fall-2026",
-    requiredText: ["lulu + bram", "multigen micro goldendoodles", "Previous litter", "week 5", "penn", "dottie", "posy", "merryweather", "10-15 lbs", "birth date", "october 9, 2026", "apply for a future litter"],
+    requiredText: ["lulu + bram", "multigen micro goldendoodles", "Previous litter", latestLitterWeek("lulu-bram-fall-2026"), "penn", "dottie", "posy", "merryweather", "10-15 lbs", "birth date", "october 9, 2026", "apply for a future litter"],
     forbiddenText: ["pregnancy confirmed", "confirmed pregnant", "estimated birth", "expected early october"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 4, archive: true, allowArchivedPuppies: true, expectedDescriptor: "Multigen Micro Goldendoodles", expectedSize: "10-15 lbs", testParentBack: true }
   },
   {
     route: "/litters/evie-waylon-october-2026",
-    requiredText: ["evie + waylon", "petite mini goldendoodles", "Previous litter", "week 5", "moran", "nancy", "~20 lbs", "birth date", "october 11, 2026", "apply for a future litter"],
+    requiredText: ["evie + waylon", "petite mini goldendoodles", "Previous litter", latestLitterWeek("evie-waylon-october-2026"), "moran", "nancy", "~20 lbs", "birth date", "october 11, 2026", "apply for a future litter"],
     forbiddenText: ["pregnancy confirmed", "estimated birth", "october 11-16", "due any day", "orange collar boy", "nancy drew"],
     requiredSelectors: [".litter-detail-hero", ".litter-primary-facts", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-primary-cta-section"],
     litterDetailCheck: { expectedStatus: "Previous litter", expectedPuppies: 7, archive: true, allowArchivedPuppies: true, expectedDescriptor: "Petite Mini Goldendoodles", expectedSize: "~20 lbs", testParentBack: true }
@@ -234,17 +236,17 @@ const routeExpectations = [
   },
   {
     route: "/litters/daisy-waylon-october-2026",
-    requiredText: ["daisy + waylon", daisyAvailableLabel, "week 3", "birth date", "october 24, 2026", "december 17-19, 2026", "$3,200", "~25 lbs", "max", "cindy lou", "martha may", "donna lou", "betty lou", "grinch"],
+    requiredText: ["daisy + waylon", daisyAvailableLabel, latestLitterWeek("daisy-waylon-october-2026"), "birth date", "october 24, 2026", "december 17-19, 2026", "$3,200", "~25 lbs", "max", "cindy lou", "martha may", "donna lou", "betty lou", "grinch"],
     forbiddenText: ["to be announced", "available now", "pregnancy confirmed", "estimated birth", "fully reserved"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-image-gallery"],
-    litterDetailCheck: { expectedStatus: daisyAvailableLabel, expectedPuppies: daisyPuppies.length, expectedDescriptor: "Goldendoodles", expectedSize: "~25 lbs", expectedGalleryImages: 17, testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
+    litterDetailCheck: { expectedStatus: daisyAvailableLabel, expectedPuppies: daisyPuppies.length, expectedDescriptor: "Goldendoodles", expectedSize: "~25 lbs", expectedGalleryImages: galleryCount("daisy-waylon-october-2026"), testParentBack: true, expectedAboutText: ["57.55% Poodle", "42.45% Golden Retriever", "Individual puppies can inherit different proportions"] }
   },
   {
     route: "/litters/birdie-waylon-final-2026",
     requiredText: ["birdie + waylon", birdieAvailableLabel, "birth date", "october 21, 2026", "december 12-14, 2026", "$3,200", "20-25 lbs", "fredrich", "marmee", "laurie", "jo", "meg", "beth", "amy"],
     forbiddenText: ["to be announced", "available now", "pregnancy confirmed", "estimated birth", "expecting", "date to be confirmed", "7 puppies"],
     requiredSelectors: [".litter-detail-hero", ".litter-parent-portraits", ".litter-about-disclosure", ".litter-image-gallery"],
-    litterDetailCheck: { expectedStatus: birdieAvailableLabel, expectedPuppies: birdiePuppies.length, expectedDescriptor: "Goldendoodles", expectedSize: "20-25 lbs", expectedGalleryImages: 23, testParentBack: true }
+    litterDetailCheck: { expectedStatus: birdieAvailableLabel, expectedPuppies: birdiePuppies.length, expectedDescriptor: "Goldendoodles", expectedSize: "20-25 lbs", expectedGalleryImages: galleryCount("birdie-waylon-final-2026"), testParentBack: true }
   },
   {
     route: "/parents/evie-nicks",
