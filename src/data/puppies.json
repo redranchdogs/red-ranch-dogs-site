@@ -6021,7 +6021,7 @@
     "stud": "Waylon Jennings",
     "gender": "Female",
     "collarColor": "Pink",
-    "status": "Available",
+    "status": "Reserved",
     "estimatedAdultWeight": "Around 25 lbs",
     "birthDate": "October 24, 2026",
     "goHomeDate": "December 17-19, 2026",
@@ -6064,7 +6064,7 @@
       }
     ],
     "description": "Cindy Lou is a female Goldendoodle from Daisy + Waylon’s litter.",
-    "availabilityNote": "Available. Contact Red Ranch Dogs for details.",
+    "availabilityNote": "Cindy Lou is reserved.",
     "personalityNote": "Personality notes will be updated as this puppy grows.",
     "youtube_video_url": "https://www.youtube.com/shorts/vgASw_xTJGA",
     "featured_video_label": "Watch video"
